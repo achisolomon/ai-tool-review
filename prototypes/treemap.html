@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Landscape - Zoomable Treemap</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f0f1a;
+            color: #fff;
+            min-height: 100vh;
+        }
+        .header {
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: #fff; }
+        h1 {
+            font-size: 1.5rem;
+            background: linear-gradient(90deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        .breadcrumb span {
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .breadcrumb span:hover { color: #fff; }
+        .breadcrumb .separator { color: #4a5568; }
+
+        #treemap {
+            width: 100%;
+            height: calc(100vh - 80px);
+        }
+
+        .node {
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .node:hover {
+            opacity: 0.85;
+        }
+        .node rect {
+            stroke: #0f0f1a;
+            stroke-width: 2px;
+        }
+        .node text {
+            font-size: 12px;
+            fill: #fff;
+            pointer-events: none;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+        .node .label-small {
+            font-size: 10px;
+            fill: rgba(255,255,255,0.7);
+        }
+
+        .tooltip {
+            position: absolute;
+            background: rgba(15, 15, 26, 0.95);
+            border: 1px solid rgba(124, 58, 237, 0.5);
+            border-radius: 8px;
+            padding: 12px 16px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            max-width: 300px;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        .tooltip.visible { opacity: 1; }
+        .tooltip h3 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+            color: #00d4ff;
+        }
+        .tooltip p {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            margin-bottom: 8px;
+        }
+        .tooltip .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .tooltip .badge-oss { background: #065f46; color: #34d399; }
+        .tooltip .badge-saas { background: #1e40af; color: #60a5fa; }
+        .tooltip .badge-commercial { background: #7c2d12; color: #fb923c; }
+
+        .instructions {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 15, 26, 0.9);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+        .instructions kbd {
+            background: rgba(255,255,255,0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin: 0 2px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="back-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Prototypes
+        </a>
+        <h1>Zoomable Treemap</h1>
+        <div class="breadcrumb" id="breadcrumb">
+            <span data-depth="0">All Categories</span>
+        </div>
+    </header>
+
+    <div id="treemap"></div>
+    <div class="tooltip" id="tooltip"></div>
+    <div class="instructions">
+        <kbd>Click</kbd> to zoom in | <kbd>Click header</kbd> or breadcrumb to zoom out
+    </div>
+
+    <script src="../js/data.js"></script>
+    <script>
+        // Color palette for categories
+        const categoryColors = {
+            'generative-media': '#7c3aed',
+            'creative-suites': '#ec4899',
+            'business-productivity': '#f59e0b',
+            'consumer-ai': '#10b981',
+            'foundation-models': '#3b82f6',
+            'coding-ide': '#06b6d4',
+            'agent-frameworks': '#8b5cf6',
+            'infra-tooling': '#ef4444',
+            'data-mlops': '#f97316',
+            'enterprise': '#6366f1',
+            'trust-safety': '#14b8a6',
+            'research-benchmarks': '#a855f7'
+        };
+
+        // Transform data to hierarchy
+        function transformData(data) {
+            const children = [];
+
+            for (const track of ['users', 'developers']) {
+                if (!data[track]) continue;
+
+                for (const category of data[track]) {
+                    const categoryNode = {
+                        name: category.name,
+                        id: category.id,
+                        children: []
+                    };
+
+                    for (const subcategory of category.subcategories || []) {
+                        const subNode = {
+                            name: subcategory.name,
+                            id: subcategory.id,
+                            children: (subcategory.tools || []).map(tool => ({
+                                name: tool.name,
+                                url: tool.url,
+                                desc: tool.desc,
+                                type: tool.type,
+                                value: 1
+                            }))
+                        };
+                        if (subNode.children.length > 0) {
+                            categoryNode.children.push(subNode);
+                        }
+                    }
+
+                    if (categoryNode.children.length > 0) {
+                        children.push(categoryNode);
+                    }
+                }
+            }
+
+            return { name: 'AI Landscape', children };
+        }
+
+        const hierarchyData = transformData(landscapeData);
+
+        // Setup
+        const container = document.getElementById('treemap');
+        const tooltip = document.getElementById('tooltip');
+        const breadcrumb = document.getElementById('breadcrumb');
+
+        let width = container.clientWidth;
+        let height = container.clientHeight;
+
+        const svg = d3.select('#treemap')
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+        const root = d3.hierarchy(hierarchyData)
+            .sum(d => d.value || 0)
+            .sort((a, b) => b.value - a.value);
+
+        const treemap = d3.treemap()
+            .size([width, height])
+            .paddingTop(28)
+            .paddingRight(3)
+            .paddingBottom(3)
+            .paddingLeft(3)
+            .paddingInner(2)
+            .round(true);
+
+        treemap(root);
+
+        let currentRoot = root;
+        let currentDepth = 0;
+
+        function getColor(d) {
+            // Find the category ancestor
+            let node = d;
+            while (node.depth > 1) {
+                node = node.parent;
+            }
+            const baseColor = categoryColors[node.data.id] || '#6366f1';
+
+            // Lighten for deeper levels
+            if (d.depth > 1) {
+                return d3.color(baseColor).brighter(d.depth * 0.3).toString();
+            }
+            return baseColor;
+        }
+
+        function render(root) {
+            svg.selectAll('*').remove();
+
+            const nodes = root.descendants().filter(d => d.depth > currentDepth);
+
+            const cell = svg.selectAll('g')
+                .data(nodes)
+                .enter()
+                .append('g')
+                .attr('class', 'node')
+                .attr('transform', d => `translate(${d.x0},${d.y0})`);
+
+            cell.append('rect')
+                .attr('width', d => Math.max(0, d.x1 - d.x0))
+                .attr('height', d => Math.max(0, d.y1 - d.y0))
+                .attr('fill', d => getColor(d))
+                .attr('rx', 4);
+
+            // Add labels
+            cell.each(function(d) {
+                const g = d3.select(this);
+                const w = d.x1 - d.x0;
+                const h = d.y1 - d.y0;
+
+                if (w > 60 && h > 30) {
+                    // Main label
+                    g.append('text')
+                        .attr('x', 6)
+                        .attr('y', 16)
+                        .attr('font-weight', d.children ? '600' : '400')
+                        .text(d.data.name.length > w/7 ? d.data.name.slice(0, Math.floor(w/7)) + '...' : d.data.name);
+
+                    // Count label for parents
+                    if (d.children && h > 45) {
+                        const count = d.leaves().length;
+                        g.append('text')
+                            .attr('class', 'label-small')
+                            .attr('x', 6)
+                            .attr('y', 30)
+                            .text(`${count} tools`);
+                    }
+                }
+            });
+
+            // Interactions
+            cell.on('mouseover', (event, d) => {
+                if (!d.children) {
+                    tooltip.innerHTML = `
+                        <h3>${d.data.name}</h3>
+                        <p>${d.data.desc || 'No description'}</p>
+                        <span class="badge badge-${d.data.type}">${d.data.type?.toUpperCase() || 'N/A'}</span>
+                    `;
+                    tooltip.classList.add('visible');
+                } else {
+                    const count = d.leaves().length;
+                    tooltip.innerHTML = `
+                        <h3>${d.data.name}</h3>
+                        <p>${count} tools in this category</p>
+                        <p style="color: #7c3aed;">Click to zoom in</p>
+                    `;
+                    tooltip.classList.add('visible');
+                }
+            })
+            .on('mousemove', (event) => {
+                tooltip.style.left = (event.pageX + 10) + 'px';
+                tooltip.style.top = (event.pageY + 10) + 'px';
+            })
+            .on('mouseout', () => {
+                tooltip.classList.remove('visible');
+            })
+            .on('click', (event, d) => {
+                if (d.children) {
+                    zoomIn(d);
+                } else if (d.data.url) {
+                    window.open(d.data.url, '_blank');
+                }
+            });
+        }
+
+        function zoomIn(node) {
+            currentRoot = node;
+            currentDepth = node.depth;
+
+            // Recalculate treemap for zoomed view
+            const zoomedTreemap = d3.treemap()
+                .size([width, height])
+                .paddingTop(28)
+                .paddingRight(3)
+                .paddingBottom(3)
+                .paddingLeft(3)
+                .paddingInner(2)
+                .round(true);
+
+            zoomedTreemap(node);
+            render(node);
+            updateBreadcrumb(node);
+        }
+
+        function zoomOut() {
+            if (currentRoot.parent) {
+                zoomIn(currentRoot.parent);
+            }
+        }
+
+        function zoomToDepth(depth) {
+            let node = currentRoot;
+            while (node.depth > depth && node.parent) {
+                node = node.parent;
+            }
+
+            // Reset and recalculate from root
+            treemap(root);
+
+            if (depth === 0) {
+                currentRoot = root;
+                currentDepth = 0;
+                render(root);
+                updateBreadcrumb(root);
+            } else {
+                zoomIn(node);
+            }
+        }
+
+        function updateBreadcrumb(node) {
+            const path = [];
+            let current = node;
+            while (current) {
+                path.unshift(current);
+                current = current.parent;
+            }
+
+            breadcrumb.innerHTML = path.map((n, i) => {
+                const name = n.data.name === 'AI Landscape' ? 'All Categories' : n.data.name;
+                return `<span data-depth="${i}">${name}</span>${i < path.length - 1 ? '<span class="separator">/</span>' : ''}`;
+            }).join('');
+
+            breadcrumb.querySelectorAll('span[data-depth]').forEach(span => {
+                span.addEventListener('click', () => {
+                    const depth = parseInt(span.dataset.depth);
+                    zoomToDepth(depth);
+                });
+            });
+        }
+
+        // Initial render
+        render(root);
+
+        // Handle resize
+        window.addEventListener('resize', () => {
+            width = container.clientWidth;
+            height = container.clientHeight;
+            svg.attr('width', width).attr('height', height);
+            treemap.size([width, height]);
+            treemap(root);
+            if (currentDepth > 0) {
+                zoomIn(currentRoot);
+            } else {
+                render(root);
+            }
+        });
+    </script>
+</body>
+</html>
