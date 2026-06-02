@@ -6,7 +6,7 @@ baseurl: ""
 # Jekyll collection configuration
 collections_dir: data
 collections:
-  _tools:
+  tools:
     output: true
     permalink: /tools/:slug/
 
@@ -14,7 +14,7 @@ collections:
 defaults:
   - scope:
       path: ""
-      type: "_tools"
+      type: "tools"
     values:
       layout: "tool"
 
@@ -34,3 +34,5 @@ exclude:
   - Gemfile.lock
   - node_modules
   - scripts
+  - vendor
+  - .bundle
