@@ -1,0 +1,36 @@
+title: AI Tool Review
+description: Find the Right AI Tool for the Job
+url: "https://aitoolreview.ai"
+baseurl: ""
+
+# Jekyll collection configuration
+collections_dir: data
+collections:
+  _tools:
+    output: true
+    permalink: /tools/:slug/
+
+# Default layout for tools
+defaults:
+  - scope:
+      path: ""
+      type: "_tools"
+    values:
+      layout: "tool"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Plugins
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - scripts
