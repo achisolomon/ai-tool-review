@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require 'yaml'
 require 'json'
+require 'date'
 
 # Parse frontmatter from MD file
 def parse_frontmatter(file_path)
