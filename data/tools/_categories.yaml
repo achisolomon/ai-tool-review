@@ -1,0 +1,261 @@
+# AI Tools Landscape - Category Definitions
+# This file defines the category hierarchy for organizing tools.
+
+users:
+  generative-media:
+    name: "Generative Media"
+    description: "AI tools for creating images, video, audio, and 3D content"
+    subcategories:
+      image-generation:
+        name: "Image Generation"
+        description: "Text-to-image and image editing tools"
+      video-generation:
+        name: "Video Generation"
+        description: "Text-to-video and video editing tools"
+      voice-speech:
+        name: "Voice / Speech"
+        description: "TTS, voice cloning, and speech synthesis"
+      music-generation:
+        name: "Music Generation"
+        description: "AI music composition and generation"
+      3d-other:
+        name: "3D / Other Modalities"
+        description: "3D generation, NeRF, and other modalities"
+
+  ai-chat-search:
+    name: "AI Chat Assistants & Search"
+    description: "Conversational AI and AI-powered search engines"
+    subcategories:
+      chat-assistants:
+        name: "AI Chat Assistants"
+        description: "General-purpose AI chat interfaces"
+      ai-search:
+        name: "AI Search Engines"
+        description: "AI-powered search and answer engines"
+
+  writing-productivity:
+    name: "Writing & Productivity"
+    description: "AI writing assistants and productivity tools"
+    subcategories:
+      writing-tools:
+        name: "Writing Tools"
+        description: "AI-powered writing and editing tools"
+
+  meeting-notetakers:
+    name: "Meeting Notetakers & Voice"
+    description: "AI meeting transcription and note-taking"
+    subcategories:
+      notetakers:
+        name: "Meeting Notetakers"
+        description: "Automated meeting transcription and summaries"
+
+  personal-assistants:
+    name: "Personal Assistants & Browsers"
+    description: "AI-native browsers and personal AI assistants"
+    subcategories:
+      browsers:
+        name: "AI Browsers & Assistants"
+        description: "AI-powered browsers and personal assistants"
+
+  no-code-builders:
+    name: "No-Code AI Builders"
+    description: "Visual tools for building AI applications without code"
+    subcategories:
+      workflow-builders:
+        name: "Workflow & App Builders"
+        description: "Visual workflow automation and app builders"
+
+  vertical-ai:
+    name: "Vertical AI (Industry-Specific)"
+    description: "AI tools built for specific industries"
+    subcategories:
+      legal:
+        name: "Legal"
+        description: "AI for law firms and legal work"
+      healthcare:
+        name: "Healthcare / Medical"
+        description: "AI for healthcare and medical applications"
+      sales-marketing:
+        name: "Sales / Marketing / GTM"
+        description: "AI for sales, marketing, and go-to-market"
+      customer-support:
+        name: "Customer Support"
+        description: "AI for customer service and support"
+      finance:
+        name: "Finance / Accounting"
+        description: "AI for finance and accounting"
+      education:
+        name: "Education / Tutoring"
+        description: "AI for education and tutoring"
+      recruiting:
+        name: "Recruiting / HR"
+        description: "AI for recruiting and human resources"
+      design:
+        name: "Design / Creative"
+        description: "AI for design and creative work"
+
+  enterprise-platforms:
+    name: "Enterprise AI Platforms"
+    description: "Enterprise-grade AI platforms and copilots"
+    subcategories:
+      enterprise:
+        name: "Enterprise Platforms"
+        description: "Enterprise AI platforms"
+
+developers:
+  foundation-models:
+    name: "Foundation Models & Model Hubs"
+    description: "LLM providers, open-source models, and model registries"
+    subcategories:
+      closed-frontier:
+        name: "Closed/Frontier LLM Providers"
+        description: "Commercial frontier model providers"
+      open-source:
+        name: "Open-Source / Open-Weight Models"
+        description: "Open-source and open-weight models"
+      model-hubs:
+        name: "Model Hubs & Registries"
+        description: "Model hosting and discovery platforms"
+
+  ai-coding:
+    name: "AI Coding & Developer Tools"
+    description: "AI-powered coding assistants, IDEs, and developer tools"
+    subcategories:
+      ai-ides:
+        name: "AI IDEs & Editors"
+        description: "AI-native code editors and IDEs"
+      coding-agents:
+        name: "Coding Agents (CLI / Terminal / Cloud)"
+        description: "AI coding agents and assistants"
+      app-builders:
+        name: "App / UI Builders"
+        description: "AI-powered app and UI generators"
+      code-review:
+        name: "Code Review & Quality"
+        description: "AI code review and quality tools"
+      spec-driven:
+        name: "Spec-Driven Development Tools"
+        description: "Tools for spec-first AI development"
+      testing-sensors:
+        name: "Testing & Quality Sensors"
+        description: "Mutation testing, fuzzing, and quality tools"
+      code-intelligence:
+        name: "Code Intelligence & Refactoring"
+        description: "LSP/AST tooling and automated refactoring"
+      dev-environment:
+        name: "Dev Environment"
+        description: "Development environment tooling"
+
+  agent-frameworks:
+    name: "Agent Frameworks & Orchestration"
+    description: "Frameworks for building AI agents"
+    subcategories:
+      code-first:
+        name: "Code-First Agent Frameworks"
+        description: "Programming frameworks for agents"
+      browser-agents:
+        name: "Browser & Web Agents"
+        description: "Web automation and browser agents"
+      protocols:
+        name: "Agent Protocols & Standards"
+        description: "Standards for agent interoperability"
+      tool-integrations:
+        name: "Tool Integrations & Connectors"
+        description: "Connectors and integrations for agents"
+      agent-memory:
+        name: "Agent Memory"
+        description: "Memory and state management for agents"
+      durable-execution:
+        name: "Durable Execution"
+        description: "Reliable workflow execution for agents"
+      agent-identity:
+        name: "Agent Identity & Auth"
+        description: "Identity and authentication for agents"
+
+  llm-frameworks:
+    name: "LLM Application Frameworks"
+    description: "Frameworks for building LLM applications"
+    subcategories:
+      app-frameworks:
+        name: "Application Frameworks"
+        description: "Frameworks for LLM applications"
+      prompt-engineering:
+        name: "Prompt Engineering & Management"
+        description: "Prompt management and optimization"
+
+  ai-infrastructure:
+    name: "AI Infrastructure (Inference, Compute, Routing)"
+    description: "Infrastructure for running AI workloads"
+    subcategories:
+      inference-apis:
+        name: "Inference APIs / Serverless LLMs"
+        description: "Serverless LLM inference providers"
+      gpu-providers:
+        name: "AI Clouds / GPU Providers"
+        description: "GPU cloud providers"
+      model-routers:
+        name: "Model Routers & Gateways"
+        description: "LLM routing and gateway services"
+
+  data-training:
+    name: "Data & Training"
+    description: "Tools for data preparation and model training"
+    subcategories:
+      ml-frameworks:
+        name: "ML Frameworks"
+        description: "Machine learning frameworks"
+      fine-tuning:
+        name: "Fine-Tuning Platforms & Libraries"
+        description: "Model fine-tuning tools"
+      mlops:
+        name: "Training Orchestration / MLOps"
+        description: "ML operations and training orchestration"
+      experiment-tracking:
+        name: "Experiment Tracking"
+        description: "ML experiment tracking"
+      data-labeling:
+        name: "Data Labeling"
+        description: "Data annotation and labeling tools"
+      embeddings:
+        name: "Embedding Models & Rerankers"
+        description: "Embedding and reranking models"
+      data-ingestion:
+        name: "Data Ingestion & Document Processing"
+        description: "Document processing and ingestion"
+      lakehouse-semantic:
+        name: "Lakehouse & Semantic Layer"
+        description: "Data lakehouse and semantic layer tools"
+
+  vector-dbs:
+    name: "Vector Databases & Retrieval"
+    description: "Vector databases and retrieval systems"
+    subcategories:
+      dedicated:
+        name: "Dedicated Vector DBs"
+        description: "Purpose-built vector databases"
+      extensions:
+        name: "Vector Extensions to Existing DBs"
+        description: "Vector capabilities added to existing databases"
+      rag-kg:
+        name: "RAG-Specific / Knowledge Graph"
+        description: "RAG and knowledge graph systems"
+
+  observability-safety:
+    name: "Observability, Evaluation & Safety"
+    description: "Tools for monitoring, evaluating, and securing AI systems"
+    subcategories:
+      llm-observability:
+        name: "LLM Observability & Tracing"
+        description: "LLM tracing and observability"
+      evaluation:
+        name: "Evaluation"
+        description: "LLM evaluation frameworks"
+      guardrails:
+        name: "Guardrails / Safety"
+        description: "AI safety and guardrails"
+      red-teaming:
+        name: "Red Teaming & AI Security"
+        description: "AI security testing and red teaming"
+      app-observability:
+        name: "Application Observability & FinOps"
+        description: "General observability and cost management"

@@ -1,0 +1,16 @@
+---
+name: "Mistral Le Chat"
+slug: "mistral-le-chat"
+url: "https://chat.mistral.ai/"
+type: "commercial"
+track: "users"
+category: "ai-chat-search"
+subcategory: "chat-assistants"
+status: "active"
+
+# AI-Managed Metadata
+last_verified: "2026-05-17"
+confidence_score: 0.9
+---
+
+EU-based assistant
