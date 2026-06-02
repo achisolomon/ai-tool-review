@@ -1,0 +1,16 @@
+---
+name: "Microsoft Copilot"
+slug: "microsoft-copilot"
+url: "https://copilot.microsoft.com/"
+type: "commercial"
+track: "users"
+category: "ai-chat-search"
+subcategory: "chat-assistants"
+status: "active"
+
+# AI-Managed Metadata
+last_verified: "2026-06-02"
+confidence_score: 0.9
+---
+
+M365 + Windows

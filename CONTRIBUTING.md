@@ -6,8 +6,8 @@ Thank you for your interest in contributing to AI Tool Review!
 
 1. Fork this repository
 2. Create a new MD file in the appropriate category:
-   - `data/tools/users/{category}/{subcategory}/{tool-slug}.md` for user-facing tools
-   - `data/tools/developers/{category}/{subcategory}/{tool-slug}.md` for developer tools
+   - `data/_tools/users/{category}/{subcategory}/{tool-slug}.md` for user-facing tools
+   - `data/_tools/developers/{category}/{subcategory}/{tool-slug}.md` for developer tools
 3. Use this template:
 
 ```yaml

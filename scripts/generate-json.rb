@@ -92,7 +92,7 @@ def build_tools_json(tools_dir)
 end
 
 # Main
-tools_dir = ARGV[0] || 'data/tools'
+tools_dir = ARGV[0] || 'data/_tools'
 output_file = ARGV[1] || 'data/tools.json'
 
 tools_data = build_tools_json(tools_dir)
