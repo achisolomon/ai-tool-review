@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% include head-seo.html %}
+  {% include schema-jsonld.html %}
+  <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="{{ '/' | relative_url }}">AI Tool Review</a>
+      <a href="{{ '/developers/' | relative_url }}">Developers</a>
+      <a href="{{ '/users/' | relative_url }}">Users</a>
+    </nav>
+  </header>
+
+  <main class="tool-page">
+    <article>
+      <header class="tool-header">
+        <h1>{{ page.name }}</h1>
+        <p class="tool-meta">
+          <span class="tool-type">{{ page.type }}</span>
+          <span class="tool-category">{{ page.category | replace: '-', ' ' | capitalize }}</span>
+          {% if page.pricing_model %}
+          <span class="tool-pricing">{{ page.pricing_model | capitalize }}</span>
+          {% endif %}
+        </p>
+        <p class="tool-description">{{ page.description }}</p>
+        <a href="{{ page.url }}" class="tool-link" target="_blank" rel="noopener">Visit {{ page.name }} →</a>
+      </header>
+
+      <div class="tool-content">
+        {{ content }}
+      </div>
+
+      {% if page.github_url %}
+      <aside class="tool-github">
+        <a href="{{ page.github_url }}" target="_blank" rel="noopener">
+          GitHub {% if page.github_stars %}({{ page.github_stars | round: -2 }}+ stars){% endif %}
+        </a>
+      </aside>
+      {% endif %}
+
+      {% if page.additional_categories %}
+      <aside class="tool-categories">
+        <h3>Also listed in:</h3>
+        <ul>
+          {% for cat in page.additional_categories %}
+          <li>{{ cat.category | replace: '-', ' ' | capitalize }} / {{ cat.subcategory | replace: '-', ' ' | capitalize }}</li>
+          {% endfor %}
+        </ul>
+      </aside>
+      {% endif %}
+    </article>
+  </main>
+
+  <footer>
+    <p>© {{ site.time | date: '%Y' }} AI Tool Review</p>
+  </footer>
+</body>
+</html>

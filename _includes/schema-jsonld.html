@@ -2,9 +2,9 @@
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "{{ page.name }}",
-  "description": "{{ page.description }}",
-  "url": "{{ page.url }}",
+  "name": {{ page.name | jsonify }},
+  "description": {{ page.description | jsonify }},
+  "url": {{ page.url | jsonify }},
   "applicationCategory": "AI Tool",
   "operatingSystem": "Web",
   "offers": {
@@ -20,12 +20,12 @@
 {
   "@context": "https://schema.org",
   "@type": "Product",
-  "name": "{{ page.name }}",
-  "description": "{{ page.description }}",
+  "name": {{ page.name | jsonify }},
+  "description": {{ page.description | jsonify }},
   "brand": {
     "@type": "Organization",
-    "name": "{{ page.name }}"
+    "name": {{ page.name | jsonify }}
   },
-  "category": "{{ page.category | replace: '-', ' ' | capitalize }}"
+  "category": {{ page.category | replace: '-', ' ' | capitalize | jsonify }}
 }
 </script>
