@@ -1,21 +1,22 @@
+{% capture seo_description %}{% if page.description %}{{ page.description }}{% else %}{{ page.name }} - AI tool for {{ page.category | replace: '-', ' ' }}. Find features, pricing, and alternatives.{% endif %}{% endcapture %}
 <!-- Primary Meta Tags -->
 <title>{{ page.name }} - AI Tool Review</title>
 <meta name="title" content="{{ page.name }} - AI Tool Review">
-<meta name="description" content="{{ page.description }}">
+<meta name="description" content="{{ seo_description | strip_newlines }}">
 <link rel="canonical" href="{{ site.url }}/tools/{{ page.slug }}/">
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="{{ site.url }}/tools/{{ page.slug }}/">
 <meta property="og:title" content="{{ page.name }} - AI Tool Review">
-<meta property="og:description" content="{{ page.description }}">
+<meta property="og:description" content="{{ seo_description | strip_newlines }}">
 <meta property="og:site_name" content="AI Tool Review">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary">
 <meta name="twitter:url" content="{{ site.url }}/tools/{{ page.slug }}/">
 <meta name="twitter:title" content="{{ page.name }} - AI Tool Review">
-<meta name="twitter:description" content="{{ page.description }}">
+<meta name="twitter:description" content="{{ seo_description | strip_newlines }}">
 
 <!-- Robots -->
 <meta name="robots" content="index, follow">
