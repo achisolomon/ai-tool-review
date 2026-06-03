@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Create result card HTML - compact, info-dense design
     function createResultCardHTML(tool) {
         const initial = tool.name.charAt(0).toUpperCase();
-        const slug = generateSlug(tool.name);
+        const slug = tool.slug || generateSlug(tool.name);
         const badgeClass = `badge-${tool.type}`;
         const typeLabel = tool.type === 'oss' ? 'OSS' : tool.type === 'saas' ? 'SaaS' : 'Commercial';
 
