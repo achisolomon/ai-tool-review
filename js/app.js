@@ -1,11 +1,17 @@
-// AI Landscape Application
+// AI Tool Review - Homepage Search Application
 document.addEventListener('DOMContentLoaded', () => {
     // State
-    let currentTrack = 'all';
-    let currentType = 'all';
     let searchQuery = '';
-    let landscapeSearchQuery = '';
-    let currentMode = 'action'; // 'action' or 'browse'
+
+    // Generate URL-friendly slug from tool name
+    function generateSlug(name) {
+        return name.toLowerCase()
+            .replace(/[·]/g, '-')           // Replace middle dot with hyphen
+            .replace(/[^\w\s-]/g, '')       // Remove other special chars
+            .replace(/\s+/g, '-')           // Replace spaces with hyphens
+            .replace(/-+/g, '-')            // Replace multiple hyphens with single
+            .replace(/^-|-$/g, '');         // Remove leading/trailing hyphens
+    }
 
     // Format star count (e.g., 15400 -> "15.4k")
     function formatStars(count) {
@@ -67,29 +73,13 @@ document.addEventListener('DOMContentLoaded', () => {
         return textWords.some(textWord => wordsMatch(queryWord, textWord));
     }
 
-    // DOM Elements - Action Mode
-    const heroAction = document.getElementById('hero-action');
+    // DOM Elements
     const actionInput = document.getElementById('action-input');
     const searchResults = document.getElementById('search-results');
     const resultsGrid = document.getElementById('results-grid');
     const resultsCount = document.getElementById('results-count');
     const clearSearch = document.getElementById('clear-search');
-    const browseToggle = document.getElementById('browse-toggle');
     const quickActionChips = document.querySelectorAll('.action-chip');
-
-    // DOM Elements - Browse Mode
-    const landscapeControls = document.getElementById('landscape-controls');
-    const expandAllBtn = document.getElementById('expand-all');
-    const collapseAllBtn = document.getElementById('collapse-all');
-    const landscapeSearchInput = document.getElementById('landscape-search-input');
-    const landscapeSearchClear = document.getElementById('landscape-search-clear');
-    const statsBar = document.getElementById('stats-bar');
-    const landscape = document.getElementById('landscape');
-    const trackButtons = document.querySelectorAll('.track-btn');
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const visibleCountEl = document.getElementById('visible-count');
-    const categoryCountEl = document.getElementById('category-count');
-    const tooltip = document.getElementById('tooltip');
 
     // Initialize
     setupEventListeners();
@@ -136,7 +126,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 score: calculateRelevanceScore(tool, words, queryLower)
             }))
             .filter(item => item.score > 0)
-            .sort((a, b) => b.score - a.score)
+            // Sort by relevance first, then by popularity (github stars)
+            .sort((a, b) => {
+                // If scores are similar (within 10 points), sort by popularity
+                if (Math.abs(a.score - b.score) <= 10) {
+                    const starsA = a.tool.github_stars || 0;
+                    const starsB = b.tool.github_stars || 0;
+                    return starsB - starsA;
+                }
+                return b.score - a.score;
+            })
             .slice(0, 40)
             .map(item => item.tool);
     }
@@ -203,16 +202,10 @@ document.addEventListener('DOMContentLoaded', () => {
             resultsGrid.innerHTML = `
                 <div class="no-results">
                     <p>No tools found. Try different keywords or</p>
-                    <button class="browse-link" id="browse-from-empty">browse all tools</button>
+                    <a href="landscape.html" class="browse-link">browse all tools</a>
                 </div>
             `;
             resultsCount.textContent = '0 tools found';
-
-            // Add event listener for the browse link
-            const browseLink = document.getElementById('browse-from-empty');
-            if (browseLink) {
-                browseLink.addEventListener('click', () => switchMode('browse'));
-            }
             return;
         }
 
@@ -221,9 +214,10 @@ document.addEventListener('DOMContentLoaded', () => {
         resultsGrid.innerHTML = tools.map(tool => createResultCardHTML(tool)).join('');
     }
 
-    // Create result card HTML (larger than landscape cards)
+    // Create result card HTML - compact, info-dense design
     function createResultCardHTML(tool) {
         const initial = tool.name.charAt(0).toUpperCase();
+        const slug = generateSlug(tool.name);
         const badgeClass = `badge-${tool.type}`;
         const typeLabel = tool.type === 'oss' ? 'OSS' : tool.type === 'saas' ? 'SaaS' : 'Commercial';
 
@@ -235,62 +229,42 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const logoUrl = domain ? `https://www.google.com/s2/favicons?domain=${domain}&sz=64` : '';
+
+        // GitHub stars (show for OSS tools)
         const stars = formatStars(tool.github_stars);
-        const starsHtml = stars ? `<span class="stars-badge" title="${tool.github_stars.toLocaleString()} GitHub stars"><svg class="star-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25z"/></svg>${stars}</span>` : '';
+        const starsHtml = (stars && tool.type === 'oss')
+            ? `<span class="stars-badge" title="${tool.github_stars.toLocaleString()} GitHub stars"><svg class="star-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25z"/></svg>${stars}</span>`
+            : '';
+
+        // Build full category path
+        const categoryPath = [tool.subcategoryName, tool.categoryName].filter(Boolean).join(' • ');
 
         return `
             <div class="result-card"
                  data-name="${tool.name}"
+                 data-slug="${slug}"
                  data-url="${tool.url}"
-                 data-desc="${tool.desc}"
+                 data-desc="${tool.desc || ''}"
                  data-type="${tool.type}"
+                 data-track="${tool.track || ''}"
                  data-category="${tool.categoryName || ''}"
                  data-subcategory="${tool.subcategoryName || ''}">
                 <div class="result-icon" data-initial="${initial}">
                     ${logoUrl ? `<img src="${logoUrl}" alt="${tool.name}" loading="lazy" onerror="this.parentElement.textContent=this.parentElement.dataset.initial">` : initial}
                 </div>
-                <div class="result-info">
-                    <div class="result-name">${tool.name}</div>
-                    <div class="result-desc">${tool.desc}</div>
+                <div class="result-header">
+                    <div class="result-name" title="${tool.name}">${tool.name}</div>
+                    <div class="result-desc">${tool.desc || 'No description available'}</div>
                     <div class="result-meta">
-                        <span class="result-category">${tool.subcategoryName || tool.categoryName || ''}</span>
-                        ${starsHtml}
-                        <span class="badge ${badgeClass}">${typeLabel}</span>
+                        <span class="result-category">${categoryPath}</span>
+                        <div class="result-meta-bottom">
+                            ${starsHtml}
+                            <span class="badge ${badgeClass}">${typeLabel}</span>
+                        </div>
                     </div>
                 </div>
             </div>
         `;
-    }
-
-    // Switch between action and browse modes
-    function switchMode(mode) {
-        currentMode = mode;
-
-        if (mode === 'action') {
-            heroAction.classList.remove('hidden');
-            searchResults.classList.remove('hidden');
-            landscapeControls.classList.add('hidden');
-            statsBar.classList.add('hidden');
-            landscape.classList.add('hidden');
-
-            // Clear landscape search
-            landscapeSearchQuery = '';
-            landscapeSearchInput.value = '';
-            landscapeSearchClear.classList.add('hidden');
-
-            // Focus the search input
-            actionInput.focus();
-        } else {
-            heroAction.classList.add('hidden');
-            searchResults.classList.add('hidden');
-            landscapeControls.classList.remove('hidden');
-            statsBar.classList.remove('hidden');
-            landscape.classList.remove('hidden');
-
-            // Render landscape if not already
-            renderLandscape();
-            updateStats();
-        }
     }
 
     // Handle search input
@@ -307,162 +281,9 @@ document.addEventListener('DOMContentLoaded', () => {
         renderSearchResults(results);
     }
 
-    // Render the landscape grid (browse mode)
-    function renderLandscape() {
-        landscape.innerHTML = '';
-
-        const tracks = currentTrack === 'all'
-            ? ['users', 'developers']
-            : [currentTrack];
-
-        tracks.forEach(track => {
-            landscapeData[track].forEach(category => {
-                const categoryEl = createCategoryElement(category, track);
-                if (categoryEl) {
-                    landscape.appendChild(categoryEl);
-                }
-            });
-        });
-
-        updateStats();
-    }
-
-    // Create a category element
-    function createCategoryElement(category, track) {
-        const filteredSubcategories = category.subcategories.map(sub => ({
-            ...sub,
-            tools: filterTools(sub.tools)
-        })).filter(sub => sub.tools.length > 0);
-
-        if (filteredSubcategories.length === 0) return null;
-
-        const categoryEl = document.createElement('div');
-        // Auto-expand when search is active
-        categoryEl.className = landscapeSearchQuery.trim() !== '' ? 'category' : 'category collapsed';
-        categoryEl.dataset.track = track;
-
-        const toolCount = filteredSubcategories.reduce((sum, sub) => sum + sub.tools.length, 0);
-
-        categoryEl.innerHTML = `
-            <div class="category-header ${track}">
-                <h2 class="category-title">
-                    ${category.name}
-                    <span class="category-count">${toolCount}</span>
-                </h2>
-                <svg class="category-toggle" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-            </div>
-            <div class="category-content">
-                ${filteredSubcategories.map(sub => createSubcategoryHTML(sub)).join('')}
-            </div>
-        `;
-
-        // Add collapse toggle
-        const header = categoryEl.querySelector('.category-header');
-        header.addEventListener('click', () => {
-            categoryEl.classList.toggle('collapsed');
-        });
-
-        return categoryEl;
-    }
-
-    // Create subcategory HTML
-    function createSubcategoryHTML(subcategory) {
-        return `
-            <div class="subcategory">
-                <h3 class="subcategory-title">${subcategory.name}</h3>
-                <div class="tools-grid">
-                    ${subcategory.tools.map(tool => createToolCardHTML(tool)).join('')}
-                </div>
-            </div>
-        `;
-    }
-
-    // Create tool card HTML
-    function createToolCardHTML(tool) {
-        const initial = tool.name.charAt(0).toUpperCase();
-        const badgeClass = `badge-${tool.type}`;
-        const typeLabel = tool.type === 'oss' ? 'OSS' : tool.type === 'saas' ? 'SaaS' : 'Commercial';
-
-        let domain = '';
-        try {
-            domain = new URL(tool.url).hostname.replace('www.', '');
-        } catch (e) {
-            domain = '';
-        }
-
-        const logoUrl = domain ? `https://www.google.com/s2/favicons?domain=${domain}&sz=64` : '';
-        const stars = formatStars(tool.github_stars);
-        const starsHtml = stars ? `<span class="stars-badge stars-badge-sm" title="${tool.github_stars.toLocaleString()} GitHub stars"><svg class="star-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25z"/></svg>${stars}</span>` : '';
-
-        return `
-            <div class="tool-card"
-                 data-name="${tool.name}"
-                 data-url="${tool.url}"
-                 data-desc="${tool.desc}"
-                 data-type="${tool.type}"
-                 data-stars="${tool.github_stars || ''}">
-                <div class="tool-icon" data-initial="${initial}">
-                    ${logoUrl ? `<img src="${logoUrl}" alt="${tool.name}" loading="lazy" onerror="this.parentElement.textContent=this.parentElement.dataset.initial">` : initial}
-                </div>
-                <div class="tool-name">${tool.name}</div>
-                <div class="tool-badges">
-                    ${starsHtml}
-                    <span class="badge ${badgeClass}">${typeLabel}</span>
-                </div>
-            </div>
-        `;
-    }
-
-    // Filter tools based on current state (for browse mode)
-    function filterTools(tools) {
-        return tools.filter(tool => {
-            // Filter by type
-            if (currentType !== 'all' && tool.type !== currentType) {
-                return false;
-            }
-            // Filter by landscape search query
-            if (landscapeSearchQuery.trim() !== '') {
-                const query = landscapeSearchQuery.toLowerCase();
-                const nameLower = tool.name.toLowerCase();
-                const descLower = tool.desc.toLowerCase();
-                if (!nameLower.includes(query) && !descLower.includes(query)) {
-                    return false;
-                }
-            }
-            return true;
-        });
-    }
-
-    // Update stats display
-    function updateStats() {
-        let visibleCount = 0;
-        let categoryCount = 0;
-
-        const tracks = currentTrack === 'all'
-            ? ['users', 'developers']
-            : [currentTrack];
-
-        tracks.forEach(track => {
-            landscapeData[track].forEach(category => {
-                let categoryHasTools = false;
-                category.subcategories.forEach(sub => {
-                    const filtered = filterTools(sub.tools);
-                    visibleCount += filtered.length;
-                    if (filtered.length > 0) categoryHasTools = true;
-                });
-                if (categoryHasTools) categoryCount++;
-            });
-        });
-
-        visibleCountEl.textContent = visibleCount;
-        categoryCountEl.textContent = categoryCount;
-    }
-
     // Setup event listeners
     function setupEventListeners() {
-        // Action mode search input
+        // Search input
         let searchTimeout;
         actionInput.addEventListener('input', (e) => {
             clearTimeout(searchTimeout);
@@ -488,95 +309,14 @@ document.addEventListener('DOMContentLoaded', () => {
             actionInput.focus();
         });
 
-        // Browse toggle
-        browseToggle.addEventListener('click', () => switchMode('browse'));
-
-        // Expand all categories
-        expandAllBtn.addEventListener('click', () => {
-            document.querySelectorAll('.category.collapsed').forEach(cat => {
-                cat.classList.remove('collapsed');
-            });
-            // Switch to columns layout for dense packing
-            landscape.classList.add('all-expanded');
-        });
-
-        // Collapse all categories
-        collapseAllBtn.addEventListener('click', () => {
-            document.querySelectorAll('.category:not(.collapsed)').forEach(cat => {
-                cat.classList.add('collapsed');
-            });
-            // Switch back to flex layout for uniform boxes
-            landscape.classList.remove('all-expanded');
-        });
-
-        // Landscape search input
-        landscapeSearchInput.addEventListener('input', (e) => {
-            landscapeSearchQuery = e.target.value;
-            landscapeSearchClear.classList.toggle('hidden', landscapeSearchQuery === '');
-            // Use expanded layout when searching for better visibility
-            landscape.classList.toggle('all-expanded', landscapeSearchQuery.trim() !== '');
-            renderLandscape();
-        });
-
-        // Landscape search clear button
-        landscapeSearchClear.addEventListener('click', () => {
-            landscapeSearchQuery = '';
-            landscapeSearchInput.value = '';
-            landscapeSearchClear.classList.add('hidden');
-            landscape.classList.remove('all-expanded');
-            renderLandscape();
-        });
-
-        // Track toggle (browse mode)
-        trackButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                trackButtons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                currentTrack = btn.dataset.track;
-                renderLandscape();
-            });
-        });
-
-        // Type filter (browse mode)
-        filterButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterButtons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                currentType = btn.dataset.type;
-                renderLandscape();
-            });
-        });
-
-        // Result card click - open URL
+        // Result card click - navigate to internal tool page
         resultsGrid.addEventListener('click', (e) => {
             const card = e.target.closest('.result-card');
             if (card) {
-                const url = card.dataset.url;
-                window.open(url, '_blank', 'noopener,noreferrer');
-            }
-        });
-
-        // Tool card click - open URL (browse mode)
-        landscape.addEventListener('click', (e) => {
-            const card = e.target.closest('.tool-card');
-            if (card) {
-                const url = card.dataset.url;
-                window.open(url, '_blank', 'noopener,noreferrer');
-            }
-        });
-
-        // Tool card hover - show tooltip (browse mode)
-        landscape.addEventListener('mouseover', (e) => {
-            const card = e.target.closest('.tool-card');
-            if (card) {
-                showTooltip(card);
-            }
-        });
-
-        landscape.addEventListener('mouseout', (e) => {
-            const card = e.target.closest('.tool-card');
-            if (card) {
-                hideTooltip();
+                const slug = card.dataset.slug;
+                if (slug) {
+                    window.location.href = `/tools/${slug}/`;
+                }
             }
         });
 
@@ -585,61 +325,15 @@ document.addEventListener('DOMContentLoaded', () => {
             // Focus search on '/' key
             if (e.key === '/' && document.activeElement !== actionInput) {
                 e.preventDefault();
-                if (currentMode !== 'action') {
-                    switchMode('action');
-                }
                 actionInput.focus();
             }
-            // Escape to clear search or go back
+            // Escape to clear search
             if (e.key === 'Escape') {
-                if (currentMode === 'browse') {
-                    switchMode('action');
-                } else {
-                    actionInput.value = '';
-                    searchQuery = '';
-                    searchResults.classList.add('hidden');
-                    actionInput.blur();
-                }
+                actionInput.value = '';
+                searchQuery = '';
+                searchResults.classList.add('hidden');
+                actionInput.blur();
             }
         });
-    }
-
-    // Show tooltip
-    function showTooltip(card) {
-        const name = card.dataset.name;
-        const desc = card.dataset.desc;
-        const stars = card.dataset.stars;
-        const starsHtml = stars ? `<div class="tooltip-stars"><svg viewBox="0 0 16 16" fill="#e3b341" style="width:12px;height:12px;"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25z"/></svg>${parseInt(stars).toLocaleString()} stars</div>` : '';
-
-        tooltip.innerHTML = `
-            <div class="tooltip-title">${name}</div>
-            <div class="tooltip-desc">${desc}</div>
-            ${starsHtml}
-            <div class="tooltip-link">Click to visit</div>
-        `;
-
-        const rect = card.getBoundingClientRect();
-
-        let left = rect.left + (rect.width / 2);
-        let top = rect.bottom + 10;
-
-        if (left + 150 > window.innerWidth) {
-            left = window.innerWidth - 160;
-        }
-        if (left < 10) {
-            left = 10;
-        }
-        if (top + 100 > window.innerHeight) {
-            top = rect.top - 80;
-        }
-
-        tooltip.style.left = `${left}px`;
-        tooltip.style.top = `${top}px`;
-        tooltip.classList.add('visible');
-    }
-
-    // Hide tooltip
-    function hideTooltip() {
-        tooltip.classList.remove('visible');
     }
 });
