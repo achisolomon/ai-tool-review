@@ -541,45 +541,45 @@ a:hover {
 }
 
 .landscape.compact-filter .tool-card {
-    min-height: 40px;
-    padding: 2px;
+    min-height: 85px;
+    padding: 8px 6px;
 }
 
 .landscape.compact-filter .tool-icon {
-    width: 20px;
-    height: 20px;
+    width: 52px;
+    height: 52px;
 }
 
 .landscape.compact-filter .tool-icon img {
-    width: 16px;
-    height: 16px;
+    width: 42px;
+    height: 42px;
 }
 
 .landscape.compact-filter .tool-name {
-    font-size: 7px;
+    font-size: 11px;
 }
 
 .landscape.compact-filter .subcategory-title {
-    font-size: 7px;
-    margin-bottom: 2px;
-    padding-bottom: 1px;
+    font-size: 11px;
+    margin-bottom: 5px;
+    padding-bottom: 3px;
 }
 
 .landscape.compact-filter .category-title {
-    font-size: 9px;
+    font-size: 12px;
 }
 
 .landscape.compact-filter .category-content {
-    padding: 3px;
+    padding: 8px;
 }
 
 .landscape.compact-filter .subcategory {
-    margin-bottom: 3px;
+    margin-bottom: 8px;
 }
 
 .landscape.compact-filter .tools-grid {
-    grid-template-columns: repeat(auto-fill, minmax(45px, 1fr));
-    gap: 1px;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 6px;
 }
 
 .landscape.compact-filter .tool-badges {
@@ -587,19 +587,19 @@ a:hover {
 }
 
 .landscape.compact-filter .category-header {
-    padding: 3px 6px;
-    min-height: 28px !important;
+    padding: 6px 10px;
+    min-height: 36px !important;
 }
 
 .landscape.compact-filter .category:not(.collapsed) .category-header {
-    min-height: 28px !important;
-    padding-top: 3px;
-    padding-bottom: 3px;
+    min-height: 36px !important;
+    padding-top: 6px;
+    padding-bottom: 6px;
 }
 
 .landscape.compact-filter .category-count {
-    font-size: 8px;
-    padding: 0 4px;
+    font-size: 11px;
+    padding: 2px 6px;
 }
 
 /* Category Section - Base styles (width controlled by .landscape .category) */
@@ -727,7 +727,7 @@ a:hover {
 
 /* Subcategory - Compact */
 .subcategory {
-    margin-bottom: 6px;
+    margin-bottom: 10px;
 }
 
 .subcategory:last-child {
@@ -735,30 +735,30 @@ a:hover {
 }
 
 .subcategory-title {
-    font-size: 9px;
+    font-size: 11px;
     font-weight: 600;
     color: var(--vscode-text-muted);
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
     padding-left: 2px;
     border-bottom: 1px solid var(--vscode-border);
-    padding-bottom: 2px;
+    padding-bottom: 4px;
 }
 
 /* Tools Grid - CNCF-Style Dense Grid */
 .tools-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-    gap: 3px;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 6px;
 }
 
 /* Tool Card - CNCF-Style Compact */
 .tool-card {
     background: var(--vscode-editor-bg);
     border: 1px solid var(--vscode-border);
-    border-radius: 2px;
-    padding: 4px;
+    border-radius: 4px;
+    padding: 8px 6px;
     cursor: pointer;
     transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
     display: flex;
@@ -766,7 +766,7 @@ a:hover {
     align-items: center;
     text-align: center;
     position: relative;
-    min-height: 60px;
+    min-height: 75px;
 }
 
 .tool-card:hover {
@@ -785,15 +785,15 @@ a:hover {
 }
 
 .tool-icon {
-    width: 28px;
-    height: 28px;
-    border-radius: 2px;
+    width: 52px;
+    height: 52px;
+    border-radius: 4px;
     background: var(--vscode-input-bg);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 2px;
-    font-size: 10px;
+    margin-bottom: 4px;
+    font-size: 18px;
     color: var(--vscode-keyword);
     font-weight: 600;
     overflow: hidden;
@@ -801,18 +801,18 @@ a:hover {
 }
 
 .tool-icon img {
-    width: 20px;
-    height: 20px;
+    width: 42px;
+    height: 42px;
     object-fit: contain;
-    border-radius: 1px;
+    border-radius: 2px;
 }
 
 .tool-name {
-    font-size: 8px;
+    font-size: 11px;
     font-weight: 500;
     color: var(--vscode-text);
     margin-bottom: 2px;
-    line-height: 1.2;
+    line-height: 1.3;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -1162,47 +1162,47 @@ a:hover {
     }
 
     .tools-grid {
-        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-        gap: 2px;
+        grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+        gap: 5px;
     }
 
     .tool-card {
-        padding: 3px;
-        min-height: 50px;
+        padding: 6px 5px;
+        min-height: 65px;
     }
 
     .tool-icon {
-        width: 24px;
-        height: 24px;
+        width: 40px;
+        height: 40px;
     }
 
     .tool-icon img {
-        width: 18px;
-        height: 18px;
+        width: 32px;
+        height: 32px;
     }
 
     .tool-name {
-        font-size: 7px;
+        font-size: 11px;
     }
 
     .category-header {
-        padding: 3px 6px;
+        padding: 5px 8px;
     }
 
     .category-title {
-        font-size: 10px;
+        font-size: 11px;
     }
 
     .category.collapsed {
-        min-height: 38px;
+        min-height: 40px;
     }
 
     .category.collapsed .category-header {
-        min-height: 36px;
+        min-height: 38px;
     }
 
     .landscape.compact-filter .tools-grid {
-        grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
     }
 }
 
@@ -1306,6 +1306,110 @@ a:hover {
 
 .action-input::placeholder {
     color: var(--vscode-text-muted);
+}
+
+/* Autocomplete Dropdown */
+.autocomplete-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--vscode-sidebar-bg);
+    border: 1px solid var(--vscode-border);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    max-height: 320px;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.autocomplete-dropdown.hidden {
+    display: none;
+}
+
+.autocomplete-item {
+    padding: 10px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.15s;
+    border-bottom: 1px solid var(--vscode-border);
+}
+
+.autocomplete-item:last-child {
+    border-bottom: none;
+}
+
+.autocomplete-item:hover,
+.autocomplete-item.selected {
+    background: var(--vscode-list-hover);
+}
+
+.autocomplete-item-icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    opacity: 0.7;
+}
+
+.autocomplete-item-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.autocomplete-item-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--vscode-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.autocomplete-item-meta {
+    font-size: 11px;
+    color: var(--vscode-text-muted);
+    margin-top: 2px;
+}
+
+.autocomplete-item-type {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.autocomplete-item-type.category {
+    background: var(--vscode-focus-border);
+    color: white;
+}
+
+.autocomplete-item-type.subcategory {
+    background: #28a745;
+    color: white;
+}
+
+.autocomplete-item-type.tool {
+    background: var(--vscode-border);
+    color: var(--vscode-text);
+}
+
+.autocomplete-section-header {
+    padding: 6px 16px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--vscode-text-muted);
+    background: var(--vscode-editor-bg);
+    font-weight: 600;
+    border-bottom: 1px solid var(--vscode-border);
 }
 
 /* Quick Action Chips */
