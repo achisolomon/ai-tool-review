@@ -61,7 +61,7 @@ def build_tools_json(tools_dir, category_names = {})
     tools_by_track[track][category]['subcategories'][subcategory] << {
       'name' => frontmatter['name'],
       'slug' => frontmatter['slug'],
-      'url' => frontmatter['url'],
+      'url' => frontmatter['website'] || frontmatter['url'],
       'desc' => frontmatter['description'],
       'type' => frontmatter['type'],
       'github_stars' => frontmatter['github_stars'],
@@ -82,7 +82,7 @@ def build_tools_json(tools_dir, category_names = {})
       tools_by_track[add_track][add_category]['subcategories'][add_subcategory] << {
         'name' => frontmatter['name'],
         'slug' => frontmatter['slug'],
-        'url' => frontmatter['url'],
+        'url' => frontmatter['website'] || frontmatter['url'],
         'desc' => frontmatter['description'],
         'type' => frontmatter['type'],
         'github_stars' => frontmatter['github_stars'],
