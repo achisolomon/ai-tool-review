@@ -97,12 +97,19 @@ end
 
 # Main
 tools_dir = ARGV[0] || 'data/_tools'
-output_file = ARGV[1] || 'data/tools.json'
+output_file = ARGV[1] || 'js/data.js'
 
 tools_data = build_tools_json(tools_dir)
 
-File.write(output_file, JSON.pretty_generate(tools_data))
-File.write(output_file.sub('.json', '.min.json'), JSON.generate(tools_data))
+# Output as JavaScript module
+js_content = <<~JS
+// AI Landscape Data
+// Auto-generated from markdown files - DO NOT EDIT MANUALLY
 
-puts "Generated #{output_file} and #{output_file.sub('.json', '.min.json')}"
+const landscapeData = #{JSON.pretty_generate(tools_data)};
+JS
+
+File.write(output_file, js_content)
+
+puts "Generated #{output_file}"
 puts "Total tools: #{Dir.glob(File.join(tools_dir, '**/*.md')).reject { |f| File.basename(f).start_with?('_') }.count}"

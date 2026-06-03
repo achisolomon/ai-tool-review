@@ -12,7 +12,7 @@
     "validate": "ruby scripts/validate-no-duplicates.rb data/_tools",
     "validate:data": "node scripts/validate-data-js.js",
     "validate:workflows": "node scripts/validate-workflows.js",
-    "generate": "ruby scripts/generate-json.rb data/_tools js/data.js",
+    "generate": "ruby scripts/generate-json.rb data/_tools",
     "prebuild": "npm run validate && npm run generate",
     "postgenerate": "npm run validate:data",
     "build": "bundle exec jekyll build",

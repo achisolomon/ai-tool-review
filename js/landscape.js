@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Create tool card HTML
     function createToolCardHTML(tool) {
         const initial = tool.name.charAt(0).toUpperCase();
-        const slug = generateSlug(tool.name);
+        const slug = tool.slug || generateSlug(tool.name);
         const badgeClass = `badge-${tool.type}`;
         const typeLabel = tool.type === 'oss' ? 'OSS' : tool.type === 'saas' ? 'SaaS' : 'Commercial';
 
