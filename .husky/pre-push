@@ -1,0 +1,25 @@
+#!/bin/sh
+# Run full test suite before push (if environment is set up)
+echo "Running pre-push checks..."
+
+# Check if we can run Jekyll
+if ! bundle exec jekyll --version > /dev/null 2>&1; then
+    echo "⚠️  Skipping local tests (Jekyll/bundler not configured)"
+    echo "   Tests will run in CI after push"
+    exit 0
+fi
+
+# Check if Playwright is installed
+if ! npx playwright --version > /dev/null 2>&1; then
+    echo "⚠️  Skipping Playwright tests (not installed locally)"
+    echo "   Run 'npx playwright install chromium' to enable local tests"
+    exit 0
+fi
+
+echo "Building Jekyll site..."
+bundle exec jekyll build || exit 1
+
+echo "Running Playwright tests..."
+npm test || exit 1
+
+echo "All tests passed!"
