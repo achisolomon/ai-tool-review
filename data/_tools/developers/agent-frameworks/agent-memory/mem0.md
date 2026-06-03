@@ -236,15 +236,16 @@ confidence_score: 0.95
 
 <div class="comparison" markdown="1">
 
-| Feature | Mem0 | Letta | Zep |
-|---------|------|-------|-----|
-| GitHub Stars | <span class="highlight">57K+</span> | 23K | 4.6K |
-| Memory Type | Multi-level (User/Session/Agent) | Stateful agents with self-editing | Conversation + facts |
-| Entity Linking | <span class="highlight">Yes, built-in</span> | Via knowledge graph | Limited |
-| Temporal Reasoning | <span class="highlight">Yes</span> | Limited | No |
-| Self-Hosted | Yes (Docker) | Yes | Cloud-first |
-| Open Source | <span class="highlight">Full OSS</span> | Full OSS | Partial |
-| Token Efficiency | <span class="highlight">~7K tokens</span> | Variable | Variable |
-| Best For | Personalized AI assistants | Long-running agent state | Chat history + summaries |
+| Feature | Mem0 | GBrain | MemClaw |
+|---------|------|--------|---------|
+| GitHub Stars | <span class="highlight">57K+</span> | 20.8K | N/A (Commercial) |
+| Memory Type | Multi-level (User/Session/Agent) | Self-wiring graph + synthesis | Enterprise shared memory |
+| Entity Linking | <span class="highlight">Yes, built-in</span> | Yes, typed edges | Yes, auto-extracted |
+| Synthesis/Gap Analysis | No | <span class="highlight">Yes, cited answers</span> | No |
+| Governance (RBAC/Audit) | Basic | None | <span class="highlight">Built-in</span> |
+| Multi-Agent/Fleet | No | Multi-brain federation | <span class="highlight">Yes</span> |
+| Self-Hosted | Yes (Docker) | Yes (local-first) | No |
+| Open Source | <span class="highlight">Apache 2.0</span> | MIT | No |
+| Best For | Personalized AI assistants | Knowledge synthesis | Enterprise agent fleets |
 
 </div>

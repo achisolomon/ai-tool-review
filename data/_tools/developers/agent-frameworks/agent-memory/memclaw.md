@@ -2,46 +2,44 @@
 name: "MemClaw"
 slug: "memclaw"
 url: "https://memclaw.net/"
-type: saas
-track: developers
+type: "commercial"
+track: "developers"
 category: "agent-frameworks"
 subcategory: "agent-memory"
-status: active
-description: "Shared memory infrastructure for AI agent fleets enabling cross-agent learning, governance, and collective intelligence at scale."
-pricing_model: freemium
-founded_year: 2024
-headquarters: "San Francisco, California"
-github_url: —
-github_stars: —
+status: "active"
+description: "The shared cognition layer for enterprise AI agents with governed access and cross-fleet memory"
+pricing_model: "freemium"
 tags:
-  - agent-memory
+  - memory
+  - agents
+  - enterprise
   - multi-agent
-  - shared-memory
-  - fleet-management
-  - saas
+  - knowledge-graph
+  - governance
+  - api-available
 last_verified: "2026-06-03"
-confidence_score: 0.9
+confidence_score: 0.95
 ---
 
 <div class="key-stats">
   <div class="key-stat">
-    <span class="number">2024</span>
-    <span class="label">Launch Year</span>
-  </div>
-  <div class="key-stat">
-    <span class="number">SaaS</span>
-    <span class="label">Deployment</span>
-  </div>
-  <div class="key-stat">
-    <span class="number">Fleet-Scale</span>
+    <span class="number">Enterprise</span>
     <span class="label">Focus</span>
+  </div>
+  <div class="key-stat">
+    <span class="number">eToro</span>
+    <span class="label">Production Customer</span>
+  </div>
+  <div class="key-stat">
+    <span class="number">23ms</span>
+    <span class="label">p50 Search</span>
   </div>
 </div>
 
 ## Overview
 
 <div class="overview">
-<p>MemClaw provides persistent, governed, shared memory infrastructure for AI agent fleets. Unlike single-agent memory systems, MemClaw enables multiple agents to learn from each other's experiences, share knowledge, and improve collectively. It offers centralized governance, memory versioning, and access control—allowing organizations to deploy agent swarms that get smarter over time while maintaining compliance and auditability across the entire fleet.</p>
+<p>MemClaw is the shared cognition layer for enterprise AI agent fleets, enabling secure knowledge sharing across teams while maintaining governance controls. Unlike personal memory solutions, MemClaw is built for multi-agent, multi-fleet architectures with built-in permissions, audit trails, and tenant isolation. It features hybrid search (vector + keyword + graph), automatic entity extraction, contradiction detection via RDF triples and LLM analysis, and an 8-status memory lifecycle. Agents improve through interaction feedback, and the LLM-powered crystallizer automatically consolidates duplicate knowledge.</p>
 </div>
 
 ## The Verdict
@@ -52,19 +50,20 @@ confidence_score: 0.9
     <div class="verdict-section">
       <h4>Best For</h4>
       <ul>
-        <li>Organizations deploying fleets of specialized AI agents</li>
-        <li>Multi-agent systems requiring shared knowledge and coordination</li>
-        <li>Enterprises needing governance and audit trails for agent memories</li>
-        <li>Teams building agent swarms for complex, multi-step workflows</li>
-        <li>Companies scaling from single agents to agent orchestration</li>
+        <li>Enterprise teams running multi-agent systems</li>
+        <li>Organizations needing governed knowledge sharing</li>
+        <li>Teams requiring audit trails and compliance</li>
+        <li>Multi-tenant AI deployments</li>
+        <li>Agent fleets that need to learn from each other</li>
       </ul>
     </div>
     <div class="verdict-section not-for">
       <h4>Not Ideal For</h4>
       <ul>
-        <li>Single-agent applications without fleet coordination needs</li>
-        <li>Projects requiring self-hosted or open-source solutions</li>
-        <li>Simple chatbots with basic memory requirements</li>
+        <li>Single-agent personal assistants</li>
+        <li>Teams wanting self-hosted/open source</li>
+        <li>Budget-constrained startups</li>
+        <li>Simple chatbot memory needs</li>
       </ul>
     </div>
   </div>
@@ -74,24 +73,27 @@ confidence_score: 0.9
   <div class="pros-list">
     <h3>What's Great</h3>
     <ul>
-      <li>Shared memory enables cross-agent learning and collective intelligence</li>
-      <li>Built-in governance with role-based access control and audit logging</li>
-      <li>Memory versioning and rollback for safe experimentation</li>
-      <li>API-first design integrates with any agent framework</li>
-      <li>Managed SaaS eliminates infrastructure management overhead</li>
-      <li>Free tier available for prototyping and development</li>
+      <li>Multi-agent, multi-fleet shared memory architecture</li>
+      <li>Built-in governance: permissions, audit trails, tenant isolation</li>
+      <li>Contradiction detection via RDF triples + LLM</li>
+      <li>Knowledge graph with auto-extracted entities</li>
+      <li>Hybrid search (vector + keyword + graph)</li>
+      <li>Per-agent retrieval tuning and self-learning</li>
+      <li>LLM-powered deduplication (crystallizer)</li>
+      <li>Production-proven at scale (eToro: 21K+ memories, 23ms p50)</li>
     </ul>
-    <div class="source"><a href="https://memclaw.net/" target="_blank">Official Site</a></div>
+    <div class="source"><a href="https://memclaw.net/" target="_blank">Official Website</a></div>
   </div>
   <div class="cons-list">
     <h3>Watch Out For</h3>
     <ul>
-      <li>Newer platform with limited production case studies</li>
-      <li>SaaS-only model may not suit teams requiring on-prem deployment</li>
-      <li>Pricing structure unclear beyond free tier</li>
-      <li>Fleet coordination complexity may be overkill for simple use cases</li>
+      <li>No self-hosted or open-source option</li>
+      <li>Business tier ($399/mo) needed for larger deployments</li>
+      <li>Free tier limited to 500 recalls/month</li>
+      <li>Enterprise focus may be overkill for small teams</li>
+      <li>Relatively new in market vs established alternatives</li>
     </ul>
-    <div class="source"><a href="https://memclaw.net/" target="_blank">MemClaw Site</a></div>
+    <div class="source"><a href="https://memclaw.net/pricing" target="_blank">Pricing Page</a></div>
   </div>
 </div>
 
@@ -101,17 +103,22 @@ confidence_score: 0.9
   <a href="https://memclaw.net/pricing" class="pricing-card" target="_blank" rel="noopener">
     <div class="plan-name">Free</div>
     <div class="price">$0</div>
-    <div class="desc">Get started with shared agent memory. Includes basic fleet coordination, limited memory storage, and API access for development.</div>
+    <div class="desc">10K memories, 500 recalls/mo, community support</div>
   </a>
   <a href="https://memclaw.net/pricing" class="pricing-card featured" target="_blank" rel="noopener">
     <div class="plan-name">Pro</div>
-    <div class="price">Contact</div>
-    <div class="desc">Production-scale memory infrastructure with increased limits, governance features, and priority support. Custom pricing based on agent count.</div>
+    <div class="price">$49/mo</div>
+    <div class="desc">250K memories, 3K recalls/mo, LLM enrichment</div>
   </a>
   <a href="https://memclaw.net/pricing" class="pricing-card" target="_blank" rel="noopener">
-    <div class="plan-name">Enterprise</div>
-    <div class="price">Custom</div>
-    <div class="desc">Dedicated infrastructure, custom SLAs, advanced security, compliance certifications, and dedicated success team.</div>
+    <div class="plan-name">Business</div>
+    <div class="price">$399/mo</div>
+    <div class="desc">1M memories, 10K recalls/mo, dedicated support + SLA</div>
+  </a>
+  <a href="https://memclaw.net/pricing" class="pricing-card" target="_blank" rel="noopener">
+    <div class="plan-name">Custom</div>
+    <div class="price">Contact</div>
+    <div class="desc">On-premises, air-gapped, white-label options</div>
   </a>
 </div>
 
@@ -120,39 +127,80 @@ confidence_score: 0.9
 
 <div class="detail-grid">
   <div class="detail-section">
-    <h4>Key Features</h4>
+    <h4>Core Features</h4>
     <ul>
-      <li>Shared memory across agent fleets</li>
-      <li>Role-based access control and governance</li>
-      <li>Memory versioning and rollback</li>
-      <li>Audit logging and compliance tracking</li>
-      <li>REST API and SDK support</li>
-      <li>Real-time memory synchronization</li>
+      <li>Multi-agent shared memory</li>
+      <li>Cross-fleet recall</li>
+      <li>Knowledge graph with entities</li>
+      <li>Contradiction detection (RDF + LLM)</li>
+      <li>8-status memory lifecycle</li>
+      <li>LLM crystallizer for deduplication</li>
+      <li>Per-agent retrieval tuning</li>
+      <li>Self-learning from feedback</li>
     </ul>
   </div>
   <div class="detail-section">
-    <h4>Platforms</h4>
+    <h4>Enterprise Features</h4>
     <ul>
-      <li>Cloud SaaS (managed)</li>
-      <li>REST API</li>
-      <li>Python SDK</li>
-      <li>JavaScript/TypeScript SDK</li>
+      <li>Permissions and RBAC</li>
+      <li>Audit trails</li>
+      <li>Tenant isolation</li>
+      <li>Multi-fleet architecture</li>
+      <li>Unlimited agents on all plans</li>
+    </ul>
+  </div>
+  <div class="detail-section">
+    <h4>Search Capabilities</h4>
+    <ul>
+      <li>Vector similarity search</li>
+      <li>Keyword/BM25 search</li>
+      <li>Graph traversal</li>
+      <li>Hybrid ranking</li>
+      <li>23ms p50 latency (production)</li>
+    </ul>
+  </div>
+  <div class="detail-section">
+    <h4>Use Cases</h4>
+    <ul>
+      <li>Enterprise agent fleets</li>
+      <li>Multi-team AI deployments</li>
+      <li>Compliance-heavy industries</li>
+      <li>Customer support agent networks</li>
+      <li>Internal knowledge assistants</li>
     </ul>
   </div>
 </div>
 
 </details>
 
+## Real-World Usage
+
+<div class="info-grid">
+  <div class="info-card">
+    <h4>eToro Deployment</h4>
+    <ul>
+      <li>21,500+ memories stored</li>
+      <li>1,372 skills indexed</li>
+      <li>291 agent identifiers</li>
+      <li>23ms p50 search latency</li>
+    </ul>
+    <div class="source"><a href="https://memclaw.net/" target="_blank">MemClaw Website</a></div>
+  </div>
+</div>
+
 ## How It Compares
 
 <div class="comparison" markdown="1">
 
-| Feature | MemClaw | Letta | Zep |
-|---------|--------|--------------|--------------|
-| Focus | Multi-agent fleet memory | Single-agent unlimited context | Production agent memory |
-| Deployment | SaaS only | Open-source + cloud | Open-core + cloud |
-| Shared Memory | Yes, designed for fleets | No, per-agent | Limited, via graphs |
-| Governance | Built-in RBAC + audit | None (DIY) | Enterprise tier |
-| Best For | Agent fleet coordination | Research & unlimited context | Production-ready single agents |
+| Feature | MemClaw | Mem0 | GBrain |
+|---------|---------|------|--------|
+| Focus | <span class="highlight">Enterprise multi-agent</span> | Personal/app memory | Personal knowledge synthesis |
+| Governance | <span class="highlight">Built-in (RBAC, audit)</span> | Basic | None |
+| Multi-Fleet | <span class="highlight">Yes</span> | No | Multi-brain federation |
+| Contradiction Detection | <span class="highlight">Yes (RDF + LLM)</span> | No | No |
+| Self-Hosted | No | Yes | Yes |
+| Open Source | No | Yes | Yes |
+| Free Tier | Yes (limited) | Yes | N/A (OSS) |
+| Best For | Enterprise agent fleets | Personalized AI assistants | Knowledge synthesis |
 
 </div>
