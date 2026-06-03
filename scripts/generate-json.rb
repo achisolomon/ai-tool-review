@@ -40,7 +40,9 @@ def build_tools_json(tools_dir)
       'description' => frontmatter['description'],
       'type' => frontmatter['type'],
       'github_stars' => frontmatter['github_stars'],
-      'pricing_model' => frontmatter['pricing_model']
+      'pricing_model' => frontmatter['pricing_model'],
+      'pricing_starting' => frontmatter['pricing_starting'],
+      'user_count' => frontmatter['user_count']
     }
 
     # Handle additional categories
@@ -59,7 +61,9 @@ def build_tools_json(tools_dir)
         'description' => frontmatter['description'],
         'type' => frontmatter['type'],
         'github_stars' => frontmatter['github_stars'],
-        'pricing_model' => frontmatter['pricing_model']
+        'pricing_model' => frontmatter['pricing_model'],
+        'pricing_starting' => frontmatter['pricing_starting'],
+        'user_count' => frontmatter['user_count']
       }
     end
   end
