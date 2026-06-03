@@ -16,7 +16,7 @@
     "prebuild": "npm run validate && npm run generate",
     "postgenerate": "npm run validate:data",
     "build": "bundle exec jekyll build",
-    "prepare": "cd .. && husky"
+    "prepare": "husky"
   },
   "devDependencies": {
     "@playwright/test": "^1.44.0",

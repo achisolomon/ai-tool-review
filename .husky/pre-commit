@@ -1,0 +1,13 @@
+# Run validations before commit
+echo "Running pre-commit validations..."
+
+# Validate no duplicate tools
+npm run validate || exit 1
+
+# Regenerate data.js from markdown files
+npm run generate || exit 1
+
+# Validate workflows
+npm run validate:workflows || exit 1
+
+echo "All validations passed!"
