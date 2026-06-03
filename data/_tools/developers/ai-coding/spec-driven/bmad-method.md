@@ -11,7 +11,7 @@ status: active
 subcategory: spec-driven
 track: developers
 type: oss
-url: https://github.com/bmad-code-org/BMAD-METHOD
+website: https://github.com/bmad-code-org/BMAD-METHOD
 ---
 
 <div class="key-stats">

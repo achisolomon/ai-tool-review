@@ -11,7 +11,7 @@ status: active
 subcategory: embeddings
 track: developers
 type: oss
-url: https://huggingface.co/BAAI
+website: https://huggingface.co/BAAI
 ---
 
 <div class="key-stats">

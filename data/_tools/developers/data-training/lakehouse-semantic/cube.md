@@ -8,7 +8,7 @@ status: active
 subcategory: lakehouse-semantic
 track: developers
 type: oss
-url: https://cube.dev/
+website: https://cube.dev/
 description: "AI-powered semantic layer platform unifying data governance with universal definitions for consistent analytics across applications"
 pricing_model: freemium
 github_stars: 5700

@@ -1,7 +1,7 @@
 ---
 name: "Fireworks AI"
 slug: "fireworks-ai"
-url: "https://fireworks.ai/"
+website: "https://fireworks.ai/"
 type: "commercial"
 track: "developers"
 category: "ai-infrastructure"

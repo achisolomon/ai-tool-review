@@ -10,7 +10,7 @@ status: active
 subcategory: notetakers
 track: users
 type: commercial
-url: https://otter.ai/
+website: https://otter.ai/
 pricing_starting: "Free tier"
 user_count: "35M+"
 ---

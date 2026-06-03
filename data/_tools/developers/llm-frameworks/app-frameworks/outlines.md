@@ -1,7 +1,7 @@
 ---
 name: "Outlines"
 slug: "outlines"
-url: "https://github.com/dottxt-ai/outlines"
+website: "https://github.com/dottxt-ai/outlines"
 type: "open-source"
 track: "developers"
 category: "llm-frameworks"

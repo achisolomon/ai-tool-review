@@ -1,7 +1,7 @@
 ---
 name: "Agent-to-Agent (A2A)"
 slug: "agent-to-agent-a2a"
-url: "https://google.github.io/A2A/"
+website: "https://google.github.io/A2A/"
 type: oss
 track: developers
 category: "agent-frameworks"

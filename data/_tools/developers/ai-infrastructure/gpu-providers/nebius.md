@@ -10,7 +10,7 @@ status: active
 subcategory: gpu-providers
 track: developers
 type: commercial
-url: https://nebius.com/
+website: https://nebius.com/
 ---
 
 <div class="key-stats">

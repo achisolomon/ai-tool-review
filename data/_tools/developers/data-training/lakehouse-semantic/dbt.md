@@ -8,7 +8,7 @@ status: active
 subcategory: lakehouse-semantic
 track: developers
 type: oss
-url: https://www.getdbt.com/
+website: https://www.getdbt.com/
 description: "SQL-based data transformation framework enabling modular, tested, and documented data pipelines with version control"
 pricing_model: freemium
 github_stars: 11400

@@ -1,7 +1,7 @@
 ---
 name: "AIVA"
 slug: "aiva"
-url: "https://www.aiva.ai/"
+website: "https://www.aiva.ai/"
 type: "commercial"
 track: "users"
 category: "generative-media"

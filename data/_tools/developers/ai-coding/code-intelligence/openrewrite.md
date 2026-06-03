@@ -1,7 +1,7 @@
 ---
 name: "OpenRewrite"
 slug: "openrewrite"
-url: "https://docs.openrewrite.org/"
+website: "https://docs.openrewrite.org/"
 type: oss
 track: developers
 category: "ai-coding"

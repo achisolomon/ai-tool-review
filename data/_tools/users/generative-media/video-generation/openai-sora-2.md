@@ -1,7 +1,7 @@
 ---
 name: "OpenAI Sora 2"
 slug: "openai-sora-2"
-url: "https://openai.com/sora"
+website: "https://openai.com/sora"
 type: "commercial"
 track: "users"
 category: "generative-media"

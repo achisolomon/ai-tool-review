@@ -11,7 +11,7 @@ status: active
 subcategory: inference-apis
 track: developers
 type: oss
-url: https://github.com/sgl-project/sglang
+website: https://github.com/sgl-project/sglang
 ---
 
 <div class="key-stats">

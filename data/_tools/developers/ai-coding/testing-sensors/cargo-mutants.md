@@ -11,7 +11,7 @@ status: active
 subcategory: testing-sensors
 track: developers
 type: oss
-url: https://github.com/sourcefrog/cargo-mutants
+website: https://github.com/sourcefrog/cargo-mutants
 ---
 
 <div class="key-stats">

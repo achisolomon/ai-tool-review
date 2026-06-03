@@ -1,7 +1,7 @@
 ---
 name: "Zapier Agents"
 slug: "zapier-agents"
-url: "https://zapier.com/agents"
+website: "https://zapier.com/agents"
 type: "commercial"
 track: "users"
 category: "no-code-builders"

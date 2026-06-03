@@ -1,7 +1,7 @@
 ---
 name: "Redis Vector"
 slug: "redis-vector"
-url: "https://redis.io/solutions/vector-search/"
+website: "https://redis.io/solutions/vector-search/"
 type: "oss"
 track: "developers"
 category: "vector-dbs"

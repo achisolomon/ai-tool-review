@@ -1,7 +1,7 @@
 ---
 name: "Arc Search"
 slug: "arc-search"
-url: "https://arc.net/"
+website: "https://arc.net/"
 type: "commercial"
 track: "users"
 category: "personal-assistants"

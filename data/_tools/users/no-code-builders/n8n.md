@@ -1,7 +1,7 @@
 ---
 name: "n8n"
 slug: "n8n"
-url: "https://n8n.io/"
+website: "https://n8n.io/"
 type: "oss"
 track: "users"
 category: "no-code-builders"

@@ -11,7 +11,7 @@ status: active
 subcategory: app-frameworks
 track: developers
 type: oss
-url: https://www.litellm.ai/
+website: https://www.litellm.ai/
 ---
 
 <div class="key-stats">

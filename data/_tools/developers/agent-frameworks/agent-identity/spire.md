@@ -1,7 +1,7 @@
 ---
 name: "SPIRE"
 slug: "spire"
-url: "https://spiffe.io/spire/"
+website: "https://spiffe.io/spire/"
 type: oss
 track: developers
 category: "agent-frameworks"

@@ -1,7 +1,7 @@
 ---
 name: "Coze"
 slug: "coze"
-url: "https://www.coze.com/"
+website: "https://www.coze.com/"
 type: "commercial"
 track: "users"
 category: "no-code-builders"

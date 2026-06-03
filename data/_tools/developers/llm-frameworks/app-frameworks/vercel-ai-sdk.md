@@ -1,7 +1,7 @@
 ---
 name: "Vercel AI SDK"
 slug: "vercel-ai-sdk"
-url: "https://sdk.vercel.ai/"
+website: "https://sdk.vercel.ai/"
 github_url: "https://github.com/vercel/ai"
 type: "oss"
 track: "developers"

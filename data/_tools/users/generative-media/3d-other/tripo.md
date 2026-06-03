@@ -1,7 +1,7 @@
 ---
 name: "Tripo AI"
 slug: "tripo"
-url: "https://www.tripo3d.ai"
+website: "https://www.tripo3d.ai"
 type: "commercial"
 track: "users"
 category: "generative-media"

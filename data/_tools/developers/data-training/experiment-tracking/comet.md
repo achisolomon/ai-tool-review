@@ -10,7 +10,7 @@ status: active
 subcategory: experiment-tracking
 track: developers
 type: commercial
-url: https://www.comet.com/
+website: https://www.comet.com/
 ---
 
 <div class="key-stats">

@@ -1,7 +1,7 @@
 ---
 name: "Adobe Firefly"
 slug: "adobe-firefly"
-url: "https://www.adobe.com/products/firefly.html"
+website: "https://www.adobe.com/products/firefly.html"
 type: "commercial"
 track: "users"
 category: "generative-media"

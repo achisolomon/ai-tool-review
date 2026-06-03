@@ -10,7 +10,7 @@ status: active
 subcategory: code-review
 track: developers
 type: commercial
-url: https://snyk.io/platform/deepcode-ai/
+website: https://snyk.io/platform/deepcode-ai/
 ---
 
 <div class="key-stats">

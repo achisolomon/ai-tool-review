@@ -11,7 +11,7 @@ status: active
 subcategory: open-source
 track: developers
 type: oss
-url: https://mistral.ai/news/
+website: https://mistral.ai/news/
 ---
 
 <div class="key-stats">

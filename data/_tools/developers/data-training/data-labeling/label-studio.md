@@ -11,7 +11,7 @@ status: active
 subcategory: data-labeling
 track: developers
 type: oss
-url: https://labelstud.io/
+website: https://labelstud.io/
 ---
 
 <div class="key-stats">

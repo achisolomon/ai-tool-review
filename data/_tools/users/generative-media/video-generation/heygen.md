@@ -1,7 +1,7 @@
 ---
 name: "HeyGen"
 slug: "heygen"
-url: "https://www.heygen.com/"
+website: "https://www.heygen.com/"
 type: "commercial"
 track: "users"
 category: "generative-media"

@@ -1,7 +1,7 @@
 ---
 name: "MemClaw"
 slug: "memclaw"
-url: "https://memclaw.net/"
+website: "https://memclaw.net/"
 type: "commercial"
 track: "developers"
 category: "agent-frameworks"

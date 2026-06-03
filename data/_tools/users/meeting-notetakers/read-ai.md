@@ -1,7 +1,7 @@
 ---
 name: "Read.ai"
 slug: "read-ai"
-url: "https://www.read.ai/"
+website: "https://www.read.ai/"
 type: "commercial"
 track: "users"
 category: "meeting-notetakers"

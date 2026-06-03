@@ -1,7 +1,7 @@
 ---
 name: "Laminar"
 slug: "laminar"
-url: "https://www.lmnr.ai/"
+website: "https://www.lmnr.ai/"
 type: "oss"
 track: "developers"
 category: "observability-safety"

@@ -1,7 +1,7 @@
 ---
 name: "Playwright MCP"
 slug: "playwright-mcp"
-url: "https://github.com/microsoft/playwright-mcp"
+website: "https://github.com/microsoft/playwright-mcp"
 type: oss
 track: developers
 category: "agent-frameworks"

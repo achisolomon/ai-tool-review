@@ -1,7 +1,7 @@
 ---
 name: "Bolt.new"
 slug: "bolt-new"
-url: "https://bolt.new/"
+website: "https://bolt.new/"
 type: "commercial"
 track: "developers"
 category: "ai-coding"

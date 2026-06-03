@@ -1,7 +1,7 @@
 ---
 name: "Coda AI"
 slug: "coda-ai"
-url: "https://coda.io/product/ai"
+website: "https://coda.io/product/ai"
 type: "commercial"
 track: "users"
 category: "writing-productivity"

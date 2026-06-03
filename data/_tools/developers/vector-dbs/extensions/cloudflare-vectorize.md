@@ -1,7 +1,7 @@
 ---
 name: "Cloudflare Vectorize"
 slug: "cloudflare-vectorize"
-url: "https://developers.cloudflare.com/vectorize/"
+website: "https://developers.cloudflare.com/vectorize/"
 type: "commercial"
 track: "developers"
 category: "vector-dbs"

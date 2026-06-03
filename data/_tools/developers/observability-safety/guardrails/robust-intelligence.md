@@ -1,7 +1,7 @@
 ---
 name: "Robust Intelligence"
 slug: "robust-intelligence"
-url: "https://www.robustintelligence.com/"
+website: "https://www.robustintelligence.com/"
 type: "commercial"
 track: "developers"
 category: "observability-safety"

@@ -10,7 +10,7 @@ status: active
 subcategory: model-hubs
 track: developers
 type: oss
-url: https://modelscope.cn/
+website: https://modelscope.cn/
 ---
 
 <div class="key-stats">

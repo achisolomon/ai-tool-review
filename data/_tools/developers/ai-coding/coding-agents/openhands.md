@@ -1,7 +1,7 @@
 ---
 name: "OpenHands"
 slug: "openhands"
-url: "https://www.all-hands.dev/"
+website: "https://www.all-hands.dev/"
 type: "open-source"
 track: "developers"
 category: "ai-coding"

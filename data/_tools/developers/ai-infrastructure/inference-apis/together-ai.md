@@ -1,7 +1,7 @@
 ---
 name: "Together AI"
 slug: "together-ai"
-url: "https://www.together.ai/"
+website: "https://www.together.ai/"
 type: "commercial"
 track: "developers"
 category: "ai-infrastructure"

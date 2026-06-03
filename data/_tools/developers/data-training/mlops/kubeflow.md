@@ -8,7 +8,7 @@ status: active
 subcategory: mlops
 track: developers
 type: oss
-url: https://www.kubeflow.org/
+website: https://www.kubeflow.org/
 description: "Kubernetes-native ML platform for deploying, managing, and scaling machine learning workflows on container orchestration"
 pricing_model: free
 github_stars: 14200

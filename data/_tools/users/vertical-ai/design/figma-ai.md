@@ -1,7 +1,7 @@
 ---
 name: "Figma AI"
 slug: "figma-ai"
-url: "https://www.figma.com/ai/"
+website: "https://www.figma.com/ai/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

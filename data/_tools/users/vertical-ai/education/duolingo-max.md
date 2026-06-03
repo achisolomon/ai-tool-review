@@ -1,7 +1,7 @@
 ---
 name: "Duolingo Max"
 slug: "duolingo-max"
-url: "https://www.duolingo.com/"
+website: "https://www.duolingo.com/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

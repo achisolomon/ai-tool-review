@@ -1,7 +1,7 @@
 ---
 name: "Weights & Biases"
 slug: "wandb"
-url: "https://wandb.ai"
+website: "https://wandb.ai"
 type: "commercial"
 track: "developers"
 category: "observability-safety"

@@ -8,7 +8,7 @@ status: active
 subcategory: fine-tuning
 track: developers
 type: oss
-url: https://unsloth.ai/
+website: https://unsloth.ai/
 description: "Open-source framework for efficient LLM fine-tuning with 2x-5x faster performance using LoRA and QLoRA techniques"
 pricing_model: free
 github_stars: 9200

@@ -1,7 +1,7 @@
 ---
 name: "LangChain"
 slug: "langchain"
-url: "https://www.langchain.com/"
+website: "https://www.langchain.com/"
 type: "oss"
 track: "developers"
 category: "agent-frameworks"

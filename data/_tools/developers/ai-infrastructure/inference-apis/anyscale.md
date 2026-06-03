@@ -11,7 +11,7 @@ status: active
 subcategory: inference-apis
 track: developers
 type: commercial
-url: https://www.anyscale.com/
+website: https://www.anyscale.com/
 ---
 
 <div class="key-stats">

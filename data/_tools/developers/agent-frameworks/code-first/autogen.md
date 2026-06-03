@@ -1,7 +1,7 @@
 ---
 name: "AutoGen"
 slug: "autogen"
-url: "https://microsoft.github.io/autogen/"
+website: "https://microsoft.github.io/autogen/"
 type: "oss"
 track: "developers"
 category: "agent-frameworks"

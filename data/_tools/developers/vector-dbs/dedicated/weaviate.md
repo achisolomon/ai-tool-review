@@ -1,7 +1,7 @@
 ---
 name: "Weaviate"
 slug: "weaviate"
-url: "https://weaviate.io/"
+website: "https://weaviate.io/"
 type: "oss"
 track: "developers"
 category: "vector-dbs"

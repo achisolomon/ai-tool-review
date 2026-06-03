@@ -1,7 +1,7 @@
 ---
 name: "Kling AI"
 slug: "kling-ai"
-url: "https://klingai.com"
+website: "https://klingai.com"
 type: "commercial"
 track: "users"
 category: "generative-media"

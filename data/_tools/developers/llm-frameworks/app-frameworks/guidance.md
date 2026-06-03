@@ -11,7 +11,7 @@ status: active
 subcategory: app-frameworks
 track: developers
 type: oss
-url: https://github.com/guidance-ai/guidance
+website: https://github.com/guidance-ai/guidance
 ---
 
 <div class="key-stats">

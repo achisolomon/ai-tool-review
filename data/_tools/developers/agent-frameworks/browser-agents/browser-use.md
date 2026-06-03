@@ -1,7 +1,7 @@
 ---
 name: "Browser Use"
 slug: "browser-use"
-url: "https://browser-use.com/"
+website: "https://browser-use.com/"
 type: "oss"
 track: "developers"
 category: "agent-frameworks"

@@ -1,7 +1,7 @@
 ---
 name: "Modal"
 slug: "modal"
-url: "https://modal.com/"
+website: "https://modal.com/"
 type: "commercial"
 track: "developers"
 category: "ai-infrastructure"

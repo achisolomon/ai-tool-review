@@ -10,7 +10,7 @@ status: active
 subcategory: gpu-providers
 track: developers
 type: commercial
-url: https://crusoe.ai/
+website: https://crusoe.ai/
 ---
 
 <div class="key-stats">

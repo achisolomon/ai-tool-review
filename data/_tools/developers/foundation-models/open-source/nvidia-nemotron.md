@@ -11,7 +11,7 @@ status: active
 subcategory: open-source
 track: developers
 type: oss
-url: https://developer.nvidia.com/nemotron
+website: https://developer.nvidia.com/nemotron
 ---
 
 <div class="key-stats">

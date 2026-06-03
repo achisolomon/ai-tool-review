@@ -1,7 +1,7 @@
 ---
 name: "LangSmith"
 slug: "langsmith"
-url: "https://www.langchain.com/langsmith"
+website: "https://www.langchain.com/langsmith"
 type: "commercial"
 track: "developers"
 category: "observability-safety"

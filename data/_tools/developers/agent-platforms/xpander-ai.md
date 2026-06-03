@@ -1,7 +1,7 @@
 ---
 name: "xpander.ai"
 slug: "xpander-ai"
-url: "https://xpander.ai/"
+website: "https://xpander.ai/"
 type: commercial
 track: developers
 category: "agent-frameworks"

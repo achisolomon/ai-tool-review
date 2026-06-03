@@ -1,7 +1,7 @@
 ---
 name: "Traceloop / OpenLLMetry"
 slug: "traceloop-openllmetry"
-url: "https://www.traceloop.com/"
+website: "https://www.traceloop.com/"
 type: "oss"
 track: "developers"
 category: "observability-safety"

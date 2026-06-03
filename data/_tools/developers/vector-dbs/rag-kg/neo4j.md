@@ -1,7 +1,7 @@
 ---
 name: "Neo4j"
 slug: "neo4j"
-url: "https://neo4j.com/"
+website: "https://neo4j.com/"
 type: "oss"
 track: "developers"
 category: "vector-dbs"

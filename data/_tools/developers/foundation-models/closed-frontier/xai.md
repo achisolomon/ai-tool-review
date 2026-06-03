@@ -1,7 +1,7 @@
 ---
 name: "xAI (Grok)"
 slug: "xai"
-url: "https://x.ai/"
+website: "https://x.ai/"
 type: "commercial"
 track: "developers"
 category: "foundation-models"

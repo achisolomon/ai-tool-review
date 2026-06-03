@@ -10,7 +10,7 @@ status: active
 subcategory: embeddings
 track: developers
 type: commercial
-url: https://cohere.com/embed
+website: https://cohere.com/embed
 ---
 
 <div class="key-stats">

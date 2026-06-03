@@ -1,7 +1,7 @@
 ---
 name: "Stagehand"
 slug: "stagehand"
-url: "https://www.stagehand.dev/"
+website: "https://www.stagehand.dev/"
 type: oss
 track: developers
 category: "agent-frameworks"

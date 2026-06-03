@@ -10,7 +10,7 @@ status: active
 subcategory: testing-sensors
 track: developers
 type: oss
-url: https://stryker-mutator.io/
+website: https://stryker-mutator.io/
 github_stars: 4600
 ---
 

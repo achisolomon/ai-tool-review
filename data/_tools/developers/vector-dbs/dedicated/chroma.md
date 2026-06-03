@@ -1,7 +1,7 @@
 ---
 name: "Chroma"
 slug: "chroma"
-url: "https://www.trychroma.com/"
+website: "https://www.trychroma.com/"
 type: "oss"
 track: "developers"
 category: "vector-dbs"

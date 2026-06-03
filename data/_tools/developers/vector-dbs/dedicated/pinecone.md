@@ -1,7 +1,7 @@
 ---
 name: "Pinecone"
 slug: "pinecone"
-url: "https://www.pinecone.io/"
+website: "https://www.pinecone.io/"
 type: "commercial"
 track: "developers"
 category: "vector-dbs"

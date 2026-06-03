@@ -1,7 +1,7 @@
 ---
 name: "Notion AI"
 slug: "notion-ai"
-url: "https://www.notion.com/product/ai"
+website: "https://www.notion.com/product/ai"
 type: "commercial"
 track: "users"
 category: "writing-productivity"

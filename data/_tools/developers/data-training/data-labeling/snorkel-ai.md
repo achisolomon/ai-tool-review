@@ -10,7 +10,7 @@ status: active
 subcategory: data-labeling
 track: developers
 type: commercial
-url: https://snorkel.ai/
+website: https://snorkel.ai/
 ---
 
 <div class="key-stats">

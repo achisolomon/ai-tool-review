@@ -8,7 +8,7 @@ status: active
 subcategory: lakehouse-semantic
 track: developers
 type: oss
-url: https://dagster.io/
+website: https://dagster.io/
 description: "Data orchestration platform enabling reliable, observable data pipelines with strong typing, testing, and production scheduling"
 pricing_model: freemium
 github_stars: 10700

@@ -1,7 +1,7 @@
 ---
 name: "Spring AI"
 slug: "spring-ai"
-url: "https://spring.io/projects/spring-ai"
+website: "https://spring.io/projects/spring-ai"
 type: "oss"
 track: "developers"
 category: "llm-frameworks"

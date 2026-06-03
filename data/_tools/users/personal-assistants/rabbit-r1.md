@@ -1,7 +1,7 @@
 ---
 name: "Rabbit r1"
 slug: "rabbit-r1"
-url: "https://www.rabbit.tech/"
+website: "https://www.rabbit.tech/"
 type: "commercial"
 track: "users"
 category: "personal-assistants"

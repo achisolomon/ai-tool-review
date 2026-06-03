@@ -1,7 +1,7 @@
 ---
 name: "Google Gemini"
 slug: "google-gemini"
-url: "https://gemini.google.com"
+website: "https://gemini.google.com"
 type: "commercial"
 track: "users"
 category: "ai-chat-search"

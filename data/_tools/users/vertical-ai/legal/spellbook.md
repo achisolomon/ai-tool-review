@@ -1,7 +1,7 @@
 ---
 name: "Spellbook"
 slug: "spellbook"
-url: "https://www.spellbook.legal/"
+website: "https://www.spellbook.legal/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

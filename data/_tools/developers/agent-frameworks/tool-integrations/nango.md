@@ -1,7 +1,7 @@
 ---
 name: "Nango"
 slug: "nango"
-url: "https://www.nango.dev/"
+website: "https://www.nango.dev/"
 type: oss
 track: developers
 category: "agent-frameworks"

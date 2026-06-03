@@ -1,7 +1,7 @@
 ---
 name: "Darwin Gödel Machine"
 slug: "darwin-gödel-machine"
-url: "https://sakana.ai/dgm/"
+website: "https://sakana.ai/dgm/"
 type: oss
 track: developers
 category: "agent-frameworks"

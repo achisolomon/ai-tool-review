@@ -1,7 +1,7 @@
 ---
 name: "Hebbia"
 slug: "hebbia"
-url: "https://www.hebbia.com/"
+website: "https://www.hebbia.com/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

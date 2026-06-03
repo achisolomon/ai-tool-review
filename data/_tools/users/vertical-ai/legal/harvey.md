@@ -1,7 +1,7 @@
 ---
 name: "Harvey"
 slug: "harvey"
-url: "https://www.harvey.ai/"
+website: "https://www.harvey.ai/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

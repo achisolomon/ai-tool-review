@@ -1,7 +1,7 @@
 ---
 name: "OptScale"
 slug: "optscale"
-url: "https://optscale.ai/"
+website: "https://optscale.ai/"
 type: "oss"
 track: "developers"
 category: "observability-safety"

@@ -1,7 +1,7 @@
 ---
 name: "Jasper"
 slug: "jasper"
-url: "https://www.jasper.ai/"
+website: "https://www.jasper.ai/"
 type: "commercial"
 track: "users"
 category: "writing-productivity"

@@ -1,7 +1,7 @@
 ---
 name: "Pydantic AI"
 slug: "pydantic-ai"
-url: "https://ai.pydantic.dev/"
+website: "https://ai.pydantic.dev/"
 type: "oss"
 track: "developers"
 category: "agent-frameworks"

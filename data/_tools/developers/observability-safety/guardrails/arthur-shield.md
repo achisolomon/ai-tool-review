@@ -1,7 +1,7 @@
 ---
 name: "Arthur Shield"
 slug: "arthur-shield"
-url: "https://www.arthur.ai/"
+website: "https://www.arthur.ai/"
 type: "commercial"
 track: "developers"
 category: "observability-safety"

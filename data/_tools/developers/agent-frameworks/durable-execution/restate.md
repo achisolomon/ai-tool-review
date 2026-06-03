@@ -1,7 +1,7 @@
 ---
 name: "Restate"
 slug: "restate"
-url: "https://restate.dev/"
+website: "https://restate.dev/"
 type: oss
 track: developers
 category: "agent-frameworks"

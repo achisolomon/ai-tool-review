@@ -1,7 +1,7 @@
 ---
 name: "Udio"
 slug: "udio"
-url: "https://www.udio.com/"
+website: "https://www.udio.com/"
 type: "commercial"
 track: "users"
 category: "generative-media"

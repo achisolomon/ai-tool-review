@@ -31,7 +31,7 @@ Each tool is a markdown file with YAML frontmatter:
 # Required Fields
 name: "Tool Name"
 slug: "tool-name"                 # URL-safe, lowercase, immutable after creation
-url: "https://tool.com"
+website: "https://tool.com"
 type: "commercial"                # oss | saas | commercial
 track: "developers"               # users | developers | both
 category: "ai-coding"             # Primary category slug

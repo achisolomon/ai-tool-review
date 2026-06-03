@@ -10,7 +10,7 @@ status: active
 subcategory: fine-tuning
 track: developers
 type: commercial
-url: https://www.lamini.ai/
+website: https://www.lamini.ai/
 ---
 
 <div class="key-stats">

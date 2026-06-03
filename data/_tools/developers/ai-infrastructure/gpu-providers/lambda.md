@@ -1,7 +1,7 @@
 ---
 name: "Lambda Labs"
 slug: "lambda"
-url: "https://lambdalabs.com"
+website: "https://lambdalabs.com"
 type: "commercial"
 track: "developers"
 category: "ai-infrastructure"

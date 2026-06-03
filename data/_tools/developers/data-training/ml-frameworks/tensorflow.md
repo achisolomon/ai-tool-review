@@ -8,7 +8,7 @@ status: active
 subcategory: ml-frameworks
 track: developers
 type: oss
-url: https://www.tensorflow.org/
+website: https://www.tensorflow.org/
 description: "End-to-end open source platform for machine learning with tools for training, optimization, and deployment"
 pricing_model: free
 github_stars: 185200

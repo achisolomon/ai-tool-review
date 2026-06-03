@@ -10,7 +10,7 @@ status: active
 subcategory: embeddings
 track: developers
 type: commercial
-url: https://www.voyageai.com/
+website: https://www.voyageai.com/
 ---
 
 <div class="key-stats">

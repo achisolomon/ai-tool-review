@@ -1,7 +1,7 @@
 ---
 name: "Google ADK"
 slug: "google-adk"
-url: "https://google.github.io/adk-docs/"
+website: "https://google.github.io/adk-docs/"
 type: oss
 track: developers
 category: "agent-frameworks"

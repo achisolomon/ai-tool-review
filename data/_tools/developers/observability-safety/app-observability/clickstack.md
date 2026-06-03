@@ -1,7 +1,7 @@
 ---
 name: "ClickStack"
 slug: "clickstack"
-url: "https://clickhouse.com/clickstack"
+website: "https://clickhouse.com/clickstack"
 type: "oss"
 track: "developers"
 category: "observability-safety"

@@ -1,7 +1,7 @@
 ---
 name: "W&B Weave"
 slug: "wandb-weave"
-url: "https://wandb.ai/site/weave"
+website: "https://wandb.ai/site/weave"
 type: "commercial"
 track: "developers"
 category: "observability-safety"

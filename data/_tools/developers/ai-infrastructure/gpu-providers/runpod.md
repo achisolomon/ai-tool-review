@@ -10,7 +10,7 @@ status: active
 subcategory: gpu-providers
 track: developers
 type: commercial
-url: https://www.runpod.io/
+website: https://www.runpod.io/
 ---
 
 <div class="key-stats">

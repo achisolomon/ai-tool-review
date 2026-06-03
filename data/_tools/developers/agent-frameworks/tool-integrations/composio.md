@@ -1,7 +1,7 @@
 ---
 name: "Composio"
 slug: "composio"
-url: "https://composio.dev/"
+website: "https://composio.dev/"
 type: saas
 track: developers
 category: "agent-frameworks"

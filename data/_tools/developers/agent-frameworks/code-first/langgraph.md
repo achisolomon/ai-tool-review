@@ -1,7 +1,7 @@
 ---
 name: "LangGraph"
 slug: "langgraph"
-url: "https://www.langchain.com/langgraph"
+website: "https://www.langchain.com/langgraph"
 type: "open-source"
 track: "developers"
 category: "agent-frameworks"

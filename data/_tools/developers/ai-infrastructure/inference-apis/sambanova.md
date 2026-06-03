@@ -10,7 +10,7 @@ status: active
 subcategory: inference-apis
 track: developers
 type: commercial
-url: https://sambanova.ai/
+website: https://sambanova.ai/
 ---
 
 <div class="key-stats">

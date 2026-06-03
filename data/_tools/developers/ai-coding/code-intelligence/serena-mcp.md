@@ -1,7 +1,7 @@
 ---
 name: "Serena MCP"
 slug: "serena-mcp"
-url: "https://github.com/serena-ai/serena-mcp"
+website: "https://github.com/serena-ai/serena-mcp"
 type: oss
 track: developers
 category: "ai-coding"

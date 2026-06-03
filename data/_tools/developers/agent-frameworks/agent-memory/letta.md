@@ -1,7 +1,7 @@
 ---
 name: "Letta"
 slug: "letta"
-url: "https://www.letta.com/"
+website: "https://www.letta.com/"
 type: oss
 track: developers
 category: "agent-frameworks"

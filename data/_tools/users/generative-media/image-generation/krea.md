@@ -1,7 +1,7 @@
 ---
 name: "Krea AI"
 slug: "krea"
-url: "https://www.krea.ai/"
+website: "https://www.krea.ai/"
 type: "commercial"
 track: "users"
 category: "generative-media"

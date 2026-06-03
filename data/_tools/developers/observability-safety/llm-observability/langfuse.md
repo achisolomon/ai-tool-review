@@ -1,7 +1,7 @@
 ---
 name: "Langfuse"
 slug: "langfuse"
-url: "https://langfuse.com/"
+website: "https://langfuse.com/"
 type: "oss"
 track: "developers"
 category: "observability-safety"

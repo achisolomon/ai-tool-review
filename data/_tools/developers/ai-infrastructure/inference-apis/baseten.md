@@ -10,7 +10,7 @@ status: active
 subcategory: inference-apis
 track: developers
 type: commercial
-url: https://www.baseten.co/
+website: https://www.baseten.co/
 ---
 
 <div class="key-stats">

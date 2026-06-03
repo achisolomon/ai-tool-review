@@ -11,7 +11,7 @@ status: active
 subcategory: fine-tuning
 track: developers
 type: oss
-url: https://github.com/hiyouga/LLaMA-Factory
+website: https://github.com/hiyouga/LLaMA-Factory
 ---
 
 <div class="key-stats">

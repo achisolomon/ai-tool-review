@@ -1,7 +1,7 @@
 ---
 name: "Intercom Fin"
 slug: "intercom-fin"
-url: "https://www.intercom.com/fin"
+website: "https://www.intercom.com/fin"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

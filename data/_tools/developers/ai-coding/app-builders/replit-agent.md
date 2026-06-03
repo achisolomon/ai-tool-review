@@ -1,7 +1,7 @@
 ---
 name: "Replit Agent"
 slug: "replit-agent"
-url: "https://replit.com/ai"
+website: "https://replit.com/ai"
 type: commercial
 track: developers
 category: "ai-coding"

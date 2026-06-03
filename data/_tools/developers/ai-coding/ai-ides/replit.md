@@ -1,7 +1,7 @@
 ---
 name: "Replit"
 slug: "replit"
-url: "https://replit.com/"
+website: "https://replit.com/"
 type: "commercial"
 track: "developers"
 category: "ai-coding"

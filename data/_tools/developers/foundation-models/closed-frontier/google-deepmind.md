@@ -10,7 +10,7 @@ status: active
 subcategory: closed-frontier
 track: developers
 type: commercial
-url: https://deepmind.google/
+website: https://deepmind.google/
 ---
 
 <div class="key-stats">

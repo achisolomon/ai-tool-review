@@ -1,7 +1,7 @@
 ---
 name: "Prompt Security"
 slug: "prompt-security"
-url: "https://www.prompt.security/"
+website: "https://www.prompt.security/"
 type: "commercial"
 track: "developers"
 category: "observability-safety"

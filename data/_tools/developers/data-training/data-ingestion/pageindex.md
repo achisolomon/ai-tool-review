@@ -10,7 +10,7 @@ status: active
 subcategory: data-ingestion
 track: developers
 type: commercial
-url: https://www.pageindex.dev/
+website: https://www.pageindex.dev/
 ---
 
 <div class="key-stats">

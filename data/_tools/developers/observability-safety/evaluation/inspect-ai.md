@@ -1,7 +1,7 @@
 ---
 name: "Inspect AI"
 slug: "inspect-ai"
-url: "https://inspect.ai-safety-institute.org.uk/"
+website: "https://inspect.ai-safety-institute.org.uk/"
 type: "oss"
 track: "developers"
 category: "observability-safety"

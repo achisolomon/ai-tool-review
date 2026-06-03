@@ -11,7 +11,7 @@ status: active
 subcategory: spec-driven
 track: developers
 type: oss
-url: https://github.com/obra/superpowers
+website: https://github.com/obra/superpowers
 ---
 
 <div class="key-stats">

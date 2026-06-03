@@ -10,7 +10,7 @@ status: active
 subcategory: closed-frontier
 track: developers
 type: commercial
-url: https://www.ai21.com/
+website: https://www.ai21.com/
 ---
 
 <div class="key-stats">

@@ -1,7 +1,7 @@
 ---
 name: "Phind"
 slug: "phind"
-url: "https://www.phind.com/"
+website: "https://www.phind.com/"
 type: "commercial"
 track: "users"
 category: "ai-chat-search"

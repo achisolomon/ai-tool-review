@@ -1,7 +1,7 @@
 ---
 name: "Devin (Cognition)"
 slug: "devin-cognition"
-url: "https://devin.ai/"
+website: "https://devin.ai/"
 type: "commercial"
 track: "developers"
 category: "ai-coding"

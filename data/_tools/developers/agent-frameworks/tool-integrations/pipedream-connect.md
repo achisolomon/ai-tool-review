@@ -1,7 +1,7 @@
 ---
 name: "Pipedream Connect"
 slug: "pipedream-connect"
-url: "https://pipedream.com/connect"
+website: "https://pipedream.com/connect"
 type: saas
 track: developers
 category: "agent-frameworks"

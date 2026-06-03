@@ -1,7 +1,7 @@
 ---
 name: "Workday Illuminate"
 slug: "workday-illuminate"
-url: "https://www.workday.com/en-us/artificial-intelligence/illuminate.html"
+website: "https://www.workday.com/en-us/artificial-intelligence/illuminate.html"
 type: "commercial"
 track: "users"
 category: "enterprise-platforms"

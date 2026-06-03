@@ -1,7 +1,7 @@
 ---
 name: "Glean"
 slug: "glean"
-url: "https://www.glean.com/"
+website: "https://www.glean.com/"
 type: "commercial"
 track: "users"
 category: "enterprise-platforms"

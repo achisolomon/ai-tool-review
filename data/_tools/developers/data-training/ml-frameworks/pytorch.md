@@ -8,7 +8,7 @@ status: active
 subcategory: ml-frameworks
 track: developers
 type: oss
-url: https://pytorch.org/
+website: https://pytorch.org/
 description: "Flexible deep learning framework with dynamic computation graphs, imperative programming, and strong GPU/TPU support"
 pricing_model: free
 github_stars: 84300

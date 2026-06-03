@@ -1,7 +1,7 @@
 ---
 name: "Zendesk AI"
 slug: "zendesk-ai"
-url: "https://www.zendesk.com/service/ai/"
+website: "https://www.zendesk.com/service/ai/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

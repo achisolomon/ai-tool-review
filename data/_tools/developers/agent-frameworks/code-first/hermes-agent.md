@@ -1,7 +1,7 @@
 ---
 name: "Hermes Agent"
 slug: "hermes-agent"
-url: "https://hermes-agent.nousresearch.com/"
+website: "https://hermes-agent.nousresearch.com/"
 type: oss
 track: developers
 category: "agent-frameworks"

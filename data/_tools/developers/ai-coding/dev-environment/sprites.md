@@ -10,7 +10,7 @@ status: active
 subcategory: dev-environment
 track: developers
 type: commercial
-url: https://sprites.dev/
+website: https://sprites.dev/
 ---
 
 <div class="key-stats">

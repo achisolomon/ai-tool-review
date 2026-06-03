@@ -1,7 +1,7 @@
 ---
 name: "Salesforce Agentforce"
 slug: "salesforce-agentforce"
-url: "https://www.salesforce.com/agentforce/"
+website: "https://www.salesforce.com/agentforce/"
 type: "commercial"
 track: "users"
 category: "enterprise-platforms"

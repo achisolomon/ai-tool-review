@@ -11,7 +11,7 @@ status: active
 subcategory: app-frameworks
 track: developers
 type: oss
-url: https://python.useinstructor.com/
+website: https://python.useinstructor.com/
 ---
 
 <div class="key-stats">

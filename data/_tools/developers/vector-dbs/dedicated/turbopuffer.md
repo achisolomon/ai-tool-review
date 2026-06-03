@@ -1,7 +1,7 @@
 ---
 name: "Turbopuffer"
 slug: "turbopuffer"
-url: "https://turbopuffer.com/"
+website: "https://turbopuffer.com/"
 type: "commercial"
 track: "developers"
 category: "vector-dbs"

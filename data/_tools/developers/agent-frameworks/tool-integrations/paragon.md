@@ -1,7 +1,7 @@
 ---
 name: "Paragon"
 slug: "paragon"
-url: "https://www.useparagon.com/"
+website: "https://www.useparagon.com/"
 type: saas
 track: developers
 category: "agent-frameworks"

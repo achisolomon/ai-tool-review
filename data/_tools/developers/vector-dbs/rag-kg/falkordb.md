@@ -1,7 +1,7 @@
 ---
 name: "FalkorDB"
 slug: "falkordb"
-url: "https://www.falkordb.com/"
+website: "https://www.falkordb.com/"
 type: "oss"
 track: "developers"
 category: "vector-dbs"

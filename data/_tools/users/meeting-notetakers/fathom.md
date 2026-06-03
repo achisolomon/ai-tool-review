@@ -1,7 +1,7 @@
 ---
 name: "Fathom"
 slug: "fathom"
-url: "https://fathom.video/"
+website: "https://fathom.video/"
 type: "commercial"
 track: "users"
 category: "meeting-notetakers"

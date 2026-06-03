@@ -1,7 +1,7 @@
 ---
 name: "Leonardo.AI"
 slug: "leonardo-ai"
-url: "https://leonardo.ai/"
+website: "https://leonardo.ai/"
 type: "commercial"
 track: "users"
 category: "generative-media"

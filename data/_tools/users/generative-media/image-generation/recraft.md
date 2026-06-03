@@ -1,7 +1,7 @@
 ---
 name: "Recraft"
 slug: "recraft"
-url: "https://www.recraft.ai/"
+website: "https://www.recraft.ai/"
 type: "commercial"
 track: "users"
 category: "generative-media"

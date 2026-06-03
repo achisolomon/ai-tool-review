@@ -1,7 +1,7 @@
 ---
 name: "Microsoft Copilot Studio"
 slug: "microsoft-copilot-studio"
-url: "https://www.microsoft.com/en-us/microsoft-copilot/microsoft-copilot-studio"
+website: "https://www.microsoft.com/en-us/microsoft-copilot/microsoft-copilot-studio"
 type: "commercial"
 track: "users"
 category: "enterprise-platforms"

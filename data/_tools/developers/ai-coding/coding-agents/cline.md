@@ -1,7 +1,7 @@
 ---
 name: "Cline"
 slug: "cline"
-url: "https://cline.bot/"
+website: "https://cline.bot/"
 type: "oss"
 track: "developers"
 category: "ai-coding"

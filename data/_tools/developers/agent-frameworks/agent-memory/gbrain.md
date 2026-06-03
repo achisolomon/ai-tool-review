@@ -1,7 +1,7 @@
 ---
 name: "GBrain"
 slug: "gbrain"
-url: "https://github.com/garrytan/gbrain"
+website: "https://github.com/garrytan/gbrain"
 type: "open-source"
 track: "developers"
 category: "agent-frameworks"

@@ -1,7 +1,7 @@
 ---
 name: "AutoGPT"
 slug: "autogpt"
-url: "https://agpt.co/"
+website: "https://agpt.co/"
 type: oss
 track: developers
 category: "agent-frameworks"

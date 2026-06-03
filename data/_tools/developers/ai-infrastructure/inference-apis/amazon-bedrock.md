@@ -1,7 +1,7 @@
 ---
 name: "Amazon Bedrock"
 slug: "amazon-bedrock"
-url: "https://aws.amazon.com/bedrock/"
+website: "https://aws.amazon.com/bedrock/"
 type: "commercial"
 track: "developers"
 category: "ai-infrastructure"

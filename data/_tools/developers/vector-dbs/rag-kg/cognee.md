@@ -1,7 +1,7 @@
 ---
 name: "Cognee"
 slug: "cognee"
-url: "https://www.cognee.ai/"
+website: "https://www.cognee.ai/"
 type: "oss"
 track: "developers"
 category: "vector-dbs"

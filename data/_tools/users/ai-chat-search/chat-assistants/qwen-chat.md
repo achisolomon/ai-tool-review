@@ -1,7 +1,7 @@
 ---
 name: "Qwen Chat"
 slug: "qwen-chat"
-url: "https://chat.qwenlm.ai/"
+website: "https://chat.qwenlm.ai/"
 type: "commercial"
 track: "users"
 category: "ai-chat-search"

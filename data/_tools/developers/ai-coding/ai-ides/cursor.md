@@ -1,7 +1,7 @@
 ---
 name: "Cursor"
 slug: "cursor"
-url: "https://www.cursor.com/"
+website: "https://www.cursor.com/"
 type: "commercial"
 track: "developers"
 category: "ai-coding"

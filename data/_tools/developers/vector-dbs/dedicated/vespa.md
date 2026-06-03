@@ -1,7 +1,7 @@
 ---
 name: "Vespa"
 slug: "vespa"
-url: "https://vespa.ai/"
+website: "https://vespa.ai/"
 type: "oss"
 track: "developers"
 category: "vector-dbs"

@@ -8,7 +8,7 @@ status: active
 subcategory: ml-frameworks
 track: developers
 type: oss
-url: https://github.com/huggingface/transformers
+website: https://github.com/huggingface/transformers
 description: "Industry-standard library providing state-of-the-art pre-trained models for NLP, vision, audio and multimodal tasks"
 pricing_model: free
 github_stars: 161000

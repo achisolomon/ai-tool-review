@@ -10,7 +10,7 @@ status: active
 subcategory: inference-apis
 track: developers
 type: commercial
-url: https://fal.ai/
+website: https://fal.ai/
 ---
 
 <div class="key-stats">

@@ -1,7 +1,7 @@
 ---
 name: "Runway"
 slug: "runway"
-url: "https://runwayml.com/"
+website: "https://runwayml.com/"
 type: "commercial"
 track: "users"
 category: "generative-media"

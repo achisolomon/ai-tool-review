@@ -11,7 +11,7 @@ status: active
 subcategory: testing-sensors
 track: developers
 type: oss
-url: https://playwright.dev/
+website: https://playwright.dev/
 ---
 
 <div class="key-stats">

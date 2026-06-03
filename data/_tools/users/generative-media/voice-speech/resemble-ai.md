@@ -1,7 +1,7 @@
 ---
 name: "Resemble AI"
 slug: "resemble-ai"
-url: "https://www.resemble.ai/"
+website: "https://www.resemble.ai/"
 type: "commercial"
 track: "users"
 category: "generative-media"

@@ -1,7 +1,7 @@
 ---
 name: "Lindy"
 slug: "lindy"
-url: "https://www.lindy.ai/"
+website: "https://www.lindy.ai/"
 type: "commercial"
 track: "users"
 category: "no-code-builders"

@@ -1,7 +1,7 @@
 ---
 name: "Skyvern"
 slug: "skyvern"
-url: "https://www.skyvern.com/"
+website: "https://www.skyvern.com/"
 type: oss
 track: developers
 category: "agent-frameworks"

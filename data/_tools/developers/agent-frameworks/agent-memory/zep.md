@@ -1,7 +1,7 @@
 ---
 name: "Zep"
 slug: "zep"
-url: "https://www.getzep.com/"
+website: "https://www.getzep.com/"
 type: oss
 track: developers
 category: "agent-frameworks"

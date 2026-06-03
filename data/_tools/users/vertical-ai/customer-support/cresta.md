@@ -1,7 +1,7 @@
 ---
 name: "Cresta"
 slug: "cresta"
-url: "https://cresta.com/"
+website: "https://cresta.com/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

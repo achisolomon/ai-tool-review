@@ -11,7 +11,7 @@ status: active
 subcategory: fine-tuning
 track: developers
 type: oss
-url: https://pytorch.org/torchtune/
+website: https://pytorch.org/torchtune/
 ---
 
 <div class="key-stats">

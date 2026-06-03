@@ -1,7 +1,7 @@
 ---
 name: "NVIDIA OpenShell"
 slug: "nvidia-openshell"
-url: "https://github.com/NVIDIA/OpenShell"
+website: "https://github.com/NVIDIA/OpenShell"
 type: "oss"
 track: "developers"
 category: "observability-safety"

@@ -1,7 +1,7 @@
 ---
 name: "Obsidian"
 slug: "obsidian"
-url: "https://obsidian.md/"
+website: "https://obsidian.md/"
 type: "commercial"
 track: "users"
 category: "writing-productivity"

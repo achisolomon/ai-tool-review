@@ -1,7 +1,7 @@
 ---
 name: "Humanloop"
 slug: "humanloop"
-url: "https://humanloop.com/"
+website: "https://humanloop.com/"
 type: "commercial"
 track: "developers"
 category: "llm-frameworks"

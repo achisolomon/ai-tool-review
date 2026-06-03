@@ -11,7 +11,7 @@ status: active
 subcategory: fine-tuning
 track: developers
 type: oss
-url: https://github.com/axolotl-ai-cloud/axolotl
+website: https://github.com/axolotl-ai-cloud/axolotl
 ---
 
 <div class="key-stats">

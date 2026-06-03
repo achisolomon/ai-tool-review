@@ -1,7 +1,7 @@
 ---
 name: "Anthropic"
 slug: "anthropic"
-url: "https://www.anthropic.com/"
+website: "https://www.anthropic.com/"
 type: "commercial"
 track: "developers"
 category: "foundation-models"

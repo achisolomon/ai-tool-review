@@ -1,7 +1,7 @@
 ---
 name: "Groq"
 slug: "groq"
-url: "https://groq.com/"
+website: "https://groq.com/"
 type: "commercial"
 track: "developers"
 category: "ai-infrastructure"

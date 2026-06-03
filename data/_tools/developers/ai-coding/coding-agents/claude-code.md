@@ -1,7 +1,7 @@
 ---
 name: "Claude Code"
 slug: "claude-code"
-url: "https://claude.ai/code"
+website: "https://claude.ai/code"
 type: "commercial"
 track: "developers"
 category: "ai-coding"

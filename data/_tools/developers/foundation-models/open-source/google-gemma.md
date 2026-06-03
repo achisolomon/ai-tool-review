@@ -11,7 +11,7 @@ status: active
 subcategory: open-source
 track: developers
 type: oss
-url: https://ai.google.dev/gemma
+website: https://ai.google.dev/gemma
 ---
 
 <div class="key-stats">

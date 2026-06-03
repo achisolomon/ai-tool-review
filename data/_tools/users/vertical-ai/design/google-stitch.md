@@ -1,7 +1,7 @@
 ---
 name: "Google Stitch"
 slug: "google-stitch"
-url: "https://stitch.withgoogle.com/"
+website: "https://stitch.withgoogle.com/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

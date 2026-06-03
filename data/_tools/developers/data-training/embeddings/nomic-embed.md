@@ -11,7 +11,7 @@ status: active
 subcategory: embeddings
 track: developers
 type: oss
-url: https://www.nomic.ai/embed
+website: https://www.nomic.ai/embed
 ---
 
 <div class="key-stats">

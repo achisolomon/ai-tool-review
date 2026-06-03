@@ -1,7 +1,7 @@
 ---
 name: "Grammarly"
 slug: "grammarly"
-url: "https://www.grammarly.com/"
+website: "https://www.grammarly.com/"
 type: "commercial"
 track: "users"
 category: "writing-productivity"

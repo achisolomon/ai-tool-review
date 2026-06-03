@@ -1,7 +1,7 @@
 ---
 name: "Zed"
 slug: "zed"
-url: "https://zed.dev/"
+website: "https://zed.dev/"
 type: oss
 track: developers
 category: "ai-coding"

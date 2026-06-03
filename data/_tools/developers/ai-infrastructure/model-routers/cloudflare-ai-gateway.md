@@ -10,7 +10,7 @@ status: active
 subcategory: model-routers
 track: developers
 type: commercial
-url: https://developers.cloudflare.com/ai-gateway/
+website: https://developers.cloudflare.com/ai-gateway/
 ---
 
 <div class="key-stats">

@@ -1,7 +1,7 @@
 ---
 name: "Agent Scan"
 slug: "agent-scan"
-url: "https://github.com/protectai/agent-scan"
+website: "https://github.com/protectai/agent-scan"
 type: "oss"
 track: "developers"
 category: "observability-safety"

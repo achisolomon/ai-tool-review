@@ -1,7 +1,7 @@
 ---
 name: "Vectara"
 slug: "vectara"
-url: "https://vectara.com/"
+website: "https://vectara.com/"
 type: "commercial"
 track: "developers"
 category: "vector-dbs"

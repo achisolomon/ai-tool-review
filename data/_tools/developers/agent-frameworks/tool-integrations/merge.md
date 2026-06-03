@@ -1,7 +1,7 @@
 ---
 name: "Merge"
 slug: "merge"
-url: "https://www.merge.dev/"
+website: "https://www.merge.dev/"
 type: saas
 track: developers
 category: "agent-frameworks"

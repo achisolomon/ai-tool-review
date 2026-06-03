@@ -1,7 +1,7 @@
 ---
 name: "Replicate"
 slug: "replicate"
-url: "https://replicate.com"
+website: "https://replicate.com"
 type: "commercial"
 track: "developers"
 category: "foundation-models"

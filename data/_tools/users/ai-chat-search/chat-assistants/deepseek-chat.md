@@ -1,7 +1,7 @@
 ---
 name: "DeepSeek Chat"
 slug: "deepseek-chat"
-url: "https://chat.deepseek.com/"
+website: "https://chat.deepseek.com/"
 type: "commercial"
 track: "users"
 category: "ai-chat-search"

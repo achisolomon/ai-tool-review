@@ -1,7 +1,7 @@
 ---
 name: "FLUX (Black Forest Labs)"
 slug: "flux-black-forest-labs"
-url: "https://blackforestlabs.ai/"
+website: "https://blackforestlabs.ai/"
 type: "commercial"
 track: "users"
 category: "generative-media"

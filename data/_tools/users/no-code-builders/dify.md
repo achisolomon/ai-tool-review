@@ -1,7 +1,7 @@
 ---
 name: "Dify"
 slug: "dify"
-url: "https://dify.ai/"
+website: "https://dify.ai/"
 type: "oss"
 track: "users"
 category: "no-code-builders"

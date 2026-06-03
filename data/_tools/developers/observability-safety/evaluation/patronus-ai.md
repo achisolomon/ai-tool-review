@@ -1,7 +1,7 @@
 ---
 name: "Patronus AI"
 slug: "patronus-ai"
-url: "https://www.patronus.ai/"
+website: "https://www.patronus.ai/"
 type: "commercial"
 track: "developers"
 category: "observability-safety"

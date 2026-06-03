@@ -1,7 +1,7 @@
 ---
 name: "TruLens"
 slug: "trulens"
-url: "https://www.trulens.org/"
+website: "https://www.trulens.org/"
 type: "open-source"
 track: "developers"
 category: "observability-safety"

@@ -1,7 +1,7 @@
 ---
 name: "HiddenLayer"
 slug: "hiddenlayer"
-url: "https://hiddenlayer.com/"
+website: "https://hiddenlayer.com/"
 type: "commercial"
 track: "developers"
 category: "observability-safety"

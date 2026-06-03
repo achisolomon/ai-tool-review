@@ -1,7 +1,7 @@
 ---
 name: "Hume AI"
 slug: "hume-ai"
-url: "https://hume.ai/"
+website: "https://hume.ai/"
 type: "commercial"
 track: "users"
 category: "generative-media"

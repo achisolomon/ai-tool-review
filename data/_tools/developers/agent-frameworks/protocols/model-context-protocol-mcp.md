@@ -1,7 +1,7 @@
 ---
 name: "Model Context Protocol (MCP)"
 slug: "model-context-protocol-mcp"
-url: "https://modelcontextprotocol.io/"
+website: "https://modelcontextprotocol.io/"
 type: oss
 track: developers
 category: "agent-frameworks"

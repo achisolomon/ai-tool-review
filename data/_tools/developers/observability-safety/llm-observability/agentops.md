@@ -1,7 +1,7 @@
 ---
 name: "AgentOps"
 slug: "agentops"
-url: "https://www.agentops.ai/"
+website: "https://www.agentops.ai/"
 type: "commercial"
 track: "developers"
 category: "observability-safety"

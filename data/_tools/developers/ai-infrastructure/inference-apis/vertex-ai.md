@@ -1,7 +1,7 @@
 ---
 name: "Vertex AI"
 slug: "vertex-ai"
-url: "https://cloud.google.com/vertex-ai"
+website: "https://cloud.google.com/vertex-ai"
 type: "commercial"
 track: "developers"
 category: "ai-infrastructure"

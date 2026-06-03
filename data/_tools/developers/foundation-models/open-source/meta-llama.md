@@ -1,7 +1,7 @@
 ---
 name: "Meta Llama"
 slug: "meta-llama"
-url: "https://llama.meta.com/"
+website: "https://llama.meta.com/"
 type: "oss"
 track: "developers"
 category: "foundation-models"

@@ -1,7 +1,7 @@
 ---
 name: "LlamaIndex"
 slug: "llamaindex"
-url: "https://www.llamaindex.ai/"
+website: "https://www.llamaindex.ai/"
 type: "oss"
 track: "developers"
 category: "agent-frameworks"

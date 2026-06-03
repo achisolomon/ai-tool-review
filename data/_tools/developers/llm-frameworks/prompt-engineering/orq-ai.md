@@ -1,7 +1,7 @@
 ---
 name: "Orq.ai"
 slug: "orq-ai"
-url: "https://orq.ai/"
+website: "https://orq.ai/"
 type: "commercial"
 track: "developers"
 category: "llm-frameworks"

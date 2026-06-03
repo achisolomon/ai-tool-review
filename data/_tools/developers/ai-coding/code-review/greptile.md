@@ -10,7 +10,7 @@ status: active
 subcategory: code-review
 track: developers
 type: commercial
-url: https://www.greptile.com/
+website: https://www.greptile.com/
 ---
 
 <div class="key-stats">

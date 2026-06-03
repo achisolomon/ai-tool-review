@@ -11,7 +11,7 @@ status: active
 subcategory: data-ingestion
 track: developers
 type: oss
-url: https://github.com/DS4SD/docling
+website: https://github.com/DS4SD/docling
 ---
 
 <div class="key-stats">

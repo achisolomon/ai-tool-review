@@ -1,7 +1,7 @@
 ---
 name: "Mindgard"
 slug: "mindgard"
-url: "https://mindgard.ai/"
+website: "https://mindgard.ai/"
 type: "commercial"
 track: "developers"
 category: "observability-safety"

@@ -1,7 +1,7 @@
 ---
 name: "Hugging Face"
 slug: "hugging-face"
-url: "https://huggingface.co/"
+website: "https://huggingface.co/"
 type: "commercial"
 track: "developers"
 category: "foundation-models"

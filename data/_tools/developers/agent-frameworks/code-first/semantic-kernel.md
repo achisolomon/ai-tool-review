@@ -1,7 +1,7 @@
 ---
 name: "Semantic Kernel"
 slug: "semantic-kernel"
-url: "https://learn.microsoft.com/en-us/semantic-kernel/"
+website: "https://learn.microsoft.com/en-us/semantic-kernel/"
 type: "oss"
 track: "developers"
 category: "agent-frameworks"

@@ -1,7 +1,7 @@
 ---
 name: "Fellow"
 slug: "fellow"
-url: "https://fellow.app/"
+website: "https://fellow.app/"
 type: "commercial"
 track: "users"
 category: "meeting-notetakers"

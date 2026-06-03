@@ -1,7 +1,7 @@
 ---
 name: "Uizard"
 slug: "uizard"
-url: "https://uizard.io/"
+website: "https://uizard.io/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

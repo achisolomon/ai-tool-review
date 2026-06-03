@@ -1,7 +1,7 @@
 ---
 name: "Guardrails AI"
 slug: "guardrails-ai"
-url: "https://www.guardrailsai.com/"
+website: "https://www.guardrailsai.com/"
 type: "open-source"
 track: "developers"
 category: "observability-safety"

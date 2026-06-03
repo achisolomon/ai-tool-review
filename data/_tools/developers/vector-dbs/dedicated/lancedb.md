@@ -1,7 +1,7 @@
 ---
 name: "LanceDB"
 slug: "lancedb"
-url: "https://lancedb.com/"
+website: "https://lancedb.com/"
 type: "oss"
 track: "developers"
 category: "vector-dbs"

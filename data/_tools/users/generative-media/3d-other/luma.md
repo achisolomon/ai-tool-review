@@ -1,7 +1,7 @@
 ---
 name: "Luma AI"
 slug: "luma"
-url: "https://lumalabs.ai/"
+website: "https://lumalabs.ai/"
 type: "commercial"
 track: "users"
 category: "generative-media"

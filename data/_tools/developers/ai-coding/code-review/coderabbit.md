@@ -1,7 +1,7 @@
 ---
 name: "CodeRabbit"
 slug: "coderabbit"
-url: "https://www.coderabbit.ai/"
+website: "https://www.coderabbit.ai/"
 type: "commercial"
 track: "developers"
 category: "ai-coding"

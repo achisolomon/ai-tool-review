@@ -1,7 +1,7 @@
 ---
 name: "MITRE ATLAS"
 slug: "mitre-atlas"
-url: "https://atlas.mitre.org/"
+website: "https://atlas.mitre.org/"
 type: "oss"
 track: "developers"
 category: "observability-safety"

@@ -1,7 +1,7 @@
 ---
 name: "Clay"
 slug: "clay"
-url: "https://www.clay.com/"
+website: "https://www.clay.com/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

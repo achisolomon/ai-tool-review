@@ -1,7 +1,7 @@
 ---
 name: "Mistral AI"
 slug: "mistral-ai"
-url: "https://mistral.ai/"
+website: "https://mistral.ai/"
 type: "commercial"
 track: "developers"
 category: "foundation-models"

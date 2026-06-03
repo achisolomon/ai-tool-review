@@ -1,7 +1,7 @@
 ---
 name: "Agno"
 slug: "agno"
-url: "https://www.agno.com/"
+website: "https://www.agno.com/"
 type: oss
 track: developers
 category: "agent-frameworks"

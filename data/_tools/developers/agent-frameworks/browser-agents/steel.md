@@ -1,7 +1,7 @@
 ---
 name: "Steel"
 slug: "steel"
-url: "https://steel.dev/"
+website: "https://steel.dev/"
 type: saas
 track: developers
 category: "agent-frameworks"

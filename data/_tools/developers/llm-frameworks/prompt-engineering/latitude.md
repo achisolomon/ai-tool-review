@@ -1,7 +1,7 @@
 ---
 name: "Latitude"
 slug: "latitude"
-url: "https://latitude.so/"
+website: "https://latitude.so/"
 type: "open-source"
 track: "developers"
 category: "llm-frameworks"

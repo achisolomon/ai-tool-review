@@ -1,7 +1,7 @@
 ---
 name: "GitHub Copilot"
 slug: "github-copilot"
-url: "https://github.com/features/copilot"
+website: "https://github.com/features/copilot"
 type: "commercial"
 track: "developers"
 category: "ai-coding"

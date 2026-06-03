@@ -1,7 +1,7 @@
 ---
 name: "ServiceNow AI Agents"
 slug: "servicenow-ai-agents"
-url: "https://www.servicenow.com/products/ai-agents.html"
+website: "https://www.servicenow.com/products/ai-agents.html"
 type: "commercial"
 track: "users"
 category: "enterprise-platforms"

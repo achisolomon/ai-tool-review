@@ -1,7 +1,7 @@
 ---
 name: "OpenClaw"
 slug: "openclaw"
-url: "https://openclaw.ai/"
+website: "https://openclaw.ai/"
 type: oss
 track: developers
 category: "agent-frameworks"

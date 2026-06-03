@@ -1,7 +1,7 @@
 ---
 name: "LLM Guard"
 slug: "llm-guard"
-url: "https://github.com/protectai/llm-guard"
+website: "https://github.com/protectai/llm-guard"
 type: "oss"
 track: "developers"
 category: "observability-safety"

@@ -1,7 +1,7 @@
 ---
 name: "Windsurf"
 slug: "windsurf"
-url: "https://windsurf.com/"
+website: "https://windsurf.com/"
 type: "commercial"
 track: "developers"
 category: "ai-coding"

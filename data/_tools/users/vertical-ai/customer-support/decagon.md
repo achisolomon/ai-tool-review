@@ -1,7 +1,7 @@
 ---
 name: "Decagon"
 slug: "decagon"
-url: "https://www.decagon.ai/"
+website: "https://www.decagon.ai/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

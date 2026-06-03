@@ -1,7 +1,7 @@
 ---
 name: "Entire CLI"
 slug: "entire-cli"
-url: "https://github.com/anthropics/entire-cli"
+website: "https://github.com/anthropics/entire-cli"
 type: oss
 track: developers
 category: "ai-coding"

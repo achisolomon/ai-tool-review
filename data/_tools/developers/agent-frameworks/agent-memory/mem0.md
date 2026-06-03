@@ -1,7 +1,7 @@
 ---
 name: "Mem0"
 slug: "mem0"
-url: "https://mem0.ai/"
+website: "https://mem0.ai/"
 type: "oss"
 track: "developers"
 category: "agent-frameworks"

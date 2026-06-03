@@ -10,7 +10,7 @@ status: active
 subcategory: inference-apis
 track: developers
 type: commercial
-url: https://azure.microsoft.com/en-us/products/ai-foundry
+website: https://azure.microsoft.com/en-us/products/ai-foundry
 ---
 
 <div class="key-stats">

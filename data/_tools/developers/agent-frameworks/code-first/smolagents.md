@@ -1,7 +1,7 @@
 ---
 name: "Smolagents"
 slug: "smolagents"
-url: "https://github.com/huggingface/smolagents"
+website: "https://github.com/huggingface/smolagents"
 type: oss
 track: developers
 category: "agent-frameworks"

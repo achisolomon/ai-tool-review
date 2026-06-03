@@ -1,7 +1,7 @@
 ---
 name: "Luma Dream Machine"
 slug: "luma-dream-machine"
-url: "https://lumalabs.ai/dream-machine"
+website: "https://lumalabs.ai/dream-machine"
 type: "commercial"
 track: "users"
 category: "generative-media"

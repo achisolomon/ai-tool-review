@@ -1,7 +1,7 @@
 ---
 name: "AG-UI"
 slug: "ag-ui"
-url: "https://github.com/ag-ui-protocol/ag-ui"
+website: "https://github.com/ag-ui-protocol/ag-ui"
 type: oss
 track: developers
 category: "agent-frameworks"

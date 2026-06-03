@@ -1,7 +1,7 @@
 ---
 name: "OpenAI Agents SDK"
 slug: "openai-agents-sdk"
-url: "https://github.com/openai/openai-agents-python"
+website: "https://github.com/openai/openai-agents-python"
 type: oss
 track: developers
 category: "agent-frameworks"

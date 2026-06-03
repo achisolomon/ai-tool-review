@@ -1,7 +1,7 @@
 ---
 name: "Browserbase"
 slug: "browserbase"
-url: "https://www.browserbase.com/"
+website: "https://www.browserbase.com/"
 type: commercial
 track: developers
 category: "agent-frameworks"

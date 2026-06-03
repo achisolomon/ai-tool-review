@@ -11,7 +11,7 @@ status: active
 subcategory: inference-apis
 track: developers
 type: oss
-url: https://www.bentoml.com/
+website: https://www.bentoml.com/
 ---
 
 <div class="key-stats">

@@ -10,7 +10,7 @@ status: active
 subcategory: experiment-tracking
 track: developers
 type: commercial
-url: https://neptune.ai/
+website: https://neptune.ai/
 ---
 
 <div class="key-stats">

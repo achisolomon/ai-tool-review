@@ -1,7 +1,7 @@
 ---
 name: "OpenAI Evals"
 slug: "openai-evals"
-url: "https://github.com/openai/evals"
+website: "https://github.com/openai/evals"
 type: "open-source"
 track: "developers"
 category: "observability-safety"

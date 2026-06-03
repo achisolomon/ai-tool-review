@@ -10,7 +10,7 @@ status: active
 subcategory: closed-frontier
 track: developers
 type: commercial
-url: https://www.minimax.io/
+website: https://www.minimax.io/
 ---
 
 <div class="key-stats">

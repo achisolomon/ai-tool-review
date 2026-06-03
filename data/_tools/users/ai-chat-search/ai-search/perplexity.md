@@ -1,7 +1,7 @@
 ---
 name: "Perplexity"
 slug: "perplexity"
-url: "https://www.perplexity.ai/"
+website: "https://www.perplexity.ai/"
 type: "commercial"
 track: "users"
 category: "ai-chat-search"

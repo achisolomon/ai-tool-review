@@ -1,7 +1,7 @@
 ---
 name: "PromptLayer"
 slug: "promptlayer"
-url: "https://promptlayer.com/"
+website: "https://promptlayer.com/"
 type: "commercial"
 track: "developers"
 category: "llm-frameworks"

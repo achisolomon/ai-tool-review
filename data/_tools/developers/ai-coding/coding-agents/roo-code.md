@@ -10,7 +10,7 @@ status: active
 subcategory: coding-agents
 track: developers
 type: oss
-url: https://roocode.com/
+website: https://roocode.com/
 ---
 
 <div class="key-stats">

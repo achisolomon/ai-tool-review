@@ -1,7 +1,7 @@
 ---
 name: "NeMo Guardrails"
 slug: "nemo-guardrails"
-url: "https://github.com/NVIDIA/NeMo-Guardrails"
+website: "https://github.com/NVIDIA/NeMo-Guardrails"
 type: "oss"
 track: "developers"
 category: "observability-safety"

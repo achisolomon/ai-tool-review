@@ -11,7 +11,7 @@ status: active
 subcategory: model-routers
 track: developers
 type: commercial
-url: https://portkey.ai/
+website: https://portkey.ai/
 ---
 
 <div class="key-stats">

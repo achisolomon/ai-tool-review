@@ -1,7 +1,7 @@
 ---
 name: "OpenEvidence"
 slug: "openevidence"
-url: "https://www.openevidence.com/"
+website: "https://www.openevidence.com/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

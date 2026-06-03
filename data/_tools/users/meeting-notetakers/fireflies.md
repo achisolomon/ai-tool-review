@@ -1,7 +1,7 @@
 ---
 name: "Fireflies"
 slug: "fireflies"
-url: "https://fireflies.ai/"
+website: "https://fireflies.ai/"
 type: "commercial"
 track: "users"
 category: "meeting-notetakers"

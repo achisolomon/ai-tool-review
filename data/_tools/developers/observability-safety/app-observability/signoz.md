@@ -1,7 +1,7 @@
 ---
 name: "SigNoz"
 slug: "signoz"
-url: "https://signoz.io/"
+website: "https://signoz.io/"
 type: "oss"
 track: "developers"
 category: "observability-safety"

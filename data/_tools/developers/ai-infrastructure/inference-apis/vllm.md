@@ -11,7 +11,7 @@ status: active
 subcategory: inference-apis
 track: developers
 type: oss
-url: https://github.com/vllm-project/vllm
+website: https://github.com/vllm-project/vllm
 ---
 
 <div class="key-stats">

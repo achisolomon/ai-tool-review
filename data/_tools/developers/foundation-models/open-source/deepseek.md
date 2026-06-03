@@ -1,7 +1,7 @@
 ---
 name: "DeepSeek"
 slug: "deepseek"
-url: "https://www.deepseek.com/"
+website: "https://www.deepseek.com/"
 type: "open-source"
 track: "developers"
 category: "foundation-models"

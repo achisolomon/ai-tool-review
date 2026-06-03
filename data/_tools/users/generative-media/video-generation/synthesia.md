@@ -1,7 +1,7 @@
 ---
 name: "Synthesia"
 slug: "synthesia"
-url: "https://www.synthesia.io/"
+website: "https://www.synthesia.io/"
 type: "commercial"
 track: "users"
 category: "generative-media"

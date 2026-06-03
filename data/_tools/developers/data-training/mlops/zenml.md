@@ -8,7 +8,7 @@ status: active
 subcategory: mlops
 track: developers
 type: oss
-url: https://www.zenml.io/
+website: https://www.zenml.io/
 description: "MLOps framework enabling reproducible ML pipelines with stack-agnostic orchestration and built-in model governance"
 pricing_model: freemium
 github_stars: 4500

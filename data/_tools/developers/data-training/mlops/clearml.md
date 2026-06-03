@@ -8,7 +8,7 @@ status: active
 subcategory: mlops
 track: developers
 type: oss
-url: https://clear.ml/
+website: https://clear.ml/
 description: "MLOps platform for experiment tracking, orchestration, and model management with GPU cluster control and billing"
 pricing_model: freemium
 github_stars: 5500

@@ -8,7 +8,7 @@ status: active
 subcategory: mlops
 track: developers
 type: oss
-url: https://skypilot.co/
+website: https://skypilot.co/
 description: "Framework for running ML workloads efficiently on any cloud with automatic cost optimization and multi-cloud scheduling"
 pricing_model: free
 github_stars: 10100

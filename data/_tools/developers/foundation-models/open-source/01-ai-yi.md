@@ -11,7 +11,7 @@ status: active
 subcategory: open-source
 track: developers
 type: oss
-url: https://www.01.ai/
+website: https://www.01.ai/
 ---
 
 <div class="key-stats">

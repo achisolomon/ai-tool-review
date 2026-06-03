@@ -8,7 +8,7 @@ status: active
 subcategory: ml-frameworks
 track: developers
 type: oss
-url: https://keras.io/
+website: https://keras.io/
 description: "High-level deep learning API emphasizing user-friendliness with readable, concise code for rapid experimentation"
 pricing_model: free
 github_stars: 62600

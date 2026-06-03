@@ -11,7 +11,7 @@ status: active
 subcategory: open-source
 track: developers
 type: oss
-url: https://falconllm.tii.ae/
+website: https://falconllm.tii.ae/
 ---
 
 <div class="key-stats">

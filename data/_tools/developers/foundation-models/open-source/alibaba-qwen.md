@@ -11,7 +11,7 @@ status: active
 subcategory: open-source
 track: developers
 type: oss
-url: https://qwenlm.github.io/
+website: https://qwenlm.github.io/
 ---
 
 <div class="key-stats">

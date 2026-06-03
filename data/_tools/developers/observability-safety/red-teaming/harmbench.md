@@ -1,7 +1,7 @@
 ---
 name: "HarmBench"
 slug: "harmbench"
-url: "https://www.harmbench.org/"
+website: "https://www.harmbench.org/"
 type: "oss"
 track: "developers"
 category: "observability-safety"

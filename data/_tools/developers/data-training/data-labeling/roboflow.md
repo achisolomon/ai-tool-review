@@ -10,7 +10,7 @@ status: active
 subcategory: data-labeling
 track: developers
 type: commercial
-url: https://roboflow.com/
+website: https://roboflow.com/
 ---
 
 <div class="key-stats">

@@ -1,7 +1,7 @@
 ---
 name: "NVIDIA Garak"
 slug: "nvidia-garak"
-url: "https://github.com/NVIDIA/garak"
+website: "https://github.com/NVIDIA/garak"
 type: "oss"
 track: "developers"
 category: "observability-safety"

@@ -1,7 +1,7 @@
 ---
 name: "OpenAI"
 slug: "openai"
-url: "https://platform.openai.com"
+website: "https://platform.openai.com"
 type: "commercial"
 track: "developers"
 category: "foundation-models"

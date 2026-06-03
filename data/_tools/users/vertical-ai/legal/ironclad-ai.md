@@ -1,7 +1,7 @@
 ---
 name: "Ironclad AI"
 slug: "ironclad-ai"
-url: "https://ironcladapp.com/"
+website: "https://ironcladapp.com/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

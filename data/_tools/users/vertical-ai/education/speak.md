@@ -1,7 +1,7 @@
 ---
 name: "Speak"
 slug: "speak"
-url: "https://www.speak.com/"
+website: "https://www.speak.com/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

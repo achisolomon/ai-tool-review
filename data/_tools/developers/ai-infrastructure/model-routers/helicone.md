@@ -11,7 +11,7 @@ status: active
 subcategory: model-routers
 track: developers
 type: oss
-url: https://www.helicone.ai/
+website: https://www.helicone.ai/
 ---
 
 <div class="key-stats">

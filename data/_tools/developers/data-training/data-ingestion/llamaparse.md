@@ -10,7 +10,7 @@ status: active
 subcategory: data-ingestion
 track: developers
 type: commercial
-url: https://cloud.llamaindex.ai/
+website: https://cloud.llamaindex.ai/
 ---
 
 <div class="key-stats">

@@ -1,7 +1,7 @@
 ---
 name: "Granola"
 slug: "granola"
-url: "https://www.granola.ai/"
+website: "https://www.granola.ai/"
 type: "commercial"
 track: "users"
 category: "meeting-notetakers"

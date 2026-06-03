@@ -1,7 +1,7 @@
 ---
 name: "Meshy"
 slug: "meshy"
-url: "https://www.meshy.ai/"
+website: "https://www.meshy.ai/"
 type: "commercial"
 track: "users"
 category: "generative-media"

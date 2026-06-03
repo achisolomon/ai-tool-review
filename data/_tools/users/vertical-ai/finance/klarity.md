@@ -1,7 +1,7 @@
 ---
 name: "Klarity"
 slug: "klarity"
-url: "https://www.tryklarity.com/"
+website: "https://www.tryklarity.com/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

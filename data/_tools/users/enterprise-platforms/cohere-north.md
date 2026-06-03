@@ -1,7 +1,7 @@
 ---
 name: "Cohere North"
 slug: "cohere-north"
-url: "https://cohere.com/north"
+website: "https://cohere.com/north"
 type: "commercial"
 track: "users"
 category: "enterprise-platforms"

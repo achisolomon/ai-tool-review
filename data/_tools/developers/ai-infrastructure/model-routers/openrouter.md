@@ -1,7 +1,7 @@
 ---
 name: "OpenRouter"
 slug: "openrouter"
-url: "https://openrouter.ai/"
+website: "https://openrouter.ai/"
 type: "commercial"
 track: "developers"
 category: "ai-infrastructure"

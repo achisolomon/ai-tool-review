@@ -1,7 +1,7 @@
 ---
 name: "Mastra"
 slug: "mastra"
-url: "https://mastra.ai/"
+website: "https://mastra.ai/"
 type: oss
 track: developers
 category: "agent-frameworks"

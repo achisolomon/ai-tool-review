@@ -1,7 +1,7 @@
 ---
 name: "Suki"
 slug: "suki"
-url: "https://www.suki.ai/"
+website: "https://www.suki.ai/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

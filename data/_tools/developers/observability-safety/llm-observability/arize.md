@@ -1,7 +1,7 @@
 ---
 name: "Arize AI"
 slug: "arize-ai"
-url: "https://arize.com/"
+website: "https://arize.com/"
 type: "commercial"
 track: "developers"
 category: "observability-safety"

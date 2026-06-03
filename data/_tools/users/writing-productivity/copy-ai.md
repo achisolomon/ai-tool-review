@@ -1,7 +1,7 @@
 ---
 name: "Copy.ai"
 slug: "copy-ai"
-url: "https://www.copy.ai/"
+website: "https://www.copy.ai/"
 type: "commercial"
 track: "users"
 category: "writing-productivity"

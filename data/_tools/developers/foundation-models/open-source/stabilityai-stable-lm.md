@@ -11,7 +11,7 @@ status: active
 subcategory: open-source
 track: developers
 type: oss
-url: https://stability.ai/
+website: https://stability.ai/
 ---
 
 <div class="key-stats">

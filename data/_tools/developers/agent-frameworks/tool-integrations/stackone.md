@@ -1,7 +1,7 @@
 ---
 name: "StackOne"
 slug: "stackone"
-url: "https://www.stackone.com/"
+website: "https://www.stackone.com/"
 type: saas
 track: developers
 category: "agent-frameworks"

@@ -1,7 +1,7 @@
 ---
 name: "Anthropic Agent SDK"
 slug: "anthropic-agent-sdk"
-url: "https://docs.claude.com/en/api/agent-sdk/overview"
+website: "https://docs.claude.com/en/api/agent-sdk/overview"
 type: oss
 track: developers
 category: "agent-frameworks"

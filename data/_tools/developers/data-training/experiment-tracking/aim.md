@@ -11,7 +11,7 @@ status: active
 subcategory: experiment-tracking
 track: developers
 type: oss
-url: https://github.com/aimhubio/aim
+website: https://github.com/aimhubio/aim
 ---
 
 <div class="key-stats">

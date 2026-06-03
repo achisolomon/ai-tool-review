@@ -1,7 +1,7 @@
 ---
 name: "Rime AI"
 slug: "rime-ai"
-url: "https://rime.ai/"
+website: "https://rime.ai/"
 type: "commercial"
 track: "users"
 category: "generative-media"

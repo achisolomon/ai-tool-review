@@ -11,7 +11,7 @@ status: active
 subcategory: embeddings
 track: developers
 type: oss
-url: https://jina.ai/
+website: https://jina.ai/
 ---
 
 <div class="key-stats">

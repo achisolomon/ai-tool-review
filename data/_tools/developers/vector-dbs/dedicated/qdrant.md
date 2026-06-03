@@ -1,7 +1,7 @@
 ---
 name: "Qdrant"
 slug: "qdrant"
-url: "https://qdrant.tech/"
+website: "https://qdrant.tech/"
 type: "oss"
 track: "developers"
 category: "vector-dbs"

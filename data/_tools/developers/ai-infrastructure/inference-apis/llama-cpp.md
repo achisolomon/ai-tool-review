@@ -11,7 +11,7 @@ status: active
 subcategory: inference-apis
 track: developers
 type: oss
-url: https://github.com/ggml-org/llama.cpp
+website: https://github.com/ggml-org/llama.cpp
 ---
 
 <div class="key-stats">

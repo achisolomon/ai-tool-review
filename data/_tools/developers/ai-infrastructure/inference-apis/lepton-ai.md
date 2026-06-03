@@ -11,7 +11,7 @@ status: active
 subcategory: inference-apis
 track: developers
 type: commercial
-url: https://www.lepton.ai/
+website: https://www.lepton.ai/
 ---
 
 <div class="key-stats">

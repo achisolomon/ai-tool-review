@@ -1,7 +1,7 @@
 ---
 name: "Skybox (Blockade Labs)"
 slug: "skybox-blockade-labs"
-url: "https://skybox.blockadelabs.com/"
+website: "https://skybox.blockadelabs.com/"
 type: "commercial"
 track: "users"
 category: "generative-media"

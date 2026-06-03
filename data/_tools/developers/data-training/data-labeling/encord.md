@@ -10,7 +10,7 @@ status: active
 subcategory: data-labeling
 track: developers
 type: commercial
-url: https://encord.com/
+website: https://encord.com/
 ---
 
 <div class="key-stats">

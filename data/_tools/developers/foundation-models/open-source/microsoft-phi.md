@@ -11,7 +11,7 @@ status: active
 subcategory: open-source
 track: developers
 type: oss
-url: https://azure.microsoft.com/en-us/products/phi
+website: https://azure.microsoft.com/en-us/products/phi
 ---
 
 <div class="key-stats">

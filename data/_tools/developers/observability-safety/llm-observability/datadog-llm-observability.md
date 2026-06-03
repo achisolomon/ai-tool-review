@@ -1,7 +1,7 @@
 ---
 name: "Datadog LLM Observability"
 slug: "datadog-llm-observability"
-url: "https://www.datadoghq.com/product/llm-observability/"
+website: "https://www.datadoghq.com/product/llm-observability/"
 type: "commercial"
 track: "developers"
 category: "observability-safety"

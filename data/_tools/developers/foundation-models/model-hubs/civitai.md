@@ -10,7 +10,7 @@ status: active
 subcategory: model-hubs
 track: developers
 type: saas
-url: https://civitai.com/
+website: https://civitai.com/
 ---
 
 <div class="key-stats">

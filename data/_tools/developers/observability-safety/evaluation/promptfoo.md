@@ -1,7 +1,7 @@
 ---
 name: "Promptfoo"
 slug: "promptfoo"
-url: "https://www.promptfoo.dev/"
+website: "https://www.promptfoo.dev/"
 type: "oss"
 track: "developers"
 category: "observability-safety"

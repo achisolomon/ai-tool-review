@@ -1,7 +1,7 @@
 ---
 name: "Mercor"
 slug: "mercor"
-url: "https://mercor.com/"
+website: "https://mercor.com/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

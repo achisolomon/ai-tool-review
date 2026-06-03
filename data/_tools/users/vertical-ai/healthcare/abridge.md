@@ -1,7 +1,7 @@
 ---
 name: "Abridge"
 slug: "abridge"
-url: "https://www.abridge.com/"
+website: "https://www.abridge.com/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

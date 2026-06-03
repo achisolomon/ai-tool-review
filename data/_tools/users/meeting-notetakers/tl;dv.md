@@ -1,7 +1,7 @@
 ---
 name: "tl;dv"
 slug: "tl;dv"
-url: "https://tldv.io/"
+website: "https://tldv.io/"
 type: "commercial"
 track: "users"
 category: "meeting-notetakers"

@@ -1,7 +1,7 @@
 ---
 name: "ElevenLabs Music"
 slug: "elevenlabs-music"
-url: "https://elevenlabs.io/music"
+website: "https://elevenlabs.io/music"
 type: "commercial"
 track: "users"
 category: "generative-media"

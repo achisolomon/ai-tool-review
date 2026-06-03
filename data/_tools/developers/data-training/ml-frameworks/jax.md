@@ -8,7 +8,7 @@ status: active
 subcategory: ml-frameworks
 track: developers
 type: oss
-url: https://github.com/jax-ml/jax
+website: https://github.com/jax-ml/jax
 description: "NumPy-like framework for composable function transformations with automatic differentiation, JIT compilation, and GPU/TPU acceleration"
 pricing_model: free
 github_stars: 35700

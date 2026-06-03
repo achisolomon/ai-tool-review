@@ -1,7 +1,7 @@
 ---
 name: "Make"
 slug: "make"
-url: "https://www.make.com/"
+website: "https://www.make.com/"
 type: "commercial"
 track: "users"
 category: "no-code-builders"

@@ -8,7 +8,7 @@ status: active
 subcategory: lakehouse-semantic
 track: developers
 type: oss
-url: https://iceberg.apache.org/
+website: https://iceberg.apache.org/
 description: "High-performance table format for large-scale analytics with ACID transactions, time-travel, and schema evolution support"
 pricing_model: free
 github_stars: 4300

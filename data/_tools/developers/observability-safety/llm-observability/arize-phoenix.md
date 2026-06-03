@@ -1,7 +1,7 @@
 ---
 name: "Arize Phoenix"
 slug: "arize-phoenix"
-url: "https://phoenix.arize.com/"
+website: "https://phoenix.arize.com/"
 type: "oss"
 track: "developers"
 category: "observability-safety"

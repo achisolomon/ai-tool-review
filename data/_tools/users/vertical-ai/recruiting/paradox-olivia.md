@@ -1,7 +1,7 @@
 ---
 name: "Paradox Olivia"
 slug: "paradox-olivia"
-url: "https://www.paradox.ai/"
+website: "https://www.paradox.ai/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

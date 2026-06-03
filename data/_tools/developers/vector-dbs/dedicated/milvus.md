@@ -1,7 +1,7 @@
 ---
 name: "Milvus"
 slug: "milvus"
-url: "https://milvus.io/"
+website: "https://milvus.io/"
 type: "oss"
 track: "developers"
 category: "vector-dbs"

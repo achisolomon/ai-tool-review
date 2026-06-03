@@ -1,7 +1,7 @@
 ---
 name: "Eightfold"
 slug: "eightfold"
-url: "https://eightfold.ai/"
+website: "https://eightfold.ai/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

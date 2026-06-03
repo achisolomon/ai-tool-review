@@ -1,7 +1,7 @@
 ---
 name: "Continue"
 slug: "continue"
-url: "https://continue.dev/"
+website: "https://continue.dev/"
 type: "oss"
 track: "developers"
 category: "ai-coding"

@@ -1,7 +1,7 @@
 ---
 name: "Firecrawl"
 slug: "firecrawl"
-url: "https://www.firecrawl.dev/"
+website: "https://www.firecrawl.dev/"
 type: "oss"
 track: "developers"
 category: "agent-frameworks"

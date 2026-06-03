@@ -1,7 +1,7 @@
 ---
 name: "You.com"
 slug: "you-com"
-url: "https://you.com/"
+website: "https://you.com/"
 type: "commercial"
 track: "users"
 category: "ai-chat-search"

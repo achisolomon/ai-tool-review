@@ -1,7 +1,7 @@
 ---
 name: "Protect AI"
 slug: "protect-ai"
-url: "https://protectai.com/"
+website: "https://protectai.com/"
 type: "commercial"
 track: "developers"
 category: "observability-safety"

@@ -1,7 +1,7 @@
 ---
 name: "SAP Joule"
 slug: "sap-joule"
-url: "https://www.sap.com/products/artificial-intelligence/ai-assistant.html"
+website: "https://www.sap.com/products/artificial-intelligence/ai-assistant.html"
 type: "commercial"
 track: "users"
 category: "enterprise-platforms"

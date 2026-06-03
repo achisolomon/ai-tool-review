@@ -1,7 +1,7 @@
 ---
 name: "CrewAI"
 slug: "crewai"
-url: "https://www.crewai.com/"
+website: "https://www.crewai.com/"
 type: "oss"
 track: "developers"
 category: "agent-frameworks"

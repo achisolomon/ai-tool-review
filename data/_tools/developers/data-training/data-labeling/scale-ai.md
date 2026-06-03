@@ -1,7 +1,7 @@
 ---
 name: "Scale AI"
 slug: "scale-ai"
-url: "https://scale.com/"
+website: "https://scale.com/"
 type: "commercial"
 track: "developers"
 category: "data-training"

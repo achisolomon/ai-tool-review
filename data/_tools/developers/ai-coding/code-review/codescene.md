@@ -1,7 +1,7 @@
 ---
 name: "CodeScene"
 slug: "codescene"
-url: "https://codescene.com/"
+website: "https://codescene.com/"
 type: commercial
 track: developers
 category: "ai-coding"

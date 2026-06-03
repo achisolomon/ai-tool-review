@@ -1,7 +1,7 @@
 ---
 name: "Dia"
 slug: "dia"
-url: "https://www.diabrowser.com/"
+website: "https://www.diabrowser.com/"
 type: "commercial"
 track: "users"
 category: "personal-assistants"

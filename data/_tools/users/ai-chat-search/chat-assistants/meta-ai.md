@@ -1,7 +1,7 @@
 ---
 name: "Meta AI"
 slug: "meta-ai"
-url: "https://www.meta.ai/"
+website: "https://www.meta.ai/"
 type: "commercial"
 track: "users"
 category: "ai-chat-search"

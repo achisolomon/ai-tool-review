@@ -11,7 +11,7 @@ status: active
 subcategory: data-ingestion
 track: developers
 type: oss
-url: https://github.com/langchain-ai/langextract
+website: https://github.com/langchain-ai/langextract
 ---
 
 <div class="key-stats">

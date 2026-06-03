@@ -1,7 +1,7 @@
 ---
 name: "Total Recall"
 slug: "total-recall"
-url: "https://recall.alexgreenshpun.com/"
+website: "https://recall.alexgreenshpun.com/"
 type: "saas"
 track: "developers"
 category: "agent-frameworks"

@@ -1,7 +1,7 @@
 ---
 name: "Honeyhive"
 slug: "honeyhive"
-url: "https://www.honeyhive.ai/"
+website: "https://www.honeyhive.ai/"
 type: "commercial"
 track: "developers"
 category: "observability-safety"

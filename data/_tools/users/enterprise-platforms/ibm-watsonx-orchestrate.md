@@ -1,7 +1,7 @@
 ---
 name: "IBM watsonx Orchestrate"
 slug: "ibm-watsonx-orchestrate"
-url: "https://www.ibm.com/products/watsonx-orchestrate"
+website: "https://www.ibm.com/products/watsonx-orchestrate"
 type: "commercial"
 track: "users"
 category: "enterprise-platforms"

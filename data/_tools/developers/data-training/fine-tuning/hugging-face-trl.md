@@ -11,7 +11,7 @@ status: active
 subcategory: fine-tuning
 track: developers
 type: oss
-url: https://github.com/huggingface/trl
+website: https://github.com/huggingface/trl
 ---
 
 <div class="key-stats">

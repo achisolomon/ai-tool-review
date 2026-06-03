@@ -1,7 +1,7 @@
 ---
 name: "EvenUp"
 slug: "evenup"
-url: "https://www.evenuplaw.com/"
+website: "https://www.evenuplaw.com/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

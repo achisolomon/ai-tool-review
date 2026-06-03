@@ -1,7 +1,7 @@
 ---
 name: "Haystack"
 slug: "haystack"
-url: "https://haystack.deepset.ai/"
+website: "https://haystack.deepset.ai/"
 type: "oss"
 track: "developers"
 category: "agent-frameworks"

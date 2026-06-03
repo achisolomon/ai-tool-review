@@ -8,7 +8,7 @@ status: active
 subcategory: mlops
 track: developers
 type: oss
-url: https://mlflow.org/
+website: https://mlflow.org/
 description: "Open platform for managing ML lifecycle including experiment tracking, model registry, and deployment capabilities"
 pricing_model: freemium
 github_stars: 18400

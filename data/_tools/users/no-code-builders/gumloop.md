@@ -10,7 +10,7 @@ status: active
 subcategory: workflow-builders
 track: users
 type: commercial
-url: https://www.gumloop.com/
+website: https://www.gumloop.com/
 ---
 
 <div class="key-stats">

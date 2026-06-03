@@ -10,7 +10,7 @@ status: active
 subcategory: data-labeling
 track: developers
 type: commercial
-url: https://labelbox.com/
+website: https://labelbox.com/
 ---
 
 <div class="key-stats">

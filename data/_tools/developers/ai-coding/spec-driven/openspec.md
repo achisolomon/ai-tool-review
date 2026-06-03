@@ -11,7 +11,7 @@ status: active
 subcategory: spec-driven
 track: developers
 type: oss
-url: https://github.com/Fission-AI/OpenSpec
+website: https://github.com/Fission-AI/OpenSpec
 ---
 
 <div class="key-stats">

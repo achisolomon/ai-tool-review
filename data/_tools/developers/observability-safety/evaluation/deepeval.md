@@ -1,7 +1,7 @@
 ---
 name: "DeepEval"
 slug: "deepeval"
-url: "https://www.confident-ai.com/"
+website: "https://www.confident-ai.com/"
 type: "open-source"
 track: "developers"
 category: "observability-safety"

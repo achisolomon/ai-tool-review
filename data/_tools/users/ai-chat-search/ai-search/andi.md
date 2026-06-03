@@ -1,7 +1,7 @@
 ---
 name: "Andi"
 slug: "andi"
-url: "https://andisearch.com/"
+website: "https://andisearch.com/"
 type: "commercial"
 track: "users"
 category: "ai-chat-search"

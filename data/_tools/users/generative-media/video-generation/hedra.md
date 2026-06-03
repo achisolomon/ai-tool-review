@@ -1,7 +1,7 @@
 ---
 name: "Hedra"
 slug: "hedra"
-url: "https://www.hedra.com/"
+website: "https://www.hedra.com/"
 type: "commercial"
 track: "users"
 category: "generative-media"

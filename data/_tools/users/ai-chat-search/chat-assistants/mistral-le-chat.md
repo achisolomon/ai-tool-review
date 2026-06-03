@@ -1,7 +1,7 @@
 ---
 name: "Mistral Le Chat"
 slug: "mistral-le-chat"
-url: "https://chat.mistral.ai/"
+website: "https://chat.mistral.ai/"
 type: "commercial"
 track: "users"
 category: "ai-chat-search"

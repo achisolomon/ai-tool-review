@@ -1,7 +1,7 @@
 ---
 name: "Microsoft Copilot"
 slug: "microsoft-copilot"
-url: "https://copilot.microsoft.com/"
+website: "https://copilot.microsoft.com/"
 type: "commercial"
 track: "users"
 category: "ai-chat-search"

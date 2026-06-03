@@ -10,7 +10,7 @@ status: active
 subcategory: dev-environment
 track: developers
 type: oss
-url: https://containers.dev/
+website: https://containers.dev/
 github_stars: 4900
 ---
 

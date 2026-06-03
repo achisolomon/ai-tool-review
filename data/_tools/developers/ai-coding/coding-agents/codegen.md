@@ -10,7 +10,7 @@ status: active
 subcategory: coding-agents
 track: developers
 type: commercial
-url: https://www.codegen.com/
+website: https://www.codegen.com/
 ---
 
 <div class="key-stats">

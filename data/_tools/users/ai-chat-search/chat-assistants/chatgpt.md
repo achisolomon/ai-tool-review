@@ -1,7 +1,7 @@
 ---
 name: "ChatGPT"
 slug: "chatgpt"
-url: "https://chatgpt.com/"
+website: "https://chatgpt.com/"
 type: "commercial"
 track: "users"
 category: "ai-chat-search"

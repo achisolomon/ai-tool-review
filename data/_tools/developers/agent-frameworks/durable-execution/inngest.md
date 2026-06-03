@@ -1,7 +1,7 @@
 ---
 name: "Inngest"
 slug: "inngest"
-url: "https://www.inngest.com/"
+website: "https://www.inngest.com/"
 type: saas
 track: developers
 category: "agent-frameworks"

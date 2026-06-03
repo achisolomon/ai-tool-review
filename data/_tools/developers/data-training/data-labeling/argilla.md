@@ -11,7 +11,7 @@ status: active
 subcategory: data-labeling
 track: developers
 type: oss
-url: https://argilla.io/
+website: https://argilla.io/
 ---
 
 <div class="key-stats">

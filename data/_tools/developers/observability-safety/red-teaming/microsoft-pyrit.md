@@ -1,7 +1,7 @@
 ---
 name: "Microsoft PyRIT"
 slug: "microsoft-pyrit"
-url: "https://github.com/Azure/PyRIT"
+website: "https://github.com/Azure/PyRIT"
 type: "oss"
 track: "developers"
 category: "observability-safety"

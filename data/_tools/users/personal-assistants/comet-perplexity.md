@@ -1,7 +1,7 @@
 ---
 name: "Comet (Perplexity)"
 slug: "comet-perplexity"
-url: "https://www.perplexity.ai/comet"
+website: "https://www.perplexity.ai/comet"
 type: "commercial"
 track: "users"
 category: "personal-assistants"

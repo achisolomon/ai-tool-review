@@ -1,7 +1,7 @@
 ---
 name: "Midjourney"
 slug: "midjourney"
-url: "https://midjourney.com/"
+website: "https://midjourney.com/"
 type: "commercial"
 track: "users"
 category: "generative-media"

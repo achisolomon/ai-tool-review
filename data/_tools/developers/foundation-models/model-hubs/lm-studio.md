@@ -10,7 +10,7 @@ status: active
 subcategory: model-hubs
 track: developers
 type: commercial
-url: https://lmstudio.ai/
+website: https://lmstudio.ai/
 ---
 
 <div class="key-stats">

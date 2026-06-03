@@ -1,7 +1,7 @@
 ---
 name: "NanoClaw"
 slug: "nanoclaw"
-url: "https://nanoclaw.dev/"
+website: "https://nanoclaw.dev/"
 type: oss
 track: developers
 category: "agent-frameworks"

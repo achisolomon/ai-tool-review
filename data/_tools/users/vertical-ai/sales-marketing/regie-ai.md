@@ -1,7 +1,7 @@
 ---
 name: "Regie.ai"
 slug: "regie-ai"
-url: "https://www.regie.ai/"
+website: "https://www.regie.ai/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

@@ -1,7 +1,7 @@
 ---
 name: "Intercom"
 slug: "intercom"
-url: "https://www.intercom.com"
+website: "https://www.intercom.com"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

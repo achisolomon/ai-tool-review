@@ -1,7 +1,7 @@
 ---
 name: "Elasticsearch"
 slug: "elasticsearch"
-url: "https://www.elastic.co/elasticsearch/vector-database"
+website: "https://www.elastic.co/elasticsearch/vector-database"
 type: "oss"
 track: "developers"
 category: "vector-dbs"

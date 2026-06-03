@@ -1,7 +1,7 @@
 ---
 name: "Gong"
 slug: "gong"
-url: "https://www.gong.io/"
+website: "https://www.gong.io/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

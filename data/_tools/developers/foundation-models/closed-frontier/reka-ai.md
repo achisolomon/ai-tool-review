@@ -10,7 +10,7 @@ status: active
 subcategory: closed-frontier
 track: developers
 type: commercial
-url: https://reka.ai/
+website: https://reka.ai/
 ---
 
 <div class="key-stats">

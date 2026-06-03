@@ -1,7 +1,7 @@
 ---
 name: "AWS Bedrock AgentCore"
 slug: "aws-bedrock-agentcore"
-url: "https://aws.amazon.com/bedrock/agentcore/"
+website: "https://aws.amazon.com/bedrock/agentcore/"
 type: commercial
 track: developers
 category: "agent-frameworks"

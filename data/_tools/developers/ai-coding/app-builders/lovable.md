@@ -1,7 +1,7 @@
 ---
 name: "Lovable"
 slug: "lovable"
-url: "https://lovable.dev/"
+website: "https://lovable.dev/"
 type: "commercial"
 track: "developers"
 category: "ai-coding"

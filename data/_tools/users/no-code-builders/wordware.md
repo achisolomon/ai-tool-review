@@ -1,7 +1,7 @@
 ---
 name: "Wordware"
 slug: "wordware"
-url: "https://www.wordware.ai/"
+website: "https://www.wordware.ai/"
 type: "commercial"
 track: "users"
 category: "no-code-builders"

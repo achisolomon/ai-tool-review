@@ -10,7 +10,7 @@ status: active
 subcategory: inference-apis
 track: developers
 type: commercial
-url: https://cerebras.ai/
+website: https://cerebras.ai/
 ---
 
 <div class="key-stats">

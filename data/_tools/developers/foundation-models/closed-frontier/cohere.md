@@ -1,7 +1,7 @@
 ---
 name: "Cohere"
 slug: "cohere"
-url: "https://cohere.com/"
+website: "https://cohere.com/"
 type: "commercial"
 track: "developers"
 category: "foundation-models"

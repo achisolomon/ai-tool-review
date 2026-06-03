@@ -1,7 +1,7 @@
 ---
 name: "Supabase Vector"
 slug: "supabase-vector"
-url: "https://supabase.com/vector"
+website: "https://supabase.com/vector"
 type: "commercial"
 track: "developers"
 category: "vector-dbs"

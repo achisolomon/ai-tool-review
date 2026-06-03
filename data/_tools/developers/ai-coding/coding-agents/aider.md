@@ -1,7 +1,7 @@
 ---
 name: "Aider"
 slug: "aider"
-url: "https://aider.chat/"
+website: "https://aider.chat/"
 type: "oss"
 track: "developers"
 category: "ai-coding"

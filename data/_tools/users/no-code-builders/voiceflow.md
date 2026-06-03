@@ -1,7 +1,7 @@
 ---
 name: "Voiceflow"
 slug: "voiceflow"
-url: "https://www.voiceflow.com/"
+website: "https://www.voiceflow.com/"
 type: "commercial"
 track: "users"
 category: "no-code-builders"

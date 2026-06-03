@@ -10,7 +10,7 @@ status: active
 subcategory: code-review
 track: developers
 type: oss
-url: https://github.com/anthropics/git-ai
+website: https://github.com/anthropics/git-ai
 github_stars: —
 ---
 

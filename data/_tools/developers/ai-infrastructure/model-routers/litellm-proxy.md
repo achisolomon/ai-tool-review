@@ -11,7 +11,7 @@ status: active
 subcategory: model-routers
 track: developers
 type: oss
-url: https://docs.litellm.ai/docs/simple_proxy
+website: https://docs.litellm.ai/docs/simple_proxy
 ---
 
 <div class="key-stats">

@@ -1,7 +1,7 @@
 ---
 name: "Sudowrite"
 slug: "sudowrite"
-url: "https://www.sudowrite.com/"
+website: "https://www.sudowrite.com/"
 type: "commercial"
 track: "users"
 category: "writing-productivity"

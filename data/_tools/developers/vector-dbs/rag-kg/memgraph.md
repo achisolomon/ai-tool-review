@@ -1,7 +1,7 @@
 ---
 name: "Memgraph"
 slug: "memgraph"
-url: "https://memgraph.com/"
+website: "https://memgraph.com/"
 type: "oss"
 track: "developers"
 category: "vector-dbs"

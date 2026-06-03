@@ -10,7 +10,7 @@ status: active
 subcategory: experiment-tracking
 track: developers
 type: commercial
-url: https://wandb.ai/
+website: https://wandb.ai/
 ---
 
 <div class="key-stats">

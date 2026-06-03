@@ -1,7 +1,7 @@
 ---
 name: "MagicSchool"
 slug: "magicschool"
-url: "https://www.magicschool.ai/"
+website: "https://www.magicschool.ai/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

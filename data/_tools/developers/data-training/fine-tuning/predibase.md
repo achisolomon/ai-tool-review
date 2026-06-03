@@ -10,7 +10,7 @@ status: active
 subcategory: fine-tuning
 track: developers
 type: commercial
-url: https://predibase.com/
+website: https://predibase.com/
 ---
 
 <div class="key-stats">

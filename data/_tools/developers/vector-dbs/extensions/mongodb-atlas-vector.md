@@ -1,7 +1,7 @@
 ---
 name: "MongoDB Atlas Vector"
 slug: "mongodb-atlas-vector"
-url: "https://www.mongodb.com/products/platform/atlas-vector-search"
+website: "https://www.mongodb.com/products/platform/atlas-vector-search"
 type: "commercial"
 track: "developers"
 category: "vector-dbs"

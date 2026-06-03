@@ -10,7 +10,7 @@ status: active
 subcategory: coding-agents
 track: developers
 type: commercial
-url: https://github.com/openai/codex
+website: https://github.com/openai/codex
 github_stars: 88100
 ---
 

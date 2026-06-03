@@ -10,7 +10,7 @@ status: active
 subcategory: code-review
 track: developers
 type: commercial
-url: https://sourcery.ai/
+website: https://sourcery.ai/
 github_stars: 1500
 ---
 

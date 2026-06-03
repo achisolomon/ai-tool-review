@@ -8,7 +8,7 @@ status: active
 subcategory: mlops
 track: developers
 type: oss
-url: https://metaflow.org/
+website: https://metaflow.org/
 description: "Python-based framework for building and deploying data science workflows with automatic versioning and cloud scaling"
 pricing_model: free
 github_stars: 7700

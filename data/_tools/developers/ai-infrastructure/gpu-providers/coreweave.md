@@ -10,7 +10,7 @@ status: active
 subcategory: gpu-providers
 track: developers
 type: commercial
-url: https://www.coreweave.com/
+website: https://www.coreweave.com/
 ---
 
 <div class="key-stats">

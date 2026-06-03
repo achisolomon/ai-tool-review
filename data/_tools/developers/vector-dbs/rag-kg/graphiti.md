@@ -1,7 +1,7 @@
 ---
 name: "Graphiti"
 slug: "graphiti"
-url: "https://github.com/getzep/graphiti"
+website: "https://github.com/getzep/graphiti"
 type: "oss"
 track: "developers"
 category: "vector-dbs"

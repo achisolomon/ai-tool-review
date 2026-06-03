@@ -1,7 +1,7 @@
 ---
 name: "Ideogram"
 slug: "ideogram"
-url: "https://ideogram.ai/"
+website: "https://ideogram.ai/"
 type: "commercial"
 track: "users"
 category: "generative-media"

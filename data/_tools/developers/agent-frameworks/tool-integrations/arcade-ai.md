@@ -1,7 +1,7 @@
 ---
 name: "Arcade AI"
 slug: "arcade-ai"
-url: "https://www.arcade.dev/"
+website: "https://www.arcade.dev/"
 type: saas
 track: developers
 category: "agent-frameworks"

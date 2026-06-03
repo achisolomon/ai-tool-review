@@ -1,7 +1,7 @@
 ---
 name: "Brave Search"
 slug: "brave-search"
-url: "https://search.brave.com/"
+website: "https://search.brave.com/"
 type: "commercial"
 track: "users"
 category: "ai-chat-search"

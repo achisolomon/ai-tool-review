@@ -1,7 +1,7 @@
 ---
 name: "JetBrains AI Assistant"
 slug: "jetbrains-ai-assistant"
-url: "https://www.jetbrains.com/ai/"
+website: "https://www.jetbrains.com/ai/"
 type: commercial
 track: developers
 category: "ai-coding"

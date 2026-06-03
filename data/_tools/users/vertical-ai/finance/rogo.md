@@ -1,7 +1,7 @@
 ---
 name: "Rogo"
 slug: "rogo"
-url: "https://rogo.ai/"
+website: "https://rogo.ai/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

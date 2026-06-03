@@ -10,7 +10,7 @@ status: active
 subcategory: inference-apis
 track: developers
 type: commercial
-url: https://deepinfra.com/
+website: https://deepinfra.com/
 ---
 
 <div class="key-stats">

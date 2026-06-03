@@ -1,7 +1,7 @@
 ---
 name: "Temporal"
 slug: "temporal"
-url: "https://temporal.io/"
+website: "https://temporal.io/"
 type: oss
 track: developers
 category: "agent-frameworks"

@@ -1,7 +1,7 @@
 ---
 name: "pgvector"
 slug: "pgvector"
-url: "https://github.com/pgvector/pgvector"
+website: "https://github.com/pgvector/pgvector"
 type: "oss"
 track: "developers"
 category: "vector-dbs"

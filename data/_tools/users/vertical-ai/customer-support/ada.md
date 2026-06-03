@@ -1,7 +1,7 @@
 ---
 name: "Ada"
 slug: "ada"
-url: "https://www.ada.cx/"
+website: "https://www.ada.cx/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

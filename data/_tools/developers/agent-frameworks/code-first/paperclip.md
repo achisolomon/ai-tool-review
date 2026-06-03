@@ -1,7 +1,7 @@
 ---
 name: "Paperclip"
 slug: "paperclip"
-url: "https://paperclip.ing/"
+website: "https://paperclip.ing/"
 type: oss
 track: developers
 category: "agent-frameworks"

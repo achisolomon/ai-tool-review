@@ -1,7 +1,7 @@
 ---
 name: "Kagi Search"
 slug: "kagi"
-url: "https://kagi.com"
+website: "https://kagi.com"
 type: "commercial"
 track: "users"
 category: "ai-chat-search"

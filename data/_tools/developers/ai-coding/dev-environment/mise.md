@@ -11,7 +11,7 @@ status: active
 subcategory: dev-environment
 track: developers
 type: oss
-url: https://mise.jdx.dev/
+website: https://mise.jdx.dev/
 ---
 
 <div class="key-stats">

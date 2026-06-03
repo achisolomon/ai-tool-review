@@ -11,7 +11,7 @@ status: active
 subcategory: spec-driven
 track: developers
 type: oss
-url: https://github.com/github/spec-kit
+website: https://github.com/github/spec-kit
 ---
 
 <div class="key-stats">

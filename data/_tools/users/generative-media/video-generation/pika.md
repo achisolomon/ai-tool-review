@@ -1,7 +1,7 @@
 ---
 name: "Pika"
 slug: "pika"
-url: "https://pika.art/"
+website: "https://pika.art/"
 type: "commercial"
 track: "users"
 category: "generative-media"

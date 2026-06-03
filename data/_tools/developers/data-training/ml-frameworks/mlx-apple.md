@@ -8,7 +8,7 @@ status: active
 subcategory: ml-frameworks
 track: developers
 type: oss
-url: https://github.com/ml-explore/mlx
+website: https://github.com/ml-explore/mlx
 description: "NumPy-like array framework optimized for Apple Silicon with lazy computation and composable function transformations"
 pricing_model: free
 github_stars: 26600

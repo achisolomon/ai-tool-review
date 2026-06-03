@@ -1,7 +1,7 @@
 ---
 name: "Overcut"
 slug: "overcut"
-url: "https://overcut.ai/"
+website: "https://overcut.ai/"
 type: commercial
 track: developers
 category: "agent-frameworks"

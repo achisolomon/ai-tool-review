@@ -1,7 +1,7 @@
 ---
 name: "Token Optimizer"
 slug: "token-optimizer"
-url: "https://github.com/alexgreensh/token-optimizer"
+website: "https://github.com/alexgreensh/token-optimizer"
 type: "open-source"
 track: "developers"
 category: "ai-coding"

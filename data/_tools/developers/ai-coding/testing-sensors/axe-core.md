@@ -11,7 +11,7 @@ status: active
 subcategory: testing-sensors
 track: developers
 type: oss
-url: https://github.com/dequelabs/axe-core
+website: https://github.com/dequelabs/axe-core
 ---
 
 <div class="key-stats">

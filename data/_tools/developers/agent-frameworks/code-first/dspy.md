@@ -1,7 +1,7 @@
 ---
 name: "DSPy"
 slug: "dspy"
-url: "https://dspy.ai/"
+website: "https://dspy.ai/"
 type: "oss"
 track: "developers"
 category: "agent-frameworks"

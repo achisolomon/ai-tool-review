@@ -1,7 +1,7 @@
 ---
 name: "Lakera Guard"
 slug: "lakera-guard"
-url: "https://www.lakera.ai/"
+website: "https://www.lakera.ai/"
 type: "commercial"
 track: "developers"
 category: "observability-safety"

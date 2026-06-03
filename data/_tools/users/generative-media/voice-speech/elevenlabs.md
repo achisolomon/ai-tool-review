@@ -1,7 +1,7 @@
 ---
 name: "ElevenLabs"
 slug: "elevenlabs"
-url: "https://elevenlabs.io/"
+website: "https://elevenlabs.io/"
 type: "commercial"
 track: "users"
 category: "generative-media"

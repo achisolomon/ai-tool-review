@@ -8,7 +8,7 @@ status: active
 subcategory: mlops
 track: developers
 type: oss
-url: https://www.ray.io/
+website: https://www.ray.io/
 description: "Distributed computing framework enabling scalable ML workloads with Ray Tune for hyperparameter tuning and Ray Serve for deployment"
 pricing_model: free
 github_stars: 33700

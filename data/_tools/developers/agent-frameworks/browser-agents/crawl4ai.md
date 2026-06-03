@@ -1,7 +1,7 @@
 ---
 name: "Crawl4AI"
 slug: "crawl4ai"
-url: "https://crawl4ai.com/"
+website: "https://crawl4ai.com/"
 type: oss
 track: developers
 category: "agent-frameworks"

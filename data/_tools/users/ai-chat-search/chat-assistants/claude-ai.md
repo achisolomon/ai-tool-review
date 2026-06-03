@@ -1,7 +1,7 @@
 ---
 name: "Claude.ai"
 slug: "claude-ai"
-url: "https://claude.ai/"
+website: "https://claude.ai/"
 type: "commercial"
 track: "users"
 category: "ai-chat-search"

@@ -1,7 +1,7 @@
 ---
 name: "Khanmigo"
 slug: "khanmigo"
-url: "https://www.khanmigo.ai/"
+website: "https://www.khanmigo.ai/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

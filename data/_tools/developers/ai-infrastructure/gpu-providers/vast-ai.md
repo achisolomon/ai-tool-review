@@ -10,7 +10,7 @@ status: active
 subcategory: gpu-providers
 track: developers
 type: commercial
-url: https://vast.ai/
+website: https://vast.ai/
 ---
 
 <div class="key-stats">

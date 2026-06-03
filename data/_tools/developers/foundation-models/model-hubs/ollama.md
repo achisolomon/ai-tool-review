@@ -1,7 +1,7 @@
 ---
 name: "Ollama"
 slug: "ollama"
-url: "https://ollama.com/"
+website: "https://ollama.com/"
 type: "oss"
 track: "developers"
 category: "foundation-models"

@@ -11,7 +11,7 @@ status: active
 subcategory: testing-sensors
 track: developers
 type: oss
-url: https://pitest.org/
+website: https://pitest.org/
 ---
 
 <div class="key-stats">

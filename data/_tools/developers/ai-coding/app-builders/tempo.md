@@ -1,7 +1,7 @@
 ---
 name: "Tempo"
 slug: "tempo"
-url: "https://www.tempo.new/"
+website: "https://www.tempo.new/"
 type: commercial
 track: developers
 category: "ai-coding"

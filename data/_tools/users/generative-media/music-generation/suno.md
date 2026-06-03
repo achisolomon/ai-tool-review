@@ -1,7 +1,7 @@
 ---
 name: "Suno"
 slug: "suno"
-url: "https://suno.com/"
+website: "https://suno.com/"
 type: "commercial"
 track: "users"
 category: "generative-media"

@@ -1,7 +1,7 @@
 ---
 name: "RingCentral"
 slug: "ringcentral"
-url: "https://www.ringcentral.com/"
+website: "https://www.ringcentral.com/"
 type: "commercial"
 track: "users"
 category: "ai-contact-center"

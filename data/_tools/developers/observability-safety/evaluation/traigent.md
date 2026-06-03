@@ -1,7 +1,7 @@
 ---
 name: "Traigent"
 slug: "traigent"
-url: "https://traigent.ai/"
+website: "https://traigent.ai/"
 type: "commercial"
 track: "developers"
 category: "observability-safety"

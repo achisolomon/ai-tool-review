@@ -1,7 +1,7 @@
 ---
 name: "Hailuo (MiniMax)"
 slug: "hailuo-minimax"
-url: "https://hailuoai.video/"
+website: "https://hailuoai.video/"
 type: "commercial"
 track: "users"
 category: "generative-media"

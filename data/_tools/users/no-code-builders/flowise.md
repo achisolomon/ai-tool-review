@@ -1,7 +1,7 @@
 ---
 name: "Flowise"
 slug: "flowise"
-url: "https://flowiseai.com/"
+website: "https://flowiseai.com/"
 type: "oss"
 track: "users"
 category: "no-code-builders"

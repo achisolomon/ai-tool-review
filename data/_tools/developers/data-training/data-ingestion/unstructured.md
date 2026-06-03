@@ -11,7 +11,7 @@ status: active
 subcategory: data-ingestion
 track: developers
 type: oss
-url: https://unstructured.io/
+website: https://unstructured.io/
 ---
 
 <div class="key-stats">

@@ -1,7 +1,7 @@
 ---
 name: "Ragas"
 slug: "ragas"
-url: "https://docs.ragas.io/"
+website: "https://docs.ragas.io/"
 type: "open-source"
 track: "developers"
 category: "observability-safety"

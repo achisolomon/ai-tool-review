@@ -10,7 +10,7 @@ status: active
 subcategory: coding-agents
 track: developers
 type: commercial
-url: https://aws.amazon.com/q/developer/
+website: https://aws.amazon.com/q/developer/
 ---
 
 <div class="key-stats">

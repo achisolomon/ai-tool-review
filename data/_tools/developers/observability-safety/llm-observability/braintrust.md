@@ -1,7 +1,7 @@
 ---
 name: "Braintrust"
 slug: "braintrust"
-url: "https://www.braintrust.dev/"
+website: "https://www.braintrust.dev/"
 type: "commercial"
 track: "developers"
 category: "observability-safety"

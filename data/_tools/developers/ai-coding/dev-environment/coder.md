@@ -10,7 +10,7 @@ status: active
 subcategory: dev-environment
 track: developers
 type: oss
-url: https://coder.com/
+website: https://coder.com/
 github_stars: 7800
 ---
 

@@ -1,7 +1,7 @@
 ---
 name: "Sierra"
 slug: "sierra"
-url: "https://sierra.ai/"
+website: "https://sierra.ai/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

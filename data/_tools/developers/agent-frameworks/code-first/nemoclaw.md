@@ -1,7 +1,7 @@
 ---
 name: "NemoClaw"
 slug: "nemoclaw"
-url: "https://www.nvidia.com/en-us/ai/nemoclaw/"
+website: "https://www.nvidia.com/en-us/ai/nemoclaw/"
 type: commercial
 track: developers
 category: "agent-frameworks"

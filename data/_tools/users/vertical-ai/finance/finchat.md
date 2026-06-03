@@ -1,7 +1,7 @@
 ---
 name: "FinChat"
 slug: "finchat"
-url: "https://finchat.io/"
+website: "https://finchat.io/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

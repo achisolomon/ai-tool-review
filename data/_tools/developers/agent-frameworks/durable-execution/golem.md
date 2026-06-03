@@ -1,7 +1,7 @@
 ---
 name: "Golem"
 slug: "golem"
-url: "https://www.golem.cloud/"
+website: "https://www.golem.cloud/"
 type: oss
 track: developers
 category: "agent-frameworks"

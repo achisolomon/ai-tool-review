@@ -1,7 +1,7 @@
 ---
 name: "Repo Forensics"
 slug: "repo-forensics"
-url: "https://github.com/alexgreensh/repo-forensics"
+website: "https://github.com/alexgreensh/repo-forensics"
 type: "open-source"
 track: "developers"
 category: "observability-safety"

@@ -1,7 +1,7 @@
 ---
 name: "BuildShip"
 slug: "buildship"
-url: "https://buildship.com/"
+website: "https://buildship.com/"
 type: "commercial"
 track: "users"
 category: "no-code-builders"

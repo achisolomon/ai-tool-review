@@ -10,7 +10,7 @@ status: active
 subcategory: embeddings
 track: developers
 type: commercial
-url: https://platform.openai.com/docs/guides/embeddings
+website: https://platform.openai.com/docs/guides/embeddings
 ---
 
 <div class="key-stats">

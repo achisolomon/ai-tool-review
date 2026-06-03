@@ -1,7 +1,7 @@
 ---
 name: "Apollo"
 slug: "apollo"
-url: "https://www.apollo.io/"
+website: "https://www.apollo.io/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

@@ -1,7 +1,7 @@
 ---
 name: "Nabla"
 slug: "nabla"
-url: "https://www.nabla.com/"
+website: "https://www.nabla.com/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

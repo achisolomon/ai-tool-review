@@ -1,7 +1,7 @@
 ---
 name: "Writer"
 slug: "writer"
-url: "https://writer.com/"
+website: "https://writer.com/"
 type: "commercial"
 track: "users"
 category: "vertical-ai"

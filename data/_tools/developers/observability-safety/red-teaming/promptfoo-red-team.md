@@ -1,7 +1,7 @@
 ---
 name: "Promptfoo Red Team"
 slug: "promptfoo-red-team"
-url: "https://www.promptfoo.dev/docs/red-team/"
+website: "https://www.promptfoo.dev/docs/red-team/"
 type: "oss"
 track: "developers"
 category: "observability-safety"
