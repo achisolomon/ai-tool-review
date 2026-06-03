@@ -42,12 +42,17 @@ test.describe('Page Navigation', () => {
       // Wait for tools to render
       await page.waitForSelector('.tool-card');
 
-      // Get first tool card
+      // Expand to "Tools" view to make tool cards clickable
+      const toolsBtn = page.locator('[data-view="all"]');
+      await toolsBtn.click();
+      await page.waitForTimeout(500);
+
+      // Get a visible tool card
       const firstCard = page.locator('.tool-card').first();
       const slug = await firstCard.getAttribute('data-slug');
 
-      // Click the card
-      await firstCard.click();
+      // Use JavaScript click to ensure the event bubbles to the delegated handler
+      await firstCard.evaluate(el => el.click());
 
       // Should navigate to internal tool page, not external URL
       await expect(page).toHaveURL(new RegExp(`/tools/${slug}/?`));

@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // State
     let currentTrack = 'all';
     let currentType = 'all';
+    let currentView = 'subcategories'; // 'categories', 'subcategories', 'all'
 
     // Generate URL-friendly slug from tool name
     function generateSlug(name) {
@@ -27,10 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // DOM Elements
-    const expandAllBtn = document.getElementById('expand-all');
-    const collapseAllBtn = document.getElementById('collapse-all');
-    const statsBar = document.getElementById('stats-bar');
     const landscape = document.getElementById('landscape');
+    const viewButtons = document.querySelectorAll('.view-btn');
     const trackButtons = document.querySelectorAll('.track-btn');
     const filterButtons = document.querySelectorAll('.filter-btn');
     const visibleCountEl = document.getElementById('visible-count');
@@ -41,10 +40,35 @@ document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
     renderLandscape();
     updateStats();
+    applyViewState();
 
     // Default to expanded view with compact layout for maximum tool density
     landscape.classList.add('all-expanded');
     landscape.classList.add('compact-filter');
+
+    // Apply view state to all categories and subcategories
+    function applyViewState() {
+        const categories = document.querySelectorAll('.category');
+        const subcategories = document.querySelectorAll('.subcategory');
+
+        // Apply layout class based on view
+        landscape.classList.remove('view-categories', 'view-subcategories', 'view-all');
+        landscape.classList.add(`view-${currentView}`);
+
+        if (currentView === 'categories') {
+            // Only show category headers
+            categories.forEach(cat => cat.classList.add('collapsed'));
+            subcategories.forEach(sub => sub.classList.add('collapsed'));
+        } else if (currentView === 'subcategories') {
+            // Show categories expanded, subcategories collapsed
+            categories.forEach(cat => cat.classList.remove('collapsed'));
+            subcategories.forEach(sub => sub.classList.add('collapsed'));
+        } else if (currentView === 'all') {
+            // Show everything expanded
+            categories.forEach(cat => cat.classList.remove('collapsed'));
+            subcategories.forEach(sub => sub.classList.remove('collapsed'));
+        }
+    }
 
     // Render the landscape grid
     function renderLandscape() {
@@ -107,13 +131,22 @@ document.addEventListener('DOMContentLoaded', () => {
         return categoryEl;
     }
 
-    // Create subcategory HTML
+    // Create subcategory HTML (collapsed by default)
     function createSubcategoryHTML(subcategory) {
+        const toolCount = subcategory.tools.length;
         return `
-            <div class="subcategory">
-                <h3 class="subcategory-title">${subcategory.name}</h3>
-                <div class="tools-grid">
-                    ${subcategory.tools.map(tool => createToolCardHTML(tool)).join('')}
+            <div class="subcategory collapsed">
+                <div class="subcategory-header">
+                    <h3 class="subcategory-title">${subcategory.name}</h3>
+                    <span class="subcategory-count">${toolCount}</span>
+                    <svg class="subcategory-toggle" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+                <div class="subcategory-content">
+                    <div class="tools-grid">
+                        ${subcategory.tools.map(tool => createToolCardHTML(tool)).join('')}
+                    </div>
                 </div>
             </div>
         `;
@@ -195,24 +228,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Setup event listeners
     function setupEventListeners() {
-        // Expand all categories
-        expandAllBtn.addEventListener('click', () => {
-            document.querySelectorAll('.category.collapsed').forEach(cat => {
-                cat.classList.remove('collapsed');
+        // View toggle (3 states: categories, subcategories, all)
+        viewButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                viewButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentView = btn.dataset.view;
+                applyViewState();
             });
-            // Switch to compact centered layout for dense packing
-            landscape.classList.add('all-expanded');
-            landscape.classList.add('compact-filter');
-        });
-
-        // Collapse all categories
-        collapseAllBtn.addEventListener('click', () => {
-            document.querySelectorAll('.category:not(.collapsed)').forEach(cat => {
-                cat.classList.add('collapsed');
-            });
-            // Switch back to flex layout for uniform boxes
-            landscape.classList.remove('all-expanded');
-            landscape.classList.remove('compact-filter');
         });
 
         // Track toggle
@@ -221,17 +244,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 trackButtons.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 currentTrack = btn.dataset.track;
-                // Apply compact layout when filtering by track (not "all")
-                const isFiltering = currentTrack !== 'all';
-                if (isFiltering) {
-                    landscape.classList.add('all-expanded');
-                    landscape.classList.add('compact-filter');
-                    // Auto-expand categories when filtering
-                    document.querySelectorAll('.category.collapsed').forEach(cat => {
-                        cat.classList.remove('collapsed');
-                    });
-                }
                 renderLandscape();
+                applyViewState();
             });
         });
 
@@ -241,17 +255,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 filterButtons.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 currentType = btn.dataset.type;
-                // Apply compact layout when filtering
-                const isFiltering = currentType !== 'all';
-                if (isFiltering) {
-                    landscape.classList.add('all-expanded');
-                    landscape.classList.add('compact-filter');
-                    // Auto-expand categories when filtering
-                    document.querySelectorAll('.category.collapsed').forEach(cat => {
-                        cat.classList.remove('collapsed');
-                    });
-                }
                 renderLandscape();
+                applyViewState();
             });
         });
 
@@ -276,6 +281,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = e.target.closest('.tool-card');
             if (card) {
                 hideTooltip();
+            }
+        });
+
+        // Subcategory collapse toggle (delegated)
+        landscape.addEventListener('click', (e) => {
+            const subcategoryHeader = e.target.closest('.subcategory-header');
+            if (subcategoryHeader) {
+                const subcategory = subcategoryHeader.closest('.subcategory');
+                if (subcategory) {
+                    subcategory.classList.toggle('collapsed');
+                }
             }
         });
 

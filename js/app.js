@@ -79,10 +79,249 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultsGrid = document.getElementById('results-grid');
     const resultsCount = document.getElementById('results-count');
     const clearSearch = document.getElementById('clear-search');
-    const quickActionChips = document.querySelectorAll('.action-chip');
+    const autocompleteDropdown = document.getElementById('autocomplete-dropdown');
+
+    // Autocomplete state
+    let autocompleteItems = [];
+    let selectedAutocompleteIndex = -1;
 
     // Initialize
     setupEventListeners();
+
+    // Get all categories and subcategories for autocomplete
+    function getCategoriesAndSubcategories() {
+        const items = [];
+        ['users', 'developers'].forEach(track => {
+            if (!landscapeData[track]) return;
+            landscapeData[track].forEach(category => {
+                // Add category
+                items.push({
+                    type: 'category',
+                    name: category.name,
+                    id: category.id,
+                    track: track,
+                    toolCount: category.subcategories.reduce((sum, sub) => sum + sub.tools.length, 0)
+                });
+                // Add subcategories
+                category.subcategories.forEach(subcategory => {
+                    items.push({
+                        type: 'subcategory',
+                        name: subcategory.name,
+                        id: subcategory.id,
+                        categoryName: category.name,
+                        categoryId: category.id,
+                        track: track,
+                        toolCount: subcategory.tools.length
+                    });
+                });
+            });
+        });
+        return items;
+    }
+
+    // Get tools by category or subcategory
+    function getToolsByCategory(categoryId, subcategoryId = null) {
+        const tools = [];
+        ['users', 'developers'].forEach(track => {
+            if (!landscapeData[track]) return;
+            landscapeData[track].forEach(category => {
+                if (category.id === categoryId || category.name.toLowerCase() === categoryId.toLowerCase()) {
+                    category.subcategories.forEach(subcategory => {
+                        if (!subcategoryId || subcategory.id === subcategoryId || subcategory.name.toLowerCase() === subcategoryId.toLowerCase()) {
+                            subcategory.tools.forEach(tool => {
+                                tools.push({
+                                    ...tool,
+                                    categoryName: category.name,
+                                    subcategoryName: subcategory.name,
+                                    track: track
+                                });
+                            });
+                        }
+                    });
+                }
+            });
+        });
+        return tools;
+    }
+
+    // Get all subcategories organized for browsing
+    function getAllSubcategoriesForBrowsing() {
+        const items = [];
+        ['users', 'developers'].forEach(track => {
+            if (!landscapeData[track]) return;
+            landscapeData[track].forEach(category => {
+                category.subcategories.forEach(subcategory => {
+                    items.push({
+                        type: 'subcategory',
+                        name: subcategory.name,
+                        id: subcategory.id,
+                        categoryName: category.name,
+                        categoryId: category.id,
+                        track: track,
+                        toolCount: subcategory.tools.length
+                    });
+                });
+            });
+        });
+        return items;
+    }
+
+    // Search autocomplete suggestions
+    function searchAutocomplete(query, showAllOnEmpty = false) {
+        const categoriesAndSubs = getCategoriesAndSubcategories();
+
+        // If empty query and showAllOnEmpty, show browseable subcategories
+        if (!query || query.trim().length < 1) {
+            if (showAllOnEmpty) {
+                return getAllSubcategoriesForBrowsing()
+                    .sort((a, b) => b.toolCount - a.toolCount)
+                    .slice(0, 15)
+                    .map(item => ({ ...item, priority: 50 }));
+            }
+            return [];
+        }
+
+        const queryLower = query.toLowerCase().trim();
+        const allTools = getAllTools();
+
+        const results = [];
+
+        // Search categories (high priority)
+        categoriesAndSubs
+            .filter(item => item.type === 'category')
+            .forEach(item => {
+                const nameLower = item.name.toLowerCase();
+                if (nameLower.includes(queryLower)) {
+                    results.push({
+                        ...item,
+                        priority: nameLower.startsWith(queryLower) ? 100 : 80
+                    });
+                }
+            });
+
+        // Search subcategories (medium-high priority)
+        categoriesAndSubs
+            .filter(item => item.type === 'subcategory')
+            .forEach(item => {
+                const nameLower = item.name.toLowerCase();
+                if (nameLower.includes(queryLower)) {
+                    results.push({
+                        ...item,
+                        priority: nameLower.startsWith(queryLower) ? 70 : 60
+                    });
+                }
+            });
+
+        // Search tools (lower priority) - limit to top matches
+        allTools.forEach(tool => {
+            const nameLower = tool.name.toLowerCase();
+            if (nameLower.includes(queryLower)) {
+                results.push({
+                    type: 'tool',
+                    name: tool.name,
+                    slug: tool.slug || generateSlug(tool.name),
+                    categoryName: tool.categoryName,
+                    subcategoryName: tool.subcategoryName,
+                    priority: nameLower.startsWith(queryLower) ? 40 : 30
+                });
+            }
+        });
+
+        // Sort by priority and limit results
+        return results
+            .sort((a, b) => b.priority - a.priority)
+            .slice(0, 12);
+    }
+
+    // Render autocomplete dropdown
+    function renderAutocomplete(items, isBrowseMode = false) {
+        if (items.length === 0) {
+            autocompleteDropdown.classList.add('hidden');
+            autocompleteItems = [];
+            selectedAutocompleteIndex = -1;
+            return;
+        }
+
+        autocompleteItems = items;
+        selectedAutocompleteIndex = -1;
+
+        let html = '';
+
+        // Add browse mode header
+        if (isBrowseMode) {
+            html += `<div class="autocomplete-section-header">Browse by Category</div>`;
+        }
+
+        let currentSection = isBrowseMode ? 'subcategory' : '';
+
+        items.forEach((item, index) => {
+            // Add section headers (only when not in browse mode)
+            if (!isBrowseMode && item.type !== currentSection) {
+                currentSection = item.type;
+                const sectionLabel = item.type === 'category' ? 'Categories' :
+                                    item.type === 'subcategory' ? 'Subcategories' : 'Tools';
+                html += `<div class="autocomplete-section-header">${sectionLabel}</div>`;
+            }
+
+            const icon = item.type === 'category' ? '📁' :
+                        item.type === 'subcategory' ? '📂' : '🔧';
+
+            const meta = item.type === 'tool'
+                ? `${item.subcategoryName} • ${item.categoryName}`
+                : item.type === 'subcategory'
+                    ? `${item.categoryName} • ${item.toolCount} tools`
+                    : `${item.toolCount} tools`;
+
+            html += `
+                <div class="autocomplete-item" data-index="${index}" data-type="${item.type}">
+                    <span class="autocomplete-item-icon">${icon}</span>
+                    <div class="autocomplete-item-content">
+                        <div class="autocomplete-item-name">${item.name}</div>
+                        <div class="autocomplete-item-meta">${meta}</div>
+                    </div>
+                    <span class="autocomplete-item-type ${item.type}">${item.type}</span>
+                </div>
+            `;
+        });
+
+        autocompleteDropdown.innerHTML = html;
+        autocompleteDropdown.classList.remove('hidden');
+    }
+
+    // Handle autocomplete selection
+    function selectAutocompleteItem(item) {
+        autocompleteDropdown.classList.add('hidden');
+        actionInput.value = item.name;
+
+        if (item.type === 'category') {
+            // Show all tools in this category
+            const tools = getToolsByCategory(item.id || item.name);
+            searchResults.classList.remove('hidden');
+            renderSearchResults(tools);
+        } else if (item.type === 'subcategory') {
+            // Show all tools in this subcategory
+            const tools = getToolsByCategory(item.categoryId || item.categoryName, item.id || item.name);
+            searchResults.classList.remove('hidden');
+            renderSearchResults(tools);
+        } else if (item.type === 'tool') {
+            // Navigate to tool page
+            window.location.href = `/tools/${item.slug}/`;
+        }
+    }
+
+    // Update selected autocomplete item
+    function updateAutocompleteSelection(newIndex) {
+        const items = autocompleteDropdown.querySelectorAll('.autocomplete-item');
+        items.forEach((el, i) => {
+            el.classList.toggle('selected', i === newIndex);
+        });
+        selectedAutocompleteIndex = newIndex;
+
+        // Scroll into view
+        if (newIndex >= 0 && items[newIndex]) {
+            items[newIndex].scrollIntoView({ block: 'nearest' });
+        }
+    }
 
     // Get all tools as flat array for searching
     function getAllTools() {
@@ -281,24 +520,98 @@ document.addEventListener('DOMContentLoaded', () => {
         renderSearchResults(results);
     }
 
+    // Perform search (alias for handleSearch, used by delayed search)
+    function performSearch(query) {
+        handleSearch(query);
+    }
+
     // Setup event listeners
     function setupEventListeners() {
-        // Search input
+        // Search input with autocomplete
         let searchTimeout;
+        let autocompleteTimeout;
+
         actionInput.addEventListener('input', (e) => {
+            const value = e.target.value.trim();
+
+            // Show autocomplete suggestions
+            clearTimeout(autocompleteTimeout);
+            autocompleteTimeout = setTimeout(() => {
+                const suggestions = searchAutocomplete(value, true);
+                renderAutocomplete(suggestions, value === '');
+            }, 100);
+
+            // Delayed full search (show results after typing pause)
             clearTimeout(searchTimeout);
-            searchTimeout = setTimeout(() => {
-                handleSearch(e.target.value.trim());
-            }, 150);
+            if (value === '') {
+                searchResults.classList.add('hidden');
+            } else {
+                searchTimeout = setTimeout(() => {
+                    performSearch(value);
+                }, 250);
+            }
         });
 
-        // Quick action chips
-        quickActionChips.forEach(chip => {
-            chip.addEventListener('click', () => {
-                const query = chip.dataset.query;
-                actionInput.value = query;
-                handleSearch(query);
-            });
+        // Show browse menu on focus when empty
+        actionInput.addEventListener('focus', () => {
+            const value = actionInput.value.trim();
+            if (value === '') {
+                const suggestions = searchAutocomplete('', true);
+                renderAutocomplete(suggestions, true);
+            }
+        });
+
+        // Handle Enter key to trigger full search
+        actionInput.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                if (autocompleteItems.length > 0) {
+                    const newIndex = selectedAutocompleteIndex < autocompleteItems.length - 1
+                        ? selectedAutocompleteIndex + 1 : 0;
+                    updateAutocompleteSelection(newIndex);
+                }
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                if (autocompleteItems.length > 0) {
+                    const newIndex = selectedAutocompleteIndex > 0
+                        ? selectedAutocompleteIndex - 1 : autocompleteItems.length - 1;
+                    updateAutocompleteSelection(newIndex);
+                }
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                if (selectedAutocompleteIndex >= 0 && autocompleteItems[selectedAutocompleteIndex]) {
+                    selectAutocompleteItem(autocompleteItems[selectedAutocompleteIndex]);
+                } else {
+                    // Regular search
+                    autocompleteDropdown.classList.add('hidden');
+                    handleSearch(actionInput.value.trim());
+                }
+            } else if (e.key === 'Escape') {
+                // Clear search and hide everything
+                actionInput.value = '';
+                searchQuery = '';
+                searchResults.classList.add('hidden');
+                autocompleteDropdown.classList.add('hidden');
+                selectedAutocompleteIndex = -1;
+            }
+        });
+
+        // Autocomplete item click
+        autocompleteDropdown.addEventListener('click', (e) => {
+            const item = e.target.closest('.autocomplete-item');
+            if (item) {
+                const index = parseInt(item.dataset.index, 10);
+                if (autocompleteItems[index]) {
+                    selectAutocompleteItem(autocompleteItems[index]);
+                }
+            }
+        });
+
+        // Hide autocomplete on blur (with delay for click handling)
+        actionInput.addEventListener('blur', () => {
+            setTimeout(() => {
+                autocompleteDropdown.classList.add('hidden');
+            }, 200);
         });
 
         // Clear search
@@ -306,6 +619,7 @@ document.addEventListener('DOMContentLoaded', () => {
             actionInput.value = '';
             searchQuery = '';
             searchResults.classList.add('hidden');
+            autocompleteDropdown.classList.add('hidden');
             actionInput.focus();
         });
 
@@ -327,13 +641,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
                 actionInput.focus();
             }
-            // Escape to clear search
-            if (e.key === 'Escape') {
+            // Escape to clear search (when not focused on input)
+            if (e.key === 'Escape' && document.activeElement !== actionInput) {
                 actionInput.value = '';
                 searchQuery = '';
                 searchResults.classList.add('hidden');
-                actionInput.blur();
+                autocompleteDropdown.classList.add('hidden');
             }
+        });
+
+        // Quick action chip click handlers
+        document.querySelectorAll('.action-chip').forEach(chip => {
+            chip.addEventListener('click', () => {
+                const query = chip.dataset.query;
+                if (query) {
+                    actionInput.value = query;
+                    autocompleteDropdown.classList.add('hidden');
+                    performSearch(query);
+                }
+            });
         });
     }
 });

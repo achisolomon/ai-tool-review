@@ -15,3 +15,8 @@ gem "webrick", "~> 1.8"
 
 # For kramdown GFM parsing
 gem "kramdown-parser-gfm", "~> 1.1"
+
+# Testing
+group :test do
+  gem "minitest", "~> 5.20"
+end
