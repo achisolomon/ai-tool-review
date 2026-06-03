@@ -102,6 +102,22 @@ users:
         name: "Enterprise Platforms"
         description: "Enterprise AI platforms"
 
+  voice-ai-agents:
+    name: "Voice AI Agents"
+    description: "AI-powered voice agents, receptionists, and phone automation"
+    subcategories:
+      voice-agents:
+        name: "Voice Agents"
+        description: "AI voice agents and automated receptionists"
+
+  ai-contact-center:
+    name: "AI Contact Center"
+    description: "AI-powered contact center and omnichannel communication platforms"
+    subcategories:
+      contact-center:
+        name: "Contact Center Platforms"
+        description: "Full-featured AI contact center solutions"
+
 developers:
   foundation-models:
     name: "Foundation Models & Model Hubs"
@@ -150,6 +166,9 @@ developers:
     name: "Agent Frameworks & Orchestration"
     description: "Frameworks for building AI agents"
     subcategories:
+      agent-platforms:
+        name: "Agent Platforms"
+        description: "Managed platforms for deploying and orchestrating AI agents"
       code-first:
         name: "Code-First Agent Frameworks"
         description: "Programming frameworks for agents"

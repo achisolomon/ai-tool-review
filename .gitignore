@@ -1,2 +1,30 @@
+# OS
 .DS_Store
+
+# Build artifacts
+_site/
+.jekyll-cache/
+.jekyll-metadata
+
+# Dependencies
+node_modules/
+vendor/
+
+# Test output
+playwright-report/
+test-results/
+
+# Python
+__pycache__/
+*.pyc
+scripts/__pycache__/
+scripts/.cache/
+scripts/.batches/
+
+# Worktrees
 .worktrees/
+
+# Editor
+*.swp
+*.swo
+*~

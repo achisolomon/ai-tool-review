@@ -36,3 +36,4 @@ exclude:
   - scripts
   - vendor
   - .bundle
+

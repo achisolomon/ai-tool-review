@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tools Landscape - Browse 330+ AI Tools by Category</title>
+    <!-- Google Consent Mode - Set defaults BEFORE loading any Google scripts -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+
+        // Default: deny all until user consents
+        gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied',
+            'wait_for_update': 500
+        });
+
+        // Check for existing consent
+        const savedConsent = localStorage.getItem('cookie_consent');
+        if (savedConsent === 'accepted') {
+            gtag('consent', 'update', {
+                'ad_storage': 'granted',
+                'ad_user_data': 'granted',
+                'ad_personalization': 'granted',
+                'analytics_storage': 'granted'
+            });
+        }
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MZE53DJ7JP"></script>
+    <script>
+        gtag('js', new Date());
+        gtag('config', 'G-MZE53DJ7JP');
+    </script>
+
+    <meta name="description" content="Browse the complete AI tools landscape. Explore 330+ tools organized by category - foundation models, coding assistants, agents, and more.">
+    <meta property="og:title" content="AI Tools Landscape">
+    <meta property="og:description" content="Browse 330+ AI tools across 15+ categories. The complete landscape view.">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#1e1e1e">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7272761067250869"
+        crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="logo-text">AI Tool Review</span>
+            </a>
+            <nav class="nav-links">
+                <a href="/" class="nav-link nav-link-text">Search</a>
+                <a href="landscape.html" class="nav-link nav-link-text nav-active">Landscape</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Landscape Mode Controls -->
+    <section class="controls" id="landscape-controls" data-nosnippet data-ad-layout-exclude="true">
+        <div class="controls-toolbar">
+            <div class="expand-collapse-btns">
+                <button class="expand-btn" id="expand-all">Expand All</button>
+                <button class="collapse-btn" id="collapse-all">Collapse All</button>
+            </div>
+            <div class="track-toggle">
+            <button class="track-btn active" data-track="all">All Tools</button>
+            <button class="track-btn" data-track="users">For Users</button>
+            <button class="track-btn" data-track="developers">For Developers</button>
+        </div>
+        <div class="filters">
+            <div class="filter-group">
+                <label class="filter-label">Type:</label>
+                <button class="filter-btn active" data-type="all">All</button>
+                <button class="filter-btn" data-type="oss" aria-label="Filter by Open Source">
+                    <span class="badge badge-oss">OSS</span>
+                </button>
+                <button class="filter-btn" data-type="saas" aria-label="Filter by SaaS">
+                    <span class="badge badge-saas">SaaS</span>
+                </button>
+                <button class="filter-btn" data-type="commercial" aria-label="Filter by Commercial">
+                    <span class="badge badge-commercial">COM</span>
+                </button>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar" id="stats-bar" data-nosnippet>
+        <div class="stat">
+            <span class="stat-value" id="visible-count">0</span>
+            <span class="stat-label">tools shown</span>
+        </div>
+        <div class="stat">
+            <span class="stat-value" id="category-count">0</span>
+            <span class="stat-label">categories</span>
+        </div>
+    </section>
+
+    <!-- Main Landscape Grid -->
+    <main class="landscape" id="landscape" data-nosnippet>
+        <!-- Categories will be dynamically inserted here -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>AI Tool Review</h3>
+                <p>Your guide to AI tools. Community reviews and ratings coming soon.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Legend</h3>
+                <div class="legend">
+                    <div class="legend-item"><span class="badge badge-oss">OSS</span> Open Source</div>
+                    <div class="legend-item"><span class="badge badge-saas">SaaS</span> Managed/Cloud</div>
+                    <div class="legend-item"><span class="badge badge-commercial">COM</span> Commercial/Paid</div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 AI Tool Review. Community-curated. | <a href="about.html">About</a> | <a href="contact.html">Contact</a> | <a href="privacy.html">Privacy Policy</a></p>
+        </div>
+        <!-- Ad Section -->
+        <div class="footer-ad">
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-7272761067250869"
+                data-ad-slot="1939469484"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </footer>
+
+    <!-- Tooltip -->
+    <div id="tooltip" class="tooltip"></div>
+
+    <script src="js/data.js?v=5"></script>
+    <script src="js/landscape.js?v=5"></script>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-consent" class="cookie-banner" style="display: none;">
+        <div class="cookie-content">
+            <p>We use cookies for analytics and personalized ads. By clicking "Accept", you consent to our use of cookies. <a href="privacy.html">Privacy Policy</a></p>
+            <div class="cookie-buttons">
+                <button id="cookie-reject" class="cookie-btn cookie-btn-secondary">Reject</button>
+                <button id="cookie-accept" class="cookie-btn cookie-btn-primary">Accept</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Cookie Consent Handler
+        (function() {
+            const banner = document.getElementById('cookie-consent');
+            const acceptBtn = document.getElementById('cookie-accept');
+            const rejectBtn = document.getElementById('cookie-reject');
+
+            // Show banner if no consent saved
+            if (!localStorage.getItem('cookie_consent')) {
+                banner.style.display = 'block';
+            }
+
+            acceptBtn.addEventListener('click', function() {
+                localStorage.setItem('cookie_consent', 'accepted');
+                banner.style.display = 'none';
+
+                // Update Google Consent Mode
+                gtag('consent', 'update', {
+                    'ad_storage': 'granted',
+                    'ad_user_data': 'granted',
+                    'ad_personalization': 'granted',
+                    'analytics_storage': 'granted'
+                });
+            });
+
+            rejectBtn.addEventListener('click', function() {
+                localStorage.setItem('cookie_consent', 'rejected');
+                banner.style.display = 'none';
+
+                // Keep consent denied (already default)
+                gtag('consent', 'update', {
+                    'ad_storage': 'denied',
+                    'ad_user_data': 'denied',
+                    'ad_personalization': 'denied',
+                    'analytics_storage': 'denied'
+                });
+            });
+        })();
+    </script>
+
+    <!-- Dev: Ad placeholders for localhost testing -->
+    <script>
+        if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+            document.querySelectorAll('.adsbygoogle').forEach(ad => {
+                ad.style.background = '#2a2a2a';
+                ad.style.border = '2px dashed #4a9eff';
+                ad.style.display = 'flex';
+                ad.style.alignItems = 'center';
+                ad.style.justifyContent = 'center';
+                ad.innerHTML = '<div style="color:#4a9eff;font-size:12px;">Ad Placeholder</div>';
+            });
+        }
+    </script>
+</body>
+</html>

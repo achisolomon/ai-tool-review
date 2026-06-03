@@ -1,16 +1,126 @@
 ---
-name: "StabilityAI Stable LM"
-slug: "stabilityai-stable-lm"
-url: "https://stability.ai/"
-type: "oss"
-track: "developers"
-category: "foundation-models"
-subcategory: "open-source"
-status: "active"
-
-# AI-Managed Metadata
-last_verified: "2026-05-17"
+category: foundation-models
 confidence_score: 0.9
+description: Stability AI's open-source language models family with focus on alignment and safety. Includes base and instruction-tuned variants designed for enterprise deployment and fine-tuning applications.
+github_stars: 1500
+last_verified: '2026-06-03'
+name: StabilityAI Stable LM
+pricing_model: free
+slug: stabilityai-stable-lm
+status: active
+subcategory: open-source
+track: developers
+type: oss
+url: https://stability.ai/
 ---
 
-Stable LM family
+<div class="key-stats">
+  <div class="key-stat">
+    <span class="number">—</span>
+    <span class="label">Users</span>
+  </div>
+  <div class="key-stat">
+    <span class="number">—</span>
+    <span class="label">Rating</span>
+  </div>
+  <div class="key-stat">
+    <span class="number">—</span>
+    <span class="label">Founded</span>
+  </div>
+</div>
+
+## Overview
+
+<div class="overview">
+<p>Stability AI is the enterprise-ready creative partner for teams and creators, delivering professional-grade generative AI tools and solutions for content production at scale.</p>
+</div>
+
+## The Verdict
+
+<div class="verdict">
+  <h3>Who Should Use StabilityAI Stable LM?</h3>
+  <div class="verdict-grid">
+    <div class="verdict-section">
+      <h4>Best For</h4>
+      <ul>
+        <li>[Add best use case 1]</li>
+        <li>[Add best use case 2]</li>
+        <li>[Add best use case 3]</li>
+      </ul>
+    </div>
+    <div class="verdict-section not-for">
+      <h4>Not Ideal For</h4>
+      <ul>
+        <li>[Add limitation 1]</li>
+        <li>[Add limitation 2]</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="pros-cons">
+  <div class="pros-list">
+    <h3>What's Great</h3>
+    <ul>
+      <li>HubSpot accelerates creative production with professional-quality images.Learn how HubSpot enables c</li>
+      <li>Enterprise retailers choose Stability AI to create high-quality product visuals that convert.See how</li>
+      <li>Innovative brands bring ideas to market faster with state-of-the-art generation tools.Discover how S</li>
+    </ul>
+    <div class="source"><a href="https://stability.ai/" target="_blank">Official Site</a></div>
+  </div>
+  <div class="cons-list">
+    <h3>Watch Out For</h3>
+    <ul>
+      <li>[Research G2/Capterra for cons]</li>
+      <li>[Add con 2]</li>
+    </ul>
+    <div class="source"><a href="https://www.g2.com/" target="_blank">G2 Reviews</a></div>
+  </div>
+</div>
+
+## Pricing
+
+<div class="pricing-grid">
+  <a href="https://stability.ai/pricing" class="pricing-card" target="_blank" rel="noopener">
+    <div class="plan-name">Free</div>
+    <div class="price">$0</div>
+    <div class="desc">Trial Free Start creating in Brand Studio now with</div>
+  </a>
+  <a href="https://stability.ai/pricing" class="pricing-card featured" target="_blank" rel="noopener">
+    <div class="plan-name">Core</div>
+    <div class="price">$50<small>/mo</small></div>
+    <div class="desc">Core $50 /month For creative professionals who wan</div>
+  </a>
+</div>
+
+<details class="more-details">
+<summary>View all features & details</summary>
+
+<div class="detail-grid">
+  <div class="detail-section">
+    <h4>Key Features</h4>
+    <ul>
+      <li>HubSpot accelerates creative production with professional-quality images.Learn how HubSpot enables c</li><li>Enterprise retailers choose Stability AI to create high-quality product visuals that convert.See how</li><li>Innovative brands bring ideas to market faster with state-of-the-art generation tools.Discover how S</li>
+    </ul>
+  </div>
+  <div class="detail-section">
+    <h4>Platforms</h4>
+    <ul>
+      <li>[Add supported platforms]</li>
+    </ul>
+  </div>
+</div>
+
+</details>
+
+## How It Compares
+
+<div class="comparison" markdown="1">
+
+| Feature | StabilityAI Stable LM | Competitor 1 | Competitor 2 |
+|---------|--------|--------------|--------------|
+| Key Feature | — | — | — |
+| Pricing | — | — | — |
+| Best For | — | — | — |
+
+</div>

@@ -7,10 +7,12 @@ track: "developers"
 category: "observability-safety"
 subcategory: "llm-observability"
 status: "active"
+description: "Enterprise observability for LLMs integrated into Datadog platform. Monitors LLM costs, latency, and quality with full-stack observability and existing infrastructure integration."
+pricing_model: "usage-based"
 
 # AI-Managed Metadata
-last_verified: "2026-06-02"
+last_verified: "2026-06-03"
 confidence_score: 0.9
 ---
 
-Enterprise default
+Enterprise-grade LLM observability within the Datadog platform.

@@ -7,10 +7,13 @@ track: "developers"
 category: "observability-safety"
 subcategory: "guardrails"
 status: "active"
+description: "NVIDIA's open-source toolkit for implementing guardrails on LLMs. Uses configuration-as-code for defining conversational rules, handling harmful content, and preventing undesired behaviors with rail specifications."
+github_stars: 5100
+pricing_model: "free"
 
 # AI-Managed Metadata
-last_verified: "2026-06-02"
+last_verified: "2026-06-03"
 confidence_score: 0.9
 ---
 
-NVIDIA's OSS toolkit
+NVIDIA's open-source framework for LLM guardrails with rail specifications.

@@ -100,8 +100,12 @@ body > div:not(.cookie-banner):not(#tooltip) > ins.adsbygoogle {
 }
 
 /* Ensure main content sections maintain their layout (when visible) */
-.hero:not(.hidden), .controls:not(.hidden), .stats-bar:not(.hidden), .landscape:not(.hidden), .search-results:not(.hidden) {
+.hero:not(.hidden), .controls:not(.hidden), .stats-bar:not(.hidden), .landscape:not(.hidden) {
     display: flex;
+}
+
+.search-results:not(.hidden) {
+    display: block;
 }
 
 .hero:not(.hidden) {
@@ -113,6 +117,21 @@ body > div:not(.cookie-banner):not(#tooltip) > ins.adsbygoogle {
 }
 
 .landscape:not(.hidden) {
+    flex-wrap: wrap;
+}
+
+/* On landscape page, elements are always visible (no hidden class) */
+.controls {
+    display: flex;
+    flex-direction: column;
+}
+
+.stats-bar {
+    display: flex;
+}
+
+.landscape {
+    display: flex;
     flex-wrap: wrap;
 }
 
@@ -225,6 +244,16 @@ a:hover {
     color: var(--vscode-text);
     background: var(--vscode-list-hover);
     text-decoration: none;
+}
+
+.nav-link-text {
+    font-size: 13px;
+    padding: 4px 10px;
+}
+
+.nav-active {
+    color: var(--vscode-text);
+    background: var(--vscode-list-active);
 }
 
 /* Hero - VS Code Welcome Tab Style */
@@ -470,37 +499,60 @@ a:hover {
     max-width: 220px !important;
 }
 
-/* Even more compact when filtering - smaller cards */
+/* Even more compact when filtering - smaller cards, maximum density */
 .landscape.compact-filter {
-    display: block;
-    text-align: center;
-    padding: 0.5rem 0.25rem;
+    column-count: 6;
+    column-gap: 3px;
+    padding: 0.25rem;
+}
+
+@media (max-width: 1600px) {
+    .landscape.compact-filter {
+        column-count: 5;
+    }
+}
+
+@media (max-width: 1300px) {
+    .landscape.compact-filter {
+        column-count: 4;
+    }
+}
+
+@media (max-width: 1000px) {
+    .landscape.compact-filter {
+        column-count: 3;
+    }
+}
+
+@media (max-width: 700px) {
+    .landscape.compact-filter {
+        column-count: 2;
+    }
 }
 
 .landscape.compact-filter .category {
-    display: inline-flex;
-    flex-direction: column;
-    vertical-align: top;
-    margin: 2px;
-    flex: 0 0 200px !important;
-    width: 200px !important;
-    min-width: 200px !important;
-    max-width: 200px !important;
+    display: inline-block;
+    width: 100% !important;
+    min-width: unset !important;
+    max-width: unset !important;
+    flex: unset !important;
+    margin-bottom: 3px;
+    break-inside: avoid;
 }
 
 .landscape.compact-filter .tool-card {
-    min-height: 50px;
-    padding: 3px;
+    min-height: 40px;
+    padding: 2px;
 }
 
 .landscape.compact-filter .tool-icon {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
 }
 
 .landscape.compact-filter .tool-icon img {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
 }
 
 .landscape.compact-filter .tool-name {
@@ -508,16 +560,46 @@ a:hover {
 }
 
 .landscape.compact-filter .subcategory-title {
-    font-size: 8px;
+    font-size: 7px;
+    margin-bottom: 2px;
+    padding-bottom: 1px;
 }
 
 .landscape.compact-filter .category-title {
-    font-size: 10px;
+    font-size: 9px;
+}
+
+.landscape.compact-filter .category-content {
+    padding: 3px;
+}
+
+.landscape.compact-filter .subcategory {
+    margin-bottom: 3px;
 }
 
 .landscape.compact-filter .tools-grid {
-    grid-template-columns: repeat(auto-fill, minmax(55px, 1fr));
-    gap: 2px;
+    grid-template-columns: repeat(auto-fill, minmax(45px, 1fr));
+    gap: 1px;
+}
+
+.landscape.compact-filter .tool-badges {
+    display: none;
+}
+
+.landscape.compact-filter .category-header {
+    padding: 3px 6px;
+    min-height: 28px !important;
+}
+
+.landscape.compact-filter .category:not(.collapsed) .category-header {
+    min-height: 28px !important;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.landscape.compact-filter .category-count {
+    font-size: 8px;
+    padding: 0 4px;
 }
 
 /* Category Section - Base styles (width controlled by .landscape .category) */
@@ -1380,11 +1462,11 @@ a:hover {
     display: none;
 }
 
-/* Search Results Section */
+/* Search Results Section - Full width */
 .search-results {
-    max-width: 1000px;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 0 1rem 2rem;
+    padding: 0 1.5rem 1.5rem;
 }
 
 .results-header {
@@ -1418,24 +1500,26 @@ a:hover {
     color: var(--vscode-text);
 }
 
-/* Results Grid - Flat layout */
+/* Results Grid - Larger cards for readability */
 .results-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 16px;
 }
 
-/* Result Card - Larger, more info */
+/* Result Card - Full info display */
 .result-card {
     background: var(--vscode-sidebar-bg);
     border: 1px solid var(--vscode-border);
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 16px;
     cursor: pointer;
     transition: var(--transition);
     display: flex;
+    flex-direction: row;
     align-items: flex-start;
     gap: 14px;
+    position: relative;
 }
 
 .result-card:hover {
@@ -1449,16 +1533,40 @@ a:hover {
     transform: translateY(0);
 }
 
+/* Type indicator stripe on left edge */
+.result-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    border-radius: 8px 0 0 8px;
+}
+
+.result-card[data-type="oss"]::before {
+    background: var(--color-oss);
+}
+
+.result-card[data-type="saas"]::before {
+    background: var(--color-saas);
+}
+
+.result-card[data-type="commercial"]::before {
+    background: var(--color-commercial);
+}
+
+/* Icon - larger */
 .result-icon {
-    width: 48px;
-    height: 48px;
-    min-width: 48px;
-    border-radius: 6px;
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    border-radius: 10px;
     background: var(--vscode-input-bg);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
+    font-size: 20px;
     color: var(--vscode-keyword);
     font-weight: 600;
     overflow: hidden;
@@ -1466,46 +1574,93 @@ a:hover {
 }
 
 .result-icon img {
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     object-fit: contain;
-    border-radius: 4px;
+    border-radius: 6px;
 }
 
-.result-info {
+/* Content wrapper */
+.result-header {
+    display: flex;
+    flex-direction: column;
     flex: 1;
     min-width: 0;
+    gap: 6px;
 }
 
 .result-name {
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 600;
     color: var(--vscode-text);
-    margin-bottom: 4px;
+    line-height: 1.2;
 }
 
+/* Description - show full text, wrap to multiple lines */
 .result-desc {
-    font-size: 13px;
+    font-size: 14px;
     color: var(--vscode-text-muted);
-    line-height: 1.4;
-    margin-bottom: 8px;
+    line-height: 1.5;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
+/* Meta row */
 .result-meta {
     display: flex;
     align-items: center;
-    gap: 10px;
     flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
 }
 
 .result-category {
-    font-size: 11px;
+    font-size: 12px;
     color: var(--vscode-type);
     font-family: 'Consolas', 'Courier New', monospace;
+}
+
+.result-meta-bottom {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.result-users {
+    font-size: 12px;
+    color: var(--vscode-string);
+    font-family: 'Consolas', 'Courier New', monospace;
+}
+
+.result-pricing {
+    font-size: 12px;
+    color: var(--vscode-function);
+    font-family: 'Consolas', 'Courier New', monospace;
+    padding: 3px 8px;
+    background: rgba(79, 193, 255, 0.1);
+    border-radius: 4px;
+}
+
+/* Stars badge */
+.result-card .stars-badge {
+    padding: 4px 10px;
+    font-size: 12px;
+    gap: 4px;
+    border-radius: 5px;
+}
+
+.result-card .stars-badge .star-icon {
+    width: 12px;
+    height: 12px;
+}
+
+/* Type badge */
+.result-card .badge {
+    font-size: 11px;
+    padding: 3px 8px;
 }
 
 /* No Results State */
@@ -1565,7 +1720,7 @@ a:hover {
 
     .results-grid {
         grid-template-columns: 1fr;
-        gap: 10px;
+        gap: 12px;
     }
 
     .result-card {
@@ -1573,22 +1728,23 @@ a:hover {
     }
 
     .result-icon {
-        width: 40px;
-        height: 40px;
-        min-width: 40px;
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
     }
 
     .result-icon img {
-        width: 28px;
-        height: 28px;
+        width: 32px;
+        height: 32px;
     }
 
     .result-name {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .result-desc {
-        font-size: 12px;
+        font-size: 13px;
+        -webkit-line-clamp: 2;
     }
 }
 
@@ -1804,5 +1960,380 @@ a:hover {
     .cookie-buttons {
         width: 100%;
         justify-content: center;
+    }
+}
+
+/* ============================================
+   TOOL PAGE STYLES - Clean Minimal Design
+   ============================================ */
+
+.tool-page {
+    max-width: 800px !important;
+    margin: 0 auto !important;
+    padding: 3rem 1.5rem !important;
+    background: var(--vscode-editor-bg) !important;
+}
+
+.tool-page article {
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Hero Section */
+.tool-page .tool-header {
+    text-align: center !important;
+    margin-bottom: 2rem !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+.tool-page .tool-header h1 {
+    font-size: 2.5rem !important;
+    color: #ffffff !important;
+    margin: 0 0 1rem 0 !important;
+    font-weight: 700 !important;
+}
+
+.tool-page .tool-meta {
+    display: flex !important;
+    gap: 0.5rem !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.tool-page .tool-meta span {
+    font-size: 0.7rem !important;
+    padding: 0.35rem 0.75rem !important;
+    border-radius: 9999px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
+    font-weight: 600 !important;
+}
+
+.tool-page .tool-type {
+    background: #007acc !important;
+    color: white !important;
+}
+.tool-page .tool-category {
+    background: #3c3c3c !important;
+    color: #858585 !important;
+}
+.tool-page .tool-pricing {
+    background: #4ec9b0 !important;
+    color: #1e1e1e !important;
+}
+
+.tool-page .tool-description {
+    color: #cccccc !important;
+    font-size: 1.15rem !important;
+    line-height: 1.7 !important;
+    margin-bottom: 2rem !important;
+    max-width: 600px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.tool-page .tool-link {
+    display: inline-block !important;
+    background: #007acc !important;
+    color: white !important;
+    padding: 1rem 2.5rem !important;
+    border-radius: 8px !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    transition: all 0.15s ease !important;
+}
+
+.tool-page .tool-link:hover {
+    background: #1177bb !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Key Stats Row */
+.tool-page .key-stats {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 3rem !important;
+    padding: 2rem 0 !important;
+    margin: 2rem 0 !important;
+    border-top: 1px solid #3c3c3c !important;
+    border-bottom: 1px solid #3c3c3c !important;
+    background: transparent !important;
+}
+
+.tool-page .key-stat {
+    text-align: center !important;
+}
+
+.tool-page .key-stat .number {
+    font-size: 2rem !important;
+    font-weight: 700 !important;
+    color: #007acc !important;
+    display: block !important;
+    line-height: 1 !important;
+}
+
+.tool-page .key-stat .label {
+    font-size: 0.75rem !important;
+    color: #858585 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    margin-top: 0.5rem !important;
+    display: block !important;
+}
+
+/* Content Sections */
+.tool-page .tool-content {
+    padding: 0 !important;
+}
+
+/* Section Headers */
+.tool-page .tool-content h2 {
+    font-size: 1rem !important;
+    color: #858585 !important;
+    margin: 3rem 0 1.5rem 0 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    font-weight: 600 !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+/* Pros & Cons Grid */
+.tool-page .pros-cons {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1.5rem !important;
+    margin: 2rem 0 !important;
+}
+
+.tool-page .pros-list,
+.tool-page .cons-list {
+    background: #252526 !important;
+    border-radius: 12px !important;
+    padding: 1.5rem !important;
+    border: 1px solid #3c3c3c !important;
+}
+
+.tool-page .pros-list h3,
+.tool-page .cons-list h3 {
+    font-size: 0.85rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    margin: 0 0 1rem 0 !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+.tool-page .pros-list h3 {
+    color: #4ec9b0 !important;
+}
+.tool-page .cons-list h3 {
+    color: #ce9178 !important;
+}
+
+.tool-page .pros-list ul,
+.tool-page .cons-list ul {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.tool-page .pros-list li,
+.tool-page .cons-list li {
+    padding: 0.6rem 0 !important;
+    padding-left: 1.5rem !important;
+    border-bottom: 1px solid #3c3c3c !important;
+    font-size: 0.9rem !important;
+    color: #cccccc !important;
+    position: relative !important;
+}
+
+.tool-page .pros-list li:last-child,
+.tool-page .cons-list li:last-child {
+    border-bottom: none !important;
+}
+
+.tool-page .pros-list li::before {
+    content: "✓" !important;
+    color: #4ec9b0 !important;
+    font-weight: bold !important;
+    position: absolute !important;
+    left: 0 !important;
+}
+
+.tool-page .cons-list li::before {
+    content: "✗" !important;
+    color: #ce9178 !important;
+    font-weight: bold !important;
+    position: absolute !important;
+    left: 0 !important;
+}
+
+/* Pricing Cards */
+.tool-page .pricing-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 1rem !important;
+    margin: 1.5rem 0 !important;
+}
+
+.tool-page .pricing-card {
+    background: #252526 !important;
+    border: 1px solid #3c3c3c !important;
+    border-radius: 12px !important;
+    padding: 1.5rem 1rem !important;
+    text-align: center !important;
+    transition: all 0.15s ease !important;
+}
+
+.tool-page .pricing-card:hover {
+    border-color: #007acc !important;
+    transform: translateY(-2px) !important;
+}
+
+.tool-page .pricing-card.featured {
+    border-color: #007acc !important;
+    background: linear-gradient(135deg, rgba(0,122,204,0.15), rgba(0,122,204,0.05)) !important;
+}
+
+.tool-page .pricing-card .plan-name {
+    font-weight: 600 !important;
+    color: #cccccc !important;
+    margin-bottom: 0.5rem !important;
+    font-size: 0.9rem !important;
+}
+
+.tool-page .pricing-card .price {
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    color: #007acc !important;
+}
+
+.tool-page .pricing-card .price small {
+    font-size: 0.75rem !important;
+    color: #858585 !important;
+    font-weight: normal !important;
+}
+
+.tool-page .pricing-card .desc {
+    font-size: 0.75rem !important;
+    color: #858585 !important;
+    margin-top: 0.5rem !important;
+}
+
+/* Details Section */
+.tool-page details.more-details {
+    display: block !important;
+    margin-top: 3rem !important;
+    padding-top: 2rem !important;
+    border-top: 1px solid #3c3c3c !important;
+}
+
+.tool-page details.more-details summary {
+    font-size: 0.9rem !important;
+    color: #858585 !important;
+    cursor: pointer !important;
+    padding: 0.5rem 0 !important;
+    list-style: none !important;
+}
+
+.tool-page details.more-details summary::-webkit-details-marker {
+    display: none !important;
+}
+
+.tool-page details.more-details .detail-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 2rem !important;
+    margin-top: 1.5rem !important;
+}
+
+.tool-page .detail-section h4 {
+    font-size: 0.75rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
+    color: #858585 !important;
+    margin: 0 0 0.75rem 0 !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+.tool-page .detail-section ul {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.tool-page .detail-section li {
+    font-size: 0.85rem !important;
+    color: #cccccc !important;
+    padding: 0.35rem 0 !important;
+    border: none !important;
+}
+
+.tool-page .detail-section li::before {
+    display: none !important;
+}
+
+/* GitHub Link */
+.tool-page .tool-github {
+    display: flex !important;
+    justify-content: center !important;
+    padding: 2rem 0 !important;
+    margin-top: 2rem !important;
+    border-top: 1px solid #3c3c3c !important;
+    background: transparent !important;
+}
+
+.tool-page .tool-github a {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    color: #858585 !important;
+    text-decoration: none !important;
+    font-size: 0.9rem !important;
+}
+
+.tool-page .tool-github a:hover {
+    color: #3794ff !important;
+}
+
+/* Hide unwanted elements */
+.tool-page .tool-categories {
+    display: none !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .tool-page {
+        padding: 2rem 1rem !important;
+    }
+
+    .tool-page .tool-header h1 {
+        font-size: 1.75rem !important;
+    }
+
+    .tool-page .key-stats {
+        flex-wrap: wrap !important;
+        gap: 1.5rem !important;
+    }
+
+    .tool-page .key-stat .number {
+        font-size: 1.5rem !important;
+    }
+
+    .tool-page .pros-cons {
+        grid-template-columns: 1fr !important;
+    }
+
+    .tool-page .pricing-grid {
+        grid-template-columns: 1fr 1fr !important;
+    }
+
+    .tool-page details.more-details .detail-grid {
+        grid-template-columns: 1fr 1fr !important;
     }
 }

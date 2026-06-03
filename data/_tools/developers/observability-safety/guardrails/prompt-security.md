@@ -7,10 +7,12 @@ track: "developers"
 category: "observability-safety"
 subcategory: "guardrails"
 status: "active"
+description: "Runtime security platform for LLM applications. Detects prompt injections, data exfiltration attempts, and compliance violations with real-time monitoring and response capabilities."
+pricing_model: "custom"
 
 # AI-Managed Metadata
-last_verified: "2026-06-02"
+last_verified: "2026-06-03"
 confidence_score: 0.9
 ---
 
-Runtime LLM security
+Runtime LLM security and threat detection platform.
