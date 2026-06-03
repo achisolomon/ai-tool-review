@@ -43,6 +43,9 @@ jobs:
       - name: Validate GitHub Actions workflows
         run: npm run validate:workflows
 
+      - name: Build Jekyll site
+        run: bundle exec jekyll build
+
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
