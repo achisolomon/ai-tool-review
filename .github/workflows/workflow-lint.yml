@@ -1,0 +1,90 @@
+name: Lint GitHub Actions Workflows
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/**'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/**'
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  lint-workflows:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate workflow syntax
+        run: |
+          echo "Validating GitHub Actions workflow syntax..."
+          for file in .github/workflows/*.yml; do
+            echo "Checking $file"
+            # Use yq to validate YAML syntax
+            if ! yq eval '.' "$file" > /dev/null 2>&1; then
+              echo "ERROR: Invalid YAML in $file"
+              exit 1
+            fi
+            echo "  YAML syntax: OK"
+          done
+          echo "All workflow files have valid YAML syntax"
+
+      - name: Check for deprecated Node.js versions
+        run: |
+          echo "Checking for deprecated Node.js versions in workflows..."
+          ISSUES_FOUND=0
+
+          for file in .github/workflows/*.yml; do
+            # Check for node-version: '18' or '20' without the env variable
+            if grep -q "node-version.*['\"]\\(18\\|20\\)['\"]" "$file"; then
+              # Check if FORCE_JAVASCRIPT_ACTIONS_TO_NODE24 is set
+              if ! grep -q "FORCE_JAVASCRIPT_ACTIONS_TO_NODE24" "$file"; then
+                echo "WARNING: $file uses Node.js 18/20 without FORCE_JAVASCRIPT_ACTIONS_TO_NODE24"
+                ISSUES_FOUND=1
+              fi
+            fi
+          done
+
+          if [ $ISSUES_FOUND -eq 1 ]; then
+            echo ""
+            echo "Consider adding this env var at workflow level to avoid Node.js deprecation:"
+            echo "  env:"
+            echo "    FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true"
+          fi
+
+          echo "Node.js version check complete"
+
+      - name: Check for outdated action versions
+        run: |
+          echo "Checking for potentially outdated actions..."
+
+          # List of common actions to check
+          declare -A RECOMMENDED_VERSIONS
+          RECOMMENDED_VERSIONS["actions/checkout"]="v4"
+          RECOMMENDED_VERSIONS["actions/setup-node"]="v4"
+          RECOMMENDED_VERSIONS["actions/upload-artifact"]="v4"
+          RECOMMENDED_VERSIONS["actions/download-artifact"]="v4"
+          RECOMMENDED_VERSIONS["actions/configure-pages"]="v5"
+          RECOMMENDED_VERSIONS["actions/upload-pages-artifact"]="v3"
+          RECOMMENDED_VERSIONS["actions/deploy-pages"]="v4"
+          RECOMMENDED_VERSIONS["ruby/setup-ruby"]="v1"
+
+          for file in .github/workflows/*.yml; do
+            echo "Scanning $file..."
+            for action in "${!RECOMMENDED_VERSIONS[@]}"; do
+              recommended="${RECOMMENDED_VERSIONS[$action]}"
+              # Check if action is used with a different version
+              if grep -q "uses: $action@" "$file"; then
+                used_version=$(grep -oP "uses: $action@\K[^\s]+" "$file" | head -1)
+                if [ "$used_version" != "$recommended" ]; then
+                  echo "  INFO: $action@$used_version (recommended: $recommended)"
+                fi
+              fi
+            done
+          done
+
+          echo "Action version check complete"

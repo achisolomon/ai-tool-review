@@ -1,0 +1,26 @@
+{
+  "name": "ai-tool-review",
+  "version": "1.0.0",
+  "description": "AI Tool Review - Find the Right AI Tool for the Job",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed",
+    "serve": "node server.js",
+    "serve:jekyll": "bundle exec jekyll serve --port 8080",
+    "serve:static": "python3 -m http.server 8080 --directory _site",
+    "validate": "ruby scripts/validate-no-duplicates.rb data/_tools",
+    "validate:data": "node scripts/validate-data-js.js",
+    "validate:workflows": "node scripts/validate-workflows.js",
+    "generate": "ruby scripts/generate-json.rb data/_tools js/data.js",
+    "prebuild": "npm run validate && npm run generate",
+    "postgenerate": "npm run validate:data",
+    "build": "bundle exec jekyll build",
+    "prepare": "cd .. && husky"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.44.0",
+    "husky": "^9.0.11",
+    "yaml": "^2.9.0"
+  }
+}
