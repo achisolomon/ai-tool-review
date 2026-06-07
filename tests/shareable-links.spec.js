@@ -157,4 +157,44 @@ test.describe('Shareable Links', () => {
 
   });
 
+  test.describe('Browser Navigation', () => {
+
+    test('browser back button restores previous search', async ({ page }) => {
+      await page.goto('/');
+
+      // First search
+      const searchInput = page.locator('#action-input');
+      await searchInput.fill('langchain');
+      await page.waitForTimeout(300);
+
+      // Second search
+      await searchInput.fill('vector');
+      await page.waitForTimeout(300);
+
+      // Go back
+      await page.goBack();
+
+      await expect(searchInput).toHaveValue('langchain');
+      await expect(page).toHaveURL(/\?q=langchain/);
+    });
+
+    test('browser forward button restores next search', async ({ page }) => {
+      await page.goto('/');
+
+      const searchInput = page.locator('#action-input');
+      await searchInput.fill('agent');
+      await page.waitForTimeout(300);
+
+      await searchInput.fill('rag');
+      await page.waitForTimeout(300);
+
+      await page.goBack();
+      await page.goForward();
+
+      await expect(searchInput).toHaveValue('rag');
+      await expect(page).toHaveURL(/\?q=rag/);
+    });
+
+  });
+
 });
