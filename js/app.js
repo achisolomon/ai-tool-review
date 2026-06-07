@@ -91,6 +91,28 @@ document.addEventListener('DOMContentLoaded', () => {
         document.title = `${searchTerm} - AI Tool Review`;
     }
 
+    // Update URL with current search/filter state
+    function updateURL(type, value) {
+        const url = new URL(window.location.href);
+        url.searchParams.delete('category');
+        url.searchParams.delete('subcategory');
+        url.searchParams.delete('q');
+        if (value) {
+            url.searchParams.set(type, value);
+        }
+        history.pushState({ type, value }, '', url.toString());
+    }
+
+    // Clear URL parameters
+    function clearURL() {
+        const url = new URL(window.location.href);
+        url.searchParams.delete('category');
+        url.searchParams.delete('subcategory');
+        url.searchParams.delete('q');
+        history.pushState({}, '', url.toString());
+        document.title = 'AI Tool Review - Find the Right AI Tool for the Job';
+    }
+
     // Format star count (e.g., 15400 -> "15.4k")
     function formatStars(count) {
         if (!count || count < 0) return null;
@@ -162,6 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Autocomplete state
     let autocompleteItems = [];
     let selectedAutocompleteIndex = -1;
+    let isSelectingFromAutocomplete = false;
 
     // Get all categories and subcategories for autocomplete
     function getCategoriesAndSubcategories() {
@@ -366,18 +389,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle autocomplete selection
     function selectAutocompleteItem(item) {
         autocompleteDropdown.classList.add('hidden');
+
+        // Set flag to prevent input event from triggering search
+        isSelectingFromAutocomplete = true;
         actionInput.value = item.name;
+        // Reset flag after a short delay
+        setTimeout(() => { isSelectingFromAutocomplete = false; }, 50);
 
         if (item.type === 'category') {
             // Show all tools in this category
             const tools = getToolsByCategory(item.id || item.name);
             searchResults.classList.remove('hidden');
             renderSearchResults(tools);
+            updateURL('category', item.id);
+            updatePageTitle(item.name);
         } else if (item.type === 'subcategory') {
             // Show all tools in this subcategory
             const tools = getToolsByCategory(item.categoryId || item.categoryName, item.id || item.name);
             searchResults.classList.remove('hidden');
             renderSearchResults(tools);
+            updateURL('subcategory', item.id);
+            updatePageTitle(item.name);
         } else if (item.type === 'tool') {
             // Navigate to tool page
             window.location.href = `/tools/${item.slug}/`;
@@ -587,12 +619,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (query.trim() === '') {
             searchResults.classList.add('hidden');
+            clearURL();
             return;
         }
 
         searchResults.classList.remove('hidden');
         const results = searchByIntent(query);
         renderSearchResults(results);
+        updateURL('q', query);
+        updatePageTitle(query);
     }
 
     // Perform search (alias for handleSearch, used by delayed search)
@@ -608,6 +643,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         actionInput.addEventListener('input', (e) => {
             const value = e.target.value.trim();
+
+            // Don't trigger search if selecting from autocomplete
+            if (isSelectingFromAutocomplete) {
+                return;
+            }
 
             // Show autocomplete suggestions
             clearTimeout(autocompleteTimeout);
@@ -668,6 +708,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 searchResults.classList.add('hidden');
                 autocompleteDropdown.classList.add('hidden');
                 selectedAutocompleteIndex = -1;
+                clearURL();
             }
         });
 
@@ -695,6 +736,7 @@ document.addEventListener('DOMContentLoaded', () => {
             searchQuery = '';
             searchResults.classList.add('hidden');
             autocompleteDropdown.classList.add('hidden');
+            clearURL();
             actionInput.focus();
         });
 
@@ -722,6 +764,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 searchQuery = '';
                 searchResults.classList.add('hidden');
                 autocompleteDropdown.classList.add('hidden');
+                clearURL();
             }
         });
 
