@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Popstate Test</title>
+</head>
+<body>
+    <input type="text" id="test-input" value="">
+    <div id="log"></div>
+    <script>
+        const input = document.getElementById('test-input');
+        const log = document.getElementById('log');
+        
+        function addLog(msg) {
+            log.innerHTML += msg + '<br>';
+            console.log(msg);
+        }
+        
+        input.addEventListener('input', (e) => {
+            const value = e.target.value;
+            setTimeout(() => {
+                const url = new URL(window.location.href);
+                url.searchParams.set('q', value);
+                history.pushState({ q: value }, '', url.toString());
+                addLog('Pushed state: ' + value);
+            }, 250);
+        });
+        
+        window.addEventListener('popstate', (e) => {
+            addLog('Popstate fired');
+            const params = new URLSearchParams(window.location.search);
+            const query = params.get('q');
+            addLog('Query from URL: ' + query);
+            input.value = query || '';
+            addLog('Set input value to: ' + input.value);
+        });
+        
+        addLog('Ready');
+    </script>
+</body>
+</html>

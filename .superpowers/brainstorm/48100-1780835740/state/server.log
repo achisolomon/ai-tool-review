@@ -1,0 +1,6 @@
+{"type":"server-started","port":64649,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:64649","screen_dir":"/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/ai-tool-review/.superpowers/brainstorm/48100-1780835740/content","state_dir":"/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/ai-tool-review/.superpowers/brainstorm/48100-1780835740/state"}
+{"type":"screen-added","file":"/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/ai-tool-review/.superpowers/brainstorm/48100-1780835740/content/waiting.html"}
+{"type":"screen-added","file":"/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/ai-tool-review/.superpowers/brainstorm/48100-1780835740/content/copy-link-ui.html"}
+{"source":"user-event","type":"click","text":"A\n    \n      In Results Header\n      Next to \"X tools found\" — compact, always visible when results show\n      \n        \n          12 tools found\n          \n            \n              \n              Copy Link\n            \n            Clear","choice":"a","id":null,"timestamp":1780837373784}
+{"type":"screen-added","file":"/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/ai-tool-review/.superpowers/brainstorm/48100-1780835740/content/waiting-review.html"}
+{"type":"server-stopped","reason":"idle timeout"}

@@ -1,0 +1,64 @@
+<h2>Copy Link Button Placement</h2>
+<p class="subtitle">Where should the "Copy Link" button appear when viewing a filtered category?</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>In Results Header</h3>
+      <p>Next to "X tools found" — compact, always visible when results show</p>
+      <div class="mockup" style="margin-top: 12px;">
+        <div style="background: #2a2a2a; padding: 12px 16px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
+          <span style="color: #888;">12 tools found</span>
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <button style="background: #3a3a3a; border: 1px solid #4a9eff; color: #4a9eff; padding: 6px 12px; border-radius: 6px; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 6px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              Copy Link
+            </button>
+            <button style="background: transparent; border: none; color: #888; cursor: pointer;">Clear</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Floating Badge on Category Tag</h3>
+      <p>A share icon appears when hovering/clicking the category highlight badge</p>
+      <div class="mockup" style="margin-top: 12px;">
+        <div style="background: #2a2a2a; padding: 12px 16px; border-radius: 8px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+            <span style="background: linear-gradient(135deg, #4a9eff22, #4a9eff11); border: 1px solid #4a9eff; color: #4a9eff; padding: 6px 12px; border-radius: 20px; font-size: 13px; display: flex; align-items: center; gap: 8px;">
+              Agent Frameworks
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="opacity: 0.7;"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            </span>
+            <span style="color: #666; font-size: 13px;">12 tools</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Banner Above Results</h3>
+      <p>A dedicated filter banner with category name + copy button + clear</p>
+      <div class="mockup" style="margin-top: 12px;">
+        <div style="background: linear-gradient(135deg, #4a9eff15, #4a9eff08); border: 1px solid #4a9eff33; padding: 12px 16px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="color: #888; font-size: 13px;">Showing:</span>
+            <span style="color: #4a9eff; font-weight: 500;">Agent Frameworks</span>
+            <span style="color: #666; font-size: 13px;">· 12 tools</span>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button style="background: #4a9eff22; border: 1px solid #4a9eff; color: #4a9eff; padding: 5px 10px; border-radius: 5px; font-size: 12px; cursor: pointer;">Copy Link</button>
+            <button style="background: transparent; border: 1px solid #444; color: #888; padding: 5px 10px; border-radius: 5px; font-size: 12px; cursor: pointer;">✕ Clear</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -668,6 +668,20 @@ document.addEventListener('DOMContentLoaded', () => {
         updatePageTitle(query);
     }
 
+    // Handle search without updating URL (for popstate)
+    function handleSearchWithoutPushState(query) {
+        searchQuery = query;
+
+        if (query.trim() === '') {
+            searchResults.classList.add('hidden');
+            return;
+        }
+
+        searchResults.classList.remove('hidden');
+        const results = searchByIntent(query);
+        renderSearchResults(results);
+    }
+
     // Perform search (alias for handleSearch, used by delayed search)
     function performSearch(query) {
         handleSearch(query);
@@ -821,6 +835,73 @@ document.addEventListener('DOMContentLoaded', () => {
                     performSearch(query);
                 }
             });
+        });
+
+        // Handler for browser navigation
+        function handleBrowserNavigation() {
+            const params = new URLSearchParams(window.location.search);
+            const subcategoryId = params.get('subcategory');
+            const categoryId = params.get('category');
+            const query = params.get('q');
+
+            // Hide autocomplete dropdown
+            autocompleteDropdown.classList.add('hidden');
+
+            // Blur input if focused
+            if (document.activeElement === actionInput) {
+                actionInput.blur();
+            }
+
+            // Temporarily disable the input to prevent browser restoration
+            const wasReadOnly = actionInput.readOnly;
+            actionInput.readOnly = true;
+
+            // Use setTimeout to update after browser's form restoration completes
+            setTimeout(() => {
+                if (subcategoryId) {
+                    const subcategory = findSubcategoryById(subcategoryId);
+                    if (subcategory) {
+                        actionInput.value = subcategory.name;
+                        const tools = getToolsByCategory(subcategory.categoryId, subcategory.id);
+                        searchResults.classList.remove('hidden');
+                        renderSearchResults(tools);
+                        updatePageTitle(subcategory.name);
+                    }
+                } else if (categoryId) {
+                    const category = findCategoryById(categoryId);
+                    if (category) {
+                        actionInput.value = category.name;
+                        const tools = getToolsByCategory(category.id);
+                        searchResults.classList.remove('hidden');
+                        renderSearchResults(tools);
+                        updatePageTitle(category.name);
+                    }
+                } else if (query && query.trim()) {
+                    actionInput.value = query;
+                    handleSearchWithoutPushState(query);
+                    updatePageTitle(query);
+                } else {
+                    // No params - reset to default state
+                    actionInput.value = '';
+                    searchQuery = '';
+                    searchResults.classList.add('hidden');
+                    document.title = 'AI Tool Review - Find the Right AI Tool for the Job';
+                }
+
+                // Restore readonly state
+                actionInput.readOnly = wasReadOnly;
+            }, 50);
+        }
+
+        // Browser back/forward navigation
+        window.addEventListener('popstate', handleBrowserNavigation);
+
+        // Also handle pageshow event for bfcache restoration
+        window.addEventListener('pageshow', (e) => {
+            if (e.persisted) {
+                // Page was restored from bfcache
+                handleBrowserNavigation();
+            }
         });
     }
 
