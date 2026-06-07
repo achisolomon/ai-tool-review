@@ -27,17 +27,17 @@ test.describe('Shareable Links', () => {
       await page.goto('/?category=foundation-models');
 
       const searchInput = page.locator('#action-input');
-      await expect(searchInput).toHaveValue('Foundation Models');
+      await expect(searchInput).toHaveValue('Foundation Models & Model Hubs');
 
       const results = page.locator('#search-results');
       await expect(results).not.toHaveClass(/hidden/);
     });
 
     test('?subcategory= parameter filters to subcategory', async ({ page }) => {
-      await page.goto('/?subcategory=llm-apis');
+      await page.goto('/?subcategory=model-hubs');
 
       const searchInput = page.locator('#action-input');
-      await expect(searchInput).toHaveValue('LLM APIs');
+      await expect(searchInput).toHaveValue('Model Hubs & Registries');
 
       const results = page.locator('#search-results');
       await expect(results).not.toHaveClass(/hidden/);
@@ -65,22 +65,22 @@ test.describe('Shareable Links', () => {
   test.describe('Parameter Precedence', () => {
 
     test('subcategory takes precedence over category', async ({ page }) => {
-      await page.goto('/?category=foundation-models&subcategory=llm-apis');
+      await page.goto('/?category=foundation-models&subcategory=model-hubs');
       const searchInput = page.locator('#action-input');
       // Should show the subcategory name, not the category
-      await expect(searchInput).toHaveValue('LLM APIs');
+      await expect(searchInput).toHaveValue('Model Hubs & Registries');
     });
 
     test('subcategory takes precedence over q', async ({ page }) => {
-      await page.goto('/?q=test&subcategory=llm-apis');
+      await page.goto('/?q=test&subcategory=model-hubs');
       const searchInput = page.locator('#action-input');
-      await expect(searchInput).toHaveValue('LLM APIs');
+      await expect(searchInput).toHaveValue('Model Hubs & Registries');
     });
 
     test('category takes precedence over q', async ({ page }) => {
       await page.goto('/?q=test&category=foundation-models');
       const searchInput = page.locator('#action-input');
-      await expect(searchInput).toHaveValue('Foundation Models');
+      await expect(searchInput).toHaveValue('Foundation Models & Model Hubs');
     });
 
   });
@@ -114,7 +114,7 @@ test.describe('Shareable Links', () => {
       await page.goto('/');
 
       const searchInput = page.locator('#action-input');
-      await searchInput.fill('LLM API');
+      await searchInput.fill('Model Hubs');
       await page.waitForTimeout(150);
 
       const subcategoryItem = page.locator('.autocomplete-item[data-type="subcategory"]').first();
