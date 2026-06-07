@@ -113,6 +113,43 @@ document.addEventListener('DOMContentLoaded', () => {
         document.title = 'AI Tool Review - Find the Right AI Tool for the Job';
     }
 
+    // Copy current URL to clipboard
+    async function copyLink() {
+        if (!copyLinkButton) return;
+
+        const copyText = copyLinkButton.querySelector('.copy-text');
+        if (!copyText) return;
+
+        try {
+            await navigator.clipboard.writeText(window.location.href);
+            copyLinkButton.classList.add('copied');
+            copyText.textContent = 'Copied!';
+
+            setTimeout(() => {
+                copyLinkButton.classList.remove('copied');
+                copyText.textContent = 'Copy Link';
+            }, 1500);
+        } catch (err) {
+            // Fallback for older browsers
+            const textarea = document.createElement('textarea');
+            textarea.value = window.location.href;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            copyLinkButton.classList.add('copied');
+            copyText.textContent = 'Copied!';
+
+            setTimeout(() => {
+                copyLinkButton.classList.remove('copied');
+                copyText.textContent = 'Copy Link';
+            }, 1500);
+        }
+    }
+
     // Format star count (e.g., 15400 -> "15.4k")
     function formatStars(count) {
         if (!count || count < 0) return null;
@@ -180,6 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultsCount = document.getElementById('results-count');
     const clearSearch = document.getElementById('clear-search');
     const autocompleteDropdown = document.getElementById('autocomplete-dropdown');
+    const copyLinkButton = document.getElementById('copy-link');
 
     // Autocomplete state
     let autocompleteItems = [];
@@ -739,6 +777,11 @@ document.addEventListener('DOMContentLoaded', () => {
             clearURL();
             actionInput.focus();
         });
+
+        // Copy Link button
+        if (copyLinkButton) {
+            copyLinkButton.addEventListener('click', copyLink);
+        }
 
         // Result card click - navigate to internal tool page
         resultsGrid.addEventListener('click', (e) => {
