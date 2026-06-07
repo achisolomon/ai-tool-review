@@ -114,4 +114,47 @@ test.describe('Shareable Links', () => {
 
   });
 
+  test.describe('Copy Link Button', () => {
+
+    test('Copy Link button is visible when results are showing', async ({ page }) => {
+      await page.goto('/?q=agent');
+
+      const copyButton = page.locator('#copy-link');
+      await expect(copyButton).toBeVisible();
+    });
+
+    test('Copy Link button is hidden when no results', async ({ page }) => {
+      await page.goto('/');
+
+      const copyButton = page.locator('#copy-link');
+      await expect(copyButton).not.toBeVisible();
+    });
+
+    test('clicking Copy Link copies URL to clipboard', async ({ page, context }) => {
+      await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+      await page.goto('/?q=vector');
+
+      const copyButton = page.locator('#copy-link');
+      await copyButton.click();
+
+      const clipboardText = await page.evaluate(() => navigator.clipboard.readText());
+      expect(clipboardText).toContain('?q=vector');
+    });
+
+    test('Copy Link button shows "Copied!" feedback', async ({ page, context }) => {
+      await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+      await page.goto('/?q=rag');
+
+      const copyButton = page.locator('#copy-link');
+      await copyButton.click();
+
+      await expect(copyButton).toContainText('Copied');
+
+      // Wait for it to revert
+      await page.waitForTimeout(2000);
+      await expect(copyButton).toContainText('Copy Link');
+    });
+
+  });
+
 });
