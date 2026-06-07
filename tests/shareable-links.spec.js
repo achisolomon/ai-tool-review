@@ -188,17 +188,18 @@ test.describe('Shareable Links', () => {
       // First search
       const searchInput = page.locator('#action-input');
       await searchInput.fill('langchain');
-      await page.waitForTimeout(300);
+
+      // Wait for debounce + URL update
+      await expect(page).toHaveURL(/\?q=langchain/, { timeout: 2000 });
 
       // Second search
       await searchInput.fill('vector');
-      await page.waitForTimeout(300);
+      await expect(page).toHaveURL(/\?q=vector/, { timeout: 2000 });
 
-      // Go back
+      // Go back - should restore langchain
       await page.goBack();
-
+      await expect(page).toHaveURL(/\?q=langchain/, { timeout: 2000 });
       await expect(searchInput).toHaveValue('langchain');
-      await expect(page).toHaveURL(/\?q=langchain/);
     });
 
     test('browser forward button restores next search', async ({ page }) => {
@@ -206,16 +207,19 @@ test.describe('Shareable Links', () => {
 
       const searchInput = page.locator('#action-input');
       await searchInput.fill('agent');
-      await page.waitForTimeout(300);
+      await expect(page).toHaveURL(/\?q=agent/, { timeout: 2000 });
 
       await searchInput.fill('rag');
-      await page.waitForTimeout(300);
+      await expect(page).toHaveURL(/\?q=rag/, { timeout: 2000 });
 
+      // Go back
       await page.goBack();
-      await page.goForward();
+      await expect(page).toHaveURL(/\?q=agent/, { timeout: 2000 });
 
+      // Then go forward
+      await page.goForward();
+      await expect(page).toHaveURL(/\?q=rag/, { timeout: 2000 });
       await expect(searchInput).toHaveValue('rag');
-      await expect(page).toHaveURL(/\?q=rag/);
     });
 
   });
