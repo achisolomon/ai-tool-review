@@ -1,15 +1,15 @@
-# Shareable Category Links Design
+# Shareable Search Links Design
 
 **Date:** 2026-06-07
 **Status:** Approved
 
 ## Overview
 
-Add the ability to share links to specific categories or subcategories on the AI Tool Review homepage. When a user finds a category like "Agent Frameworks", they can copy a shareable URL that, when opened, shows the same filtered view.
+Add the ability to share links to search results, categories, or subcategories on the AI Tool Review homepage. When a user searches for "RAG tools" or selects the "Agent Frameworks" category, they can copy a shareable URL that, when opened, shows the same results.
 
 ## Use Case
 
-**Discovery sharing:** A user searches and finds a category/subcategory of tools, then shares the link with a colleague so they see the same filtered results immediately.
+**Discovery sharing:** A user searches or filters tools, then shares the link with a colleague so they see the same results immediately.
 
 ## Scope
 
@@ -23,12 +23,14 @@ Add the ability to share links to specific categories or subcategories on the AI
 
 | Parameter | Example | Description |
 |-----------|---------|-------------|
+| `q` | `?q=RAG+tools` | Free-text search query |
 | `category` | `?category=agent-frameworks` | Filters to a main category |
 | `subcategory` | `?subcategory=rag` | Filters to a specific subcategory |
 
 ### Examples
 
 ```
+https://aitoolreview.com/?q=code+assistant
 https://aitoolreview.com/?category=foundation-models
 https://aitoolreview.com/?subcategory=code-assistants
 ```
@@ -36,9 +38,10 @@ https://aitoolreview.com/?subcategory=code-assistants
 ### Rules
 
 - Only one filter active at a time
-- If both parameters present, `subcategory` takes precedence (more specific)
-- IDs come from the existing `id` field in `landscapeData`
-- Invalid/unknown IDs show "No tools found" (existing empty state)
+- Precedence if multiple params present: `subcategory` > `category` > `q`
+- Category/subcategory IDs come from the existing `id` field in `landscapeData`
+- Invalid/unknown category IDs show "No tools found" (existing empty state)
+- Search queries with no matches show "No tools found"
 
 ## UI Design
 
@@ -53,7 +56,7 @@ The Copy Link button appears in the **results header**, next to the tool count:
 ```
 
 - Button style: outlined, accent color (`#4a9eff`), with link icon
-- Only visible when results are showing (category/subcategory selected or search performed)
+- Only visible when results are showing (search performed or category/subcategory selected)
 
 ### Copy Feedback
 
@@ -63,6 +66,13 @@ The Copy Link button appears in the **results header**, next to the tool count:
 4. After 1.5 seconds, reverts to "Copy Link"
 
 ## Interaction Flow
+
+### User Performs Free-Text Search
+
+1. User types in search box and presses Enter (or pauses typing)
+2. Results grid populates with matching tools (existing behavior)
+3. URL updates via `history.pushState()` to include `?q=search+term`
+4. Results header shows tool count + Copy Link button + Clear button
 
 ### User Selects Category from Autocomplete
 
@@ -74,12 +84,11 @@ The Copy Link button appears in the **results header**, next to the tool count:
 
 1. Page loads
 2. JavaScript reads `URLSearchParams` on `DOMContentLoaded`
-3. If `category` or `subcategory` param exists:
-   - Look up the display name from `landscapeData` (e.g., ID `agent-frameworks` → display name "Agent Frameworks")
-   - Populate search input with the display name
-   - Trigger filter to show matching tools
-   - Update page title to "Agent Frameworks - AI Tool Review"
-   - Display results with Copy Link button visible
+3. Check params in order of precedence (`subcategory` > `category` > `q`):
+   - **For category/subcategory:** Look up display name from `landscapeData`, populate search input, trigger filter
+   - **For search query (`q`):** Populate search input with the query string, trigger search
+4. Update page title to "{Search Term} - AI Tool Review"
+5. Display results with Copy Link button visible
 
 ### User Clears Filter
 
@@ -108,18 +117,28 @@ The Copy Link button appears in the **results header**, next to the tool count:
 // Read URL params on page load
 function initFromURL() {
   const params = new URLSearchParams(window.location.search);
-  const category = params.get('category');
   const subcategory = params.get('subcategory');
-  // Trigger appropriate filter...
+  const category = params.get('category');
+  const query = params.get('q');
+
+  // Check in order of precedence
+  if (subcategory) {
+    // Trigger subcategory filter...
+  } else if (category) {
+    // Trigger category filter...
+  } else if (query) {
+    // Trigger search with query...
+  }
 }
 
-// Update URL when filter changes
-function updateURL(type, id) {
+// Update URL when filter/search changes
+function updateURL(type, value) {
   const url = new URL(window.location);
   url.searchParams.delete('category');
   url.searchParams.delete('subcategory');
-  if (id) {
-    url.searchParams.set(type, id);
+  url.searchParams.delete('q');
+  if (value) {
+    url.searchParams.set(type, value);
   }
   history.pushState({}, '', url);
 }
@@ -141,15 +160,19 @@ async function copyLink() {
 | Scenario | Behavior |
 |----------|----------|
 | Invalid category ID | Show "No tools found" empty state |
-| Both params present | `subcategory` takes precedence |
-| Direct navigation to `/?category=x` | Works — filter applied on load |
+| Multiple params present | Precedence: `subcategory` > `category` > `q` |
+| Direct navigation to `/?q=term` | Works — search applied on load |
+| Empty search query `?q=` | Ignored, shows default homepage |
+| Special characters in query | URL-encoded automatically (spaces become `+` or `%20`) |
+| Very long search query | Truncated in page title if needed |
 | Mobile browsers | Same behavior, clipboard API works |
 | Very narrow screens | Copy Link button may wrap below count |
 
 ## Success Criteria
 
-1. Selecting a category updates the URL without page reload
-2. Shared URLs open directly to the filtered view
-3. Copy Link button copies URL and shows feedback
-4. Browser back/forward works correctly
-5. Clear button removes filter and URL params
+1. Searching updates the URL with `?q=` parameter without page reload
+2. Selecting a category updates the URL with `?category=` or `?subcategory=`
+3. Shared URLs open directly to the same search/filtered view
+4. Copy Link button copies URL and shows feedback
+5. Browser back/forward works correctly
+6. Clear button removes filter and URL params
