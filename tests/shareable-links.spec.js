@@ -62,6 +62,29 @@ test.describe('Shareable Links', () => {
 
   });
 
+  test.describe('Parameter Precedence', () => {
+
+    test('subcategory takes precedence over category', async ({ page }) => {
+      await page.goto('/?category=foundation-models&subcategory=llm-apis');
+      const searchInput = page.locator('#action-input');
+      // Should show the subcategory name, not the category
+      await expect(searchInput).toHaveValue('LLM APIs');
+    });
+
+    test('subcategory takes precedence over q', async ({ page }) => {
+      await page.goto('/?q=test&subcategory=llm-apis');
+      const searchInput = page.locator('#action-input');
+      await expect(searchInput).toHaveValue('LLM APIs');
+    });
+
+    test('category takes precedence over q', async ({ page }) => {
+      await page.goto('/?q=test&category=foundation-models');
+      const searchInput = page.locator('#action-input');
+      await expect(searchInput).toHaveValue('Foundation Models');
+    });
+
+  });
+
   test.describe('URL Updates on Search/Filter', () => {
 
     test('typing search updates URL with ?q= parameter', async ({ page }) => {
