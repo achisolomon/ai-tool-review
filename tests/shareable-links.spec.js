@@ -62,4 +62,56 @@ test.describe('Shareable Links', () => {
 
   });
 
+  test.describe('URL Updates on Search/Filter', () => {
+
+    test('typing search updates URL with ?q= parameter', async ({ page }) => {
+      await page.goto('/');
+
+      const searchInput = page.locator('#action-input');
+      await searchInput.fill('langchain');
+      await page.waitForTimeout(300);
+
+      await expect(page).toHaveURL(/\?q=langchain/);
+    });
+
+    test('selecting category from autocomplete updates URL', async ({ page }) => {
+      await page.goto('/');
+
+      const searchInput = page.locator('#action-input');
+      await searchInput.fill('Foundation');
+      await page.waitForTimeout(150);
+
+      const categoryItem = page.locator('.autocomplete-item[data-type="category"]').first();
+      await categoryItem.click();
+
+      await expect(page).toHaveURL(/\?category=/);
+    });
+
+    test('selecting subcategory from autocomplete updates URL', async ({ page }) => {
+      await page.goto('/');
+
+      const searchInput = page.locator('#action-input');
+      await searchInput.fill('LLM API');
+      await page.waitForTimeout(150);
+
+      const subcategoryItem = page.locator('.autocomplete-item[data-type="subcategory"]').first();
+      await subcategoryItem.click();
+
+      await expect(page).toHaveURL(/\?subcategory=/);
+    });
+
+    test('clearing search removes URL parameters', async ({ page }) => {
+      await page.goto('/?q=test');
+      await page.waitForTimeout(300);
+
+      await page.locator('#clear-search').click();
+
+      const url = page.url();
+      expect(url).not.toContain('?q=');
+      expect(url).not.toContain('?category=');
+      expect(url).not.toContain('?subcategory=');
+    });
+
+  });
+
 });
