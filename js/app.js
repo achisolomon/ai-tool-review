@@ -855,6 +855,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     searchResults.classList.remove('hidden');
                     renderSearchResults(tools);
                     updatePageTitle(subcategory.name);
+                } else {
+                    // Invalid subcategory - show empty results
+                    actionInput.value = subcategoryId;
+                    searchResults.classList.remove('hidden');
+                    renderSearchResults([]);
                 }
             } else if (categoryId) {
                 const category = findCategoryById(categoryId);
@@ -864,6 +869,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     searchResults.classList.remove('hidden');
                     renderSearchResults(tools);
                     updatePageTitle(category.name);
+                } else {
+                    // Invalid category - show empty results
+                    actionInput.value = categoryId;
+                    searchResults.classList.remove('hidden');
+                    renderSearchResults([]);
                 }
             } else if (query && query.trim()) {
                 actionInput.value = query;
