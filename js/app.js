@@ -13,6 +13,84 @@ document.addEventListener('DOMContentLoaded', () => {
             .replace(/^-|-$/g, '');         // Remove leading/trailing hyphens
     }
 
+    // Look up category by ID
+    function findCategoryById(categoryId) {
+        for (const track of ['users', 'developers']) {
+            if (!landscapeData[track]) continue;
+            for (const category of landscapeData[track]) {
+                if (category.id === categoryId) {
+                    return { type: 'category', ...category, track };
+                }
+            }
+        }
+        return null;
+    }
+
+    // Look up subcategory by ID
+    function findSubcategoryById(subcategoryId) {
+        for (const track of ['users', 'developers']) {
+            if (!landscapeData[track]) continue;
+            for (const category of landscapeData[track]) {
+                for (const subcategory of category.subcategories) {
+                    if (subcategory.id === subcategoryId) {
+                        return {
+                            type: 'subcategory',
+                            ...subcategory,
+                            categoryName: category.name,
+                            categoryId: category.id,
+                            track
+                        };
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    // Initialize from URL parameters
+    function initFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        const subcategoryId = params.get('subcategory');
+        const categoryId = params.get('category');
+        const query = params.get('q');
+
+        // Check in order of precedence: subcategory > category > q
+        if (subcategoryId) {
+            const subcategory = findSubcategoryById(subcategoryId);
+            if (subcategory) {
+                actionInput.value = subcategory.name;
+                selectAutocompleteItem(subcategory);
+                updatePageTitle(subcategory.name);
+            } else {
+                // Invalid subcategory - show empty results
+                actionInput.value = subcategoryId;
+                searchResults.classList.remove('hidden');
+                renderSearchResults([]);
+            }
+        } else if (categoryId) {
+            const category = findCategoryById(categoryId);
+            if (category) {
+                actionInput.value = category.name;
+                selectAutocompleteItem(category);
+                updatePageTitle(category.name);
+            } else {
+                // Invalid category - show empty results
+                actionInput.value = categoryId;
+                searchResults.classList.remove('hidden');
+                renderSearchResults([]);
+            }
+        } else if (query && query.trim()) {
+            actionInput.value = query;
+            handleSearch(query);
+            updatePageTitle(query);
+        }
+    }
+
+    // Update page title
+    function updatePageTitle(searchTerm) {
+        document.title = `${searchTerm} - AI Tool Review`;
+    }
+
     // Format star count (e.g., 15400 -> "15.4k")
     function formatStars(count) {
         if (!count || count < 0) return null;
@@ -84,9 +162,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Autocomplete state
     let autocompleteItems = [];
     let selectedAutocompleteIndex = -1;
-
-    // Initialize
-    setupEventListeners();
 
     // Get all categories and subcategories for autocomplete
     function getCategoriesAndSubcategories() {
@@ -662,4 +737,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // Initialize
+    setupEventListeners();
+    initFromURL();
 });
