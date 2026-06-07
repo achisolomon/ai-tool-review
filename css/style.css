@@ -1799,6 +1799,54 @@ a:hover {
     color: var(--vscode-text);
 }
 
+/* Results Actions Container */
+.results-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+/* Copy Link Button */
+.copy-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border: 1px solid var(--vscode-focus-border);
+    background: transparent;
+    border-radius: 4px;
+    font-size: 12px;
+    color: var(--vscode-focus-border);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.copy-link:hover {
+    background: rgba(0, 122, 204, 0.1);
+}
+
+.copy-link.copied {
+    border-color: var(--vscode-comment);
+    color: var(--vscode-comment);
+}
+
+.copy-link .copy-icon {
+    flex-shrink: 0;
+}
+
+.copy-link .check-icon {
+    display: none;
+    flex-shrink: 0;
+}
+
+.copy-link.copied .copy-icon {
+    display: none;
+}
+
+.copy-link.copied .check-icon {
+    display: block;
+}
+
 /* Results Grid - Larger cards for readability */
 .results-grid {
     display: grid;
