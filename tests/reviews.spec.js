@@ -232,7 +232,7 @@ test.describe('Review Components', () => {
       }
     });
 
-    test('auth modal has GitHub and Google sign-in buttons', async ({ page }) => {
+    test('auth modal has GitHub sign-in button', async ({ page }) => {
       await page.goto('/tools/claude-code/');
       await page.waitForSelector('#leave-review-btn', { timeout: 10000 }).catch(() => null);
 
@@ -242,12 +242,10 @@ test.describe('Review Components', () => {
         await leaveReviewBtn.click();
 
         const githubBtn = page.locator('#auth-github');
-        const googleBtn = page.locator('#auth-google');
 
         await expect(githubBtn).toBeVisible();
-        await expect(googleBtn).toBeVisible();
         await expect(githubBtn).toContainText('GitHub');
-        await expect(googleBtn).toContainText('Google');
+        // Note: Google auth button hidden until implemented (see review-components.js)
       }
     });
 
