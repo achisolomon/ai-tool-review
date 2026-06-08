@@ -3904,7 +3904,7 @@ const landscapeData = {
               "url": "https://github.com/NVIDIA/NeMo-Guardrails",
               "desc": "NVIDIA's open-source toolkit for implementing guardrails on LLMs. Uses configuration-as-code for defining conversational rules, handling harmful content, and preventing undesired behaviors with rail specifications.",
               "type": "oss",
-              "github_stars": 5100,
+              "github_stars": 5600,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null
@@ -3926,7 +3926,7 @@ const landscapeData = {
               "url": "https://github.com/protectai/llm-guard",
               "desc": "Open-source framework for securing LLM inputs and outputs. Detects prompt injections, jailbreaks, banned topics, and harmful content with customizable scanners for comprehensive protection.",
               "type": "oss",
-              "github_stars": 3800,
+              "github_stars": 3032,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null
