@@ -28,3 +28,6 @@ scripts/.batches/
 *.swp
 *.swo
 *~
+
+# Local dev config (contains dev Supabase credentials)
+js/config-local.js

@@ -3868,6 +3868,47 @@ const landscapeData = {
       ]
     },
     {
+      "id": "engineering-intelligence",
+      "name": "Engineering Intelligence",
+      "track": "developers",
+      "subcategories": [
+        {
+          "id": "developer-portals",
+          "name": "Developer Portals",
+          "tools": [
+            {
+              "name": "Port",
+              "slug": "port",
+              "url": "https://www.port.io/",
+              "desc": "Agentic SDLC Platform and Internal Developer Portal with AI-powered automation, software catalog, and workflow orchestration",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null
+            }
+          ]
+        },
+        {
+          "id": "engineering-analytics",
+          "name": "Engineering Analytics",
+          "tools": [
+            {
+              "name": "Jellyfish",
+              "slug": "jellyfish",
+              "url": "https://jellyfish.co/",
+              "desc": "Software Engineering Intelligence Platform that transforms developer tool data into productivity insights for AI-integrated R&D organizations",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "enterprise",
+              "pricing_starting": null,
+              "user_count": null
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "observability-safety",
       "name": "Observability, Evaluation & Safety",
       "track": "developers",
