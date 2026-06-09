@@ -4911,6 +4911,17 @@ const landscapeData = {
               "user_count": null
             },
             {
+              "name": "Context Mode",
+              "slug": "context-mode",
+              "url": "https://github.com/mksglu/context-mode",
+              "desc": "Context window optimization for AI coding agents. Sandboxes tool output with 98% reduction across 15+ platforms",
+              "type": "oss",
+              "github_stars": 16744,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null
+            },
+            {
               "name": "Headroom",
               "slug": "headroom",
               "url": "https://github.com/chopratejas/headroom",
