@@ -126,6 +126,51 @@ function formatReviewCard(review) {
 }
 
 /**
+ * Find or create a tool by slug
+ * @param {Object} toolInfo - { slug, name, url }
+ * @returns {Object} - { success: boolean, tool_id?: string, error?: string }
+ */
+async function findOrCreateTool(toolInfo) {
+    const supabase = window.SupabaseClient.getSupabase();
+    if (!supabase) {
+        return { success: false, error: 'Unable to connect to database' };
+    }
+
+    const { slug, name, url } = toolInfo;
+
+    // First, try to find existing tool (use maybeSingle to avoid 406 when not found)
+    const { data: existingTool, error: findError } = await supabase
+        .from('tools')
+        .select('id')
+        .eq('slug', slug)
+        .maybeSingle();
+
+    if (existingTool) {
+        return { success: true, tool_id: existingTool.id };
+    }
+
+    // Tool doesn't exist - create it
+    // Note: This requires an RLS policy allowing authenticated users to insert tools
+    const { data: newTool, error: createError } = await supabase
+        .from('tools')
+        .insert([{
+            slug: slug,
+            name: name,
+            url: url || `https://example.com/${slug}`, // Fallback URL
+            type: 'saas', // Default type
+        }])
+        .select('id')
+        .single();
+
+    if (createError) {
+        console.error('Error creating tool:', createError);
+        return { success: false, error: 'Failed to create tool entry' };
+    }
+
+    return { success: true, tool_id: newTool.id };
+}
+
+/**
  * Submit a new review
  * SECURITY: Reviews are created with status='pending' for moderation
  * SECURITY: Requires authenticated user - user_id comes from auth.uid()
@@ -144,9 +189,23 @@ async function submitReview(reviewData) {
         return { success: false, error: 'You must be signed in to submit a review' };
     }
 
+    // Get or create tool_id
+    let toolId = reviewData.tool_id;
+    if (!toolId && reviewData.tool_slug) {
+        const toolResult = await findOrCreateTool({
+            slug: reviewData.tool_slug,
+            name: reviewData.tool_name,
+            url: reviewData.tool_url,
+        });
+        if (!toolResult.success) {
+            return { success: false, error: toolResult.error };
+        }
+        toolId = toolResult.tool_id;
+    }
+
     // Validate required fields
-    if (!reviewData.tool_id) {
-        return { success: false, error: 'Tool ID is required' };
+    if (!toolId) {
+        return { success: false, error: 'Tool information is required' };
     }
     if (!reviewData.overall_rating || reviewData.overall_rating < 1 || reviewData.overall_rating > 5) {
         return { success: false, error: 'Rating must be between 1 and 5' };
@@ -166,7 +225,7 @@ async function submitReview(reviewData) {
 
     // Prepare review data with defaults
     const review = {
-        tool_id: reviewData.tool_id,
+        tool_id: toolId,
         user_id: user.id, // Authenticated user's ID from Supabase Auth
         author_name: reviewData.author_name.trim(),
         author_initial: reviewData.author_name.trim().charAt(0).toUpperCase(),
@@ -209,6 +268,147 @@ async function submitReview(reviewData) {
     }
 }
 
+/**
+ * Get the current user's review for a tool (if any)
+ * SECURITY: RLS policy ensures users can only read their own reviews
+ * @param {string} toolId - The tool ID
+ * @returns {Object} - { hasReview: boolean, review?: Object }
+ */
+async function getUserReviewForTool(toolId) {
+    const supabase = window.SupabaseClient.getSupabase();
+    if (!supabase) {
+        return { hasReview: false };
+    }
+
+    const user = await window.SupabaseClient.getCurrentUser();
+    if (!user) {
+        return { hasReview: false };
+    }
+
+    const { data, error } = await supabase
+        .from('reviews')
+        .select(`
+            id,
+            tool_id,
+            author_name,
+            author_initial,
+            company_size,
+            overall_rating,
+            title,
+            like_best,
+            dislike,
+            time_used,
+            status,
+            created_at
+        `)
+        .eq('tool_id', toolId)
+        .eq('user_id', user.id)
+        .maybeSingle();
+
+    if (error) {
+        console.error('Error fetching user review:', error);
+        return { hasReview: false };
+    }
+
+    if (!data) {
+        return { hasReview: false };
+    }
+
+    return { hasReview: true, review: data };
+}
+
+/**
+ * Update an existing review
+ * SECURITY: RLS policy ensures users can only update their own reviews
+ * @param {string} reviewId - The review ID
+ * @param {Object} reviewData - Updated review fields
+ * @returns {Object} - { success: boolean, error?: string }
+ */
+async function updateReview(reviewId, reviewData) {
+    const supabase = window.SupabaseClient.getSupabase();
+    if (!supabase) {
+        return { success: false, error: 'Unable to connect to database' };
+    }
+
+    const user = await window.SupabaseClient.getCurrentUser();
+    if (!user) {
+        return { success: false, error: 'You must be signed in to update a review' };
+    }
+
+    // Validate required fields
+    if (!reviewData.overall_rating || reviewData.overall_rating < 1 || reviewData.overall_rating > 5) {
+        return { success: false, error: 'Rating must be between 1 and 5' };
+    }
+    if (!reviewData.title || reviewData.title.trim().length === 0) {
+        return { success: false, error: 'Review title is required' };
+    }
+    if (!reviewData.like_best || reviewData.like_best.trim().length < 10) {
+        return { success: false, error: 'Please describe what you like best (minimum 10 characters)' };
+    }
+
+    // Prepare update data - always reset to pending for re-moderation
+    const updateData = {
+        author_name: reviewData.author_name.trim(),
+        author_initial: reviewData.author_name.trim().charAt(0).toUpperCase(),
+        company_size: reviewData.company_size || null,
+        overall_rating: parseInt(reviewData.overall_rating, 10),
+        title: reviewData.title.trim(),
+        like_best: reviewData.like_best.trim(),
+        dislike: reviewData.dislike?.trim() || null,
+        time_used: reviewData.time_used || null,
+        status: 'pending', // Reset to pending for re-moderation
+    };
+
+    const { error } = await supabase
+        .from('reviews')
+        .update(updateData)
+        .eq('id', reviewId);
+
+    if (error) {
+        console.error('Error updating review:', error);
+        if (error.code === '42501') {
+            return { success: false, error: 'Permission denied. You can only edit your own reviews.' };
+        }
+        return { success: false, error: 'Failed to update review. Please try again.' };
+    }
+
+    return { success: true };
+}
+
+/**
+ * Delete a review
+ * SECURITY: RLS policy ensures users can only delete their own reviews
+ * @param {string} reviewId - The review ID
+ * @returns {Object} - { success: boolean, error?: string }
+ */
+async function deleteReview(reviewId) {
+    const supabase = window.SupabaseClient.getSupabase();
+    if (!supabase) {
+        return { success: false, error: 'Unable to connect to database' };
+    }
+
+    const user = await window.SupabaseClient.getCurrentUser();
+    if (!user) {
+        return { success: false, error: 'You must be signed in to delete a review' };
+    }
+
+    const { error } = await supabase
+        .from('reviews')
+        .delete()
+        .eq('id', reviewId);
+
+    if (error) {
+        console.error('Error deleting review:', error);
+        if (error.code === '42501') {
+            return { success: false, error: 'Permission denied. You can only delete your own reviews.' };
+        }
+        return { success: false, error: 'Failed to delete review. Please try again.' };
+    }
+
+    return { success: true };
+}
+
+
 // Export for use in other modules
 window.ReviewsAPI = {
     getToolBySlug,
@@ -216,5 +416,9 @@ window.ReviewsAPI = {
     formatStarsCount,
     formatReviewSummary,
     formatReviewCard,
+    findOrCreateTool,
     submitReview,
+    getUserReviewForTool,
+    updateReview,
+    deleteReview,
 };
