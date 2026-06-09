@@ -345,9 +345,12 @@ function renderReviewList(reviews, toolName) {
 /**
  * Render review form modal
  * SECURITY: Tool name is escaped to prevent XSS
+ * @param {string} toolName - Display name of the tool
+ * @param {Object} toolInfo - Tool info: { id, slug, url }
  */
-function renderReviewFormModal(toolName, toolId) {
+function renderReviewFormModal(toolName, toolInfo = {}) {
     const safeToolName = escapeHtml(toolName);
+    const { id: toolId, slug: toolSlug, url: toolUrl } = toolInfo;
 
     return `
         <div class="review-modal-overlay" id="review-modal">
@@ -357,7 +360,7 @@ function renderReviewFormModal(toolName, toolId) {
                     <button class="review-modal-close" id="review-modal-close">&times;</button>
                 </div>
 
-                <form class="review-form" id="review-form" data-tool-id="${toolId}">
+                <form class="review-form" id="review-form" data-tool-id="${toolId || ''}" data-tool-slug="${escapeHtml(toolSlug || '')}" data-tool-name="${safeToolName}" data-tool-url="${escapeHtml(toolUrl || '')}">
                     <div class="form-group">
                         <label>Overall Rating <span class="required">*</span></label>
                         <div class="star-rating-input" id="rating-input" data-rating="0">
@@ -511,6 +514,105 @@ function renderUserInfo(user) {
     `;
 }
 
+/**
+ * Render the "Your Review" modal for users with existing reviews
+ * @param {string} toolName - Tool name for display
+ * @param {Object} review - The user's existing review
+ * @returns {string} - HTML string
+ */
+function renderExistingReviewModal(toolName, review) {
+    const safeToolName = escapeHtml(toolName);
+    const safeTitle = escapeHtml(review.title);
+    const statusLabel = review.status === 'approved' ? 'Published' : 'Pending Approval';
+    const statusClass = review.status === 'approved' ? 'status-published' : 'status-pending';
+    const createdDate = formatDate(new Date(review.created_at));
+
+    return `
+        <div class="review-modal-overlay" id="existing-review-modal">
+            <div class="review-modal existing-review-modal">
+                <div class="review-modal-header">
+                    <h2>Your Review for ${safeToolName}</h2>
+                    <button class="review-modal-close" id="existing-review-close">&times;</button>
+                </div>
+
+                <div class="existing-review-content">
+                    <div class="existing-review-preview">
+                        <div class="existing-review-rating">
+                            ${renderStarRating(review.overall_rating, { showNumeric: true })}
+                        </div>
+                        <h3 class="existing-review-title">"${safeTitle}"</h3>
+                        <div class="existing-review-meta">
+                            <span class="review-status-badge ${statusClass}">${statusLabel}</span>
+                            <span class="review-date">Submitted ${createdDate}</span>
+                        </div>
+                    </div>
+
+                    <div class="existing-review-actions">
+                        <button class="btn-primary" id="edit-review-btn" data-review-id="${review.id}">
+                            Edit Review
+                        </button>
+                        <button class="btn-danger" id="delete-review-btn" data-review-id="${review.id}">
+                            Delete Review
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+/**
+ * Render the delete confirmation dialog
+ * @returns {string} - HTML string
+ */
+function renderDeleteConfirmDialog() {
+    return `
+        <div class="review-modal-overlay" id="delete-confirm-modal">
+            <div class="review-modal delete-confirm-modal">
+                <div class="review-modal-header">
+                    <h2>Delete Review?</h2>
+                    <button class="review-modal-close" id="delete-confirm-close">&times;</button>
+                </div>
+
+                <div class="delete-confirm-content">
+                    <p>Are you sure you want to delete your review? This cannot be undone.</p>
+
+                    <div class="delete-confirm-actions">
+                        <button class="btn-cancel" id="delete-cancel-btn">Cancel</button>
+                        <button class="btn-danger" id="delete-confirm-btn">Delete Review</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+/**
+ * Render success message after review update
+ */
+function renderUpdateSuccess() {
+    return `
+        <div class="review-success">
+            <div class="review-success-icon">✓</div>
+            <h3>Review Updated!</h3>
+            <p>Your review has been updated and is pending approval.</p>
+        </div>
+    `;
+}
+
+/**
+ * Render success message after review deletion
+ */
+function renderDeleteSuccess() {
+    return `
+        <div class="review-success">
+            <div class="review-success-icon">✓</div>
+            <h3>Review Deleted</h3>
+            <p>Your review has been deleted. You can submit a new review anytime.</p>
+        </div>
+    `;
+}
+
 // Export for use in other modules
 window.ReviewComponents = {
     // Security utilities (shared across modules)
@@ -530,4 +632,9 @@ window.ReviewComponents = {
     renderAuthModal,
     renderUserInfo,
     formatDate,
+    // Existing review management
+    renderExistingReviewModal,
+    renderDeleteConfirmDialog,
+    renderUpdateSuccess,
+    renderDeleteSuccess,
 };
