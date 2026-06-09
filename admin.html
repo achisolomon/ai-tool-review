@@ -94,6 +94,13 @@
             let currentStatus = 'pending';
             let reviewToDelete = null;
 
+            // Escape HTML to prevent XSS
+            function escapeHtml(text) {
+                if (!text) return '';
+                const map = {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'};
+                return String(text).replace(/[&<>"']/g, m => map[m]);
+            }
+
             // Check admin access
             async function checkAccess() {
                 const result = await window.AdminAPI.checkIsAdmin();
@@ -156,23 +163,23 @@
                 let html = `
                     <div class="review-card-header">
                         <div class="review-tool-info">
-                            <strong class="tool-name">${toolName}</strong>
+                            <strong class="tool-name">${escapeHtml(toolName)}</strong>
                             <span class="tool-category">${categoryInfo.category} › ${categoryInfo.subcategory}</span>
                         </div>
                         <div class="review-meta">
                             <span class="review-stars">${stars}</span>
-                            <span class="review-author">by ${authorName}</span>
+                            <span class="review-author">by ${escapeHtml(authorName)}</span>
                             <span class="review-date">${date}</span>
                         </div>
                     </div>
                     <div class="review-card-body">
-                        <h4 class="review-title">"${reviewTitle}"</h4>
+                        <h4 class="review-title">"${escapeHtml(reviewTitle)}"</h4>
                         <div class="review-content">
-                            <p><strong>Like:</strong> ${likeText}</p>
+                            <p><strong>Like:</strong> ${escapeHtml(likeText)}</p>
                 `;
 
                 if (dislikeText) {
-                    html += `<p><strong>Dislike:</strong> ${dislikeText}</p>`;
+                    html += `<p><strong>Dislike:</strong> ${escapeHtml(dislikeText)}</p>`;
                 }
 
                 html += `
