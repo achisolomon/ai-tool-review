@@ -94,3 +94,43 @@ test.describe('Admin Review Moderation', () => {
             await expect(logoutBtn).toHaveCount(1);
         });
     });
+
+    test.describe('Admin Badge on Main Site', () => {
+
+        test('admin badge is hidden for non-admin users on index', async ({ page }) => {
+            await page.goto('/');
+
+            // Wait for page to load
+            await page.waitForSelector('.header', { timeout: 5000 });
+
+            const adminBadge = page.locator('#admin-badge');
+            // Should either not exist or be hidden
+            const count = await adminBadge.count();
+            if (count > 0) {
+                await expect(adminBadge).toHaveClass(/hidden/);
+            }
+        });
+
+        test('admin badge is hidden for non-admin users on landscape', async ({ page }) => {
+            await page.goto('/landscape.html');
+
+            await page.waitForSelector('.header', { timeout: 5000 });
+
+            const adminBadge = page.locator('#admin-badge');
+            const count = await adminBadge.count();
+            if (count > 0) {
+                await expect(adminBadge).toHaveClass(/hidden/);
+            }
+        });
+
+        test('admin badge links to admin.html', async ({ page }) => {
+            await page.goto('/');
+
+            const adminBadge = page.locator('#admin-badge');
+            const count = await adminBadge.count();
+            if (count > 0) {
+                const href = await adminBadge.getAttribute('href');
+                expect(href).toBe('admin.html');
+            }
+        });
+    });
