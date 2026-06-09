@@ -43,6 +43,7 @@
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#1e1e1e">
     <link rel="stylesheet" href="css/style.css?t=1780500001">
+    <link rel="stylesheet" href="css/admin.css">
 
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7272761067250869"
@@ -63,6 +64,9 @@
             <nav class="nav-links">
                 <a href="/" class="nav-link nav-link-text nav-active">Search</a>
                 <a href="landscape.html" class="nav-link nav-link-text">Landscape</a>
+                <a href="admin.html" id="admin-badge" class="nav-link admin-badge hidden">
+                    Admin <span id="admin-badge-count"></span>
+                </a>
             </nav>
         </div>
     </header>
@@ -152,6 +156,7 @@
 
     <script src="js/data.js?t=1780999110"></script>
     <script src="js/app.js?t=1780854803"></script>
+    <script src="js/admin-api.js"></script>
 
     <!-- Cookie Consent Banner -->
     <div id="cookie-consent" class="cookie-banner" style="display: none;">
@@ -216,6 +221,26 @@
                 ad.innerHTML = '<div style="color:#4a9eff;font-size:12px;">Ad Placeholder</div>';
             });
         }
+    </script>
+
+    <script>
+    // Admin badge initialization
+    (async function initAdminBadge() {
+        if (!window.AdminAPI) return;
+
+        const result = await window.AdminAPI.checkIsAdmin();
+        if (!result.isAdmin) return;
+
+        const badge = document.getElementById('admin-badge');
+        const countSpan = document.getElementById('admin-badge-count');
+        if (!badge || !countSpan) return;
+
+        const count = await window.AdminAPI.getPendingCount();
+        if (count > 0) {
+            countSpan.textContent = `(${count})`;
+        }
+        badge.classList.remove('hidden');
+    })();
     </script>
 </body>
 </html>
