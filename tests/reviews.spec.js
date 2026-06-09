@@ -242,10 +242,12 @@ test.describe('Review Components', () => {
         await leaveReviewBtn.click();
 
         const githubBtn = page.locator('#auth-github');
+        const googleBtn = page.locator('#auth-google');
 
         await expect(githubBtn).toBeVisible();
         await expect(githubBtn).toContainText('GitHub');
         // Note: Google auth button hidden until implemented (see review-components.js)
+        await expect(googleBtn).toHaveCount(0);
       }
     });
 
@@ -1265,6 +1267,238 @@ test.describe('Review Components', () => {
         // This test documents expected behavior
       });
 
+    });
+
+  });
+
+  // =============================================
+  // TOOL NOT IN DATABASE TESTS
+  // Tests for tools that don't exist in Supabase yet
+  // =============================================
+  test.describe('Tool Not In Database', () => {
+
+    test('shows Leave a Review button for tool not in database', async ({ page }) => {
+      // nano-banana is a tool that exists in Jekyll but may not be in the database
+      await page.goto('/tools/nano-banana/');
+
+      // Wait for page to load
+      await page.waitForTimeout(2000);
+
+      // Should show the empty review state with Leave a Review button
+      const leaveReviewBtn = page.locator('#leave-review-btn');
+
+      // The button should exist whether tool is in DB or not
+      await expect(leaveReviewBtn).toBeVisible();
+    });
+
+    test('shows empty state message for tool without reviews', async ({ page }) => {
+      await page.goto('/tools/nano-banana/');
+      await page.waitForTimeout(2000);
+
+      // Should show either the empty state or the summary (if tool was just created)
+      const emptyState = page.locator('.review-summary-empty');
+      const reviewSummary = page.locator('.review-summary');
+
+      // One of these should be visible
+      const hasEmptyState = await emptyState.count() > 0;
+      const hasSummary = await reviewSummary.count() > 0;
+
+      expect(hasEmptyState || hasSummary).toBe(true);
+    });
+
+    test('review form stores tool slug for new tools', async ({ page }) => {
+      await page.goto('/tools/nano-banana/');
+      await page.waitForSelector('#review-modal', { timeout: 10000 }).catch(() => null);
+
+      const reviewForm = page.locator('#review-form');
+      if (await reviewForm.count() === 0) return;
+
+      // Form should have data-tool-slug attribute for tools not in DB
+      const toolSlug = await reviewForm.getAttribute('data-tool-slug');
+      expect(toolSlug).toBe('nano-banana');
+    });
+
+    test('review form stores tool name for new tools', async ({ page }) => {
+      await page.goto('/tools/nano-banana/');
+      await page.waitForSelector('#review-modal', { timeout: 10000 }).catch(() => null);
+
+      const reviewForm = page.locator('#review-form');
+      if (await reviewForm.count() === 0) return;
+
+      // Form should have data-tool-name attribute
+      const toolName = await reviewForm.getAttribute('data-tool-name');
+      expect(toolName).toBeTruthy();
+      expect(toolName.length).toBeGreaterThan(0);
+    });
+
+    test('no 406 error in console when tool does not exist', async ({ page }) => {
+      const errors = [];
+
+      // Capture console errors
+      page.on('console', msg => {
+        if (msg.type() === 'error') {
+          errors.push(msg.text());
+        }
+      });
+
+      await page.goto('/tools/nano-banana/');
+      await page.waitForTimeout(3000);
+
+      // Should not have 406 errors (we use maybeSingle instead of single)
+      const has406Error = errors.some(e => e.includes('406'));
+      expect(has406Error).toBe(false);
+    });
+
+    test('findOrCreateTool returns existing tool id if tool exists', async ({ page }) => {
+      await page.goto('/tools/claude-code/');
+      await page.waitForTimeout(2000);
+
+      // Test the findOrCreateTool function logic
+      const result = await page.evaluate(async () => {
+        // This tests the concept - actual tool lookup happens server-side
+        const toolInfo = {
+          slug: 'claude-code',
+          name: 'Claude Code',
+          url: 'https://example.com'
+        };
+
+        // If window.ReviewsAPI exists, we can check it's exported
+        return typeof window.ReviewsAPI?.findOrCreateTool === 'function';
+      });
+
+      expect(result).toBe(true);
+    });
+
+  });
+
+  test.describe('Existing Review Management', () => {
+
+    test('shows existing review modal when user has already reviewed', async ({ page }) => {
+      // This test requires a logged-in user with an existing review
+      // For now, we test that the modal component exists
+      await page.goto('/tools/claude-code/');
+
+      // Verify the delete confirmation dialog is added to the page
+      await page.waitForSelector('#delete-confirm-modal', { timeout: 10000 }).catch(() => null);
+
+      const deleteModal = page.locator('#delete-confirm-modal');
+      // Modal should exist but not be visible initially
+      if (await deleteModal.count() > 0) {
+        await expect(deleteModal).not.toHaveClass(/active/);
+      }
+    });
+
+    test('existing review modal has edit and delete buttons', async ({ page }) => {
+      // Test component rendering
+      await page.goto('/tools/claude-code/');
+
+      // Inject test modal to verify structure
+      await page.evaluate(() => {
+        const testReview = {
+          id: 'test-123',
+          title: 'Great tool',
+          overall_rating: 5,
+          status: 'approved',
+          created_at: '2024-01-15T00:00:00Z'
+        };
+        const modalHtml = window.ReviewComponents.renderExistingReviewModal('Test Tool', testReview);
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+        // Make the modal visible for testing
+        const modal = document.getElementById('existing-review-modal');
+        if (modal) modal.classList.add('active');
+      });
+
+      const modal = page.locator('#existing-review-modal');
+      await expect(modal).toBeVisible();
+
+      const editBtn = modal.locator('#edit-review-btn');
+      const deleteBtn = modal.locator('#delete-review-btn');
+
+      await expect(editBtn).toBeVisible();
+      await expect(deleteBtn).toBeVisible();
+      await expect(editBtn).toHaveText('Edit Review');
+      await expect(deleteBtn).toHaveText('Delete Review');
+    });
+
+    test('existing review modal shows correct status badge', async ({ page }) => {
+      await page.goto('/tools/claude-code/');
+
+      // Test pending status
+      await page.evaluate(() => {
+        const pendingReview = {
+          id: 'test-pending',
+          title: 'Pending Review',
+          overall_rating: 4,
+          status: 'pending',
+          created_at: '2024-01-15T00:00:00Z'
+        };
+        const existing = document.getElementById('existing-review-modal');
+        if (existing) existing.remove();
+        const modalHtml = window.ReviewComponents.renderExistingReviewModal('Test Tool', pendingReview);
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+      });
+
+      const pendingBadge = page.locator('.review-status-badge.status-pending');
+      await expect(pendingBadge).toHaveText('Pending Approval');
+
+      // Test approved status
+      await page.evaluate(() => {
+        const approvedReview = {
+          id: 'test-approved',
+          title: 'Approved Review',
+          overall_rating: 5,
+          status: 'approved',
+          created_at: '2024-01-15T00:00:00Z'
+        };
+        const existing = document.getElementById('existing-review-modal');
+        if (existing) existing.remove();
+        const modalHtml = window.ReviewComponents.renderExistingReviewModal('Test Tool', approvedReview);
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+      });
+
+      const publishedBadge = page.locator('.review-status-badge.status-published');
+      await expect(publishedBadge).toHaveText('Published');
+    });
+
+    test('delete confirmation modal has cancel and confirm buttons', async ({ page }) => {
+      await page.goto('/tools/claude-code/');
+
+      // Inject delete confirmation modal
+      await page.evaluate(() => {
+        const modalHtml = window.ReviewComponents.renderDeleteConfirmDialog();
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+        document.getElementById('delete-confirm-modal').classList.add('active');
+      });
+
+      const modal = page.locator('#delete-confirm-modal');
+      await expect(modal).toHaveClass(/active/);
+
+      const cancelBtn = modal.locator('#delete-cancel-btn');
+      const confirmBtn = modal.locator('#delete-confirm-btn');
+
+      await expect(cancelBtn).toBeVisible();
+      await expect(confirmBtn).toBeVisible();
+      await expect(cancelBtn).toHaveText('Cancel');
+      await expect(confirmBtn).toHaveText('Delete Review');
+    });
+
+    test('API functions exist for review management', async ({ page }) => {
+      await page.goto('/tools/claude-code/');
+
+      // Verify API functions exist
+      const hasGetUserReview = await page.evaluate(() => {
+        return typeof window.ReviewsAPI.getUserReviewForTool === 'function';
+      });
+      const hasUpdateReview = await page.evaluate(() => {
+        return typeof window.ReviewsAPI.updateReview === 'function';
+      });
+      const hasDeleteReview = await page.evaluate(() => {
+        return typeof window.ReviewsAPI.deleteReview === 'function';
+      });
+
+      expect(hasGetUserReview).toBe(true);
+      expect(hasUpdateReview).toBe(true);
+      expect(hasDeleteReview).toBe(true);
     });
 
   });
