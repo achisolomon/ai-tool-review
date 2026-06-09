@@ -105,6 +105,15 @@
     background: #005a9e;
 }
 
+.no-reviews-container {
+    text-align: center;
+    padding: 32px 16px;
+}
+
+.no-reviews-container .no-reviews {
+    margin-bottom: 16px;
+}
+
 .distribution-box {
     flex: 1;
     max-width: 320px;

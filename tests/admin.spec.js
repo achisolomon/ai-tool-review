@@ -55,15 +55,25 @@ test.describe('Admin Review Moderation', () => {
 
     test.describe('Admin Page UI', () => {
 
-        test('admin page shows access denied for non-admin users', async ({ page }) => {
+        test('admin page shows login required for unauthenticated users', async ({ page }) => {
             await page.goto('/admin.html');
 
             // Wait for auth check to complete
-            await page.waitForSelector('#access-denied:not(.hidden), #admin-main:not(.hidden)', { timeout: 5000 });
+            await page.waitForSelector('#login-required:not(.hidden), #access-denied:not(.hidden), #admin-main:not(.hidden)', { timeout: 5000 });
 
-            // Should show access denied (not logged in)
-            const accessDenied = page.locator('#access-denied');
-            await expect(accessDenied).toBeVisible();
+            // Should show login required (not logged in)
+            const loginRequired = page.locator('#login-required');
+            await expect(loginRequired).toBeVisible();
+        });
+
+        test('login required state has GitHub login button', async ({ page }) => {
+            await page.goto('/admin.html');
+
+            await page.waitForSelector('#login-required:not(.hidden)', { timeout: 5000 });
+
+            const githubBtn = page.locator('#github-login-btn');
+            await expect(githubBtn).toBeVisible();
+            await expect(githubBtn).toContainText('Continue with GitHub');
         });
 
         test('admin page has status tabs', async ({ page }) => {
@@ -77,6 +87,30 @@ test.describe('Admin Review Moderation', () => {
             await expect(pendingTab).toHaveCount(1);
             await expect(approvedTab).toHaveCount(1);
             await expect(rejectedTab).toHaveCount(1);
+        });
+
+        test('admin page has clickable stat cards', async ({ page }) => {
+            await page.goto('/admin.html');
+
+            // Stat cards should exist with data-status attributes
+            const pendingStat = page.locator('.stat-item[data-status="pending"]');
+            const approvedStat = page.locator('.stat-item[data-status="approved"]');
+            const rejectedStat = page.locator('.stat-item[data-status="rejected"]');
+
+            await expect(pendingStat).toHaveCount(1);
+            await expect(approvedStat).toHaveCount(1);
+            await expect(rejectedStat).toHaveCount(1);
+
+            // Pending stat should be active by default
+            await expect(pendingStat).toHaveClass(/active/);
+        });
+
+        test('stat cards have cursor pointer style', async ({ page }) => {
+            await page.goto('/admin.html');
+
+            const statItem = page.locator('.stat-item').first();
+            const cursor = await statItem.evaluate(el => getComputedStyle(el).cursor);
+            expect(cursor).toBe('pointer');
         });
 
         test('admin page has delete confirmation modal', async ({ page }) => {

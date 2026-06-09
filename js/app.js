@@ -215,9 +215,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchResults = document.getElementById('search-results');
     const resultsGrid = document.getElementById('results-grid');
     const resultsCount = document.getElementById('results-count');
+    const resultsLoading = document.getElementById('results-loading');
     const clearSearch = document.getElementById('clear-search');
     const autocompleteDropdown = document.getElementById('autocomplete-dropdown');
     const copyLinkButton = document.getElementById('copy-link');
+
+    // Show/hide loading state
+    function showLoading() {
+        if (resultsLoading) {
+            resultsLoading.classList.remove('hidden');
+            resultsGrid.classList.add('hidden');
+        }
+    }
+
+    function hideLoading() {
+        if (resultsLoading) {
+            resultsLoading.classList.add('hidden');
+            resultsGrid.classList.remove('hidden');
+        }
+    }
 
     // Autocomplete state
     let autocompleteItems = [];
@@ -436,18 +452,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (item.type === 'category') {
             // Show all tools in this category
-            const tools = getToolsByCategory(item.id || item.name);
             searchResults.classList.remove('hidden');
-            renderSearchResults(tools);
-            updateURL('category', item.id);
-            updatePageTitle(item.name);
+            showLoading();
+            setTimeout(() => {
+                try {
+                    const tools = getToolsByCategory(item.id || item.name);
+                    renderSearchResults(tools, item.name);
+                    updateURL('category', item.id);
+                    updatePageTitle(item.name);
+                } catch (error) {
+                    console.error('Category load error:', error);
+                    hideLoading();
+                }
+            }, 50);
         } else if (item.type === 'subcategory') {
             // Show all tools in this subcategory
-            const tools = getToolsByCategory(item.categoryId || item.categoryName, item.id || item.name);
             searchResults.classList.remove('hidden');
-            renderSearchResults(tools);
-            updateURL('subcategory', item.id);
-            updatePageTitle(item.name);
+            showLoading();
+            setTimeout(() => {
+                try {
+                    const tools = getToolsByCategory(item.categoryId || item.categoryName, item.id || item.name);
+                    renderSearchResults(tools, item.name);
+                    updateURL('subcategory', item.id);
+                    updatePageTitle(item.name);
+                } catch (error) {
+                    console.error('Subcategory load error:', error);
+                    hideLoading();
+                }
+            }, 50);
         } else if (item.type === 'tool') {
             // Navigate to tool page
             window.location.href = `/tools/${item.slug}/`;
@@ -580,21 +612,72 @@ document.addEventListener('DOMContentLoaded', () => {
         return score;
     }
 
+    // Get popular search suggestions for empty state
+    function getPopularSuggestions() {
+        const suggestions = [
+            { query: 'Code Assistant', label: 'Code Assistants' },
+            { query: 'Agent Frameworks', label: 'Agent Frameworks' },
+            { query: 'Image Generation', label: 'Image Generation' },
+            { query: 'RAG', label: 'RAG Tools' },
+            { query: 'LLM Observability', label: 'Observability' }
+        ];
+        // Return 3 random suggestions
+        return suggestions.sort(() => Math.random() - 0.5).slice(0, 3);
+    }
+
     // Render search results in flat grid
-    function renderSearchResults(tools) {
+    function renderSearchResults(tools, query = '') {
+        hideLoading();
+
         if (tools.length === 0) {
+            const suggestions = getPopularSuggestions();
+            const suggestionButtons = suggestions.map(s =>
+                `<button class="action-chip" data-query="${s.query}">${s.label}</button>`
+            ).join('');
+
+            const searchTerm = query || actionInput?.value || '';
+            const message = searchTerm
+                ? `No tools match "${searchTerm}". Try a different search term or explore these categories:`
+                : 'Enter a search term to find AI tools, or try one of these popular categories:';
+
             resultsGrid.innerHTML = `
                 <div class="no-results">
-                    <p>No tools found. Try different keywords or</p>
-                    <a href="landscape.html" class="browse-link">browse all tools</a>
+                    <svg class="no-results-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="M21 21l-4.35-4.35"/>
+                        <path d="M8 8l6 6M14 8l-6 6" stroke-width="1.5"/>
+                    </svg>
+                    <h3 class="no-results-title">No tools found</h3>
+                    <p class="no-results-message">${message}</p>
+                    <div class="no-results-suggestions">
+                        ${suggestionButtons}
+                    </div>
+                    <a href="landscape.html" class="browse-link">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7"/>
+                            <rect x="14" y="3" width="7" height="7"/>
+                            <rect x="14" y="14" width="7" height="7"/>
+                            <rect x="3" y="14" width="7" height="7"/>
+                        </svg>
+                        Browse Full Landscape
+                    </a>
                 </div>
             `;
             resultsCount.textContent = '0 tools found';
+
+            // Re-attach click handlers to suggestion chips
+            resultsGrid.querySelectorAll('.action-chip').forEach(chip => {
+                chip.addEventListener('click', () => {
+                    const query = chip.dataset.query;
+                    actionInput.value = query;
+                    handleSearch(query);
+                });
+            });
+
             return;
         }
 
         resultsCount.textContent = `${tools.length} tool${tools.length === 1 ? '' : 's'} found`;
-
         resultsGrid.innerHTML = tools.map(tool => createResultCardHTML(tool)).join('');
     }
 
@@ -657,15 +740,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (query.trim() === '') {
             searchResults.classList.add('hidden');
+            hideLoading();
             clearURL();
             return;
         }
 
         searchResults.classList.remove('hidden');
-        const results = searchByIntent(query);
-        renderSearchResults(results);
-        updateURL('q', query);
-        updatePageTitle(query);
+        showLoading();
+
+        // Use setTimeout to allow loading state to render
+        setTimeout(() => {
+            try {
+                const results = searchByIntent(query);
+                renderSearchResults(results, query);
+                updateURL('q', query);
+                updatePageTitle(query);
+            } catch (error) {
+                console.error('Search error:', error);
+                hideLoading();
+                resultsGrid.innerHTML = `
+                    <div class="no-results">
+                        <svg class="no-results-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 8v4M12 16h.01"/>
+                        </svg>
+                        <h3 class="no-results-title">Something went wrong</h3>
+                        <p class="no-results-message">We couldn't complete your search. Please try again.</p>
+                        <button class="browse-link" onclick="location.reload()">
+                            Refresh Page
+                        </button>
+                    </div>
+                `;
+                resultsCount.textContent = 'Error';
+            }
+        }, 50);
     }
 
     // Handle search without updating URL (for popstate)
@@ -674,12 +782,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (query.trim() === '') {
             searchResults.classList.add('hidden');
+            hideLoading();
             return;
         }
 
         searchResults.classList.remove('hidden');
-        const results = searchByIntent(query);
-        renderSearchResults(results);
+        showLoading();
+
+        setTimeout(() => {
+            try {
+                const results = searchByIntent(query);
+                renderSearchResults(results, query);
+            } catch (error) {
+                console.error('Search error:', error);
+                hideLoading();
+            }
+        }, 50);
     }
 
     // Perform search (alias for handleSearch, used by delayed search)

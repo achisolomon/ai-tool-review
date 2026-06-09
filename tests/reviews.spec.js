@@ -442,8 +442,8 @@ test.describe('Review Components', () => {
     }
 
     test('form does NOT have problems_solved field (removed from schema)', async ({ page }) => {
-      // BUG: problems_solved column was removed but code still referenced it
-      // causing "Could not find column in schema cache" error
+      // REGRESSION TEST: problems_solved column was removed from the schema.
+      // This test ensures it doesn't accidentally come back.
       await page.goto('/tools/claude-code/');
       await page.waitForSelector('#review-modal', { timeout: 10000 }).catch(() => null);
 

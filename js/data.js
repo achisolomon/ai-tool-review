@@ -2400,6 +2400,17 @@ const landscapeData = {
               "user_count": null
             },
             {
+              "name": "Nimbalyst",
+              "slug": "nimbalyst",
+              "url": "https://nimbalyst.com",
+              "desc": "Open-source visual workspace for AI coding agents with session kanban, visual editors, and task management for Claude Code, Codex, and more",
+              "type": "oss",
+              "github_stars": "—",
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null
+            },
+            {
               "name": "Overcut",
               "slug": "overcut",
               "url": "https://overcut.ai/",

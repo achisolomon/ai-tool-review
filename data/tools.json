@@ -1670,6 +1670,15 @@
               "desc": "MCP (Model Context Protocol) server providing AI agents with intelligent access to codebase structure, context, and analysis capabilities",
               "type": "oss",
               "github_stars": 150
+            },
+            {
+              "name": "Serena",
+              "slug": "serena",
+              "url": "https://github.com/oraios/serena",
+              "desc": "MCP toolkit providing semantic code retrieval, symbol-level editing, and refactoring capabilities for AI coding agents like Claude Code and Codex",
+              "type": "oss",
+              "github_stars": 25148,
+              "pro": "Dramatically reduces token usage by returning precise symbols instead of grep-based code searches"
             }
           ]
         },

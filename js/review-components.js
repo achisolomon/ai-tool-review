@@ -136,10 +136,16 @@ function renderGitHubStars(stars, githubUrl) {
 /**
  * Render pros/cons tags
  * SECURITY: Tag content is escaped to prevent XSS
+ * Returns empty string if no pros or cons are provided
  */
 function renderProConsTags(pros, cons, { maxPros = 5, maxCons = 4 } = {}) {
-    const displayPros = pros.slice(0, maxPros);
-    const displayCons = cons.slice(0, maxCons);
+    // Don't render if no data
+    if ((!pros || pros.length === 0) && (!cons || cons.length === 0)) {
+        return '';
+    }
+
+    const displayPros = (pros || []).slice(0, maxPros);
+    const displayCons = (cons || []).slice(0, maxCons);
     const maxRows = Math.max(displayPros.length, displayCons.length);
 
     let html = '<table class="pros-cons-table">';
@@ -219,15 +225,16 @@ function renderReviewSummary(data) {
                 </div>
             </div>
 
+${(() => {
+                const summaryContent = renderAISummary(aiSummary);
+                const prosConsContent = renderProConsTags(prosAggregated, consAggregated);
+                if (!summaryContent && !prosConsContent) return '';
+                return `
             <div class="review-summary-details">
-                <div class="summary-column">
-                    ${renderAISummary(aiSummary)}
-                </div>
-
-                <div class="summary-column">
-                    ${renderProConsTags(prosAggregated, consAggregated)}
-                </div>
-            </div>
+                ${summaryContent ? `<div class="summary-column">${summaryContent}</div>` : ''}
+                ${prosConsContent ? `<div class="summary-column">${prosConsContent}</div>` : ''}
+            </div>`;
+            })()}
         </div>
     `;
 }
@@ -257,7 +264,6 @@ function renderReviewCard(review, toolName) {
         title,
         likeBest,
         dislike,
-        problemsSolved,
         createdAt,
         isValidated,
         source,
@@ -273,7 +279,6 @@ function renderReviewCard(review, toolName) {
     const safeTitle = escapeHtml(title);
     const safeLikeBest = escapeHtml(likeBest);
     const safeDislike = escapeHtml(dislike);
-    const safeProblemsSolved = escapeHtml(problemsSolved);
     const safeToolName = escapeHtml(toolName);
 
     return `
@@ -307,11 +312,6 @@ function renderReviewCard(review, toolName) {
                 <div class="review-qa review-qa-hidden">
                     <div class="review-question">What do you dislike about ${safeToolName}?</div>
                     <p class="review-answer">${safeDislike}</p>
-                </div>
-
-                <div class="review-qa review-qa-hidden">
-                    <div class="review-question">What problems is ${safeToolName} solving and how is that benefiting you?</div>
-                    <p class="review-answer">${safeProblemsSolved}</p>
                 </div>
             </div>
 

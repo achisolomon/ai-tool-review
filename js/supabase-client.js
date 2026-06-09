@@ -7,8 +7,26 @@
 // Get credentials from: Supabase Dashboard > Project Settings > API
 // Only use the "anon" / "public" key here, NEVER the "service_role" key
 
-const SUPABASE_URL = window.SUPABASE_CONFIG?.URL || 'https://biclytfukihleuyfpvlr.supabase.co';
-const SUPABASE_ANON_KEY = window.SUPABASE_CONFIG?.ANON_KEY || 'sb_publishable_s0_Gxung8SlO4giqCdrK3w_VFZ83V9S';
+// Environment detection: localhost uses dev, everything else uses prod
+const IS_LOCAL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+
+const SUPABASE_CONFIG = {
+    dev: {
+        url: 'https://yewcxcvngvdtsnigtmwd.supabase.co',
+        anonKey: 'sb_publishable_-nLSx8DHhrSIs3NEjmAp9g_bS1WdOOM'
+    },
+    prod: {
+        url: 'https://biclytfukihleuyfpvlr.supabase.co',
+        anonKey: 'sb_publishable_s0_Gxung8SlO4giqCdrK3w_VFZ83V9S'
+    }
+};
+
+const ENV = IS_LOCAL ? 'dev' : 'prod';
+const SUPABASE_URL = SUPABASE_CONFIG[ENV].url;
+const SUPABASE_ANON_KEY = SUPABASE_CONFIG[ENV].anonKey;
+
+// Log environment for debugging (remove in production if needed)
+console.log(`[Supabase] Using ${ENV} environment: ${SUPABASE_URL}`);
 
 // Note: Both anon and service_role keys are JWTs starting with 'eyJ'
 // The key distinction is in the payload - anon has role:"anon", service_role has role:"service_role"
