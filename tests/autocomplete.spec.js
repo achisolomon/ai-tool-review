@@ -142,8 +142,9 @@ test.describe('Search Autocomplete', () => {
             // Search results should appear
             await expect(searchResults).not.toHaveClass(/hidden/);
 
-            // Should show multiple tools
+            // Wait for result cards to appear (handles loading state)
             const resultCards = searchResults.locator('.result-card');
+            await expect(resultCards.first()).toBeVisible({ timeout: 5000 });
             const count = await resultCards.count();
             expect(count).toBeGreaterThan(0);
 

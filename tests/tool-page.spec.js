@@ -74,3 +74,72 @@ test.describe('Tool Page Title Links', () => {
     expect(jsonLd.url).toContain('cursor.com');
   });
 });
+
+test.describe('Tool Page Review Modal', () => {
+
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => {
+      localStorage.setItem('cookie_consent', 'accepted');
+    });
+  });
+
+  test('review modal is hidden by default on page load', async ({ page }) => {
+    // Navigate to a tool page
+    await page.goto('/tools/cursor/');
+
+    // Wait for reviews section to load
+    await page.waitForSelector('#reviews');
+
+    // Review modal should exist but be hidden (no 'active' class)
+    const reviewModal = page.locator('#review-modal');
+
+    // Modal may not exist yet until Leave Review is clicked
+    // But if it exists, it should not have 'active' class
+    const modalCount = await reviewModal.count();
+    if (modalCount > 0) {
+      await expect(reviewModal).not.toHaveClass(/active/);
+    }
+
+    // Body should not have overflow:hidden (which is set when modal is open)
+    const bodyOverflow = await page.evaluate(() => document.body.style.overflow);
+    expect(bodyOverflow).not.toBe('hidden');
+  });
+
+  test('review modal does not open on page navigation back (bfcache scenario)', async ({ page }) => {
+    // This tests the fix for the bug where the modal opened on back navigation
+
+    // Go to tool page
+    await page.goto('/tools/cursor/');
+    await page.waitForSelector('#reviews');
+
+    // Navigate away (simulate clicking external link by going to another page)
+    await page.goto('/');
+
+    // Navigate back
+    await page.goBack();
+    await page.waitForSelector('#reviews');
+
+    // Review modal should NOT be open
+    const reviewModal = page.locator('#review-modal');
+    const modalCount = await reviewModal.count();
+    if (modalCount > 0) {
+      await expect(reviewModal).not.toHaveClass(/active/);
+    }
+
+    // Body should not have overflow:hidden
+    const bodyOverflow = await page.evaluate(() => document.body.style.overflow);
+    expect(bodyOverflow).not.toBe('hidden');
+  });
+
+  test('auth modal does not open automatically on page load', async ({ page }) => {
+    await page.goto('/tools/cursor/');
+    await page.waitForSelector('#reviews');
+
+    // Auth modal should not be open by default
+    const authModal = page.locator('#auth-modal');
+    const authModalCount = await authModal.count();
+    if (authModalCount > 0) {
+      await expect(authModal).not.toHaveClass(/active/);
+    }
+  });
+});
