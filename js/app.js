@@ -686,7 +686,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const initial = tool.name.charAt(0).toUpperCase();
         const slug = tool.slug || generateSlug(tool.name);
         const badgeClass = `badge-${tool.type}`;
-        const typeLabel = tool.type === 'oss' ? 'OSS' : tool.type === 'saas' ? 'SaaS' : 'Commercial';
+        const typeLabel = (tool.type === 'oss' || tool.type === 'open-source') ? 'OSS' : tool.type === 'saas' ? 'SaaS' : 'Commercial';
 
         let domain = '';
         try {
@@ -697,9 +697,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const logoUrl = domain ? `https://www.google.com/s2/favicons?domain=${domain}&sz=64` : '';
 
-        // GitHub stars (show for OSS tools)
+        // GitHub stars (show for any tool with github_stars)
         const stars = formatStars(tool.github_stars);
-        const starsHtml = (stars && tool.type === 'oss')
+        const starsHtml = stars
             ? `<span class="stars-badge" title="${tool.github_stars.toLocaleString()} GitHub stars"><svg class="star-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25z"/></svg>${stars}</span>`
             : '';
 

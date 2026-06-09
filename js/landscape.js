@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const initial = tool.name.charAt(0).toUpperCase();
         const slug = tool.slug || generateSlug(tool.name);
         const badgeClass = `badge-${tool.type}`;
-        const typeLabel = tool.type === 'oss' ? 'OSS' : tool.type === 'saas' ? 'SaaS' : 'Commercial';
+        const typeLabel = (tool.type === 'oss' || tool.type === 'open-source') ? 'OSS' : tool.type === 'saas' ? 'SaaS' : 'Commercial';
 
         let domain = '';
         try {
