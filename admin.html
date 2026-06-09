@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Moderation - AI Tool Review</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/reviews.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Header -->
+        <header class="admin-header">
+            <h1>Review Moderation</h1>
+            <div class="admin-header-actions">
+                <span id="admin-user-info"></span>
+                <button id="logout-btn" class="btn btn-secondary">Logout</button>
+            </div>
+        </header>
+
+        <!-- Access Denied State -->
+        <div id="access-denied" class="access-denied hidden">
+            <h2>Access Denied</h2>
+            <p>You must be an admin or moderator to access this page.</p>
+            <a href="/" class="btn btn-primary">Return to Home</a>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading-state" class="loading-state">
+            <p>Checking permissions...</p>
+        </div>
+
+        <!-- Main Content (hidden until auth verified) -->
+        <main id="admin-main" class="admin-main hidden">
+            <!-- Status Tabs -->
+            <div class="status-tabs">
+                <button class="status-tab active" data-status="pending">
+                    Pending <span id="pending-count" class="tab-count">(0)</span>
+                </button>
+                <button class="status-tab" data-status="approved">
+                    Approved <span id="approved-count" class="tab-count">(0)</span>
+                </button>
+                <button class="status-tab" data-status="rejected">
+                    Rejected <span id="rejected-count" class="tab-count">(0)</span>
+                </button>
+            </div>
+
+            <!-- Review List -->
+            <div id="review-list" class="review-list">
+                <!-- Review cards will be inserted here -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="empty-state" class="empty-state hidden">
+                <p>No reviews in this category.</p>
+            </div>
+        </main>
+
+        <!-- Delete Confirmation Modal -->
+        <div id="delete-modal" class="modal hidden">
+            <div class="modal-content">
+                <h3>Delete Review</h3>
+                <p>Are you sure you want to permanently delete this review? This action cannot be undone.</p>
+                <div class="modal-actions">
+                    <button id="delete-cancel" class="btn btn-secondary">Cancel</button>
+                    <button id="delete-confirm" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notification -->
+        <div id="toast" class="toast hidden"></div>
+    </div>
+
+    <script src="js/supabase-client.js"></script>
+    <script src="js/admin-api.js"></script>
+    <script src="js/data.js"></script>
+    <script>
+        // Admin page initialization
+        (async function() {
+            const loadingState = document.getElementById('loading-state');
+            const accessDenied = document.getElementById('access-denied');
+            const adminMain = document.getElementById('admin-main');
+            const userInfo = document.getElementById('admin-user-info');
+            const logoutBtn = document.getElementById('logout-btn');
+            const reviewList = document.getElementById('review-list');
+            const emptyState = document.getElementById('empty-state');
+            const deleteModal = document.getElementById('delete-modal');
+            const toast = document.getElementById('toast');
+            const statusTabs = document.querySelectorAll('.status-tab');
+
+            let currentStatus = 'pending';
+            let reviewToDelete = null;
+
+            // Check admin access
+            async function checkAccess() {
+                const result = await window.AdminAPI.checkIsAdmin();
+                loadingState.classList.add('hidden');
+
+                if (!result.isAdmin) {
+                    accessDenied.classList.remove('hidden');
+                    return false;
+                }
+
+                const user = await window.SupabaseClient.getCurrentUser();
+                userInfo.textContent = user?.user_metadata?.full_name || user?.email || 'Admin';
+                adminMain.classList.remove('hidden');
+                return true;
+            }
+
+            // Show toast notification
+            function showToast(message, type = 'success') {
+                toast.textContent = message;
+                toast.className = 'toast ' + type;
+                toast.classList.remove('hidden');
+                setTimeout(() => toast.classList.add('hidden'), 3000);
+            }
+
+            // Find category/subcategory for a tool slug
+            function findToolCategory(slug) {
+                if (!window.landscapeData) return { category: 'Unknown', subcategory: 'Unknown' };
+
+                for (const category of window.landscapeData.users || []) {
+                    for (const subcategory of category.subcategories || []) {
+                        for (const tool of subcategory.tools || []) {
+                            if (tool.slug === slug) {
+                                return { category: category.name, subcategory: subcategory.name };
+                            }
+                        }
+                    }
+                }
+                return { category: 'Unknown', subcategory: 'Unknown' };
+            }
+
+            // Render a single review card
+            function renderReviewCard(review) {
+                const tool = review.tools || {};
+                const categoryInfo = findToolCategory(tool.slug);
+                const date = new Date(review.created_at).toLocaleDateString('en-US', {
+                    year: 'numeric', month: 'short', day: 'numeric'
+                });
+                const stars = '★'.repeat(review.overall_rating) + '☆'.repeat(5 - review.overall_rating);
+
+                const card = document.createElement('div');
+                card.className = 'review-card';
+                card.dataset.reviewId = review.id;
+
+                const likeText = review.like_best || '';
+                const dislikeText = review.dislike || '';
+                const toolName = tool.name || 'Unknown Tool';
+                const authorName = review.author_name || 'Anonymous';
+                const reviewTitle = review.title || '';
+
+                let html = `
+                    <div class="review-card-header">
+                        <div class="review-tool-info">
+                            <strong class="tool-name">${toolName}</strong>
+                            <span class="tool-category">${categoryInfo.category} › ${categoryInfo.subcategory}</span>
+                        </div>
+                        <div class="review-meta">
+                            <span class="review-stars">${stars}</span>
+                            <span class="review-author">by ${authorName}</span>
+                            <span class="review-date">${date}</span>
+                        </div>
+                    </div>
+                    <div class="review-card-body">
+                        <h4 class="review-title">"${reviewTitle}"</h4>
+                        <div class="review-content">
+                            <p><strong>Like:</strong> ${likeText}</p>
+                `;
+
+                if (dislikeText) {
+                    html += `<p><strong>Dislike:</strong> ${dislikeText}</p>`;
+                }
+
+                html += `
+                        </div>
+                    </div>
+                    <div class="review-card-actions">
+                `;
+
+                if (currentStatus === 'pending') {
+                    html += `
+                            <button class="btn btn-success action-approve" data-id="${review.id}">Approve</button>
+                            <button class="btn btn-warning action-reject" data-id="${review.id}">Reject</button>
+                    `;
+                }
+                if (currentStatus === 'rejected') {
+                    html += `
+                            <button class="btn btn-success action-approve" data-id="${review.id}">Approve</button>
+                    `;
+                }
+                if (currentStatus === 'approved') {
+                    html += `
+                            <button class="btn btn-warning action-reject" data-id="${review.id}">Reject</button>
+                    `;
+                }
+
+                html += `
+                        <button class="btn btn-danger action-delete" data-id="${review.id}">Delete</button>
+                    </div>
+                `;
+
+                card.innerHTML = html;
+                return card;
+            }
+
+            // Load reviews for current status
+            async function loadReviews() {
+                reviewList.innerHTML = '<p class="loading">Loading reviews...</p>';
+                emptyState.classList.add('hidden');
+
+                const result = await window.AdminAPI.getReviewsForModeration(currentStatus);
+
+                reviewList.innerHTML = '';
+
+                if (result.reviews.length === 0) {
+                    emptyState.classList.remove('hidden');
+                    return;
+                }
+
+                result.reviews.forEach(review => {
+                    reviewList.appendChild(renderReviewCard(review));
+                });
+            }
+
+            // Update tab counts
+            async function updateCounts() {
+                const pending = await window.AdminAPI.getPendingCount();
+                document.getElementById('pending-count').textContent = '(' + pending + ')';
+
+                const approved = await window.AdminAPI.getReviewsForModeration('approved', { limit: 1 });
+                document.getElementById('approved-count').textContent = '(' + approved.total + ')';
+
+                const rejected = await window.AdminAPI.getReviewsForModeration('rejected', { limit: 1 });
+                document.getElementById('rejected-count').textContent = '(' + rejected.total + ')';
+            }
+
+            // Handle tab clicks
+            statusTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    statusTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    currentStatus = tab.dataset.status;
+                    loadReviews();
+                });
+            });
+
+            // Handle action button clicks (event delegation)
+            reviewList.addEventListener('click', async (e) => {
+                const btn = e.target.closest('button');
+                if (!btn) return;
+
+                const reviewId = btn.dataset.id;
+                const card = btn.closest('.review-card');
+
+                if (btn.classList.contains('action-approve')) {
+                    btn.disabled = true;
+                    const result = await window.AdminAPI.approveReview(reviewId);
+                    if (result.success) {
+                        card.remove();
+                        showToast('Review approved');
+                        updateCounts();
+                        if (reviewList.children.length === 0) emptyState.classList.remove('hidden');
+                    } else {
+                        showToast(result.error || 'Failed to approve', 'error');
+                        btn.disabled = false;
+                    }
+                }
+
+                if (btn.classList.contains('action-reject')) {
+                    btn.disabled = true;
+                    const result = await window.AdminAPI.rejectReview(reviewId);
+                    if (result.success) {
+                        card.remove();
+                        showToast('Review rejected');
+                        updateCounts();
+                        if (reviewList.children.length === 0) emptyState.classList.remove('hidden');
+                    } else {
+                        showToast(result.error || 'Failed to reject', 'error');
+                        btn.disabled = false;
+                    }
+                }
+
+                if (btn.classList.contains('action-delete')) {
+                    reviewToDelete = reviewId;
+                    deleteModal.classList.remove('hidden');
+                }
+            });
+
+            // Delete modal handlers
+            document.getElementById('delete-cancel').addEventListener('click', () => {
+                deleteModal.classList.add('hidden');
+                reviewToDelete = null;
+            });
+
+            document.getElementById('delete-confirm').addEventListener('click', async () => {
+                if (!reviewToDelete) return;
+
+                const result = await window.AdminAPI.deleteReviewAdmin(reviewToDelete);
+                deleteModal.classList.add('hidden');
+
+                if (result.success) {
+                    const card = document.querySelector('[data-review-id="' + reviewToDelete + '"]');
+                    if (card) card.remove();
+                    showToast('Review deleted');
+                    updateCounts();
+                    if (reviewList.children.length === 0) emptyState.classList.remove('hidden');
+                } else {
+                    showToast(result.error || 'Failed to delete', 'error');
+                }
+
+                reviewToDelete = null;
+            });
+
+            // Logout handler
+            logoutBtn.addEventListener('click', async () => {
+                await window.SupabaseClient.signOut();
+                window.location.href = '/';
+            });
+
+            // Initialize
+            const hasAccess = await checkAccess();
+            if (hasAccess) {
+                await updateCounts();
+                await loadReviews();
+            }
+        })();
+    </script>
+</body>
+</html>

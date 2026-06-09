@@ -1,0 +1,340 @@
+/* ===========================================
+   ADMIN PAGE STYLES - Dark Mode Theme
+   =========================================== */
+
+.admin-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 24px;
+    min-height: 100vh;
+}
+
+/* Header */
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--vscode-border);
+}
+
+.admin-header h1 {
+    margin: 0;
+    color: var(--vscode-text);
+    font-size: 24px;
+}
+
+.admin-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+#admin-user-info {
+    color: var(--vscode-text-muted);
+    font-size: 14px;
+}
+
+/* Access Denied */
+.access-denied {
+    text-align: center;
+    padding: 48px 24px;
+}
+
+.access-denied h2 {
+    color: var(--vscode-text);
+    margin-bottom: 16px;
+}
+
+.access-denied p {
+    color: var(--vscode-text-muted);
+    margin-bottom: 24px;
+}
+
+/* Loading State */
+.loading-state {
+    text-align: center;
+    padding: 48px 24px;
+    color: var(--vscode-text-muted);
+}
+
+/* Status Tabs */
+.status-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.status-tab {
+    padding: 10px 20px;
+    background: var(--vscode-sidebar-bg);
+    border: 1px solid var(--vscode-border);
+    border-radius: 6px;
+    color: var(--vscode-text-muted);
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.status-tab:hover {
+    background: var(--vscode-list-hover);
+    color: var(--vscode-text);
+}
+
+.status-tab.active {
+    background: var(--vscode-button-bg);
+    color: white;
+    border-color: var(--vscode-button-bg);
+}
+
+.tab-count {
+    opacity: 0.8;
+}
+
+/* Review List */
+.review-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.review-list .loading {
+    text-align: center;
+    color: var(--vscode-text-muted);
+    padding: 24px;
+}
+
+/* Review Card */
+.review-card {
+    background: var(--vscode-sidebar-bg);
+    border: 1px solid var(--vscode-border);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.review-card-header {
+    padding: 16px;
+    border-bottom: 1px solid var(--vscode-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.review-tool-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.tool-name {
+    color: var(--vscode-text);
+    font-size: 16px;
+}
+
+.tool-category {
+    color: var(--vscode-text-muted);
+    font-size: 13px;
+}
+
+.review-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+}
+
+.review-stars {
+    color: #f5a623;
+}
+
+.review-author {
+    color: var(--vscode-text);
+}
+
+.review-date {
+    color: var(--vscode-text-muted);
+}
+
+.review-card-body {
+    padding: 16px;
+}
+
+.review-title {
+    margin: 0 0 12px;
+    color: var(--vscode-text);
+    font-size: 15px;
+    font-style: italic;
+}
+
+.review-content p {
+    margin: 0 0 8px;
+    color: var(--vscode-text-muted);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.review-content p:last-child {
+    margin-bottom: 0;
+}
+
+.review-content strong {
+    color: var(--vscode-text);
+}
+
+.review-card-actions {
+    padding: 12px 16px;
+    border-top: 1px solid var(--vscode-border);
+    display: flex;
+    gap: 8px;
+}
+
+/* Buttons */
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-primary {
+    background: var(--vscode-button-bg);
+    color: white;
+}
+
+.btn-secondary {
+    background: var(--vscode-sidebar-bg);
+    color: var(--vscode-text);
+    border: 1px solid var(--vscode-border);
+}
+
+.btn-success {
+    background: #238636;
+    color: white;
+}
+
+.btn-warning {
+    background: #9e6a03;
+    color: white;
+}
+
+.btn-danger {
+    background: #da3633;
+    color: white;
+}
+
+.btn:hover:not(:disabled) {
+    opacity: 0.9;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 48px 24px;
+    color: var(--vscode-text-muted);
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: var(--vscode-sidebar-bg);
+    border: 1px solid var(--vscode-border);
+    border-radius: 8px;
+    padding: 24px;
+    max-width: 400px;
+    width: 90%;
+}
+
+.modal-content h3 {
+    margin: 0 0 16px;
+    color: var(--vscode-text);
+}
+
+.modal-content p {
+    margin: 0 0 24px;
+    color: var(--vscode-text-muted);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+/* Toast */
+.toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    padding: 12px 24px;
+    border-radius: 6px;
+    color: white;
+    font-size: 14px;
+    z-index: 1001;
+    animation: slideIn 0.3s ease;
+}
+
+.toast.success {
+    background: #238636;
+}
+
+.toast.error {
+    background: #da3633;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Admin Badge (for use in Task 4) */
+.admin-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    background: #238636;
+    color: white;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.admin-badge::before {
+    content: '⚙';
+    font-size: 10px;
+}
+
+/* Hidden utility */
+.hidden {
+    display: none !important;
+}
