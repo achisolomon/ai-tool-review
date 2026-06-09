@@ -4739,6 +4739,17 @@ const landscapeData = {
           "name": "Code Intelligence & Refactoring",
           "tools": [
             {
+              "name": "Sourcegraph",
+              "slug": "sourcegraph",
+              "url": "https://sourcegraph.com",
+              "desc": "Enterprise code intelligence platform with AI-powered search, navigation, and codebase-wide context for coding agents and large engineering teams",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "enterprise",
+              "pricing_starting": null,
+              "user_count": null
+            },
+            {
               "name": "OpenRewrite",
               "slug": "openrewrite",
               "url": "https://docs.openrewrite.org/",
@@ -4750,12 +4761,34 @@ const landscapeData = {
               "user_count": null
             },
             {
+              "name": "GrepAI",
+              "slug": "grepai",
+              "url": "https://yoanbernabeu.github.io/grepai/",
+              "desc": "Privacy-first semantic code search CLI that runs 100% locally with Ollama, providing meaning-aware queries and call graphs for AI coding agents",
+              "type": "oss",
+              "github_stars": 1731,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null
+            },
+            {
               "name": "Serena MCP",
               "slug": "serena-mcp",
               "url": "https://github.com/serena-ai/serena-mcp",
               "desc": "MCP (Model Context Protocol) server providing AI agents with intelligent access to codebase structure, context, and analysis capabilities",
               "type": "oss",
               "github_stars": 150,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null
+            },
+            {
+              "name": "Codemogger",
+              "slug": "codemogger",
+              "url": "https://github.com/glommer/codemogger",
+              "desc": "Code indexing library and MCP server that uses tree-sitter for semantic chunking and local embeddings, storing everything in a single SQLite file",
+              "type": "oss",
+              "github_stars": 318,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null
@@ -4835,8 +4868,36 @@ const landscapeData = {
           ]
         },
         {
-          "id": "context-optimization",
-          "name": "Context Optimization",
+          "id": "llm-skills",
+          "name": "Llm Skills",
+          "tools": [
+            {
+              "name": "Impeccable",
+              "slug": "impeccable",
+              "url": "https://impeccable.style/",
+              "desc": "Design vocabulary and skill system for AI agents that addresses visual uniformity in AI-generated interfaces",
+              "type": "oss",
+              "github_stars": 36096,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null
+            },
+            {
+              "name": "Frontend Design Skill",
+              "slug": "frontend-design",
+              "url": "https://www.skills.sh/anthropics/skills/frontend-design",
+              "desc": "AI skill for creating distinctive, production-grade frontend interfaces that avoid generic AI aesthetics",
+              "type": "oss",
+              "github_stars": 147931,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null
+            }
+          ]
+        },
+        {
+          "id": "cost-reduction",
+          "name": "Cost Reduction",
           "tools": [
             {
               "name": "Token Optimizer",
@@ -4845,6 +4906,28 @@ const landscapeData = {
               "desc": "Context optimization plugin that identifies and eliminates wasted tokens across Claude Code, OpenCode, OpenClaw, and Codex environments while preserving work through compactions",
               "type": "open-source",
               "github_stars": 1214,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null
+            },
+            {
+              "name": "Headroom",
+              "slug": "headroom",
+              "url": "https://github.com/chopratejas/headroom",
+              "desc": "Context compression system that reduces AI agent token usage by 60-95% while maintaining accuracy",
+              "type": "oss",
+              "github_stars": 18121,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null
+            },
+            {
+              "name": "RTK (Rust Token Killer)",
+              "slug": "rtk",
+              "url": "https://github.com/rtk-ai/rtk",
+              "desc": "CLI proxy that reduces LLM token consumption by 60-90% on common dev commands with zero dependencies",
+              "type": "oss",
+              "github_stars": 60071,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null

@@ -161,6 +161,9 @@ developers:
       dev-environment:
         name: "Dev Environment"
         description: "Development environment tooling"
+      cost-reduction:
+        name: "Cost Reduction"
+        description: "Token optimization and cost reduction tools for AI coding"
 
   agent-frameworks:
     name: "Agent Frameworks & Orchestration"
