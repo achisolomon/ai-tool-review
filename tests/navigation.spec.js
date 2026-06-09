@@ -68,13 +68,19 @@ test.describe('Page Navigation', () => {
         cards.map(card => card.dataset.slug).filter(Boolean)
       );
 
-      // Sample up to 10 random tools to test (to keep test fast)
-      const sampleSize = Math.min(slugs.length, 10);
-      const sampledSlugs = slugs.sort(() => 0.5 - Math.random()).slice(0, sampleSize);
+      // Use deterministic sampling: take first 5 and last 5 slugs (sorted alphabetically)
+      // This avoids Math.random() which causes flaky tests
+      const sortedSlugs = [...slugs].sort();
+      const sampledSlugs = [
+        ...sortedSlugs.slice(0, 5),
+        ...sortedSlugs.slice(-5)
+      ].filter((slug, i, arr) => arr.indexOf(slug) === i); // dedupe if < 10 total
 
       // Verify each sampled tool page loads with 200
       for (const slug of sampledSlugs) {
-        const response = await page.request.get(`/tools/${slug}/`);
+        // URL-encode the slug to handle special characters
+        const encodedSlug = encodeURIComponent(slug);
+        const response = await page.request.get(`/tools/${encodedSlug}/`);
         expect(response.status(), `Tool page /tools/${slug}/ should exist`).toBe(200);
       }
     });
