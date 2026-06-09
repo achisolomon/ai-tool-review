@@ -376,8 +376,9 @@
       }
     });
 
-    // Track current user
+    // Track current user and auth intent
     let currentUser = null;
+    let pendingReviewOpen = false; // True when user clicked "Leave Review" while logged out
 
     // Check initial auth state
     async function checkAuthState() {
@@ -395,6 +396,7 @@
       function closeAuthModal() {
         authModal.classList.remove('active');
         document.body.style.overflow = '';
+        pendingReviewOpen = false; // Reset if user closes without signing in
       }
 
       if (authCloseBtn) authCloseBtn.addEventListener('click', closeAuthModal);
@@ -427,12 +429,15 @@
         if (event === 'SIGNED_IN' && session?.user) {
           currentUser = session.user;
           closeAuthModal();
-          // Open review form after sign in
-          const reviewModal = document.getElementById('review-modal');
-          if (reviewModal) {
-            prefillUserInfo(session.user);
-            reviewModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
+          // Only open review form if user was actively trying to leave a review
+          if (pendingReviewOpen) {
+            pendingReviewOpen = false;
+            const reviewModal = document.getElementById('review-modal');
+            if (reviewModal) {
+              prefillUserInfo(session.user);
+              reviewModal.classList.add('active');
+              document.body.style.overflow = 'hidden';
+            }
           }
         } else if (event === 'SIGNED_OUT') {
           currentUser = null;
@@ -486,7 +491,8 @@
             prefillUserInfo(currentUser);
             modal.classList.add('active');
           } else {
-            // User not logged in - show auth modal
+            // User not logged in - show auth modal and set pending flag
+            pendingReviewOpen = true;
             authModal.classList.add('active');
           }
           document.body.style.overflow = 'hidden';
