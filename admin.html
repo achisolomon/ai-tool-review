@@ -246,8 +246,16 @@
             const toast = document.getElementById('toast');
             const statusTabs = document.querySelectorAll('.status-tab');
             const statItems = document.querySelectorAll('.stat-item');
+            const adminNavTabs = document.querySelectorAll('.admin-nav-tab');
+            const reviewsView = document.getElementById('reviews-view');
+            const usersView = document.getElementById('users-view');
+            const usersTableBody = document.getElementById('users-table-body');
+            const usersCount = document.getElementById('users-count');
+            const usersEmpty = document.getElementById('users-empty');
+            const usersLoading = document.getElementById('users-loading');
 
             let currentStatus = 'pending';
+            let currentView = 'reviews';
             let reviewToDelete = null;
 
             // Escape HTML to prevent XSS
@@ -256,6 +264,122 @@
                 const map = {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'};
                 return String(text).replace(/[&<>"']/g, m => map[m]);
             }
+
+            // Get avatar background color based on initial
+            function getAvatarColor(initial) {
+                const colors = {
+                    'A': '#4f46e5', 'B': '#7c3aed', 'C': '#db2777', 'D': '#dc2626',
+                    'E': '#ea580c', 'F': '#ca8a04', 'G': '#65a30d', 'H': '#16a34a',
+                    'I': '#059669', 'J': '#0d9488', 'K': '#0891b2', 'L': '#0284c7',
+                    'M': '#2563eb', 'N': '#4f46e5', 'O': '#7c3aed', 'P': '#9333ea',
+                    'Q': '#c026d3', 'R': '#db2777', 'S': '#e11d48', 'T': '#dc2626',
+                    'U': '#ea580c', 'V': '#d97706', 'W': '#ca8a04', 'X': '#65a30d',
+                    'Y': '#16a34a', 'Z': '#059669'
+                };
+                return colors[initial?.toUpperCase()] || '#6b7280';
+            }
+
+            // Format relative date
+            function formatRelativeDate(dateStr) {
+                if (!dateStr) return 'Never';
+                const date = new Date(dateStr);
+                const now = new Date();
+                const diffMs = now - date;
+                const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+                if (diffDays === 0) return 'Today';
+                if (diffDays === 1) return 'Yesterday';
+                if (diffDays < 7) return `${diffDays} days ago`;
+                if (diffDays < 30) return `${Math.floor(diffDays / 7)} weeks ago`;
+
+                return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            }
+
+            // Render a user table row
+            function renderUserRow(user) {
+                const initial = (user.displayName || user.email || '?').charAt(0).toUpperCase();
+                const avatarColor = getAvatarColor(initial);
+                const displayName = escapeHtml(user.displayName || user.email?.split('@')[0] || 'Unknown');
+                const email = escapeHtml(user.email || '');
+                const joinDate = new Date(user.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                const lastActive = formatRelativeDate(user.lastSignIn);
+
+                // Determine role badge
+                let roleHtml = '<span class="role-badge user">User</span>';
+                if (user.roles.includes('admin')) {
+                    roleHtml = '<span class="role-badge admin">Admin</span>';
+                } else if (user.roles.includes('moderator')) {
+                    roleHtml = '<span class="role-badge moderator">Mod</span>';
+                }
+
+                return `
+                    <tr>
+                        <td>
+                            <div class="user-name-cell">
+                                <div class="user-avatar" style="background: ${avatarColor}">${initial}</div>
+                                <span>${displayName}</span>
+                            </div>
+                        </td>
+                        <td>${email}</td>
+                        <td>${roleHtml}</td>
+                        <td>${user.reviewCount}</td>
+                        <td class="date-cell">${joinDate}</td>
+                        <td class="date-cell">${lastActive}</td>
+                    </tr>
+                `;
+            }
+
+            // Load users into the table
+            async function loadUsers() {
+                usersLoading.classList.remove('hidden');
+                usersTableBody.innerHTML = '';
+                usersEmpty.classList.add('hidden');
+
+                const result = await window.AdminAPI.getAllUsers();
+
+                usersLoading.classList.add('hidden');
+
+                if (result.error) {
+                    usersEmpty.querySelector('p').textContent = 'Failed to load users';
+                    usersEmpty.classList.remove('hidden');
+                    return;
+                }
+
+                if (result.users.length === 0) {
+                    usersEmpty.classList.remove('hidden');
+                    return;
+                }
+
+                usersCount.textContent = `${result.users.length} user${result.users.length === 1 ? '' : 's'}`;
+                result.users.forEach(user => {
+                    usersTableBody.insertAdjacentHTML('beforeend', renderUserRow(user));
+                });
+            }
+
+            // Switch between views
+            function switchView(view) {
+                currentView = view;
+
+                // Update nav tabs
+                adminNavTabs.forEach(tab => {
+                    tab.classList.toggle('active', tab.dataset.view === view);
+                });
+
+                // Show/hide views
+                if (view === 'reviews') {
+                    reviewsView.classList.remove('hidden');
+                    usersView.classList.add('hidden');
+                } else if (view === 'users') {
+                    reviewsView.classList.add('hidden');
+                    usersView.classList.remove('hidden');
+                    loadUsers();
+                }
+            }
+
+            // Nav tab click handlers
+            adminNavTabs.forEach(tab => {
+                tab.addEventListener('click', () => switchView(tab.dataset.view));
+            });
 
             // GitHub login handler
             async function handleGitHubLogin() {
