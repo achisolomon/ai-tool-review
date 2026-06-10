@@ -1,0 +1,203 @@
+/* ===========================================
+   AUTH DROPDOWN STYLES
+   =========================================== */
+
+.auth-dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Sign In Button (logged out state) */
+.auth-signin-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: transparent;
+    color: #858585;
+    border: 1px solid #3c3c3c;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.auth-signin-btn:hover {
+    color: #ccc;
+    border-color: #858585;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Avatar Button (logged in state) */
+.auth-avatar-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.15s ease;
+}
+
+.auth-avatar-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.auth-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    color: white;
+    text-transform: uppercase;
+}
+
+.auth-avatar-caret {
+    color: #858585;
+    font-size: 10px;
+    transition: transform 0.15s ease;
+}
+
+.auth-dropdown-container.open .auth-avatar-caret {
+    transform: rotate(180deg);
+}
+
+/* Dropdown Menu */
+.auth-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 200px;
+    background: #252526;
+    border: 1px solid #3c3c3c;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: all 0.15s ease;
+    z-index: 1000;
+}
+
+.auth-dropdown-container.open .auth-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Dropdown Header (email) */
+.auth-dropdown-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid #3c3c3c;
+}
+
+.auth-dropdown-email {
+    font-size: 13px;
+    color: #ccc;
+    font-weight: 500;
+    word-break: break-all;
+}
+
+.auth-dropdown-name {
+    font-size: 11px;
+    color: #858585;
+    margin-top: 2px;
+}
+
+/* Dropdown Items */
+.auth-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 16px;
+    background: transparent;
+    border: none;
+    color: #ccc;
+    font-size: 13px;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.1s ease;
+    text-decoration: none;
+}
+
+.auth-dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.auth-dropdown-item svg {
+    flex-shrink: 0;
+    opacity: 0.7;
+}
+
+.auth-dropdown-divider {
+    height: 1px;
+    background: #3c3c3c;
+    margin: 4px 0;
+}
+
+.auth-dropdown-item.logout {
+    color: #f85149;
+}
+
+.auth-dropdown-item.logout:hover {
+    background: rgba(248, 81, 73, 0.1);
+}
+
+/* Avatar color palette based on first letter */
+.auth-avatar[data-letter="A"], .auth-avatar[data-letter="a"] { background: #4f46e5; }
+.auth-avatar[data-letter="B"], .auth-avatar[data-letter="b"] { background: #7c3aed; }
+.auth-avatar[data-letter="C"], .auth-avatar[data-letter="c"] { background: #db2777; }
+.auth-avatar[data-letter="D"], .auth-avatar[data-letter="d"] { background: #dc2626; }
+.auth-avatar[data-letter="E"], .auth-avatar[data-letter="e"] { background: #ea580c; }
+.auth-avatar[data-letter="F"], .auth-avatar[data-letter="f"] { background: #ca8a04; }
+.auth-avatar[data-letter="G"], .auth-avatar[data-letter="g"] { background: #65a30d; }
+.auth-avatar[data-letter="H"], .auth-avatar[data-letter="h"] { background: #16a34a; }
+.auth-avatar[data-letter="I"], .auth-avatar[data-letter="i"] { background: #059669; }
+.auth-avatar[data-letter="J"], .auth-avatar[data-letter="j"] { background: #0d9488; }
+.auth-avatar[data-letter="K"], .auth-avatar[data-letter="k"] { background: #0891b2; }
+.auth-avatar[data-letter="L"], .auth-avatar[data-letter="l"] { background: #0284c7; }
+.auth-avatar[data-letter="M"], .auth-avatar[data-letter="m"] { background: #2563eb; }
+.auth-avatar[data-letter="N"], .auth-avatar[data-letter="n"] { background: #4f46e5; }
+.auth-avatar[data-letter="O"], .auth-avatar[data-letter="o"] { background: #7c3aed; }
+.auth-avatar[data-letter="P"], .auth-avatar[data-letter="p"] { background: #9333ea; }
+.auth-avatar[data-letter="Q"], .auth-avatar[data-letter="q"] { background: #c026d3; }
+.auth-avatar[data-letter="R"], .auth-avatar[data-letter="r"] { background: #db2777; }
+.auth-avatar[data-letter="S"], .auth-avatar[data-letter="s"] { background: #e11d48; }
+.auth-avatar[data-letter="T"], .auth-avatar[data-letter="t"] { background: #dc2626; }
+.auth-avatar[data-letter="U"], .auth-avatar[data-letter="u"] { background: #ea580c; }
+.auth-avatar[data-letter="V"], .auth-avatar[data-letter="v"] { background: #d97706; }
+.auth-avatar[data-letter="W"], .auth-avatar[data-letter="w"] { background: #ca8a04; }
+.auth-avatar[data-letter="X"], .auth-avatar[data-letter="x"] { background: #65a30d; }
+.auth-avatar[data-letter="Y"], .auth-avatar[data-letter="y"] { background: #16a34a; }
+.auth-avatar[data-letter="Z"], .auth-avatar[data-letter="z"] { background: #059669; }
+
+/* Fallback for numbers/special chars */
+.auth-avatar:not([data-letter]) { background: #6b7280; }
+
+/* Loading state */
+.auth-loading {
+    width: 32px;
+    height: 32px;
+    border: 2px solid #3c3c3c;
+    border-top-color: #007acc;
+    border-radius: 50%;
+    animation: auth-spin 0.8s linear infinite;
+}
+
+@keyframes auth-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .auth-dropdown-menu {
+        min-width: 180px;
+    }
+}
