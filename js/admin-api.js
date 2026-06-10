@@ -163,6 +163,82 @@ async function deleteReviewAdmin(reviewId) {
     return { success: true };
 }
 
+/**
+ * Get all users with their roles and review counts (admin only)
+ * @returns {Promise<{users: Array, error?: string}>}
+ */
+async function getAllUsers() {
+    const supabase = window.SupabaseClient.getSupabase();
+    if (!supabase) return { users: [], error: 'Supabase not initialized' };
+
+    // Get user profiles with roles
+    const { data: profiles, error: profilesError } = await supabase
+        .from('user_profiles')
+        .select(`
+            id,
+            email,
+            display_name,
+            created_at,
+            last_sign_in
+        `)
+        .order('last_sign_in', { ascending: false, nullsFirst: false });
+
+    if (profilesError) {
+        console.error('Error fetching users:', profilesError);
+        return { users: [], error: profilesError.message };
+    }
+
+    // Get roles for all users
+    const { data: roles, error: rolesError } = await supabase
+        .from('user_roles')
+        .select('user_id, role');
+
+    if (rolesError) {
+        console.error('Error fetching roles:', rolesError);
+    }
+
+    // Create role lookup map
+    const roleMap = {};
+    if (roles) {
+        roles.forEach(r => {
+            if (!roleMap[r.user_id]) roleMap[r.user_id] = [];
+            roleMap[r.user_id].push(r.role);
+        });
+    }
+
+    // Get review counts per user
+    const { data: reviewCounts, error: countError } = await supabase
+        .from('reviews')
+        .select('user_id');
+
+    if (countError) {
+        console.error('Error fetching review counts:', countError);
+    }
+
+    // Create count lookup map
+    const countMap = {};
+    if (reviewCounts) {
+        reviewCounts.forEach(r => {
+            if (r.user_id) {
+                countMap[r.user_id] = (countMap[r.user_id] || 0) + 1;
+            }
+        });
+    }
+
+    // Merge data
+    const users = profiles.map(profile => ({
+        id: profile.id,
+        email: profile.email,
+        displayName: profile.display_name,
+        createdAt: profile.created_at,
+        lastSignIn: profile.last_sign_in,
+        roles: roleMap[profile.id] || [],
+        reviewCount: countMap[profile.id] || 0
+    }));
+
+    return { users, error: null };
+}
+
 // Export for use in admin page
 window.AdminAPI = {
     checkIsAdmin,
@@ -171,4 +247,5 @@ window.AdminAPI = {
     approveReview,
     rejectReview,
     deleteReviewAdmin,
+    getAllUsers,
 };
