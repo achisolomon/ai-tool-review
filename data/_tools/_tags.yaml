@@ -1,0 +1,71 @@
+# Controlled vocabulary for tags
+# Tags describe capabilities, NOT where a tool lives (use categories for that)
+# Build fails on unknown tags - add new tags here before using them
+
+capabilities:
+  - slug: reasoning
+    name: "Reasoning"
+    description: "Advanced reasoning/thinking capabilities"
+  - slug: agents
+    name: "Agents"
+    description: "Autonomous agent capabilities"
+  - slug: multimodal
+    name: "Multimodal"
+    description: "Handles text + images/audio/video"
+  - slug: rag
+    name: "RAG"
+    description: "Retrieval-augmented generation"
+  - slug: real-time
+    name: "Real-Time"
+    description: "Real-time/streaming responses"
+  - slug: fine-tuning
+    name: "Fine-Tuning"
+    description: "Supports model fine-tuning"
+
+integrations:
+  - slug: api-available
+    name: "API Available"
+    description: "Has public API"
+  - slug: mcp-server
+    name: "MCP Server"
+    description: "Model Context Protocol server available"
+  - slug: python
+    name: "Python SDK"
+    description: "Python SDK available"
+  - slug: typescript
+    name: "TypeScript SDK"
+    description: "TypeScript/JS SDK available"
+  - slug: vscode-extension
+    name: "VS Code Extension"
+    description: "VS Code integration available"
+
+deployment:
+  - slug: enterprise
+    name: "Enterprise"
+    description: "Enterprise features (SSO, audit logs, compliance)"
+  - slug: open-source
+    name: "Open Source"
+    description: "Core is open source"
+  - slug: self-hosted
+    name: "Self-Hosted"
+    description: "Can be self-hosted"
+  - slug: serverless
+    name: "Serverless"
+    description: "Serverless deployment option"
+
+use-cases:
+  - slug: no-code
+    name: "No-Code"
+    description: "No coding required"
+  - slug: workflow-automation
+    name: "Workflow Automation"
+    description: "Automates workflows"
+  - slug: browser-automation
+    name: "Browser Automation"
+    description: "Automates browser interactions"
+  - slug: evaluation
+    name: "Evaluation"
+    description: "LLM evaluation & testing"
+  - slug: observability
+    name: "Observability"
+    description: "Tracing, monitoring, debugging"
