@@ -492,6 +492,17 @@ const landscapeData = {
               "user_count": null
             },
             {
+              "name": "Deepgram",
+              "slug": "deepgram",
+              "url": "https://deepgram.com/",
+              "desc": "Enterprise voice AI platform offering speech-to-text, text-to-speech, and real-time voice agent APIs with industry-leading accuracy and speed",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null
+            },
+            {
               "name": "Rime AI",
               "slug": "rime-ai",
               "url": "https://rime.ai/",
@@ -595,17 +606,6 @@ const landscapeData = {
               "user_count": null
             },
             {
-              "name": "Voiceflow",
-              "slug": "voiceflow",
-              "url": "https://www.voiceflow.com/",
-              "desc": "No-code platform for building, deploying, and scaling conversational AI agents across channels",
-              "type": "commercial",
-              "github_stars": null,
-              "pricing_model": "subscription",
-              "pricing_starting": null,
-              "user_count": null
-            },
-            {
               "name": "Coze",
               "slug": "coze",
               "url": "https://www.coze.com/",
@@ -701,6 +701,17 @@ const landscapeData = {
               "type": "oss",
               "github_stars": 50000,
               "pricing_model": "open-source + cloud",
+              "pricing_starting": null,
+              "user_count": null
+            },
+            {
+              "name": "Voiceflow",
+              "slug": "voiceflow",
+              "url": "https://www.voiceflow.com/",
+              "desc": "No-code AI agent platform for building conversational voice and chat experiences with visual workflow builder and multi-channel deployment",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null
             }
@@ -1124,6 +1135,50 @@ const landscapeData = {
               "type": "commercial",
               "github_stars": null,
               "pricing_model": "paid",
+              "pricing_starting": null,
+              "user_count": null
+            },
+            {
+              "name": "Voiceflow",
+              "slug": "voiceflow",
+              "url": "https://www.voiceflow.com/",
+              "desc": "No-code AI agent platform for building conversational voice and chat experiences with visual workflow builder and multi-channel deployment",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null
+            },
+            {
+              "name": "Retell AI",
+              "slug": "retell-ai",
+              "url": "https://www.retellai.com/",
+              "desc": "AI voice agent platform for building human-like conversational agents that handle phone calls autonomously with ~600ms latency",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "usage-based",
+              "pricing_starting": null,
+              "user_count": null
+            },
+            {
+              "name": "Synthflow",
+              "slug": "synthflow",
+              "url": "https://synthflow.ai/",
+              "desc": "Enterprise voice AI platform with in-house telephony for automating phone calls at scale with sub-100ms latency and HIPAA compliance",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "usage-based",
+              "pricing_starting": null,
+              "user_count": null
+            },
+            {
+              "name": "PolyAI",
+              "slug": "polyai",
+              "url": "https://poly.ai/",
+              "desc": "Enterprise conversational AI platform with lifelike voice agents trained on 1B+ conversations for contact center automation",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null
             }
@@ -3126,6 +3181,17 @@ const landscapeData = {
               "user_count": null
             },
             {
+              "name": "Graphify",
+              "slug": "graphify",
+              "url": "https://github.com/safishamsi/graphify",
+              "desc": "AI coding assistant skill that transforms code, docs, and media into queryable knowledge graphs with 71x fewer tokens than raw file reading",
+              "type": "open-source",
+              "github_stars": 64633,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null
+            },
+            {
               "name": "FalkorDB",
               "slug": "falkordb",
               "url": "https://www.falkordb.com/",
@@ -4917,6 +4983,17 @@ const landscapeData = {
               "desc": "Context optimization plugin that identifies and eliminates wasted tokens across Claude Code, OpenCode, OpenClaw, and Codex environments while preserving work through compactions",
               "type": "open-source",
               "github_stars": 1214,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null
+            },
+            {
+              "name": "Claude Dashboard",
+              "slug": "claude-dashboard",
+              "url": "https://github.com/iftahs/claude-dashboard",
+              "desc": "Beautiful local dashboard for Claude Code usage — 5h blocks, weekly trends, model & tool breakdown, activity heatmap",
+              "type": "oss",
+              "github_stars": 7,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null
