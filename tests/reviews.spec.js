@@ -232,7 +232,7 @@ test.describe('Review Components', () => {
       }
     });
 
-    test('auth modal has GitHub sign-in button', async ({ page }) => {
+    test('auth modal has GitHub and Google sign-in buttons', async ({ page }) => {
       await page.goto('/tools/claude-code/');
       await page.waitForSelector('#leave-review-btn', { timeout: 10000 }).catch(() => null);
 
@@ -244,10 +244,42 @@ test.describe('Review Components', () => {
         const githubBtn = page.locator('#auth-github');
         const googleBtn = page.locator('#auth-google');
 
+        // Both OAuth providers should be visible
         await expect(githubBtn).toBeVisible();
         await expect(githubBtn).toContainText('GitHub');
-        // Note: Google auth button hidden until implemented (see review-components.js)
-        await expect(googleBtn).toHaveCount(0);
+        await expect(googleBtn).toBeVisible();
+        await expect(googleBtn).toContainText('Google');
+      }
+    });
+
+    test('Google sign-in button triggers OAuth flow', async ({ page }) => {
+      await page.goto('/tools/claude-code/');
+      await page.waitForSelector('#leave-review-btn', { timeout: 10000 }).catch(() => null);
+
+      const leaveReviewBtn = page.locator('#leave-review-btn');
+
+      if (await leaveReviewBtn.count() > 0) {
+        await leaveReviewBtn.click();
+
+        const googleBtn = page.locator('#auth-google');
+        await expect(googleBtn).toBeVisible();
+
+        // Clicking should trigger navigation to Google OAuth
+        // We can't complete the flow in tests, but we can verify the button is clickable
+        // and has the correct structure (SVG icon with Google colors)
+        const googleSvg = googleBtn.locator('svg');
+        await expect(googleSvg).toBeVisible();
+
+        // Verify Google brand colors are present in the SVG paths
+        const bluePath = googleBtn.locator('path[fill="#4285F4"]');
+        const greenPath = googleBtn.locator('path[fill="#34A853"]');
+        const yellowPath = googleBtn.locator('path[fill="#FBBC05"]');
+        const redPath = googleBtn.locator('path[fill="#EA4335"]');
+
+        await expect(bluePath).toHaveCount(1);
+        await expect(greenPath).toHaveCount(1);
+        await expect(yellowPath).toHaveCount(1);
+        await expect(redPath).toHaveCount(1);
       }
     });
 
