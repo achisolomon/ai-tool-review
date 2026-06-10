@@ -765,8 +765,20 @@ document.addEventListener('DOMContentLoaded', () => {
             ? `<span class="stars-badge" title="${tool.github_stars.toLocaleString()} GitHub stars"><svg class="star-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25z"/></svg>${stars}</span>`
             : '';
 
-        // Build full category path
-        const categoryPath = [tool.subcategoryName, tool.categoryName].filter(Boolean).join(' • ');
+        // Build clickable category path
+        const subcatId = tool.subcategory_id || '';
+        const catId = tool.category_id || '';
+        const categoryLink = subcatId || catId
+            ? `<a href="/?subcategory=${subcatId}" class="result-breadcrumb-link" onclick="event.stopPropagation();">${tool.subcategoryName || ''}</a> <span class="separator">•</span> <a href="/?category=${catId}" class="result-breadcrumb-link" onclick="event.stopPropagation();">${tool.categoryName || ''}</a>`
+            : `<span>${[tool.subcategoryName, tool.categoryName].filter(Boolean).join(' • ')}</span>`;
+
+        // Build tag badges (max 3)
+        const tags = tool.tags || [];
+        const tagBadgesHtml = tags.length > 0
+            ? `<div class="tag-badges">${tags.slice(0, 3).map(tag =>
+                `<a href="/?tag=${tag}" class="tag-badge default" onclick="event.stopPropagation();">${tag.replace(/-/g, ' ')}</a>`
+              ).join('')}</div>`
+            : '';
 
         return `
             <div class="result-card"
@@ -785,7 +797,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="result-name" title="${tool.name}">${tool.name}</div>
                     <div class="result-desc">${tool.desc || 'No description available'}</div>
                     <div class="result-meta">
-                        <span class="result-category">${categoryPath}</span>
+                        <span class="result-category">${categoryLink}</span>
+                        ${tagBadgesHtml}
                         <div class="result-meta-bottom">
                             ${starsHtml}
                             <span class="badge ${badgeClass}">${typeLabel}</span>
