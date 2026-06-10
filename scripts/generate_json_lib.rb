@@ -67,7 +67,22 @@ def build_tools_json(tools_dir, category_names = {})
       'github_stars' => frontmatter['github_stars'],
       'pricing_model' => frontmatter['pricing_model'],
       'pricing_starting' => frontmatter['pricing_starting'],
-      'user_count' => frontmatter['user_count']
+      'user_count' => frontmatter['user_count'],
+      # New fields for tags & cross-category discovery
+      'tags' => (frontmatter['tags'] || []).take(3),  # Max 3 for display
+      'all_tags' => frontmatter['tags'] || [],
+      'category_id' => category,
+      'category_name' => category_names[category] || category.split('-').map(&:capitalize).join(' '),
+      'subcategory_id' => subcategory,
+      'subcategory_name' => category_names[subcategory] || subcategory.split('-').map(&:capitalize).join(' '),
+      'additional_categories' => (frontmatter['additional_categories'] || []).map do |ac|
+        {
+          'category_id' => ac['category'],
+          'category_name' => category_names[ac['category']] || ac['category'].split('-').map(&:capitalize).join(' '),
+          'subcategory_id' => ac['subcategory'],
+          'subcategory_name' => category_names[ac['subcategory']] || ac['subcategory'].split('-').map(&:capitalize).join(' ')
+        }
+      end
     }
 
     # Handle additional categories
@@ -88,7 +103,22 @@ def build_tools_json(tools_dir, category_names = {})
         'github_stars' => frontmatter['github_stars'],
         'pricing_model' => frontmatter['pricing_model'],
         'pricing_starting' => frontmatter['pricing_starting'],
-        'user_count' => frontmatter['user_count']
+        'user_count' => frontmatter['user_count'],
+        # New fields for tags & cross-category discovery
+        'tags' => (frontmatter['tags'] || []).take(3),
+        'all_tags' => frontmatter['tags'] || [],
+        'category_id' => category,  # Primary category
+        'category_name' => category_names[category] || category.split('-').map(&:capitalize).join(' '),
+        'subcategory_id' => subcategory,  # Primary subcategory
+        'subcategory_name' => category_names[subcategory] || subcategory.split('-').map(&:capitalize).join(' '),
+        'additional_categories' => (frontmatter['additional_categories'] || []).map do |ac|
+          {
+            'category_id' => ac['category'],
+            'category_name' => category_names[ac['category']] || ac['category'].split('-').map(&:capitalize).join(' '),
+            'subcategory_id' => ac['subcategory'],
+            'subcategory_name' => category_names[ac['subcategory']] || ac['subcategory'].split('-').map(&:capitalize).join(' ')
+          }
+        end
       }
     end
   end
