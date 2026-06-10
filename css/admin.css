@@ -257,6 +257,173 @@
     opacity: 1;
 }
 
+/* Admin Nav Tabs (Reviews/Users) */
+.admin-nav-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 24px;
+    background: var(--vscode-sidebar-bg);
+    padding: 4px;
+    border-radius: 8px;
+    border: 1px solid var(--vscode-border);
+}
+
+.admin-nav-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    color: var(--vscode-text-muted);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.15s;
+}
+
+.admin-nav-tab svg {
+    opacity: 0.7;
+}
+
+.admin-nav-tab:hover {
+    color: var(--vscode-text);
+    background: var(--vscode-list-hover);
+}
+
+.admin-nav-tab:hover svg {
+    opacity: 1;
+}
+
+.admin-nav-tab.active {
+    color: var(--vscode-text);
+    background: var(--vscode-button-bg);
+}
+
+.admin-nav-tab.active svg {
+    opacity: 1;
+}
+
+/* Admin Views */
+.admin-view {
+    /* Views are shown/hidden via .hidden class */
+}
+
+/* Users View */
+.users-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.users-header h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--vscode-text);
+}
+
+.users-count {
+    font-size: 13px;
+    color: var(--vscode-text-muted);
+}
+
+/* Users Table */
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--vscode-sidebar-bg);
+    border: 1px solid var(--vscode-border);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.users-table th {
+    text-align: left;
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.2);
+    color: var(--vscode-text-muted);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--vscode-border);
+}
+
+.users-table td {
+    padding: 12px 16px;
+    color: var(--vscode-text);
+    font-size: 13px;
+    border-bottom: 1px solid var(--vscode-border);
+}
+
+.users-table tr:last-child td {
+    border-bottom: none;
+}
+
+.users-table tr:hover td {
+    background: var(--vscode-list-hover);
+}
+
+/* User name cell with avatar */
+.user-name-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 12px;
+    color: white;
+    flex-shrink: 0;
+}
+
+/* Role badge */
+.role-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.role-badge.admin {
+    background: rgba(79, 70, 229, 0.2);
+    color: #818cf8;
+}
+
+.role-badge.moderator {
+    background: rgba(16, 185, 129, 0.2);
+    color: #34d399;
+}
+
+.role-badge.user {
+    color: var(--vscode-text-muted);
+}
+
+/* Date cells */
+.users-table .date-cell {
+    color: var(--vscode-text-muted);
+}
+
+/* Responsive users table */
+@media (max-width: 768px) {
+    .users-table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
 /* Review List */
 .review-list {
     display: flex;
