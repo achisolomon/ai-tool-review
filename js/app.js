@@ -52,9 +52,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const params = new URLSearchParams(window.location.search);
         const subcategoryId = params.get('subcategory');
         const categoryId = params.get('category');
+        const tagParam = params.get('tag');
         const query = params.get('q');
 
-        // Check in order of precedence: subcategory > category > q
+        // Check in order of precedence: tag > subcategory > category > q
+        if (tagParam) {
+            const tagSlugs = tagParam.split(',').map(t => t.trim()).filter(Boolean);
+            if (tagSlugs.length > 0) {
+                const tools = getToolsByTags(tagSlugs);
+                const displayName = tagSlugs.join(' + ');
+                actionInput.value = displayName;
+                searchResults.classList.remove('hidden');
+                renderSearchResults(tools);
+                updatePageTitle(displayName);
+                return;
+            }
+        }
+
         if (subcategoryId) {
             const subcategory = findSubcategoryById(subcategoryId);
             if (subcategory) {
@@ -96,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const url = new URL(window.location.href);
         url.searchParams.delete('category');
         url.searchParams.delete('subcategory');
+        url.searchParams.delete('tag');
         url.searchParams.delete('q');
         if (value) {
             url.searchParams.set(type, value);
@@ -108,6 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const url = new URL(window.location.href);
         url.searchParams.delete('category');
         url.searchParams.delete('subcategory');
+        url.searchParams.delete('tag');
         url.searchParams.delete('q');
         history.pushState({}, '', url.toString());
         document.title = 'AI Tool Review - Find the Right AI Tool for the Job';
@@ -518,6 +534,52 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
         });
+        return tools;
+    }
+
+    // Get all tools that have a specific tag
+    function getToolsByTag(tagSlug) {
+        const tools = [];
+        ['users', 'developers'].forEach(track => {
+            if (!landscapeData[track]) return;
+            landscapeData[track].forEach(category => {
+                category.subcategories.forEach(subcategory => {
+                    subcategory.tools.forEach(tool => {
+                        const toolTags = tool.all_tags || tool.tags || [];
+                        if (toolTags.includes(tagSlug)) {
+                            tools.push({
+                                ...tool,
+                                categoryName: category.name,
+                                subcategoryName: subcategory.name,
+                                track: track
+                            });
+                        }
+                    });
+                });
+            });
+        });
+        // Deduplicate by slug (tool may appear in multiple categories)
+        const seen = new Set();
+        return tools.filter(tool => {
+            if (seen.has(tool.slug)) return false;
+            seen.add(tool.slug);
+            return true;
+        });
+    }
+
+    // Get tools matching multiple tags (AND logic)
+    function getToolsByTags(tagSlugs) {
+        if (!tagSlugs || tagSlugs.length === 0) return [];
+        if (tagSlugs.length === 1) return getToolsByTag(tagSlugs[0]);
+
+        // Start with first tag, then filter by remaining tags
+        let tools = getToolsByTag(tagSlugs[0]);
+        for (let i = 1; i < tagSlugs.length; i++) {
+            tools = tools.filter(tool => {
+                const toolTags = tool.all_tags || tool.tags || [];
+                return toolTags.includes(tagSlugs[i]);
+            });
+        }
         return tools;
     }
 
@@ -960,10 +1022,24 @@ document.addEventListener('DOMContentLoaded', () => {
             const params = new URLSearchParams(window.location.search);
             const subcategoryId = params.get('subcategory');
             const categoryId = params.get('category');
+            const tagParam = params.get('tag');
             const query = params.get('q');
 
             // Hide autocomplete dropdown
             autocompleteDropdown.classList.add('hidden');
+
+            if (tagParam) {
+                const tagSlugs = tagParam.split(',').map(t => t.trim()).filter(Boolean);
+                if (tagSlugs.length > 0) {
+                    const tools = getToolsByTags(tagSlugs);
+                    const displayName = tagSlugs.join(' + ');
+                    actionInput.value = displayName;
+                    searchResults.classList.remove('hidden');
+                    renderSearchResults(tools);
+                    updatePageTitle(displayName);
+                    return;
+                }
+            }
 
             if (subcategoryId) {
                 const subcategory = findSubcategoryById(subcategoryId);

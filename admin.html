@@ -85,8 +85,30 @@
 
         <!-- Main Content (hidden until auth verified) -->
         <main id="admin-main" class="admin-main hidden">
-            <!-- Stats Bar -->
-            <div class="admin-stats">
+            <!-- Main Navigation Tabs -->
+            <div class="admin-nav-tabs">
+                <button class="admin-nav-tab active" data-view="reviews">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                    </svg>
+                    Reviews
+                </button>
+                <button class="admin-nav-tab" data-view="users">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                    Users
+                </button>
+            </div>
+
+            <!-- Reviews View -->
+            <div id="reviews-view" class="admin-view">
+                <!-- Stats Bar -->
+                <div class="admin-stats">
                 <div class="stat-item stat-pending active" data-status="pending">
                     <span class="stat-value" id="stat-pending">0</span>
                     <span class="stat-label">PENDING</span>
@@ -139,6 +161,43 @@
                     <line x1="9" y1="15" x2="15" y2="15"/>
                 </svg>
                 <p>No reviews in this category</p>
+            </div>
+            </div>
+
+            <!-- Users View -->
+            <div id="users-view" class="admin-view hidden">
+                <div class="users-header">
+                    <h2>Registered Users</h2>
+                    <span id="users-count" class="users-count"></span>
+                </div>
+                <div id="users-table-container">
+                    <table class="users-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Reviews</th>
+                                <th>Joined</th>
+                                <th>Last Active</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-table-body">
+                            <!-- User rows will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+                <div id="users-empty" class="empty-state hidden">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                    </svg>
+                    <p>No users found</p>
+                </div>
+                <div id="users-loading" class="loading-inline hidden">
+                    <div class="spinner-small"></div>
+                    <span>Loading users...</span>
+                </div>
             </div>
         </main>
 
