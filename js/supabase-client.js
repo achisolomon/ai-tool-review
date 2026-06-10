@@ -100,6 +100,37 @@ async function getSession() {
     return session;
 }
 
+// Get current user's profile from user_profiles table
+async function getUserProfile() {
+    const supabase = getSupabase();
+    if (!supabase) return { data: null, error: { message: 'Supabase not initialized' } };
+
+    const user = await getCurrentUser();
+    if (!user) return { data: null, error: null };
+
+    const { data, error } = await supabase
+        .from('user_profiles')
+        .select('*')
+        .eq('id', user.id)
+        .single();
+
+    return { data, error };
+}
+
+// Update last sign-in timestamp (call on auth state change to SIGNED_IN)
+async function updateLastSignIn() {
+    const supabase = getSupabase();
+    if (!supabase) return;
+
+    const user = await getCurrentUser();
+    if (!user) return;
+
+    await supabase
+        .from('user_profiles')
+        .update({ last_sign_in: new Date().toISOString() })
+        .eq('id', user.id);
+}
+
 // Export for use in other modules
 window.SupabaseClient = {
     getSupabase,
@@ -109,5 +140,7 @@ window.SupabaseClient = {
     signInWithProvider,
     signOut,
     getSession,
+    getUserProfile,
+    updateLastSignIn,
     SUPABASE_URL,
 };
