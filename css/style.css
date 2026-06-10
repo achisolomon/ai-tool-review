@@ -2822,3 +2822,146 @@ a:hover {
         grid-template-columns: 1fr 1fr !important;
     }
 }
+
+/* ==========================================
+   TAG BADGES - Clickable capability tags
+   ========================================== */
+
+.tag-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 6px;
+}
+
+.tag-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition);
+    border: 1px solid transparent;
+}
+
+/* Tag color groups */
+.tag-badge.capability {
+    background: rgba(78, 201, 176, 0.15);
+    color: var(--color-oss);
+    border-color: rgba(78, 201, 176, 0.3);
+}
+
+.tag-badge.capability:hover {
+    background: rgba(78, 201, 176, 0.25);
+    border-color: var(--color-oss);
+}
+
+.tag-badge.integration {
+    background: rgba(86, 156, 214, 0.15);
+    color: var(--color-saas);
+    border-color: rgba(86, 156, 214, 0.3);
+}
+
+.tag-badge.integration:hover {
+    background: rgba(86, 156, 214, 0.25);
+    border-color: var(--color-saas);
+}
+
+.tag-badge.deployment {
+    background: rgba(220, 220, 170, 0.15);
+    color: var(--color-commercial);
+    border-color: rgba(220, 220, 170, 0.3);
+}
+
+.tag-badge.deployment:hover {
+    background: rgba(220, 220, 170, 0.25);
+    border-color: var(--color-commercial);
+}
+
+.tag-badge.use-case {
+    background: rgba(206, 145, 120, 0.15);
+    color: var(--vscode-string);
+    border-color: rgba(206, 145, 120, 0.3);
+}
+
+.tag-badge.use-case:hover {
+    background: rgba(206, 145, 120, 0.25);
+    border-color: var(--vscode-string);
+}
+
+/* Default tag style */
+.tag-badge.default {
+    background: var(--vscode-input-bg);
+    color: var(--vscode-text-muted);
+    border-color: var(--vscode-border);
+}
+
+.tag-badge.default:hover {
+    background: var(--vscode-list-hover);
+    border-color: var(--vscode-focus-border);
+    color: var(--vscode-text);
+}
+
+/* ==========================================
+   CLICKABLE BREADCRUMBS - Category navigation
+   ========================================== */
+
+.breadcrumb-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 8px;
+}
+
+.breadcrumb-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    color: var(--vscode-text-muted);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.breadcrumb-link:hover {
+    color: var(--vscode-text-link);
+    text-decoration: underline;
+}
+
+.breadcrumb-link .separator {
+    color: var(--vscode-text-muted);
+    opacity: 0.5;
+}
+
+.breadcrumb-link.primary {
+    color: var(--vscode-text);
+    font-weight: 500;
+}
+
+.breadcrumb-link.additional {
+    color: var(--vscode-text-muted);
+    font-size: 10px;
+}
+
+/* Tool card category/subcategory breadcrumb */
+.result-card .result-breadcrumb {
+    font-size: 11px;
+    margin-bottom: 4px;
+}
+
+.result-card .result-breadcrumb a {
+    color: var(--vscode-type);
+    text-decoration: none;
+}
+
+.result-card .result-breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.result-card .result-breadcrumb .separator {
+    color: var(--vscode-text-muted);
+    margin: 0 4px;
+}
