@@ -57,7 +57,7 @@
                         <div class="auth-dropdown-email">${escapeHtml(email)}</div>
                         ${displayName ? `<div class="auth-dropdown-name">${escapeHtml(displayName)}</div>` : ''}
                     </div>
-                    <a href="/admin.html" class="auth-dropdown-item" role="menuitem">
+                    <a href="/my-reviews.html" class="auth-dropdown-item" role="menuitem">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M12 20h9"/>
                             <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
@@ -141,6 +141,10 @@
         });
     }
 
+    // Store references to document-level event handlers so they can be removed
+    let documentClickHandler = null;
+    let documentKeydownHandler = null;
+
     // Setup dropdown event handlers
     function setupDropdownHandlers(container) {
         const dropdown = container.querySelector('#auth-dropdown');
@@ -180,24 +184,38 @@
             });
         }
 
+        // Remove old document-level handlers before adding new ones
+        if (documentClickHandler) {
+            document.removeEventListener('click', documentClickHandler);
+        }
+        if (documentKeydownHandler) {
+            document.removeEventListener('keydown', documentKeydownHandler);
+        }
+
         // Close on click outside
-        document.addEventListener('click', function(e) {
-            if (dropdown && !dropdown.contains(e.target)) {
-                dropdown.classList.remove('open');
-                if (avatarBtn) avatarBtn.setAttribute('aria-expanded', 'false');
+        documentClickHandler = function(e) {
+            const currentDropdown = container.querySelector('#auth-dropdown');
+            const currentAvatarBtn = container.querySelector('#auth-avatar-btn');
+            if (currentDropdown && !currentDropdown.contains(e.target)) {
+                currentDropdown.classList.remove('open');
+                if (currentAvatarBtn) currentAvatarBtn.setAttribute('aria-expanded', 'false');
             }
-        });
+        };
+        document.addEventListener('click', documentClickHandler);
 
         // Close on Escape
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && dropdown.classList.contains('open')) {
-                dropdown.classList.remove('open');
-                if (avatarBtn) {
-                    avatarBtn.setAttribute('aria-expanded', 'false');
-                    avatarBtn.focus();
+        documentKeydownHandler = function(e) {
+            const currentDropdown = container.querySelector('#auth-dropdown');
+            const currentAvatarBtn = container.querySelector('#auth-avatar-btn');
+            if (e.key === 'Escape' && currentDropdown && currentDropdown.classList.contains('open')) {
+                currentDropdown.classList.remove('open');
+                if (currentAvatarBtn) {
+                    currentAvatarBtn.setAttribute('aria-expanded', 'false');
+                    currentAvatarBtn.focus();
                 }
             }
-        });
+        };
+        document.addEventListener('keydown', documentKeydownHandler);
     }
 
     // Export
