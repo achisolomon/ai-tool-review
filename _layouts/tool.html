@@ -134,6 +134,19 @@
       .info-grid { grid-template-columns: 1fr; }
       .verdict-grid { grid-template-columns: 1fr; }
     }
+
+    /* Tool Page Tags */
+    .tool-page-tags { margin: 1rem 0 2rem; display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+    .tool-page-tags .tag-badge { padding: 4px 10px; font-size: 12px; border-radius: 4px; background: #3c3c3c; color: #ccc; text-decoration: none; transition: all 0.15s ease; }
+    .tool-page-tags .tag-badge:hover { background: #505050; color: #fff; }
+
+    /* Breadcrumb Navigation */
+    .breadcrumb-nav { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 1rem 0; }
+    .breadcrumb-link { font-size: 12px; color: #858585; text-decoration: none; transition: color 0.15s ease; }
+    .breadcrumb-link:hover { color: #007acc; }
+    .breadcrumb-link .separator { margin: 0 4px; opacity: 0.5; }
+    .breadcrumb-link.primary { color: #ccc; }
+    .breadcrumb-link.additional { color: #858585; font-size: 11px; }
   </style>
 </head>
 <body>
@@ -164,21 +177,39 @@
         <p class="tool-description">{{ page.description }}</p>
       </header>
 
+      <!-- Category Breadcrumbs -->
+      <nav class="breadcrumb-nav" aria-label="Categories">
+        <!-- Primary category -->
+        <a class="breadcrumb-link primary" href="/?subcategory={{ page.subcategory }}">
+          <span>{{ page.category | replace: '-', ' ' | capitalize }}</span>
+          <span class="separator">›</span>
+          <span>{{ page.subcategory | replace: '-', ' ' | capitalize }}</span>
+        </a>
+
+        {% if page.additional_categories %}
+        <!-- Additional categories -->
+        {% for cat in page.additional_categories %}
+        <a class="breadcrumb-link additional" href="/?subcategory={{ cat.subcategory }}">
+          {{ cat.category | replace: '-', ' ' | capitalize }}
+          <span class="separator">›</span>
+          {{ cat.subcategory | replace: '-', ' ' | capitalize }}
+        </a>
+        {% endfor %}
+        {% endif %}
+      </nav>
+
+      {% if page.tags %}
+      <!-- Tags -->
+      <div class="tag-badges tool-page-tags">
+        {% for tag in page.tags %}
+        <a class="tag-badge default" href="/?tag={{ tag }}">{{ tag | replace: '-', ' ' }}</a>
+        {% endfor %}
+      </div>
+      {% endif %}
+
       <div class="tool-content">
         {{ content }}
       </div>
-
-
-      {% if page.additional_categories %}
-      <aside class="tool-categories">
-        <h3>Also listed in:</h3>
-        <ul>
-          {% for cat in page.additional_categories %}
-          <li>{{ cat.category | replace: '-', ' ' | capitalize }} / {{ cat.subcategory | replace: '-', ' ' | capitalize }}</li>
-          {% endfor %}
-        </ul>
-      </aside>
-      {% endif %}
 
       <!-- Reviews Section -->
       <section class="reviews-section" id="reviews" data-tool-slug="{{ page.slug }}">
