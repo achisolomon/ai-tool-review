@@ -12,12 +12,9 @@ pricing_model: "freemium"
 founded_year: 2019
 headquarters: "San Francisco, CA"
 tags:
-  - vector-database
-  - serverless
-  - rag
-  - semantic-search
-  - enterprise
   - api-available
+  - rag
+  - serverless
 last_verified: "2026-06-02"
 confidence_score: 0.95
 ---

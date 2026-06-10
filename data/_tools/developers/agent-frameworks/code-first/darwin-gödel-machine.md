@@ -13,12 +13,6 @@ founded_year: 2024
 headquarters: "Tokyo, Japan"
 github_url: "https://github.com/SakanaAI/darwin-godel-machine"
 github_stars: 850
-tags:
-  - self-improving-ai
-  - meta-learning
-  - research
-  - evolutionary-computing
-  - sakana-ai
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

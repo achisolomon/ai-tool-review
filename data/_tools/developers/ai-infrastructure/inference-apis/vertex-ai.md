@@ -12,12 +12,7 @@ pricing_model: "pay-as-you-go"
 founded_year: 2021
 headquarters: "Mountain View, CA"
 tags:
-  - enterprise
-  - mlops
-  - gemini
-  - model-garden
   - api-available
-  - grounding
 last_verified: "2026-06-02"
 confidence_score: 0.92
 ---

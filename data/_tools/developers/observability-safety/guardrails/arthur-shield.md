@@ -12,12 +12,9 @@ pricing_model: "enterprise"
 founded_year: 2018
 headquarters: "New York, NY"
 tags:
-  - enterprise-ready
   - api-available
-  - real-time
-  - security
   - observability
-  - on-premise
+  - real-time
 last_verified: "2026-06-03"
 confidence_score: 0.88
 ---

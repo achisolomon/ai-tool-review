@@ -14,12 +14,8 @@ pricing_model: "open-source"
 founded_year: 2023
 headquarters: "Redmond, WA"
 tags:
-  - multi-agent
-  - conversational-ai
-  - llm-orchestration
-  - code-execution
+  - agents
   - python
-  - microsoft
 last_verified: "2026-06-02"
 confidence_score: 0.9
 ---

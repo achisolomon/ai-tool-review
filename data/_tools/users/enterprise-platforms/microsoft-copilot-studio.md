@@ -12,14 +12,7 @@ pricing_model: "usage-based"
 founded_year: 2023
 headquarters: "Redmond, WA"
 tags:
-  - ai-agents
-  - chatbot-builder
-  - low-code
-  - microsoft-ecosystem
-  - power-platform
-  - enterprise
-  - conversational-ai
-  - autonomous-agents
+  - agents
 
 # AI-Managed Metadata
 last_verified: "2026-06-02"

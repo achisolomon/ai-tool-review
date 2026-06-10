@@ -12,11 +12,9 @@ pricing_model: "freemium"
 founded_year: 2023
 headquarters: "San Francisco, CA"
 tags:
-  - reasoning
-  - multimodal
-  - real-time-data
   - api-available
-  - image-generation
+  - multimodal
+  - reasoning
 last_verified: "2026-06-02"
 confidence_score: 0.90
 ---

@@ -13,13 +13,6 @@ founded_year: 2015
 headquarters: "Stockholm, Sweden"
 github_url: ""
 github_stars: —
-tags:
-  - code-review
-  - technical-debt
-  - code-health
-  - behavioral-analysis
-  - ai-coding
-  - quality-gates
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

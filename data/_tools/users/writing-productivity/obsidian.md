@@ -13,8 +13,6 @@ github_stars: 34000
 
 tags:
   - self-hosted
-  - free-tier
-  - open-source-friendly
 
 # AI-Managed Metadata
 last_verified: "2026-06-03"

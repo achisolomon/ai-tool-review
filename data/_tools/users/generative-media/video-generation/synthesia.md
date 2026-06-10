@@ -11,13 +11,6 @@ description: "Create AI-generated videos from text with 230+ AI avatars and voic
 pricing_model: "freemium"
 founded_year: 2017
 headquarters: "London, UK"
-tags:
-  - ai-video
-  - avatar-video
-  - text-to-video
-  - corporate-training
-  - enterprise
-  - multilingual
 last_verified: "2026-06-02"
 confidence_score: 0.95
 ---

@@ -11,13 +11,6 @@ description: "Generative AI security platform for voice cloning, text-to-speech,
 pricing_model: "usage-based"
 founded_year: 2019
 headquarters: "Mountain View, CA"
-tags:
-  - voice-cloning
-  - text-to-speech
-  - deepfake-detection
-  - voice-ai
-  - watermarking
-  - enterprise-security
 
 # AI-Managed Metadata
 last_verified: "2026-06-07"

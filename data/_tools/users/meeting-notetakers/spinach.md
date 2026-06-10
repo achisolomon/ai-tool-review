@@ -11,13 +11,6 @@ description: "AI meeting assistant that captures conversations, generates transc
 pricing_model: "freemium"
 founded_year: 2021
 headquarters: "Nashville, Tennessee"
-tags:
-  - meeting-notes
-  - transcription
-  - ai-assistant
-  - automation
-  - crm-integration
-  - soc2-compliant
 
 # AI-Managed Metadata
 last_verified: "2026-06-07"

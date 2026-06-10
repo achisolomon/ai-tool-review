@@ -11,14 +11,6 @@ description: "AI notetaking platform that automatically records, transcribes, an
 pricing_model: "freemium"
 founded_year: 2020
 headquarters: "San Francisco, CA"
-tags:
-  - meeting-notetaker
-  - transcription
-  - ai-summaries
-  - crm-integration
-  - zoom
-  - google-meet
-  - teams
 last_verified: "2026-06-07"
 confidence_score: 0.95
 ---

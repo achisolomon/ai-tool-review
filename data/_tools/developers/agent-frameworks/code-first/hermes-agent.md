@@ -13,12 +13,6 @@ founded_year: 2024
 headquarters: "Remote"
 github_url: "https://github.com/NousResearch/hermes-agent"
 github_stars: 1200
-tags:
-  - autonomous
-  - persistent-memory
-  - server-resident
-  - nous-research
-  - continuous-learning
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

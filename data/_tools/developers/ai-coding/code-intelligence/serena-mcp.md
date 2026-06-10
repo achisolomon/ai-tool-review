@@ -14,12 +14,7 @@ headquarters: "—"
 github_url: "https://github.com/serena-ai/serena-mcp"
 github_stars: 150
 tags:
-  - mcp
-  - code-intelligence
-  - ai-agents
-  - open-source
-  - model-context-protocol
-  - codebase-analysis
+  - agents
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

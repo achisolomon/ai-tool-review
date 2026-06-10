@@ -11,12 +11,6 @@ description: "AI search engine built for developers that combined real-time web 
 pricing_model: "freemium"
 founded_year: 2022
 headquarters: "San Francisco, CA"
-tags:
-  - ai-search
-  - developer-tools
-  - code-search
-  - technical-documentation
-  - discontinued
 last_verified: "2026-06-07"
 confidence_score: 0.95
 ---

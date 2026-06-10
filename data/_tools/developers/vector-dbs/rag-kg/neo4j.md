@@ -14,11 +14,6 @@ pricing_model: "freemium"
 founded_year: 2007
 headquarters: "San Mateo, CA"
 tags:
-  - graph-database
-  - vector-search
-  - knowledge-graph
-  - graphrag
-  - cypher
   - rag
 last_verified: "2026-06-07"
 confidence_score: 0.95

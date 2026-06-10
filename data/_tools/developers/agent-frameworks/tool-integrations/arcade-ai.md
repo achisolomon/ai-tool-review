@@ -13,12 +13,6 @@ founded_year: 2024
 headquarters: "San Francisco, CA"
 github_url: "—"
 github_stars: —
-tags:
-  - mcp-runtime
-  - agent-authorization
-  - tool-execution
-  - governance
-  - security
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

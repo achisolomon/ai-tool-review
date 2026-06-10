@@ -14,12 +14,7 @@ pricing_model: "open-source"
 founded_year: 2023
 headquarters: "Stanford, CA"
 tags:
-  - llm-framework
-  - prompt-optimization
   - python
-  - research
-  - stanford
-  - open-source
 last_verified: "2026-06-02"
 confidence_score: 0.95
 ---

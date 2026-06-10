@@ -12,10 +12,6 @@ pricing_model: "freemium"
 founded_year: 2024
 headquarters: "San Francisco, CA"
 tags:
-  - model-routing
-  - llm-optimization
-  - prompt-engineering
-  - cost-optimization
   - api-available
 
 # AI-Managed Metadata

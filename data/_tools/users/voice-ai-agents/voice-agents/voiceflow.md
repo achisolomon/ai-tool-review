@@ -12,12 +12,7 @@ pricing_model: "freemium"
 founded_year: 2019
 headquarters: "Toronto, Canada"
 tags:
-  - voice-agents
   - no-code
-  - conversational-ai
-  - chatbot-builder
-  - workflow-builder
-  - customer-support
 additional_categories:
   - category: "no-code-builders"
     subcategory: "workflow-builders"

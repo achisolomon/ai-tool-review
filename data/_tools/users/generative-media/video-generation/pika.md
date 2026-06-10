@@ -11,13 +11,6 @@ description: "AI video generation platform known for creative effects, stylized 
 pricing_model: "freemium"
 founded_year: 2023
 headquarters: "Palo Alto, CA"
-tags:
-  - video-generation
-  - text-to-video
-  - image-to-video
-  - ai-effects
-  - stylized-video
-  - creative-tools
 last_verified: "2026-06-02"
 confidence_score: 0.9
 ---

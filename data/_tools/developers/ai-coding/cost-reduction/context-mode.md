@@ -13,11 +13,7 @@ github_stars: 16744
 pricing_model: "free"
 founded_year: 2026
 tags:
-  - context-optimization
-  - token-reduction
   - mcp-server
-  - open-source
-  - sandbox
 last_verified: "2026-06-09"
 confidence_score: 0.95
 source_urls:

@@ -14,11 +14,6 @@ founded_year: 2023
 headquarters: "San Francisco, CA"
 tags:
   - typescript
-  - react
-  - nextjs
-  - streaming
-  - open-source
-  - frontend
 last_verified: "2026-06-03"
 confidence_score: 0.92
 ---

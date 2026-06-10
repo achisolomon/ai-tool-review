@@ -11,13 +11,6 @@ description: "Create interactive React-based presentations and HTML slide decks 
 pricing_model: "freemium"
 founded_year: 2021
 headquarters: "San Francisco, CA"
-tags:
-  - presentations
-  - slides
-  - react
-  - artifacts
-  - html-slides
-  - interactive
 last_verified: "2026-06-04"
 confidence_score: 0.90
 ---

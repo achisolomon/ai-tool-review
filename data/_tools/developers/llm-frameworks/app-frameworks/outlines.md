@@ -12,13 +12,6 @@ github_url: "https://github.com/dottxt-ai/outlines"
 github_stars: 13900
 pricing_model: "free"
 founded_year: 2023
-tags:
-  - structured-generation
-  - json-schema
-  - constrained-decoding
-  - pydantic
-  - open-source
-  - local-llm
 last_verified: "2026-06-03"
 confidence_score: 0.90
 ---

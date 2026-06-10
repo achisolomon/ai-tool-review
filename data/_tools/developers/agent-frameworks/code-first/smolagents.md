@@ -14,12 +14,7 @@ headquarters: "New York, NY"
 github_url: "https://github.com/huggingface/smolagents"
 github_stars: 27700
 tags:
-  - huggingface
   - python
-  - lightweight
-  - code-agents
-  - tool-calling
-  - open-source
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

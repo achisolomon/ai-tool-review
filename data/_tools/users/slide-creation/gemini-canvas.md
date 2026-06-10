@@ -11,15 +11,6 @@ description: "Create full slide decks from a single prompt with Nano Banana imag
 pricing_model: "freemium"
 founded_year: 1998
 headquarters: "Mountain View, CA"
-tags:
-  - presentations
-  - slides
-  - google-slides
-  - powerpoint
-  - ai-generation
-  - export
-  - nano-banana
-  - image-generation
 last_verified: "2026-06-04"
 confidence_score: 0.95
 ---

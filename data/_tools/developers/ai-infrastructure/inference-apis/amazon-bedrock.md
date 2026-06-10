@@ -12,12 +12,7 @@ pricing_model: "pay-per-use"
 founded_year: 2023
 headquarters: "Seattle, WA"
 tags:
-  - inference-api
-  - multi-model
-  - enterprise
   - serverless
-  - foundation-models
-  - aws-native
 last_verified: "2026-06-02"
 confidence_score: 0.95
 ---

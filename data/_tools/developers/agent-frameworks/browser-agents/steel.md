@@ -15,10 +15,6 @@ github_url: "—"
 github_stars: —
 tags:
   - browser-automation
-  - cloud-infrastructure
-  - web-scraping
-  - headless-browsers
-  - api-platform
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

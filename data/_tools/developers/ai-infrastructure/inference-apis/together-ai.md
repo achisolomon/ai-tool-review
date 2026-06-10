@@ -12,12 +12,8 @@ pricing_model: "pay-as-you-go"
 founded_year: 2022
 headquarters: "San Francisco, CA"
 tags:
-  - inference-api
-  - open-source-models
-  - fine-tuning
-  - serverless
-  - llama
   - api-available
+  - serverless
 last_verified: "2026-06-02"
 confidence_score: 0.9
 ---

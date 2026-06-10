@@ -11,13 +11,6 @@ description: "AI-powered search engine and assistant combining real-time web sea
 pricing_model: "freemium"
 founded_year: 2020
 headquarters: "Palo Alto, CA"
-tags:
-  - ai-search
-  - multi-model
-  - privacy
-  - research
-  - citations
-  - real-time-search
 last_verified: "2026-06-07"
 confidence_score: 0.95
 ---

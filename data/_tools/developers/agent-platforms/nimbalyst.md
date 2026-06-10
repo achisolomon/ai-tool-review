@@ -14,13 +14,7 @@ headquarters: "—"
 github_url: "https://github.com/Nimbalyst/nimbalyst"
 github_stars: —
 tags:
-  - ai-agents
-  - coding-agents
-  - kanban
-  - visual-workspace
-  - open-source
-  - claude-code
-  - codex
+  - agents
 last_verified: "2026-06-09"
 confidence_score: 0.9
 ---

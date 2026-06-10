@@ -12,10 +12,6 @@ pricing_model: "freemium"
 founded_year: 2021
 headquarters: "San Francisco, CA"
 tags:
-  - code-completion
-  - coding-assistant
-  - ide-integration
-  - enterprise
   - agents
 last_verified: "2026-06-02"
 confidence_score: 0.92

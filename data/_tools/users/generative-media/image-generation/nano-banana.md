@@ -11,14 +11,6 @@ description: "Google's conversational AI image generator built into Gemini—cre
 pricing_model: "freemium"
 founded_year: 2025
 headquarters: "Mountain View, CA"
-tags:
-  - image-generation
-  - ai-art
-  - text-to-image
-  - image-editing
-  - google
-  - gemini
-  - conversational
 
 last_verified: "2026-06-07"
 confidence_score: 0.95

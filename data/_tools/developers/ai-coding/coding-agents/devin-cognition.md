@@ -12,10 +12,7 @@ pricing_model: "subscription"
 founded_year: 2023
 headquarters: "San Francisco, CA"
 tags:
-  - autonomous-agent
-  - coding-assistant
   - agents
-  - enterprise
 last_verified: "2026-06-02"
 confidence_score: 0.9
 ---

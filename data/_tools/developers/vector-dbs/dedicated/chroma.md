@@ -14,13 +14,9 @@ pricing_model: "freemium"
 founded_year: 2022
 headquarters: "San Francisco, CA"
 tags:
-  - vector-database
-  - open-source
-  - embeddings
-  - rag
-  - semantic-search
-  - python
   - api-available
+  - python
+  - rag
 last_verified: "2026-06-02"
 confidence_score: 0.95
 ---

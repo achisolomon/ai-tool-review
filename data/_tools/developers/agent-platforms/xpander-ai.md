@@ -14,10 +14,8 @@ headquarters: "—"
 github_url: ""
 github_stars: —
 tags:
-  - ai-agents
+  - agents
   - self-hosted
-  - enterprise
-  - integrations
   - workflow-automation
 last_verified: "2026-06-03"
 confidence_score: 0.9

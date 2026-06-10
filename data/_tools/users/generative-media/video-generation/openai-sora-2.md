@@ -11,15 +11,6 @@ description: "OpenAI's groundbreaking AI video generation model that creates rea
 pricing_model: "subscription"
 founded_year: 2024
 headquarters: "San Francisco, CA"
-tags:
-  - video-generation
-  - text-to-video
-  - image-to-video
-  - openai
-  - physics-simulation
-  - cinematic
-  - storyboard
-  - narrative-video
 last_verified: "2026-06-02"
 confidence_score: 0.9
 ---

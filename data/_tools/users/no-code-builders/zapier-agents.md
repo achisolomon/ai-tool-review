@@ -12,12 +12,8 @@ pricing_model: "freemium"
 founded_year: 2011
 headquarters: "San Francisco, CA"
 tags:
-  - ai-agents
-  - automation
+  - agents
   - no-code
-  - workflow
-  - integrations
-  - business-tools
 last_verified: "2026-06-02"
 confidence_score: 0.9
 ---

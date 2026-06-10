@@ -14,11 +14,8 @@ headquarters: "—"
 github_url: ""
 github_stars: —
 tags:
-  - ai-agents
+  - agents
   - workflow-automation
-  - devops
-  - code-review
-  - project-management
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

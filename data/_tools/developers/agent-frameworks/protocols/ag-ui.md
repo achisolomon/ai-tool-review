@@ -13,12 +13,6 @@ founded_year: 2024
 headquarters: "—"
 github_url: "https://github.com/ag-ui-protocol/ag-ui"
 github_stars: 14000
-tags:
-  - agent-protocol
-  - ui-integration
-  - event-driven
-  - open-source
-  - agent-framework
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

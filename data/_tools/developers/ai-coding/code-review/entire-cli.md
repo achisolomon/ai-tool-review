@@ -13,13 +13,6 @@ founded_year: 2024
 headquarters: "San Francisco, CA"
 github_url: "https://github.com/anthropics/entire-cli"
 github_stars: 500
-tags:
-  - cli
-  - code-review
-  - anthropic
-  - open-source
-  - terminal
-  - ai-code-analysis
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

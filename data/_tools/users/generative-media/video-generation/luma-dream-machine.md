@@ -11,13 +11,6 @@ description: "AI video generation platform by Luma Labs featuring the Ray3 model
 pricing_model: "freemium"
 founded_year: 2021
 headquarters: "Palo Alto, CA"
-tags:
-  - video-generation
-  - text-to-video
-  - image-to-video
-  - ai-video
-  - creative-tools
-  - ray3
 
 # AI-Managed Metadata
 last_verified: "2026-06-07"

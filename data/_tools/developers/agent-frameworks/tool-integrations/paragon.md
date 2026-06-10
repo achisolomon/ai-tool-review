@@ -14,11 +14,7 @@ headquarters: "Los Angeles, CA"
 github_url: "—"
 github_stars: —
 tags:
-  - embedded-integrations
-  - saas-integrations
   - workflow-automation
-  - native-ui
-  - integration-platform
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

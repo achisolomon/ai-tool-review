@@ -11,14 +11,6 @@ description: "AI-first customer service platform with Fin AI agent that resolves
 pricing_model: "subscription"
 founded_year: 2011
 headquarters: "San Francisco, CA"
-tags:
-  - customer-support
-  - ai-agent
-  - live-chat
-  - help-desk
-  - chatbot
-  - fin-ai
-  - omnichannel
 last_verified: "2026-06-02"
 confidence_score: 0.92
 ---

@@ -14,13 +14,10 @@ pricing_model: "freemium"
 founded_year: 2023
 headquarters: "San Francisco, CA"
 tags:
-  - memory
   - agents
-  - rag
-  - personalization
-  - long-term-memory
-  - python
   - api-available
+  - python
+  - rag
 last_verified: "2026-06-02"
 confidence_score: 0.95
 ---

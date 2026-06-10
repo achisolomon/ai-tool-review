@@ -14,12 +14,7 @@ pricing_model: "freemium"
 founded_year: 2021
 headquarters: "Berlin, Germany"
 tags:
-  - vector-database
-  - similarity-search
-  - rust
-  - open-source
   - rag
-  - embeddings
 last_verified: "2026-06-02"
 confidence_score: 0.95
 ---

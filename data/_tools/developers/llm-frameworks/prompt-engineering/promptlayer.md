@@ -12,14 +12,10 @@ pricing_model: "freemium"
 founded_year: 2022
 headquarters: "New York, NY"
 tags:
-  - prompt-engineering
-  - observability
-  - llm-ops
   - api-available
-  - sdk-python
-  - sdk-typescript
-  - enterprise-ready
-  - free-tier
+  - observability
+  - python
+  - typescript
 
 # AI-Managed Metadata
 last_verified: "2026-06-03"

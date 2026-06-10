@@ -11,13 +11,6 @@ description: "AI video generator from MiniMax creating 1080p videos up to 10 sec
 pricing_model: "freemium"
 founded_year: 2023
 headquarters: "Shanghai, China"
-tags:
-  - video-generation
-  - text-to-video
-  - image-to-video
-  - ai-video
-  - minimax
-  - character-animation
 
 # AI-Managed Metadata
 last_verified: "2026-06-07"

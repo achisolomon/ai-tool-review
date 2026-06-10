@@ -12,10 +12,6 @@ pricing_model: "freemium"
 founded_year: 2016
 headquarters: "San Francisco, CA"
 tags:
-  - writing-assistant
-  - productivity
-  - workspace
-  - collaboration
   - agents
 last_verified: "2026-06-02"
 confidence_score: 0.95

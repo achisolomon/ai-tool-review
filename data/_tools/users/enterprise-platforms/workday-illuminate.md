@@ -12,14 +12,7 @@ pricing_model: "enterprise"
 founded_year: 2024
 headquarters: "Pleasanton, CA"
 tags:
-  - hr-ai
-  - finance-ai
-  - enterprise
-  - ai-agents
-  - workforce-analytics
-  - automation
-  - natural-language
-  - hcm
+  - agents
 
 # AI-Managed Metadata
 last_verified: "2026-06-02"

@@ -13,12 +13,8 @@ founded_year: 2026
 github_url: "https://github.com/glommer/codemogger"
 github_stars: 318
 tags:
-  - code-search
-  - open-source
   - mcp-server
   - self-hosted
-  - semantic-search
-  - tree-sitter
 last_verified: "2026-06-08"
 confidence_score: 0.95
 ---

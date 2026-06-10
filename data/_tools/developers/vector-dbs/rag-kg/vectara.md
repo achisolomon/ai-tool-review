@@ -12,12 +12,8 @@ pricing_model: "enterprise"
 founded_year: 2020
 headquarters: "Palo Alto, CA"
 tags:
-  - rag
-  - semantic-search
-  - hallucination-detection
-  - enterprise-ai
   - multimodal
-  - vector-database
+  - rag
 last_verified: "2026-06-07"
 confidence_score: 0.95
 ---

@@ -13,12 +13,6 @@ founded_year: 2024
 headquarters: "Seattle, Washington"
 github_url: —
 github_stars: —
-tags:
-  - agent-orchestration
-  - identity-management
-  - aws
-  - enterprise
-  - security
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

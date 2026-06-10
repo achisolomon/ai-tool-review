@@ -14,12 +14,9 @@ pricing_model: "open-source"
 founded_year: 2024
 headquarters: "Zurich, Switzerland"
 tags:
+  - agents
   - browser-automation
-  - ai-agents
-  - llm
-  - playwright
   - python
-  - open-source
 last_verified: "2026-06-02"
 confidence_score: 0.95
 ---

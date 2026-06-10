@@ -14,12 +14,7 @@ headquarters: "San Francisco, CA"
 github_url: "https://github.com/inngest/inngest"
 github_stars: —
 tags:
-  - durable-functions
   - serverless
-  - queues
-  - scheduling
-  - state-management
-  - event-driven
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

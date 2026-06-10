@@ -14,12 +14,7 @@ headquarters: —
 github_url: "https://github.com/restatedev/restate"
 github_stars: —
 tags:
-  - durable-execution
-  - workflows
-  - ai-agents
-  - reliability
-  - cloud-native
-  - open-source
+  - agents
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

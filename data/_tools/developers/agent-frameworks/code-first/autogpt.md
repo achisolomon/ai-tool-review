@@ -14,11 +14,8 @@ headquarters: "San Francisco, CA"
 github_url: "https://github.com/Significant-Gravitas/AutoGPT"
 github_stars: 168000
 tags:
-  - autonomous-agents
-  - automation
+  - agents
   - workflow-automation
-  - conversational-ai
-  - open-source
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

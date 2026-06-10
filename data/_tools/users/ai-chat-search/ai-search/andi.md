@@ -11,12 +11,6 @@ description: "AI-powered search engine that delivers conversational answers inst
 pricing_model: "freemium"
 founded_year: 2021
 headquarters: "Miami, FL"
-tags:
-  - ai-search
-  - conversational-ai
-  - privacy-focused
-  - no-ads
-  - semantic-search
 
 # AI-Managed Metadata
 last_verified: "2026-06-07"

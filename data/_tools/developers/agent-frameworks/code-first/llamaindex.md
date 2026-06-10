@@ -14,13 +14,10 @@ pricing_model: "open-source"
 founded_year: 2022
 headquarters: "San Francisco, CA"
 tags:
-  - llm-framework
-  - rag
   - agents
-  - data-indexing
   - python
+  - rag
   - typescript
-  - open-source
 last_verified: "2026-06-02"
 confidence_score: 0.92
 ---

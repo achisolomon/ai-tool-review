@@ -15,11 +15,6 @@ founded_year: 2023
 headquarters: "Redmond, WA"
 tags:
   - agents
-  - multi-language
-  - enterprise
-  - microsoft
-  - function-calling
-  - plugins
 last_verified: "2026-06-02"
 confidence_score: 0.95
 ---

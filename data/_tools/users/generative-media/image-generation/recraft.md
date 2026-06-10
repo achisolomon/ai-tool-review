@@ -12,13 +12,6 @@ pricing_model: "freemium"
 founded_year: 2023
 headquarters: "London, UK"
 tags:
-  - image-generation
-  - vector-graphics
-  - svg
-  - brand-design
-  - text-to-image
-  - ai-art
-  - creative-tools
   - api-available
 
 # AI-Managed Metadata

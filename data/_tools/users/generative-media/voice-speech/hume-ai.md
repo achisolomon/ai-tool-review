@@ -11,13 +11,6 @@ description: "Empathic voice AI platform with emotion recognition and expression
 pricing_model: "freemium"
 founded_year: 2021
 headquarters: "New York, NY"
-tags:
-  - voice-ai
-  - emotion-ai
-  - text-to-speech
-  - speech-to-speech
-  - empathic-voice
-  - voice-cloning
 
 # AI-Managed Metadata
 last_verified: "2026-06-07"

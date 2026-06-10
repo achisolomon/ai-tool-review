@@ -11,13 +11,6 @@ description: "AI music generation platform with royalty-free, commercially clear
 pricing_model: "freemium"
 founded_year: 2022
 headquarters: "London, UK"
-tags:
-  - music-generation
-  - ai-audio
-  - royalty-free
-  - commercial-use
-  - voice-synthesis
-  - content-creation
 last_verified: "2026-06-07"
 confidence_score: 0.95
 ---

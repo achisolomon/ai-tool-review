@@ -13,13 +13,6 @@ founded_year: 2021
 headquarters: "San Francisco, CA"
 github_url: "https://github.com/zed-industries/zed"
 github_stars: 50000
-tags:
-  - code-editor
-  - multiplayer
-  - ai-assistant
-  - open-source
-  - rust
-  - collaborative-coding
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

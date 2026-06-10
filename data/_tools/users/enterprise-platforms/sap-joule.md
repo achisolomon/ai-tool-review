@@ -12,12 +12,6 @@ pricing_model: "enterprise"
 founded_year: 2023
 headquarters: "Walldorf, Germany"
 tags:
-  - ai-copilot
-  - erp
-  - enterprise
-  - sap-ecosystem
-  - business-intelligence
-  - natural-language
   - workflow-automation
 
 # AI-Managed Metadata

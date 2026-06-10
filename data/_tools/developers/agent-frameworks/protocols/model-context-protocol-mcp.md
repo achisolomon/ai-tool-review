@@ -13,12 +13,6 @@ founded_year: 2024
 headquarters: "San Francisco, CA"
 github_url: "https://github.com/anthropics/model-context-protocol"
 github_stars: 18000
-tags:
-  - anthropic
-  - context-protocol
-  - llm-integration
-  - open-standard
-  - tool-calling
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

@@ -13,14 +13,6 @@ github_stars: 21971
 pricing_model: "free"
 founded_year: 2023
 headquarters: "San Francisco, CA"
-tags:
-  - evaluation
-  - red-teaming
-  - security
-  - prompt-testing
-  - llm-ops
-  - cli
-  - ci-cd
 
 # AI-Managed Metadata
 last_verified: "2026-06-07"

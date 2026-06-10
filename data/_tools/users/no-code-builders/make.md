@@ -12,12 +12,7 @@ pricing_model: "freemium"
 founded_year: 2012
 headquarters: "Prague, Czech Republic"
 tags:
-  - automation
-  - workflow
   - no-code
-  - integrations
-  - api
-  - ai-automation
 last_verified: "2026-06-02"
 confidence_score: 0.9
 ---

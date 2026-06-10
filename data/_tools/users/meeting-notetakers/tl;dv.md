@@ -11,13 +11,6 @@ description: "AI meeting intelligence platform that records, transcribes, and su
 pricing_model: "freemium"
 founded_year: 2020
 headquarters: "Aachen, Germany"
-tags:
-  - meeting-recorder
-  - transcription
-  - ai-notes
-  - crm-integration
-  - sales-coaching
-  - multilingual
 last_verified: "2026-06-07"
 confidence_score: 0.95
 ---

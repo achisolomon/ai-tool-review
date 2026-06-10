@@ -13,15 +13,6 @@ github_url: "https://github.com/memgraph/memgraph"
 github_stars: 4126
 founded_year: 2016
 headquarters: "London, UK"
-tags:
-  - graph-database
-  - knowledge-graph
-  - graphrag
-  - in-memory
-  - cypher
-  - streaming
-  - vector-search
-  - neo4j-compatible
 
 # AI-Managed Metadata
 last_verified: "2026-06-07"

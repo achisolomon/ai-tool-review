@@ -11,12 +11,6 @@ description: "Offline security scanner for auditing untrusted repositories, AI a
 github_url: "https://github.com/alexgreensh/repo-forensics"
 github_stars: 94
 pricing_model: "free"
-tags:
-  - security
-  - supply-chain
-  - code-scanning
-  - mcp-servers
-  - vulnerability-detection
 last_verified: "2026-06-03"
 confidence_score: 0.95
 ---

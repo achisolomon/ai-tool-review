@@ -14,10 +14,7 @@ pricing_model: "free"
 founded_year: 2024
 headquarters: "Open Source"
 tags:
-  - coding-assistant
   - agents
-  - open-source
-  - vs-code
   - api-available
 last_verified: "2026-06-02"
 confidence_score: 0.90

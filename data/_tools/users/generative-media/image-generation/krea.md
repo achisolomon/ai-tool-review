@@ -12,13 +12,6 @@ pricing_model: "freemium"
 founded_year: 2022
 headquarters: "San Francisco, CA"
 tags:
-  - image-generation
-  - real-time-ai
-  - ai-art
-  - text-to-image
-  - image-upscaling
-  - flux
-  - creative-tools
   - api-available
 
 # AI-Managed Metadata

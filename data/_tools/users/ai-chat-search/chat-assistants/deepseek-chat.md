@@ -12,12 +12,7 @@ pricing_model: "free"
 founded_year: 2023
 headquarters: "Hangzhou, China"
 tags:
-  - ai-assistant
   - reasoning
-  - coding
-  - free
-  - open-source
-  - chinese-ai
 last_verified: "2026-06-02"
 confidence_score: 0.9
 ---

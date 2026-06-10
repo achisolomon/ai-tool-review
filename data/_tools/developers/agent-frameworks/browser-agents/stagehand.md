@@ -14,11 +14,8 @@ headquarters: "San Francisco, CA"
 github_url: "https://github.com/browserbase/stagehand"
 github_stars: 3200
 tags:
+  - agents
   - browser-automation
-  - ai-agents
-  - web-scraping
-  - playwright
-  - llm-powered
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

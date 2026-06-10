@@ -11,15 +11,6 @@ description: "Revenue intelligence platform that captures customer interactions,
 pricing_model: "enterprise"
 founded_year: 2015
 headquarters: "San Francisco, CA"
-tags:
-  - revenue-intelligence
-  - conversation-analytics
-  - sales-enablement
-  - call-recording
-  - deal-intelligence
-  - forecasting
-  - coaching
-  - enterprise
 
 # AI-Managed Metadata
 last_verified: "2026-06-02"

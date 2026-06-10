@@ -11,14 +11,6 @@ description: "Industry-leading AI voice platform for text-to-speech, voice cloni
 pricing_model: "freemium"
 founded_year: 2022
 headquarters: "New York, NY"
-tags:
-  - text-to-speech
-  - voice-cloning
-  - voice-synthesis
-  - dubbing
-  - audio-generation
-  - ai-voices
-  - multilingual
 last_verified: "2026-06-02"
 confidence_score: 0.85
 ---

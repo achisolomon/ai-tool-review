@@ -12,12 +12,7 @@ pricing_model: "freemium"
 founded_year: 2023
 headquarters: "Hangzhou, China"
 tags:
-  - ai-chat
-  - multilingual
   - multimodal
-  - open-source
-  - coding
-  - alibaba
 
 # AI-Managed Metadata
 last_verified: "2026-06-07"

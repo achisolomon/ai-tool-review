@@ -14,12 +14,8 @@ pricing_model: "free"
 founded_year: 2023
 headquarters: "Menlo Park, CA"
 tags:
-  - open-source
-  - foundation-model
-  - text-generation
-  - multimodal
-  - mixture-of-experts
   - api-available
+  - multimodal
 last_verified: "2026-06-02"
 confidence_score: 0.95
 ---

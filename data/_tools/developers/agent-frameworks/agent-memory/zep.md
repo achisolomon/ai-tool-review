@@ -14,11 +14,7 @@ headquarters: "San Francisco, California"
 github_url: "https://github.com/getzep/zep"
 github_stars: 2500
 tags:
-  - agent-memory
-  - knowledge-graphs
   - rag
-  - enterprise
-  - production-ready
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

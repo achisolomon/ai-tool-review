@@ -11,15 +11,6 @@ description: "The commercially-safe AI image generator built into Adobe Creative
 pricing_model: "freemium"
 founded_year: 2023
 headquarters: "San Jose, CA"
-tags:
-  - image-generation
-  - ai-art
-  - creative-tools
-  - text-to-image
-  - adobe-creative-cloud
-  - commercial-safe
-  - generative-fill
-  - photoshop
 
 # AI-Managed Metadata
 last_verified: "2026-06-02"

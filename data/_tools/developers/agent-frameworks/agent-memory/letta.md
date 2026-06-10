@@ -13,12 +13,6 @@ founded_year: 2023
 headquarters: "San Francisco, California"
 github_url: "https://github.com/letta-ai/letta"
 github_stars: 13000
-tags:
-  - agent-memory
-  - stateful-agents
-  - long-term-memory
-  - llm
-  - oss
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

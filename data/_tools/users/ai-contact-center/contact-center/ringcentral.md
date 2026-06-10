@@ -12,11 +12,6 @@ pricing_model: "paid"
 founded_year: 1999
 headquarters: "Belmont, CA"
 tags:
-  - voice-ai
-  - contact-center
-  - unified-communications
-  - ai-receptionist
-  - enterprise-ready
   - api-available
 
 additional_categories:

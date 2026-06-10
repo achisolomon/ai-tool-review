@@ -12,14 +12,7 @@ pricing_model: "freemium"
 founded_year: 2021
 headquarters: "San Francisco, CA"
 tags:
-  - image-generation
-  - text-to-image
-  - ai-art
-  - chatgpt-integration
   - api-available
-  - text-rendering
-  - inpainting
-  - commercial-safe
 
 # AI-Managed Metadata
 last_verified: "2026-06-02"

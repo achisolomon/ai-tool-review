@@ -15,9 +15,6 @@ founded_year: 2023
 headquarters: "San Francisco, CA"
 tags:
   - agents
-  - orchestration
-  - state-management
-  - human-in-the-loop
   - python
   - typescript
 last_verified: "2026-06-02"

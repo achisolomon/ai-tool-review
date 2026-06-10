@@ -14,12 +14,7 @@ headquarters: —
 github_url: —
 github_stars: —
 tags:
-  - multi-agent
-  - orchestration
-  - enterprise
-  - governance
-  - budgets
-  - org-charts
+  - agents
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

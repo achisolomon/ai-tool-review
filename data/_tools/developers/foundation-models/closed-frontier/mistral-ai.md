@@ -12,11 +12,8 @@ pricing_model: "freemium"
 founded_year: 2023
 headquarters: "Paris, France"
 tags:
-  - reasoning
-  - multilingual
-  - code-generation
   - api-available
-  - open-weights
+  - reasoning
 last_verified: "2026-06-02"
 confidence_score: 0.92
 ---

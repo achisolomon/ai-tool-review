@@ -14,14 +14,10 @@ pricing_model: "open-source"
 founded_year: 2023
 headquarters: "Acquired by Workday (Aug 2025)"
 tags:
+  - agents
   - no-code
-  - low-code
-  - langchain
-  - ai-agents
   - rag
-  - chatbots
   - workflow-automation
-  - visual-builder
 
 # AI-Managed Metadata
 last_verified: "2026-06-07"

@@ -13,13 +13,6 @@ github_stars: 5600
 pricing_model: "free"
 founded_year: 2023
 headquarters: "Santa Clara, CA"
-tags:
-  - open-source
-  - nvidia
-  - guardrails
-  - conversation-control
-  - content-safety
-  - jailbreak-detection
 
 # AI-Managed Metadata
 last_verified: "2026-06-08"

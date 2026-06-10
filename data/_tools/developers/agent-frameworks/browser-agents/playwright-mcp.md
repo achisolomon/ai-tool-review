@@ -14,11 +14,7 @@ headquarters: "Microsoft (Open Source)"
 github_url: "https://github.com/microsoft/playwright-mcp"
 github_stars: 450
 tags:
-  - playwright
-  - mcp
   - browser-automation
-  - accessibility
-  - microsoft
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

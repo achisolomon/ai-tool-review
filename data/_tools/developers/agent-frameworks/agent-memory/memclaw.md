@@ -10,12 +10,7 @@ status: "active"
 description: "The shared cognition layer for enterprise AI agents with governed access and cross-fleet memory"
 pricing_model: "freemium"
 tags:
-  - memory
   - agents
-  - enterprise
-  - multi-agent
-  - knowledge-graph
-  - governance
   - api-available
 last_verified: "2026-06-03"
 confidence_score: 0.95

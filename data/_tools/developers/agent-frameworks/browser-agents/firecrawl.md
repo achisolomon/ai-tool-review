@@ -14,11 +14,7 @@ pricing_model: "freemium"
 founded_year: 2024
 headquarters: "San Francisco, CA"
 tags:
-  - web-scraping
-  - data-extraction
-  - llm-ready
   - api-available
-  - open-source
 last_verified: "2026-06-02"
 confidence_score: 0.90
 ---

@@ -13,10 +13,6 @@ founded_year: 2025
 headquarters: "Mountain View, CA"
 tags:
   - agents
-  - coding-assistant
-  - google
-  - gemini
-  - multi-agent
 last_verified: "2026-06-04"
 confidence_score: 0.92
 ---

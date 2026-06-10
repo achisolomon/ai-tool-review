@@ -13,13 +13,6 @@ github_stars: 15900
 pricing_model: "open-source"
 founded_year: 2023
 headquarters: "San Francisco, CA"
-tags:
-  - llm-evaluation
-  - rag-testing
-  - agent-testing
-  - pytest-integration
-  - ci-cd
-  - open-source
 last_verified: "2026-06-03"
 confidence_score: 0.92
 ---

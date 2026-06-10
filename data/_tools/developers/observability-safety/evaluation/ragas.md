@@ -14,12 +14,7 @@ pricing_model: "free"
 founded_year: 2023
 headquarters: "Remote / Open Source"
 tags:
-  - rag-evaluation
-  - llm-as-judge
-  - open-source
   - python
-  - metrics
-  - testing
 last_verified: "2026-06-03"
 confidence_score: 0.85
 ---

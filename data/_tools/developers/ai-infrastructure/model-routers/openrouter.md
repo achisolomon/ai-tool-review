@@ -11,12 +11,6 @@ description: "Unified API gateway providing access to 300+ AI models from 50+ pr
 pricing_model: "pay-per-use"
 founded_year: 2023
 headquarters: "San Francisco, CA"
-tags:
-  - api-gateway
-  - model-routing
-  - llm-aggregator
-  - openai-compatible
-  - multi-provider
 
 # AI-Managed Metadata
 last_verified: "2026-06-02"

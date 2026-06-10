@@ -12,14 +12,7 @@ pricing_model: "enterprise"
 founded_year: 2024
 headquarters: "Toronto, Canada"
 tags:
-  - enterprise-search
-  - knowledge-assistant
   - rag
-  - workplace-ai
-  - grounded-generation
-  - citations
-  - data-connectors
-  - multilingual
 
 # AI-Managed Metadata
 last_verified: "2026-06-02"

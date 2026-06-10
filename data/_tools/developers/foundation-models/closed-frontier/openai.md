@@ -12,12 +12,9 @@ pricing_model: "paid"
 founded_year: 2015
 headquarters: "San Francisco, CA"
 tags:
-  - frontier-models
   - api-available
-  - reasoning
   - multimodal
-  - enterprise
-  - fine-tuning
+  - reasoning
 last_verified: "2026-06-02"
 confidence_score: 0.95
 ---

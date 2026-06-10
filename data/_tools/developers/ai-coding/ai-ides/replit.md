@@ -12,12 +12,7 @@ pricing_model: "freemium"
 founded_year: 2016
 headquarters: "San Francisco, CA"
 tags:
-  - browser-ide
-  - ai-coding
   - agents
-  - deployment
-  - collaboration
-  - education
 
 # AI-Managed Metadata
 last_verified: "2026-06-02"

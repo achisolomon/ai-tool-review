@@ -11,13 +11,6 @@ description: "AI chat assistant and coding agent from Europe's leading AI compan
 pricing_model: "freemium"
 founded_year: 2023
 headquarters: "Paris, France"
-tags:
-  - chat-assistant
-  - coding-agent
-  - gdpr-compliant
-  - eu-privacy
-  - multilingual
-  - enterprise
 last_verified: "2026-06-07"
 confidence_score: 0.95
 ---

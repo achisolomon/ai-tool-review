@@ -14,11 +14,6 @@ pricing_model: "free"
 founded_year: 2023
 headquarters: "Seattle, WA"
 tags:
-  - open-source
-  - guardrails
-  - prompt-injection
-  - pii-detection
-  - content-filtering
   - self-hosted
 
 # AI-Managed Metadata

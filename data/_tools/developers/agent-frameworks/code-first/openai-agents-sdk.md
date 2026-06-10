@@ -14,15 +14,9 @@ headquarters: "San Francisco, CA"
 github_url: "https://github.com/openai/openai-agents-python"
 github_stars: 26879
 tags:
-  - openai
-  - multi-agent
+  - agents
   - python
   - typescript
-  - llm-agnostic
-  - workflows
-  - open-source
-  - guardrails
-  - tracing
 last_verified: "2026-06-03"
 confidence_score: 0.95
 ---

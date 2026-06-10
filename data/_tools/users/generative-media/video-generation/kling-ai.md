@@ -11,14 +11,6 @@ description: "AI video generation platform from Kuaishou featuring Kling 2.0 mod
 pricing_model: "freemium"
 founded_year: 2024
 headquarters: "Beijing, China"
-tags:
-  - video-generation
-  - text-to-video
-  - image-to-video
-  - motion-control
-  - lip-sync
-  - ai-filmmaking
-  - kling-2
 last_verified: "2026-06-02"
 confidence_score: 0.92
 ---

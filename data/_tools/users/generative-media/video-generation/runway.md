@@ -11,14 +11,6 @@ description: "The leading AI video generation platform for filmmakers and creato
 pricing_model: "freemium"
 founded_year: 2018
 headquarters: "New York, NY"
-tags:
-  - video-generation
-  - text-to-video
-  - image-to-video
-  - motion-brush
-  - ai-filmmaking
-  - gen-4
-  - creative-tools
 last_verified: "2026-06-02"
 confidence_score: 0.9
 ---

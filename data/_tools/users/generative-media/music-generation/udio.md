@@ -11,14 +11,6 @@ description: "AI music generation platform known for studio-quality audio fideli
 pricing_model: "freemium"
 founded_year: 2023
 headquarters: "New York, NY"
-tags:
-  - ai-music
-  - music-generation
-  - text-to-music
-  - electronic-music
-  - audio-ai
-  - generative-audio
-  - remixing
 last_verified: "2026-06-02"
 confidence_score: 0.90
 ---

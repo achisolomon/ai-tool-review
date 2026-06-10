@@ -12,12 +12,6 @@ github_url: "https://github.com/rtk-ai/rtk"
 github_stars: 60071
 pricing_model: "free"
 founded_year: 2026
-tags:
-  - token-optimization
-  - cli-proxy
-  - cost-savings
-  - open-source
-  - rust
 last_verified: "2026-06-08"
 confidence_score: 0.95
 source_urls:

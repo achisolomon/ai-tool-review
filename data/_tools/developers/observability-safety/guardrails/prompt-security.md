@@ -11,13 +11,6 @@ description: "Runtime security platform for LLM applications. Detects prompt inj
 pricing_model: "custom"
 founded_year: 2023
 headquarters: "Tel Aviv, Israel"
-tags:
-  - llm-security
-  - prompt-injection
-  - runtime-protection
-  - data-loss-prevention
-  - compliance
-  - threat-monitoring
 
 # AI-Managed Metadata
 last_verified: "2026-06-08"

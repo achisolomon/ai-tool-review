@@ -14,15 +14,9 @@ pricing_model: "freemium"
 founded_year: 2020
 headquarters: "Mountain View, CA"
 tags:
-  - finops
-  - mlops
-  - cost-optimization
-  - cloud-management
-  - experiment-tracking
-  - open-source
-  - self-hosted
   - api-available
-  - sdk-python
+  - python
+  - self-hosted
 last_verified: "2026-06-03"
 confidence_score: 0.85
 source_urls:

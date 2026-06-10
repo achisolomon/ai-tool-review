@@ -14,12 +14,7 @@ headquarters: —
 github_url: —
 github_stars: —
 tags:
-  - durable-execution
-  - state-persistence
-  - reliability
-  - policy-enforcement
-  - ai-agents
-  - exactly-once
+  - agents
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

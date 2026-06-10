@@ -11,13 +11,6 @@ description: "AI-powered code review tool that provides contextual feedback on p
 pricing_model: "freemium"
 founded_year: 2023
 headquarters: "San Francisco, CA"
-tags:
-  - code-review
-  - pull-requests
-  - github
-  - gitlab
-  - security
-  - devops
 last_verified: "2026-06-02"
 confidence_score: 0.9
 ---

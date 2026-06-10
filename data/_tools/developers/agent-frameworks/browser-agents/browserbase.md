@@ -14,11 +14,8 @@ headquarters: "San Francisco, California"
 github_url: —
 github_stars: —
 tags:
+  - agents
   - browser-automation
-  - headless-browser
-  - web-scraping
-  - ai-agents
-  - playwright
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

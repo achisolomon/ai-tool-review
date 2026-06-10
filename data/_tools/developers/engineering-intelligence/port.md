@@ -10,12 +10,7 @@ status: "active"
 description: "Agentic SDLC Platform and Internal Developer Portal with AI-powered automation, software catalog, and workflow orchestration"
 pricing_model: "freemium"
 tags:
-  - internal-developer-portal
-  - platform-engineering
-  - software-catalog
-  - ai-agents
-  - devops-automation
-  - scorecards
+  - agents
 last_verified: "2026-06-08"
 confidence_score: 0.90
 ---

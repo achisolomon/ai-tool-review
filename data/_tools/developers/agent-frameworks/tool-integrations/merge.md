@@ -13,12 +13,6 @@ founded_year: 2020
 headquarters: "New York, NY"
 github_url: "—"
 github_stars: —
-tags:
-  - unified-api
-  - b2b-integrations
-  - hris
-  - crm
-  - accounting
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

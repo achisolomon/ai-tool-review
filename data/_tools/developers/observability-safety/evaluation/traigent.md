@@ -11,11 +11,7 @@ description: "Agent control layer that uses TVL specification language to evalua
 pricing_model: "enterprise"
 headquarters: "Israel"
 tags:
-  - agent-optimization
-  - evaluation
   - observability
-  - llm-ops
-  - configuration-management
 last_verified: "2026-06-03"
 confidence_score: 0.85
 ---

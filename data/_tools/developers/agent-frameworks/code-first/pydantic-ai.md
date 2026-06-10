@@ -14,11 +14,8 @@ pricing_model: "free"
 founded_year: 2024
 headquarters: "Remote"
 tags:
-  - type-safety
   - agents
   - python
-  - open-source
-  - model-agnostic
 last_verified: "2026-06-02"
 confidence_score: 0.90
 ---

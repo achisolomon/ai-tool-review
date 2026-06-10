@@ -14,12 +14,8 @@ pricing_model: "open-source"
 founded_year: 2019
 headquarters: "Berlin, Germany"
 tags:
-  - rag
-  - pipelines
   - agents
-  - retrieval
-  - nlp
-  - open-source
+  - rag
 last_verified: "2026-06-02"
 confidence_score: 0.92
 ---

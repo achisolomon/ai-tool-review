@@ -14,12 +14,7 @@ pricing_model: "open-source"
 founded_year: 2023
 headquarters: "Redwood City, CA"
 tags:
-  - llm-evaluation
-  - rag-evaluation
   - observability
-  - feedback-functions
-  - hallucination-detection
-  - open-source
 last_verified: "2026-06-03"
 confidence_score: 0.90
 ---

@@ -11,12 +11,6 @@ description: "AI-powered meeting copilot that unifies meetings, emails, and mess
 pricing_model: "freemium"
 founded_year: 2021
 headquarters: "Seattle, WA"
-tags:
-  - meeting-notes
-  - transcription
-  - ai-assistant
-  - enterprise-search
-  - productivity
 last_verified: "2026-06-07"
 confidence_score: 0.95
 ---

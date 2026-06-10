@@ -11,13 +11,6 @@ description: "The aesthetic leader in AI image generation—renowned for artisti
 pricing_model: "subscription"
 founded_year: 2022
 headquarters: "San Francisco, CA"
-tags:
-  - image-generation
-  - ai-art
-  - creative-tools
-  - text-to-image
-  - discord
-  - photorealism
 
 # AI-Managed Metadata
 last_verified: "2026-06-02"

@@ -12,14 +12,9 @@ pricing_model: "freemium"
 founded_year: 2020
 headquarters: "London, UK"
 tags:
-  - prompt-engineering
-  - evaluations
-  - llm-ops
-  - human-feedback
-  - enterprise-ready
   - api-available
-  - sdk-python
-  - sdk-typescript
+  - python
+  - typescript
 last_verified: "2026-06-03"
 confidence_score: 0.90
 ---

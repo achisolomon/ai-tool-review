@@ -13,10 +13,6 @@ github_stars: 18121
 pricing_model: "free"
 founded_year: 2026
 tags:
-  - token-optimization
-  - context-compression
-  - cost-savings
-  - open-source
   - mcp-server
 last_verified: "2026-06-08"
 confidence_score: 0.95

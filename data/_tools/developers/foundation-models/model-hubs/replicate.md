@@ -13,11 +13,6 @@ pricing_model: "usage-based"
 founded_year: 2019
 headquarters: "San Francisco, CA"
 tags:
-  - model-hosting
-  - inference-api
-  - image-generation
-  - llm-hosting
-  - open-source-models
   - serverless
 last_verified: "2026-06-02"
 confidence_score: 0.9

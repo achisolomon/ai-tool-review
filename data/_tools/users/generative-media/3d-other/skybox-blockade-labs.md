@@ -12,13 +12,6 @@ pricing_model: "freemium"
 founded_year: 2022
 headquarters: "San Francisco, CA"
 tags:
-  - 360-panorama
-  - skybox-generation
-  - game-development
-  - vr-content
-  - text-to-environment
-  - hdri
-  - architectural-visualization
   - api-available
 
 # AI-Managed Metadata

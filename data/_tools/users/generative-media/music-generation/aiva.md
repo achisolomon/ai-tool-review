@@ -11,14 +11,6 @@ description: "AI composer that creates emotional soundtracks for films, video ga
 pricing_model: "freemium"
 founded_year: 2016
 headquarters: "Luxembourg"
-tags:
-  - ai-music
-  - music-generation
-  - film-scoring
-  - game-music
-  - orchestral
-  - soundtrack
-  - composition
 last_verified: "2026-06-02"
 confidence_score: 0.9
 ---

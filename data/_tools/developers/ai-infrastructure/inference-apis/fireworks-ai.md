@@ -12,10 +12,6 @@ pricing_model: "pay-as-you-go"
 founded_year: 2022
 headquarters: "Redwood City, CA"
 tags:
-  - inference-api
-  - llm-hosting
-  - open-source-models
-  - low-latency
   - serverless
 last_verified: "2026-06-02"
 confidence_score: 0.90

@@ -13,13 +13,6 @@ github_stars: 15000
 pricing_model: "freemium"
 founded_year: 2024
 headquarters: "San Francisco, CA"
-tags:
-  - full-stack
-  - in-browser
-  - webcontainers
-  - app-builder
-  - no-setup
-  - ai-coding
 
 # AI-Managed Metadata
 last_verified: "2026-06-02"

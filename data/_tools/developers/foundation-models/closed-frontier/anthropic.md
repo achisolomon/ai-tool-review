@@ -12,10 +12,7 @@ pricing_model: "paid"
 founded_year: 2021
 headquarters: "San Francisco, CA"
 tags:
-  - frontier-models
   - api-available
-  - safety-focused
-  - enterprise
   - reasoning
 last_verified: "2026-06-02"
 confidence_score: 0.95

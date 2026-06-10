@@ -13,13 +13,6 @@ founded_year: 2000
 headquarters: "Prague, Czech Republic"
 github_url: ""
 github_stars: —
-tags:
-  - ai-assistant
-  - code-completion
-  - refactoring
-  - jetbrains
-  - ide
-  - multi-language
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

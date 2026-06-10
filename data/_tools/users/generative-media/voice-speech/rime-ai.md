@@ -11,13 +11,6 @@ description: "Enterprise AI voice platform delivering hyper-realistic text-to-sp
 pricing_model: "API-based pricing"
 founded_year: 2022
 headquarters: "San Francisco, CA"
-tags:
-  - text-to-speech
-  - voice-ai
-  - conversational-ai
-  - enterprise-tts
-  - voice-agents
-  - real-time-audio
 
 # AI-Managed Metadata
 last_verified: "2026-06-07"

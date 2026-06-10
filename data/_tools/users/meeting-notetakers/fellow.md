@@ -11,13 +11,6 @@ description: "AI meeting assistant covering the full meeting lifecycle with pre-
 pricing_model: "freemium"
 founded_year: 2017
 headquarters: "Ottawa, Ontario, Canada"
-tags:
-  - meeting-notes
-  - transcription
-  - ai-assistant
-  - collaboration
-  - crm-integration
-  - hipaa-compliant
 
 # AI-Managed Metadata
 last_verified: "2026-06-07"

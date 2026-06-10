@@ -12,12 +12,7 @@ pricing_model: "freemium"
 founded_year: 2020
 headquarters: "Memphis, TN"
 tags:
-  - ai-writing
-  - marketing-content
-  - sales-automation
-  - copywriting
   - workflow-automation
-  - gtm-platform
 last_verified: "2026-06-02"
 confidence_score: 0.9
 ---

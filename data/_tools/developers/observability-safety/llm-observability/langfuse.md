@@ -14,12 +14,8 @@ pricing_model: "freemium"
 founded_year: 2023
 headquarters: "Berlin, Germany"
 tags:
-  - open-source
   - observability
-  - tracing
-  - llm-ops
   - self-hosted
-  - evaluations
 last_verified: "2026-06-02"
 confidence_score: 0.95
 ---

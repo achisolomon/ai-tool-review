@@ -12,13 +12,6 @@ github_url: "https://github.com/pbakaus/impeccable"
 github_stars: 36096
 pricing_model: "free"
 founded_year: 2025
-tags:
-  - llm-skill
-  - design
-  - frontend
-  - ui-ux
-  - open-source
-  - slop-detection
 last_verified: "2026-06-08"
 confidence_score: 0.95
 source_urls:

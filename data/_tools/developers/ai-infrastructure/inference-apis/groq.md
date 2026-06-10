@@ -11,12 +11,6 @@ description: "Ultra-fast LLM inference powered by custom LPU silicon, delivering
 pricing_model: "pay-per-use"
 founded_year: 2016
 headquarters: "Mountain View, CA"
-tags:
-  - inference-api
-  - custom-silicon
-  - llama
-  - mixtral
-  - low-latency
 last_verified: "2026-06-02"
 confidence_score: 0.9
 ---

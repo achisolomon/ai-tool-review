@@ -12,12 +12,8 @@ pricing_model: "freemium"
 founded_year: 2019
 headquarters: "Toronto, Canada"
 tags:
-  - enterprise
-  - embeddings
-  - rag
-  - multilingual
   - api-available
-  - reranking
+  - rag
 last_verified: "2026-06-02"
 confidence_score: 0.9
 ---

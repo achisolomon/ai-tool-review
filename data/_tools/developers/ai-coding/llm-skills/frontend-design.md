@@ -12,12 +12,6 @@ github_url: "https://github.com/anthropics/skills"
 github_stars: 147931
 pricing_model: "free"
 founded_year: 2026
-tags:
-  - llm-skill
-  - design
-  - frontend
-  - ui-ux
-  - open-source
 last_verified: "2026-06-08"
 confidence_score: 0.95
 source_urls:

@@ -14,11 +14,8 @@ pricing_model: "free"
 founded_year: 2023
 headquarters: "Palo Alto, CA"
 tags:
-  - open-source
-  - sdk-java
-  - enterprise-ready
-  - rag
   - api-available
+  - rag
   - self-hosted
 
 # AI-Managed Metadata

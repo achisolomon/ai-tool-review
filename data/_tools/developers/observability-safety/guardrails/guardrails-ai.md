@@ -14,11 +14,6 @@ pricing_model: "open-source"
 founded_year: 2023
 headquarters: "San Francisco, CA"
 tags:
-  - llm-safety
-  - validation
-  - output-guards
-  - structured-data
-  - open-source
   - python
 last_verified: "2026-06-03"
 confidence_score: 0.95

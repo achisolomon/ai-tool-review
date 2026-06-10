@@ -11,13 +11,6 @@ description: "Premium ad-free search engine with AI features, no tracking, and u
 pricing_model: "subscription"
 founded_year: 2018
 headquarters: "Palo Alto, CA"
-tags:
-  - ad-free
-  - privacy-search
-  - ai-search
-  - fastgpt
-  - summarizer
-  - no-tracking
 last_verified: "2026-06-02"
 confidence_score: 0.9
 ---

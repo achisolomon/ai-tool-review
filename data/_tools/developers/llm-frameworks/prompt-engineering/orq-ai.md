@@ -12,12 +12,8 @@ pricing_model: "freemium"
 founded_year: 2023
 headquarters: "Amsterdam, Netherlands"
 tags:
-  - prompt-engineering
-  - llmops
-  - model-orchestration
-  - observability
-  - enterprise
   - api-available
+  - observability
 last_verified: "2026-06-03"
 confidence_score: 0.85
 ---

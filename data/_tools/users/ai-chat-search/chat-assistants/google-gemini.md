@@ -12,13 +12,7 @@ pricing_model: "freemium"
 founded_year: 2023
 headquarters: "Mountain View, CA"
 tags:
-  - ai-assistant
   - multimodal
-  - google-workspace
-  - research
-  - coding
-  - image-generation
-  - writing
 last_verified: "2026-06-02"
 confidence_score: 0.90
 ---

@@ -11,14 +11,6 @@ description: "Anthropic's AI assistant designed for safety, nuanced reasoning, a
 pricing_model: "freemium"
 founded_year: 2023
 headquarters: "San Francisco, CA"
-tags:
-  - ai-assistant
-  - writing
-  - coding
-  - analysis
-  - research
-  - long-context
-  - safety-focused
 last_verified: "2026-06-02"
 confidence_score: 0.95
 ---

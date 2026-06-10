@@ -11,13 +11,6 @@ description: "AI music generator that creates full songs with vocals, lyrics, an
 pricing_model: "freemium"
 founded_year: 2022
 headquarters: "Cambridge, MA"
-tags:
-  - ai-music
-  - music-generation
-  - text-to-music
-  - song-creation
-  - vocals
-  - generative-audio
 last_verified: "2026-06-02"
 confidence_score: 0.9
 ---

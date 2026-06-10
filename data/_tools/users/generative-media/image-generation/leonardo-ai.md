@@ -12,12 +12,6 @@ pricing_model: "freemium"
 founded_year: 2022
 headquarters: "Sydney, Australia"
 tags:
-  - image-generation
-  - ai-art
-  - game-assets
-  - concept-art
-  - text-to-image
-  - real-time-canvas
   - api-available
 
 # AI-Managed Metadata

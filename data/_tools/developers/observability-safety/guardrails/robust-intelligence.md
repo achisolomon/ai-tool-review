@@ -11,13 +11,6 @@ description: "Cisco's AI firewall and security platform for enterprise LLM deplo
 pricing_model: "custom"
 founded_year: 2019
 headquarters: "San Francisco, CA"
-tags:
-  - cisco
-  - ai-firewall
-  - enterprise-security
-  - adversarial-attacks
-  - model-monitoring
-  - network-security
 
 # AI-Managed Metadata
 last_verified: "2026-06-08"

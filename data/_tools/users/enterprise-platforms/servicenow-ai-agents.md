@@ -12,14 +12,8 @@ pricing_model: "per-seat"
 founded_year: 2023
 headquarters: "Santa Clara, CA"
 tags:
-  - ai-agents
-  - itsm
+  - agents
   - workflow-automation
-  - employee-experience
-  - customer-service
-  - enterprise
-  - autonomous-agents
-  - servicenow-ecosystem
 
 # AI-Managed Metadata
 last_verified: "2026-06-02"

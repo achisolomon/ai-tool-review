@@ -13,12 +13,8 @@ founded_year: 2026
 github_url: "https://github.com/yoanbernabeu/grepai"
 github_stars: 1731
 tags:
-  - code-search
-  - open-source
   - mcp-server
   - self-hosted
-  - semantic-search
-  - privacy-first
 last_verified: "2026-06-08"
 confidence_score: 0.95
 ---

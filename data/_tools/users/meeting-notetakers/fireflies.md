@@ -11,12 +11,6 @@ description: "AI meeting assistant that records, transcribes, and summarizes mee
 pricing_model: "freemium"
 founded_year: 2016
 headquarters: "San Francisco, CA"
-tags:
-  - meeting-transcription
-  - ai-notetaker
-  - conversation-intelligence
-  - crm-integration
-  - sales-enablement
 last_verified: "2026-06-07"
 confidence_score: 0.95
 ---

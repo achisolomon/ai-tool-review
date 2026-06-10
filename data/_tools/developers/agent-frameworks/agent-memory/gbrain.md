@@ -12,13 +12,8 @@ github_url: "https://github.com/garrytan/gbrain"
 github_stars: 20788
 pricing_model: "free"
 tags:
-  - memory
   - agents
-  - knowledge-graph
-  - synthesis
   - typescript
-  - mcp
-  - local-first
 last_verified: "2026-06-03"
 confidence_score: 0.95
 ---

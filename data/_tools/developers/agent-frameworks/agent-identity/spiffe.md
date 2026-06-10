@@ -13,12 +13,6 @@ founded_year: 2017
 headquarters: "San Francisco, California"
 github_url: "https://github.com/spiffe/spiffe"
 github_stars: 1500
-tags:
-  - zero-trust
-  - workload-identity
-  - cncf
-  - security
-  - authentication
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

@@ -13,13 +13,6 @@ github_stars: 161205
 pricing_model: "freemium"
 founded_year: 2016
 headquarters: "New York, NY"
-tags:
-  - model-hub
-  - open-source
-  - datasets
-  - inference
-  - transformers
-  - community
 last_verified: "2026-06-02"
 confidence_score: 0.95
 ---

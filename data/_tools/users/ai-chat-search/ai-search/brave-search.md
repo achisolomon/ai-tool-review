@@ -11,12 +11,6 @@ description: "Privacy-focused search engine with independent index of 40B+ pages
 pricing_model: "freemium"
 founded_year: 2021
 headquarters: "San Francisco, CA"
-tags:
-  - privacy
-  - search-engine
-  - ai-search
-  - independent-index
-  - no-tracking
 last_verified: "2026-06-07"
 confidence_score: 0.95
 ---

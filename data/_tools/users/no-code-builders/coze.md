@@ -12,12 +12,9 @@ pricing_model: "freemium"
 founded_year: 2023
 headquarters: "Beijing, China"
 tags:
+  - agents
   - no-code
-  - chatbot-builder
-  - ai-agents
   - workflow-automation
-  - multi-platform
-  - bytedance
 
 # AI-Managed Metadata
 last_verified: "2026-06-07"

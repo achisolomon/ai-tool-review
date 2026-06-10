@@ -11,13 +11,6 @@ description: "AI-powered writing assistant that helps 30M+ daily users communica
 pricing_model: "freemium"
 founded_year: 2009
 headquarters: "San Francisco, CA"
-tags:
-  - writing-assistant
-  - grammar-checker
-  - ai-writing
-  - productivity
-  - business-communication
-  - browser-extension
 last_verified: "2026-06-02"
 confidence_score: 0.95
 ---

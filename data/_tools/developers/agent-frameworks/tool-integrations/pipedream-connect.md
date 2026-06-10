@@ -14,11 +14,9 @@ headquarters: "San Francisco, CA"
 github_url: "—"
 github_stars: —
 tags:
-  - api-integrations
-  - workflow-automation
+  - agents
   - serverless
-  - developer-platform
-  - ai-agents
+  - workflow-automation
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

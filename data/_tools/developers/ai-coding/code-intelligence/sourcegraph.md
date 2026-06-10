@@ -12,11 +12,9 @@ pricing_model: enterprise
 founded_year: 2013
 headquarters: "San Francisco, CA"
 tags:
-  - code-search
-  - enterprise-ready
-  - mcp-server
-  - api-available
   - agents
+  - api-available
+  - mcp-server
 last_verified: "2026-06-08"
 confidence_score: 0.95
 ---

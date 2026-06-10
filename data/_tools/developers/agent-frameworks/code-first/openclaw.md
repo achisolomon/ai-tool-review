@@ -13,12 +13,6 @@ founded_year: 2024
 headquarters: —
 github_url: —
 github_stars: —
-tags:
-  - ai-coding
-  - cross-platform
-  - nodejs
-  - desktop
-  - developer-tools
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

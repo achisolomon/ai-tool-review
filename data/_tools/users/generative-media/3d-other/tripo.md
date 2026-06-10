@@ -12,10 +12,6 @@ pricing_model: "freemium"
 founded_year: 2023
 headquarters: "Beijing, China"
 tags:
-  - 3d-generation
-  - text-to-3d
-  - image-to-3d
-  - game-assets
   - api-available
 last_verified: "2026-06-02"
 confidence_score: 0.90

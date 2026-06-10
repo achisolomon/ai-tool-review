@@ -15,10 +15,7 @@ github_url: "https://github.com/skyvern-ai/skyvern"
 github_stars: 6500
 tags:
   - browser-automation
-  - computer-vision
-  - llm
   - workflow-automation
-  - open-source
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

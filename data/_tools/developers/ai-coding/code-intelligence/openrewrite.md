@@ -13,13 +13,6 @@ founded_year: 2018
 headquarters: "San Francisco, CA"
 github_url: "https://github.com/openrewrite/rewrite"
 github_stars: 2000
-tags:
-  - refactoring
-  - code-migration
-  - technical-debt
-  - open-source
-  - java
-  - automated-refactoring
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

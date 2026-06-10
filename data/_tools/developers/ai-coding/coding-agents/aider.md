@@ -13,11 +13,7 @@ github_stars: 25000
 pricing_model: "free"
 founded_year: 2023
 tags:
-  - open-source
-  - coding-assistant
   - agents
-  - multi-model
-  - terminal
 last_verified: "2026-06-02"
 confidence_score: 0.9
 ---

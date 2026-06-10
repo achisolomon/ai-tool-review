@@ -12,12 +12,9 @@ pricing_model: "pay-as-you-go"
 founded_year: 2021
 headquarters: "San Francisco, CA"
 tags:
-  - serverless
-  - gpu-cloud
-  - inference-api
-  - python
-  - machine-learning
   - api-available
+  - python
+  - serverless
 last_verified: "2026-06-02"
 confidence_score: 0.90
 ---

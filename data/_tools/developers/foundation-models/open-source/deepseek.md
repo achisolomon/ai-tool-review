@@ -13,11 +13,8 @@ pricing_model: "freemium"
 founded_year: 2023
 headquarters: "Hangzhou, China"
 tags:
-  - reasoning
-  - open-weights
   - api-available
-  - code-generation
-  - math
+  - reasoning
 last_verified: "2026-06-02"
 confidence_score: 0.92
 ---

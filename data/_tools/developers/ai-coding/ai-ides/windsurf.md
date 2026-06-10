@@ -12,11 +12,7 @@ pricing_model: "freemium"
 founded_year: 2021
 headquarters: "Mountain View, CA"
 tags:
-  - ai-ide
-  - coding-assistant
   - agents
-  - cascade
-  - vs-code-fork
 
 # AI-Managed Metadata
 last_verified: "2026-06-02"

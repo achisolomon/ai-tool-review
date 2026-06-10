@@ -14,11 +14,7 @@ headquarters: "Open Source Community"
 github_url: "https://github.com/unclecode/crawl4ai"
 github_stars: 17000
 tags:
-  - web-scraping
-  - llm-data
-  - open-source
   - python
-  - ai-extraction
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

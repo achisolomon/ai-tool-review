@@ -12,13 +12,7 @@ pricing_model: "freemium"
 founded_year: 2023
 headquarters: "Stockholm, Sweden"
 tags:
-  - full-stack
-  - app-builder
   - no-code
-  - supabase
-  - github-sync
-  - react
-  - ai-coding
 
 # AI-Managed Metadata
 last_verified: "2026-06-02"

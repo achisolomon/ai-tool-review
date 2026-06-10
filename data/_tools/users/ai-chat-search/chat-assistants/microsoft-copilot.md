@@ -11,14 +11,6 @@ description: "Microsoft's AI assistant built into Windows 11, Edge, and Microsof
 pricing_model: "freemium"
 founded_year: 2023
 headquarters: "Redmond, WA"
-tags:
-  - ai-assistant
-  - microsoft-365
-  - windows
-  - productivity
-  - image-generation
-  - enterprise
-  - bing-search
 last_verified: "2026-06-02"
 confidence_score: 0.90
 ---

@@ -13,13 +13,7 @@ pricing_model: "freemium"
 founded_year: 2024
 headquarters: "Freiburg, Germany"
 tags:
-  - image-generation
-  - text-to-image
-  - photorealism
-  - open-weights
   - api-available
-  - stable-diffusion
-  - diffusion-models
 
 # AI-Managed Metadata
 last_verified: "2026-06-02"

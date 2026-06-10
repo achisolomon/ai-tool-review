@@ -11,13 +11,6 @@ description: "Text-to-speech and voice cloning platform with realistic voices, r
 pricing_model: "Pay-as-you-go & Subscription"
 founded_year: 2020
 headquarters: "Palo Alto, CA"
-tags:
-  - text-to-speech
-  - voice-cloning
-  - ai-voice
-  - tts
-  - discontinued
-  - meta-acquisition
 
 # AI-Managed Metadata
 last_verified: "2026-06-07"

@@ -14,12 +14,7 @@ headquarters: "San Francisco, CA"
 github_url: ""
 github_stars: —
 tags:
-  - app-builder
   - no-code
-  - low-code
-  - replit
-  - ai-agent
-  - deployment
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

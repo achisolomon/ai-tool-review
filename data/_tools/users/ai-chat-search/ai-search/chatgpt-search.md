@@ -11,12 +11,6 @@ description: "OpenAI's real-time web search integrated into ChatGPT, combining c
 pricing_model: "freemium"
 founded_year: 2024
 headquarters: "San Francisco, CA"
-tags:
-  - ai-search
-  - web-browsing
-  - real-time-search
-  - conversational-ai
-  - citations
 
 # AI-Managed Metadata
 last_verified: "2026-06-07"

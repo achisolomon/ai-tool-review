@@ -11,13 +11,6 @@ description: "Enterprise AI search and knowledge assistant that connects all com
 pricing_model: "enterprise"
 founded_year: 2019
 headquarters: "Palo Alto, CA"
-tags:
-  - enterprise-search
-  - ai-assistant
-  - knowledge-management
-  - workplace-ai
-  - productivity
-  - integrations
 
 # AI-Managed Metadata
 last_verified: "2026-06-02"

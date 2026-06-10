@@ -14,13 +14,9 @@ github_stars: 144257
 founded_year: 2023
 headquarters: "San Francisco, CA"
 tags:
-  - no-code
-  - workflow-builder
-  - rag
   - agents
-  - llm-ops
-  - open-source
-  - visual-builder
+  - no-code
+  - rag
 last_verified: "2026-06-07"
 confidence_score: 0.95
 ---

@@ -12,11 +12,6 @@ pricing_model: "freemium"
 founded_year: 2013
 headquarters: "Menlo Park, CA"
 tags:
-  - ai-assistant
-  - chatbot
-  - image-generation
-  - social-media
-  - llama
   - multimodal
 
 # AI-Managed Metadata

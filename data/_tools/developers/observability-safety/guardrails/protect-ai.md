@@ -11,13 +11,6 @@ description: "MLSecOps platform securing AI systems across development and produ
 pricing_model: "custom"
 founded_year: 2022
 headquarters: "Seattle, WA"
-tags:
-  - mlsecops
-  - ai-security
-  - vulnerability-scanning
-  - compliance
-  - red-teaming
-  - model-security
 
 # AI-Managed Metadata
 last_verified: "2026-06-08"

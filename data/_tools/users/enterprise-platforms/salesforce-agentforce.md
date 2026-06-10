@@ -12,13 +12,7 @@ pricing_model: "usage-based"
 founded_year: 2024
 headquarters: "San Francisco, CA"
 tags:
-  - ai-agents
-  - crm
-  - sales-automation
-  - customer-service
-  - enterprise
-  - autonomous-agents
-  - salesforce-ecosystem
+  - agents
 
 # AI-Managed Metadata
 last_verified: "2026-06-02"

@@ -11,12 +11,6 @@ description: "AI-powered 3D model generator that creates textured 3D assets from
 pricing_model: "freemium"
 founded_year: 2022
 headquarters: "San Francisco, CA"
-tags:
-  - 3d-generation
-  - text-to-3d
-  - image-to-3d
-  - game-assets
-  - ai-modeling
 last_verified: "2026-06-02"
 confidence_score: 0.90
 ---

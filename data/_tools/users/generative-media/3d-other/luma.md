@@ -12,13 +12,6 @@ pricing_model: "freemium"
 founded_year: 2021
 headquarters: "Palo Alto, CA"
 tags:
-  - 3d-generation
-  - text-to-3d
-  - image-to-3d
-  - nerf
-  - photogrammetry
-  - 3d-capture
-  - gaussian-splatting
   - api-available
 last_verified: "2026-06-02"
 confidence_score: 0.9

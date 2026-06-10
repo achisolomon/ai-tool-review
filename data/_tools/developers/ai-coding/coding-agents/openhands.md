@@ -14,11 +14,8 @@ pricing_model: "open-source"
 founded_year: 2024
 headquarters: "Open Source Community"
 tags:
-  - reasoning
-  - coding-assistant
   - agents
-  - open-source
-  - autonomous
+  - reasoning
   - self-hosted
 last_verified: "2026-06-02"
 confidence_score: 0.92

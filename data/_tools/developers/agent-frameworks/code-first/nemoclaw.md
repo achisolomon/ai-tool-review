@@ -13,13 +13,6 @@ founded_year: 2024
 headquarters: "Santa Clara, CA"
 github_url: —
 github_stars: —
-tags:
-  - nvidia
-  - enterprise
-  - guardrails
-  - privacy
-  - local-models
-  - security
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

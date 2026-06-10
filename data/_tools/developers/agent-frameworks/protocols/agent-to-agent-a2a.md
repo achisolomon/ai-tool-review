@@ -14,11 +14,7 @@ headquarters: "Mountain View, CA"
 github_url: "https://github.com/google/a2a"
 github_stars: 2500
 tags:
-  - agent-communication
-  - google
-  - protocol
-  - multi-agent
-  - open-source
+  - agents
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

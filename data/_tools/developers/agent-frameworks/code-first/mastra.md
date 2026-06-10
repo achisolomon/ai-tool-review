@@ -15,10 +15,6 @@ github_url: "https://github.com/mastra-ai/mastra"
 github_stars: 2800
 tags:
   - typescript
-  - javascript
-  - rapid-development
-  - production-ready
-  - full-stack
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

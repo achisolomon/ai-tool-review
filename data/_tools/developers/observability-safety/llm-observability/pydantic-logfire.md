@@ -15,11 +15,6 @@ founded_year: 2024
 headquarters: "San Francisco, CA"
 tags:
   - observability
-  - tracing
-  - opentelemetry
-  - llm-ops
-  - pydantic
-  - cost-tracking
 last_verified: "2026-06-07"
 confidence_score: 0.95
 ---

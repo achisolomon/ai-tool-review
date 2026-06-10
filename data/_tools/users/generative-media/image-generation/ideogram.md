@@ -11,14 +11,6 @@ description: "The text rendering champion of AI image generation—unmatched typ
 pricing_model: "freemium"
 founded_year: 2022
 headquarters: "Toronto, Canada"
-tags:
-  - image-generation
-  - text-to-image
-  - typography
-  - logo-design
-  - ai-art
-  - text-rendering
-  - creative-tools
 
 # AI-Managed Metadata
 last_verified: "2026-06-02"

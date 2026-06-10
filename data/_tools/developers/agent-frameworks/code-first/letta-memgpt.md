@@ -13,12 +13,6 @@ founded_year: 2023
 headquarters: "Berkeley, CA"
 github_url: "https://github.com/letta-ai/letta"
 github_stars: 12000
-tags:
-  - memory-management
-  - stateful-agents
-  - persistent-context
-  - berkeley-research
-  - long-term-memory
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

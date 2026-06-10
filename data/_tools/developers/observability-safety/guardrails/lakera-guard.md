@@ -11,13 +11,6 @@ description: "Real-time API for detecting and preventing LLM prompt injections, 
 pricing_model: "usage-based"
 founded_year: 2021
 headquarters: "Zurich, Switzerland"
-tags:
-  - prompt-injection
-  - llm-security
-  - content-moderation
-  - api-security
-  - jailbreak-detection
-  - data-loss-prevention
 
 # AI-Managed Metadata
 last_verified: "2026-06-08"

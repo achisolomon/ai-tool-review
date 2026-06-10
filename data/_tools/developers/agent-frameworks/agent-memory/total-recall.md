@@ -12,9 +12,7 @@ pricing_model: "freemium"
 founded_year: 2025
 tags:
   - agents
-  - memory
   - rag
-  - local-first
 last_verified: "2026-06-03"
 confidence_score: 0.90
 ---

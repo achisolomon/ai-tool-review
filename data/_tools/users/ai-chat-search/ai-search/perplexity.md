@@ -11,12 +11,6 @@ description: "AI-powered answer engine that provides real-time, cited responses 
 pricing_model: "freemium"
 founded_year: 2022
 headquarters: "San Francisco, CA"
-tags:
-  - ai-search
-  - research
-  - citations
-  - real-time-search
-  - answer-engine
 last_verified: "2026-06-02"
 confidence_score: 0.90
 ---

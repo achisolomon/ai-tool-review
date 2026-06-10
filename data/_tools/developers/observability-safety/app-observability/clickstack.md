@@ -14,12 +14,9 @@ headquarters: "San Francisco, CA"
 github_url: "https://github.com/ClickHouse/clickstack"
 
 tags:
-  - open-source
-  - self-hosted
-  - observability
   - api-available
-  - enterprise-ready
-  - free-tier
+  - observability
+  - self-hosted
 
 # AI-Managed Metadata
 last_verified: "2026-06-03"

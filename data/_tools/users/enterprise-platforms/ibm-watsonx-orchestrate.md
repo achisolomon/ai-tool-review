@@ -12,14 +12,8 @@ pricing_model: "enterprise"
 founded_year: 2022
 headquarters: "Armonk, NY"
 tags:
-  - ai-agents
-  - enterprise-automation
+  - agents
   - workflow-automation
-  - conversational-ai
-  - rpa
-  - ibm-ecosystem
-  - multi-agent
-  - skills-catalog
 
 # AI-Managed Metadata
 last_verified: "2026-06-02"

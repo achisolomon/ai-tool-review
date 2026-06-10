@@ -11,12 +11,6 @@ description: "Context optimization plugin that identifies and eliminates wasted 
 github_url: "https://github.com/alexgreensh/token-optimizer"
 github_stars: 1214
 pricing_model: "free"
-tags:
-  - context-management
-  - token-optimization
-  - cost-reduction
-  - claude-code
-  - codex
 last_verified: "2026-06-03"
 confidence_score: 0.95
 ---

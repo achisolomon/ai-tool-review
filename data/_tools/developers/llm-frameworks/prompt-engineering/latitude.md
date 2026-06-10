@@ -13,13 +13,6 @@ github_stars: 4045
 pricing_model: "freemium"
 founded_year: 2024
 headquarters: "Remote"
-tags:
-  - llm-observability
-  - ai-monitoring
-  - agent-debugging
-  - evaluations
-  - open-source
-  - tracing
 last_verified: "2026-06-03"
 confidence_score: 0.92
 ---

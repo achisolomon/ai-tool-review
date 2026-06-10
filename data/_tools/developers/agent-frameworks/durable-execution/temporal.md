@@ -13,13 +13,6 @@ founded_year: 2019
 headquarters: "Seattle, WA"
 github_url: "https://github.com/temporalio/temporal"
 github_stars: 11000
-tags:
-  - durable-execution
-  - workflows
-  - orchestration
-  - microservices
-  - distributed-systems
-  - open-source
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---
