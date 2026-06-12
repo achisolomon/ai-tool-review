@@ -100,3 +100,42 @@ class TestBuildQuery < Minitest::Test
     assert_includes q, 'owner: "o\\"x"'
   end
 end
+
+class TestMergeResults < Minitest::Test
+  def test_updates_counts_from_response
+    repos = [
+      { slug: 'tool-a', repo: { owner: 'o', name: 'a' } },
+      { slug: 'tool-b', repo: { owner: 'o', name: 'b' } }
+    ]
+    response = { 'data' => { 'r0' => { 'stargazerCount' => 142318 }, 'r1' => { 'stargazerCount' => 18204 } } }
+    result = StarsLib.merge_results(repos, response, {}, now: '2026-06-13T04:00:00Z')
+    assert_equal 142318, result['stars']['tool-a']['count']
+    assert_equal '2026-06-13T04:00:00Z', result['stars']['tool-a']['fetched_at']
+    assert_equal 18204, result['stars']['tool-b']['count']
+    assert_equal '2026-06-13T04:00:00Z', result['generated_at']
+  end
+
+  def test_keeps_previous_entry_when_repo_is_null
+    repos = [{ slug: 'tool-a', repo: { owner: 'o', name: 'a' } }]
+    response = { 'data' => { 'r0' => nil } }
+    previous = { 'stars' => { 'tool-a' => { 'count' => 99999, 'fetched_at' => '2026-06-10T04:00:00Z' } } }
+    result = StarsLib.merge_results(repos, response, previous, now: '2026-06-13T04:00:00Z')
+    assert_equal 99999, result['stars']['tool-a']['count']
+    assert_equal '2026-06-10T04:00:00Z', result['stars']['tool-a']['fetched_at']
+  end
+
+  def test_omits_repo_with_no_data_and_no_previous
+    repos = [{ slug: 'tool-a', repo: { owner: 'o', name: 'a' } }]
+    response = { 'data' => { 'r0' => nil } }
+    result = StarsLib.merge_results(repos, response, {}, now: '2026-06-13T04:00:00Z')
+    refute result['stars'].key?('tool-a')
+  end
+
+  def test_records_errors_for_null_repos
+    repos = [{ slug: 'tool-a', repo: { owner: 'o', name: 'a' } }]
+    response = { 'data' => { 'r0' => nil }, 'errors' => [{ 'message' => "Could not resolve to a Repository with the name 'o/a'." }] }
+    result = StarsLib.merge_results(repos, response, {}, now: '2026-06-13T04:00:00Z')
+    assert_equal 1, result[:errors].length
+    assert_includes result[:errors].first, 'tool-a'
+  end
+end
