@@ -1,23 +1,22 @@
 ---
----
 name: Graphify
 slug: graphify
 website: https://github.com/safishamsi/graphify
-type: open-source
+type: oss
 track: developers
 category: vector-dbs
 subcategory: rag-kg
 status: active
-description: AI coding assistant skill that transforms code, docs, and media into
-  queryable knowledge graphs with 71x fewer tokens than raw file reading
+description: AI coding assistant skill that transforms code, docs, and media into queryable knowledge graphs with 71x fewer tokens than raw file reading
 github_url: https://github.com/safishamsi/graphify
 github_stars: 64633
 pricing_model: free
 founded_year: 2026
 headquarters: Y Combinator S26
 tags:
-- multimodal
-- rag
+  - skill
+  - multimodal
+  - rag
 last_verified: '2026-06-10'
 confidence_score: 0.95
 ---

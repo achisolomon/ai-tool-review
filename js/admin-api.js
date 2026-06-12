@@ -2,11 +2,20 @@
 // =================================
 
 /**
+ * Safe accessor: pages like the homepage load admin-api.js without
+ * supabase-client.js, so window.SupabaseClient may be undefined.
+ * @returns {object|null}
+ */
+function getSupabaseOrNull() {
+    return window.SupabaseClient ? window.SupabaseClient.getSupabase() : null;
+}
+
+/**
  * Check if current user has admin or moderator role
  * @returns {Promise<{isAdmin: boolean, role: string|null}>}
  */
 async function checkIsAdmin() {
-    const supabase = window.SupabaseClient.getSupabase();
+    const supabase = getSupabaseOrNull();
     if (!supabase) {
         return { isAdmin: false, role: null };
     }
@@ -35,7 +44,7 @@ async function checkIsAdmin() {
  * @returns {Promise<number>}
  */
 async function getPendingCount() {
-    const supabase = window.SupabaseClient.getSupabase();
+    const supabase = getSupabaseOrNull();
     if (!supabase) return 0;
 
     const { count, error } = await supabase
@@ -58,7 +67,7 @@ async function getPendingCount() {
  * @returns {Promise<{reviews: Array, total: number}>}
  */
 async function getReviewsForModeration(status, { limit = 50, offset = 0 } = {}) {
-    const supabase = window.SupabaseClient.getSupabase();
+    const supabase = getSupabaseOrNull();
     if (!supabase) return { reviews: [], total: 0 };
 
     const ascending = status === 'pending'; // Pending: oldest first (FIFO), others: newest first
@@ -103,7 +112,7 @@ async function getReviewsForModeration(status, { limit = 50, offset = 0 } = {}) 
  * @returns {Promise<{success: boolean, error?: string}>}
  */
 async function approveReview(reviewId) {
-    const supabase = window.SupabaseClient.getSupabase();
+    const supabase = getSupabaseOrNull();
     if (!supabase) return { success: false, error: 'Supabase not initialized' };
 
     const { error } = await supabase
@@ -125,7 +134,7 @@ async function approveReview(reviewId) {
  * @returns {Promise<{success: boolean, error?: string}>}
  */
 async function rejectReview(reviewId) {
-    const supabase = window.SupabaseClient.getSupabase();
+    const supabase = getSupabaseOrNull();
     if (!supabase) return { success: false, error: 'Supabase not initialized' };
 
     const { error } = await supabase
@@ -147,7 +156,7 @@ async function rejectReview(reviewId) {
  * @returns {Promise<{success: boolean, error?: string}>}
  */
 async function deleteReviewAdmin(reviewId) {
-    const supabase = window.SupabaseClient.getSupabase();
+    const supabase = getSupabaseOrNull();
     if (!supabase) return { success: false, error: 'Supabase not initialized' };
 
     const { error } = await supabase
@@ -168,7 +177,7 @@ async function deleteReviewAdmin(reviewId) {
  * @returns {Promise<{users: Array, error?: string}>}
  */
 async function getAllUsers() {
-    const supabase = window.SupabaseClient.getSupabase();
+    const supabase = getSupabaseOrNull();
     if (!supabase) return { users: [], error: 'Supabase not initialized' };
 
     // Get user profiles with roles

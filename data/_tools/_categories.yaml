@@ -110,14 +110,6 @@ users:
         name: "Voice Agents"
         description: "AI voice agents and automated receptionists"
 
-  ai-contact-center:
-    name: "AI Contact Center"
-    description: "AI-powered contact center and omnichannel communication platforms"
-    subcategories:
-      contact-center:
-        name: "Contact Center Platforms"
-        description: "Full-featured AI contact center solutions"
-
 developers:
   foundation-models:
     name: "Foundation Models & Model Hubs"
@@ -275,9 +267,17 @@ developers:
       guardrails:
         name: "Guardrails / Safety"
         description: "AI safety and guardrails"
-      red-teaming:
-        name: "Red Teaming & AI Security"
-        description: "AI security testing and red teaming"
       app-observability:
         name: "Application Observability & FinOps"
         description: "General observability and cost management"
+
+  security:
+    name: "Security"
+    description: "AI security testing, red teaming, and security scanning"
+    subcategories:
+      red-teaming:
+        name: "Red Teaming & AI Security"
+        description: "AI security testing and red teaming"
+      security-scanning:
+        name: "Security Scanning"
+        description: "AI-powered security scanning and code forensics"

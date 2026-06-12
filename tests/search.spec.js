@@ -19,10 +19,10 @@ test.describe('Search Page', () => {
       await expect(searchInput).toBeFocused();
     });
 
-    test('quick action chips are visible', async ({ page }) => {
-      const chips = page.locator('.action-chip');
-      await expect(chips).toHaveCount(5);
-      await expect(chips.first()).toBeVisible();
+    test('browse link is visible', async ({ page }) => {
+      const browseLink = page.locator('.browse-toggle');
+      await expect(browseLink).toBeVisible();
+      await expect(browseLink).toHaveAttribute('href', 'landscape.html');
     });
 
     test('search results are hidden by default', async ({ page }) => {
@@ -80,22 +80,6 @@ test.describe('Search Page', () => {
     });
   });
 
-  test.describe('Quick Action Chips', () => {
-
-    test('clicking chip fills search and shows results', async ({ page }) => {
-      const chip = page.locator('.action-chip').first();
-      const chipQuery = await chip.getAttribute('data-query');
-
-      await chip.click();
-      await page.waitForTimeout(300);
-
-      const searchInput = page.locator('#action-input');
-      await expect(searchInput).toHaveValue(chipQuery);
-
-      const results = page.locator('#search-results');
-      await expect(results).not.toHaveClass(/hidden/);
-    });
-  });
 
   test.describe('Result Card Rendering', () => {
 

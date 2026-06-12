@@ -10,4 +10,26 @@ npm run generate || exit 1
 # Validate workflows
 npm run validate:workflows || exit 1
 
+# Run search test suite (data integrity + dropdown/results/URL consistency).
+# Requires Playwright; falls back to CI if not installed locally.
+if npx playwright --version > /dev/null 2>&1; then
+    # Tests run against _site — make sure it's current.
+    if bundle exec jekyll --version > /dev/null 2>&1; then
+        echo "Building Jekyll site for tests..."
+        bundle exec jekyll build || exit 1
+    elif [ ! -d "_site" ]; then
+        echo "⚠️  No _site build and Jekyll unavailable — skipping search tests (they will run in CI)"
+        echo "All validations passed!"
+        exit 0
+    else
+        echo "⚠️  Jekyll unavailable — running search tests against existing _site build"
+    fi
+    echo "Running search tests..."
+    npm run test:search || exit 1
+else
+    echo "⚠️  Skipping search tests (Playwright not installed)"
+    echo "   Run 'npm ci && npx playwright install chromium' to enable local tests"
+    echo "   Tests will run in CI after push"
+fi
+
 echo "All validations passed!"

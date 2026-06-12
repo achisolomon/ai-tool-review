@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Reviews - AI Tool Review</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/reviews.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Header -->
+        <header class="admin-header">
+            <div class="admin-header-left">
+                <a href="/" class="admin-logo">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                        <polyline points="9 22 9 12 15 12 15 22"/>
+                    </svg>
+                    <span>AI Tool Review</span>
+                </a>
+                <span class="admin-divider">/</span>
+                <h1>My Reviews</h1>
+            </div>
+            <div class="admin-header-actions">
+                <span id="user-info"></span>
+                <button id="logout-btn" class="btn btn-ghost hidden">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                        <polyline points="16 17 21 12 16 7"/>
+                        <line x1="21" y1="12" x2="9" y2="12"/>
+                    </svg>
+                    Sign out
+                </button>
+            </div>
+        </header>
+
+        <!-- Not Logged In State -->
+        <div id="login-required" class="auth-state hidden">
+            <!-- Sign-in card populated by auth-signin.js -->
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading-state" class="auth-state">
+            <div class="loading-spinner">
+                <div class="spinner"></div>
+                <p>Loading your reviews...</p>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main id="main-content" class="admin-main hidden">
+            <!-- Stats Bar -->
+            <div class="admin-stats">
+                <div class="stat-item stat-pending active" data-status="pending">
+                    <span class="stat-value" id="stat-pending">0</span>
+                    <span class="stat-label">PENDING</span>
+                </div>
+                <div class="stat-item stat-approved" data-status="approved">
+                    <span class="stat-value" id="stat-approved">0</span>
+                    <span class="stat-label">APPROVED</span>
+                </div>
+                <div class="stat-item stat-rejected" data-status="rejected">
+                    <span class="stat-value" id="stat-rejected">0</span>
+                    <span class="stat-label">REJECTED</span>
+                </div>
+            </div>
+
+            <!-- Status Tabs -->
+            <div class="status-tabs">
+                <button class="status-tab active" data-status="pending">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    Pending
+                </button>
+                <button class="status-tab" data-status="approved">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    Approved
+                </button>
+                <button class="status-tab" data-status="rejected">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                    Rejected
+                </button>
+            </div>
+
+            <!-- Review List -->
+            <div id="review-list" class="review-list">
+                <!-- Review cards will be inserted here -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="empty-state" class="empty-state hidden">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="12" y1="18" x2="12" y2="12"/>
+                    <line x1="9" y1="15" x2="15" y2="15"/>
+                </svg>
+                <p id="empty-message">No reviews in this category</p>
+            </div>
+        </main>
+
+        <!-- Toast Notification -->
+        <div id="toast" class="toast hidden"></div>
+    </div>
+
+    <script src="js/supabase-client.js"></script>
+    <script src="js/auth-signin.js"></script>
+    <script src="js/data.js"></script>
+    <script>
+        // My Reviews page initialization
+        (async function() {
+            const loginRequired = document.getElementById('login-required');
+            const loadingState = document.getElementById('loading-state');
+            const mainContent = document.getElementById('main-content');
+            const userInfo = document.getElementById('user-info');
+            const logoutBtn = document.getElementById('logout-btn');
+            const reviewList = document.getElementById('review-list');
+            const emptyState = document.getElementById('empty-state');
+            const emptyMessage = document.getElementById('empty-message');
+            const toast = document.getElementById('toast');
+            const statusTabs = document.querySelectorAll('.status-tab');
+            const statItems = document.querySelectorAll('.stat-item');
+
+            let currentStatus = 'pending';
+            let currentUser = null;
+
+            // Escape HTML to prevent XSS
+            function escapeHtml(text) {
+                if (!text) return '';
+                const map = {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'};
+                return String(text).replace(/[&<>"']/g, m => map[m]);
+            }
+
+            // Show toast notification
+            function showToast(message, type = 'success') {
+                toast.textContent = message;
+                toast.className = 'toast ' + type;
+                toast.classList.remove('hidden');
+                setTimeout(() => toast.classList.add('hidden'), 3000);
+            }
+
+            // Check if user just returned from OAuth
+            function justSignedIn() {
+                const hash = window.location.hash;
+                return hash.includes('access_token') || hash.includes('type=recovery');
+            }
+
+            // Get user's reviews from Supabase
+            async function getUserReviews(status) {
+                const supabase = window.SupabaseClient.getSupabase();
+                if (!supabase || !currentUser) return { reviews: [], total: 0 };
+
+                const { data, error, count } = await supabase
+                    .from('reviews')
+                    .select(`
+                        id,
+                        tool_id,
+                        author_name,
+                        overall_rating,
+                        title,
+                        like_best,
+                        dislike,
+                        status,
+                        created_at,
+                        tools (
+                            id,
+                            slug,
+                            name
+                        )
+                    `, { count: 'exact' })
+                    .eq('user_id', currentUser.id)
+                    .eq('status', status)
+                    .order('created_at', { ascending: false });
+
+                if (error) {
+                    console.error('Error fetching reviews:', error);
+                    return { reviews: [], total: 0 };
+                }
+
+                return { reviews: data || [], total: count || 0 };
+            }
+
+            // Find category/subcategory for a tool slug
+            function findToolCategory(slug) {
+                if (!window.landscapeData) return { category: 'Unknown', subcategory: 'Unknown' };
+
+                for (const category of window.landscapeData.users || []) {
+                    for (const subcategory of category.subcategories || []) {
+                        for (const tool of subcategory.tools || []) {
+                            if (tool.slug === slug) {
+                                return { category: category.name, subcategory: subcategory.name };
+                            }
+                        }
+                    }
+                }
+                return { category: 'Unknown', subcategory: 'Unknown' };
+            }
+
+            // Get status badge HTML
+            function getStatusBadge(status) {
+                const badges = {
+                    pending: '<span class="status-badge pending">Pending Review</span>',
+                    approved: '<span class="status-badge approved">Approved</span>',
+                    rejected: '<span class="status-badge rejected">Rejected</span>'
+                };
+                return badges[status] || '';
+            }
+
+            // Render a single review card
+            function renderReviewCard(review) {
+                const tool = review.tools || {};
+                const categoryInfo = findToolCategory(tool.slug);
+                const date = new Date(review.created_at).toLocaleDateString('en-US', {
+                    year: 'numeric', month: 'short', day: 'numeric'
+                });
+                const stars = '★'.repeat(review.overall_rating) + '☆'.repeat(5 - review.overall_rating);
+
+                const card = document.createElement('div');
+                card.className = 'review-card';
+                card.dataset.reviewId = review.id;
+
+                const toolName = tool.name || 'Unknown Tool';
+                const reviewTitle = review.title || '';
+                const likeText = review.like_best || '';
+                const dislikeText = review.dislike || '';
+
+                let html = `
+                    <div class="review-card-header">
+                        <div class="review-tool-info">
+                            <strong class="tool-name">${escapeHtml(toolName)}</strong>
+                            <span class="tool-category">${escapeHtml(categoryInfo.category)} › ${escapeHtml(categoryInfo.subcategory)}</span>
+                        </div>
+                        <div class="review-meta">
+                            <span class="review-stars">${stars}</span>
+                            <span class="review-date">${date}</span>
+                        </div>
+                    </div>
+                    <div class="review-card-body">
+                        <h4 class="review-title">"${escapeHtml(reviewTitle)}"</h4>
+                        <div class="review-content">
+                            <p><strong>Like:</strong> ${escapeHtml(likeText)}</p>
+                `;
+
+                if (dislikeText) {
+                    html += `<p><strong>Dislike:</strong> ${escapeHtml(dislikeText)}</p>`;
+                }
+
+                html += `
+                        </div>
+                    </div>
+                `;
+
+                card.innerHTML = html;
+                return card;
+            }
+
+            // Load reviews for current status
+            async function loadReviews() {
+                reviewList.innerHTML = '<div class="loading-inline"><div class="spinner-small"></div><span>Loading reviews...</span></div>';
+                emptyState.classList.add('hidden');
+
+                const result = await getUserReviews(currentStatus);
+
+                reviewList.innerHTML = '';
+
+                if (result.reviews.length === 0) {
+                    const messages = {
+                        pending: 'No pending reviews. Your submitted reviews will appear here while awaiting moderation.',
+                        approved: 'No approved reviews yet. Reviews that pass moderation will appear here.',
+                        rejected: 'No rejected reviews. If a review doesn\'t meet guidelines, it will appear here.'
+                    };
+                    emptyMessage.textContent = messages[currentStatus] || 'No reviews in this category';
+                    emptyState.classList.remove('hidden');
+                    return;
+                }
+
+                result.reviews.forEach(review => {
+                    reviewList.appendChild(renderReviewCard(review));
+                });
+            }
+
+            // Update tab counts
+            async function updateCounts() {
+                const pending = await getUserReviews('pending');
+                document.getElementById('stat-pending').textContent = pending.total;
+
+                const approved = await getUserReviews('approved');
+                document.getElementById('stat-approved').textContent = approved.total;
+
+                const rejected = await getUserReviews('rejected');
+                document.getElementById('stat-rejected').textContent = rejected.total;
+            }
+
+            // Switch to a status
+            function switchToStatus(status) {
+                currentStatus = status;
+                statusTabs.forEach(t => t.classList.remove('active'));
+                statusTabs.forEach(t => {
+                    if (t.dataset.status === status) t.classList.add('active');
+                });
+                statItems.forEach(s => s.classList.remove('active'));
+                statItems.forEach(s => {
+                    if (s.dataset.status === status) s.classList.add('active');
+                });
+                loadReviews();
+            }
+
+            // Handle tab clicks
+            statusTabs.forEach(tab => {
+                tab.addEventListener('click', () => switchToStatus(tab.dataset.status));
+            });
+
+            // Handle stat card clicks
+            statItems.forEach(stat => {
+                stat.addEventListener('click', () => switchToStatus(stat.dataset.status));
+            });
+
+            // Render sign-in card using component
+            loginRequired.innerHTML = window.AuthSignIn.renderCard({
+                title: 'Sign in required',
+                description: 'Sign in to view your submitted reviews and their status.'
+            });
+            window.AuthSignIn.initHandlers(loginRequired, (errorMsg) => showToast(errorMsg, 'error'));
+
+            // Check authentication
+            async function checkAuth() {
+                const justLoggedIn = justSignedIn();
+
+                if (justLoggedIn) {
+                    await window.SupabaseClient.getSession();
+                    history.replaceState(null, '', window.location.pathname);
+                }
+
+                const user = await window.SupabaseClient.getCurrentUser();
+                loadingState.classList.add('hidden');
+
+                if (!user) {
+                    loginRequired.classList.remove('hidden');
+                    return false;
+                }
+
+                currentUser = user;
+
+                if (justLoggedIn) {
+                    showToast('Signed in as ' + (user?.user_metadata?.user_name || user?.email), 'success');
+                }
+
+                userInfo.textContent = user?.user_metadata?.full_name || user?.user_metadata?.user_name || user?.email || '';
+                logoutBtn.classList.remove('hidden');
+                mainContent.classList.remove('hidden');
+                return true;
+            }
+
+            // Logout handler
+            logoutBtn.addEventListener('click', async () => {
+                await window.SupabaseClient.signOut();
+                window.location.reload();
+            });
+
+            // Initialize
+            const isAuthenticated = await checkAuth();
+            if (isAuthenticated) {
+                await updateCounts();
+                await loadReviews();
+            }
+        })();
+    </script>
+</body>
+</html>

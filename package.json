@@ -16,7 +16,8 @@
     "prebuild": "npm run validate && npm run generate",
     "postgenerate": "npm run validate:data",
     "build": "bundle exec jekyll build",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test:search": "playwright test tests/data-integrity.spec.js tests/search-consistency.spec.js tests/search.spec.js tests/autocomplete.spec.js tests/shareable-links.spec.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.44.0",

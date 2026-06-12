@@ -236,6 +236,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const autocompleteDropdown = document.getElementById('autocomplete-dropdown');
     const copyLinkButton = document.getElementById('copy-link');
 
+    // Debounce timers (scoped at module level so selectAutocompleteItem can cancel them)
+    let searchTimeout;
+    let autocompleteTimeout;
+
     // Show/hide loading state
     function showLoading() {
         if (resultsLoading) {
@@ -262,13 +266,18 @@ document.addEventListener('DOMContentLoaded', () => {
         ['users', 'developers'].forEach(track => {
             if (!landscapeData[track]) return;
             landscapeData[track].forEach(category => {
-                // Add category
+                // Add category (toolCount deduped by slug — cross-listed
+                // tools count once, matching what the results grid renders)
+                const categorySlugs = new Set();
+                category.subcategories.forEach(sub => sub.tools.forEach(tool => {
+                    categorySlugs.add(tool.slug || generateSlug(tool.name));
+                }));
                 items.push({
                     type: 'category',
                     name: category.name,
                     id: category.id,
                     track: track,
-                    toolCount: category.subcategories.reduce((sum, sub) => sum + sub.tools.length, 0)
+                    toolCount: categorySlugs.size
                 });
                 // Add subcategories
                 category.subcategories.forEach(subcategory => {
@@ -288,8 +297,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Get tools by category or subcategory
+    // Deduplicated by slug (see getAllTools) so cross-listed tools render once.
     function getToolsByCategory(categoryId, subcategoryId = null) {
         const tools = [];
+        const seen = new Set();
         ['users', 'developers'].forEach(track => {
             if (!landscapeData[track]) return;
             landscapeData[track].forEach(category => {
@@ -297,6 +308,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     category.subcategories.forEach(subcategory => {
                         if (!subcategoryId || subcategory.id === subcategoryId || subcategory.name.toLowerCase() === subcategoryId.toLowerCase()) {
                             subcategory.tools.forEach(tool => {
+                                const slug = tool.slug || generateSlug(tool.name);
+                                if (seen.has(slug)) return;
+                                seen.add(slug);
                                 tools.push({
                                     ...tool,
                                     categoryName: category.name,
@@ -334,6 +348,24 @@ document.addEventListener('DOMContentLoaded', () => {
         return items;
     }
 
+    // Get all unique tags with tool counts
+    function getAllTags() {
+        const tagCounts = {};
+        const allTools = getAllTools();
+        allTools.forEach(tool => {
+            const tags = tool.all_tags || tool.tags || [];
+            tags.forEach(tag => {
+                tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+            });
+        });
+        return Object.entries(tagCounts).map(([slug, count]) => ({
+            type: 'tag',
+            name: slug.replace(/-/g, ' '),
+            slug: slug,
+            toolCount: count
+        }));
+    }
+
     // Search autocomplete suggestions
     function searchAutocomplete(query, showAllOnEmpty = false) {
         const categoriesAndSubs = getCategoriesAndSubcategories();
@@ -351,8 +383,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const queryLower = query.toLowerCase().trim();
         const allTools = getAllTools();
+        const allTags = getAllTags();
 
         const results = [];
+
+        // Search tags (high priority - curated vocabulary)
+        allTags.forEach(tag => {
+            const nameLower = tag.name.toLowerCase();
+            const slugLower = tag.slug.toLowerCase();
+            if (nameLower.includes(queryLower) || slugLower.includes(queryLower)) {
+                results.push({
+                    ...tag,
+                    priority: nameLower.startsWith(queryLower) || slugLower.startsWith(queryLower) ? 90 : 75
+                });
+            }
+        });
 
         // Search categories (high priority)
         categoriesAndSubs
@@ -395,9 +440,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Sort by priority and limit results
+        // Sort by tool count (most to least), then by priority for ties
         return results
-            .sort((a, b) => b.priority - a.priority)
+            .sort((a, b) => {
+                const countA = a.toolCount || 0;
+                const countB = b.toolCount || 0;
+                if (countB !== countA) return countB - countA;
+                return b.priority - a.priority;
+            })
             .slice(0, 12);
     }
 
@@ -427,18 +477,22 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!isBrowseMode && item.type !== currentSection) {
                 currentSection = item.type;
                 const sectionLabel = item.type === 'category' ? 'Categories' :
-                                    item.type === 'subcategory' ? 'Subcategories' : 'Tools';
+                                    item.type === 'subcategory' ? 'Subcategories' :
+                                    item.type === 'tag' ? 'Tags' : 'Tools';
                 html += `<div class="autocomplete-section-header">${sectionLabel}</div>`;
             }
 
             const icon = item.type === 'category' ? '📁' :
-                        item.type === 'subcategory' ? '📂' : '🔧';
+                        item.type === 'subcategory' ? '📂' :
+                        item.type === 'tag' ? '🏷️' : '🔧';
 
             const meta = item.type === 'tool'
                 ? `${item.subcategoryName} • ${item.categoryName}`
                 : item.type === 'subcategory'
                     ? `${item.categoryName} • ${item.toolCount} tools`
-                    : `${item.toolCount} tools`;
+                    : item.type === 'tag'
+                        ? `${item.toolCount} tools with this tag`
+                        : `${item.toolCount} tools`;
 
             html += `
                 <div class="autocomplete-item" data-index="${index}" data-type="${item.type}">
@@ -460,11 +514,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function selectAutocompleteItem(item) {
         autocompleteDropdown.classList.add('hidden');
 
+        // Cancel any pending debounced search or autocomplete before changing input
+        clearTimeout(searchTimeout);
+        clearTimeout(autocompleteTimeout);
+
         // Set flag to prevent input event from triggering search
         isSelectingFromAutocomplete = true;
         actionInput.value = item.name;
-        // Reset flag after a short delay
-        setTimeout(() => { isSelectingFromAutocomplete = false; }, 50);
+        // Reset flag after a delay long enough for all nested setTimeout(50) and debounce(250) to settle
+        setTimeout(() => { isSelectingFromAutocomplete = false; }, 350);
 
         if (item.type === 'category') {
             // Show all tools in this category
@@ -496,6 +554,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     hideLoading();
                 }
             }, 50);
+        } else if (item.type === 'tag') {
+            // Show all tools with this tag
+            searchResults.classList.remove('hidden');
+            showLoading();
+            setTimeout(() => {
+                try {
+                    const tools = getToolsByTag(item.slug);
+                    renderSearchResults(tools, item.name);
+                    updateURL('tag', item.slug);
+                    updatePageTitle(item.name);
+                } catch (error) {
+                    console.error('Tag load error:', error);
+                    hideLoading();
+                }
+            }, 50);
         } else if (item.type === 'tool') {
             // Navigate to tool page
             window.location.href = `/tools/${item.slug}/`;
@@ -517,13 +590,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Get all tools as flat array for searching
+    // Deduplicated by slug: tools cross-listed via additional_categories
+    // appear in multiple subcategories but must only show once in flat
+    // search results, tool suggestions, and tag counts.
     function getAllTools() {
         const tools = [];
+        const seen = new Set();
         ['users', 'developers'].forEach(track => {
             if (!landscapeData[track]) return;
             landscapeData[track].forEach(category => {
                 category.subcategories.forEach(subcategory => {
                     subcategory.tools.forEach(tool => {
+                        const slug = tool.slug || generateSlug(tool.name);
+                        if (seen.has(slug)) return;
+                        seen.add(slug);
                         tools.push({
                             ...tool,
                             categoryName: category.name,
@@ -625,6 +705,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const descLower = tool.desc.toLowerCase();
         const categoryLower = tool.categoryName?.toLowerCase() || '';
         const subcategoryLower = tool.subcategoryName?.toLowerCase() || '';
+        const toolTags = (tool.all_tags || tool.tags || []).map(t => t.toLowerCase());
 
         // Exact name match (highest priority)
         if (nameLower === fullQuery) {
@@ -657,6 +738,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (matchesText(word, descLower)) {
                 score += 5;
             }
+
+            // Tag matches (high relevance - tags are curated)
+            for (const tag of toolTags) {
+                if (matchesText(word, tag)) {
+                    score += 20;
+                    break;
+                }
+            }
         }
 
         // Boost for matching multiple words
@@ -664,7 +753,8 @@ document.addEventListener('DOMContentLoaded', () => {
             matchesText(word, nameLower) ||
             matchesText(word, descLower) ||
             matchesText(word, categoryLower) ||
-            matchesText(word, subcategoryLower)
+            matchesText(word, subcategoryLower) ||
+            toolTags.some(tag => matchesText(word, tag))
         );
 
         if (matchedWords.length > 1) {
@@ -882,17 +972,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Setup event listeners
     function setupEventListeners() {
-        // Search input with autocomplete
-        let searchTimeout;
-        let autocompleteTimeout;
-
         actionInput.addEventListener('input', (e) => {
-            const value = e.target.value.trim();
-
             // Don't trigger search if selecting from autocomplete
             if (isSelectingFromAutocomplete) {
                 return;
             }
+
+            const value = e.target.value.trim();
 
             // Show autocomplete suggestions
             clearTimeout(autocompleteTimeout);

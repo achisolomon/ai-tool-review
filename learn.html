@@ -1,0 +1,216 @@
+---
+layout: null
+title: Learn | AI Tool Review
+permalink: /learn/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn | AI Tool Review</title>
+  <meta name="description" content="Guides and articles on AI tools, agent workflows, and development techniques. Practical writeups for working with AI.">
+  <meta name="theme-color" content="#1e1e1e">
+  <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+  <link rel="stylesheet" href="{{ '/css/auth.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+  <style>
+    body { display: flex; flex-direction: column; }
+    .learn-index {
+      max-width: 860px;
+      width: 100%;
+      box-sizing: border-box;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+      flex: 1;
+    }
+
+    .learn-index-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--vscode-border);
+    }
+    .learn-index-header h1 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: #fff;
+      margin: 0 0 0.5rem 0;
+    }
+    .learn-index-header p {
+      font-size: 0.95rem;
+      color: var(--vscode-text);
+      max-width: 65ch;
+      margin: 0;
+      line-height: 1.6;
+    }
+    .learn-index-count {
+      margin-top: 1rem;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 12px;
+      color: var(--vscode-text-muted);
+    }
+
+    .article-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .article-row {
+      display: block;
+      padding: 1.25rem 1rem;
+      margin: 0 -1rem;
+      border-radius: var(--radius-sm, 4px);
+      text-decoration: none;
+      transition: background 0.15s ease;
+    }
+    .article-row + .article-row {
+      border-top: 1px solid var(--vscode-border);
+    }
+    .article-row:hover {
+      background: var(--vscode-list-hover);
+      text-decoration: none;
+    }
+    .article-row:focus-visible {
+      outline: 1px solid var(--vscode-focus-border);
+      outline-offset: -1px;
+    }
+
+    .article-row h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--vscode-text);
+      margin: 0 0 0.4rem 0;
+      line-height: 1.4;
+    }
+    .article-row:hover h2 { color: var(--vscode-text-link); }
+
+    .article-row p {
+      font-size: 0.9rem;
+      color: var(--vscode-text-muted);
+      margin: 0 0 0.75rem 0;
+      line-height: 1.6;
+      max-width: 70ch;
+    }
+
+    .article-row-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 12px;
+      color: var(--vscode-text-muted);
+    }
+    .article-row-meta .article-category { color: var(--vscode-type); }
+    .article-row-meta .tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .article-row-meta .tags span {
+      padding: 1px 7px;
+      border-radius: 3px;
+      background: var(--vscode-input-bg);
+      color: var(--vscode-text-muted);
+    }
+
+    .empty-state {
+      padding: 3rem 1rem;
+      color: var(--vscode-text-muted);
+    }
+    .empty-state h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--vscode-text);
+      margin: 0 0 0.5rem 0;
+    }
+    .empty-state p { margin: 0; font-size: 0.9rem; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .article-row { transition: none; }
+    }
+
+    @media (max-width: 768px) {
+      .learn-index { padding: 1.5rem 1rem 3rem; }
+      .learn-index-header h1 { font-size: 1.4rem; }
+      .article-row { padding: 1rem 0.75rem; margin: 0 -0.75rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <a href="{{ '/' | relative_url }}" class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="logo-text">AI Tool Review</span>
+      </a>
+      <nav class="nav-links">
+        <a href="{{ '/' | relative_url }}" class="nav-link nav-link-text">Search</a>
+        <a href="{{ '/landscape.html' | relative_url }}" class="nav-link nav-link-text">Landscape</a>
+        <a href="{{ '/learn/' | relative_url }}" class="nav-link nav-link-text nav-active">Learn</a>
+        <div id="auth-container"></div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="learn-index">
+    {% assign sorted_articles = site.learn | sort: 'date' | reverse %}
+    <header class="learn-index-header">
+      <h1>Learn</h1>
+      <p>Guides and articles on AI tools, agent workflows, and development techniques. Written for developers evaluating and working with AI.</p>
+      {% if sorted_articles.size > 0 %}
+      <div class="learn-index-count">{{ sorted_articles.size }} article{% if sorted_articles.size != 1 %}s{% endif %}</div>
+      {% endif %}
+    </header>
+
+    <div class="article-list">
+      {% if sorted_articles.size > 0 %}
+        {% for article in sorted_articles %}
+        <a href="{{ article.url | relative_url }}" class="article-row">
+          <h2>{{ article.title }}</h2>
+          <p>{{ article.description }}</p>
+          <div class="article-row-meta">
+            <span class="article-category">{{ article.category | default: "Article" }}</span>
+            <span>{{ article.date | date: "%b %d, %Y" }}</span>
+            {% if article.reading_time %}<span>{{ article.reading_time }} min read</span>{% endif %}
+            {% if article.tags %}
+            <span class="tags">
+              {% for tag in article.tags limit:4 %}<span>{{ tag }}</span>{% endfor %}
+            </span>
+            {% endif %}
+          </div>
+        </a>
+        {% endfor %}
+      {% else %}
+        <div class="empty-state">
+          <h2>No articles yet</h2>
+          <p>Guides on AI tools and techniques are in progress. In the meantime, <a href="{{ '/landscape.html' | relative_url }}">browse the AI tools landscape</a>.</p>
+        </div>
+      {% endif %}
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-bottom">
+      <p>&copy; {{ site.time | date: '%Y' }} AI Tool Review. Community-curated. | <a href="{{ '/about.html' | relative_url }}">About</a> | <a href="{{ '/contact.html' | relative_url }}">Contact</a> | <a href="{{ '/privacy.html' | relative_url }}">Privacy Policy</a></p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  {% if jekyll.environment != "production" %}
+  <script src="{{ '/js/config-local.js' | relative_url }}"></script>
+  {% endif %}
+  <script src="{{ '/js/supabase-client.js' | relative_url }}"></script>
+  <script src="{{ '/js/auth-ui.js' | relative_url }}"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.AuthUI) {
+        window.AuthUI.init('auth-container');
+      }
+    });
+  </script>
+</body>
+</html>
