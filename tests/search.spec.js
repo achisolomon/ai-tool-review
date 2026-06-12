@@ -49,9 +49,8 @@ test.describe('Search Page', () => {
 
     test('search results contain tool cards', async ({ page }) => {
       await page.locator('#action-input').fill('observability');
-      await page.waitForTimeout(300);
-
       const cards = page.locator('.result-card');
+      await expect(cards.first()).toBeVisible({ timeout: 10000 });
       expect(await cards.count()).toBeGreaterThan(0);
     });
 

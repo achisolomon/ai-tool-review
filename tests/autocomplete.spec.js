@@ -282,6 +282,8 @@ test.describe('Search Autocomplete', () => {
             // Perform a search first
             await searchInput.fill('agent');
             await page.keyboard.press('Enter');
+            // Wait for results to actually appear
+            await expect(page.locator('.result-card').first()).toBeVisible({ timeout: 10000 });
             await expect(searchResults).not.toHaveClass(/hidden/);
 
             // Click clear
@@ -291,7 +293,7 @@ test.describe('Search Autocomplete', () => {
             await expect(searchInput).toHaveValue('');
 
             // Results should be hidden
-            await expect(searchResults).toHaveClass(/hidden/);
+            await expect(searchResults).toHaveClass(/hidden/, { timeout: 10000 });
         });
     });
 });
