@@ -157,7 +157,7 @@ permalink: /learn/
   </header>
 
   <main class="learn-index">
-    {% assign sorted_articles = site.learn | sort: 'date' | reverse %}
+    {% assign sorted_articles = site.learn | default: empty_array | sort: 'date' | reverse %}
     <header class="learn-index-header">
       <h1>Learn</h1>
       <p>Guides and articles on AI tools, agent workflows, and development techniques. Written for developers evaluating and working with AI.</p>
