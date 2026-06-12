@@ -2,6 +2,9 @@
   "name": "ai-tool-review",
   "version": "1.0.0",
   "description": "AI Tool Review - Find the Right AI Tool for the Job",
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "test": "playwright test",
     "test:ui": "playwright test --ui",

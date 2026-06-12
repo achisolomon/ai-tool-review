@@ -49,6 +49,14 @@ users:
         name: "Meeting Notetakers"
         description: "Automated meeting transcription and summaries"
 
+  transcription:
+    name: "Transcription"
+    description: "AI-powered audio and video transcription tools"
+    subcategories:
+      transcription-tools:
+        name: "Transcription Tools"
+        description: "Speech-to-text and audio transcription services"
+
   personal-assistants:
     name: "Personal Assistants & Browsers"
     description: "AI-native browsers and personal AI assistants"

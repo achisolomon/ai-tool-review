@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Validate workflow syntax
         run: |
@@ -63,14 +63,15 @@ jobs:
           echo "Checking for potentially outdated actions..."
 
           # List of common actions to check
+          # Pinned to Node24-native majors to avoid the Node 20 deprecation warning.
           declare -A RECOMMENDED_VERSIONS
-          RECOMMENDED_VERSIONS["actions/checkout"]="v4"
-          RECOMMENDED_VERSIONS["actions/setup-node"]="v4"
-          RECOMMENDED_VERSIONS["actions/upload-artifact"]="v4"
-          RECOMMENDED_VERSIONS["actions/download-artifact"]="v4"
-          RECOMMENDED_VERSIONS["actions/configure-pages"]="v5"
-          RECOMMENDED_VERSIONS["actions/upload-pages-artifact"]="v3"
-          RECOMMENDED_VERSIONS["actions/deploy-pages"]="v4"
+          RECOMMENDED_VERSIONS["actions/checkout"]="v6"
+          RECOMMENDED_VERSIONS["actions/setup-node"]="v6"
+          RECOMMENDED_VERSIONS["actions/upload-artifact"]="v7"
+          RECOMMENDED_VERSIONS["actions/download-artifact"]="v7"
+          RECOMMENDED_VERSIONS["actions/configure-pages"]="v6"
+          RECOMMENDED_VERSIONS["actions/upload-pages-artifact"]="v5"
+          RECOMMENDED_VERSIONS["actions/deploy-pages"]="v5"
           RECOMMENDED_VERSIONS["ruby/setup-ruby"]="v1"
 
           for file in .github/workflows/*.yml; do
