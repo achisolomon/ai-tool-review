@@ -172,3 +172,17 @@ class TestUpdateFrontmatter < Minitest::Test
     end
   end
 end
+
+class TestSerialize < Minitest::Test
+  def test_sorts_slugs_alphabetically
+    merged = { 'generated_at' => 'T', 'stars' => {
+      'zeta' => { 'count' => 1, 'fetched_at' => 'T' },
+      'alpha' => { 'count' => 2, 'fetched_at' => 'T' }
+    }, errors: [] }
+    json = StarsLib.serialize(merged)
+    assert json.index('"alpha"') < json.index('"zeta"')
+    refute_includes json, 'errors'  # internal field not serialized
+    parsed = JSON.parse(json)
+    assert_equal 2, parsed['stars']['alpha']['count']
+  end
+end

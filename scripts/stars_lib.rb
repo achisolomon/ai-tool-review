@@ -101,4 +101,11 @@ module StarsLib
 
     { 'generated_at' => now, 'stars' => stars, errors: errors }
   end
+
+  # Serialize a merged result to pretty JSON with sorted slugs.
+  # The internal :errors key is dropped.
+  def self.serialize(merged)
+    sorted = merged['stars'].keys.sort.each_with_object({}) { |k, h| h[k] = merged['stars'][k] }
+    JSON.pretty_generate({ 'generated_at' => merged['generated_at'], 'stars' => sorted }) + "\n"
+  end
 end
