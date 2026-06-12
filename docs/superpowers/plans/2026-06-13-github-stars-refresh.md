@@ -709,6 +709,24 @@ repos.each do |entry|
 end
 puts "Updated frontmatter in #{changed} files"
 
+# Derive Supabase column (#4). Opt-in: only runs when DB creds are present,
+# so local runs without secrets still succeed. Non-fatal on DB errors.
+if ENV['SUPABASE_URL'] && ENV['SUPABASE_SERVICE_KEY']
+  begin
+    synced = StarsLib.sync_supabase(
+      out[:merged]['stars'],
+      url: ENV['SUPABASE_URL'],
+      service_key: ENV['SUPABASE_SERVICE_KEY'],
+      now: now
+    )
+    puts "Synced #{synced} rows to Supabase"
+  rescue => e
+    warn "Supabase sync skipped (non-fatal): #{e.class}: #{e.message}"
+  end
+else
+  puts "Supabase creds absent; skipping DB sync"
+end
+
 # Report per-repo errors but do not fail the run for them.
 unless out[:merged][:errors].empty?
   warn "Per-repo issues (#{out[:merged][:errors].size}):"
@@ -730,6 +748,120 @@ Expected: prints "Wrote data/stars.json (N tools)" and "Updated frontmatter in M
 ```bash
 git add scripts/stars_lib.rb scripts/fetch-stars.rb data/stars.json
 git commit -m "feat(stars): fetch-stars CLI seeds canonical stars.json + frontmatter"
+```
+
+---
+
+## Task 8b: Supabase column sync (#4 derived)
+
+The tool page reads `github_stars` from Supabase (`_layouts/tool.html:275`) and feeds it
+into the reviews component (`githubStars: tool.github_stars`, line 338). So the DB column
+is a real renderer and must be kept in sync from the canonical counts. The sync uses
+Supabase's PostgREST endpoint (`PATCH /rest/v1/tools?slug=eq.<slug>`) via `Net::HTTP` —
+no gem. The HTTP layer is injectable so the batching/payload logic is unit-tested without
+network. The service-role key is required (RLS bypass for writes) and is provided in CI
+as a secret.
+
+**Files:**
+- Modify: `scripts/stars_lib.rb`
+- Modify: `scripts/test_stars_lib.rb`
+
+- [ ] **Step 1: Write the failing test**
+
+Append to `scripts/test_stars_lib.rb`:
+```ruby
+class TestSupabaseSync < Minitest::Test
+  def test_patches_each_slug_with_count_and_timestamp
+    calls = []
+    fake_patch = lambda do |url, body, headers|
+      calls << { url: url, body: JSON.parse(body), headers: headers }
+      '' # PostgREST returns empty body with return=minimal
+    end
+    stars = {
+      'n8n' => { 'count' => 142318, 'fetched_at' => '2026-06-13T04:00:00Z' },
+      'litellm-proxy' => { 'count' => 18204, 'fetched_at' => '2026-06-13T04:00:00Z' }
+    }
+    synced = StarsLib.sync_supabase(
+      stars, url: 'https://x.supabase.co', service_key: 'SRV',
+      now: '2026-06-13T04:00:00Z', patcher: fake_patch
+    )
+    assert_equal 2, synced
+    n8n_call = calls.find { |c| c[:url].include?('slug=eq.n8n') }
+    refute_nil n8n_call
+    assert_equal 142318, n8n_call[:body]['github_stars']
+    assert_equal '2026-06-13T04:00:00Z', n8n_call[:body]['github_stars_updated_at']
+    assert_equal 'Bearer SRV', n8n_call[:headers]['Authorization']
+    assert_equal 'SRV', n8n_call[:headers]['apikey']
+  end
+
+  def test_raises_on_missing_creds
+    assert_raises(StarsLib::AuthError) do
+      StarsLib.sync_supabase({ 'x' => { 'count' => 1 } }, url: nil, service_key: 'k', now: 'T', patcher: ->(*) { '' })
+    end
+  end
+end
+```
+
+- [ ] **Step 2: Run test to verify it fails**
+
+Run: `ruby scripts/test_stars_lib.rb`
+Expected: FAIL — `undefined method 'sync_supabase'`.
+
+- [ ] **Step 3: Write minimal implementation**
+
+Add to `scripts/stars_lib.rb`:
+```ruby
+  # Default PATCH poster for Supabase PostgREST. Returns response body string.
+  def self.default_patcher
+    require 'net/http'
+    require 'uri'
+    lambda do |url, body, headers|
+      u = URI(url)
+      http = Net::HTTP.new(u.host, u.port)
+      http.use_ssl = true
+      req = Net::HTTP::Patch.new(u, headers)
+      req.body = body
+      res = http.request(req)
+      raise "Supabase HTTP #{res.code}: #{res.body}" unless res.code.to_i.between?(200, 299)
+      res.body
+    end
+  end
+
+  # Sync canonical counts into the Supabase `tools` table (github_stars +
+  # github_stars_updated_at), one PATCH per slug. patcher injectable for tests.
+  # Returns the number of slugs synced.
+  def self.sync_supabase(stars, url:, service_key:, now:, patcher: nil)
+    raise AuthError, 'Missing Supabase URL/key' if url.nil? || url.empty? || service_key.nil? || service_key.empty?
+    patcher ||= default_patcher
+    base = url.chomp('/')
+    headers = {
+      'apikey' => service_key,
+      'Authorization' => "Bearer #{service_key}",
+      'Content-Type' => 'application/json',
+      'Prefer' => 'return=minimal'
+    }
+    count = 0
+    stars.each do |slug, entry|
+      next unless entry['count'].is_a?(Integer)
+      endpoint = "#{base}/rest/v1/tools?slug=eq.#{URI.encode_www_form_component(slug)}"
+      payload = JSON.generate({ 'github_stars' => entry['count'], 'github_stars_updated_at' => now })
+      patcher.call(endpoint, payload, headers)
+      count += 1
+    end
+    count
+  end
+```
+
+- [ ] **Step 4: Run test to verify it passes**
+
+Run: `ruby scripts/test_stars_lib.rb`
+Expected: PASS.
+
+- [ ] **Step 5: Commit**
+
+```bash
+git add scripts/stars_lib.rb scripts/test_stars_lib.rb
+git commit -m "feat(stars): sync canonical counts into Supabase column"
 ```
 
 ---
@@ -1146,6 +1278,16 @@ git commit -m "refactor(stars): remove hardcoded star figures from tool prose"
 **Files:**
 - Create: `.github/workflows/refresh-stars.yml`
 
+**Prerequisite — add repo secrets (one-time, manual):** the Supabase sync (Task 8b)
+needs two Actions secrets on the repo. The `github_url` fetch uses the auto-provided
+`GITHUB_TOKEN` (no setup). Run:
+```bash
+gh secret set SUPABASE_URL --body "https://<project>.supabase.co"
+gh secret set SUPABASE_SERVICE_KEY --body "<service-role-key>"
+```
+If these are absent, the run still succeeds — the fetcher logs "Supabase creds absent;
+skipping DB sync" — but the DB column won't refresh, so add them for the full SSOT.
+
 - [ ] **Step 1: Write the failing test (workflow validation)**
 
 The repo already validates workflows via `node scripts/validate-workflows.js` (see `package.json`). That script is the gate. First add the workflow file, then run the validator.
@@ -1187,6 +1329,8 @@ jobs:
       - name: Fetch stars
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
         run: ruby scripts/fetch-stars.rb data/_tools data/stars.json
 
       - name: Regenerate js/data.js
@@ -1198,12 +1342,15 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           if [[ -n "$(git status --porcelain data/stars.json data/_tools js/data.js)" ]]; then
             git add data/stars.json data/_tools js/data.js
-            git commit -m "chore(stars): daily refresh [skip ci]"
+            git commit -m "chore(stars): daily refresh"
             git push
           else
             echo "No star changes."
           fi
 ```
+
+Note: do **not** add `[skip ci]` to the commit — option (b) below relies on this push
+triggering `deploy.yml`'s path filter. `[skip ci]` would suppress it.
 
 - [ ] **Step 3: Validate the workflow**
 
@@ -1273,7 +1420,7 @@ git commit -m "test(stars): full-suite verification green"
 - Daily fetcher, token-free, GraphQL batched, keep-on-error — Tasks 3, 4, 7, 8 ✓
 - Frontmatter #1 derived — Task 5, 8 ✓
 - `js/data.js` #3 derived — Task 14 (regen step) + existing generator ✓
-- Supabase #4 — *see note below* (frontmatter + stars.json cover the user-facing badge; DB column sync deferred — acceptable because Task 10 removes the Supabase badge renderer, so the column no longer feeds any star display)
+- Supabase #4 — synced from canonical counts — Task 8b (lib + test) + Task 14 (CI secrets) ✓
 - Supabase override #5 removed — Task 10 ✓
 - Client renderer, format-k, always-last-known fallback — Task 9 ✓
 - One-time URL backfill resolver — Tasks 11, 12 ✓
@@ -1281,8 +1428,14 @@ git commit -m "test(stars): full-suite verification green"
 - Daily Action + deploy trigger + freshness marker (`generated_at`) — Task 14, and `generated_at` written in Task 4 ✓
 - Staleness: always-last-known + loud failure (token missing aborts; per-repo logged) — Tasks 7, 8 ✓
 
-**Note on Supabase column (#4):** The spec called for syncing the DB column. Task 10 removes the only renderer that read it for the badge, so keeping the column current is no longer required for correctness. To avoid scope creep and an extra secret in CI, the DB write is intentionally **dropped** rather than implemented; if another consumer of `tools.github_stars` is later found, add a sync step to Task 8. This is a deliberate simplification consistent with "eliminate copies."
+**Note on Supabase column (#4):** Codebase inspection confirmed the DB column IS a live
+renderer — `_layouts/tool.html:275` selects `github_stars` from Supabase and feeds it into
+the reviews component (line 338). So the sync is required, not optional. Task 8b syncs the
+column from the canonical counts (PostgREST PATCH per slug, injectable HTTP for tests), and
+Task 14 wires the `SUPABASE_URL` / `SUPABASE_SERVICE_KEY` secrets. The sync is opt-in by
+env presence so local runs without DB creds still succeed (logged + skipped, non-fatal).
+This restores full SSOT across all five surfaces.
 
 **Placeholder scan:** No TBD/TODO; every code step has full code. ✓
 
-**Type/name consistency:** `StarsLib.parse_repo`, `scan_tools`, `build_graphql_query`, `merge_results`, `serialize`, `fetch_graphql`, `run_refresh`, `update_frontmatter_stars`, `update_frontmatter_url`, `best_candidate` — names used consistently across tasks and CLIs. stars.json shape (`generated_at`, `stars[slug].count/.fetched_at`) identical in Ruby (Task 4/6), client (Task 9), and Playwright stubs (Tasks 9, 10). ✓
+**Type/name consistency:** `StarsLib.parse_repo`, `scan_tools`, `build_graphql_query`, `merge_results`, `serialize`, `fetch_graphql`, `run_refresh`, `update_frontmatter_stars`, `update_frontmatter_url`, `best_candidate`, `sync_supabase` — names used consistently across tasks and CLIs. stars.json shape (`generated_at`, `stars[slug].count/.fetched_at`) identical in Ruby (Task 4/6), client (Task 9), Supabase sync (Task 8b), and Playwright stubs (Tasks 9, 10). Supabase columns `github_stars` + `github_stars_updated_at` match the schema (`supabase/migrations/001_create_schema.sql:19-20`). ✓
