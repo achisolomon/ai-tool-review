@@ -164,16 +164,38 @@ test.describe('Search Page', () => {
 
     test('clicking card navigates to internal tool page', async ({ page }) => {
       await page.locator('#action-input').fill('claude');
-      await page.waitForTimeout(300);
 
-      const cards = page.locator('.result-card');
-      const firstCard = cards.first();
+      const firstCard = page.locator('.result-card').first();
+      await expect(firstCard).toBeVisible({ timeout: 10000 });
       const slug = await firstCard.getAttribute('data-slug');
 
-      await firstCard.click();
+      // Click the tool name (a non-link region of the card) so we test the
+      // card's own navigation, not the breadcrumb/tag links which intentionally
+      // stopPropagation and navigate elsewhere.
+      await firstCard.locator('.result-name').click();
 
       // Should navigate to internal tool page
-      await expect(page).toHaveURL(new RegExp(`/tools/${slug}/?`));
+      await expect(page).toHaveURL(new RegExp(`/tools/${slug}/?`), { timeout: 10000 });
+    });
+
+    test('clicking a breadcrumb filters by subcategory, not the tool page', async ({ page }) => {
+      // The breadcrumb/category links inside a card intentionally
+      // stopPropagation and filter results instead of opening the tool.
+      // This locks in that distinction so the card-click fix can't regress it.
+      await page.locator('#action-input').fill('claude');
+
+      const firstCard = page.locator('.result-card').first();
+      await expect(firstCard).toBeVisible({ timeout: 10000 });
+
+      const breadcrumb = firstCard.locator('.result-breadcrumb-link').first();
+      // Some cards may not have clickable breadcrumbs; only assert when present.
+      if (await breadcrumb.count() > 0) {
+        const href = await breadcrumb.getAttribute('href');
+        await breadcrumb.click();
+        // Should NOT navigate to a tool page; should apply a category/subcategory filter
+        await expect(page).not.toHaveURL(/\/tools\//, { timeout: 10000 });
+        expect(href).toMatch(/[?&](subcategory|category)=/);
+      }
     });
   });
 

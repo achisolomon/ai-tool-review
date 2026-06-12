@@ -71,7 +71,9 @@ test.describe('Admin Review Moderation', () => {
 
             await page.waitForSelector('#login-required:not(.hidden)', { timeout: 5000 });
 
-            const githubBtn = page.locator('#github-login-btn');
+            // Admin uses the shared AuthSignIn module (.auth-provider-btn), not the
+            // old hardcoded #github-login-btn.
+            const githubBtn = page.locator('.auth-provider-btn[data-provider="github"]');
             await expect(githubBtn).toBeVisible();
             await expect(githubBtn).toContainText('Continue with GitHub');
         });

@@ -525,15 +525,18 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => { isSelectingFromAutocomplete = false; }, 350);
 
         if (item.type === 'category') {
-            // Show all tools in this category
+            // Show all tools in this category.
+            // URL + title are set synchronously (not in the deferred timer) so a
+            // selection's URL can never be clobbered by an in-flight debounced
+            // text search under CPU contention.
             searchResults.classList.remove('hidden');
             showLoading();
+            updateURL('category', item.id);
+            updatePageTitle(item.name);
             setTimeout(() => {
                 try {
                     const tools = getToolsByCategory(item.id || item.name);
                     renderSearchResults(tools, item.name);
-                    updateURL('category', item.id);
-                    updatePageTitle(item.name);
                 } catch (error) {
                     console.error('Category load error:', error);
                     hideLoading();
@@ -543,12 +546,12 @@ document.addEventListener('DOMContentLoaded', () => {
             // Show all tools in this subcategory
             searchResults.classList.remove('hidden');
             showLoading();
+            updateURL('subcategory', item.id);
+            updatePageTitle(item.name);
             setTimeout(() => {
                 try {
                     const tools = getToolsByCategory(item.categoryId || item.categoryName, item.id || item.name);
                     renderSearchResults(tools, item.name);
-                    updateURL('subcategory', item.id);
-                    updatePageTitle(item.name);
                 } catch (error) {
                     console.error('Subcategory load error:', error);
                     hideLoading();
@@ -558,12 +561,12 @@ document.addEventListener('DOMContentLoaded', () => {
             // Show all tools with this tag
             searchResults.classList.remove('hidden');
             showLoading();
+            updateURL('tag', item.slug);
+            updatePageTitle(item.name);
             setTimeout(() => {
                 try {
                     const tools = getToolsByTag(item.slug);
                     renderSearchResults(tools, item.name);
-                    updateURL('tag', item.slug);
-                    updatePageTitle(item.name);
                 } catch (error) {
                     console.error('Tag load error:', error);
                     hideLoading();
