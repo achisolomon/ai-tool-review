@@ -182,6 +182,8 @@ class TestSerialize < Minitest::Test
     json = StarsLib.serialize(merged)
     assert json.index('"alpha"') < json.index('"zeta"')
     refute_includes json, 'errors'  # internal field not serialized
+    assert json.end_with?("\n")
+    refute json.end_with?("\n\n")
     parsed = JSON.parse(json)
     assert_equal 2, parsed['stars']['alpha']['count']
   end
