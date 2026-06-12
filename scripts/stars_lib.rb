@@ -103,6 +103,7 @@ module StarsLib
   end
 
   class AuthError < StandardError; end
+  class ApiError < StandardError; end
 
   # Default poster using Net::HTTP. Returns the raw response body string.
   def self.default_poster
@@ -112,10 +113,12 @@ module StarsLib
       u = URI(uri)
       http = Net::HTTP.new(u.host, u.port)
       http.use_ssl = true
+      http.open_timeout = 10
+      http.read_timeout = 30
       req = Net::HTTP::Post.new(u, headers)
       req.body = body
       res = http.request(req)
-      raise "GitHub API HTTP #{res.code}: #{res.body}" unless res.code.to_i == 200
+      raise ApiError, "GitHub API HTTP #{res.code}: #{res.body}" unless res.code.to_i == 200
       res.body
     end
   end

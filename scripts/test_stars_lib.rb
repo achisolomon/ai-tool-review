@@ -210,4 +210,10 @@ class TestFetchGraphql < Minitest::Test
       StarsLib.fetch_graphql('query {}', token: nil, poster: ->(*) { '{}' })
     end
   end
+
+  def test_raises_on_blank_token
+    assert_raises(StarsLib::AuthError) do
+      StarsLib.fetch_graphql('query {}', token: '', poster: ->(*) { '{}' })
+    end
+  end
 end
