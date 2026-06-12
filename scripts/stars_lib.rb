@@ -23,6 +23,17 @@ module StarsLib
     nil
   end
 
+  # Build a single GraphQL query that aliases each repo as r0, r1, ...
+  # The index aligns with the input array order for response mapping.
+  def self.build_graphql_query(repos)
+    fields = repos.each_with_index.map do |entry, i|
+      o = entry[:repo][:owner].gsub('"') { '\\"' }
+      n = entry[:repo][:name].gsub('"') { '\\"' }
+      "  r#{i}: repository(owner: \"#{o}\", name: \"#{n}\") { stargazerCount }"
+    end
+    "query {\n#{fields.join("\n")}\n}"
+  end
+
   # Scan tools_dir for files with a parseable github_url.
   # Returns array of { slug:, repo: {owner:, name:}, path: }.
   def self.scan_tools(tools_dir)

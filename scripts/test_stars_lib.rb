@@ -80,3 +80,23 @@ class TestScanTools < Minitest::Test
     end
   end
 end
+
+class TestBuildQuery < Minitest::Test
+  def test_builds_aliased_query_for_each_repo
+    repos = [
+      { slug: 'tool-a', repo: { owner: 'o', name: 'a' } },
+      { slug: 'tool-b', repo: { owner: 'p', name: 'b-1' } }
+    ]
+    q = StarsLib.build_graphql_query(repos)
+    assert_includes q, 'r0: repository(owner: "o", name: "a") { stargazerCount }'
+    assert_includes q, 'r1: repository(owner: "p", name: "b-1") { stargazerCount }'
+    assert q.start_with?('query {')
+    assert q.strip.end_with?('}')
+  end
+
+  def test_escapes_double_quotes_in_names
+    repos = [{ slug: 's', repo: { owner: 'o"x', name: 'n' } }]
+    q = StarsLib.build_graphql_query(repos)
+    assert_includes q, 'owner: "o\\"x"'
+  end
+end
