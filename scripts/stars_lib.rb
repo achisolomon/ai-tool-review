@@ -51,9 +51,14 @@ module StarsLib
 
   # Merge a GraphQL response into a stars.json structure.
   # repos: array in the same order used to build the query.
-  # response: parsed JSON Hash (may contain "data" and "errors").
-  # previous: prior stars.json Hash (for keep-on-error).
-  # Returns { "generated_at" =>, "stars" => { slug => { "count", "fetched_at" } }, errors: [...] }.
+  # response: parsed JSON Hash (may contain "data" and "errors"); nil-safe.
+  # previous: prior stars.json Hash (for keep-on-error); nil-safe.
+  # now: ISO8601 timestamp string applied to freshly-fetched entries.
+  # Returns a Hash with STRING keys "generated_at" and "stars"
+  #   ("stars" => { slug => { "count" => Integer, "fetched_at" => String } })
+  # plus a SYMBOL key :errors => [String]. The symbol key is intentional:
+  # :errors is internal-only and is dropped before JSON serialization.
+  # Note: a stargazerCount of 0 is stored normally (0 is truthy in Ruby).
   def self.merge_results(repos, response, previous, now:)
     data = (response && response['data']) || {}
     prev_stars = (previous && previous['stars']) || {}
@@ -66,7 +71,7 @@ module StarsLib
       if node && node['stargazerCount']
         stars[slug] = { 'count' => node['stargazerCount'], 'fetched_at' => now }
       elsif prev_stars[slug]
-        stars[slug] = prev_stars[slug]
+        stars[slug] = prev_stars[slug].dup
         errors << "#{slug} (#{entry[:repo][:owner]}/#{entry[:repo][:name]}): no data, kept previous"
       else
         errors << "#{slug} (#{entry[:repo][:owner]}/#{entry[:repo][:name]}): no data, no previous"
