@@ -139,3 +139,36 @@ class TestMergeResults < Minitest::Test
     assert_includes result[:errors].first, 'tool-a'
   end
 end
+
+class TestUpdateFrontmatter < Minitest::Test
+  def test_replaces_existing_github_stars_value
+    Tempfile.create(['tool', '.md']) do |f|
+      f.write("---\nslug: \"x\"\ngithub_stars: 100\ngithub_url: \"https://github.com/o/x\"\n---\n\nBody.\n")
+      f.flush
+      StarsLib.update_frontmatter_stars(f.path, 54321)
+      content = File.read(f.path)
+      assert_includes content, 'github_stars: 54321'
+      refute_includes content, 'github_stars: 100'
+      assert_includes content, 'github_url: "https://github.com/o/x"'
+      assert_includes content, "\nBody.\n"
+    end
+  end
+
+  def test_inserts_github_stars_when_absent
+    Tempfile.create(['tool', '.md']) do |f|
+      f.write("---\nslug: \"x\"\ngithub_url: \"https://github.com/o/x\"\n---\n\nBody.\n")
+      f.flush
+      StarsLib.update_frontmatter_stars(f.path, 777)
+      assert_includes File.read(f.path), 'github_stars: 777'
+    end
+  end
+
+  def test_noop_when_value_unchanged_returns_false
+    Tempfile.create(['tool', '.md']) do |f|
+      f.write("---\nslug: \"x\"\ngithub_stars: 500\n---\n\nBody.\n")
+      f.flush
+      changed = StarsLib.update_frontmatter_stars(f.path, 500)
+      refute changed
+    end
+  end
+end

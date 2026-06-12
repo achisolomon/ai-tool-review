@@ -49,6 +49,27 @@ module StarsLib
     results
   end
 
+  # Set github_stars: <count> in a file's frontmatter.
+  # Line-level edit to preserve comments/formatting elsewhere in the file.
+  # Returns true if the file changed, false if already correct.
+  def self.update_frontmatter_stars(path, count)
+    content = File.read(path)
+    return false unless content =~ /\A(---\s*\n)(.*?)(\n---\s*\n)/m
+    head, fm, tail = $1, $2, $3
+    rest = content[($1.length + $2.length + $3.length)..-1]
+
+    if fm =~ /^github_stars:.*$/
+      new_fm = fm.sub(/^github_stars:.*$/, "github_stars: #{count}")
+    else
+      new_fm = "#{fm}\ngithub_stars: #{count}"
+    end
+
+    new_content = "#{head}#{new_fm}#{tail}#{rest}"
+    return false if new_content == content
+    File.write(path, new_content)
+    true
+  end
+
   # Merge a GraphQL response into a stars.json structure.
   # repos: array in the same order used to build the query.
   # response: parsed JSON Hash (may contain "data" and "errors"); nil-safe.
