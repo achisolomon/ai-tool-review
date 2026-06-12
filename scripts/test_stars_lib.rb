@@ -217,3 +217,13 @@ class TestFetchGraphql < Minitest::Test
     end
   end
 end
+
+class TestCliComposition < Minitest::Test
+  def test_run_refresh_composes_pipeline
+    repos = [{ slug: 'tool-a', repo: { owner: 'o', name: 'a' }, path: '/x' }]
+    fake_fetch = ->(query) { { 'data' => { 'r0' => { 'stargazerCount' => 42 } } } }
+    out = StarsLib.run_refresh(repos, previous: {}, now: 'T', fetch: fake_fetch)
+    assert_equal 42, out[:merged]['stars']['tool-a']['count']
+    assert_includes out[:json], '"tool-a"'
+  end
+end

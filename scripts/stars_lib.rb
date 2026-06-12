@@ -136,6 +136,14 @@ module StarsLib
     JSON.parse(poster.call('https://api.github.com/graphql', body, headers))
   end
 
+  # Orchestrate one refresh from already-scanned repos. fetch is injectable.
+  def self.run_refresh(repos, previous:, now:, fetch:)
+    query = build_graphql_query(repos)
+    response = fetch.call(query)
+    merged = merge_results(repos, response, previous, now: now)
+    { merged: merged, json: serialize(merged) }
+  end
+
   # Serialize a merged result to pretty JSON with sorted slugs.
   # The internal :errors key is dropped.
   def self.serialize(merged)
