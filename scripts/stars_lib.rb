@@ -102,6 +102,37 @@ module StarsLib
     { 'generated_at' => now, 'stars' => stars, errors: errors }
   end
 
+  class AuthError < StandardError; end
+
+  # Default poster using Net::HTTP. Returns the raw response body string.
+  def self.default_poster
+    require 'net/http'
+    require 'uri'
+    lambda do |uri, body, headers|
+      u = URI(uri)
+      http = Net::HTTP.new(u.host, u.port)
+      http.use_ssl = true
+      req = Net::HTTP::Post.new(u, headers)
+      req.body = body
+      res = http.request(req)
+      raise "GitHub API HTTP #{res.code}: #{res.body}" unless res.code.to_i == 200
+      res.body
+    end
+  end
+
+  # POST a GraphQL query. poster is injectable for tests.
+  def self.fetch_graphql(query, token:, poster: nil)
+    raise AuthError, 'Missing GITHUB_TOKEN' if token.nil? || token.empty?
+    poster ||= default_poster
+    headers = {
+      'Authorization' => "bearer #{token}",
+      'Content-Type' => 'application/json',
+      'User-Agent' => 'ai-tool-review-star-refresh'
+    }
+    body = JSON.generate({ query: query })
+    JSON.parse(poster.call('https://api.github.com/graphql', body, headers))
+  end
+
   # Serialize a merged result to pretty JSON with sorted slugs.
   # The internal :errors key is dropped.
   def self.serialize(merged)

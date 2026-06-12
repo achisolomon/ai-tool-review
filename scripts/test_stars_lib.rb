@@ -188,3 +188,26 @@ class TestSerialize < Minitest::Test
     assert_equal 2, parsed['stars']['alpha']['count']
   end
 end
+
+class TestFetchGraphql < Minitest::Test
+  def test_posts_query_with_auth_and_parses_json
+    captured = {}
+    fake_poster = lambda do |uri, body, headers|
+      captured[:uri] = uri
+      captured[:body] = body
+      captured[:headers] = headers
+      '{"data":{"r0":{"stargazerCount":5}}}'
+    end
+    result = StarsLib.fetch_graphql('query { r0 }', token: 'TKN', poster: fake_poster)
+    assert_equal 'https://api.github.com/graphql', captured[:uri]
+    assert_equal 'bearer TKN', captured[:headers]['Authorization']
+    assert_includes captured[:body], 'query { r0 }'
+    assert_equal 5, result['data']['r0']['stargazerCount']
+  end
+
+  def test_raises_on_empty_token
+    assert_raises(StarsLib::AuthError) do
+      StarsLib.fetch_graphql('query {}', token: nil, poster: ->(*) { '{}' })
+    end
+  end
+end
