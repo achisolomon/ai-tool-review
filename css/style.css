@@ -3309,12 +3309,12 @@ a:hover {
 
 /* Wild-design reduced motion */
 @media (prefers-reduced-motion: reduce) {
-    /* Must match the specificity of `.hero-eyebrow .line1/.line2` (0,2,0),
-       or the per-line animations override this and the eyebrow keeps typing. */
+    /* Use !important to beat the animation-duration: 0.01ms !important from the
+       wildcard rule above, which can prevent animation-name from resolving to none. */
     .hero-eyebrow-line,
     .hero-eyebrow .line1,
     .hero-eyebrow .line2 {
-        animation: none;
+        animation: none !important;
         width: auto;
         border-right: none;
     }

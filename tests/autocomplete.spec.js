@@ -286,8 +286,8 @@ test.describe('Search Autocomplete', () => {
             await expect(page.locator('.result-card').first()).toBeVisible({ timeout: 10000 });
             await expect(searchResults).not.toHaveClass(/hidden/);
 
-            // Click clear
-            await clearButton.click();
+            // UX redesign removed visible clear button; use Escape to clear instead
+            await searchInput.press('Escape');
 
             // Input should be empty
             await expect(searchInput).toHaveValue('');
