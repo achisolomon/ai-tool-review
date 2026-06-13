@@ -167,6 +167,18 @@
       });
     }
 
+    // Check availability before loading (graceful degradation)
+    const available = window.SupabaseClient.isSuggestionsAvailable
+      ? await window.SupabaseClient.isSuggestionsAvailable()
+      : true;
+
+    if (!available) {
+      if (suggestionList) suggestionList.innerHTML = '';
+      if (emptyMessage) emptyMessage.textContent = "Suggestions aren't available yet.";
+      if (emptyState) emptyState.classList.remove('hidden');
+      return;
+    }
+
     // Load suggestions
     await loadSuggestions(suggestionList, emptyState, emptyMessage, toast);
   }
@@ -181,7 +193,15 @@
     list.innerHTML = '';
 
     if (error) {
-      list.innerHTML = '<p class="error">Failed to load suggestions. Please try again later.</p>';
+      // Check if this is a table-missing error (42P01 or PGRST205) — show calm state
+      const msg = error.message || error.code || '';
+      const tableMissing = msg.includes('42P01') || msg.includes('PGRST205') || msg.includes('not found in schema');
+      if (tableMissing) {
+        if (emptyMessage) emptyMessage.textContent = "Suggestions aren't available yet.";
+        if (emptyState) emptyState.classList.remove('hidden');
+      } else {
+        list.innerHTML = '<p class="error">Failed to load suggestions. Please try again later.</p>';
+      }
       return;
     }
 

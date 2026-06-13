@@ -403,13 +403,14 @@
                     usersView.classList.add('hidden');
                     if (suggestionsView) suggestionsView.classList.remove('hidden');
                     // Update badge and load queue via admin-suggestions module
+                    // (guarded — table may not exist yet)
                     window.AdminAPI.getSuggestionPendingCount().then(count => {
                         const badge = document.getElementById('suggestions-badge');
                         if (badge) {
                             badge.textContent = count;
                             badge.classList.toggle('hidden', count === 0);
                         }
-                    });
+                    }).catch(() => { /* table unavailable — ignore */ });
                     if (window.AdminSuggestions) window.AdminSuggestions.loadSuggestions();
                 }
             }
@@ -753,14 +754,24 @@
             if (hasAccess) {
                 await updateCounts();
                 await loadReviews();
-                // Populate suggestions badge on load
-                window.AdminAPI.getSuggestionPendingCount().then(count => {
-                    const badge = document.getElementById('suggestions-badge');
-                    if (badge && count > 0) {
-                        badge.textContent = count;
-                        badge.classList.remove('hidden');
-                    }
-                });
+                // Gate the Suggestions tab on table availability (graceful degradation)
+                const suggestionsAvailable = window.SupabaseClient && typeof window.SupabaseClient.isSuggestionsAvailable === 'function'
+                    ? await window.SupabaseClient.isSuggestionsAvailable().catch(() => false)
+                    : false;
+                const suggestionsTab = document.querySelector('[data-view="suggestions"]');
+                if (!suggestionsAvailable) {
+                    // Hide the Suggestions tab entirely — table not ready yet
+                    if (suggestionsTab) suggestionsTab.style.display = 'none';
+                } else {
+                    // Populate suggestions badge on load
+                    window.AdminAPI.getSuggestionPendingCount().then(count => {
+                        const badge = document.getElementById('suggestions-badge');
+                        if (badge && count > 0) {
+                            badge.textContent = count;
+                            badge.classList.remove('hidden');
+                        }
+                    }).catch(() => { /* ignore — table may be unavailable */ });
+                }
             }
         })();
     </script>

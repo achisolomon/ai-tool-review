@@ -4,6 +4,17 @@
    Uses VS Code CSS variables from style.css.
    =========================================== */
 
+/* Graceful degradation: hide dynamic .card-suggest buttons added by landscape.js
+   when the suggestions table is not yet available in this environment. */
+html.suggestions-disabled .card-suggest {
+    display: none !important;
+}
+
+/* Also hide the "My Suggestions" nav link added dynamically by auth-ui.js */
+html.suggestions-disabled a[href="/my-suggestions.html"] {
+    display: none !important;
+}
+
 /* --- Overlay -------------------------------- */
 .suggest-modal-overlay {
     position: fixed;

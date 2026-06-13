@@ -684,7 +684,7 @@
           tags, type, pricing_model, notes
         });
       } catch (err) {
-        showError(modal, 'Failed to build suggestion payload: ' + escapeHtml(err.message));
+        showError(modal, "Couldn't prepare your suggestion — please check your inputs and try again.");
         return;
       }
 
@@ -701,7 +701,7 @@
         });
 
         if (error) {
-          showError(modal, 'Submission failed: ' + escapeHtml(error.message));
+          showError(modal, "Couldn't save your suggestion — please try again later.");
           submitBtn.disabled = false;
           submitBtn.textContent = 'Submit suggestion';
           return;
@@ -722,7 +722,7 @@
           `;
         }
       } catch (err) {
-        showError(modal, 'Unexpected error: ' + escapeHtml(err.message));
+        showError(modal, "Couldn't save your suggestion — please try again later.");
         submitBtn.disabled = false;
         submitBtn.textContent = 'Submit suggestion';
       }
@@ -1088,7 +1088,7 @@
         });
 
         if (error) {
-          showError(modal, 'Submission failed: ' + escapeHtml(error.message));
+          showError(modal, "Couldn't save your suggestion — please try again later.");
           if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Submit suggestion'; }
           return;
         }
@@ -1107,7 +1107,7 @@
           `;
         }
       } catch (err) {
-        showError(modal, 'Unexpected error: ' + escapeHtml(err.message));
+        showError(modal, "Couldn't save your suggestion — please try again later.");
         if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Submit suggestion'; }
       }
     });
@@ -1289,7 +1289,7 @@
       try {
         payload = window.SuggestLogic.buildPayload('tool_placement', { current, proposed });
       } catch (err) {
-        showError(modal, 'Failed to build payload: ' + escapeHtml(err.message));
+        showError(modal, "Couldn't prepare your suggestion — please check your inputs and try again.");
         return;
       }
 
@@ -1320,7 +1320,7 @@
         });
 
         if (error) {
-          showError(modal, 'Submission failed: ' + escapeHtml(error.message));
+          showError(modal, "Couldn't save your suggestion — please try again later.");
           if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Submit suggestion'; }
           return;
         }
@@ -1339,7 +1339,7 @@
           `;
         }
       } catch (err) {
-        showError(modal, 'Unexpected error: ' + escapeHtml(err.message));
+        showError(modal, "Couldn't save your suggestion — please try again later.");
         if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Submit suggestion'; }
       }
     });
@@ -1449,7 +1449,7 @@
       try {
         payload = window.SuggestLogic.buildPayload('tool_edit', { original, edited });
       } catch (err) {
-        showError(modal, 'Failed to build payload: ' + escapeHtml(err.message));
+        showError(modal, "Couldn't prepare your suggestion — please check your inputs and try again.");
         return;
       }
 
@@ -1487,7 +1487,7 @@
         });
 
         if (error) {
-          showError(modal, 'Submission failed: ' + escapeHtml(error.message));
+          showError(modal, "Couldn't save your suggestion — please try again later.");
           if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Submit suggestion'; }
           return;
         }
@@ -1506,7 +1506,7 @@
           `;
         }
       } catch (err) {
-        showError(modal, 'Unexpected error: ' + escapeHtml(err.message));
+        showError(modal, "Couldn't save your suggestion — please try again later.");
         if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Submit suggestion'; }
       }
     });
@@ -1804,7 +1804,7 @@
             tags, type, pricing_model, notes: null
           });
         } catch (err) {
-          showError(modal, 'Failed to build payload: ' + escapeHtml(err.message));
+          showError(modal, "Couldn't prepare your suggestion — please check your inputs and try again.");
           return;
         }
         patch.payload = payload;
@@ -1868,7 +1868,7 @@
         try {
           payload = window.SuggestLogic.buildPayload('tool_placement', { current, proposed });
         } catch (err) {
-          showError(modal, 'Failed to build payload: ' + escapeHtml(err.message));
+          showError(modal, "Couldn't prepare your suggestion — please check your inputs and try again.");
           return;
         }
         patch.payload = payload;
@@ -1894,7 +1894,7 @@
         try {
           payload = window.SuggestLogic.buildPayload('tool_edit', { original, edited });
         } catch (err) {
-          showError(modal, 'Failed to build payload: ' + escapeHtml(err.message));
+          showError(modal, "Couldn't prepare your suggestion — please check your inputs and try again.");
           return;
         }
         if (!payload.changes || Object.keys(payload.changes).length === 0) {
@@ -1912,7 +1912,7 @@
         const { error } = await window.SupabaseClient.updateMySuggestion(row.id, patch);
 
         if (error) {
-          showError(modal, 'Update failed: ' + escapeHtml(error.message));
+          showError(modal, "Couldn't save your suggestion — please try again later.");
           if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Save changes'; }
           return;
         }
@@ -1932,7 +1932,7 @@
           `;
         }
       } catch (err) {
-        showError(modal, 'Unexpected error: ' + escapeHtml(err.message));
+        showError(modal, "Couldn't save your suggestion — please try again later.");
         if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Save changes'; }
       }
     });
@@ -2006,5 +2006,39 @@
     renderPlacementSection,
     renderTagGroups,
   };
+
+  // ---------------------------------------------------------------------------
+  // Graceful degradation bootstrap
+  // ---------------------------------------------------------------------------
+  // Runs on DOMContentLoaded. If the suggestions table does not exist yet,
+  // hides all entry points so the site looks exactly like pre-feature UI.
+  // Uses a <html> class so that dynamically-generated .card-suggest elements
+  // (added later by landscape.js) are also hidden via CSS.
+
+  document.addEventListener('DOMContentLoaded', async function suggestBootstrap() {
+    if (!window.SupabaseClient || typeof window.SupabaseClient.isSuggestionsAvailable !== 'function') return;
+
+    const available = await window.SupabaseClient.isSuggestionsAvailable();
+
+    if (!available) {
+      // Mark root so CSS can hide dynamic .card-suggest elements
+      document.documentElement.classList.add('suggestions-disabled');
+
+      // Hide static entry points
+      const suggestOpen = document.getElementById('suggest-open');
+      if (suggestOpen) suggestOpen.style.display = 'none';
+
+      const toolSuggestOpen = document.getElementById('tool-suggest-open');
+      if (toolSuggestOpen) toolSuggestOpen.style.display = 'none';
+
+      // Hide .card-suggest buttons already in the DOM (static)
+      document.querySelectorAll('.card-suggest').forEach(el => { el.style.display = 'none'; });
+
+      // Hide the "My Suggestions" link in the auth dropdown (if already rendered)
+      document.querySelectorAll('a[href="/my-suggestions.html"]').forEach(el => { el.style.display = 'none'; });
+    } else {
+      document.documentElement.classList.add('suggestions-enabled');
+    }
+  });
 
 })();
