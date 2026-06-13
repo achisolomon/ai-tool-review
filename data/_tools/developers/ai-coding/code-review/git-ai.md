@@ -11,7 +11,7 @@ subcategory: code-review
 track: developers
 type: oss
 website: https://github.com/anthropics/git-ai
-github_stars: —
+github_stars: null
 ---
 
 <div class="key-stats">

@@ -12,7 +12,7 @@ pricing_model: freemium
 founded_year: 2019
 headquarters: "San Francisco, CA"
 github_url: "—"
-github_stars: —
+github_stars: null
 tags:
   - agents
   - serverless

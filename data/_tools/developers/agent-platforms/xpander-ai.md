@@ -12,7 +12,7 @@ pricing_model: enterprise
 founded_year: —
 headquarters: "—"
 github_url: ""
-github_stars: —
+github_stars: null
 tags:
   - agents
   - self-hosted
