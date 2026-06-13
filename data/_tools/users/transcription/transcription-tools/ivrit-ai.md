@@ -13,10 +13,6 @@ pricing_model: "free"
 founded_year: 2023
 headquarters: "Israel"
 tags:
-  - open-source
-  - hebrew
-  - transcription
-  - free
   - multilingual
 last_verified: "2026-06-13"
 confidence_score: 0.95

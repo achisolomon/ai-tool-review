@@ -26,6 +26,12 @@ integrations:
   - slug: api-available
     name: "API Available"
     description: "Has public API"
+  - slug: api
+    name: "API"
+    description: "Exposes a programmatic API"
+  - slug: email
+    name: "Email"
+    description: "Email integration / automation"
   - slug: mcp-server
     name: "MCP Server"
     description: "Model Context Protocol server available"
@@ -52,6 +58,9 @@ deployment:
   - slug: serverless
     name: "Serverless"
     description: "Serverless deployment option"
+  - slug: cli
+    name: "CLI"
+    description: "Command-line interface"
 
 use-cases:
   - slug: no-code
@@ -69,3 +78,6 @@ use-cases:
   - slug: observability
     name: "Observability"
     description: "Tracing, monitoring, debugging"
+  - slug: multilingual
+    name: "Multilingual"
+    description: "Supports multiple human languages"

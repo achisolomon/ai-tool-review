@@ -12,7 +12,7 @@
     "serve": "node server.js",
     "serve:jekyll": "bundle exec jekyll serve --port 8080",
     "serve:static": "python3 -m http.server 8080 --directory _site",
-    "validate": "ruby scripts/validate-no-duplicates.rb data/_tools",
+    "validate": "ruby scripts/validate-no-duplicates.rb data/_tools && ruby scripts/validate_tags.rb data/_tools",
     "validate:data": "node scripts/validate-data-js.js",
     "validate:workflows": "node scripts/validate-workflows.js",
     "validate:auth-pages": "node scripts/validate-auth-pages.js",

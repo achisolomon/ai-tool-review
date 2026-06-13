@@ -17,7 +17,6 @@ founded_year: 2026
 tags:
 - agents
 - python
-- sandboxes
 last_verified: '2026-06-12'
 confidence_score: 0.95
 ---

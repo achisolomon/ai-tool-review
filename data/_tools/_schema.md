@@ -258,40 +258,4 @@ When creating or updating tool files:
 
 ## Tag Taxonomy
 
-Tags are organized into semantic groups:
-
-### Capabilities
-- `reasoning` - Advanced reasoning/thinking
-- `coding-assistant` - Helps write code
-- `multimodal` - Handles text + images/audio/video
-- `real-time` - Real-time/streaming responses
-- `search` - Web search capabilities
-- `agents` - Autonomous agent capabilities
-- `rag` - Retrieval-augmented generation
-- `fine-tuning` - Supports model fine-tuning
-
-### Use Cases
-- `evaluation` - LLM evaluation & testing
-- `observability` - Tracing, monitoring, debugging
-- `experiment-tracking` - ML experiment management
-- `data-labeling` - Data annotation & labeling
-- `prompt-engineering` - Prompt design & optimization
-- `security` - AI security & red-teaming
-
-### Integrations
-- `api-available` - Has public API
-- `sdk-python` - Python SDK available
-- `sdk-typescript` - TypeScript/JS SDK available
-- `vscode-extension` - VS Code integration
-- `mcp-server` - MCP server available
-
-### Deployment
-- `self-hosted` - Can be self-hosted
-- `cloud-only` - SaaS only
-- `on-premise` - Enterprise on-premise option
-- `enterprise-ready` - Enterprise features (SSO, audit, etc.)
-
-### Pricing
-- `free-tier` - Has free tier
-- `open-source` - Core is open source
-- `usage-based` - Pay-per-use pricing
+Tags are a controlled vocabulary. **`_tags.yaml` is the single source of truth** — every tag in a tool's `tags:` list must have a matching `slug` there, grouped into one of the families: `capabilities`, `integrations`, `deployment`, `use-cases`. Add a tag to `_tags.yaml` before using it. Tags describe what a tool *is/does* (cross-cutting traits), never *where it lives* (that's category/subcategory).

@@ -12,8 +12,7 @@ subcategory: spec-driven
 track: developers
 type: oss
 website: https://github.com/obra/superpowers
-tags:
-  - skill
+tags: []
 ---
 
 <div class="key-stats">

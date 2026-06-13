@@ -17,7 +17,6 @@ headquarters: "—"
 tags:
 - agents
 - typescript
-- sandboxes
 last_verified: '2026-06-11'
 confidence_score: 0.94
 ---

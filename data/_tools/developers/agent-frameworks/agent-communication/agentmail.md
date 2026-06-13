@@ -15,7 +15,6 @@ tags:
   - agents
   - email
   - api
-  - yc
 last_verified: "2026-06-11"
 confidence_score: 0.94
 ---

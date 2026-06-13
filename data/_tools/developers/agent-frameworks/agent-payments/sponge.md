@@ -14,7 +14,6 @@ founded_year: 2026
 headquarters: San Francisco, CA
 tags:
 - agents
-- yc
 last_verified: '2026-06-11'
 confidence_score: 0.93
 ---

@@ -16,7 +16,6 @@ founded_year: 2025
 headquarters: "—"
 tags:
 - agents
-- coding
 - cli
 - typescript
 last_verified: '2026-06-11'
