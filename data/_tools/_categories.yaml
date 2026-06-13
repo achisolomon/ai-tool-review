@@ -164,6 +164,9 @@ developers:
       cost-reduction:
         name: "Cost Reduction"
         description: "Token optimization and cost reduction tools for AI coding"
+      llm-skills:
+        name: "LLM Skills"
+        description: "Reusable AI skills and methodologies for LLMs and coding agents"
 
   agent-frameworks:
     name: "Agent Frameworks & Orchestration"
@@ -263,8 +266,8 @@ developers:
         description: "RAG and knowledge graph systems"
 
   observability-safety:
-    name: "Observability, Evaluation & Safety"
-    description: "Tools for monitoring, evaluating, and securing AI systems"
+    name: "Observability & Evaluation"
+    description: "Tools for monitoring and evaluating AI systems"
     subcategories:
       llm-observability:
         name: "LLM Observability & Tracing"
@@ -281,11 +284,11 @@ developers:
 
   security:
     name: "Security"
-    description: "AI security testing, red teaming, and security scanning"
+    description: "AI-powered security tools for vulnerability discovery, red teaming, and securing AI systems"
     subcategories:
       red-teaming:
         name: "Red Teaming & AI Security"
         description: "AI security testing and red teaming"
       security-scanning:
         name: "Security Scanning"
-        description: "AI-powered security scanning and code forensics"
+        description: "LLM-based vulnerability discovery and code security scanning"

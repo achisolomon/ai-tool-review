@@ -7,9 +7,17 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 4 : undefined,
   reporter: 'html',
+  globalSetup: './tests/global-setup.js',
   use: {
     baseURL: 'http://localhost:8080',
     trace: 'on-first-retry',
+    // Route browser HTTPS traffic through the blocking proxy started in
+    // global-setup.js — this ensures ad CDN hosts fail fast rather than
+    // hanging 30s and blocking the page load event.
+    proxy: {
+      server: 'http://localhost:18080',
+      bypass: 'localhost,127.0.0.1',
+    },
   },
   webServer: {
     // Node server with clean URL support (run 'npm run build' first if needed)

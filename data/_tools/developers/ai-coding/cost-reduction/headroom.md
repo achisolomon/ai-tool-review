@@ -14,6 +14,7 @@ pricing_model: "free"
 founded_year: 2026
 tags:
   - mcp-server
+  - skill
 last_verified: "2026-06-08"
 confidence_score: 0.95
 source_urls:

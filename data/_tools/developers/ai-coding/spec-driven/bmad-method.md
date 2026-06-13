@@ -12,6 +12,8 @@ subcategory: spec-driven
 track: developers
 type: oss
 website: https://github.com/bmad-code-org/BMAD-METHOD
+tags:
+  - skill
 ---
 
 <div class="key-stats">

@@ -127,7 +127,10 @@ test.describe('Shareable Links', () => {
       await page.goto('/?q=test');
       await page.waitForTimeout(300);
 
-      await page.locator('#clear-search').click();
+      // UX redesign removed visible clear button; use Escape to clear instead
+      const searchInput = page.locator('#action-input');
+      await searchInput.press('Escape');
+      await page.waitForTimeout(300);
 
       const url = page.url();
       expect(url).not.toContain('?q=');
@@ -139,11 +142,14 @@ test.describe('Shareable Links', () => {
 
   test.describe('Copy Link Button', () => {
 
-    test('Copy Link button is visible when results are showing', async ({ page }) => {
+    test('Copy Link button exists as a hidden node when results are showing', async ({ page }) => {
+      // UX redesign: #copy-link is kept as a hidden DOM node (app.js depends on it)
+      // but is no longer visible in the UI. The ux-redesign spec asserts it stays hidden.
       await page.goto('/?q=agent');
 
       const copyButton = page.locator('#copy-link');
-      await expect(copyButton).toBeVisible();
+      await expect(copyButton).toHaveCount(1);
+      await expect(copyButton).toBeHidden();
     });
 
     test('Copy Link button is hidden when no results', async ({ page }) => {
@@ -157,25 +163,27 @@ test.describe('Shareable Links', () => {
       await context.grantPermissions(['clipboard-read', 'clipboard-write']);
       await page.goto('/?q=vector');
 
+      // Copy link via the hidden button (force click since it is hidden by design)
       const copyButton = page.locator('#copy-link');
-      await copyButton.click();
+      await copyButton.click({ force: true });
 
       const clipboardText = await page.evaluate(() => navigator.clipboard.readText());
       expect(clipboardText).toContain('?q=vector');
     });
 
-    test('Copy Link button shows "Copied!" feedback', async ({ page, context }) => {
+    test('clicking Copy Link triggers copied state', async ({ page, context }) => {
       await context.grantPermissions(['clipboard-read', 'clipboard-write']);
       await page.goto('/?q=rag');
 
+      // Trigger copy via hidden button (force click)
       const copyButton = page.locator('#copy-link');
-      await copyButton.click();
+      await copyButton.click({ force: true });
 
-      await expect(copyButton).toContainText('Copied');
+      await expect(copyButton).toHaveClass(/copied/);
 
       // Wait for it to revert
       await page.waitForTimeout(2000);
-      await expect(copyButton).toContainText('Copy Link');
+      await expect(copyButton).not.toHaveClass(/copied/);
     });
 
   });
