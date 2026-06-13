@@ -130,3 +130,83 @@ test('validateRow: tool_placement with unknown tag in tags_add is rejected', () 
   assert.equal(validateRow(row, root, tax).ok, false);
   rmSync(root, { recursive: true, force: true });
 });
+
+// ── Task 2.4: Apply function tests ──────────────────────────────────────────
+import { existsSync, readFileSync } from 'node:fs';
+import { applyNewTool, applyToolPlacement, applyToolEdit, applyTaxonomyChange, slugWithSuffix } from './apply-suggestions.mjs';
+
+test('slugWithSuffix appends -2 on collision', () => {
+  const root = fixtureTree();
+  assert.equal(slugWithSuffix(root, 'letta'), 'letta');      // free
+  assert.equal(slugWithSuffix(root, 'mem0'), 'mem0-2');      // taken -> suffixed
+  rmSync(root, { recursive: true, force: true });
+});
+
+test('applyNewTool writes a schema-shaped file with credit', () => {
+  const root = fixtureTree();
+  const tax = loadTaxonomy(root);
+  const row = { kind: 'new_tool', credit_name: 'dani', public_credit: true,
+    payload: { name: 'Letta', slug: 'letta', website: 'https://letta.com', description: 'Stateful agents',
+      type: 'oss', tags: ['agents'],
+      placement: { track: 'developers', category: 'agent-frameworks', subcategory: 'agent-memory' } } };
+  applyNewTool(row, root, tax);
+  const f = join(root, 'data/_tools/developers/agent-frameworks/agent-memory/letta.md');
+  assert.ok(existsSync(f));
+  const fm = matter(readFileSync(f, 'utf8')).data;
+  assert.equal(fm.suggested_by, 'dani');
+  assert.equal(fm.subcategory, 'agent-memory');
+  rmSync(root, { recursive: true, force: true });
+});
+
+test('applyToolPlacement moves the file and rewrites frontmatter', () => {
+  const root = fixtureTree();
+  const tax = loadTaxonomy(root);
+  const row = { kind: 'tool_placement', tool_slug: 'mem0',
+    payload: { current: { category: 'agent-frameworks', subcategory: 'agent-memory', tags: ['agents'] },
+      proposed: { category: 'agent-frameworks', subcategory: 'orchestration', tags_add: ['open-source'], tags_remove: [] } } };
+  applyToolPlacement(row, root, tax);
+  assert.ok(!existsSync(join(root, 'data/_tools/developers/agent-frameworks/agent-memory/mem0.md')));
+  const moved = join(root, 'data/_tools/developers/agent-frameworks/orchestration/mem0.md');
+  assert.ok(existsSync(moved));
+  const fm = matter(readFileSync(moved, 'utf8')).data;
+  assert.equal(fm.subcategory, 'orchestration');
+  assert.ok(fm.tags.includes('open-source'));
+  rmSync(root, { recursive: true, force: true });
+});
+
+test('applyToolEdit updates only changed fields', () => {
+  const root = fixtureTree();
+  const tax = loadTaxonomy(root);
+  const row = { kind: 'tool_edit', tool_slug: 'mem0',
+    payload: { changes: { description: { from: 'Memory', to: 'Memory layer for agents' } } } };
+  applyToolEdit(row, root, tax);
+  const fm = matter(readFileSync(join(root, 'data/_tools/developers/agent-frameworks/agent-memory/mem0.md'), 'utf8')).data;
+  assert.equal(fm.description, 'Memory layer for agents');
+  rmSync(root, { recursive: true, force: true });
+});
+
+test('applyTaxonomyChange add_subcategory writes to _categories.yaml', () => {
+  const root = fixtureTree();
+  const row = { kind: 'taxonomy_change',
+    payload: { op: 'add_subcategory', parent_category: 'agent-frameworks', name: 'Agent Eval',
+      slug: 'agent-eval', description: 'Evaluating agents' } };
+  applyTaxonomyChange(row, root, loadTaxonomy(root));
+  const y = readFileSync(join(root, 'data/_tools/_categories.yaml'), 'utf8');
+  assert.match(y, /agent-eval/);
+  rmSync(root, { recursive: true, force: true });
+});
+
+test('applyTaxonomyChange rename cascades to YAML and tool frontmatter', () => {
+  const root = fixtureTree();
+  const row = { kind: 'taxonomy_change',
+    payload: { op: 'rename', target_kind: 'subcategory', target: 'agent-memory', new_name: 'memory' } };
+  applyTaxonomyChange(row, root, loadTaxonomy(root));
+  const y = readFileSync(join(root, 'data/_tools/_categories.yaml'), 'utf8');
+  assert.match(y, /\bmemory\b/);
+  assert.doesNotMatch(y, /agent-memory/);
+  // file moved into the renamed directory, frontmatter updated
+  const moved = join(root, 'data/_tools/developers/agent-frameworks/memory/mem0.md');
+  assert.ok(existsSync(moved));
+  assert.equal(matter(readFileSync(moved, 'utf8')).data.subcategory, 'memory');
+  rmSync(root, { recursive: true, force: true });
+});

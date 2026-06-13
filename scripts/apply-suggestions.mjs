@@ -3,8 +3,8 @@ import 'dotenv/config';
 import { createInterface } from 'node:readline/promises';
 import { stdin, stdout } from 'node:process';
 import { stringify as stringifyYaml, parse as parseYaml } from 'yaml';
-import { readFileSync as _read, readdirSync as _readdir, statSync as _stat } from 'node:fs';
-import { join as _join } from 'node:path';
+import { readFileSync as _read, readdirSync as _readdir, statSync as _stat, writeFileSync, mkdirSync, unlinkSync } from 'node:fs';
+import { join as _join, dirname } from 'node:path';
 import matter from 'gray-matter';
 
 // ── Pure helpers (no I/O — unit tested) ─────────────────────────────────────
@@ -134,6 +134,129 @@ export function validateRow(row, root, tax) {
     return { ok: true };
   }
   return fail(`unknown kind: ${row.kind}`);
+}
+
+// ── Per-kind apply functions (file mutations) ─────────────────────────────────
+
+export function slugWithSuffix(root, slug) {
+  if (!findToolFile(root, slug)) return slug;
+  for (let i = 2; ; i++) if (!findToolFile(root, `${slug}-${i}`)) return `${slug}-${i}`;
+}
+
+export function applyNewTool(row, root, tax) {
+  const finalSlug = slugWithSuffix(root, row.payload.slug);
+  const renamed = finalSlug !== row.payload.slug;
+  const fm = buildFrontmatter({ ...row, payload: { ...row.payload, slug: finalSlug } });
+  const rel = toolPath({ track: fm.track, category: fm.category, subcategory: fm.subcategory, slug: finalSlug });
+  const abs = _join(root, rel);
+  mkdirSync(dirname(abs), { recursive: true });
+  writeFileSync(abs, matter.stringify(`\n${row.payload.description}\n`, fm));
+  return `created ${rel}${renamed ? ` (slug renamed from ${row.payload.slug})` : ''}`;
+}
+
+export function applyToolPlacement(row, root, tax) {
+  const hit = findToolFile(root, row.tool_slug);
+  const prop = row.payload.proposed;
+  const track = hit.fm.track === 'both' ? 'developers' : hit.fm.track;
+  const fm = { ...hit.fm, category: prop.category, subcategory: prop.subcategory };
+  let tags = new Set(hit.fm.tags || []);
+  (prop.tags_add || []).forEach((t) => tags.add(t));
+  (prop.tags_remove || []).forEach((t) => tags.delete(t));
+  fm.tags = [...tags];
+  const destRel = toolPath({ track, category: prop.category, subcategory: prop.subcategory, slug: row.tool_slug });
+  const destAbs = _join(root, destRel);
+  mkdirSync(dirname(destAbs), { recursive: true });
+  const body = matter(_read(hit.file, 'utf8')).content;
+  writeFileSync(destAbs, matter.stringify(body, fm));
+  if (destAbs !== hit.file) unlinkSync(hit.file);
+  return `moved ${row.tool_slug} -> ${prop.category}/${prop.subcategory}`;
+}
+
+export function applyToolEdit(row, root, tax) {
+  const hit = findToolFile(root, row.tool_slug);
+  const parsed = matter(_read(hit.file, 'utf8'));
+  for (const [field, { to }] of Object.entries(row.payload.changes || {})) parsed.data[field] = to;
+  writeFileSync(hit.file, matter.stringify(parsed.content, parsed.data));
+  return `edited ${row.tool_slug}: ${Object.keys(row.payload.changes).join(', ')}`;
+}
+
+export function applyRename(row, root) {
+  const { target_kind, target, new_name } = row.payload;
+  const tools = _join(root, 'data', '_tools');
+  const catsPath = _join(tools, '_categories.yaml');
+  if (target_kind === 'tag') {
+    const tagsPath = _join(tools, '_tags.yaml');
+    const tags = parseYaml(_read(tagsPath, 'utf8'));
+    for (const fam of Object.values(tags)) if (Array.isArray(fam)) for (const t of fam) if (t.slug === target) t.slug = new_name;
+    writeFileSync(tagsPath, stringifyYaml(tags));
+    for (const f of walkTools(tools)) {
+      const parsed = matter(_read(f, 'utf8'));
+      if (Array.isArray(parsed.data.tags) && parsed.data.tags.includes(target)) {
+        parsed.data.tags = parsed.data.tags.map((t) => (t === target ? new_name : t));
+        writeFileSync(f, matter.stringify(parsed.content, parsed.data));
+      }
+    }
+    return `renamed tag ${target} -> ${new_name}`;
+  }
+  // category or subcategory: update YAML key, move dirs, rewrite frontmatter
+  const cats = parseYaml(_read(catsPath, 'utf8'));
+  for (const [track, cs] of Object.entries(cats)) {
+    for (const [cid, cd] of Object.entries(cs || {})) {
+      if (target_kind === 'category' && cid === target) {
+        cs[new_name] = cd; delete cs[cid];
+      } else if (target_kind === 'subcategory' && cd.subcategories?.[target]) {
+        cd.subcategories[new_name] = cd.subcategories[target]; delete cd.subcategories[target];
+      }
+    }
+  }
+  writeFileSync(catsPath, stringifyYaml(cats));
+  for (const f of walkTools(tools)) {
+    const parsed = matter(_read(f, 'utf8'));
+    let changed = false;
+    if (target_kind === 'category' && parsed.data.category === target) { parsed.data.category = new_name; changed = true; }
+    if (target_kind === 'subcategory' && parsed.data.subcategory === target) { parsed.data.subcategory = new_name; changed = true; }
+    if (changed) {
+      const track = parsed.data.track === 'both' ? 'developers' : parsed.data.track;
+      const destRel = toolPath({ track, category: parsed.data.category, subcategory: parsed.data.subcategory, slug: parsed.data.slug });
+      const destAbs = _join(root, destRel);
+      mkdirSync(dirname(destAbs), { recursive: true });
+      writeFileSync(destAbs, matter.stringify(parsed.content, parsed.data));
+      if (destAbs !== f) unlinkSync(f);
+    }
+  }
+  return `renamed ${target_kind} ${target} -> ${new_name}`;
+}
+
+export function applyTaxonomyChange(row, root, tax) {
+  const p = row.payload;
+  const catsPath = _join(root, 'data', '_tools', '_categories.yaml');
+  const tagsPath = _join(root, 'data', '_tools', '_tags.yaml');
+  if (p.op === 'add_subcategory') {
+    const cats = parseYaml(_read(catsPath, 'utf8'));
+    const track = Object.keys(cats).find((t) => cats[t][p.parent_category]);
+    cats[track][p.parent_category].subcategories ||= {};
+    cats[track][p.parent_category].subcategories[p.slug] = { name: p.name, description: p.description };
+    writeFileSync(catsPath, stringifyYaml(cats));
+    return `added subcategory ${p.slug} under ${p.parent_category}`;
+  }
+  if (p.op === 'add_category') {
+    const cats = parseYaml(_read(catsPath, 'utf8'));
+    cats[p.track] ||= {};
+    cats[p.track][p.slug] = { name: p.name, description: p.description, subcategories: {} };
+    writeFileSync(catsPath, stringifyYaml(cats));
+    return `added category ${p.slug} (${p.track})`;
+  }
+  if (p.op === 'add_tag') {
+    const tags = parseYaml(_read(tagsPath, 'utf8'));
+    tags[p.family] ||= [];
+    tags[p.family].push({ slug: p.slug, name: p.name, description: p.description });
+    writeFileSync(tagsPath, stringifyYaml(tags));
+    return `added tag ${p.slug} (${p.family})`;
+  }
+  if (p.op === 'rename') {
+    return applyRename(row, root);
+  }
+  throw new Error(`taxonomy op not auto-applicable: ${p.op}`);
 }
 
 export const FLAGS = (argv) => ({
