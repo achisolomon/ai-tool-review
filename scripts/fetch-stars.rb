@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+require 'json'
 require_relative 'stars_lib'
 
 tools_dir = ARGV[0] || 'data/_tools'
