@@ -165,6 +165,28 @@ async function withdrawSuggestion(id) {
     return await supabase.from('suggestions').delete().eq('id', id);
 }
 
+// Probe whether the `suggestions` table exists in this Supabase project.
+// Never throws. Cached in sessionStorage ('1' = available, '0' = unavailable).
+// Skips caching when the Supabase client isn't initialized yet (client may
+// become available later in the same page load).
+async function isSuggestionsAvailable() {
+    try {
+        const cached = sessionStorage.getItem('suggestions_available');
+        if (cached === '1') return true;
+        if (cached === '0') return false;
+
+        const sb = getSupabase();
+        if (!sb) return false; // not cached — client may init later
+
+        const { error } = await sb.from('suggestions').select('id', { head: true, count: 'exact' });
+        const available = !error;
+        sessionStorage.setItem('suggestions_available', available ? '1' : '0');
+        return available;
+    } catch (_) {
+        return false;
+    }
+}
+
 // Return a count of the current user's pending suggestions (friendly pre-check before the DB cap)
 async function countMyPending() {
     const supabase = getSupabase();
@@ -187,6 +209,7 @@ window.SupabaseClient = {
     getSession,
     getUserProfile,
     updateLastSignIn,
+    isSuggestionsAvailable,
     createSuggestion,
     listMySuggestions,
     updateMySuggestion,
