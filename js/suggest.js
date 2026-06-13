@@ -352,6 +352,7 @@
       <p class="suggest-placement-helper">
         <strong>Subcategory vs Tags:</strong> subcategory is where the tool <em>lives</em> in the taxonomy
         (pick the best fit). Tags describe cross-cutting traits (e.g. "self-hosted", "api-available") — add as many as apply.
+        <a href="/about.html#how-its-organized" target="_blank" rel="noopener" class="suggest-explainer-link">How the map is organized →</a>
       </p>
 
       <div id="suggest-tag-groups"></div>
@@ -1210,6 +1211,7 @@
           <strong>Subcategory vs Tags:</strong> subcategory is where the tool <em>lives</em> in the taxonomy
           (pick the best fit — tools have exactly one home). Tags describe cross-cutting traits
           (e.g. "self-hosted", "api-available") — add as many as apply.
+          <a href="/about.html#how-its-organized" target="_blank" rel="noopener" class="suggest-explainer-link">How the map is organized →</a>
         </p>
 
         ${tagsAddHtml ? `
