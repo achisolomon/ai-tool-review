@@ -735,40 +735,776 @@
   }
 
   // ---------------------------------------------------------------------------
-  // Taxonomy stub (Forms B, C, D — Phase 3.6, left as routing stubs)
+  // Form B — Taxonomy Change
   // ---------------------------------------------------------------------------
 
-  function renderTaxonomyStub() {
+  // The operation chooser IS the teaching moment: subcategory and tag cards carry
+  // their own definitions side-by-side, with examples, so users understand the
+  // distinction before picking an operation.
+
+  function renderTaxonomyOpChooser() {
     return `
       <div class="suggest-chooser">
-        <p style="color:var(--vscode-text-muted)">Taxonomy suggestion form coming soon (Phase 3.6).</p>
+        <p class="suggest-chooser-label">What kind of taxonomy change are you suggesting?</p>
+        <div class="suggest-radio-group suggest-radio-group--2col"
+             role="radiogroup"
+             aria-label="Taxonomy operation">
+
+          <div class="suggest-radio-card suggest-radio-card--teaching"
+               role="radio" aria-checked="false" tabindex="0"
+               data-taxop="add_subcategory">
+            <span class="suggest-radio-card-title">Add a subcategory</span>
+            <p class="suggest-radio-card-desc">
+              <strong>Subcategory = where a tool lives.</strong>
+              Every tool has exactly one home on the map. A subcategory is a shelf
+              within a category (e.g. "Agent Memory" inside "Agent Frameworks").
+              Suggest one when a meaningful group of tools has no shelf yet.
+            </p>
+            <p class="suggest-radio-card-example">
+              Examples: <em>Agent Search, Evaluation Harnesses, Code Review</em>
+            </p>
+          </div>
+
+          <div class="suggest-radio-card suggest-radio-card--teaching"
+               role="radio" aria-checked="false" tabindex="-1"
+               data-taxop="add_tag">
+            <span class="suggest-radio-card-title">Add a tag</span>
+            <p class="suggest-radio-card-desc">
+              <strong>Tag = what's true about a tool.</strong>
+              Tags are cross-cutting traits any tool on any shelf can share
+              (e.g. "self-hosted", "api-available", "open-source").
+              Suggest one when the same trait applies to unrelated tools.
+            </p>
+            <p class="suggest-radio-card-example">
+              Examples: <em>multilingual, cli, real-time</em>
+            </p>
+          </div>
+
+          <div class="suggest-radio-card"
+               role="radio" aria-checked="false" tabindex="-1"
+               data-taxop="add_category">
+            <span class="suggest-radio-card-title">Add a category</span>
+            <p class="suggest-radio-card-desc">A top-level grouping in the Users or Developers track. Suggest one when a whole new domain of AI tools isn't covered yet.</p>
+          </div>
+
+          <div class="suggest-radio-card"
+               role="radio" aria-checked="false" tabindex="-1"
+               data-taxop="rename">
+            <span class="suggest-radio-card-title">Rename something</span>
+            <p class="suggest-radio-card-desc">Propose a clearer name for an existing category, subcategory, or tag.</p>
+          </div>
+
+          <div class="suggest-radio-card"
+               role="radio" aria-checked="false" tabindex="-1"
+               data-taxop="other">
+            <span class="suggest-radio-card-title">Other restructuring</span>
+            <p class="suggest-radio-card-desc">Merge, split, or reorganize — describe in free text. Reviewed manually; never auto-applied.</p>
+          </div>
+        </div>
+
         <div class="suggest-chooser-actions">
-          <button class="suggest-btn" type="button" id="suggest-chooser-cancel">Close</button>
+          <button class="suggest-btn" type="button" id="suggest-taxop-cancel">Cancel</button>
+          <button class="suggest-btn suggest-btn-primary" type="button" id="suggest-taxop-next" disabled>Next</button>
         </div>
       </div>
     `;
   }
 
-  function renderMoveRetagStub(tool) {
-    return `
-      <div class="suggest-chooser">
-        <p style="color:var(--vscode-text-muted)">Move / re-tag form coming soon (Phase 3.6)${tool ? ' for ' + escapeHtml(tool.name) : ''}.</p>
-        <div class="suggest-chooser-actions">
-          <button class="suggest-btn" type="button" id="suggest-chooser-cancel">Close</button>
+  function wireTaxonomyOpChooser(modal, taxonomy, user) {
+    const group = modal.querySelector('.suggest-radio-group');
+    const nextBtn = modal.querySelector('#suggest-taxop-next');
+    const cancelBtn = modal.querySelector('#suggest-taxop-cancel');
+    if (!group) return;
+
+    const cards = Array.from(group.querySelectorAll('.suggest-radio-card'));
+    let selectedOp = null;
+
+    function selectCard(card) {
+      cards.forEach(c => {
+        c.setAttribute('aria-checked', 'false');
+        c.setAttribute('tabindex', '-1');
+      });
+      card.setAttribute('aria-checked', 'true');
+      card.setAttribute('tabindex', '0');
+      selectedOp = card.dataset.taxop;
+      if (nextBtn) nextBtn.disabled = false;
+    }
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => selectCard(card));
+      card.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectCard(card); }
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+          e.preventDefault();
+          const idx = cards.indexOf(card);
+          const next = cards[(idx + 1) % cards.length];
+          selectCard(next); next.focus();
+        }
+        if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+          e.preventDefault();
+          const idx = cards.indexOf(card);
+          const prev = cards[(idx - 1 + cards.length) % cards.length];
+          selectCard(prev); prev.focus();
+        }
+      });
+    });
+
+    if (cancelBtn) cancelBtn.addEventListener('click', close);
+    if (nextBtn) nextBtn.addEventListener('click', () => {
+      if (selectedOp) {
+        const titleEl = modal.querySelector('#suggest-modal-title');
+        if (titleEl) titleEl.textContent = 'Suggest a taxonomy change';
+        showInModal(modal, renderTaxonomyOpForm(selectedOp, taxonomy, user));
+        wireTaxonomyOpForm(modal, selectedOp, taxonomy, user);
+      }
+    });
+  }
+
+  function renderTaxonomyOpForm(op, taxonomy, user) {
+    let fieldsHtml = '';
+
+    if (op === 'add_subcategory') {
+      const catOptions = buildAllCategoryOptions(taxonomy);
+      fieldsHtml = `
+        <div class="suggest-form-group">
+          <label for="taxop-parent-category">Parent category <span class="required">*</span></label>
+          <select class="suggest-select" id="taxop-parent-category" name="parent_category" required>
+            <option value="">Select a category…</option>
+            ${catOptions}
+          </select>
         </div>
-      </div>
+        <div class="suggest-form-group">
+          <label for="taxop-name">Subcategory name <span class="required">*</span></label>
+          <input class="suggest-input" type="text" id="taxop-name" name="name" required maxlength="80"
+                 placeholder="e.g. Agent Evaluation">
+        </div>
+        <div class="suggest-form-group">
+          <label for="taxop-description">Description <span class="required">*</span></label>
+          <textarea class="suggest-textarea" id="taxop-description" name="description" required maxlength="300"
+                    placeholder="What kinds of tools belong here?"></textarea>
+        </div>
+        <div class="suggest-form-group">
+          <label for="taxop-example-tools">Example tools (optional)</label>
+          <input class="suggest-input" type="text" id="taxop-example-tools" name="example_tools" maxlength="200"
+                 placeholder="e.g. Braintrust, HoneyHive, LangSmith">
+          <div class="suggest-hint">2–3 tools that would belong in this subcategory</div>
+        </div>
+      `;
+    } else if (op === 'add_category') {
+      fieldsHtml = `
+        <div class="suggest-form-group">
+          <label for="taxop-track">Track <span class="required">*</span></label>
+          <select class="suggest-select" id="taxop-track" name="track" required>
+            <option value="">Select a track…</option>
+            <option value="users">For Users</option>
+            <option value="developers">For Developers</option>
+          </select>
+        </div>
+        <div class="suggest-form-group">
+          <label for="taxop-name">Category name <span class="required">*</span></label>
+          <input class="suggest-input" type="text" id="taxop-name" name="name" required maxlength="80"
+                 placeholder="e.g. Engineering Intelligence">
+        </div>
+        <div class="suggest-form-group">
+          <label for="taxop-description">Description <span class="required">*</span></label>
+          <textarea class="suggest-textarea" id="taxop-description" name="description" required maxlength="300"
+                    placeholder="What domain of AI tools does this cover?"></textarea>
+        </div>
+        <div class="suggest-form-group">
+          <label for="taxop-example-tools">Example tools (optional)</label>
+          <input class="suggest-input" type="text" id="taxop-example-tools" name="example_tools" maxlength="200"
+                 placeholder="e.g. Tool A, Tool B">
+        </div>
+      `;
+    } else if (op === 'add_tag') {
+      fieldsHtml = `
+        <div class="suggest-form-group">
+          <label for="taxop-family">Tag family <span class="required">*</span></label>
+          <select class="suggest-select" id="taxop-family" name="family" required>
+            <option value="">Select a family…</option>
+            <option value="capabilities">Capabilities — what the tool can do</option>
+            <option value="integrations">Integrations — what it connects to</option>
+            <option value="deployment">Deployment — how it's delivered</option>
+            <option value="use-cases">Use Cases — primary use scenarios</option>
+          </select>
+        </div>
+        <div class="suggest-form-group">
+          <label for="taxop-name">Tag name <span class="required">*</span></label>
+          <input class="suggest-input" type="text" id="taxop-name" name="name" required maxlength="60"
+                 placeholder="e.g. Multilingual">
+        </div>
+        <div class="suggest-form-group">
+          <label for="taxop-description">Description <span class="required">*</span></label>
+          <textarea class="suggest-textarea" id="taxop-description" name="description" required maxlength="200"
+                    placeholder="What does this tag mean? When does it apply?"></textarea>
+        </div>
+        <div class="suggest-form-group">
+          <label for="taxop-example-tools">Example tools that would have this tag (optional)</label>
+          <input class="suggest-input" type="text" id="taxop-example-tools" name="example_tools" maxlength="200"
+                 placeholder="e.g. Tool A, Tool B">
+        </div>
+      `;
+    } else if (op === 'rename') {
+      fieldsHtml = `
+        <div class="suggest-form-group">
+          <label for="taxop-target-kind">What to rename <span class="required">*</span></label>
+          <select class="suggest-select" id="taxop-target-kind" name="target_kind" required>
+            <option value="">Select…</option>
+            <option value="category">Category</option>
+            <option value="subcategory">Subcategory</option>
+            <option value="tag">Tag</option>
+          </select>
+        </div>
+        <div class="suggest-form-group">
+          <label for="taxop-target">Current name / slug <span class="required">*</span></label>
+          <input class="suggest-input" type="text" id="taxop-target" name="target" required maxlength="100"
+                 placeholder="e.g. agent-memory or Agent Memory">
+        </div>
+        <div class="suggest-form-group">
+          <label for="taxop-new-name">Proposed new name <span class="required">*</span></label>
+          <input class="suggest-input" type="text" id="taxop-new-name" name="new_name" required maxlength="100"
+                 placeholder="e.g. Memory Layers">
+        </div>
+      `;
+    } else if (op === 'other') {
+      fieldsHtml = `
+        <div class="suggest-form-group">
+          <label for="taxop-details">Describe the restructuring <span class="required">*</span></label>
+          <textarea class="suggest-textarea" id="taxop-details" name="details" required maxlength="1000"
+                    placeholder="e.g. Merge 'Agent Search' and 'Agent Memory' into a new 'Agent Context' subcategory because…"></textarea>
+          <div class="suggest-hint">This will be reviewed manually — never auto-applied.</div>
+        </div>
+      `;
+    }
+
+    return `
+      <form class="suggest-form" id="suggest-taxonomy-form" novalidate>
+        <div id="suggest-form-error" class="suggest-error" hidden></div>
+
+        ${fieldsHtml}
+
+        <div class="suggest-form-group">
+          <label for="taxop-rationale">Why? <span class="required">*</span></label>
+          <textarea class="suggest-textarea" id="taxop-rationale" name="rationale" required maxlength="500"
+                    placeholder="Explain why this change would improve the taxonomy…"></textarea>
+          <div class="suggest-hint">Required — helps reviewers understand the need.</div>
+        </div>
+
+        ${renderCreditConsent(user)}
+
+        <div class="suggest-form-actions">
+          <button class="suggest-btn" type="button" id="suggest-form-cancel">Cancel</button>
+          <button class="suggest-btn suggest-btn-primary" type="submit" id="suggest-form-submit">Submit suggestion</button>
+        </div>
+      </form>
     `;
   }
 
-  function renderFixDetailsStub(tool) {
-    return `
-      <div class="suggest-chooser">
-        <p style="color:var(--vscode-text-muted)">Fix details form coming soon (Phase 3.6)${tool ? ' for ' + escapeHtml(tool.name) : ''}.</p>
-        <div class="suggest-chooser-actions">
-          <button class="suggest-btn" type="button" id="suggest-chooser-cancel">Close</button>
-        </div>
+  function buildAllCategoryOptions(taxonomy) {
+    if (!taxonomy || !taxonomy.categories) return '';
+    let html = '';
+    for (const [track, cats] of Object.entries(taxonomy.categories)) {
+      const trackLabel = track === 'users' ? 'For Users' : 'For Developers';
+      for (const [id, cat] of Object.entries(cats || {})) {
+        html += `<option value="${escapeHtml(id)}" data-track="${escapeHtml(track)}">${escapeHtml(trackLabel + ' › ' + cat.name)}</option>`;
+      }
+    }
+    return html;
+  }
+
+  function wireTaxonomyOpForm(modal, op, taxonomy, user) {
+    wireCreditConsent(modal);
+    const form = modal.querySelector('#suggest-taxonomy-form');
+    const cancelBtn = modal.querySelector('#suggest-form-cancel');
+    if (cancelBtn) cancelBtn.addEventListener('click', close);
+    if (!form) return;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const rationale = (form.querySelector('#taxop-rationale')?.value || '').trim();
+      if (!rationale) {
+        showError(modal, 'Rationale is required — please explain why this change would improve the taxonomy.');
+        return;
+      }
+
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      // Assemble op-specific payload
+      let payload = { op };
+      if (op === 'add_subcategory') {
+        payload.parent_category = form.querySelector('#taxop-parent-category')?.value || '';
+        payload.name = form.querySelector('#taxop-name')?.value.trim() || '';
+        payload.description = form.querySelector('#taxop-description')?.value.trim() || '';
+        const exTools = form.querySelector('#taxop-example-tools')?.value.trim();
+        if (exTools) payload.example_tools = exTools.split(',').map(s => s.trim()).filter(Boolean);
+      } else if (op === 'add_category') {
+        payload.track = form.querySelector('#taxop-track')?.value || '';
+        payload.name = form.querySelector('#taxop-name')?.value.trim() || '';
+        payload.description = form.querySelector('#taxop-description')?.value.trim() || '';
+        const exTools = form.querySelector('#taxop-example-tools')?.value.trim();
+        if (exTools) payload.example_tools = exTools.split(',').map(s => s.trim()).filter(Boolean);
+      } else if (op === 'add_tag') {
+        payload.family = form.querySelector('#taxop-family')?.value || '';
+        payload.name = form.querySelector('#taxop-name')?.value.trim() || '';
+        payload.description = form.querySelector('#taxop-description')?.value.trim() || '';
+        const exTools = form.querySelector('#taxop-example-tools')?.value.trim();
+        if (exTools) payload.example_tools = exTools.split(',').map(s => s.trim()).filter(Boolean);
+      } else if (op === 'rename') {
+        payload.target_kind = form.querySelector('#taxop-target-kind')?.value || '';
+        payload.target = form.querySelector('#taxop-target')?.value.trim() || '';
+        payload.new_name = form.querySelector('#taxop-new-name')?.value.trim() || '';
+      } else if (op === 'other') {
+        payload.details = form.querySelector('#taxop-details')?.value.trim() || '';
+      }
+
+      const public_credit = form.querySelector('#suggest-public-credit')?.checked ?? true;
+      const credit_name = public_credit
+        ? (form.querySelector('#suggest-credit-name')?.value.trim().slice(0, 40) || '')
+        : null;
+
+      // Pre-check pending cap
+      let pendingCount = 0;
+      try { pendingCount = await window.SupabaseClient.countMyPending(); } catch (_) {}
+      if (pendingCount >= 20) {
+        showError(modal, 'You already have 20 pending suggestions. Please wait for some to be reviewed before submitting more.');
+        return;
+      }
+
+      const submitBtn = form.querySelector('#suggest-form-submit');
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Submitting…'; }
+
+      try {
+        const { error } = await window.SupabaseClient.createSuggestion({
+          kind: 'taxonomy_change',
+          payload,
+          rationale,
+          credit_name: credit_name || null,
+          public_credit
+        });
+
+        if (error) {
+          showError(modal, 'Submission failed: ' + escapeHtml(error.message));
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Submit suggestion'; }
+          return;
+        }
+
+        const body = modal.querySelector('.suggest-modal-body');
+        const titleEl = modal.querySelector('#suggest-modal-title');
+        if (titleEl) titleEl.textContent = 'Suggestion submitted!';
+        if (body) {
+          body.innerHTML = `
+            <div class="suggest-success">
+              <div class="suggest-success-icon">✓</div>
+              <h3>Thank you!</h3>
+              <p>Your taxonomy suggestion has been submitted and is pending review.</p>
+              <a href="/my-suggestions.html">Track it under My Suggestions</a>
+            </div>
+          `;
+        }
+      } catch (err) {
+        showError(modal, 'Unexpected error: ' + escapeHtml(err.message));
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Submit suggestion'; }
+      }
+    });
+  }
+
+  // ---------------------------------------------------------------------------
+  // Form C — Move or Re-tag a Tool
+  // ---------------------------------------------------------------------------
+
+  function renderMoveRetagForm(tool, taxonomy, user) {
+    const toolName = tool ? escapeHtml(tool.name) : 'this tool';
+    const currentCat = tool ? escapeHtml(tool.category || '') : '';
+    const currentSub = tool ? escapeHtml(tool.subcategory || '') : '';
+    const currentTags = tool && Array.isArray(tool.tags) ? tool.tags : [];
+
+    // Build subcategory picker from full taxonomy
+    let subOptions = '<option value="">Select a subcategory…</option>';
+    if (taxonomy && taxonomy.categories) {
+      for (const [track, cats] of Object.entries(taxonomy.categories)) {
+        const trackLabel = track === 'users' ? 'For Users' : 'For Developers';
+        for (const [catId, cat] of Object.entries(cats || {})) {
+          for (const [subId, sub] of Object.entries(cat.subcategories || {})) {
+            const label = `${trackLabel} › ${cat.name} › ${sub.name}`;
+            const selected = (subId === (tool && tool.subcategory)) ? ' selected' : '';
+            subOptions += `<option value="${escapeHtml(subId)}" data-track="${escapeHtml(track)}" data-category="${escapeHtml(catId)}"${selected}>${escapeHtml(label)}</option>`;
+          }
+        }
+      }
+    }
+
+    // Render tag groups for add/remove, with current tags pre-checked for remove
+    const tagFamilies = { capabilities: 'Capabilities', integrations: 'Integrations', deployment: 'Deployment', 'use-cases': 'Use Cases' };
+    let tagsAddHtml = '';
+    let tagsRemoveHtml = '';
+
+    if (taxonomy && taxonomy.tags) {
+      for (const [family, label] of Object.entries(tagFamilies)) {
+        const tags = taxonomy.tags[family];
+        if (!tags || !tags.length) continue;
+
+        const addChips = tags
+          .filter(t => !currentTags.includes(t.slug))
+          .map(t => `
+            <label class="suggest-tag-chip">
+              <input type="checkbox" name="tag_add" value="${escapeHtml(t.slug)}" title="${escapeHtml(t.description || t.name)}">
+              ${escapeHtml(t.name)}
+            </label>
+          `).join('');
+
+        const removeChips = tags
+          .filter(t => currentTags.includes(t.slug))
+          .map(t => `
+            <label class="suggest-tag-chip suggest-tag-chip--current">
+              <input type="checkbox" name="tag_remove" value="${escapeHtml(t.slug)}" title="${escapeHtml(t.description || t.name)}">
+              ${escapeHtml(t.name)}
+            </label>
+          `).join('');
+
+        if (addChips) {
+          tagsAddHtml += `
+            <div class="suggest-tag-group">
+              <div class="suggest-tag-family-label">${escapeHtml(label)}</div>
+              <div class="suggest-tag-grid">${addChips}</div>
+            </div>
+          `;
+        }
+        if (removeChips) {
+          tagsRemoveHtml += `
+            <div class="suggest-tag-group">
+              <div class="suggest-tag-family-label">${escapeHtml(label)}</div>
+              <div class="suggest-tag-grid">${removeChips}</div>
+            </div>
+          `;
+        }
+      }
+    }
+
+    const currentPlacementHtml = `
+      <div class="suggest-current-placement">
+        <strong>Current placement:</strong>
+        ${currentCat ? `<span class="suggest-badge">${currentCat}</span> › <span class="suggest-badge">${currentSub}</span>` : '<em>unknown</em>'}
+        ${currentTags.length ? `<div class="suggest-current-tags">${currentTags.map(t => `<span class="suggest-tag-chip suggest-tag-chip--display">${escapeHtml(t)}</span>`).join('')}</div>` : ''}
       </div>
     `;
+
+    return `
+      <form class="suggest-form" id="suggest-move-retag-form" novalidate>
+        <div id="suggest-form-error" class="suggest-error" hidden></div>
+
+        ${currentPlacementHtml}
+
+        <div class="suggest-form-group">
+          <label for="suggest-new-subcategory">Proposed subcategory</label>
+          <select class="suggest-select" id="suggest-new-subcategory" name="subcategory">
+            ${subOptions}
+          </select>
+          <div class="suggest-hint">Leave at the current value if you only want to change tags.</div>
+        </div>
+
+        <p class="suggest-placement-helper">
+          <strong>Subcategory vs Tags:</strong> subcategory is where the tool <em>lives</em> in the taxonomy
+          (pick the best fit — tools have exactly one home). Tags describe cross-cutting traits
+          (e.g. "self-hosted", "api-available") — add as many as apply.
+        </p>
+
+        ${tagsAddHtml ? `
+          <div class="suggest-form-group">
+            <div class="suggest-tag-section-label">Add tags</div>
+            ${tagsAddHtml}
+          </div>
+        ` : ''}
+
+        ${tagsRemoveHtml ? `
+          <div class="suggest-form-group">
+            <div class="suggest-tag-section-label">Remove tags (currently applied)</div>
+            ${tagsRemoveHtml}
+          </div>
+        ` : ''}
+
+        <div class="suggest-form-group">
+          <label for="suggest-retag-rationale">Why? <span class="required">*</span></label>
+          <textarea class="suggest-textarea" id="suggest-retag-rationale" name="rationale" required maxlength="500"
+                    placeholder="Explain why this placement or tag change is more accurate…"></textarea>
+          <div class="suggest-hint">Required.</div>
+        </div>
+
+        ${renderCreditConsent(user)}
+
+        <div class="suggest-form-actions">
+          <button class="suggest-btn" type="button" id="suggest-form-cancel">Cancel</button>
+          <button class="suggest-btn suggest-btn-primary" type="submit" id="suggest-form-submit">Submit suggestion</button>
+        </div>
+      </form>
+    `;
+  }
+
+  function wireMoveRetagForm(modal, tool, taxonomy, user) {
+    wireCreditConsent(modal);
+    const form = modal.querySelector('#suggest-move-retag-form');
+    const cancelBtn = modal.querySelector('#suggest-form-cancel');
+    if (cancelBtn) cancelBtn.addEventListener('click', close);
+    if (!form) return;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const rationale = (form.querySelector('#suggest-retag-rationale')?.value || '').trim();
+      if (!rationale) {
+        showError(modal, 'Rationale is required — please explain why this placement change is more accurate.');
+        return;
+      }
+
+      // Resolve proposed subcategory and its parent category/track
+      const subSelect = form.querySelector('#suggest-new-subcategory');
+      const selectedOption = subSelect ? subSelect.options[subSelect.selectedIndex] : null;
+      const proposedSubcategory = subSelect ? subSelect.value : '';
+      const proposedCategory = selectedOption ? (selectedOption.dataset.category || '') : '';
+      const proposedTrack = selectedOption ? (selectedOption.dataset.track || '') : '';
+
+      // Build tags_add and tags_remove
+      const tagsAdd = Array.from(form.querySelectorAll('input[name="tag_add"]:checked')).map(i => i.value);
+      const tagsRemove = Array.from(form.querySelectorAll('input[name="tag_remove"]:checked')).map(i => i.value);
+
+      const currentTags = tool && Array.isArray(tool.tags) ? tool.tags : [];
+      const current = {
+        category: tool ? (tool.category || '') : '',
+        subcategory: tool ? (tool.subcategory || '') : '',
+        tags: currentTags
+      };
+      const proposed = {
+        category: proposedCategory || current.category,
+        subcategory: proposedSubcategory || current.subcategory,
+        tags_add: tagsAdd,
+        tags_remove: tagsRemove
+      };
+
+      let payload;
+      try {
+        payload = window.SuggestLogic.buildPayload('tool_placement', { current, proposed });
+      } catch (err) {
+        showError(modal, 'Failed to build payload: ' + escapeHtml(err.message));
+        return;
+      }
+
+      const public_credit = form.querySelector('#suggest-public-credit')?.checked ?? true;
+      const credit_name = public_credit
+        ? (form.querySelector('#suggest-credit-name')?.value.trim().slice(0, 40) || '')
+        : null;
+
+      // Pre-check pending cap
+      let pendingCount = 0;
+      try { pendingCount = await window.SupabaseClient.countMyPending(); } catch (_) {}
+      if (pendingCount >= 20) {
+        showError(modal, 'You already have 20 pending suggestions. Please wait for some to be reviewed before submitting more.');
+        return;
+      }
+
+      const submitBtn = form.querySelector('#suggest-form-submit');
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Submitting…'; }
+
+      try {
+        const { error } = await window.SupabaseClient.createSuggestion({
+          kind: 'tool_placement',
+          tool_slug: tool ? tool.slug : null,
+          payload,
+          rationale,
+          credit_name: credit_name || null,
+          public_credit
+        });
+
+        if (error) {
+          showError(modal, 'Submission failed: ' + escapeHtml(error.message));
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Submit suggestion'; }
+          return;
+        }
+
+        const body = modal.querySelector('.suggest-modal-body');
+        const titleEl = modal.querySelector('#suggest-modal-title');
+        if (titleEl) titleEl.textContent = 'Suggestion submitted!';
+        if (body) {
+          body.innerHTML = `
+            <div class="suggest-success">
+              <div class="suggest-success-icon">✓</div>
+              <h3>Thank you!</h3>
+              <p>Your placement suggestion for <strong>${escapeHtml(tool ? tool.name : 'this tool')}</strong> has been submitted and is pending review.</p>
+              <a href="/my-suggestions.html">Track it under My Suggestions</a>
+            </div>
+          `;
+        }
+      } catch (err) {
+        showError(modal, 'Unexpected error: ' + escapeHtml(err.message));
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Submit suggestion'; }
+      }
+    });
+  }
+
+  // ---------------------------------------------------------------------------
+  // Form D — Fix Tool Details
+  // ---------------------------------------------------------------------------
+
+  function renderFixDetailsForm(tool, user) {
+    const t = tool || {};
+
+    return `
+      <form class="suggest-form" id="suggest-fix-details-form" novalidate>
+        <div id="suggest-form-error" class="suggest-error" hidden></div>
+
+        <p class="suggest-hint">Edit only the fields that are wrong. Only changed fields will be submitted.</p>
+
+        <div class="suggest-form-group">
+          <label for="fix-description">Description</label>
+          <textarea class="suggest-textarea" id="fix-description" name="description"
+                    maxlength="300"
+                    placeholder="One-line description of what this tool does">${escapeHtml(t.desc || t.description || '')}</textarea>
+        </div>
+
+        <div class="suggest-form-group">
+          <label for="fix-website">Website URL</label>
+          <input class="suggest-input" type="url" id="fix-website" name="website"
+                 value="${escapeHtml(t.url || t.website || '')}"
+                 placeholder="https://example.com">
+        </div>
+
+        <div class="suggest-form-group">
+          <label for="fix-github-url">GitHub URL (optional)</label>
+          <input class="suggest-input" type="url" id="fix-github-url" name="github_url"
+                 value="${escapeHtml(t.github_url || '')}"
+                 placeholder="https://github.com/org/repo">
+        </div>
+
+        <div class="suggest-form-group">
+          <label for="fix-type">Type</label>
+          <select class="suggest-select" id="fix-type" name="type">
+            <option value="" ${!t.type ? 'selected' : ''}>Unknown</option>
+            <option value="oss" ${t.type === 'oss' ? 'selected' : ''}>Open Source</option>
+            <option value="saas" ${t.type === 'saas' ? 'selected' : ''}>SaaS / Managed</option>
+            <option value="commercial" ${t.type === 'commercial' ? 'selected' : ''}>Commercial</option>
+          </select>
+        </div>
+
+        <div class="suggest-form-group">
+          <label for="fix-pricing-model">Pricing Model</label>
+          <select class="suggest-select" id="fix-pricing-model" name="pricing_model">
+            <option value="" ${!t.pricing_model ? 'selected' : ''}>Unknown</option>
+            <option value="free" ${t.pricing_model === 'free' ? 'selected' : ''}>Free</option>
+            <option value="freemium" ${t.pricing_model === 'freemium' ? 'selected' : ''}>Freemium</option>
+            <option value="paid" ${t.pricing_model === 'paid' ? 'selected' : ''}>Paid</option>
+            <option value="open-source" ${t.pricing_model === 'open-source' ? 'selected' : ''}>Open Source</option>
+          </select>
+        </div>
+
+        <div class="suggest-form-group">
+          <label for="fix-rationale">Anything to add for the reviewer? (optional)</label>
+          <textarea class="suggest-textarea" id="fix-rationale" name="rationale"
+                    maxlength="300"
+                    placeholder="e.g. The website changed, or the description is outdated…"></textarea>
+        </div>
+
+        ${renderCreditConsent(user)}
+
+        <div class="suggest-form-actions">
+          <button class="suggest-btn" type="button" id="suggest-form-cancel">Cancel</button>
+          <button class="suggest-btn suggest-btn-primary" type="submit" id="suggest-form-submit">Submit suggestion</button>
+        </div>
+      </form>
+    `;
+  }
+
+  function wireFixDetailsForm(modal, tool, user) {
+    wireCreditConsent(modal);
+    const form = modal.querySelector('#suggest-fix-details-form');
+    const cancelBtn = modal.querySelector('#suggest-form-cancel');
+    if (cancelBtn) cancelBtn.addEventListener('click', close);
+    if (!form) return;
+
+    // Snapshot original values from the tool context at wire-time
+    const t = tool || {};
+    const original = {
+      description: t.desc || t.description || '',
+      website: t.url || t.website || '',
+      github_url: t.github_url || '',
+      type: t.type || '',
+      pricing_model: t.pricing_model || ''
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const edited = {
+        description: (form.querySelector('#fix-description')?.value || '').trim(),
+        website: (form.querySelector('#fix-website')?.value || '').trim(),
+        github_url: (form.querySelector('#fix-github-url')?.value || '').trim(),
+        type: form.querySelector('#fix-type')?.value || '',
+        pricing_model: form.querySelector('#fix-pricing-model')?.value || ''
+      };
+
+      let payload;
+      try {
+        payload = window.SuggestLogic.buildPayload('tool_edit', { original, edited });
+      } catch (err) {
+        showError(modal, 'Failed to build payload: ' + escapeHtml(err.message));
+        return;
+      }
+
+      if (!payload.changes || Object.keys(payload.changes).length === 0) {
+        showError(modal, 'No changes detected — please modify at least one field before submitting.');
+        return;
+      }
+
+      const rationale = (form.querySelector('#fix-rationale')?.value || '').trim();
+
+      const public_credit = form.querySelector('#suggest-public-credit')?.checked ?? true;
+      const credit_name = public_credit
+        ? (form.querySelector('#suggest-credit-name')?.value.trim().slice(0, 40) || '')
+        : null;
+
+      // Pre-check pending cap
+      let pendingCount = 0;
+      try { pendingCount = await window.SupabaseClient.countMyPending(); } catch (_) {}
+      if (pendingCount >= 20) {
+        showError(modal, 'You already have 20 pending suggestions. Please wait for some to be reviewed before submitting more.');
+        return;
+      }
+
+      const submitBtn = form.querySelector('#suggest-form-submit');
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Submitting…'; }
+
+      try {
+        const { error } = await window.SupabaseClient.createSuggestion({
+          kind: 'tool_edit',
+          tool_slug: tool ? tool.slug : null,
+          payload,
+          rationale: rationale || null,
+          credit_name: credit_name || null,
+          public_credit
+        });
+
+        if (error) {
+          showError(modal, 'Submission failed: ' + escapeHtml(error.message));
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Submit suggestion'; }
+          return;
+        }
+
+        const body = modal.querySelector('.suggest-modal-body');
+        const titleEl = modal.querySelector('#suggest-modal-title');
+        if (titleEl) titleEl.textContent = 'Suggestion submitted!';
+        if (body) {
+          body.innerHTML = `
+            <div class="suggest-success">
+              <div class="suggest-success-icon">✓</div>
+              <h3>Thank you!</h3>
+              <p>Your detail fix for <strong>${escapeHtml(tool ? tool.name : 'this tool')}</strong> has been submitted and is pending review.</p>
+              <a href="/my-suggestions.html">Track it under My Suggestions</a>
+            </div>
+          `;
+        }
+      } catch (err) {
+        showError(modal, 'Unexpected error: ' + escapeHtml(err.message));
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Submit suggestion'; }
+      }
+    });
   }
 
   // ---------------------------------------------------------------------------
@@ -800,15 +1536,22 @@
     } else if (subMode === 'taxonomy') {
       const titleEl = modal.querySelector('#suggest-modal-title');
       if (titleEl) titleEl.textContent = 'Suggest a taxonomy change';
-      showInModal(modal, renderTaxonomyStub());
+      showInModal(modal, renderTaxonomyOpChooser());
+      wireTaxonomyOpChooser(modal, taxonomy, user);
     } else if (subMode === 'move-retag') {
       const titleEl = modal.querySelector('#suggest-modal-title');
-      if (titleEl) titleEl.textContent = 'Suggest move / re-tag';
-      showInModal(modal, renderMoveRetagStub(tool));
+      if (titleEl) titleEl.textContent = 'Move or re-tag: ' + (tool ? escapeHtml(tool.name) : 'tool');
+      showInModal(modal, renderMoveRetagForm(tool, taxonomy, user));
+      wireMoveRetagForm(modal, tool, taxonomy, user);
+      const firstInput = modal.querySelector('#suggest-new-subcategory');
+      if (firstInput) firstInput.focus();
     } else if (subMode === 'fix-details') {
       const titleEl = modal.querySelector('#suggest-modal-title');
-      if (titleEl) titleEl.textContent = 'Suggest a detail fix';
-      showInModal(modal, renderFixDetailsStub(tool));
+      if (titleEl) titleEl.textContent = 'Fix details: ' + (tool ? escapeHtml(tool.name) : 'tool');
+      showInModal(modal, renderFixDetailsForm(tool, user));
+      wireFixDetailsForm(modal, tool, user);
+      const firstInput = modal.querySelector('#fix-description');
+      if (firstInput) firstInput.focus();
     }
   }
 
@@ -854,18 +1597,8 @@
         routeToForm(modal, subMode, tool, taxonomy, user);
       });
     } else if (mode === 'taxonomy') {
-      const modal = mountAndOpen('Suggest a taxonomy change', renderAddChooser());
-      // Pre-navigate to taxonomy sub-mode
-      wireChooser(modal, (subMode) => {
-        routeToForm(modal, subMode, tool, taxonomy, user);
-      });
-      // Auto-select taxonomy card
-      const taxCard = modal.querySelector('[data-mode="taxonomy"]');
-      if (taxCard) {
-        taxCard.click();
-        const nextBtn = modal.querySelector('#suggest-chooser-next');
-        if (nextBtn && !nextBtn.disabled) nextBtn.click();
-      }
+      const modal = mountAndOpen('Suggest a taxonomy change', renderTaxonomyOpChooser());
+      wireTaxonomyOpChooser(modal, taxonomy, user);
     } else if (mode === 'tool') {
       const toolName = tool ? tool.name : 'a tool';
       const modal = mountAndOpen(`Suggest a change to ${toolName}`, renderToolChooser(tool));
