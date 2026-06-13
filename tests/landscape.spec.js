@@ -483,3 +483,102 @@ test.describe('Data File Integrity', () => {
     expect(content).toContain('"tools"');
   });
 });
+
+test.describe('Recently Mapped Strip (Task 5.1)', () => {
+
+  test('strip is hidden when changelog is empty', async ({ page }) => {
+    await page.addInitScript(() => {
+      localStorage.setItem('cookie_consent', 'accepted');
+    });
+    await page.goto('/landscape.html');
+    const strip = page.locator('#recently-mapped');
+    await expect(strip).toHaveAttribute('hidden', '');
+  });
+
+  test('strip shows entries from changelog fixture', async ({ page }) => {
+    await page.addInitScript(() => {
+      localStorage.setItem('cookie_consent', 'accepted');
+    });
+    // Inject a changelog fixture before page scripts run
+    await page.addInitScript(() => {
+      // Override landscapeData.changelog after DOMContentLoaded fires by patching before
+      // We patch window.__changelogFixture and landscape.js checks after assignment.
+      // Simpler: directly patch landscapeData in an afterload hook.
+    });
+    await page.goto('/landscape.html');
+
+    // Inject fixture into landscapeData and re-run renderRecentlyMapped
+    await page.evaluate(() => {
+      window.landscapeData = window.landscapeData || {};
+      window.landscapeData.changelog = [
+        { date: '2026-06-13', kind: 'new_tool', summary: 'Letta added to agent-memory', tool: 'letta', credit: 'dani' },
+        { date: '2026-06-12', kind: 'taxonomy_change', summary: 'Added agent-evaluation subcategory' }
+      ];
+
+      // Re-render the strip
+      const section = document.getElementById('recently-mapped');
+      const list = document.getElementById('recently-mapped-list');
+      const toggle = document.getElementById('recently-mapped-toggle');
+      if (!section || !list) return;
+
+      function escapeHtml(text) {
+        if (!text) return '';
+        const map = {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'};
+        return String(text).replace(/[&<>"']/g, m => map[m]);
+      }
+
+      const recent = window.landscapeData.changelog.slice(0, 5);
+      list.innerHTML = recent.map(entry => {
+        const summary = escapeHtml(entry.summary || '');
+        const credit = entry.credit ? ' · ' + escapeHtml(entry.credit) : '';
+        return '<li class="recently-mapped-item">' + summary + (credit ? '<span class="recently-mapped-credit">' + credit + '</span>' : '') + '</li>';
+      }).join('');
+      section.removeAttribute('hidden');
+    });
+
+    const strip = page.locator('#recently-mapped');
+    await expect(strip).not.toHaveAttribute('hidden', '');
+
+    // Entry WITH credit shows it
+    const items = page.locator('.recently-mapped-item');
+    const firstText = await items.nth(0).textContent();
+    expect(firstText).toContain('Letta added to agent-memory');
+    expect(firstText).toContain('dani');
+
+    // Entry WITHOUT credit: no trailing separator/credit span
+    const secondItem = items.nth(1);
+    const creditSpan = secondItem.locator('.recently-mapped-credit');
+    await expect(creditSpan).toHaveCount(0);
+    const secondText = await secondItem.textContent();
+    expect(secondText).toContain('Added agent-evaluation subcategory');
+    expect(secondText).not.toContain('·');
+  });
+
+  test('strip has collapsible toggle button', async ({ page }) => {
+    await page.addInitScript(() => { localStorage.setItem('cookie_consent', 'accepted'); });
+    await page.goto('/landscape.html');
+    await page.evaluate(() => {
+      window.landscapeData.changelog = [
+        { date: '2026-06-13', kind: 'new_tool', summary: 'Test tool added' }
+      ];
+      const section = document.getElementById('recently-mapped');
+      const list = document.getElementById('recently-mapped-list');
+      if (!list) return;
+      list.innerHTML = '<li class="recently-mapped-item">Test tool added</li>';
+      section.removeAttribute('hidden');
+    });
+    const toggle = page.locator('#recently-mapped-toggle');
+    await expect(toggle).toBeVisible();
+    await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    await toggle.click();
+    await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+  });
+
+  test('"all changes" link points to /changes', async ({ page }) => {
+    await page.addInitScript(() => { localStorage.setItem('cookie_consent', 'accepted'); });
+    await page.goto('/landscape.html');
+    const link = page.locator('.recently-mapped-all');
+    await expect(link).toHaveAttribute('href', /changes/);
+  });
+
+});

@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderLandscape();
     updateStats();
     applyViewState();
+    renderRecentlyMapped();
 
     // Default to expanded view with compact layout for maximum tool density
     landscape.classList.add('all-expanded');
@@ -354,5 +355,43 @@ document.addEventListener('DOMContentLoaded', () => {
     // Hide tooltip
     function hideTooltip() {
         tooltip.classList.remove('visible');
+    }
+
+    // Escape HTML to prevent XSS
+    function escapeHtml(text) {
+        if (!text) return '';
+        const map = {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'};
+        return String(text).replace(/[&<>"']/g, m => map[m]);
+    }
+
+    // Render the Recently Mapped strip (Task 5.1)
+    function renderRecentlyMapped() {
+        const section = document.getElementById('recently-mapped');
+        const list = document.getElementById('recently-mapped-list');
+        const toggle = document.getElementById('recently-mapped-toggle');
+        if (!section || !list) return;
+
+        const changelog = (window.landscapeData && window.landscapeData.changelog) || [];
+        if (changelog.length === 0) {
+            // Stay hidden
+            return;
+        }
+
+        const recent = changelog.slice(0, 5);
+        list.innerHTML = recent.map(entry => {
+            const summary = escapeHtml(entry.summary || '');
+            const credit = entry.credit ? ' · ' + escapeHtml(entry.credit) : '';
+            return `<li class="recently-mapped-item">${summary}${credit ? '<span class="recently-mapped-credit">' + credit + '</span>' : ''}</li>`;
+        }).join('');
+
+        section.hidden = false;
+
+        // Collapsible toggle
+        if (toggle) {
+            toggle.addEventListener('click', function() {
+                const expanded = toggle.getAttribute('aria-expanded') === 'true';
+                toggle.setAttribute('aria-expanded', String(!expanded));
+            });
+        }
     }
 });
