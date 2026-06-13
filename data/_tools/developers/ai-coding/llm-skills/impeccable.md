@@ -7,6 +7,8 @@ track: "developers"
 category: "ai-coding"
 subcategory: "llm-skills"
 status: "active"
+tags:
+  - skill
 description: "Design vocabulary and skill system for AI agents that addresses visual uniformity in AI-generated interfaces"
 github_url: "https://github.com/pbakaus/impeccable"
 github_stars: 37993

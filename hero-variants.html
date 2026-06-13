@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Variants - AI Tool Review</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .variant-container {
+            border: 2px solid var(--vscode-border);
+            margin: 20px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .variant-label {
+            background: var(--vscode-button-bg);
+            color: white;
+            padding: 8px 16px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .variants-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+        @media (max-width: 1200px) {
+            .variants-grid { grid-template-columns: 1fr; }
+        }
+        body { padding: 0; }
+        .hero { border-bottom: none; }
+    </style>
+</head>
+<body>
+
+<!-- VARIANT 1: The Direct Question (Current) -->
+<div class="variant-container" id="v1">
+    <div class="variant-label">V1: The Direct Question</div>
+    <section class="hero hero-action">
+        <h1 class="hero-title">What do you want to build?</h1>
+        <p class="hero-subtitle">Describe your goal and find the right AI tools</p>
+        <div class="action-search">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <input type="text" class="action-input" placeholder="Try 'Image Generation' or 'Agent Frameworks'...">
+        </div>
+        <div class="quick-actions">
+            <button class="action-chip">Image Generation</button>
+            <button class="action-chip">Code Assistant</button>
+            <button class="action-chip">Agent Frameworks</button>
+        </div>
+    </section>
+</div>
+
+<!-- VARIANT 2: The Time-Saver -->
+<div class="variant-container" id="v2">
+    <div class="variant-label">V2: The Time-Saver</div>
+    <section class="hero hero-action">
+        <h1 class="hero-title">Stop searching. Start building.</h1>
+        <p class="hero-subtitle">330+ AI tools, organized so you don't have to be</p>
+        <div class="action-search">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <input type="text" class="action-input" placeholder="What are you building?">
+        </div>
+        <div class="quick-actions">
+            <button class="action-chip">Coding Agents</button>
+            <button class="action-chip">RAG Pipelines</button>
+            <button class="action-chip">Image Gen</button>
+            <button class="action-chip">Observability</button>
+        </div>
+    </section>
+</div>
+
+<!-- VARIANT 3: The Navigator -->
+<div class="variant-container" id="v3">
+    <div class="variant-label">V3: The Navigator</div>
+    <section class="hero hero-action">
+        <p class="hero-subtitle" style="margin-bottom: 0.5rem; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7;">The AI Tools Landscape</p>
+        <h1 class="hero-title" style="font-size: 32px; font-weight: 500;">330+ tools. One clear map.</h1>
+        <p class="hero-subtitle">Find exactly what you need in under 30 seconds</p>
+        <div class="action-search">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <input type="text" class="action-input" placeholder="Search tools, categories, or capabilities...">
+        </div>
+        <div class="quick-actions">
+            <button class="action-chip">Browse Full Landscape</button>
+        </div>
+    </section>
+</div>
+
+<!-- VARIANT 4: The Insider -->
+<div class="variant-container" id="v4">
+    <div class="variant-label">V4: The Insider</div>
+    <section class="hero hero-action">
+        <h1 class="hero-title" style="font-size: 26px;">The landscape devs actually use</h1>
+        <p class="hero-subtitle">No affiliate links. No sponsored placements. Just tools.</p>
+        <div class="action-search">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <input type="text" class="action-input" placeholder="Search 330+ tools...">
+        </div>
+        <div class="quick-actions" style="gap: 8px;">
+            <button class="action-chip" style="background: rgba(78, 201, 176, 0.15); border-color: var(--color-oss);">OSS Tools</button>
+            <button class="action-chip">SaaS</button>
+            <button class="action-chip">Commercial</button>
+        </div>
+    </section>
+</div>
+
+<!-- VARIANT 5: The Problem-Solution -->
+<div class="variant-container" id="v5">
+    <div class="variant-label">V5: The Problem-Solution</div>
+    <section class="hero hero-action">
+        <h1 class="hero-title" style="font-size: 24px; color: var(--vscode-text-muted); font-weight: 300;">Finding the right AI tool shouldn't take hours.</h1>
+        <p class="hero-subtitle" style="font-size: 18px; color: #e0e0e0; font-weight: 400; margin-top: 0.5rem;">It takes 30 seconds here.</p>
+        <div class="action-search" style="margin-top: 1.5rem;">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <input type="text" class="action-input" placeholder="What do you need?">
+        </div>
+        <div class="quick-actions">
+            <button class="action-chip">Code Generation</button>
+            <button class="action-chip">Agent Building</button>
+            <button class="action-chip">Image/Video</button>
+        </div>
+    </section>
+</div>
+
+<!-- VARIANT 6: The Authority -->
+<div class="variant-container" id="v6">
+    <div class="variant-label">V6: The Authority</div>
+    <section class="hero hero-action">
+        <h1 class="hero-title" style="font-size: 28px;">AI Tool Review</h1>
+        <p class="hero-subtitle" style="font-size: 16px; margin-bottom: 1rem;">Community-curated. No marketing BS.</p>
+        <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; font-size: 13px; color: var(--vscode-text-muted);">
+            <span><strong style="color: var(--vscode-number);">330+</strong> tools</span>
+            <span><strong style="color: var(--vscode-number);">15</strong> categories</span>
+            <span><strong style="color: var(--vscode-number);">OSS</strong> focused</span>
+        </div>
+        <div class="action-search">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <input type="text" class="action-input" placeholder="Search tools...">
+        </div>
+    </section>
+</div>
+
+<!-- VARIANT 7: The Explorer -->
+<div class="variant-container" id="v7">
+    <div class="variant-label">V7: The Explorer</div>
+    <section class="hero hero-action" style="padding: 2.5rem 1rem;">
+        <h1 class="hero-title" style="font-size: 26px; letter-spacing: 2px; font-weight: 300;">Discover. Compare. Ship.</h1>
+        <div class="action-search" style="margin: 1.5rem auto;">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <input type="text" class="action-input" placeholder="Search the AI landscape...">
+        </div>
+        <div class="quick-actions" style="gap: 6px;">
+            <button class="action-chip" style="font-size: 12px; padding: 8px 14px;">Foundation Models</button>
+            <button class="action-chip" style="font-size: 12px; padding: 8px 14px;">Coding</button>
+            <button class="action-chip" style="font-size: 12px; padding: 8px 14px;">Agents</button>
+            <button class="action-chip" style="font-size: 12px; padding: 8px 14px;">Media</button>
+            <button class="action-chip" style="font-size: 12px; padding: 8px 14px;">Data</button>
+        </div>
+    </section>
+</div>
+
+<!-- VARIANT 8: The Category-First -->
+<div class="variant-container" id="v8">
+    <div class="variant-label">V8: The Category-First</div>
+    <section class="hero hero-action" style="padding: 2rem 1rem 1.5rem;">
+        <div class="action-search" style="margin-bottom: 1.5rem;">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <input type="text" class="action-input" placeholder="Search 330+ AI tools...">
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; max-width: 600px; margin: 0 auto;">
+            <button class="action-chip" style="flex-direction: column; padding: 12px 8px; border-radius: 8px;">
+                <span style="font-size: 18px; margin-bottom: 4px;">🤖</span>
+                <span style="font-size: 11px;">Agents</span>
+            </button>
+            <button class="action-chip" style="flex-direction: column; padding: 12px 8px; border-radius: 8px;">
+                <span style="font-size: 18px; margin-bottom: 4px;">💻</span>
+                <span style="font-size: 11px;">Coding</span>
+            </button>
+            <button class="action-chip" style="flex-direction: column; padding: 12px 8px; border-radius: 8px;">
+                <span style="font-size: 18px; margin-bottom: 4px;">🎨</span>
+                <span style="font-size: 11px;">Media</span>
+            </button>
+            <button class="action-chip" style="flex-direction: column; padding: 12px 8px; border-radius: 8px;">
+                <span style="font-size: 18px; margin-bottom: 4px;">🔬</span>
+                <span style="font-size: 11px;">Models</span>
+            </button>
+        </div>
+        <a href="landscape.html" style="display: block; margin-top: 1rem; font-size: 13px; color: var(--vscode-text-link);">View all 15 categories →</a>
+    </section>
+</div>
+
+</body>
+</html>

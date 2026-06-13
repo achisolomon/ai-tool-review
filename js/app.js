@@ -1,4 +1,24 @@
 // AI Tool Review - Homepage Search Application
+
+// Populate hero subtitle counts from live data
+(function updateHeroCounts() {
+    if (typeof landscapeData === 'undefined') return;
+    let toolCount = 0, catCount = 0;
+    for (const track of ['users', 'developers']) {
+        if (!landscapeData[track]) continue;
+        catCount += landscapeData[track].length;
+        for (const cat of landscapeData[track]) {
+            for (const sub of cat.subcategories) {
+                toolCount += sub.tools.length;
+            }
+        }
+    }
+    const tcEl = document.getElementById('hero-tool-count');
+    const ccEl = document.getElementById('hero-cat-count');
+    if (tcEl) tcEl.textContent = toolCount + '+';
+    if (ccEl) ccEl.textContent = catCount + '+';
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
     // State
     let searchQuery = '';
@@ -62,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const tools = getToolsByTags(tagSlugs);
                 const displayName = tagSlugs.join(' + ');
                 actionInput.value = displayName;
-                searchResults.classList.remove('hidden');
+                showSearchResults();
                 renderSearchResults(tools);
                 updatePageTitle(displayName);
                 return;
@@ -78,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 // Invalid subcategory - show empty results
                 actionInput.value = subcategoryId;
-                searchResults.classList.remove('hidden');
+                showSearchResults();
                 renderSearchResults([]);
             }
         } else if (categoryId) {
@@ -90,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 // Invalid category - show empty results
                 actionInput.value = categoryId;
-                searchResults.classList.remove('hidden');
+                showSearchResults();
                 renderSearchResults([]);
             }
         } else if (query && query.trim()) {
@@ -235,6 +255,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const clearSearch = document.getElementById('clear-search');
     const autocompleteDropdown = document.getElementById('autocomplete-dropdown');
     const copyLinkButton = document.getElementById('copy-link');
+    const heroSection = document.getElementById('hero-action');
+
+    // Helper functions to toggle search results view
+    function showSearchResults() {
+        searchResults.classList.remove('hidden');
+    }
+
+    function hideSearchResults() {
+        searchResults.classList.add('hidden');
+    }
 
     // Debounce timers (scoped at module level so selectAutocompleteItem can cancel them)
     let searchTimeout;
@@ -544,7 +574,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 50);
         } else if (item.type === 'subcategory') {
             // Show all tools in this subcategory
-            searchResults.classList.remove('hidden');
+            showSearchResults();
             showLoading();
             updateURL('subcategory', item.id);
             updatePageTitle(item.name);
@@ -833,7 +863,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         resultsCount.textContent = `${tools.length} tool${tools.length === 1 ? '' : 's'} found`;
-        resultsGrid.innerHTML = tools.map(tool => createResultCardHTML(tool)).join('');
+
+        // Group large result sets by category so long lists read like a map,
+        // preserving relevance order (first hit decides group position)
+        const categories = [...new Set(tools.map(t => t.categoryName))];
+        if (tools.length > 9 && categories.length > 1) {
+            let html = '';
+            for (const cat of categories) {
+                const group = tools.filter(t => t.categoryName === cat);
+                html += `<div class="results-group-header"><span class="results-group-name">${cat}</span><span class="results-group-count">${group.length}</span></div>`;
+                html += group.map(tool => createResultCardHTML(tool)).join('');
+            }
+            resultsGrid.innerHTML = html;
+        } else {
+            resultsGrid.innerHTML = tools.map(tool => createResultCardHTML(tool)).join('');
+        }
     }
 
     // Create result card HTML - compact, info-dense design
@@ -875,6 +919,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         return `
             <div class="result-card"
+                 tabindex="0"
+                 role="link"
+                 aria-label="${tool.name}: ${(tool.desc || 'AI tool').replace(/"/g, '&quot;')}"
                  data-name="${tool.name}"
                  data-slug="${slug}"
                  data-url="${tool.url}"
@@ -907,13 +954,13 @@ document.addEventListener('DOMContentLoaded', () => {
         searchQuery = query;
 
         if (query.trim() === '') {
-            searchResults.classList.add('hidden');
+            hideSearchResults();
             hideLoading();
             clearURL();
             return;
         }
 
-        searchResults.classList.remove('hidden');
+        showSearchResults();
         showLoading();
 
         // Use setTimeout to allow loading state to render
@@ -949,12 +996,12 @@ document.addEventListener('DOMContentLoaded', () => {
         searchQuery = query;
 
         if (query.trim() === '') {
-            searchResults.classList.add('hidden');
+            hideSearchResults();
             hideLoading();
             return;
         }
 
-        searchResults.classList.remove('hidden');
+        showSearchResults();
         showLoading();
 
         setTimeout(() => {
@@ -993,7 +1040,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Delayed full search (show results after typing pause)
             clearTimeout(searchTimeout);
             if (value === '') {
-                searchResults.classList.add('hidden');
+                hideSearchResults();
             } else {
                 searchTimeout = setTimeout(() => {
                     performSearch(value);
@@ -1039,7 +1086,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Clear search and hide everything
                 actionInput.value = '';
                 searchQuery = '';
-                searchResults.classList.add('hidden');
+                hideSearchResults();
                 autocompleteDropdown.classList.add('hidden');
                 selectedAutocompleteIndex = -1;
                 clearURL();
@@ -1068,7 +1115,7 @@ document.addEventListener('DOMContentLoaded', () => {
         clearSearch.addEventListener('click', () => {
             actionInput.value = '';
             searchQuery = '';
-            searchResults.classList.add('hidden');
+            hideSearchResults();
             autocompleteDropdown.classList.add('hidden');
             clearURL();
             actionInput.focus();
@@ -1090,6 +1137,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Result card keyboard activation (cards are role=link divs)
+        resultsGrid.addEventListener('keydown', (e) => {
+            if (e.key !== 'Enter' && e.key !== ' ') return;
+            const card = e.target.closest('.result-card');
+            if (card && card === e.target) {
+                e.preventDefault();
+                const slug = card.dataset.slug;
+                if (slug) {
+                    window.location.href = `/tools/${slug}/`;
+                }
+            }
+        });
+
         // Keyboard shortcuts
         document.addEventListener('keydown', (e) => {
             // Focus search on '/' key
@@ -1101,7 +1161,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.key === 'Escape' && document.activeElement !== actionInput) {
                 actionInput.value = '';
                 searchQuery = '';
-                searchResults.classList.add('hidden');
+                hideSearchResults();
                 autocompleteDropdown.classList.add('hidden');
                 clearURL();
             }
@@ -1136,7 +1196,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const tools = getToolsByTags(tagSlugs);
                     const displayName = tagSlugs.join(' + ');
                     actionInput.value = displayName;
-                    searchResults.classList.remove('hidden');
+                    showSearchResults();
                     renderSearchResults(tools);
                     updatePageTitle(displayName);
                     return;
@@ -1148,13 +1208,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (subcategory) {
                     actionInput.value = subcategory.name;
                     const tools = getToolsByCategory(subcategory.categoryId, subcategory.id);
-                    searchResults.classList.remove('hidden');
+                    showSearchResults();
                     renderSearchResults(tools);
                     updatePageTitle(subcategory.name);
                 } else {
                     // Invalid subcategory - show empty results
                     actionInput.value = subcategoryId;
-                    searchResults.classList.remove('hidden');
+                    showSearchResults();
                     renderSearchResults([]);
                 }
             } else if (categoryId) {
@@ -1162,13 +1222,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (category) {
                     actionInput.value = category.name;
                     const tools = getToolsByCategory(category.id);
-                    searchResults.classList.remove('hidden');
+                    showSearchResults();
                     renderSearchResults(tools);
                     updatePageTitle(category.name);
                 } else {
                     // Invalid category - show empty results
                     actionInput.value = categoryId;
-                    searchResults.classList.remove('hidden');
+                    showSearchResults();
                     renderSearchResults([]);
                 }
             } else if (query && query.trim()) {
@@ -1179,7 +1239,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // No params - reset to default state
                 actionInput.value = '';
                 searchQuery = '';
-                searchResults.classList.add('hidden');
+                hideSearchResults();
                 document.title = 'AI Tool Review - Find the Right AI Tool for the Job';
             }
         });

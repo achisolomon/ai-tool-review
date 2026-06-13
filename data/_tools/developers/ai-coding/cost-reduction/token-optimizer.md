@@ -13,6 +13,8 @@ github_stars: 1330
 pricing_model: "free"
 last_verified: "2026-06-03"
 confidence_score: 0.95
+tags:
+  - skill
 ---
 
 <div class="key-stats">

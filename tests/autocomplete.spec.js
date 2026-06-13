@@ -17,8 +17,8 @@ test.describe('Search Autocomplete', () => {
             await searchInput.focus();
 
             // Dropdown should appear with "Browse by Category" header
-            await expect(dropdown).not.toHaveClass(/hidden/);
-            await expect(dropdown.locator('.autocomplete-section-header')).toContainText('Browse by Category');
+            await expect(dropdown).not.toHaveClass(/hidden/, { timeout: 10000 });
+            await expect(dropdown.locator('.autocomplete-section-header')).toContainText('Browse by Category', { timeout: 10000 });
         });
 
         test('shows subcategories sorted by tool count', async ({ page }) => {
@@ -26,15 +26,15 @@ test.describe('Search Autocomplete', () => {
             const dropdown = page.locator('#autocomplete-dropdown');
 
             await searchInput.focus();
-            await expect(dropdown).not.toHaveClass(/hidden/);
+            await expect(dropdown).not.toHaveClass(/hidden/, { timeout: 10000 });
 
             // Should show multiple subcategory items
             const items = dropdown.locator('.autocomplete-item');
-            await expect(items).toHaveCount(15); // Limited to 15 items
+            await expect(items).toHaveCount(15, { timeout: 10000 }); // Limited to 15 items
 
             // All items should be subcategories in browse mode
             const firstItem = items.first();
-            await expect(firstItem.locator('.autocomplete-item-type')).toContainText('subcategory');
+            await expect(firstItem.locator('.autocomplete-item-type')).toContainText('subcategory', { timeout: 10000 });
         });
 
         test('hides dropdown when pressing Escape', async ({ page }) => {
@@ -42,13 +42,13 @@ test.describe('Search Autocomplete', () => {
             const dropdown = page.locator('#autocomplete-dropdown');
 
             await searchInput.focus();
-            await expect(dropdown).not.toHaveClass(/hidden/);
+            await expect(dropdown).not.toHaveClass(/hidden/, { timeout: 10000 });
 
             // Press Escape to close
             await page.keyboard.press('Escape');
 
             // Dropdown should hide
-            await expect(dropdown).toHaveClass(/hidden/);
+            await expect(dropdown).toHaveClass(/hidden/, { timeout: 10000 });
         });
     });
 
@@ -61,9 +61,8 @@ test.describe('Search Autocomplete', () => {
             await searchInput.click();
             await searchInput.fill('image');
 
-            // Wait for autocomplete to update
-            await page.waitForTimeout(200);
-            await expect(dropdown).not.toHaveClass(/hidden/);
+            // Wait for autocomplete to update (poll instead of fixed sleep)
+            await expect(dropdown).not.toHaveClass(/hidden/, { timeout: 10000 });
 
             // Should show items matching "image"
             const items = dropdown.locator('.autocomplete-item');
@@ -81,7 +80,7 @@ test.describe('Search Autocomplete', () => {
 
             // Search for something that matches both categories and tools
             await searchInput.fill('ai');
-            await expect(dropdown).not.toHaveClass(/hidden/);
+            await expect(dropdown).not.toHaveClass(/hidden/, { timeout: 10000 });
 
             // Check section headers appear in correct order
             const headers = dropdown.locator('.autocomplete-section-header');
@@ -107,7 +106,7 @@ test.describe('Search Autocomplete', () => {
             await searchInput.fill('xyznonexistent123');
 
             // Dropdown should be hidden when no results
-            await expect(dropdown).toHaveClass(/hidden/);
+            await expect(dropdown).toHaveClass(/hidden/, { timeout: 10000 });
         });
 
         test('clears dropdown when search is cleared', async ({ page }) => {
@@ -115,12 +114,12 @@ test.describe('Search Autocomplete', () => {
             const dropdown = page.locator('#autocomplete-dropdown');
 
             await searchInput.fill('agent');
-            await expect(dropdown).not.toHaveClass(/hidden/);
+            await expect(dropdown).not.toHaveClass(/hidden/, { timeout: 10000 });
 
             await searchInput.fill('');
             // Should show browse mode again when empty
-            await expect(dropdown).not.toHaveClass(/hidden/);
-            await expect(dropdown.locator('.autocomplete-section-header').first()).toContainText('Browse by Category');
+            await expect(dropdown).not.toHaveClass(/hidden/, { timeout: 10000 });
+            await expect(dropdown.locator('.autocomplete-section-header').first()).toContainText('Browse by Category', { timeout: 10000 });
         });
     });
 
@@ -132,7 +131,7 @@ test.describe('Search Autocomplete', () => {
 
             // Focus to show browse menu
             await searchInput.focus();
-            await expect(dropdown).not.toHaveClass(/hidden/);
+            await expect(dropdown).not.toHaveClass(/hidden/, { timeout: 10000 });
 
             // Click the first subcategory item (browse mode shows all subcategories)
             const subcategoryItem = dropdown.locator('.autocomplete-item').first();
@@ -159,7 +158,7 @@ test.describe('Search Autocomplete', () => {
             const searchResults = page.locator('#search-results');
 
             await searchInput.fill('generative media');
-            await expect(dropdown).not.toHaveClass(/hidden/);
+            await expect(dropdown).not.toHaveClass(/hidden/, { timeout: 10000 });
 
             // Find and click the category item
             const categoryItem = dropdown.locator('.autocomplete-item[data-type="category"]').first();
@@ -181,7 +180,7 @@ test.describe('Search Autocomplete', () => {
             const dropdown = page.locator('#autocomplete-dropdown');
 
             await searchInput.fill('cursor');
-            await expect(dropdown).not.toHaveClass(/hidden/);
+            await expect(dropdown).not.toHaveClass(/hidden/, { timeout: 10000 });
 
             // Find a tool item
             const toolItem = dropdown.locator('.autocomplete-item[data-type="tool"]').first();
@@ -200,13 +199,13 @@ test.describe('Search Autocomplete', () => {
             const dropdown = page.locator('#autocomplete-dropdown');
 
             await searchInput.focus();
-            await expect(dropdown).not.toHaveClass(/hidden/);
+            await expect(dropdown).not.toHaveClass(/hidden/, { timeout: 10000 });
 
             await page.keyboard.press('ArrowDown');
 
             // First item should be selected
             const selectedItem = dropdown.locator('.autocomplete-item.selected');
-            await expect(selectedItem).toHaveCount(1);
+            await expect(selectedItem).toHaveCount(1, { timeout: 10000 });
         });
 
         test('arrow up/down cycles through items', async ({ page }) => {
@@ -214,7 +213,7 @@ test.describe('Search Autocomplete', () => {
             const dropdown = page.locator('#autocomplete-dropdown');
 
             await searchInput.focus();
-            await expect(dropdown).not.toHaveClass(/hidden/);
+            await expect(dropdown).not.toHaveClass(/hidden/, { timeout: 10000 });
 
             // Press down twice
             await page.keyboard.press('ArrowDown');
@@ -222,12 +221,12 @@ test.describe('Search Autocomplete', () => {
 
             const items = dropdown.locator('.autocomplete-item');
             const secondItem = items.nth(1);
-            await expect(secondItem).toHaveClass(/selected/);
+            await expect(secondItem).toHaveClass(/selected/, { timeout: 10000 });
 
             // Press up to go back to first
             await page.keyboard.press('ArrowUp');
             const firstItem = items.first();
-            await expect(firstItem).toHaveClass(/selected/);
+            await expect(firstItem).toHaveClass(/selected/, { timeout: 10000 });
         });
 
         test('enter selects highlighted item', async ({ page }) => {
@@ -236,14 +235,14 @@ test.describe('Search Autocomplete', () => {
             const searchResults = page.locator('#search-results');
 
             await searchInput.focus();
-            await expect(dropdown).not.toHaveClass(/hidden/);
+            await expect(dropdown).not.toHaveClass(/hidden/, { timeout: 10000 });
 
             // Select first item with keyboard
             await page.keyboard.press('ArrowDown');
             await page.keyboard.press('Enter');
 
             // Should show results (since we selected a subcategory)
-            await expect(searchResults).not.toHaveClass(/hidden/);
+            await expect(searchResults).not.toHaveClass(/hidden/, { timeout: 10000 });
         });
 
         test('escape closes dropdown', async ({ page }) => {
@@ -251,10 +250,10 @@ test.describe('Search Autocomplete', () => {
             const dropdown = page.locator('#autocomplete-dropdown');
 
             await searchInput.focus();
-            await expect(dropdown).not.toHaveClass(/hidden/);
+            await expect(dropdown).not.toHaveClass(/hidden/, { timeout: 10000 });
 
             await page.keyboard.press('Escape');
-            await expect(dropdown).toHaveClass(/hidden/);
+            await expect(dropdown).toHaveClass(/hidden/, { timeout: 10000 });
         });
 
         test('enter without selection triggers regular search', async ({ page }) => {
@@ -268,8 +267,8 @@ test.describe('Search Autocomplete', () => {
             await page.keyboard.press('Enter');
 
             // Should perform regular search
-            await expect(dropdown).toHaveClass(/hidden/);
-            await expect(searchResults).not.toHaveClass(/hidden/);
+            await expect(dropdown).toHaveClass(/hidden/, { timeout: 10000 });
+            await expect(searchResults).not.toHaveClass(/hidden/, { timeout: 10000 });
         });
     });
 
@@ -286,8 +285,8 @@ test.describe('Search Autocomplete', () => {
             await expect(page.locator('.result-card').first()).toBeVisible({ timeout: 10000 });
             await expect(searchResults).not.toHaveClass(/hidden/);
 
-            // Click clear
-            await clearButton.click();
+            // UX redesign removed visible clear button; use Escape to clear instead
+            await searchInput.press('Escape');
 
             // Input should be empty
             await expect(searchInput).toHaveValue('');

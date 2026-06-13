@@ -15,6 +15,7 @@ github_url: "https://github.com/oraios/serena"
 github_stars: 25314
 tags:
   - agents
+  - skill
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

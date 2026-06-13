@@ -16,6 +16,7 @@ js_content = <<~JS
 // Auto-generated from markdown files - DO NOT EDIT MANUALLY
 
 const landscapeData = #{JSON.pretty_generate(tools_data)};
+if (typeof window !== 'undefined') window.landscapeData = landscapeData;
 JS
 
 File.write(output_file, js_content)

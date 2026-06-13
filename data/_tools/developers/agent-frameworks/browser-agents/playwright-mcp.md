@@ -15,6 +15,7 @@ github_url: "https://github.com/microsoft/playwright-mcp"
 github_stars: 33855
 tags:
   - browser-automation
+  - skill
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

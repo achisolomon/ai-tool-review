@@ -13,7 +13,7 @@ collections:
     output: true
     permalink: /learn/:slug/
 
-# Default layout for tools
+# Default layout for tools and learn articles
 defaults:
   - scope:
       path: ""

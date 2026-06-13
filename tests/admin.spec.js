@@ -170,3 +170,45 @@ test.describe('Admin Review Moderation', () => {
             }
         });
     });
+
+    test.describe('Admin Category Lookup', () => {
+
+        test('window.landscapeData is exposed after page load', async ({ page }) => {
+            await page.goto('/admin.html');
+            await page.waitForFunction(() => typeof window.landscapeData !== 'undefined', { timeout: 5000 });
+
+            const tracks = await page.evaluate(() => ({
+                hasUsers: Array.isArray(window.landscapeData?.users),
+                hasDevelopers: Array.isArray(window.landscapeData?.developers),
+            }));
+            expect(tracks.hasUsers).toBe(true);
+            expect(tracks.hasDevelopers).toBe(true);
+        });
+
+        test('findToolCategory resolves a users-track tool', async ({ page }) => {
+            await page.goto('/admin.html');
+            await page.waitForFunction(() => typeof window.findToolCategory === 'function', { timeout: 5000 });
+
+            const result = await page.evaluate(() => window.findToolCategory('chatgpt'));
+            expect(result.category).not.toBe('Unknown');
+            expect(result.subcategory).not.toBe('Unknown');
+        });
+
+        test('findToolCategory resolves a developers-track tool', async ({ page }) => {
+            await page.goto('/admin.html');
+            await page.waitForFunction(() => typeof window.findToolCategory === 'function', { timeout: 5000 });
+
+            const result = await page.evaluate(() => window.findToolCategory('jetbrains-ai-assistant'));
+            expect(result.category).not.toBe('Unknown');
+            expect(result.subcategory).not.toBe('Unknown');
+        });
+
+        test('findToolCategory returns Unknown for a nonexistent slug', async ({ page }) => {
+            await page.goto('/admin.html');
+            await page.waitForFunction(() => typeof window.findToolCategory === 'function', { timeout: 5000 });
+
+            const result = await page.evaluate(() => window.findToolCategory('this-slug-does-not-exist'));
+            expect(result.category).toBe('Unknown');
+            expect(result.subcategory).toBe('Unknown');
+        });
+    });

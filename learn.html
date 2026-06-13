@@ -1,0 +1,79 @@
+---
+layout: null
+title: "Learn | AI Tool Review"
+description: "Guides, deep-dives, and tutorials on AI tools, development workflows, and best practices."
+permalink: /learn/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn | AI Tool Review</title>
+  <meta name="description" content="Guides, deep-dives, and tutorials on AI tools, development workflows, and best practices.">
+  <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+  <link rel="stylesheet" href="{{ '/css/auth.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+  <style>
+    body { display: flex; flex-direction: column; min-height: 100vh; }
+    .learn-index { max-width: 800px; width: 100%; box-sizing: border-box; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; flex: 1; }
+    .learn-index h1 { font-size: 2rem; color: #fff; margin: 0 0 0.5rem 0; font-weight: 700; }
+    .learn-index .subtitle { color: #858585; font-size: 1rem; margin-bottom: 2.5rem; }
+    .article-card { display: block; padding: 1.25rem 1.5rem; border: 1px solid #2a2a2a; border-radius: 8px; margin-bottom: 1rem; background: rgba(255,255,255,0.03); text-decoration: none; transition: border-color 0.15s, background 0.15s; }
+    .article-card:hover { border-color: #007acc; background: rgba(0,122,204,0.06); }
+    .article-card h2 { font-size: 1.2rem; color: #fff; margin: 0 0 0.4rem 0; font-weight: 600; }
+    .article-card p { color: #999; font-size: 0.9rem; margin: 0 0 0.6rem 0; line-height: 1.5; }
+    .article-meta { font-size: 0.8rem; color: #666; }
+    .article-tag { display: inline-block; background: rgba(0,122,204,0.15); color: #7ab4e8; padding: 2px 8px; border-radius: 3px; margin-right: 6px; font-size: 0.75rem; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <a href="{{ '/' | relative_url }}" class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="logo-text">AI Tool Review</span>
+      </a>
+      <nav class="nav-links">
+        <a href="{{ '/' | relative_url }}" class="nav-link nav-link-text">Search</a>
+        <a href="{{ '/landscape.html' | relative_url }}" class="nav-link nav-link-text">Landscape</a>
+        <a href="{{ '/learn/' | relative_url }}" class="nav-link nav-link-text nav-active">Learn</a>
+        <div id="auth-container"></div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="learn-index">
+    <h1>Learn</h1>
+    <p class="subtitle">Guides, deep-dives, and tutorials on AI tools, development workflows, and best practices.</p>
+
+    {% assign articles = site.learn | sort: "date" | reverse %}
+    {% for article in articles %}
+    <a href="{{ article.url | relative_url }}" class="article-card">
+      <h2>{{ article.title }}</h2>
+      {% if article.description %}<p>{{ article.description }}</p>{% endif %}
+      <div class="article-meta">
+        {% if article.date %}<span>{{ article.date | date: "%B %d, %Y" }}</span>{% endif %}
+        {% if article.reading_time %} &middot; <span>{{ article.reading_time }} min read</span>{% endif %}
+        {% for tag in article.tags limit:3 %}
+        <span class="article-tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
+    </a>
+    {% endfor %}
+  </main>
+
+  <footer class="footer">
+    <div class="footer-bottom">
+      <p>&copy; 2026 AI Tool Review. | <a href="/about.html">About</a> | <a href="/contact.html">Contact</a> | <a href="/privacy.html">Privacy Policy</a></p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="{{ '/js/supabase-client.js' | relative_url }}"></script>
+  <script src="{{ '/js/auth-ui.js' | relative_url }}"></script>
+</body>
+</html>

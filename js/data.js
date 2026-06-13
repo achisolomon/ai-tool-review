@@ -3171,10 +3171,12 @@ const landscapeData = {
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-                "browser-automation"
+                "browser-automation",
+                "skill"
               ],
               "all_tags": [
-                "browser-automation"
+                "browser-automation",
+                "skill"
               ],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
@@ -3939,8 +3941,12 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "skill"
+              ],
+              "all_tags": [
+                "skill"
+              ],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "protocols",
@@ -3963,8 +3969,12 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "skill"
+              ],
+              "all_tags": [
+                "skill"
+              ],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "tool-integrations",
@@ -3981,8 +3991,12 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "skill"
+              ],
+              "all_tags": [
+                "skill"
+              ],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "tool-integrations",
@@ -4501,10 +4515,12 @@ const landscapeData = {
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-                "agents"
+                "agents",
+                "skill"
               ],
               "all_tags": [
-                "agents"
+                "agents",
+                "skill"
               ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
@@ -5010,10 +5026,12 @@ const landscapeData = {
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-                "mcp-server"
+                "mcp-server",
+                "skill"
               ],
               "all_tags": [
-                "mcp-server"
+                "mcp-server",
+                "skill"
               ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
@@ -5032,10 +5050,36 @@ const landscapeData = {
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-                "mcp-server"
+                "mcp-server",
+                "skill"
               ],
               "all_tags": [
-                "mcp-server"
+                "mcp-server",
+                "skill"
+              ],
+              "category_id": "ai-coding",
+              "category_name": "AI Coding & Developer Tools",
+              "subcategory_id": "cost-reduction",
+              "subcategory_name": "Cost Reduction",
+              "additional_categories": []
+            },
+            {
+              "name": "Kickbacks.ai",
+              "slug": "kickbacks",
+              "url": "https://kickbacks.ai/",
+              "desc": "Ad marketplace that places subtle, clickable sponsored messages in the Claude Code and Codex thinking spinner, splitting 50% of ad revenue back to the developers whose machines display them",
+              "type": "commercial",
+              "github_stars": 217,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "api-available",
+                "agents"
+              ],
+              "all_tags": [
+                "api-available",
+                "agents"
               ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
@@ -5053,8 +5097,12 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "skill"
+              ],
+              "all_tags": [
+                "skill"
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "cost-reduction",
@@ -5071,8 +5119,12 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "skill"
+              ],
+              "all_tags": [
+                "skill"
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "cost-reduction",
@@ -5161,7 +5213,7 @@ const landscapeData = {
         },
         {
           "id": "llm-skills",
-          "name": "Llm Skills",
+          "name": "LLM Skills",
           "tools": [
             {
               "name": "Frontend Design Skill",
@@ -5182,7 +5234,7 @@ const landscapeData = {
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "llm-skills",
-              "subcategory_name": "Llm Skills",
+              "subcategory_name": "LLM Skills",
               "additional_categories": []
             },
             {
@@ -5204,7 +5256,7 @@ const landscapeData = {
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "llm-skills",
-              "subcategory_name": "Llm Skills",
+              "subcategory_name": "LLM Skills",
               "additional_categories": []
             }
           ]
@@ -5223,8 +5275,12 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "skill"
+              ],
+              "all_tags": [
+                "skill"
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "spec-driven",
@@ -7727,7 +7783,7 @@ const landscapeData = {
     },
     {
       "id": "observability-safety",
-      "name": "Observability, Evaluation & Safety",
+      "name": "Observability & Evaluation",
       "track": "developers",
       "subcategories": [
         {
@@ -7755,7 +7811,7 @@ const landscapeData = {
                 "self-hosted"
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "app-observability",
               "subcategory_name": "Application Observability & FinOps",
               "additional_categories": []
@@ -7781,7 +7837,7 @@ const landscapeData = {
                 "self-hosted"
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "app-observability",
               "subcategory_name": "Application Observability & FinOps",
               "additional_categories": []
@@ -7805,7 +7861,7 @@ const landscapeData = {
                 "self-hosted"
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "app-observability",
               "subcategory_name": "Application Observability & FinOps",
               "additional_categories": []
@@ -7829,7 +7885,7 @@ const landscapeData = {
               "tags": [],
               "all_tags": [],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
               "additional_categories": []
@@ -7847,7 +7903,7 @@ const landscapeData = {
               "tags": [],
               "all_tags": [],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
               "additional_categories": []
@@ -7869,7 +7925,7 @@ const landscapeData = {
                 "python"
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
               "additional_categories": []
@@ -7887,7 +7943,7 @@ const landscapeData = {
               "tags": [],
               "all_tags": [],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
               "additional_categories": []
@@ -7905,7 +7961,7 @@ const landscapeData = {
               "tags": [],
               "all_tags": [],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
               "additional_categories": []
@@ -7927,7 +7983,7 @@ const landscapeData = {
                 "python"
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
               "additional_categories": []
@@ -7949,7 +8005,7 @@ const landscapeData = {
                 "observability"
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
               "additional_categories": []
@@ -7971,7 +8027,7 @@ const landscapeData = {
                 "observability"
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
               "additional_categories": []
@@ -8003,7 +8059,7 @@ const landscapeData = {
                 "real-time"
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
               "additional_categories": []
@@ -8025,7 +8081,7 @@ const landscapeData = {
                 "python"
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
               "additional_categories": []
@@ -8043,7 +8099,7 @@ const landscapeData = {
               "tags": [],
               "all_tags": [],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
               "additional_categories": []
@@ -8065,7 +8121,7 @@ const landscapeData = {
                 "self-hosted"
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
               "additional_categories": []
@@ -8083,7 +8139,7 @@ const landscapeData = {
               "tags": [],
               "all_tags": [],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
               "additional_categories": []
@@ -8101,7 +8157,7 @@ const landscapeData = {
               "tags": [],
               "all_tags": [],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
               "additional_categories": []
@@ -8119,7 +8175,7 @@ const landscapeData = {
               "tags": [],
               "all_tags": [],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
               "additional_categories": []
@@ -8137,7 +8193,7 @@ const landscapeData = {
               "tags": [],
               "all_tags": [],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
               "additional_categories": []
@@ -8161,7 +8217,7 @@ const landscapeData = {
               "tags": [],
               "all_tags": [],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
               "additional_categories": []
@@ -8179,7 +8235,7 @@ const landscapeData = {
               "tags": [],
               "all_tags": [],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
               "additional_categories": []
@@ -8201,7 +8257,7 @@ const landscapeData = {
                 "observability"
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
               "additional_categories": []
@@ -8219,7 +8275,7 @@ const landscapeData = {
               "tags": [],
               "all_tags": [],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
               "additional_categories": []
@@ -8237,7 +8293,7 @@ const landscapeData = {
               "tags": [],
               "all_tags": [],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
               "additional_categories": []
@@ -8255,7 +8311,7 @@ const landscapeData = {
               "tags": [],
               "all_tags": [],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
               "additional_categories": []
@@ -8273,7 +8329,7 @@ const landscapeData = {
               "tags": [],
               "all_tags": [],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
               "additional_categories": []
@@ -8291,7 +8347,7 @@ const landscapeData = {
               "tags": [],
               "all_tags": [],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
               "additional_categories": []
@@ -8315,7 +8371,7 @@ const landscapeData = {
                 "self-hosted"
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
               "additional_categories": []
@@ -8337,7 +8393,7 @@ const landscapeData = {
                 "observability"
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
               "additional_categories": []
@@ -8359,7 +8415,7 @@ const landscapeData = {
                 "observability"
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
               "additional_categories": []
@@ -8377,7 +8433,7 @@ const landscapeData = {
               "tags": [],
               "all_tags": [],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
               "additional_categories": []
@@ -8386,16 +8442,24 @@ const landscapeData = {
               "name": "W&B Weave",
               "slug": "wandb-weave",
               "url": "https://wandb.ai/site/weave",
-              "desc": "Weights & Biases LLM observability and evaluation platform. Integrates tracing, evaluation, and monitoring within W&B ecosystem for end-to-end LLM application visibility.",
-              "type": "commercial",
-              "github_stars": null,
+              "desc": "Open source LLM observability and evaluation toolkit from Weights & Biases. Trace, evaluate, and monitor AI applications from experimentation to production with a single line of code.",
+              "type": "open-source",
+              "github_stars": 1100,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "observability",
+                "tracing",
+                "agents"
+              ],
+              "all_tags": [
+                "observability",
+                "tracing",
+                "agents"
+              ],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
               "additional_categories": []
@@ -8413,7 +8477,7 @@ const landscapeData = {
               "tags": [],
               "all_tags": [],
               "category_id": "observability-safety",
-              "category_name": "Observability, Evaluation & Safety",
+              "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
               "additional_categories": []
@@ -8427,138 +8491,6 @@ const landscapeData = {
       "name": "Security",
       "track": "developers",
       "subcategories": [
-        {
-          "id": "red-teaming",
-          "name": "Red Teaming & AI Security",
-          "tools": [
-            {
-              "name": "HarmBench",
-              "slug": "harmbench",
-              "url": "https://www.harmbench.org/",
-              "desc": "Open-source benchmark for evaluating LLM robustness against adversarial attacks and jailbreaks. Provides standardized test suites for measuring safety and harm prevention capabilities.",
-              "type": "oss",
-              "github_stars": 1200,
-              "pricing_model": "free",
-              "pricing_starting": null,
-              "user_count": null,
-              "tags": [],
-              "all_tags": [],
-              "category_id": "security",
-              "category_name": "Security",
-              "subcategory_id": "red-teaming",
-              "subcategory_name": "Red Teaming & AI Security",
-              "additional_categories": []
-            },
-            {
-              "name": "HiddenLayer",
-              "slug": "hiddenlayer",
-              "url": "https://hiddenlayer.com/",
-              "desc": "Model security platform for detecting and preventing AI threats. Identifies model extraction, poisoning, evasion attacks, and other adversarial threats with automated monitoring.",
-              "type": "commercial",
-              "github_stars": null,
-              "pricing_model": "custom",
-              "pricing_starting": null,
-              "user_count": null,
-              "tags": [],
-              "all_tags": [],
-              "category_id": "security",
-              "category_name": "Security",
-              "subcategory_id": "red-teaming",
-              "subcategory_name": "Red Teaming & AI Security",
-              "additional_categories": []
-            },
-            {
-              "name": "Microsoft PyRIT",
-              "slug": "microsoft-pyrit",
-              "url": "https://github.com/Azure/PyRIT",
-              "desc": "Microsoft's open-source Python framework for automated red team testing of LLMs. Enables systematic jailbreak and prompt injection testing with orchestrated attack patterns.",
-              "type": "oss",
-              "github_stars": 2700,
-              "pricing_model": "free",
-              "pricing_starting": null,
-              "user_count": null,
-              "tags": [],
-              "all_tags": [],
-              "category_id": "security",
-              "category_name": "Security",
-              "subcategory_id": "red-teaming",
-              "subcategory_name": "Red Teaming & AI Security",
-              "additional_categories": []
-            },
-            {
-              "name": "Mindgard",
-              "slug": "mindgard",
-              "url": "https://mindgard.ai/",
-              "desc": "AI-powered red teaming platform for continuous security testing and adversarial attack discovery on LLMs",
-              "type": "commercial",
-              "github_stars": null,
-              "pricing_model": "enterprise",
-              "pricing_starting": null,
-              "user_count": null,
-              "tags": [],
-              "all_tags": [],
-              "category_id": "security",
-              "category_name": "Security",
-              "subcategory_id": "red-teaming",
-              "subcategory_name": "Red Teaming & AI Security",
-              "additional_categories": []
-            },
-            {
-              "name": "MITRE ATLAS",
-              "slug": "mitre-atlas",
-              "url": "https://atlas.mitre.org/",
-              "desc": "MITRE ATT&CK-style framework documenting AI/ML adversary tactics, techniques, and procedures for threat modeling",
-              "type": "oss",
-              "github_stars": null,
-              "pricing_model": "free",
-              "pricing_starting": null,
-              "user_count": null,
-              "tags": [],
-              "all_tags": [],
-              "category_id": "security",
-              "category_name": "Security",
-              "subcategory_id": "red-teaming",
-              "subcategory_name": "Red Teaming & AI Security",
-              "additional_categories": []
-            },
-            {
-              "name": "NVIDIA Garak",
-              "slug": "nvidia-garak",
-              "url": "https://github.com/NVIDIA/garak",
-              "desc": "Open-source framework for probing and red-teaming large language models to uncover vulnerabilities and risks",
-              "type": "oss",
-              "github_stars": 3400,
-              "pricing_model": "free",
-              "pricing_starting": null,
-              "user_count": null,
-              "tags": [],
-              "all_tags": [],
-              "category_id": "security",
-              "category_name": "Security",
-              "subcategory_id": "red-teaming",
-              "subcategory_name": "Red Teaming & AI Security",
-              "additional_categories": []
-            },
-            {
-              "name": "Promptfoo Red Team",
-              "slug": "promptfoo-red-team",
-              "url": "https://www.promptfoo.dev/docs/red-team/",
-              "desc": "Testing and debugging platform for LLM prompts with built-in red-teaming capabilities for security evaluation",
-              "type": "oss",
-              "github_stars": 4800,
-              "pricing_model": "freemium",
-              "pricing_starting": null,
-              "user_count": null,
-              "tags": [],
-              "all_tags": [],
-              "category_id": "security",
-              "category_name": "Security",
-              "subcategory_id": "red-teaming",
-              "subcategory_name": "Red Teaming & AI Security",
-              "additional_categories": []
-            }
-          ]
-        },
         {
           "id": "security-scanning",
           "name": "Security Scanning",
@@ -8609,24 +8541,6 @@ const landscapeData = {
                 "python",
                 "self-hosted"
               ],
-              "category_id": "security",
-              "category_name": "Security",
-              "subcategory_id": "security-scanning",
-              "subcategory_name": "Security Scanning",
-              "additional_categories": []
-            },
-            {
-              "name": "Repo Forensics",
-              "slug": "repo-forensics",
-              "url": "https://github.com/alexgreensh/repo-forensics",
-              "desc": "Offline security scanner for auditing untrusted repositories, AI agent skills, plugins, and MCP servers before installation",
-              "type": "open-source",
-              "github_stars": 105,
-              "pricing_model": "free",
-              "pricing_starting": null,
-              "user_count": null,
-              "tags": [],
-              "all_tags": [],
               "category_id": "security",
               "category_name": "Security",
               "subcategory_id": "security-scanning",
@@ -9086,3 +9000,4 @@ const landscapeData = {
     }
   ]
 };
+if (typeof window !== 'undefined') window.landscapeData = landscapeData;

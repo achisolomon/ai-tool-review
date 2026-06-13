@@ -7,6 +7,8 @@ track: "developers"
 category: "ai-coding"
 subcategory: "llm-skills"
 status: "active"
+tags:
+  - skill
 description: "AI skill for creating distinctive, production-grade frontend interfaces that avoid generic AI aesthetics"
 github_url: "https://github.com/anthropics/skills"
 github_stars: 150200

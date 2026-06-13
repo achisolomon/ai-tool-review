@@ -12,7 +12,7 @@
 
     /* Text Colors */
     --vscode-text: #cccccc;
-    --vscode-text-muted: #858585;
+    --vscode-text-muted: #9d9d9d; /* WCAG AA: 4.5:1+ on input bg #3c3c3c */
     --vscode-text-link: #3794ff;
     --vscode-text-preformat: #d7ba7d;
 
@@ -42,7 +42,7 @@
     --color-secondary: #4ec9b0;
     --color-accent: #dcdcaa;
     --color-text: #cccccc;
-    --color-text-light: #858585;
+    --color-text-light: #9d9d9d;
     --color-bg: #1e1e1e;
     --color-surface: #252526;
     --color-border: #3c3c3c;
@@ -144,14 +144,14 @@ body > div:not(.cookie-banner):not(#tooltip) > ins.adsbygoogle {
 
 html {
     scroll-behavior: smooth;
+    background: var(--vscode-editor-bg);
 }
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Droid Sans', 'Helvetica Neue', sans-serif;
-    background: var(--vscode-editor-bg);
+    background: transparent;
     color: var(--vscode-text);
     line-height: 1.6;
-    min-height: 100vh;
     font-size: 13px;
 }
 
@@ -186,11 +186,13 @@ a:hover {
 
 /* Header - VS Code Title Bar Style */
 .header {
-    background: #323233;
-    border-bottom: 1px solid var(--vscode-border);
+    background: rgba(30, 30, 30, 0.82);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     position: sticky;
     top: 0;
     z-index: 100;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .header-content {
@@ -201,27 +203,34 @@ a:hover {
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    height: 35px;
+    height: 38px;
 }
 
 .logo {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 13px;
     color: var(--vscode-text);
     text-decoration: none;
+    transition: all 0.2s ease;
 }
 
 .logo:hover {
-    opacity: 0.8;
+    color: #fff;
+    text-decoration: none;
+}
+
+.logo:hover .logo-icon {
+    color: var(--vscode-focus-border);
 }
 
 .logo-icon {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     color: var(--vscode-text);
+    transition: color 0.2s ease;
 }
 
 
@@ -234,10 +243,11 @@ a:hover {
 .nav-link {
     color: var(--vscode-text-muted);
     padding: 4px;
-    border-radius: 3px;
-    transition: var(--transition);
+    border-radius: 4px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .nav-link:hover {
@@ -248,34 +258,163 @@ a:hover {
 
 .nav-link-text {
     font-size: 13px;
-    padding: 4px 10px;
+    padding: 5px 12px;
+    font-weight: 450;
 }
 
 .nav-active {
-    color: var(--vscode-text);
+    color: #fff;
     background: var(--vscode-list-active);
+}
+
+.nav-active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 2px;
+    background: var(--vscode-focus-border);
+    border-radius: 1px;
 }
 
 /* Hero - VS Code Welcome Tab Style */
 .hero {
     text-align: center;
-    padding: 2rem 1rem 1.5rem;
-    background: var(--vscode-editor-bg);
-    border-bottom: 1px solid var(--vscode-border);
+    padding: 3.5rem 1rem 2.25rem;
+    background: transparent;
+    position: relative;
+    overflow: visible;
+    min-height: calc(100vh - 38px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 800px;
+    height: 120px;
+    background: radial-gradient(ellipse at center top, rgba(0, 122, 204, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* Full-screen cursor light pool — same size/color as old per-card glow */
+#cursor-glow {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(
+        180px circle at var(--mouse-x, -9999px) var(--mouse-y, -9999px),
+        rgba(0, 122, 204, 0.10),
+        transparent 70%
+    );
+}
+
+/* Constellation canvas covers full viewport as a reactive background */
+#hero-map {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-eyebrow {
+    font-size: 12px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    color: var(--vscode-type);
+    margin: 0 auto 0.75rem;
+    width: 37ch;
+    max-width: 100%;
+    text-align: left;
+    position: relative;
+}
+
+/* Eyebrow writes itself out one line at a time, like someone typing it */
+.hero-eyebrow-line {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    border-right: 1px solid transparent;
+}
+
+.hero-eyebrow-line .eyebrow-dim {
+    opacity: 0.55;
+}
+
+.hero-eyebrow .line1 {
+    animation:
+        eyebrow-type-1 1.05s steps(31, end) 0.4s both,
+        eyebrow-caret 0.4s step-end 0.4s 3 forwards;
+}
+
+.hero-eyebrow .line2 {
+    animation:
+        eyebrow-type-2 1.25s steps(37, end) 1.6s both,
+        eyebrow-caret 0.5s step-end 1.6s 5 forwards;
+}
+
+@keyframes eyebrow-type-1 {
+    from { width: 0; }
+    to { width: 31ch; }
+}
+
+@keyframes eyebrow-type-2 {
+    from { width: 0; }
+    to { width: 37ch; }
+}
+
+@keyframes eyebrow-caret {
+    0%, 49% { border-right-color: var(--vscode-type); }
+    50%, 100% { border-right-color: transparent; }
+}
+
+/* Syntax-highlighted headline tokens */
+.hero-title .tok-num {
+    color: var(--vscode-number);
+}
+
+.hero-title .tok-type {
+    color: var(--vscode-type);
 }
 
 .hero-title {
-    font-size: 24px;
-    font-weight: 300;
-    color: var(--vscode-text);
-    margin-bottom: 0.5rem;
+    font-size: 28px;
+    font-weight: 400;
+    color: #e0e0e0;
+    margin-bottom: 0.75rem;
     letter-spacing: -0.5px;
+    text-shadow: 0 0 40px rgba(0, 122, 204, 0.3);
+    position: relative;
 }
 
 .hero-subtitle {
-    font-size: 14px;
+    font-size: 15px;
     color: var(--vscode-text-muted);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 400;
+    max-width: 56ch;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hero-search {
@@ -1163,7 +1302,6 @@ a:hover {
     background: var(--vscode-sidebar-bg);
     color: var(--vscode-text);
     margin-top: 0;
-    border-top: 1px solid var(--vscode-focus-border);
 }
 
 .footer-content {
@@ -1222,7 +1360,6 @@ a:hover {
     background: var(--vscode-editor-bg);
     padding: 8px 1rem;
     text-align: center;
-    border-top: 1px solid var(--vscode-border);
 }
 
 .footer-bottom p {
@@ -1568,7 +1705,7 @@ a:hover {
 
 .action-search .search-icon {
     position: absolute;
-    left: 16px;
+    left: 18px;
     top: 50%;
     transform: translateY(-50%);
     width: 20px;
@@ -1580,44 +1717,59 @@ a:hover {
     color: var(--vscode-text-muted);
     pointer-events: none;
     flex-shrink: 0;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.action-input:focus ~ .search-icon,
+.action-search:focus-within .search-icon {
+    color: var(--vscode-focus-border);
+    transform: translateY(-50%) scale(1.05);
 }
 
 .action-input {
     width: 100%;
     box-sizing: border-box;
-    padding: 14px 20px 14px 48px;
+    padding: 16px 20px 16px 52px;
     border: 2px solid var(--vscode-border);
-    border-radius: 8px;
+    border-radius: 12px;
     font-size: 16px;
     background: var(--vscode-input-bg);
     color: var(--vscode-text);
-    transition: var(--transition);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.action-input:hover {
+    border-color: #505050;
+    background: #424242;
 }
 
 .action-input:focus {
     outline: none;
     border-color: var(--vscode-focus-border);
-    box-shadow: 0 0 0 4px rgba(0, 122, 204, 0.25);
+    background: #454545;
+    box-shadow:
+        0 0 0 4px rgba(0, 122, 204, 0.2),
+        0 0 20px rgba(0, 122, 204, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .action-input::placeholder {
-    color: var(--vscode-text-muted);
+    color: #a8a8a8; /* 5:1 on #3c3c3c input bg */
 }
 
 /* Autocomplete Dropdown */
 .autocomplete-dropdown {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 4px);
     left: 0;
     right: 0;
     background: var(--vscode-sidebar-bg);
     border: 1px solid var(--vscode-border);
-    border-top: none;
-    border-radius: 0 0 8px 8px;
+    border-radius: 12px;
     max-height: 420px;
     overflow-y: auto;
     z-index: 1000;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 
 .autocomplete-dropdown.hidden {
@@ -1625,13 +1777,13 @@ a:hover {
 }
 
 .autocomplete-item {
-    padding: 10px 16px;
+    padding: 12px 16px;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 10px;
-    transition: background 0.15s;
-    border-bottom: 1px solid var(--vscode-border);
+    gap: 12px;
+    transition: all 0.15s ease;
+    border-bottom: 1px solid rgba(60, 60, 60, 0.5);
 }
 
 .autocomplete-item:last-child {
@@ -1641,6 +1793,15 @@ a:hover {
 .autocomplete-item:hover,
 .autocomplete-item.selected {
     background: var(--vscode-list-hover);
+}
+
+.autocomplete-item:hover .autocomplete-item-icon {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.autocomplete-item-icon {
+    transition: all 0.15s ease;
 }
 
 .autocomplete-item-icon {
@@ -1714,29 +1875,47 @@ a:hover {
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.75rem;
     max-width: 700px;
 }
 
 .action-chip {
-    padding: 8px 16px;
+    padding: 10px 18px;
     border: 1px solid var(--vscode-border);
     background: var(--vscode-sidebar-bg);
     border-radius: 20px;
     font-size: 13px;
+    font-weight: 450;
     color: var(--vscode-text);
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.action-chip::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0, 122, 204, 0.1) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.2s ease;
 }
 
 .action-chip:hover {
-    background: var(--vscode-list-hover);
+    background: #3a3d3e;
     border-color: var(--vscode-focus-border);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 122, 204, 0.2);
+}
+
+.action-chip:hover::before {
+    opacity: 1;
 }
 
 .action-chip:active {
     transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* Browse Toggle Button */
@@ -1746,14 +1925,41 @@ a:hover {
     background: transparent;
     color: var(--vscode-text-link);
     font-size: 14px;
+    font-weight: 450;
     cursor: pointer;
-    transition: var(--transition);
-    text-decoration: underline;
-    text-underline-offset: 3px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    position: relative;
+}
+
+.browse-toggle::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 24px;
+    right: 24px;
+    height: 1px;
+    background: var(--vscode-text-link);
+    transition: all 0.2s ease;
 }
 
 .browse-toggle:hover {
-    color: var(--vscode-text);
+    color: #fff;
+    text-decoration: none;
+}
+
+.browse-toggle:hover::after {
+    background: #fff;
+    height: 2px;
+    bottom: 7px;
+}
+
+.hero-stats {
+    font-size: 11px;
+    color: var(--vscode-text-muted);
+    opacity: 0.6;
+    margin-top: 0.5rem;
+    letter-spacing: 0.02em;
 }
 
 /* Back to Search Button */
@@ -1958,18 +2164,24 @@ a:hover {
 /* Results Grid - Larger cards for readability */
 .results-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 16px;
+}
+
+@media (max-width: 1100px) {
+    .results-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 /* Result Card - Full info display */
 .result-card {
-    background: var(--vscode-sidebar-bg);
-    border: 1px solid var(--vscode-border);
-    border-radius: 8px;
+    background: rgba(37, 37, 38, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 10px;
     padding: 16px;
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -1978,14 +2190,15 @@ a:hover {
 }
 
 .result-card:hover {
-    background: var(--vscode-list-hover);
-    border-color: var(--vscode-focus-border);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    background: rgba(50, 50, 52, 0.72);
+    border-color: rgba(0, 122, 204, 0.45);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(0, 122, 204, 0.15);
 }
 
 .result-card:active {
-    transform: translateY(0);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
 }
 
 /* Type indicator stripe on left edge */
@@ -2328,8 +2541,8 @@ a:hover {
 
 /* Focus visible for accessibility */
 :focus-visible {
-    outline: 1px solid var(--vscode-focus-border);
-    outline-offset: -1px;
+    outline: 2px solid var(--vscode-focus-border);
+    outline-offset: 2px;
 }
 
 /* ==========================================
@@ -2964,4 +3177,267 @@ a:hover {
 .result-card .result-breadcrumb .separator {
     color: var(--vscode-text-muted);
     margin: 0 4px;
+}
+
+
+/* Reduced Motion - Respect user preferences */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .action-chip:hover,
+    .nav-link:hover {
+        transform: none;
+    }
+
+    .hero::before {
+        display: none;
+    }
+
+    .hero-title {
+        text-shadow: none;
+    }
+}
+
+/* ===== Wild-design layer: command-palette hint, chip dots, status bar, skeletons ===== */
+
+/* Keyboard hint inside the search input */
+.search-kbd {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 11px;
+    line-height: 1;
+    color: #a8a8a8;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid #525252;
+    border-bottom-width: 2px;
+    border-radius: 4px;
+    padding: 4px 7px;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.action-search:focus-within .search-kbd {
+    opacity: 0;
+}
+
+/* Skeleton loading cards */
+.results-loading {
+    padding: 0;
+}
+
+.skeleton-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+}
+
+.skeleton-card {
+    display: flex;
+    gap: 14px;
+    padding: 16px;
+    background: var(--vscode-sidebar-bg);
+    border: 1px solid var(--vscode-border);
+    border-radius: 10px;
+}
+
+.skeleton-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    background: var(--vscode-input-bg);
+}
+
+.skeleton-lines {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    padding-top: 4px;
+}
+
+.skeleton-line {
+    height: 11px;
+    border-radius: 4px;
+    background: var(--vscode-input-bg);
+}
+
+.skeleton-line.w-30 { width: 30%; }
+.skeleton-line.w-40 { width: 40%; }
+.skeleton-line.w-45 { width: 45%; }
+.skeleton-line.w-50 { width: 50%; }
+.skeleton-line.w-60 { width: 60%; }
+.skeleton-line.w-70 { width: 70%; }
+.skeleton-line.w-80 { width: 80%; }
+.skeleton-line.w-85 { width: 85%; }
+.skeleton-line.w-90 { width: 90%; }
+
+.skeleton-icon,
+.skeleton-line {
+    position: relative;
+    overflow: hidden;
+}
+
+.skeleton-icon::after,
+.skeleton-line::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+    transform: translateX(-100%);
+    animation: skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes skeleton-shimmer {
+    100% { transform: translateX(100%); }
+}
+
+/* Headline wrapping */
+.hero-title,
+.hero-subtitle {
+    text-wrap: balance;
+}
+
+/* Wild-design reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    /* Use !important to beat the animation-duration: 0.01ms !important from the
+       wildcard rule above, which can prevent animation-name from resolving to none. */
+    .hero-eyebrow-line,
+    .hero-eyebrow .line1,
+    .hero-eyebrow .line2 {
+        animation: none !important;
+        width: auto;
+        border-right: none;
+    }
+
+    .skeleton-icon::after,
+    .skeleton-line::after {
+        animation: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .search-kbd {
+        display: none;
+    }
+}
+
+/* Results group headers: the "map" section dividers */
+.results-group-header {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-top: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--vscode-border);
+}
+
+.results-group-header:first-child {
+    margin-top: 0;
+}
+
+.results-group-name {
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--vscode-variable);
+}
+
+.results-group-name::before {
+    content: '# ';
+    color: var(--vscode-text-muted);
+    font-weight: 400;
+}
+
+.results-group-count {
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 11px;
+    color: var(--vscode-text-muted);
+}
+
+/* Editor tab bar: results panel reads as an open file */
+.editor-tabs {
+    display: flex;
+    background: var(--vscode-sidebar-bg);
+    border-bottom: 1px solid var(--vscode-border);
+    margin: 0 -1.5rem 0.75rem;
+    padding: 0 1.5rem;
+}
+
+.editor-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 14px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 12px;
+    color: var(--vscode-text);
+    background: var(--vscode-editor-bg);
+    border-right: 1px solid var(--vscode-border);
+    position: relative;
+}
+
+.editor-tab.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--vscode-focus-border);
+}
+
+.editor-tab .tab-icon {
+    color: var(--vscode-function);
+    font-weight: 700;
+    font-size: 11px;
+}
+
+.editor-tab .tab-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--vscode-text-muted);
+    opacity: 0.7;
+}
+
+/* Per-card glow removed — screen-level #cursor-glow handles it seamlessly */
+
+/* Staggered entrance for the first screenful of results */
+@media (prefers-reduced-motion: no-preference) {
+    .result-card,
+    .results-group-header {
+        animation: card-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .result-card:nth-child(2) { animation-delay: 0.03s; }
+    .result-card:nth-child(3) { animation-delay: 0.06s; }
+    .result-card:nth-child(4) { animation-delay: 0.09s; }
+    .result-card:nth-child(5) { animation-delay: 0.12s; }
+    .result-card:nth-child(6) { animation-delay: 0.15s; }
+    .result-card:nth-child(7) { animation-delay: 0.18s; }
+    .result-card:nth-child(8) { animation-delay: 0.21s; }
+    .result-card:nth-child(9) { animation-delay: 0.24s; }
+    .result-card:nth-child(n+10) { animation-delay: 0.27s; }
+}
+
+@keyframes card-in {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

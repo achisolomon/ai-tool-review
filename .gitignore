@@ -31,3 +31,5 @@ scripts/.batches/
 
 # Local dev config (contains dev Supabase credentials)
 js/config-local.js
+
+.superpowers/
