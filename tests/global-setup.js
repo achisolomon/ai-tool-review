@@ -42,10 +42,19 @@ export default async function globalSetup() {
     clientSocket.on('error', () => serverSocket.destroy());
   });
 
+  let owned = false;
   await new Promise((resolve, reject) => {
-    proxyServer.on('error', reject);
-    proxyServer.listen(18080, resolve);
+    proxyServer.on('error', (err) => {
+      if (err.code === 'EADDRINUSE') {
+        // Another test run already owns the proxy — reuse it, don't tear it down.
+        resolve();
+      } else {
+        reject(err);
+      }
+    });
+    proxyServer.listen(18080, () => { owned = true; resolve(); });
   });
+  if (!owned) return;
   return async () => {
     await new Promise((resolve) => proxyServer.close(resolve));
   };

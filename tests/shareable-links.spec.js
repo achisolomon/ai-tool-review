@@ -163,9 +163,9 @@ test.describe('Shareable Links', () => {
       await context.grantPermissions(['clipboard-read', 'clipboard-write']);
       await page.goto('/?q=vector');
 
-      // Copy link via the hidden button (force click since it is hidden by design)
-      const copyButton = page.locator('#copy-link');
-      await copyButton.click({ force: true });
+      // Dispatch click directly via JS — button is hidden by design (display:none)
+      // so Playwright's actionability checks would block even with force:true.
+      await page.evaluate(() => document.getElementById('copy-link').click());
 
       const clipboardText = await page.evaluate(() => navigator.clipboard.readText());
       expect(clipboardText).toContain('?q=vector');
@@ -175,10 +175,10 @@ test.describe('Shareable Links', () => {
       await context.grantPermissions(['clipboard-read', 'clipboard-write']);
       await page.goto('/?q=rag');
 
-      // Trigger copy via hidden button (force click)
-      const copyButton = page.locator('#copy-link');
-      await copyButton.click({ force: true });
+      // Dispatch click directly via JS — button is hidden by design
+      await page.evaluate(() => document.getElementById('copy-link').click());
 
+      const copyButton = page.locator('#copy-link');
       await expect(copyButton).toHaveClass(/copied/);
 
       // Wait for it to revert
