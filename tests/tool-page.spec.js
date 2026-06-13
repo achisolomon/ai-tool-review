@@ -144,21 +144,30 @@ test.describe('Tool Page Review Modal', () => {
   });
 });
 
+// The star-badge tests assert client behavior driven by data/stars.json. They must
+// not depend on third-party scripts (e.g. the Supabase CDN), which can be slow and
+// would otherwise stall page 'load'. Block external hosts so these tests are hermetic.
+async function blockExternal(page) {
+  await page.route(/^https?:\/\/(?!localhost)/, route => route.abort());
+}
+
 test('star badge renders count from stars.json (formatted k)', async ({ page }) => {
+  await blockExternal(page);
   await page.addInitScript(() => localStorage.setItem('cookie_consent', 'accepted'));
   // Stub the stars.json fetch with a known value before navigation.
   await page.route('**/data/stars.json*', route => route.fulfill({
     contentType: 'application/json',
     body: JSON.stringify({ generated_at: 'T', stars: { 'aider': { count: 142318, fetched_at: 'T' } } })
   }));
-  await page.goto('/tools/aider/');
+  await page.goto('/tools/aider/', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('.tool-stars .star-count')).toHaveText('142k');
 });
 
 test('star badge keeps build-time fallback when stars.json fails', async ({ page }) => {
+  await blockExternal(page);
   await page.addInitScript(() => localStorage.setItem('cookie_consent', 'accepted'));
   await page.route('**/data/stars.json*', route => route.fulfill({ status: 500, body: '' }));
-  await page.goto('/tools/aider/');
-  // Fallback is the build-time rendered value; assert it is a non-empty "...k".
+  await page.goto('/tools/aider/', { waitUntil: 'domcontentloaded' });
+  // Fallback is the build-time rendered value (floor(46119/1000) = 46k).
   await expect(page.locator('.tool-stars .star-count')).toHaveText('46k');
 });
