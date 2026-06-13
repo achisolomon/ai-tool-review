@@ -67,10 +67,14 @@
                 return `Add "${escapeHtml(p.name || 'unnamed')}" — ${escapeHtml(p.website || '')}`;
             case 'taxonomy_change':
                 return `Taxonomy: ${escapeHtml(p.op || 'change')} — ${escapeHtml(p.details || '')}`.slice(0, 120);
-            case 'tool_placement':
-                return `Move ${escapeHtml(s.tool_slug || '')} → ${escapeHtml(p.to_category || '')}/${escapeHtml(p.to_subcategory || '')}`;
-            case 'tool_edit':
-                return `Fix ${escapeHtml(p.field || 'field')} on ${escapeHtml(s.tool_slug || '')}`;
+            case 'tool_placement': {
+                const prop = p.proposed || {};
+                return `Move ${escapeHtml(s.tool_slug || '')} → ${escapeHtml(prop.category || '')}/${escapeHtml(prop.subcategory || '')}`;
+            }
+            case 'tool_edit': {
+                const fields = Object.keys(p.changes || {}).join(', ') || 'details';
+                return `Fix ${escapeHtml(fields)} on ${escapeHtml(s.tool_slug || '')}`;
+            }
             default:
                 return escapeHtml(s.kind || 'unknown');
         }
@@ -221,15 +225,21 @@
                 if (p.details) rows += `<tr><th>Details</th><td>${escapeHtml(p.details)}</td></tr>`;
                 break;
 
-            case 'tool_placement':
-                if (p.from_category) rows += `<tr><th>From</th><td>${escapeHtml(p.from_category)}/${escapeHtml(p.from_subcategory)}</td></tr>`;
-                rows += `<tr><th>To</th><td>${escapeHtml(p.to_track || '')}/${escapeHtml(p.to_category || '')}/${escapeHtml(p.to_subcategory || '')}</td></tr>`;
+            case 'tool_placement': {
+                // payload = { current: {category, subcategory}, proposed: {category, subcategory, tags_add, tags_remove} }
+                const cur = p.current || {}, prop = p.proposed || {};
+                if (cur.category) rows += `<tr><th>From</th><td>${escapeHtml(cur.category)}/${escapeHtml(cur.subcategory || '')}</td></tr>`;
+                rows += `<tr><th>To</th><td>${escapeHtml(prop.category || '')}/${escapeHtml(prop.subcategory || '')}</td></tr>`;
+                if (prop.tags_add?.length) rows += `<tr><th>Tags +</th><td>${escapeHtml(prop.tags_add.join(', '))}</td></tr>`;
+                if (prop.tags_remove?.length) rows += `<tr><th>Tags −</th><td>${escapeHtml(prop.tags_remove.join(', '))}</td></tr>`;
                 break;
+            }
 
             case 'tool_edit':
-                rows += `<tr><th>Field</th><td>${escapeHtml(p.field)}</td></tr>`;
-                if (p.current_value !== undefined) rows += `<tr><th>Current</th><td>${escapeHtml(String(p.current_value))}</td></tr>`;
-                if (p.proposed_value !== undefined) rows += `<tr><th>Proposed</th><td>${escapeHtml(String(p.proposed_value))}</td></tr>`;
+                // payload = { changes: { field: { from, to } } }
+                for (const [field, change] of Object.entries(p.changes || {})) {
+                    rows += `<tr><th>${escapeHtml(field)}</th><td>${escapeHtml(String(change?.from ?? ''))} → ${escapeHtml(String(change?.to ?? ''))}</td></tr>`;
+                }
                 break;
 
             default:

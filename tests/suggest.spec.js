@@ -444,7 +444,11 @@ test.describe('Graceful degradation (table missing)', () => {
       !e.includes('cdn.jsdelivr') &&
       !e.includes('googletagmanager') &&
       !e.includes('net::ERR') &&
-      !e.includes('Failed to fetch')
+      !e.includes('Failed to fetch') &&
+      // Ad/analytics CDN hosts are aborted by the global-setup proxy, surfacing
+      // as generic "Failed to load resource: …404" lines with no URL. Same
+      // expected noise the host-specific filters above target.
+      !e.includes('Failed to load resource')
     );
     expect(relevant).toHaveLength(0);
   });

@@ -300,26 +300,36 @@ export function applyTaxonomyChange(row, root, tax) {
   const catsPath = _join(root, 'data', '_tools', '_categories.yaml');
   const tagsPath = _join(root, 'data', '_tools', '_tags.yaml');
   if (p.op === 'add_subcategory') {
+    // Forms collect `name`, not `slug`; derive the YAML key here (mirrors validateRow).
+    const slug = slugify(p.name);
+    if (!safeComponent(slug)) throw new Error(`unsafe subcategory name: ${JSON.stringify(p.name)}`);
     const cats = parseYaml(_read(catsPath, 'utf8'));
-    const track = Object.keys(cats).find((t) => cats[t][p.parent_category]);
+    const track = Object.keys(cats).find((t) => cats[t]?.[p.parent_category]);
+    if (!track) throw new Error(`unknown parent_category: ${p.parent_category}`);
     cats[track][p.parent_category].subcategories ||= {};
-    cats[track][p.parent_category].subcategories[p.slug] = { name: p.name, description: p.description };
+    cats[track][p.parent_category].subcategories[slug] = { name: p.name, description: p.description };
     writeFileSync(catsPath, stringifyYaml(cats));
-    return `added subcategory ${p.slug} under ${p.parent_category}`;
+    return `added subcategory ${slug} under ${p.parent_category}`;
   }
   if (p.op === 'add_category') {
+    const slug = slugify(p.name);
+    if (!safeComponent(slug)) throw new Error(`unsafe category name: ${JSON.stringify(p.name)}`);
+    if (!['users', 'developers'].includes(p.track)) throw new Error(`invalid track: ${p.track}`);
     const cats = parseYaml(_read(catsPath, 'utf8'));
     cats[p.track] ||= {};
-    cats[p.track][p.slug] = { name: p.name, description: p.description, subcategories: {} };
+    cats[p.track][slug] = { name: p.name, description: p.description, subcategories: {} };
     writeFileSync(catsPath, stringifyYaml(cats));
-    return `added category ${p.slug} (${p.track})`;
+    return `added category ${slug} (${p.track})`;
   }
   if (p.op === 'add_tag') {
+    const slug = slugify(p.name);
+    if (!safeComponent(slug)) throw new Error(`unsafe tag name: ${JSON.stringify(p.name)}`);
+    if (!VALID_TAG_FAMILIES.has(p.family)) throw new Error(`invalid tag family: ${p.family}`);
     const tags = parseYaml(_read(tagsPath, 'utf8'));
     tags[p.family] ||= [];
-    tags[p.family].push({ slug: p.slug, name: p.name, description: p.description });
+    tags[p.family].push({ slug, name: p.name, description: p.description });
     writeFileSync(tagsPath, stringifyYaml(tags));
-    return `added tag ${p.slug} (${p.family})`;
+    return `added tag ${slug} (${p.family})`;
   }
   if (p.op === 'rename') {
     return applyRename(row, root);
@@ -376,33 +386,64 @@ async function run(flags) {
   const root = process.cwd();   // run from ai-tool-review/
 
   if (flags.unapply) {
-    await supabase.from('suggestions').update({ status: 'approved', applied_at: null }).eq('id', flags.unapply);
+    const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    if (!UUID_RE.test(flags.unapply || '')) {
+      console.error('--unapply requires a valid suggestion UUID.');
+      process.exit(1);
+    }
+    const { data: target, error: fetchErr } = await supabase
+      .from('suggestions').select('id,status').eq('id', flags.unapply).maybeSingle();
+    if (fetchErr) { console.error(fetchErr.message); process.exit(1); }
+    if (!target) { console.error(`No suggestion found: ${flags.unapply}`); process.exit(1); }
+    if (target.status !== 'applied') {
+      console.error(`Refusing to un-apply: status is '${target.status}', not 'applied'.`);
+      process.exit(1);
+    }
+    const { error: upErr } = await supabase
+      .from('suggestions').update({ status: 'approved', applied_at: null }).eq('id', flags.unapply);
+    if (upErr) { console.error(upErr.message); process.exit(1); }
     console.log(`Un-applied ${flags.unapply} (revert its diff manually).`);
     return;
   }
 
   const { data: rows, error } = await supabase.from('suggestions').select('*').eq('status', 'approved');
   if (error) { console.error(error.message); process.exit(1); }
-  const tax = loadTaxonomy(root);
   const today = new Date().toISOString().slice(0, 10);
   const ordered = orderForApply(rows);
 
-  const applied = [], skipped = [];
+  let tax = loadTaxonomy(root);
+  const applied = [], skipped = [], failed = [];
   for (const row of ordered) {
     const v = validateRow(row, root, tax);
     if (!v.ok) { skipped.push(`SKIP ${row.id} (${row.kind}): ${v.reason}`); continue; }
     if (flags.dryRun) { applied.push(`PLAN ${row.id} (${row.kind})`); continue; }
-    const report = await applyOne(row, root, tax);
-    appendChangelog(root, changelogEntry(row, today));
-    await supabase.from('suggestions').update({ status: 'applied', applied_at: new Date().toISOString() }).eq('id', row.id);
-    applied.push(`APPLIED ${row.id}: ${report}`);
+    try {
+      const report = await applyOne(row, root, tax);
+      appendChangelog(root, changelogEntry(row, today));
+      // Taxonomy mutations change the on-disk YAML; reload so later rows in the
+      // same run (e.g. a new_tool into a just-added subcategory) validate correctly.
+      if (row.kind === 'taxonomy_change') tax = loadTaxonomy(root);
+      const { error: upErr } = await supabase.from('suggestions')
+        .update({ status: 'applied', applied_at: new Date().toISOString() }).eq('id', row.id);
+      if (upErr) {
+        // Files are mutated but the row stays 'approved' — warn loudly so the
+        // operator can fix status manually rather than silently re-applying next run.
+        failed.push(`WRITEBACK-FAILED ${row.id} (${row.kind}): applied to disk but DB update errored: ${upErr.message}`);
+      } else {
+        applied.push(`APPLIED ${row.id}: ${report}`);
+      }
+    } catch (e) {
+      failed.push(`FAILED ${row.id} (${row.kind}): ${e.message}`);
+    }
   }
 
   applied.forEach((l) => console.log(l));
   skipped.forEach((l) => console.warn(l));
+  failed.forEach((l) => console.error(l));
   if (!flags.dryRun && applied.length) {
     console.log('\nNext: npm run generate && git diff   (review, then commit).');
   }
+  if (failed.length) process.exitCode = 1;
 }
 
 async function main() {

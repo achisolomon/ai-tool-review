@@ -717,7 +717,7 @@
               <div class="suggest-success-icon">✓</div>
               <h3>Thank you!</h3>
               <p>Your suggestion for <strong>${escapeHtml(name)}</strong> has been submitted and is pending review.</p>
-              <a href="/my-reviews.html">Track it under My Suggestions</a>
+              <a href="/my-suggestions.html">Track it under My Suggestions</a>
             </div>
           `;
         }

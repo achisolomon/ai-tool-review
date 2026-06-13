@@ -251,7 +251,7 @@ async function getAllUsers() {
 /**
  * Fetch suggestions for moderation
  * @param {string} status - 'pending', 'approved', 'rejected', 'applied', or 'all'
- * @param {string} kind - 'new_tool', 'taxonomy_change', 'tool_move', 'detail_fix', or 'all'
+ * @param {string} kind - 'new_tool', 'taxonomy_change', 'tool_placement', 'tool_edit', or 'all'
  * @returns {Promise<{suggestions: Array, error?: string}>}
  */
 async function getSuggestions(status = 'pending', kind = 'all') {

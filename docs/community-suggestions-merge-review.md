@@ -126,3 +126,37 @@ Proven by stashing all fixes and rebuilding: **the same tests fail identically o
 3. Optional: pending-cap race (`pg_advisory_xact_lock`), DB-level `payload` size cap.
 
 All fixes are committed on the branch (`6e9cdbc`); `main` is untouched.
+
+---
+
+## 6. Addendum — second-pass verification (2026-06-14)
+
+An independent verification pass re-checked every finding in §3 against the code **as actually committed in `6e9cdbc`** (not against the intended diff). Most fixes landed correctly. Three residual gaps were found where the commit's stated fix was incomplete, plus the test failures were re-triaged. These are fixed in a follow-up commit on this branch.
+
+### 6.1 Residual gaps found and fixed
+
+| # | Sev | Finding | Why `6e9cdbc` missed it | Fix |
+|---|-----|---------|------------------------|-----|
+| R-1 | **High** (functional break) | **`applyTaxonomyChange` was still broken** for all three add ops. `validateRow` was correctly rewritten (AP-4) to *derive* the slug from `payload.name` and validate it — but `applyTaxonomyChange` still wrote `cats[…][p.slug]` / `tags.push({slug: p.slug})`. The forms never set `payload.slug` (only `name`), so `p.slug` is `undefined`. Net effect: a legitimate taxonomy add **passes validation, then writes an `undefined` YAML key** — validator and applier disagreed. `add_subcategory` also still used the unguarded `cats[track][p.parent_category]`, which throws `TypeError` mid-batch when the parent is absent. | The fix was applied to the validator half of the pair but not the apply half. | `applyTaxonomyChange` now derives `slug = slugify(p.name)` (mirroring `validateRow`), re-checks `safeComponent`/track/family as defense-in-depth, and guards the missing-parent case with a clear `throw`. Validator and applier now agree. |
+| R-2 | **Medium** (functional break) | **Admin payload render still read the old schema.** UI-1 renamed the `case` labels to `tool_placement`/`tool_edit`, but the field reads *inside* those cases (and inside `oneLiner`) were not updated: they still read `p.to_category` / `p.from_category` / `p.field` / `p.current_value`. The real payloads are `{current, proposed}` (placement) and `{changes: {field: {from, to}}}` (edit). Result: the one-line summary and the decision-panel payload table render **blank** for both kinds — a moderator can't see what they're approving. | UI-1 fixed the labels but not the payload-field reads in the same `switch`. | Rewrote both `oneLiner` and `renderPayloadTable` for `tool_placement` (reads `current`/`proposed`, shows tag add/remove) and `tool_edit` (iterates `changes` as `from → to`). |
+| R-3 | **Low** | Two stale references: a `/my-reviews.html` link in the `new_tool` success screen (404 — every other form links `/my-suggestions.html`), and an `admin-api.js` JSDoc still listing `tool_move`/`detail_fix`. | Cosmetic leftovers not caught by the kind-rename grep (one is a URL, one a comment). | Corrected both. |
+
+### 6.2 Apply-pipeline robustness (the §3.2 review flagged these; they were not in `6e9cdbc`)
+
+| # | Sev | Finding | Fix |
+|---|-----|---------|-----|
+| R-4 | **Medium** | The apply loop loaded `tax` once and never refreshed it. A single run containing an `add_subcategory` **then** a `new_tool` into that just-added subcategory would wrongly SKIP the `new_tool` (its placement triple isn't in the stale snapshot). | `tax = loadTaxonomy(root)` is re-run after each applied `taxonomy_change`. |
+| R-5 | **Medium** | No `try/catch` per row and the DB status writeback ignored its `.error`. A filesystem throw aborted the whole batch uncommitted; a failed writeback left files mutated but the row still `approved` → silent **re-apply** on the next run. | Each row is wrapped in `try/catch` (a failure is recorded and the batch continues); the `update(... status:'applied')` `.error` is checked and surfaced as `WRITEBACK-FAILED`; the process exits non-zero if any row failed. |
+| R-6 | **Low** | `--unapply` took a raw `argv` value into `.eq('id', …)` with no UUID/state validation; a typo'd or missing arg silently matched nothing. | Validates UUID shape, fetches the row, and refuses unless its status is actually `applied`. |
+
+### 6.3 Test re-triage (refines §4)
+
+Re-ran the suite and isolated each failure to root cause:
+
+- **The 8 `admin-suggestions.spec.js` failures are confirmed pre-existing** — they reproduce **identically on clean `HEAD` with all second-pass fixes stashed**. Root cause pinned precisely: `admin.html` correctly hides the Suggestions tab via `isSuggestionsAvailable()` (graceful degradation, working as designed), but the test helper `gotoAdminMocked` installs its mocks with `page.evaluate` **after** `page.goto()` — the page's bootstrap IIFE has already run the gate and hidden the tab before the mocks land. **Product code is correct; the test harness mocks too late.** The proper fix is to convert the mock injection to `page.addInitScript` (runs before page scripts). Flagged as a separate test-infra task, not absorbed here.
+- **The other failures in the first (parallel) run were contention artifacts** — local Playwright ran with unbounded workers against one shared `node server.js` (`reuseExistingServer` true outside CI); they pass under `--workers=1` and on isolated retry. CI is unaffected (it caps at 4 workers and starts its own server).
+- **Specs covering the second-pass changes pass serially:** `suggest`, `my-suggestions`, `suggest-logic`, `data-integrity`, `tags`. `npm run test:apply` → **30/30**.
+
+### 6.4 Corrected merge-readiness note
+
+§5's posture holds, with one correction: finding **AP-4 was only half-complete in `6e9cdbc`** — taxonomy add ops would have failed (or, pre-validator-fix, corrupted YAML) at apply time. With **R-1** that path is now correct end-to-end and exercised by the existing `applyTaxonomyChange` unit tests (add_subcategory + rename, both green). The remaining non-blocking items in §5 stand; add the admin-suggestions **test-harness** fix (§6.3) to that follow-up list.
