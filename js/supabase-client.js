@@ -131,6 +131,51 @@ async function updateLastSignIn() {
         .eq('id', user.id);
 }
 
+// Create a new suggestion row (born pending, user_id injected server-side from session)
+async function createSuggestion(row) {
+    const supabase = getSupabase();
+    if (!supabase) return { data: null, error: { message: 'Supabase not initialized' } };
+    const user = await getCurrentUser();
+    if (!user) return { data: null, error: { message: 'Sign in required' } };
+    return await supabase.from('suggestions').insert({ ...row, user_id: user.id, status: 'pending' }).select().single();
+}
+
+// List the current user's own suggestions, newest-updated first
+async function listMySuggestions() {
+    const supabase = getSupabase();
+    if (!supabase) return { data: null, error: { message: 'Supabase not initialized' } };
+    const user = await getCurrentUser();
+    if (!user) return { data: [], error: null };
+    return await supabase.from('suggestions').select('*').eq('user_id', user.id).order('updated_at', { ascending: false });
+}
+
+// Patch the user's own pending suggestion (status and user_id are stripped — RLS guards them)
+async function updateMySuggestion(id, patch) {
+    const supabase = getSupabase();
+    if (!supabase) return { data: null, error: { message: 'Supabase not initialized' } };
+    // RLS restricts this to own pending rows; never send status.
+    const { status, user_id, ...safe } = patch;
+    return await supabase.from('suggestions').update(safe).eq('id', id).select().single();
+}
+
+// Delete (withdraw) the user's own pending suggestion
+async function withdrawSuggestion(id) {
+    const supabase = getSupabase();
+    if (!supabase) return { error: { message: 'Supabase not initialized' } };
+    return await supabase.from('suggestions').delete().eq('id', id);
+}
+
+// Return a count of the current user's pending suggestions (friendly pre-check before the DB cap)
+async function countMyPending() {
+    const supabase = getSupabase();
+    if (!supabase) return 0;
+    const user = await getCurrentUser();
+    if (!user) return 0;
+    const { count } = await supabase.from('suggestions').select('id', { count: 'exact', head: true })
+        .eq('user_id', user.id).eq('status', 'pending');
+    return count || 0;
+}
+
 // Export for use in other modules
 window.SupabaseClient = {
     getSupabase,
@@ -142,5 +187,10 @@ window.SupabaseClient = {
     getSession,
     getUserProfile,
     updateLastSignIn,
+    createSuggestion,
+    listMySuggestions,
+    updateMySuggestion,
+    withdrawSuggestion,
+    countMyPending,
     SUPABASE_URL,
 };
