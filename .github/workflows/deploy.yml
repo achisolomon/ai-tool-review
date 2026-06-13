@@ -6,6 +6,9 @@ on:
     types: [completed]
     branches: [main]
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['data/stars.json']
 
 # Opt into Node.js 24 to avoid deprecation warnings
 env:

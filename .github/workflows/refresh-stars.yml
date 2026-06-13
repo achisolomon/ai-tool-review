@@ -1,0 +1,51 @@
+name: Refresh GitHub Stars
+
+on:
+  schedule:
+    - cron: '0 4 * * *'   # daily 04:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-stars
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      - name: Run unit tests
+        run: ruby scripts/test_stars_lib.rb
+
+      - name: Fetch stars
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: ruby scripts/fetch-stars.rb data/_tools data/stars.json
+
+      - name: Regenerate js/data.js
+        run: ruby scripts/generate-json.rb data/_tools
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if [[ -n "$(git status --porcelain data/stars.json data/_tools js/data.js)" ]]; then
+            git add data/stars.json data/_tools js/data.js
+            git commit -m "chore(stars): daily refresh"
+            git push
+          else
+            echo "No star changes."
+          fi
