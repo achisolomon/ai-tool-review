@@ -5,7 +5,8 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 4 : undefined,
+  // CI: 4 workers; pre-push: 2 workers to avoid OOM on dev machines; dev: uncapped
+  workers: process.env.CI ? 4 : process.env.PREPUSH ? 2 : undefined,
   reporter: 'html',
   globalSetup: './tests/global-setup.js',
   use: {
