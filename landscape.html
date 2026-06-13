@@ -44,6 +44,7 @@
     <meta name="theme-color" content="#1e1e1e">
     <link rel="stylesheet" href="css/style.css?t=1780517697">
     <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/auth.css">
 
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7272761067250869"
@@ -64,9 +65,11 @@
             <nav class="nav-links">
                 <a href="/" class="nav-link nav-link-text">Search</a>
                 <a href="landscape.html" class="nav-link nav-link-text nav-active">Landscape</a>
+                <a href="/learn/" class="nav-link nav-link-text">Learn</a>
                 <a href="admin.html" id="admin-badge" class="nav-link admin-badge hidden">
                     Admin <span id="admin-badge-count"></span>
                 </a>
+                <div id="auth-container"></div>
             </nav>
         </div>
     </header>
@@ -168,6 +171,9 @@
     <!-- Tooltip -->
     <div id="tooltip" class="tooltip"></div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/auth-ui.js"></script>
     <script src="js/data.js?t=1780999110"></script>
     <script src="js/landscape.js?t=1717430601"></script>
     <script src="js/admin-api.js"></script>
@@ -247,6 +253,15 @@
                 ad.innerHTML = '<div style="color:#4a9eff;font-size:12px;">Ad Placeholder</div>';
             });
         }
+    </script>
+
+    <script>
+    // Initialize auth dropdown
+    document.addEventListener('DOMContentLoaded', function() {
+        if (window.AuthUI) {
+            window.AuthUI.init('auth-container');
+        }
+    });
     </script>
 
     <script>

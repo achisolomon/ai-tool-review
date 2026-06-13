@@ -15,6 +15,8 @@ github_url: "https://github.com/anthropics/model-context-protocol"
 github_stars: 18000
 last_verified: "2026-06-03"
 confidence_score: 0.9
+tags:
+  - skill
 ---
 
 <div class="key-stats">

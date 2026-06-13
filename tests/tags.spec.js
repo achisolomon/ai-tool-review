@@ -192,8 +192,9 @@ test.describe('Tags Feature', () => {
             const searchResults = page.locator('#search-results');
             await expect(searchResults).not.toHaveClass(/hidden/);
 
-            // Should return results
+            // Wait for results to render, then assert at least one card exists
             const cards = page.locator('.result-card');
+            await expect(cards.first()).toBeVisible({ timeout: 10000 });
             expect(await cards.count()).toBeGreaterThan(0);
         });
     });

@@ -479,11 +479,12 @@
                 setTimeout(() => toast.classList.add('hidden'), 3000);
             }
 
-            // Find category/subcategory for a tool slug
+            // Find category/subcategory for a tool slug across all tracks
             function findToolCategory(slug) {
                 if (!window.landscapeData) return { category: 'Unknown', subcategory: 'Unknown' };
 
-                for (const category of window.landscapeData.users || []) {
+                const tracks = [...(window.landscapeData.users || []), ...(window.landscapeData.developers || [])];
+                for (const category of tracks) {
                     for (const subcategory of category.subcategories || []) {
                         for (const tool of subcategory.tools || []) {
                             if (tool.slug === slug) {
@@ -494,6 +495,7 @@
                 }
                 return { category: 'Unknown', subcategory: 'Unknown' };
             }
+            window.findToolCategory = findToolCategory;
 
             // Render a single review card
             function renderReviewCard(review) {

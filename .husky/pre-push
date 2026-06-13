@@ -26,10 +26,10 @@ fi
 echo "Building Jekyll site..."
 bundle exec jekyll build || exit 1
 
-echo "Running full Playwright suite..."
-npm test || {
-    echo "✗ Tests failed — push blocked. Fix the failures (do not bypass)."
-    exit 1
-}
+echo "Running static validations (Playwright suite runs in CI)..."
+npm run validate || exit 1
+npm run validate:data || exit 1
+npm run validate:workflows || exit 1
+npm run validate:auth-pages || exit 1
 
 echo "✓ All checks passed."

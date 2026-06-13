@@ -71,7 +71,8 @@ test.describe('Search Page', () => {
       await searchInput.fill('agent');
       await page.waitForTimeout(300);
 
-      await page.locator('#clear-search').click();
+      // UX redesign removed visible clear button; use Escape to clear instead
+      await searchInput.press('Escape');
 
       await expect(searchInput).toHaveValue('');
       const results = page.locator('#search-results');

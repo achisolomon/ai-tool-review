@@ -34,3 +34,5 @@ js/config-local.js
 
 # Apply script env (contains service role key)
 .env
+
+.superpowers/

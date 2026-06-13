@@ -1,8 +1,12 @@
 # Controlled vocabulary for tags
 # Tags describe capabilities, NOT where a tool lives (use categories for that)
 # Build fails on unknown tags - add new tags here before using them
+# NOTE: Don't add tags that match category/subcategory IDs (e.g., open-source, enterprise)
 
 capabilities:
+  - slug: skill
+    name: "Skill"
+    description: "LLM skill/plugin that extends agent capabilities"
   - slug: reasoning
     name: "Reasoning"
     description: "Advanced reasoning/thinking capabilities"
@@ -21,6 +25,15 @@ capabilities:
   - slug: fine-tuning
     name: "Fine-Tuning"
     description: "Supports model fine-tuning"
+  - slug: memory
+    name: "Memory"
+    description: "Persistent memory/context across sessions"
+  - slug: coding
+    name: "Coding"
+    description: "Code generation/assistance capabilities"
+  - slug: multi-model
+    name: "Multi-Model"
+    description: "Supports multiple AI models"
 
 integrations:
   - slug: api-available
@@ -44,14 +57,17 @@ integrations:
   - slug: vscode-extension
     name: "VS Code Extension"
     description: "VS Code integration available"
+  - slug: cli
+    name: "CLI"
+    description: "Command-line interface available"
+  - slug: api
+    name: "API"
+    description: "General API integration"
+  - slug: email
+    name: "Email"
+    description: "Email integration"
 
 deployment:
-  - slug: enterprise
-    name: "Enterprise"
-    description: "Enterprise features (SSO, audit logs, compliance)"
-  - slug: open-source
-    name: "Open Source"
-    description: "Core is open source"
   - slug: self-hosted
     name: "Self-Hosted"
     description: "Can be self-hosted"
@@ -61,6 +77,12 @@ deployment:
   - slug: cli
     name: "CLI"
     description: "Command-line interface"
+  - slug: sandboxes
+    name: "Sandboxes"
+    description: "Sandboxed execution environment"
+  - slug: yc
+    name: "YC"
+    description: "Y Combinator backed"
 
 use-cases:
   - slug: no-code
@@ -72,12 +94,15 @@ use-cases:
   - slug: browser-automation
     name: "Browser Automation"
     description: "Automates browser interactions"
-  - slug: evaluation
-    name: "Evaluation"
-    description: "LLM evaluation & testing"
   - slug: observability
     name: "Observability"
     description: "Tracing, monitoring, debugging"
   - slug: multilingual
     name: "Multilingual"
     description: "Supports multiple human languages"
+  - slug: tracing
+    name: "Tracing"
+    description: "Request/call tracing"
+  - slug: memory-management
+    name: "Memory Management"
+    description: "Agent memory management"
