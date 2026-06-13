@@ -87,6 +87,15 @@
                     </svg>
                     Users
                 </button>
+                <button class="admin-nav-tab" data-view="suggestions">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="12" y1="8" x2="12" y2="12"/>
+                        <line x1="12" y1="16" x2="12.01" y2="16"/>
+                    </svg>
+                    Suggestions
+                    <span id="suggestions-badge" class="suggestions-badge hidden">0</span>
+                </button>
             </div>
 
             <!-- Reviews View -->
@@ -183,6 +192,34 @@
                     <span>Loading users...</span>
                 </div>
             </div>
+
+            <!-- Suggestions View -->
+            <div id="suggestions-view" class="admin-view hidden">
+                <div class="suggestions-header">
+                    <h2>Community Suggestions</h2>
+                </div>
+                <div class="suggestions-filters">
+                    <select id="suggestions-kind-filter" class="suggestions-select">
+                        <option value="all">All kinds</option>
+                        <option value="new_tool">New tool</option>
+                        <option value="taxonomy_change">Taxonomy change</option>
+                        <option value="tool_move">Tool move</option>
+                        <option value="detail_fix">Detail fix</option>
+                    </select>
+                    <select id="suggestions-status-filter" class="suggestions-select">
+                        <option value="pending">Pending</option>
+                        <option value="approved">Approved</option>
+                        <option value="rejected">Rejected</option>
+                        <option value="applied">Applied</option>
+                        <option value="all">All statuses</option>
+                    </select>
+                </div>
+                <div id="suggestions-queue">
+                    <!-- Suggestion rows rendered by admin-suggestions.js -->
+                </div>
+                <!-- Decision view panel (rendered inline by admin-suggestions.js) -->
+                <div id="suggestion-decision" class="suggestion-decision hidden"></div>
+            </div>
         </main>
 
         <!-- Delete Confirmation Modal -->
@@ -214,6 +251,7 @@
     <script src="js/auth-signin.js"></script>
     <script src="js/admin-api.js"></script>
     <script src="js/data.js"></script>
+    <script src="js/admin-suggestions.js"></script>
     <script>
         // Admin page initialization
         (async function() {
@@ -350,13 +388,29 @@
                 });
 
                 // Show/hide views
+                const suggestionsView = document.getElementById('suggestions-view');
                 if (view === 'reviews') {
                     reviewsView.classList.remove('hidden');
                     usersView.classList.add('hidden');
+                    if (suggestionsView) suggestionsView.classList.add('hidden');
                 } else if (view === 'users') {
                     reviewsView.classList.add('hidden');
                     usersView.classList.remove('hidden');
+                    if (suggestionsView) suggestionsView.classList.add('hidden');
                     loadUsers();
+                } else if (view === 'suggestions') {
+                    reviewsView.classList.add('hidden');
+                    usersView.classList.add('hidden');
+                    if (suggestionsView) suggestionsView.classList.remove('hidden');
+                    // Update badge and load queue via admin-suggestions module
+                    window.AdminAPI.getSuggestionPendingCount().then(count => {
+                        const badge = document.getElementById('suggestions-badge');
+                        if (badge) {
+                            badge.textContent = count;
+                            badge.classList.toggle('hidden', count === 0);
+                        }
+                    });
+                    if (window.AdminSuggestions) window.AdminSuggestions.loadSuggestions();
                 }
             }
 
@@ -699,6 +753,14 @@
             if (hasAccess) {
                 await updateCounts();
                 await loadReviews();
+                // Populate suggestions badge on load
+                window.AdminAPI.getSuggestionPendingCount().then(count => {
+                    const badge = document.getElementById('suggestions-badge');
+                    if (badge && count > 0) {
+                        badge.textContent = count;
+                        badge.classList.remove('hidden');
+                    }
+                });
             }
         })();
     </script>
