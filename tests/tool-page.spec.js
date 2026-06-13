@@ -160,5 +160,5 @@ test('star badge keeps build-time fallback when stars.json fails', async ({ page
   await page.route('**/data/stars.json*', route => route.fulfill({ status: 500, body: '' }));
   await page.goto('/tools/aider/');
   // Fallback is the build-time rendered value; assert it is a non-empty "...k".
-  await expect(page.locator('.tool-stars .star-count')).toHaveText(/\d+k/);
+  await expect(page.locator('.tool-stars .star-count')).toHaveText('46k');
 });

@@ -2,7 +2,7 @@
 // tool-page badge. Single source of truth: data/stars.json.
 (function () {
   function formatK(n) {
-    return Math.round(n / 1000) + 'k';
+    return Math.floor(n / 1000) + 'k';
   }
 
   async function render() {
