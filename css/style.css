@@ -3309,7 +3309,11 @@ a:hover {
 
 /* Wild-design reduced motion */
 @media (prefers-reduced-motion: reduce) {
-    .hero-eyebrow-line {
+    /* Must match the specificity of `.hero-eyebrow .line1/.line2` (0,2,0),
+       or the per-line animations override this and the eyebrow keeps typing. */
+    .hero-eyebrow-line,
+    .hero-eyebrow .line1,
+    .hero-eyebrow .line2 {
         animation: none;
         width: auto;
         border-right: none;
