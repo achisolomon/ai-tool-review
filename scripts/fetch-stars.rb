@@ -11,20 +11,36 @@ now = Time.now.utc.strftime('%Y-%m-%dT%H:%M:%SZ')
 repos = StarsLib.scan_tools(tools_dir)
 abort 'No repos with github_url found' if repos.empty?
 
-previous = File.exist?(stars_path) ? JSON.parse(File.read(stars_path)) : {}
+# Tolerate a corrupt prior stars.json (e.g. a partial write from a killed run)
+# rather than failing every future run — keep-previous simply degrades to empty.
+previous =
+  if File.exist?(stars_path)
+    begin
+      JSON.parse(File.read(stars_path))
+    rescue JSON::ParserError
+      warn "Existing #{stars_path} is unparseable; ignoring previous counts."
+      {}
+    end
+  else
+    {}
+  end
 
 fetch = ->(query) { StarsLib.fetch_graphql(query, token: token) }
 out = StarsLib.run_refresh(repos, previous: previous, now: now, fetch: fetch)
 
-# Write canonical cache.
-File.write(stars_path, out[:json])
+# Write canonical cache atomically: write to a temp file then rename (atomic on
+# POSIX), so an interrupted run can never leave a half-written stars.json.
+tmp_path = "#{stars_path}.tmp"
+File.write(tmp_path, out[:json])
+File.rename(tmp_path, stars_path)
 puts "Wrote #{stars_path} (#{out[:merged]['stars'].size} tools)"
 
-# Derive frontmatter (#1).
+# Derive frontmatter (#1). Guard on Integer so a malformed API value can never
+# write a non-integer into a tool's frontmatter (matches sync_supabase's guard).
 changed = 0
 repos.each do |entry|
   star = out[:merged]['stars'][entry[:slug]]
-  next unless star
+  next unless star && star['count'].is_a?(Integer)
   changed += 1 if StarsLib.update_frontmatter_stars(entry[:path], star['count'])
 end
 puts "Updated frontmatter in #{changed} files"

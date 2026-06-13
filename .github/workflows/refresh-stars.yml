@@ -46,7 +46,7 @@ jobs:
           if [[ -n "$(git status --porcelain data/stars.json data/_tools js/data.js)" ]]; then
             git add data/stars.json data/_tools js/data.js
             git commit -m "chore(stars): daily refresh"
-            git push
+            git push origin HEAD:main
           else
             echo "No star changes."
           fi

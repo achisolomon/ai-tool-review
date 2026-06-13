@@ -138,6 +138,14 @@ class TestMergeResults < Minitest::Test
     assert_equal 1, result[:errors].length
     assert_includes result[:errors].first, 'tool-a'
   end
+
+  def test_nil_response_keeps_previous_and_does_not_crash
+    # A totally failed fetch (nil response) must not raise and must preserve prior data.
+    repos = [{ slug: 'tool-a', repo: { owner: 'o', name: 'a' } }]
+    previous = { 'stars' => { 'tool-a' => { 'count' => 123, 'fetched_at' => '2026-06-10T04:00:00Z' } } }
+    result = StarsLib.merge_results(repos, nil, previous, now: '2026-06-13T04:00:00Z')
+    assert_equal 123, result['stars']['tool-a']['count']
+  end
 end
 
 class TestUpdateFrontmatter < Minitest::Test
