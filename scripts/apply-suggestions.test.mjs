@@ -210,3 +210,25 @@ test('applyTaxonomyChange rename cascades to YAML and tool frontmatter', () => {
   assert.equal(matter(readFileSync(moved, 'utf8')).data.subcategory, 'memory');
   rmSync(root, { recursive: true, force: true });
 });
+
+// ── Task 2.5: Orchestration pure tests ──────────────────────────────────────
+import { orderForApply, appendChangelog } from './apply-suggestions.mjs';
+
+test('orderForApply runs taxonomy_change before tool kinds, oldest-first within group', () => {
+  const rows = [
+    { id: '1', kind: 'new_tool', created_at: '2026-06-01' },
+    { id: '2', kind: 'taxonomy_change', created_at: '2026-06-05', payload: { op: 'add_tag' } },
+    { id: '3', kind: 'tool_edit', created_at: '2026-05-30' },
+  ];
+  assert.deepEqual(orderForApply(rows).map((r) => r.id), ['2', '3', '1']);
+});
+
+test('appendChangelog adds an entry under entries:, newest preserved', () => {
+  const root = fixtureTree();
+  writeFileSync(join(root, 'data', '_landscape_changelog.yaml'), 'entries: []\n');
+  appendChangelog(root, { date: '2026-06-13', kind: 'new_tool', summary: 'Letta added', tool: 'letta', credit: 'dani' });
+  const y = readFileSync(join(root, 'data', '_landscape_changelog.yaml'), 'utf8');
+  assert.match(y, /Letta added/);
+  assert.match(y, /credit: dani/);
+  rmSync(root, { recursive: true, force: true });
+});

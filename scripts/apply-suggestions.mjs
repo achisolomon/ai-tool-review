@@ -3,8 +3,9 @@ import 'dotenv/config';
 import { createInterface } from 'node:readline/promises';
 import { stdin, stdout } from 'node:process';
 import { stringify as stringifyYaml, parse as parseYaml } from 'yaml';
-import { readFileSync as _read, readdirSync as _readdir, statSync as _stat, writeFileSync, mkdirSync, unlinkSync } from 'node:fs';
-import { join as _join, dirname } from 'node:path';
+import { readFileSync as _read, readdirSync as _readdir, statSync as _stat, writeFileSync, mkdirSync, unlinkSync, realpathSync } from 'node:fs';
+import { join as _join, dirname, resolve as _resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import matter from 'gray-matter';
 
 // ── Pure helpers (no I/O — unit tested) ─────────────────────────────────────
@@ -259,6 +260,24 @@ export function applyTaxonomyChange(row, root, tax) {
   throw new Error(`taxonomy op not auto-applicable: ${p.op}`);
 }
 
+// ── Orchestration pure helpers ────────────────────────────────────────────────
+
+const KIND_ORDER = { taxonomy_change: 0, new_tool: 1, tool_placement: 1, tool_edit: 1 };
+export function orderForApply(rows) {
+  return [...rows].sort((a, b) =>
+    (KIND_ORDER[a.kind] - KIND_ORDER[b.kind]) || (a.created_at < b.created_at ? -1 : 1));
+}
+
+export function appendChangelog(root, entry) {
+  const path = _join(root, 'data', '_landscape_changelog.yaml');
+  const doc = parseYaml(_read(path, 'utf8')) || { entries: [] };
+  doc.entries = doc.entries || [];
+  doc.entries.push(entry);
+  writeFileSync(path, stringifyYaml(doc));
+}
+
+// ── CLI shell (I/O — not unit tested) ────────────────────────────────────────
+
 export const FLAGS = (argv) => ({
   dryRun: argv.includes('--dry-run'),
   yes: argv.includes('--yes'),
@@ -274,6 +293,52 @@ async function confirmEnv(url, flags) {
   return ans.trim().toLowerCase() === 'y';
 }
 
+async function applyOne(row, root, tax) {
+  switch (row.kind) {
+    case 'new_tool': return applyNewTool(row, root, tax);
+    case 'tool_placement': return applyToolPlacement(row, root, tax);
+    case 'tool_edit': return applyToolEdit(row, root, tax);
+    case 'taxonomy_change': return applyTaxonomyChange(row, root, tax);
+    default: throw new Error(`unknown kind ${row.kind}`);
+  }
+}
+
+async function run(flags) {
+  const { createClient } = await import('@supabase/supabase-js');
+  const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY,
+    { auth: { persistSession: false } });
+  const root = process.cwd();   // run from ai-tool-review/
+
+  if (flags.unapply) {
+    await supabase.from('suggestions').update({ status: 'approved', applied_at: null }).eq('id', flags.unapply);
+    console.log(`Un-applied ${flags.unapply} (revert its diff manually).`);
+    return;
+  }
+
+  const { data: rows, error } = await supabase.from('suggestions').select('*').eq('status', 'approved');
+  if (error) { console.error(error.message); process.exit(1); }
+  const tax = loadTaxonomy(root);
+  const today = new Date().toISOString().slice(0, 10);
+  const ordered = orderForApply(rows);
+
+  const applied = [], skipped = [];
+  for (const row of ordered) {
+    const v = validateRow(row, root, tax);
+    if (!v.ok) { skipped.push(`SKIP ${row.id} (${row.kind}): ${v.reason}`); continue; }
+    if (flags.dryRun) { applied.push(`PLAN ${row.id} (${row.kind})`); continue; }
+    const report = await applyOne(row, root, tax);
+    appendChangelog(root, changelogEntry(row, today));
+    await supabase.from('suggestions').update({ status: 'applied', applied_at: new Date().toISOString() }).eq('id', row.id);
+    applied.push(`APPLIED ${row.id}: ${report}`);
+  }
+
+  applied.forEach((l) => console.log(l));
+  skipped.forEach((l) => console.warn(l));
+  if (!flags.dryRun && applied.length) {
+    console.log('\nNext: npm run generate && git diff   (review, then commit).');
+  }
+}
+
 async function main() {
   const flags = FLAGS(process.argv.slice(2));
   const url = process.env.SUPABASE_URL;
@@ -282,8 +347,13 @@ async function main() {
     process.exit(1);
   }
   if (!(await confirmEnv(url, flags))) { console.log('Aborted.'); return; }
-  // orchestration added in Task 2.5
+  await run(flags);
 }
 
 // Only run main when executed directly, so the test file can import pure fns.
-if (import.meta.url === `file://${process.argv[1]}`) main();
+// Use fileURLToPath + realpathSync to handle spaces and symlinks in the path.
+{
+  const thisFile = realpathSync(fileURLToPath(import.meta.url));
+  const entryFile = process.argv[1] ? realpathSync(_resolve(process.argv[1])) : null;
+  if (thisFile === entryFile) main();
+}
