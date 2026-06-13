@@ -120,16 +120,9 @@ test.describe('data.js integrity', () => {
     expect(mismatches, mismatches.join('\n')).toEqual([]);
   });
 
-  test('landscapeData embeds taxonomy and changelog', async ({ page }) => {
-    await page.goto('/landscape.html');
-    await page.waitForFunction(() => typeof landscapeData !== 'undefined');
-    const shape = await page.evaluate(() => ({
-      hasCats: !!(landscapeData.taxonomy && landscapeData.taxonomy.categories.developers),
-      hasTags: Array.isArray(landscapeData.taxonomy.tags.capabilities),
-      changelogIsArray: Array.isArray(landscapeData.changelog),
-    }));
-    expect(shape.hasCats).toBe(true);
-    expect(shape.hasTags).toBe(true);
-    expect(shape.changelogIsArray).toBe(true);
+  test('landscapeData embeds taxonomy and changelog', () => {
+    expect(data.taxonomy && data.taxonomy.categories.developers).toBeTruthy();
+    expect(Array.isArray(data.taxonomy.tags.capabilities)).toBe(true);
+    expect(Array.isArray(data.changelog)).toBe(true);
   });
 });
