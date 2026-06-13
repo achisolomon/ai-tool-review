@@ -2,7 +2,7 @@
 category: ai-infrastructure
 confidence_score: 0.9
 description: High-performance serving framework for LLMs and multimodal models with advanced optimizations and structured generation support.
-github_stars: 28900
+github_stars: 28958
 last_verified: '2026-06-03'
 name: SGLang
 pricing_model: free
@@ -12,6 +12,7 @@ subcategory: inference-apis
 track: developers
 type: oss
 website: https://github.com/sgl-project/sglang
+github_url: "https://github.com/sgl-project/sglang"
 ---
 
 <div class="key-stats">

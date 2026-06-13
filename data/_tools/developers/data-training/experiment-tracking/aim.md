@@ -2,7 +2,7 @@
 category: data-training
 confidence_score: 0.9
 description: "Open-source experiment tracking tool for ML teams with powerful visualization and metadata management"
-github_stars: 6100
+github_stars: 6155
 last_verified: '2026-06-03'
 name: Aim
 pricing_model: "free"
@@ -12,6 +12,7 @@ subcategory: experiment-tracking
 track: developers
 type: oss
 website: https://github.com/aimhubio/aim
+github_url: "https://github.com/aimhubio/aim"
 ---
 
 <div class="key-stats">
