@@ -47,6 +47,7 @@ pricing_model: "freemium"         # free | freemium | paid | enterprise
 logo_url: "/logos/tool.svg"
 founded_year: 2023
 headquarters: "San Francisco, CA"
+suggested_by: "contributor-name"  # public display name of community contributor
 
 # Tags (for filtering, cross-category discovery)
 tags:
@@ -227,6 +228,10 @@ properties:
         - category
         - subcategory
     description: "Additional categories for cross-listing"
+
+  suggested_by:
+    type: string
+    description: "Public display name of the community contributor who suggested this tool. Written by the apply script when the suggester opted into credit. Surfaces as a credit line on the tool page."
 ```
 
 ---

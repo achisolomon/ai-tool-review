@@ -118,6 +118,14 @@ users:
         name: "Voice Agents"
         description: "AI voice agents and automated receptionists"
 
+  slide-creation:
+    name: "Slide Creation"
+    description: "AI presentation and slide generation tools"
+    subcategories:
+      ai-presentations:
+        name: "AI Presentations"
+        description: "Generate and design slide decks with AI"
+
 developers:
   foundation-models:
     name: "Foundation Models & Model Hubs"
@@ -164,6 +172,9 @@ developers:
       cost-reduction:
         name: "Cost Reduction"
         description: "Token optimization and cost reduction tools for AI coding"
+      llm-skills:
+        name: "LLM Skills"
+        description: "Reusable skills and capability packs for coding agents"
 
   agent-frameworks:
     name: "Agent Frameworks & Orchestration"
@@ -193,6 +204,15 @@ developers:
       agent-identity:
         name: "Agent Identity & Auth"
         description: "Identity and authentication for agents"
+      agent-communication:
+        name: "Agent Communication"
+        description: "Messaging and coordination between agents"
+      agent-payments:
+        name: "Agent Payments"
+        description: "Payment rails and spend controls for autonomous agents"
+      agent-search:
+        name: "Agent Search"
+        description: "Search and retrieval built for agent workflows"
 
   llm-frameworks:
     name: "LLM Application Frameworks"
@@ -289,3 +309,14 @@ developers:
       security-scanning:
         name: "Security Scanning"
         description: "AI-powered security scanning and code forensics"
+
+  engineering-intelligence:
+    name: "Engineering Intelligence"
+    description: "Developer portals and engineering analytics platforms"
+    subcategories:
+      developer-portals:
+        name: "Developer Portals"
+        description: "Internal developer platforms and service catalogs"
+      engineering-analytics:
+        name: "Engineering Analytics"
+        description: "Metrics on engineering productivity and delivery"
