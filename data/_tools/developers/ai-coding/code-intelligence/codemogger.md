@@ -83,7 +83,7 @@ confidence_score: 0.95
   <div class="cons-list">
     <h3>Watch Out For</h3>
     <ul>
-      <li>Newer project with smaller community (318 stars)</li>
+      <li>Newer project with smaller community</li>
       <li>Limited to 13 languages with tree-sitter grammars</li>
       <li>Large items (150+ lines) are subdivided, which may affect some searches</li>
       <li>No cloud or team collaboration features</li>

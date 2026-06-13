@@ -204,7 +204,6 @@ confidence_score: 0.92
   <div class="info-card">
     <h4>Community Stats</h4>
     <ul>
-      <li>44,000+ GitHub stars</li>
       <li>400+ contributors</li>
       <li>10,000+ Discord members</li>
       <li>Weekly release cadence</li>

@@ -64,7 +64,7 @@ github_url: "https://github.com/sgl-project/sglang"
   <div class="pros-list">
     <h3>What's Great</h3>
     <ul>
-      <li>28.9K+ stars, fastest-growing inference framework</li>
+      <li>Fastest-growing inference framework</li>
       <li>RadixAttention for efficient KV cache reuse</li>
       <li>Native support for structured generation (JSON, regex)</li>
       <li>Multimodal support (text, image, video, audio)</li>

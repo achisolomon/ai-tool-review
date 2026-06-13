@@ -70,7 +70,7 @@ source_urls:
   <div class="pros-list">
     <h3>What's Great</h3>
     <ul>
-      <li>60K+ GitHub stars—widely adopted</li>
+      <li>Widely adopted with strong community support</li>
       <li>Zero dependencies, single Rust binary</li>
       <li>Sub-10ms overhead—virtually invisible</li>
       <li>Auto-rewrite hook for 100% adoption</li>

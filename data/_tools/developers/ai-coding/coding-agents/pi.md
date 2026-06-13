@@ -80,7 +80,7 @@ confidence_score: 0.94
       <li>Self-hosted model path for data-sensitive environments</li>
       <li>TypeScript extensions for custom commands and tools</li>
       <li>AGENTS.md and SYSTEM.md for project-level instructions</li>
-      <li>62K+ GitHub stars — strong community adoption</li>
+      <li>Strong community adoption</li>
     </ul>
     <div class="source"><a href="https://pi.dev" target="_blank">Official Site</a> · <a href="https://github.com/earendil-works/pi" target="_blank">GitHub</a></div>
   </div>

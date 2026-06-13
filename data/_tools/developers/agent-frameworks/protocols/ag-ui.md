@@ -68,7 +68,7 @@ confidence_score: 0.9
   <div class="pros-list">
     <h3>What's Great</h3>
     <ul>
-      <li>Open-source with strong community support (14K+ stars)</li>
+      <li>Open-source with strong community support</li>
       <li>Lightweight and framework-agnostic architecture</li>
       <li>Event-based design enables real-time interactions</li>
       <li>Clear separation of concerns between agent and UI layers</li>

@@ -179,7 +179,6 @@ confidence_score: 0.95
   <div class="info-card">
     <h4>Community Stats</h4>
     <ul>
-      <li>12,000+ GitHub stars</li>
       <li>200+ contributors</li>
       <li>Active Slack community (10k+ members)</li>
       <li>Weekly office hours</li>

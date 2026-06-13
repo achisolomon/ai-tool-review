@@ -181,7 +181,7 @@ confidence_score: 0.92
 
 | Feature | Coze | Dify | Botpress | Flowise |
 |---------|------|------|----------|---------|
-| Open Source | No | <span class="highlight">Yes (50K+ stars)</span> | Yes (AGPLv3) | <span class="highlight">Yes</span> |
+| Open Source | No | <span class="highlight">Yes</span> | Yes (AGPLv3) | <span class="highlight">Yes</span> |
 | Self-Hosted | No | <span class="highlight">Yes</span> | <span class="highlight">Yes</span> | <span class="highlight">Yes</span> |
 | Free Tier | <span class="highlight">100 runs/day + GPT-4o</span> | Limited | Limited | Free (self-host) |
 | Plugin Ecosystem | <span class="highlight">400+</span> | Moderate | 190+ | LangChain integrations |

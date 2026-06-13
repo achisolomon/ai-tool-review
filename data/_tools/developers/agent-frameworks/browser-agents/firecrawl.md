@@ -196,7 +196,6 @@ confidence_score: 0.90
   <div class="info-card">
     <h4>Community Stats</h4>
     <ul>
-      <li>25,000+ GitHub stars</li>
       <li>Active Discord community</li>
       <li>Built by Mendable (YC W23)</li>
       <li>Used by 10,000+ developers</li>

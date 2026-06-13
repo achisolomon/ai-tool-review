@@ -180,7 +180,6 @@ confidence_score: 0.95
   <div class="info-card">
     <h4>Community Stats</h4>
     <ul>
-      <li>31,700+ GitHub stars</li>
       <li>250M+ Docker downloads</li>
       <li>9,000+ Discord members</li>
       <li>100+ employees globally</li>

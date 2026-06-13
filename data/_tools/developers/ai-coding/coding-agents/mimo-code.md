@@ -185,7 +185,6 @@ confidence_score: 0.9
   <div class="info-card">
     <h4>Community Stats</h4>
     <ul>
-      <li>5,200+ GitHub stars</li>
       <li>412 forks</li>
       <li>MIT licensed source code</li>
       <li>Released June 10, 2026</li>

@@ -64,7 +64,7 @@ github_url: "https://github.com/vllm-project/vllm"
   <div class="pros-list">
     <h3>What's Great</h3>
     <ul>
-      <li>81.8K+ stars, most mature LLM inference framework</li>
+      <li>Most mature and widely adopted LLM inference framework</li>
       <li>PagedAttention delivers state-of-the-art throughput</li>
       <li>Comprehensive model support (LLMs, vision, audio)</li>
       <li>Production-proven at major tech companies</li>

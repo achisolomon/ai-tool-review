@@ -35,7 +35,7 @@ confidence_score: 0.95
 ## Overview
 
 <div class="overview">
-<p>Hugging Face is the leading open-source platform for machine learning, serving as GitHub for AI models. It hosts over 2 million models, 500,000 datasets, and 1 million Spaces (interactive ML demos). The platform combines a Git-based repository system with powerful open-source libraries like Transformers (161K+ GitHub stars), making it the de facto standard for sharing and deploying AI models. Major tech companies including Meta, Google, Microsoft, and Amazon use Hugging Face for model distribution and collaboration.</p>
+<p>Hugging Face is the leading open-source platform for machine learning, serving as GitHub for AI models. It hosts over 2 million models, 500,000 datasets, and 1 million Spaces (interactive ML demos). The platform combines a Git-based repository system with powerful open-source libraries like Transformers, making it the de facto standard for sharing and deploying AI models. Major tech companies including Meta, Google, Microsoft, and Amazon use Hugging Face for model distribution and collaboration.</p>
 </div>
 
 ## The Verdict
@@ -156,8 +156,8 @@ confidence_score: 0.95
   <div class="detail-section">
     <h4>Core Libraries</h4>
     <ul>
-      <li>Transformers (161K stars)</li>
-      <li>Diffusers (34K stars)</li>
+      <li>Transformers</li>
+      <li>Diffusers</li>
       <li>Datasets library</li>
       <li>PEFT for fine-tuning</li>
       <li>Accelerate for multi-GPU</li>

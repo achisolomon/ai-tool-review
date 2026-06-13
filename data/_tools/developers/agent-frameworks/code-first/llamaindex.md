@@ -181,7 +181,6 @@ confidence_score: 0.92
   <div class="info-card">
     <h4>Community Stats</h4>
     <ul>
-      <li>38,000+ GitHub stars</li>
       <li>1,500+ contributors</li>
       <li>160+ data connectors on LlamaHub</li>
       <li>Active Discord (30K+ members)</li>

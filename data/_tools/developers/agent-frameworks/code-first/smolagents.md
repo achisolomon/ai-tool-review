@@ -37,7 +37,7 @@ confidence_score: 0.9
 ## Overview
 
 <div class="overview">
-<p>Smolagents is Hugging Face's lightweight Python library designed to enable developers to run powerful AI agents with minimal code. True to its name ("smol" meaning small), the library focuses on simplicity and efficiency, offering just a few lines of code to get started with agent-based systems. It provides two primary agent patterns: CodeAgent, which generates and executes Python code to accomplish tasks, and ToolCallingAgent, which uses function calling to interact with tools and APIs. Built by the team behind Hugging Face, Smolagents integrates naturally with the Hugging Face ecosystem while remaining flexible enough to work with various LLM providers. The library prioritizes developer experience with a clean API and strong community support reflected in its 27.7K GitHub stars.</p>
+<p>Smolagents is Hugging Face's lightweight Python library designed to enable developers to run powerful AI agents with minimal code. True to its name ("smol" meaning small), the library focuses on simplicity and efficiency, offering just a few lines of code to get started with agent-based systems. It provides two primary agent patterns: CodeAgent, which generates and executes Python code to accomplish tasks, and ToolCallingAgent, which uses function calling to interact with tools and APIs. Built by the team behind Hugging Face, Smolagents integrates naturally with the Hugging Face ecosystem while remaining flexible enough to work with various LLM providers. The library prioritizes developer experience with a clean API and strong community support.</p>
 </div>
 
 ## The Verdict
@@ -71,7 +71,7 @@ confidence_score: 0.9
     <h3>What's Great</h3>
     <ul>
       <li>Extremely lightweight with minimal code to get started</li>
-      <li>Strong community backing with 27.7K GitHub stars</li>
+      <li>Strong community backing</li>
       <li>Dual agent patterns (CodeAgent and ToolCallingAgent) for flexibility</li>
       <li>Official Hugging Face project with ongoing support</li>
       <li>Clean, intuitive API design for rapid development</li>

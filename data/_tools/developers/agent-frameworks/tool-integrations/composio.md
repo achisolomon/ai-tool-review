@@ -69,7 +69,7 @@ confidence_score: 0.9
     <h3>What's Great</h3>
     <ul>
       <li>Massive integration library with 1,000+ apps</li>
-      <li>Open-source with strong community (12.5K+ stars)</li>
+      <li>Open-source with strong community</li>
       <li>Sandboxed execution for security</li>
       <li>Just-in-time tool discovery and calls</li>
       <li>Handles authentication and rate limiting automatically</li>
@@ -144,7 +144,7 @@ confidence_score: 0.9
 | Feature | Composio | Arcade AI | Merge |
 |---------|--------|--------------|--------------|
 | Integrations | 1,000+ | 500+ | 200+ |
-| Open Source | Yes (12.5K stars) | No | No |
+| Open Source | Yes | No | No |
 | Execution | Sandboxed, Parallel | Managed Runtime | Unified API |
 | Pricing | Freemium ($0-$99+) | Freemium | Freemium |
 | Best For | Multi-tool Agents | MCP Production | B2B Integrations |

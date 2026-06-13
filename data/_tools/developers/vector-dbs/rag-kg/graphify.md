@@ -170,7 +170,6 @@ confidence_score: 0.95
   <div class="info-card">
     <h4>Community Stats</h4>
     <ul>
-      <li>64,600+ GitHub stars</li>
       <li>6,500+ forks</li>
       <li>329 open issues (active development)</li>
       <li>Released April 2026</li>

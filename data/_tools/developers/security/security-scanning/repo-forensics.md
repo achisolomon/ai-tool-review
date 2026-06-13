@@ -78,7 +78,7 @@ confidence_score: 0.95
   <div class="cons-list">
     <h3>Watch Out For</h3>
     <ul>
-      <li>Newer project (94 stars)</li>
+      <li>Newer project with a smaller community</li>
       <li>Manual setup for some platforms</li>
       <li>Focused scope—not a full SAST replacement</li>
     </ul>

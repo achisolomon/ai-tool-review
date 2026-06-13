@@ -201,7 +201,6 @@ confidence_score: 0.95
   <div class="info-card">
     <h4>Community Stats</h4>
     <ul>
-      <li>22,000+ GitHub stars</li>
       <li>6,700+ community skills</li>
       <li>1,200+ MCP integrations</li>
       <li>Active Discord (50k+ members)</li>

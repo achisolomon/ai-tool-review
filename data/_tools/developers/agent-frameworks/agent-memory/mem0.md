@@ -78,7 +78,7 @@ confidence_score: 0.95
       <li>Token-efficient single-pass memory extraction</li>
       <li>Multi-level memory (User, Session, Agent)</li>
       <li>Flexible deployment: library, self-hosted, or cloud</li>
-      <li>Strong OSS community (57K+ GitHub stars)</li>
+      <li>Strong OSS community</li>
       <li>Y Combinator backed (S24)</li>
       <li>Simple API with Python and Node.js SDKs</li>
       <li>Entity linking and temporal reasoning built-in</li>
@@ -210,7 +210,6 @@ confidence_score: 0.95
   <div class="info-card">
     <h4>Community Stats</h4>
     <ul>
-      <li>57,400+ GitHub stars</li>
       <li>6,500+ forks</li>
       <li>Y Combinator S24 company</li>
       <li>Active Discord community</li>

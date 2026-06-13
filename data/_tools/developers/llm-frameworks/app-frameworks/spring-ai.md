@@ -226,7 +226,6 @@ source_urls:
   <div class="info-card">
     <h4>Community & Adoption</h4>
     <ul>
-      <li>3,200+ GitHub stars</li>
       <li>Active VMware/Broadcom backing</li>
       <li>Regular Spring Office Hours coverage</li>
       <li>Growing enterprise adoption</li>

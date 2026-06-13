@@ -175,7 +175,6 @@ confidence_score: 0.95
   <div class="info-card">
     <h4>Community Stats</h4>
     <ul>
-      <li>230,000+ GitHub stars</li>
       <li>15,000+ GitHub forks</li>
       <li>600+ contributors</li>
       <li>Active Discord community</li>

@@ -178,8 +178,6 @@ confidence_score: 0.92
   <div class="info-card">
     <h4>Community Stats</h4>
     <ul>
-      <li>98,500+ GitHub stars (Python)</li>
-      <li>13,000+ GitHub stars (JavaScript)</li>
       <li>2,800+ contributors</li>
       <li>Active Discord (100K+ members)</li>
     </ul>

@@ -76,7 +76,7 @@ confidence_score: 0.93
       <li>#1 on LongMemEval (81.6% recall vs 71.2% next-best)</li>
       <li>99.4% context reduction with high recall</li>
       <li>Fully local operation — one binary, zero config</li>
-      <li>Open-source with 22K+ GitHub stars</li>
+      <li>Open-source with active community</li>
       <li>Handles knowledge updates and contradictions automatically</li>
       <li>Plugins for Claude Code, OpenCode, OpenClaw, Hermes</li>
       <li>Works with any model including Ollama for offline</li>
@@ -163,7 +163,7 @@ confidence_score: 0.93
 | Feature | Supermemory | Mem0 | Zep | Letta |
 |---------|-------------|------|-----|-------|
 | LongMemEval | <span class="highlight">81.6%</span> | — | 71.2% | — |
-| Open Source | <span class="highlight">Yes (22K stars)</span> | Yes | Partial | Yes |
+| Open Source | <span class="highlight">Yes</span> | Yes | Partial | Yes |
 | Local Deploy | <span class="highlight">One binary</span> | Docker | Docker | Docker |
 | Memory vs RAG | <span class="highlight">Both</span> | Memory | Memory | Memory |
 | Context Reduction | <span class="highlight">99.4%</span> | Good | Good | Good |

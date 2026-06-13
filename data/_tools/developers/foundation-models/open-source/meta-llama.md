@@ -198,9 +198,9 @@ confidence_score: 0.95
   <div class="info-card">
     <h4>Community Stats</h4>
     <ul>
-      <li>59,400+ GitHub stars (llama repo)</li>
+      <li>Widely adopted llama repo</li>
       <li>34M+ HuggingFace downloads</li>
-      <li>7,600+ stars (llama-models)</li>
+      <li>Active llama-models repository</li>
       <li>Thousands of community projects</li>
     </ul>
     <div class="source"><a href="https://github.com/meta-llama/llama" target="_blank">GitHub, June 2026</a></div>
