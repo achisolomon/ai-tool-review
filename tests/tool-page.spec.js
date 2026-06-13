@@ -143,3 +143,22 @@ test.describe('Tool Page Review Modal', () => {
     }
   });
 });
+
+test('star badge renders count from stars.json (formatted k)', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('cookie_consent', 'accepted'));
+  // Stub the stars.json fetch with a known value before navigation.
+  await page.route('**/data/stars.json*', route => route.fulfill({
+    contentType: 'application/json',
+    body: JSON.stringify({ generated_at: 'T', stars: { 'aider': { count: 142318, fetched_at: 'T' } } })
+  }));
+  await page.goto('/tools/aider/');
+  await expect(page.locator('.tool-stars .star-count')).toHaveText('142k');
+});
+
+test('star badge keeps build-time fallback when stars.json fails', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('cookie_consent', 'accepted'));
+  await page.route('**/data/stars.json*', route => route.fulfill({ status: 500, body: '' }));
+  await page.goto('/tools/aider/');
+  // Fallback is the build-time rendered value; assert it is a non-empty "...k".
+  await expect(page.locator('.tool-stars .star-count')).toHaveText(/\d+k/);
+});
