@@ -9,7 +9,7 @@ subcategory: "security-scanning"
 status: "active"
 description: "Offline security scanner for auditing untrusted repositories, AI agent skills, plugins, and MCP servers before installation"
 github_url: "https://github.com/alexgreensh/repo-forensics"
-github_stars: 94
+github_stars: 105
 pricing_model: "free"
 last_verified: "2026-06-03"
 confidence_score: 0.95

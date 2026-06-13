@@ -11,7 +11,7 @@ status: active
 description: Beautiful local dashboard for Claude Code usage — 5h blocks, weekly trends,
   model & tool breakdown, activity heatmap
 github_url: https://github.com/iftahs/claude-dashboard
-github_stars: 7
+github_stars: 9
 pricing_model: free
 founded_year: 2026
 last_verified: '2026-06-10'
