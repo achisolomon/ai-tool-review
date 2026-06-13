@@ -133,13 +133,19 @@
         }
     }
 
+    const root = document.documentElement;
+
     document.addEventListener('pointermove', (e) => {
         mouse.x = e.clientX;
         mouse.y = e.clientY;
+        root.style.setProperty('--mouse-x', e.clientX + 'px');
+        root.style.setProperty('--mouse-y', e.clientY + 'px');
     });
     document.addEventListener('pointerleave', () => {
         mouse.x = -9999;
         mouse.y = -9999;
+        root.style.setProperty('--mouse-x', '-9999px');
+        root.style.setProperty('--mouse-y', '-9999px');
     });
 
     document.addEventListener('visibilitychange', () => {

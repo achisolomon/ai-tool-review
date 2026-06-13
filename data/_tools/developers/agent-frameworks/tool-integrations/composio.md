@@ -15,6 +15,8 @@ github_url: "https://github.com/composiohq/composio"
 github_stars: 12500
 last_verified: "2026-06-03"
 confidence_score: 0.9
+tags:
+  - skill
 ---
 
 <div class="key-stats">

@@ -305,6 +305,19 @@ a:hover {
     pointer-events: none;
 }
 
+/* Full-screen cursor light pool — same size/color as old per-card glow */
+#cursor-glow {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(
+        180px circle at var(--mouse-x, -9999px) var(--mouse-y, -9999px),
+        rgba(0, 122, 204, 0.10),
+        transparent 70%
+    );
+}
+
 /* Constellation canvas covers full viewport as a reactive background */
 #hero-map {
     position: fixed;
@@ -1941,6 +1954,14 @@ a:hover {
     bottom: 7px;
 }
 
+.hero-stats {
+    font-size: 11px;
+    color: var(--vscode-text-muted);
+    opacity: 0.6;
+    margin-top: 0.5rem;
+    letter-spacing: 0.02em;
+}
+
 /* Back to Search Button */
 .back-to-search {
     padding: 6px 16px;
@@ -2155,8 +2176,8 @@ a:hover {
 
 /* Result Card - Full info display */
 .result-card {
-    background: var(--vscode-sidebar-bg);
-    border: 1px solid var(--vscode-border);
+    background: rgba(37, 37, 38, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.07);
     border-radius: 10px;
     padding: 16px;
     cursor: pointer;
@@ -2169,8 +2190,8 @@ a:hover {
 }
 
 .result-card:hover {
-    background: #2d2d2d;
-    border-color: var(--vscode-focus-border);
+    background: rgba(50, 50, 52, 0.72);
+    border-color: rgba(0, 122, 204, 0.45);
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(0, 122, 204, 0.15);
 }
@@ -3386,21 +3407,7 @@ a:hover {
     opacity: 0.7;
 }
 
-/* Cursor-following glow on result cards */
-.result-card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: radial-gradient(180px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(0, 122, 204, 0.10), transparent 70%);
-    opacity: 0;
-    transition: opacity 0.25s ease;
-    pointer-events: none;
-}
-
-.result-card:hover::after {
-    opacity: 1;
-}
+/* Per-card glow removed — screen-level #cursor-glow handles it seamlessly */
 
 /* Staggered entrance for the first screenful of results */
 @media (prefers-reduced-motion: no-preference) {
