@@ -1,7 +1,7 @@
 ---
 name: "PlayHT"
 slug: "playht"
-website: "https://play.ht/"
+website: "https://playhtai.com/"
 type: "commercial"
 track: "users"
 category: "generative-media"
