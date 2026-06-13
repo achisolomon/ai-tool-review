@@ -19,7 +19,10 @@ def search(name, token)
   req['Authorization'] = "bearer #{token}"
   req['User-Agent'] = 'ai-tool-review-star-refresh'
   res = http.request(req)
-  return [] unless res.code.to_i == 200
+  unless res.code.to_i == 200
+    warn "  ! search HTTP #{res.code} for #{name.inspect} (treated as no candidate)"
+    return []
+  end
   JSON.parse(res.body)['items'] || []
 end
 
@@ -42,7 +45,7 @@ Dir.glob(File.join(tools_dir, '**/*.md')).sort.each do |path|
     label = best ? "#{best[:full_name]} (#{best[:confidence]})" : 'no candidate'
     manual << "MANUAL #{fm['slug']} -> #{label}"
   end
-  sleep 2 # stay polite to the search API rate limit
+  sleep 3 # GitHub Search API allows 30 req/min; 3s leaves margin
 end
 
 puts "\nAuto-resolved: #{auto}"
