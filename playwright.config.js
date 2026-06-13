@@ -1,5 +1,8 @@
 import { defineConfig } from '@playwright/test';
 
+const PORT = process.env.PORT || '8080';
+const BASE_URL = `http://localhost:${PORT}`;
+
 export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
@@ -8,13 +11,14 @@ export default defineConfig({
   workers: process.env.CI ? 4 : undefined,
   reporter: 'html',
   use: {
-    baseURL: 'http://localhost:8080',
+    baseURL: BASE_URL,
     trace: 'on-first-retry',
   },
   webServer: {
     // Node server with clean URL support (run 'npm run build' first if needed)
-    command: 'node server.js',
-    url: 'http://localhost:8080',
+    // PORT is forwarded so multiple worktrees can run on different ports simultaneously.
+    command: `PORT=${PORT} node server.js`,
+    url: BASE_URL,
     reuseExistingServer: !process.env.CI,
   },
 });
