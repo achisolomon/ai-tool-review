@@ -878,7 +878,17 @@
   // ---------------------------------------------------------------------------
   // Export
   // ---------------------------------------------------------------------------
+  // renderCreditConsent, renderPlacementSection, renderTagGroups are exposed so
+  // Forms B/C/D (Phase 3.6) can reuse the shared credit-consent component
+  // and placement helpers without reimplementing them.
 
-  window.Suggest = { open, close };
+  window.Suggest = {
+    open,
+    close,
+    // Reusable components for Phase 3.6 forms:
+    renderCreditConsent,
+    renderPlacementSection,
+    renderTagGroups,
+  };
 
 })();
