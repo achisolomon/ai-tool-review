@@ -150,4 +150,47 @@ module StarsLib
     sorted = merged['stars'].keys.sort.each_with_object({}) { |k, h| h[k] = merged['stars'][k] }
     JSON.pretty_generate({ 'generated_at' => merged['generated_at'], 'stars' => sorted }) + "\n"
   end
+
+  # Default PATCH poster for Supabase PostgREST. Returns response body string.
+  def self.default_patcher
+    require 'net/http'
+    require 'uri'
+    lambda do |url, body, headers|
+      u = URI(url)
+      http = Net::HTTP.new(u.host, u.port)
+      http.use_ssl = true
+      http.open_timeout = 10
+      http.read_timeout = 30
+      req = Net::HTTP::Patch.new(u, headers)
+      req.body = body
+      res = http.request(req)
+      raise ApiError, "Supabase HTTP #{res.code}: #{res.body}" unless res.code.to_i.between?(200, 299)
+      res.body
+    end
+  end
+
+  # Sync canonical counts into the Supabase `tools` table (github_stars +
+  # github_stars_updated_at), one PATCH per slug. patcher injectable for tests.
+  # Returns the number of slugs synced.
+  def self.sync_supabase(stars, url:, service_key:, now:, patcher: nil)
+    raise AuthError, 'Missing Supabase URL/key' if url.nil? || url.empty? || service_key.nil? || service_key.empty?
+    require 'uri'
+    patcher ||= default_patcher
+    base = url.chomp('/')
+    headers = {
+      'apikey' => service_key,
+      'Authorization' => "Bearer #{service_key}",
+      'Content-Type' => 'application/json',
+      'Prefer' => 'return=minimal'
+    }
+    count = 0
+    stars.each do |slug, entry|
+      next unless entry['count'].is_a?(Integer)
+      endpoint = "#{base}/rest/v1/tools?slug=eq.#{URI.encode_www_form_component(slug)}"
+      payload = JSON.generate({ 'github_stars' => entry['count'], 'github_stars_updated_at' => now })
+      patcher.call(endpoint, payload, headers)
+      count += 1
+    end
+    count
+  end
 end

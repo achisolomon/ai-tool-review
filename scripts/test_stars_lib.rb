@@ -227,3 +227,34 @@ class TestCliComposition < Minitest::Test
     assert_includes out[:json], '"tool-a"'
   end
 end
+
+class TestSupabaseSync < Minitest::Test
+  def test_patches_each_slug_with_count_and_timestamp
+    calls = []
+    fake_patch = lambda do |url, body, headers|
+      calls << { url: url, body: JSON.parse(body), headers: headers }
+      '' # PostgREST returns empty body with return=minimal
+    end
+    stars = {
+      'n8n' => { 'count' => 142318, 'fetched_at' => '2026-06-13T04:00:00Z' },
+      'litellm-proxy' => { 'count' => 18204, 'fetched_at' => '2026-06-13T04:00:00Z' }
+    }
+    synced = StarsLib.sync_supabase(
+      stars, url: 'https://x.supabase.co', service_key: 'SRV',
+      now: '2026-06-13T04:00:00Z', patcher: fake_patch
+    )
+    assert_equal 2, synced
+    n8n_call = calls.find { |c| c[:url].include?('slug=eq.n8n') }
+    refute_nil n8n_call
+    assert_equal 142318, n8n_call[:body]['github_stars']
+    assert_equal '2026-06-13T04:00:00Z', n8n_call[:body]['github_stars_updated_at']
+    assert_equal 'Bearer SRV', n8n_call[:headers]['Authorization']
+    assert_equal 'SRV', n8n_call[:headers]['apikey']
+  end
+
+  def test_raises_on_missing_creds
+    assert_raises(StarsLib::AuthError) do
+      StarsLib.sync_supabase({ 'x' => { 'count' => 1 } }, url: nil, service_key: 'k', now: 'T', patcher: ->(*) { '' })
+    end
+  end
+end
