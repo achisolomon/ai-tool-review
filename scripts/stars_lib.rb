@@ -102,6 +102,28 @@ module StarsLib
     { 'generated_at' => now, 'stars' => stars, errors: errors }
   end
 
+  # Choose the best repo candidate for a tool. Returns
+  # { full_name:, confidence: 0.0..1.0 } or nil. Confidence combines
+  # name match with proximity of candidate stars to the known count.
+  def self.best_candidate(tool_name, known_stars, candidates)
+    return nil if candidates.nil? || candidates.empty?
+    scored = candidates.map do |c|
+      repo_name = c['full_name'].to_s.split('/').last.to_s.downcase
+      name_score = repo_name == tool_name.to_s.downcase ? 1.0 :
+                   repo_name.include?(tool_name.to_s.downcase) ? 0.5 : 0.0
+      cstars = c['stargazers_count'].to_i
+      star_score =
+        if known_stars.to_i <= 0 || cstars <= 0
+          0.5
+        else
+          ratio = [cstars, known_stars].min.to_f / [cstars, known_stars].max
+          ratio # 1.0 when equal, →0 as they diverge
+        end
+      { full_name: c['full_name'], confidence: (name_score * 0.6 + star_score * 0.4).round(3) }
+    end
+    scored.max_by { |s| s[:confidence] }
+  end
+
   class AuthError < StandardError; end
   class ApiError < StandardError; end
 

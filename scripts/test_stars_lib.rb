@@ -258,3 +258,28 @@ class TestSupabaseSync < Minitest::Test
     end
   end
 end
+
+class TestResolveScoring < Minitest::Test
+  def candidates
+    [
+      { 'full_name' => 'n8n-io/n8n', 'stargazent_count' => nil, 'stargazers_count' => 140000 },
+      { 'full_name' => 'someone/n8n-clone', 'stargazers_count' => 12 }
+    ]
+  end
+
+  def test_high_confidence_exact_name_and_close_stars
+    best = StarsLib.best_candidate('n8n', 138000, candidates)
+    assert_equal 'n8n-io/n8n', best[:full_name]
+    assert best[:confidence] >= 0.8
+  end
+
+  def test_low_confidence_when_star_counts_diverge
+    cands = [{ 'full_name' => 'x/n8n', 'stargazers_count' => 5 }]
+    best = StarsLib.best_candidate('n8n', 140000, cands)
+    assert best[:confidence] < 0.8
+  end
+
+  def test_nil_when_no_candidates
+    assert_nil StarsLib.best_candidate('n8n', 100, [])
+  end
+end
