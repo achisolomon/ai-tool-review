@@ -13,7 +13,7 @@ test.describe('Tags Feature', () => {
             const searchInput = page.locator('#action-input');
             const dropdown = page.locator('#autocomplete-dropdown');
 
-            await searchInput.fill('skill');
+            await searchInput.fill('agents');
             await page.waitForTimeout(200);
 
             await expect(dropdown).not.toHaveClass(/hidden/);
