@@ -5098,6 +5098,30 @@ const landscapeData = {
               "additional_categories": []
             },
             {
+              "name": "Kickbacks.ai",
+              "slug": "kickbacks",
+              "url": "https://kickbacks.ai/",
+              "desc": "Ad marketplace that places subtle, clickable sponsored messages in the Claude Code and Codex thinking spinner, splitting 50% of ad revenue back to the developers whose machines display them",
+              "type": "commercial",
+              "github_stars": 217,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "api-available",
+                "agents"
+              ],
+              "all_tags": [
+                "api-available",
+                "agents"
+              ],
+              "category_id": "ai-coding",
+              "category_name": "AI Coding & Developer Tools",
+              "subcategory_id": "cost-reduction",
+              "subcategory_name": "Cost Reduction",
+              "additional_categories": []
+            },
+            {
               "name": "RTK (Rust Token Killer)",
               "slug": "rtk",
               "url": "https://github.com/rtk-ai/rtk",
@@ -9194,3 +9218,4 @@ const landscapeData = {
     }
   ]
 };
+window.landscapeData = landscapeData;

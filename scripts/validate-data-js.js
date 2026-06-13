@@ -48,7 +48,7 @@ function validateDataJs() {
   // Try to actually parse it
   try {
     // Extract the object part and parse it
-    const match = content.match(/const landscapeData\s*=\s*(\{[\s\S]*\});?\s*$/);
+    const match = content.match(/const landscapeData\s*=\s*(\{[\s\S]*\});/);
     if (match) {
       const jsonStr = match[1];
       const data = JSON.parse(jsonStr);
