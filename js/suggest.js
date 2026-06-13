@@ -1562,10 +1562,388 @@
   // open({ mode, tool, trigger })
   // ---------------------------------------------------------------------------
 
-  async function open({ mode = 'add', tool = null, trigger = null } = {}) {
-    // Phase-5 hook — edit mode is not yet implemented
+  // ---------------------------------------------------------------------------
+  // Edit mode: prefill form from a suggestion row, submit as UPDATE
+  // ---------------------------------------------------------------------------
+
+  async function openEditMode(suggestion, trigger) {
+    triggerEl = trigger || document.activeElement || null;
+
+    // Auth check (user must be signed in to edit their own row)
+    let user = null;
+    try { user = await window.SupabaseClient.getCurrentUser(); } catch (_) {}
+    if (!user) {
+      const modal = mountAndOpen('Sign in to edit', renderAuthGate());
+      if (window.AuthSignIn) {
+        window.AuthSignIn.initHandlers(modal, (err) => showError(modal, err));
+      }
+      return;
+    }
+
+    const taxonomy = (window.landscapeData && window.landscapeData.taxonomy) || null;
+    const row = suggestion || {};
+    const kind = row.kind || '';
+    const payload = row.payload || {};
+
+    // Map kind → sub-mode and route to correct form
+    if (kind === 'new_tool') {
+      const modal = mountAndOpen('Edit suggestion: new tool', renderNewToolForm(user, taxonomy));
+      // Prefill fields
+      const nameInput = modal.querySelector('#suggest-name');
+      const websiteInput = modal.querySelector('#suggest-website');
+      const slugInput = modal.querySelector('#suggest-slug');
+      const descInput = modal.querySelector('#suggest-description');
+      const rationaleInput = modal.querySelector('#suggest-rationale');
+      const creditNameInput = modal.querySelector('#suggest-credit-name');
+      const publicCreditBox = modal.querySelector('#suggest-public-credit');
+
+      if (nameInput) nameInput.value = payload.name || '';
+      if (websiteInput) websiteInput.value = payload.website || '';
+      if (slugInput) slugInput.value = payload.slug || '';
+      if (descInput) descInput.value = payload.description || '';
+      if (rationaleInput) rationaleInput.value = row.rationale || '';
+      if (creditNameInput) creditNameInput.value = row.credit_name || '';
+      if (publicCreditBox) publicCreditBox.checked = row.public_credit !== false;
+
+      wireDuplicateCheck(modal, taxonomy);
+      wirePlacementCascade(modal, taxonomy);
+      wireCreditConsent(modal);
+
+      // Wire submit as UPDATE
+      wireEditSubmit(modal, row, kind, 'new_tool');
+
+      const cancelBtn = modal.querySelector('#suggest-form-cancel');
+      if (cancelBtn) cancelBtn.addEventListener('click', close);
+
+      if (nameInput) nameInput.focus();
+
+    } else if (kind === 'taxonomy_change') {
+      // Go straight to the taxonomy op form using the stored op
+      const op = payload.op || 'other';
+      const modal = mountAndOpen('Edit suggestion: taxonomy change', renderTaxonomyOpForm(op, taxonomy, user));
+
+      // Prefill common fields
+      const rationaleInput = modal.querySelector('#taxop-rationale');
+      const creditNameInput = modal.querySelector('#suggest-credit-name');
+      const publicCreditBox = modal.querySelector('#suggest-public-credit');
+      if (rationaleInput) rationaleInput.value = row.rationale || '';
+      if (creditNameInput) creditNameInput.value = row.credit_name || '';
+      if (publicCreditBox) publicCreditBox.checked = row.public_credit !== false;
+
+      // Prefill op-specific fields
+      if (op === 'add_subcategory') {
+        const parentCat = modal.querySelector('#taxop-parent-category');
+        const nameInput = modal.querySelector('#taxop-name');
+        const descInput = modal.querySelector('#taxop-description');
+        const exToolsInput = modal.querySelector('#taxop-example-tools');
+        if (parentCat) parentCat.value = payload.parent_category || '';
+        if (nameInput) nameInput.value = payload.name || '';
+        if (descInput) descInput.value = payload.description || '';
+        if (exToolsInput) exToolsInput.value = Array.isArray(payload.example_tools) ? payload.example_tools.join(', ') : (payload.example_tools || '');
+      } else if (op === 'add_category') {
+        const trackSel = modal.querySelector('#taxop-track');
+        const nameInput = modal.querySelector('#taxop-name');
+        const descInput = modal.querySelector('#taxop-description');
+        if (trackSel) trackSel.value = payload.track || '';
+        if (nameInput) nameInput.value = payload.name || '';
+        if (descInput) descInput.value = payload.description || '';
+      } else if (op === 'add_tag') {
+        const familySel = modal.querySelector('#taxop-family');
+        const nameInput = modal.querySelector('#taxop-name');
+        const descInput = modal.querySelector('#taxop-description');
+        if (familySel) familySel.value = payload.family || '';
+        if (nameInput) nameInput.value = payload.name || '';
+        if (descInput) descInput.value = payload.description || '';
+      } else if (op === 'rename') {
+        const targetKind = modal.querySelector('#taxop-target-kind');
+        const targetInput = modal.querySelector('#taxop-target');
+        const newNameInput = modal.querySelector('#taxop-new-name');
+        if (targetKind) targetKind.value = payload.target_kind || '';
+        if (targetInput) targetInput.value = payload.target || '';
+        if (newNameInput) newNameInput.value = payload.new_name || '';
+      } else if (op === 'other') {
+        const detailsInput = modal.querySelector('#taxop-details');
+        if (detailsInput) detailsInput.value = payload.details || '';
+      }
+
+      wireCreditConsent(modal);
+      wireEditSubmit(modal, row, kind, 'taxonomy_change', op);
+
+      const cancelBtn = modal.querySelector('#suggest-form-cancel');
+      if (cancelBtn) cancelBtn.addEventListener('click', close);
+
+    } else if (kind === 'tool_placement') {
+      // Build a synthetic tool object from the payload
+      const current = payload.current || {};
+      const tool = {
+        name: row.tool_slug || 'this tool',
+        slug: row.tool_slug || '',
+        category: current.category || '',
+        subcategory: current.subcategory || '',
+        tags: current.tags || [],
+      };
+      const modal = mountAndOpen('Edit suggestion: move/re-tag', renderMoveRetagForm(tool, taxonomy, user));
+
+      const rationaleInput = modal.querySelector('#suggest-retag-rationale');
+      const creditNameInput = modal.querySelector('#suggest-credit-name');
+      const publicCreditBox = modal.querySelector('#suggest-public-credit');
+      if (rationaleInput) rationaleInput.value = row.rationale || '';
+      if (creditNameInput) creditNameInput.value = row.credit_name || '';
+      if (publicCreditBox) publicCreditBox.checked = row.public_credit !== false;
+
+      wireCreditConsent(modal);
+      wireEditSubmit(modal, row, kind, 'tool_placement', null, tool);
+
+      const cancelBtn = modal.querySelector('#suggest-form-cancel');
+      if (cancelBtn) cancelBtn.addEventListener('click', close);
+
+    } else if (kind === 'tool_edit') {
+      // Build synthetic tool from payload.changes + original
+      const orig = payload.original || {};
+      const tool = {
+        name: row.tool_slug || '',
+        slug: row.tool_slug || '',
+        desc: orig.description || '',
+        url: orig.website || '',
+        github_url: orig.github_url || '',
+        type: orig.type || '',
+        pricing_model: orig.pricing_model || '',
+      };
+      const modal = mountAndOpen('Edit suggestion: fix details', renderFixDetailsForm(tool, user));
+
+      // Prefill with proposed (edited) values if present
+      const proposed = payload.edited || payload.changes || {};
+      const descInput = modal.querySelector('#fix-description');
+      const websiteInput = modal.querySelector('#fix-website');
+      const githubInput = modal.querySelector('#fix-github-url');
+      const typeSelect = modal.querySelector('#fix-type');
+      const pricingSelect = modal.querySelector('#fix-pricing-model');
+      const rationaleInput = modal.querySelector('#fix-rationale');
+      const creditNameInput = modal.querySelector('#suggest-credit-name');
+      const publicCreditBox = modal.querySelector('#suggest-public-credit');
+
+      if (descInput && proposed.description) descInput.value = proposed.description;
+      if (websiteInput && proposed.website) websiteInput.value = proposed.website;
+      if (githubInput && proposed.github_url) githubInput.value = proposed.github_url;
+      if (typeSelect && proposed.type) typeSelect.value = proposed.type;
+      if (pricingSelect && proposed.pricing_model) pricingSelect.value = proposed.pricing_model;
+      if (rationaleInput) rationaleInput.value = row.rationale || '';
+      if (creditNameInput) creditNameInput.value = row.credit_name || '';
+      if (publicCreditBox) publicCreditBox.checked = row.public_credit !== false;
+
+      wireCreditConsent(modal);
+      wireEditSubmit(modal, row, kind, 'tool_edit', null, tool);
+
+      const cancelBtn = modal.querySelector('#suggest-form-cancel');
+      if (cancelBtn) cancelBtn.addEventListener('click', close);
+    } else {
+      // Unknown kind — fallback to a simple info modal
+      const modal = mountAndOpen('Edit suggestion', `<p class="suggest-hint">Editing is not supported for this suggestion type (${escapeHtml(kind)}).</p><div class="suggest-form-actions"><button class="suggest-btn" type="button" id="suggest-form-cancel">Close</button></div>`);
+      const cancelBtn = modal.querySelector('#suggest-form-cancel');
+      if (cancelBtn) cancelBtn.addEventListener('click', close);
+    }
+  }
+
+  // Wire edit form submit — calls updateMySuggestion (UPDATE, not INSERT; never capped)
+  function wireEditSubmit(modal, row, kind, formKind, op, tool) {
+    // Determine the form element to listen on
+    const formIds = {
+      new_tool: '#suggest-new-tool-form',
+      taxonomy_change: '#suggest-taxonomy-form',
+      tool_placement: '#suggest-move-retag-form',
+      tool_edit: '#suggest-fix-details-form',
+    };
+    const formId = formIds[formKind] || '#suggest-new-tool-form';
+    const form = modal.querySelector(formId);
+    if (!form) return;
+
+    // Remove any previously attached submit handlers by replacing with a clone
+    // (avoids duplicate submit handlers from the original wire functions which we did NOT call)
+    // We simply add our own listener; the forms don't have other listeners at this point.
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const public_credit = form.querySelector('#suggest-public-credit')?.checked ?? true;
+      const credit_name = public_credit
+        ? (form.querySelector('#suggest-credit-name')?.value.trim().slice(0, 40) || '')
+        : null;
+
+      // Build patch
+      let patch = {
+        credit_name: credit_name || null,
+        public_credit,
+      };
+
+      if (formKind === 'new_tool') {
+        const name = form.querySelector('#suggest-name')?.value.trim() || '';
+        const website = form.querySelector('#suggest-website')?.value.trim() || '';
+        const slug = form.querySelector('#suggest-slug')?.value.trim() || '';
+        const description = form.querySelector('#suggest-description')?.value.trim() || '';
+        const rationale = form.querySelector('#suggest-rationale')?.value.trim() || '';
+        const track = form.querySelector('#suggest-track')?.value || null;
+        const category = form.querySelector('#suggest-category')?.value || null;
+        const subcategory = form.querySelector('#suggest-subcategory')?.value || null;
+        const tags = Array.from(form.querySelectorAll('input[name="tag"]:checked')).map(i => i.value);
+        const type = form.querySelector('#suggest-type')?.value || null;
+        const pricing_model = form.querySelector('#suggest-pricing-model')?.value || null;
+
+        if (!name || !website || !slug || !description) {
+          showError(modal, 'Name, website, slug, and description are required.');
+          return;
+        }
+
+        let payload;
+        try {
+          payload = window.SuggestLogic.buildPayload('new_tool', {
+            name, slug, website, description,
+            placementProvided: !!(track && subcategory),
+            track, category, subcategory,
+            tags, type, pricing_model, notes: null
+          });
+        } catch (err) {
+          showError(modal, 'Failed to build payload: ' + escapeHtml(err.message));
+          return;
+        }
+        patch.payload = payload;
+        patch.rationale = rationale || null;
+
+      } else if (formKind === 'taxonomy_change') {
+        const rationale = (form.querySelector('#taxop-rationale')?.value || '').trim();
+        if (!rationale) {
+          showError(modal, 'Rationale is required.');
+          return;
+        }
+        let payload = { op: op || 'other' };
+        if (op === 'add_subcategory') {
+          payload.parent_category = form.querySelector('#taxop-parent-category')?.value || '';
+          payload.name = form.querySelector('#taxop-name')?.value.trim() || '';
+          payload.description = form.querySelector('#taxop-description')?.value.trim() || '';
+        } else if (op === 'add_category') {
+          payload.track = form.querySelector('#taxop-track')?.value || '';
+          payload.name = form.querySelector('#taxop-name')?.value.trim() || '';
+          payload.description = form.querySelector('#taxop-description')?.value.trim() || '';
+        } else if (op === 'add_tag') {
+          payload.family = form.querySelector('#taxop-family')?.value || '';
+          payload.name = form.querySelector('#taxop-name')?.value.trim() || '';
+          payload.description = form.querySelector('#taxop-description')?.value.trim() || '';
+        } else if (op === 'rename') {
+          payload.target_kind = form.querySelector('#taxop-target-kind')?.value || '';
+          payload.target = form.querySelector('#taxop-target')?.value.trim() || '';
+          payload.new_name = form.querySelector('#taxop-new-name')?.value.trim() || '';
+        } else if (op === 'other') {
+          payload.details = form.querySelector('#taxop-details')?.value.trim() || '';
+        }
+        patch.payload = payload;
+        patch.rationale = rationale;
+
+      } else if (formKind === 'tool_placement') {
+        const rationale = (form.querySelector('#suggest-retag-rationale')?.value || '').trim();
+        if (!rationale) {
+          showError(modal, 'Rationale is required.');
+          return;
+        }
+        const subSelect = form.querySelector('#suggest-new-subcategory');
+        const selectedOption = subSelect ? subSelect.options[subSelect.selectedIndex] : null;
+        const proposedSubcategory = subSelect ? subSelect.value : '';
+        const proposedCategory = selectedOption ? (selectedOption.dataset.category || '') : '';
+        const proposedTrack = selectedOption ? (selectedOption.dataset.track || '') : '';
+        const tagsAdd = Array.from(form.querySelectorAll('input[name="tag_add"]:checked')).map(i => i.value);
+        const tagsRemove = Array.from(form.querySelectorAll('input[name="tag_remove"]:checked')).map(i => i.value);
+        const currentTool = tool || {};
+        const current = {
+          category: currentTool.category || '',
+          subcategory: currentTool.subcategory || '',
+          tags: currentTool.tags || [],
+        };
+        const proposed = {
+          category: proposedCategory || current.category,
+          subcategory: proposedSubcategory || current.subcategory,
+          tags_add: tagsAdd,
+          tags_remove: tagsRemove,
+        };
+        let payload;
+        try {
+          payload = window.SuggestLogic.buildPayload('tool_placement', { current, proposed });
+        } catch (err) {
+          showError(modal, 'Failed to build payload: ' + escapeHtml(err.message));
+          return;
+        }
+        patch.payload = payload;
+        patch.rationale = rationale;
+
+      } else if (formKind === 'tool_edit') {
+        const t = tool || {};
+        const original = {
+          description: t.desc || t.description || '',
+          website: t.url || t.website || '',
+          github_url: t.github_url || '',
+          type: t.type || '',
+          pricing_model: t.pricing_model || '',
+        };
+        const edited = {
+          description: (form.querySelector('#fix-description')?.value || '').trim(),
+          website: (form.querySelector('#fix-website')?.value || '').trim(),
+          github_url: (form.querySelector('#fix-github-url')?.value || '').trim(),
+          type: form.querySelector('#fix-type')?.value || '',
+          pricing_model: form.querySelector('#fix-pricing-model')?.value || '',
+        };
+        let payload;
+        try {
+          payload = window.SuggestLogic.buildPayload('tool_edit', { original, edited });
+        } catch (err) {
+          showError(modal, 'Failed to build payload: ' + escapeHtml(err.message));
+          return;
+        }
+        if (!payload.changes || Object.keys(payload.changes).length === 0) {
+          showError(modal, 'No changes detected — please modify at least one field.');
+          return;
+        }
+        patch.payload = payload;
+        patch.rationale = (form.querySelector('#fix-rationale')?.value || '').trim() || null;
+      }
+
+      const submitBtn = form.querySelector('#suggest-form-submit');
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Saving…'; }
+
+      try {
+        const { error } = await window.SupabaseClient.updateMySuggestion(row.id, patch);
+
+        if (error) {
+          showError(modal, 'Update failed: ' + escapeHtml(error.message));
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Save changes'; }
+          return;
+        }
+
+        // Success
+        const body = modal.querySelector('.suggest-modal-body');
+        const titleEl = modal.querySelector('#suggest-modal-title');
+        if (titleEl) titleEl.textContent = 'Suggestion updated!';
+        if (body) {
+          body.innerHTML = `
+            <div class="suggest-success">
+              <div class="suggest-success-icon">✓</div>
+              <h3>Saved!</h3>
+              <p>Your suggestion has been updated and is still pending review.</p>
+              <a href="/my-suggestions.html">Back to My Suggestions</a>
+            </div>
+          `;
+        }
+      } catch (err) {
+        showError(modal, 'Unexpected error: ' + escapeHtml(err.message));
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Save changes'; }
+      }
+    });
+
+    // Rename submit button
+    const submitBtn = form.querySelector('#suggest-form-submit');
+    if (submitBtn) submitBtn.textContent = 'Save changes';
+  }
+
+  async function open({ mode = 'add', tool = null, trigger = null, suggestion = null } = {}) {
+    // Phase-5: edit mode implementation
     if (mode === 'edit') {
-      console.info('[Suggest] edit mode is a Phase-5 hook — not yet implemented.');
+      await openEditMode(suggestion, trigger);
       return;
     }
 
