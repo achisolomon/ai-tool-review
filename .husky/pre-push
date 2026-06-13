@@ -27,7 +27,9 @@ echo "Building Jekyll site..."
 bundle exec jekyll build || exit 1
 
 echo "Running full Playwright suite..."
-npm test || {
+# PREPUSH=1 tells playwright.config.js to own the server lifecycle (reuseExistingServer=false)
+# so the hook is self-contained regardless of whether a dev server is already running.
+PREPUSH=1 npm test || {
     echo "✗ Tests failed — push blocked. Fix the failures (do not bypass)."
     exit 1
 }

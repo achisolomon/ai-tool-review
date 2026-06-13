@@ -23,6 +23,7 @@ export default defineConfig({
     // Node server with clean URL support (run 'npm run build' first if needed)
     command: 'node server.js',
     url: 'http://localhost:8080',
-    reuseExistingServer: !process.env.CI,
+    // Reuse an already-running dev server unless CI or pre-push hook (both own the lifecycle)
+    reuseExistingServer: !process.env.CI && !process.env.PREPUSH,
   },
 });
