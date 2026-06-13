@@ -27,8 +27,11 @@ echo "Building Jekyll site..."
 bundle exec jekyll build || exit 1
 
 echo "Running full Playwright suite..."
+# Clear any orphaned servers from previous runs so Playwright can own port 8080.
+lsof -ti:8080 2>/dev/null | xargs kill -9 2>/dev/null || true
+lsof -ti:18080 2>/dev/null | xargs kill -9 2>/dev/null || true
+sleep 1
 # PREPUSH=1 tells playwright.config.js to own the server lifecycle (reuseExistingServer=false)
-# so the hook is self-contained regardless of whether a dev server is already running.
 PREPUSH=1 npm test || {
     echo "✗ Tests failed — push blocked. Fix the failures (do not bypass)."
     exit 1
