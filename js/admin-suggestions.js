@@ -14,6 +14,18 @@
         return String(text).replace(/[&<>"']/g, m => map[m]);
     }
 
+    // Sanitize a user-submitted URL: only allow http: and https: protocols.
+    // Returns '#' for javascript:, data:, or any other unsafe/unparseable URL.
+    function safeUrl(raw) {
+        if (!raw) return '#';
+        try {
+            const u = new URL(raw);
+            return (u.protocol === 'https:' || u.protocol === 'http:') ? u.href : '#';
+        } catch (_) {
+            return '#';
+        }
+    }
+
     function formatRelativeDate(dateStr) {
         if (!dateStr) return '';
         const date = new Date(dateStr);
@@ -55,9 +67,9 @@
                 return `Add "${escapeHtml(p.name || 'unnamed')}" — ${escapeHtml(p.website || '')}`;
             case 'taxonomy_change':
                 return `Taxonomy: ${escapeHtml(p.op || 'change')} — ${escapeHtml(p.details || '')}`.slice(0, 120);
-            case 'tool_move':
+            case 'tool_placement':
                 return `Move ${escapeHtml(s.tool_slug || '')} → ${escapeHtml(p.to_category || '')}/${escapeHtml(p.to_subcategory || '')}`;
-            case 'detail_fix':
+            case 'tool_edit':
                 return `Fix ${escapeHtml(p.field || 'field')} on ${escapeHtml(s.tool_slug || '')}`;
             default:
                 return escapeHtml(s.kind || 'unknown');
@@ -69,18 +81,18 @@
         const map = {
             new_tool: 'new-tool',
             taxonomy_change: 'taxonomy-change',
-            tool_move: 'tool-move',
-            detail_fix: 'detail-fix',
+            tool_placement: 'tool-placement',
+            tool_edit: 'tool-edit',
         };
-        return map[kind] || 'detail-fix';
+        return map[kind] || 'tool-edit';
     }
 
     function kindLabel(kind) {
         const map = {
             new_tool: 'New tool',
             taxonomy_change: 'Taxonomy',
-            tool_move: 'Move',
-            detail_fix: 'Fix',
+            tool_placement: 'Tool Placement',
+            tool_edit: 'Tool Edit',
         };
         return map[kind] || kind;
     }
@@ -200,7 +212,7 @@
         switch (s.kind) {
             case 'new_tool':
                 rows += `<tr><th>Name</th><td>${escapeHtml(p.name)}</td></tr>`;
-                rows += `<tr><th>Website</th><td><a href="${escapeHtml(p.website)}" target="_blank" rel="noreferrer noopener">${escapeHtml(p.website)}</a></td></tr>`;
+                rows += `<tr><th>Website</th><td><a href="${escapeHtml(safeUrl(p.website))}" target="_blank" rel="noreferrer noopener">${escapeHtml(p.website)}</a></td></tr>`;
                 if (p.description) rows += `<tr><th>Description</th><td>${escapeHtml(p.description)}</td></tr>`;
                 break;
 
@@ -209,12 +221,12 @@
                 if (p.details) rows += `<tr><th>Details</th><td>${escapeHtml(p.details)}</td></tr>`;
                 break;
 
-            case 'tool_move':
+            case 'tool_placement':
                 if (p.from_category) rows += `<tr><th>From</th><td>${escapeHtml(p.from_category)}/${escapeHtml(p.from_subcategory)}</td></tr>`;
                 rows += `<tr><th>To</th><td>${escapeHtml(p.to_track || '')}/${escapeHtml(p.to_category || '')}/${escapeHtml(p.to_subcategory || '')}</td></tr>`;
                 break;
 
-            case 'detail_fix':
+            case 'tool_edit':
                 rows += `<tr><th>Field</th><td>${escapeHtml(p.field)}</td></tr>`;
                 if (p.current_value !== undefined) rows += `<tr><th>Current</th><td>${escapeHtml(String(p.current_value))}</td></tr>`;
                 if (p.proposed_value !== undefined) rows += `<tr><th>Proposed</th><td>${escapeHtml(String(p.proposed_value))}</td></tr>`;

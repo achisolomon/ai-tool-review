@@ -13,6 +13,31 @@ import matter from 'gray-matter';
 const SLUG_RE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 export const safeComponent = (s) => typeof s === 'string' && SLUG_RE.test(s);
 
+// Only these frontmatter fields may be changed by a tool_edit suggestion.
+// Anything else (layout, include, permalink, render_with_liquid, …) could alter Jekyll rendering.
+export const ALLOWED_TOOL_EDIT_FIELDS = new Set([
+  'website', 'description', 'pricing_model', 'pricing_starting',
+  'user_count', 'github_url', 'github_stars', 'type', 'status',
+]);
+
+// Validate that a string is a safe http/https URL (blocks javascript:, data:, etc.)
+export function isSafeHttpUrl(s) {
+  if (typeof s !== 'string') return false;
+  try { const u = new URL(s); return u.protocol === 'https:' || u.protocol === 'http:'; }
+  catch { return false; }
+}
+
+// Tag families a community add_tag may target. Mirrors _tags.yaml top-level keys.
+export const VALID_TAG_FAMILIES = new Set([
+  'capabilities', 'integrations', 'deployment', 'use-cases',
+]);
+
+// Derive a safe slug from a human name. Forms collect `name`, not `slug`,
+// for taxonomy add ops, so the slug is computed here at apply time.
+export const slugify = (name) =>
+  String(name || '').toLowerCase().trim()
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+
 export function toolPath({ track, category, subcategory, slug }) {
   for (const c of [track, category, subcategory, slug]) {
     if (!safeComponent(c)) throw new Error(`Unsafe path component: ${JSON.stringify(c)}`);
@@ -32,6 +57,8 @@ export function buildFrontmatter({ payload, credit_name, public_credit }) {
     subcategory: p.subcategory,
     status: 'active',
     description: payload.description,
+    // Prevent Jekyll from processing Liquid tags in user-supplied content.
+    render_with_liquid: false,
   };
   if (payload.pricing_model) fm.pricing_model = payload.pricing_model;
   if (Array.isArray(payload.tags) && payload.tags.length) fm.tags = payload.tags;
@@ -101,6 +128,7 @@ export function validateRow(row, root, tax) {
     const p = row.payload, pl = p.placement;
     if (!pl) return fail('placement is null — admin must set it before approval');
     if (!safeComponent(p.slug)) return fail(`unsafe slug: ${p.slug}`);
+    if (!isSafeHttpUrl(p.website)) return fail(`unsafe website URL: ${JSON.stringify(p.website)}`);
     if (!tax.triples.has(`${pl.track}/${pl.category}/${pl.subcategory}`)) return fail(`unknown placement subcategory: ${pl.track}/${pl.category}/${pl.subcategory}`);
     for (const t of p.tags || []) if (!tax.tags.has(t)) return fail(`unknown tag: ${t}`);
     if (findToolFile(root, p.slug)) return fail(`slug collision: ${p.slug}`);
@@ -122,17 +150,49 @@ export function validateRow(row, root, tax) {
   if (row.kind === 'tool_edit') {
     const hit = findToolFile(root, row.tool_slug);
     if (!hit) return fail(`tool not found: ${row.tool_slug}`);
-    for (const [field, { from }] of Object.entries(row.payload.changes || {})) {
+    for (const [field, { from, to }] of Object.entries(row.payload.changes || {})) {
+      if (!ALLOWED_TOOL_EDIT_FIELDS.has(field)) return fail(`disallowed edit field: ${field}`);
+      if ((field === 'website' || field === 'github_url') && !isSafeHttpUrl(to)) {
+        return fail(`unsafe URL for ${field}: ${JSON.stringify(to)}`);
+      }
       const cur = field === 'website' ? (hit.fm.website || hit.fm.url) : hit.fm[field];
       if ((cur ?? '') !== (from ?? '')) return fail(`stale ${field}: file has ${JSON.stringify(cur)}, payload from is ${JSON.stringify(from)}`);
     }
     return { ok: true };
   }
   if (row.kind === 'taxonomy_change') {
-    const op = row.payload.op;
+    const p = row.payload, op = p.op;
     if (op === 'other') return fail('op:other is hand-applied (never auto-applied)');
-    // add_*: name must not already exist; rename: target must exist. Full checks in Task 2.4.
-    return { ok: true };
+    if (op === 'add_subcategory') {
+      if (!p.name || typeof p.name !== 'string') return fail('add_subcategory requires a non-empty name');
+      if (!p.parent_category || typeof p.parent_category !== 'string') return fail('add_subcategory requires a non-empty parent_category');
+      if (!safeComponent(p.slug)) return fail(`unsafe add_subcategory slug: ${JSON.stringify(p.slug)}`);
+      const track = Object.keys(tax.cats).find((t) => tax.cats[t]?.[p.parent_category]);
+      if (!track) return fail(`unknown parent_category: ${p.parent_category}`);
+      if (tax.cats[track][p.parent_category].subcategories?.[p.slug]) return fail(`subcategory exists: ${p.slug}`);
+      return { ok: true };
+    }
+    if (op === 'add_category') {
+      if (!p.name || typeof p.name !== 'string') return fail('add_category requires a non-empty name');
+      if (!safeComponent(p.slug)) return fail(`unsafe add_category slug: ${JSON.stringify(p.slug)}`);
+      if (!['users', 'developers'].includes(p.track)) return fail(`invalid track: ${p.track}`);
+      if (tax.cats[p.track]?.[p.slug]) return fail(`category exists: ${p.slug}`);
+      return { ok: true };
+    }
+    if (op === 'add_tag') {
+      if (!p.name || typeof p.name !== 'string') return fail('add_tag requires a non-empty name');
+      if (!safeComponent(p.slug)) return fail(`unsafe add_tag slug: ${JSON.stringify(p.slug)}`);
+      if (!VALID_TAG_FAMILIES.has(p.family)) return fail(`invalid tag family: ${p.family}`);
+      if (tax.tags.has(p.slug)) return fail(`tag exists: ${p.slug}`);
+      return { ok: true };
+    }
+    if (op === 'rename') {
+      if (!['category', 'subcategory', 'tag'].includes(p.target_kind)) return fail(`invalid target_kind: ${p.target_kind}`);
+      if (!safeComponent(p.target)) return fail(`unsafe rename target: ${JSON.stringify(p.target)}`);
+      if (!safeComponent(slugify(p.new_name))) return fail(`unsafe rename new_name: ${JSON.stringify(p.new_name)}`);
+      return { ok: true };
+    }
+    return fail(`unknown taxonomy op: ${op}`);
   }
   return fail(`unknown kind: ${row.kind}`);
 }
@@ -176,13 +236,20 @@ export function applyToolPlacement(row, root, tax) {
 export function applyToolEdit(row, root, tax) {
   const hit = findToolFile(root, row.tool_slug);
   const parsed = matter(_read(hit.file, 'utf8'));
-  for (const [field, { to }] of Object.entries(row.payload.changes || {})) parsed.data[field] = to;
+  for (const [field, { to }] of Object.entries(row.payload.changes || {})) {
+    if (!ALLOWED_TOOL_EDIT_FIELDS.has(field)) throw new Error(`disallowed edit field: ${field}`);
+    parsed.data[field] = to;
+  }
   writeFileSync(hit.file, matter.stringify(parsed.content, parsed.data));
   return `edited ${row.tool_slug}: ${Object.keys(row.payload.changes).join(', ')}`;
 }
 
 export function applyRename(row, root) {
-  const { target_kind, target, new_name } = row.payload;
+  const { target_kind } = row.payload;
+  const target = row.payload.target;
+  const new_name = slugify(row.payload.new_name);
+  if (!safeComponent(target)) throw new Error(`Unsafe rename target: ${JSON.stringify(target)}`);
+  if (!safeComponent(new_name)) throw new Error(`Unsafe rename new_name: ${JSON.stringify(row.payload.new_name)}`);
   const tools = _join(root, 'data', '_tools');
   const catsPath = _join(tools, '_categories.yaml');
   if (target_kind === 'tag') {
@@ -282,7 +349,6 @@ export const FLAGS = (argv) => ({
   dryRun: argv.includes('--dry-run'),
   yes: argv.includes('--yes'),
   unapply: argv.includes('--unapply') ? argv[argv.indexOf('--unapply') + 1] : null,
-  stamp: argv.includes('--stamp') ? argv[argv.indexOf('--stamp') + 1] : null,
 });
 
 async function confirmEnv(url, flags) {

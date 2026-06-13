@@ -260,6 +260,7 @@ async function getSuggestions(status = 'pending', kind = 'all') {
     let q = supabase.from('suggestions').select('*').order('created_at', { ascending: true });
     if (status !== 'all') q = q.eq('status', status);
     if (kind !== 'all') q = q.eq('kind', kind);
+    q = q.limit(500);
     const { data, error } = await q;
     return { suggestions: data || [], error: error?.message };
 }

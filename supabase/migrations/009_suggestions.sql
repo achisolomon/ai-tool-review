@@ -41,10 +41,32 @@ BEGIN
     SELECT 1 FROM public.user_roles
     WHERE user_id = auth.uid() AND role IN ('admin','moderator')
   );
-  is_service := current_setting('request.jwt.claims', true)::json->>'role' = 'service_role';
+  -- FIX 4: null-safe service detection — NULLIF turns '' into NULL so ::json cast
+  -- is skipped; COALESCE yields '' so the comparison is safely false.
+  is_service := COALESCE(
+    NULLIF(current_setting('request.jwt.claims', true), '')::json->>'role',
+    ''
+  ) = 'service_role';
+
+  -- FIX 3 (trigger side): user_id is immutable — enforce before any early return.
+  IF NEW.user_id IS DISTINCT FROM OLD.user_id THEN
+    RAISE EXCEPTION 'user_id is immutable.';
+  END IF;
+
+  -- FIX 5: non-staff/non-service callers must not touch review/apply metadata.
+  -- This runs before the same-status early return so it applies to all updates.
+  IF NOT (is_staff OR is_service) THEN
+    IF NEW.reviewed_by   IS DISTINCT FROM OLD.reviewed_by   OR
+       NEW.reviewed_at   IS DISTINCT FROM OLD.reviewed_at   OR
+       NEW.admin_note    IS DISTINCT FROM OLD.admin_note    OR
+       NEW.applied_at    IS DISTINCT FROM OLD.applied_at    OR
+       NEW.applied_commit IS DISTINCT FROM OLD.applied_commit THEN
+      RAISE EXCEPTION 'Only staff can set review/apply metadata.';
+    END IF;
+  END IF;
 
   IF OLD.status = NEW.status THEN
-    RETURN NEW;  -- non-status edits (owner editing payload, staff editing payload)
+    RETURN NEW;  -- non-status edits (owner editing payload/rationale/credit, staff editing payload)
   END IF;
 
   -- A status change is happening. Only staff or the service role may ever do it.
@@ -70,7 +92,8 @@ BEGIN
 
   RETURN NEW;
 END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+$$ LANGUAGE plpgsql SECURITY DEFINER
+   SET search_path = public, pg_catalog;
 
 DROP TRIGGER IF EXISTS enforce_suggestion_transition ON public.suggestions;
 CREATE TRIGGER enforce_suggestion_transition
@@ -78,6 +101,8 @@ CREATE TRIGGER enforce_suggestion_transition
   FOR EACH ROW EXECUTE FUNCTION public.enforce_suggestion_transition();
 
 -- Cap: a user may hold at most 20 pending suggestions.
+-- FIX 2: downgraded from SECURITY DEFINER to INVOKER — it only reads public.suggestions
+-- which the inserting user can already see. search_path kept for hygiene.
 CREATE OR REPLACE FUNCTION public.enforce_suggestion_cap()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -87,7 +112,8 @@ BEGIN
   END IF;
   RETURN NEW;
 END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+$$ LANGUAGE plpgsql
+   SET search_path = public, pg_catalog;
 
 DROP TRIGGER IF EXISTS enforce_suggestion_cap ON public.suggestions;
 CREATE TRIGGER enforce_suggestion_cap
@@ -123,11 +149,15 @@ USING (user_id = auth.uid() AND status = 'pending')
 WITH CHECK (user_id = auth.uid() AND status = 'pending');
 
 -- UPDATE (staff): any row.
+-- FIX 3: added WITH CHECK to close the missing post-image guard.
+-- user_id immutability is enforced in the trigger (OLD value not available here).
 DROP POLICY IF EXISTS "Staff update any suggestion" ON public.suggestions;
 CREATE POLICY "Staff update any suggestion"
 ON public.suggestions FOR UPDATE TO authenticated
 USING (EXISTS (SELECT 1 FROM public.user_roles
-               WHERE user_id = auth.uid() AND role IN ('admin','moderator')));
+               WHERE user_id = auth.uid() AND role IN ('admin','moderator')))
+WITH CHECK (EXISTS (SELECT 1 FROM public.user_roles
+                    WHERE user_id = auth.uid() AND role IN ('admin','moderator')));
 
 -- DELETE: own while pending; staff any.
 DROP POLICY IF EXISTS "Users delete own pending suggestions" ON public.suggestions;

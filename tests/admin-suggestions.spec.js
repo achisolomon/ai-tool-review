@@ -195,6 +195,123 @@ test.describe('Admin Suggestions tab (mocked auth)', () => {
         );
         expect(relevantErrors).toHaveLength(0);
     });
+
+    // FIX B regression: javascript: URL in payload.website must NOT reach the href
+    test('javascript: URL in payload.website renders as href="#" (XSS guard)', async ({ page }) => {
+        await gotoAdminMocked(page);
+
+        // Inject mocks with a malicious website value
+        await page.evaluate(() => {
+            if (window.SupabaseClient) {
+                window.SupabaseClient.getCurrentUser = async () => ({
+                    id: 'mock-admin-id',
+                    email: 'admin@example.com',
+                    user_metadata: { full_name: 'Mock Admin' },
+                });
+                window.SupabaseClient.getSession = async () => ({ session: {} });
+            }
+            if (window.AdminAPI) {
+                window.AdminAPI.checkIsAdmin = async () => ({ isAdmin: true, role: 'admin' });
+                window.AdminAPI.getSuggestionPendingCount = async () => 0;
+                window.AdminAPI.getSuggestions = async () => ({
+                    suggestions: [{
+                        id: 'xss-1',
+                        kind: 'new_tool',
+                        tool_slug: null,
+                        payload: {
+                            name: 'Evil Tool',
+                            website: 'javascript:alert(document.cookie)',
+                            placement: null,
+                            slug: '',
+                        },
+                        status: 'pending',
+                        created_at: '2026-06-10T12:00:00Z',
+                        credit_name: 'attacker',
+                        rationale: null,
+                    }],
+                    error: null,
+                });
+                window.AdminAPI.getPendingCount = async () => 0;
+                window.AdminAPI.getReviewsForModeration = async () => ({ reviews: [], total: 0 });
+                window.AdminAPI.getAllUsers = async () => ({ users: [], error: null });
+            }
+        });
+
+        await showSuggestionsView(page);
+
+        // Open the decision view for the malicious suggestion
+        await page.locator('.suggestion-row').first().click();
+        await page.waitForTimeout(200);
+
+        // The website anchor in the payload table must NOT have a javascript: href
+        const websiteAnchor = page.locator('.suggestion-payload-table a').first();
+        await expect(websiteAnchor).toBeVisible();
+        const href = await websiteAnchor.getAttribute('href');
+        expect(href).toBe('#');
+        expect(href).not.toMatch(/^javascript:/i);
+    });
+
+    // FIX A regression: kind='tool_placement' must show its label, not fall to default
+    test("kind='tool_placement' renders 'Tool Placement' badge (not default fallback)", async ({ page }) => {
+        await gotoAdminMocked(page);
+
+        await page.evaluate(() => {
+            if (window.SupabaseClient) {
+                window.SupabaseClient.getCurrentUser = async () => ({
+                    id: 'mock-admin-id',
+                    email: 'admin@example.com',
+                    user_metadata: { full_name: 'Mock Admin' },
+                });
+                window.SupabaseClient.getSession = async () => ({ session: {} });
+            }
+            if (window.AdminAPI) {
+                window.AdminAPI.checkIsAdmin = async () => ({ isAdmin: true, role: 'admin' });
+                window.AdminAPI.getSuggestionPendingCount = async () => 0;
+                window.AdminAPI.getSuggestions = async () => ({
+                    suggestions: [
+                        {
+                            id: 'placement-1',
+                            kind: 'tool_placement',
+                            tool_slug: 'some-tool',
+                            payload: { to_track: 'users', to_category: 'agents', to_subcategory: 'general' },
+                            status: 'pending',
+                            created_at: '2026-06-10T12:00:00Z',
+                            credit_name: 'alice',
+                            rationale: null,
+                        },
+                        {
+                            id: 'edit-1',
+                            kind: 'tool_edit',
+                            tool_slug: 'other-tool',
+                            payload: { field: 'description', proposed_value: 'Better description' },
+                            status: 'pending',
+                            created_at: '2026-06-10T12:00:00Z',
+                            credit_name: 'bob',
+                            rationale: null,
+                        },
+                    ],
+                    error: null,
+                });
+                window.AdminAPI.getPendingCount = async () => 0;
+                window.AdminAPI.getReviewsForModeration = async () => ({ reviews: [], total: 0 });
+                window.AdminAPI.getAllUsers = async () => ({ users: [], error: null });
+            }
+        });
+
+        await showSuggestionsView(page);
+
+        const badges = page.locator('.suggestion-kind-badge');
+        await expect(badges).toHaveCount(2);
+
+        // First badge must read "Tool Placement", not the old "Move" or the default fallback
+        await expect(badges.first()).toHaveText(/Tool Placement/i);
+        // Second badge must read "Tool Edit"
+        await expect(badges.nth(1)).toHaveText(/Tool Edit/i);
+
+        // Neither badge should show the old stale labels
+        await expect(badges.first()).not.toHaveText(/^Move$/i);
+        await expect(badges.nth(1)).not.toHaveText(/^Fix$/i);
+    });
 });
 
 // ---------------------------------------------------------------------------
