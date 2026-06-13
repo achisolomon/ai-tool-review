@@ -1,25 +1,35 @@
 #!/bin/sh
-# Run full test suite before push (if environment is set up)
-echo "Running pre-push checks..."
+# HARD GATE: full build + test suite must pass before any push to the remote.
+# A red suite (or a missing toolchain) BLOCKS the push. No silent skips —
+# silent skips are how untested code reached main before.
+echo "Running pre-push checks (hard gate)..."
 
-# Check if we can run Jekyll
-if ! bundle exec jekyll --version > /dev/null 2>&1; then
-    echo "⚠️  Skipping local tests (Jekyll/bundler not configured)"
-    echo "   Tests will run in CI after push"
-    exit 0
+# Load rbenv so the project's Ruby (.ruby-version, 3.2.x) is active.
+if command -v rbenv > /dev/null 2>&1; then
+    eval "$(rbenv init - 2>/dev/null)"
 fi
 
-# Check if Playwright is installed
+# Toolchain must be present. If it's not, FAIL — don't skip.
+if ! bundle exec jekyll --version > /dev/null 2>&1; then
+    echo "✗ Jekyll/bundler not available."
+    echo "  Set up the toolchain (rbenv + Ruby 3.2 + 'bundle install') before pushing,"
+    echo "  or push with '--no-verify' ONLY if you understand the risk."
+    exit 1
+fi
+
 if ! npx playwright --version > /dev/null 2>&1; then
-    echo "⚠️  Skipping Playwright tests (not installed locally)"
-    echo "   Run 'npx playwright install chromium' to enable local tests"
-    exit 0
+    echo "✗ Playwright not installed."
+    echo "  Run 'npm ci && npx playwright install chromium' before pushing."
+    exit 1
 fi
 
 echo "Building Jekyll site..."
 bundle exec jekyll build || exit 1
 
-echo "Running Playwright tests..."
-npm test || exit 1
+echo "Running full Playwright suite..."
+npm test || {
+    echo "✗ Tests failed — push blocked. Fix the failures (do not bypass)."
+    exit 1
+}
 
-echo "All tests passed!"
+echo "✓ All checks passed."

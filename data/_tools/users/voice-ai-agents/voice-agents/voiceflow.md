@@ -13,9 +13,6 @@ founded_year: 2019
 headquarters: "Toronto, Canada"
 tags:
   - no-code
-additional_categories:
-  - category: "no-code-builders"
-    subcategory: "workflow-builders"
 
 # AI-Managed Metadata
 last_verified: "2026-06-09"

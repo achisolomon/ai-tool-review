@@ -4,8 +4,8 @@ slug: "ringcentral"
 website: "https://www.ringcentral.com/"
 type: "commercial"
 track: "users"
-category: "ai-contact-center"
-subcategory: "contact-center"
+category: "voice-ai-agents"
+subcategory: "voice-agents"
 status: "active"
 description: "AI-powered unified communications platform with voice AI, contact center, and business phone solutions serving 600K+ businesses worldwide"
 pricing_model: "paid"
@@ -13,10 +13,6 @@ founded_year: 1999
 headquarters: "Belmont, CA"
 tags:
   - api-available
-
-additional_categories:
-  - category: "voice-ai-agents"
-    subcategory: "voice-agents"
 
 # AI-Managed Metadata
 last_verified: "2026-06-03"

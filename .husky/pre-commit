@@ -1,5 +1,11 @@
-# Run validations before commit
+# Fast validations on every commit. The full browser suite runs in pre-push
+# (hard gate) and CI; here we keep it quick but still catch data + parity bugs.
 echo "Running pre-commit validations..."
+
+# Load rbenv so the project's Ruby (3.2.x) is active for ruby-based validators.
+if command -v rbenv > /dev/null 2>&1; then
+    eval "$(rbenv init - 2>/dev/null)"
+fi
 
 # Validate no duplicate tools
 npm run validate || exit 1
@@ -10,4 +16,8 @@ npm run generate || exit 1
 # Validate workflows
 npm run validate:workflows || exit 1
 
-echo "All validations passed!"
+# Static auth-page parity check (ms-fast, no browser) — catches the
+# admin/my-reviews divergence class of bug before it ships.
+npm run validate:auth-pages || exit 1
+
+echo "✓ Pre-commit validations passed (full suite runs at pre-push)."

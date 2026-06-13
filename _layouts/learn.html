@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} | Learning AI | AI Tool Review</title>
+  <meta name="description" content="{{ page.description }}">
+  <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+  <link rel="stylesheet" href="{{ '/css/auth.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+  <style>
+    body { display: flex; flex-direction: column; }
+    .learn-page { max-width: 800px; width: 100%; box-sizing: border-box; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; flex: 1; }
+
+    .learn-header { margin-bottom: 2rem; }
+    .learn-breadcrumb { font-size: 0.85rem; color: #858585; margin-bottom: 1rem; }
+    .learn-breadcrumb a { color: #007acc; text-decoration: none; }
+    .learn-breadcrumb a:hover { text-decoration: underline; }
+    .learn-header h1 { font-size: 2.25rem; color: #fff; margin: 0 0 1rem 0; font-weight: 700; line-height: 1.3; }
+    .learn-meta { display: flex; gap: 1rem; flex-wrap: wrap; color: #858585; font-size: 0.85rem; }
+    .learn-meta .author { color: #ccc; }
+    .learn-meta .date { }
+    .learn-meta .reading-time { }
+    .learn-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
+    .learn-tags span { font-family: 'Consolas', 'Monaco', monospace; font-size: 12px; padding: 2px 8px; border-radius: 3px; background: #3c3c3c; color: #a8a8a8; }
+
+    .learn-content { line-height: 1.8; font-size: 1.05rem; }
+    .learn-content h2 { font-size: 1.5rem; color: #fff; margin: 2.5rem 0 1rem 0; font-weight: 600; }
+    .learn-content h3 { font-size: 1.15rem; color: #ccc; margin: 2rem 0 0.75rem 0; font-weight: 600; }
+    .learn-content p { margin: 1rem 0; color: #ccc; }
+    .learn-content ul, .learn-content ol { margin: 1rem 0; padding-left: 1.5rem; }
+    .learn-content li { margin: 0.5rem 0; color: #ccc; }
+    .learn-content a { color: #007acc; text-decoration: none; }
+    .learn-content a:hover { text-decoration: underline; }
+    .learn-content blockquote { margin: 1.5rem 0; padding: 1rem 1.5rem; background: rgba(0,122,204,0.08); border: 1px solid rgba(0,122,204,0.35); border-radius: 6px; }
+    .learn-content blockquote p { margin: 0; font-style: italic; color: #ccc; }
+    .learn-content code { font-family: 'Consolas', 'Monaco', monospace; background: #252526; padding: 0.2rem 0.4rem; border-radius: 4px; font-size: 0.9em; color: #ce9178; }
+    .learn-content pre { background: #252526; border: 1px solid #3c3c3c; border-radius: 8px; padding: 1rem; overflow-x: auto; margin: 1.5rem 0; }
+    .learn-content pre code { background: none; padding: 0; font-size: 0.85rem; color: #ccc; }
+    .learn-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; }
+    .learn-content th { background: #323233; color: #858585; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; padding: 0.75rem; text-align: left; border-bottom: 1px solid #3c3c3c; }
+    .learn-content td { padding: 0.75rem; border-bottom: 1px solid #3c3c3c; color: #ccc; }
+    .learn-content tr:hover { background: rgba(0,122,204,0.05); }
+    .learn-content strong { color: #fff; }
+    .learn-content hr { border: none; border-top: 1px solid #3c3c3c; margin: 2rem 0; }
+
+    .key-takeaways { background: rgba(0,122,204,0.08); border: 1px solid rgba(0,122,204,0.35); border-radius: 6px; padding: 1.5rem; margin: 2rem 0; }
+    .key-takeaways h3 { color: #3794ff; font-size: 1rem; margin: 0 0 1rem 0; }
+    .key-takeaways ul { margin: 0; padding-left: 1.25rem; }
+    .key-takeaways li { margin: 0.5rem 0; }
+
+    .sources { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #3c3c3c; }
+    .sources h3 { font-size: 1rem; color: #858585; margin: 0 0 1rem 0; text-transform: uppercase; letter-spacing: 0.05em; }
+    .sources ul { list-style: none; padding: 0; margin: 0; }
+    .sources li { padding: 0.5rem 0; }
+    .sources a { color: #007acc; text-decoration: none; font-size: 0.9rem; }
+    .sources a:hover { text-decoration: underline; }
+
+    .related-articles { margin-top: 3rem; padding: 2rem; background: #252526; border-radius: 12px; }
+    .related-articles h3 { font-size: 1rem; color: #858585; margin: 0 0 1rem 0; text-transform: uppercase; letter-spacing: 0.05em; }
+    .related-articles ul { list-style: none; padding: 0; margin: 0; }
+    .related-articles li { padding: 0.75rem 0; border-bottom: 1px solid #3c3c3c; }
+    .related-articles li:last-child { border-bottom: none; }
+    .related-articles a { color: #ccc; text-decoration: none; font-weight: 500; }
+    .related-articles a:hover { color: #007acc; }
+
+    @media (max-width: 768px) {
+      .learn-page { padding: 2rem 1rem; }
+      .learn-header h1 { font-size: 1.75rem; }
+      .learn-content { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <a href="{{ '/' | relative_url }}" class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="logo-text">AI Tool Review</span>
+      </a>
+      <nav class="nav-links">
+        <a href="{{ '/' | relative_url }}" class="nav-link nav-link-text">Search</a>
+        <a href="{{ '/landscape.html' | relative_url }}" class="nav-link nav-link-text">Landscape</a>
+        <a href="{{ '/learn/' | relative_url }}" class="nav-link nav-link-text nav-active">Learn</a>
+        <div id="auth-container"></div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="learn-page">
+    <article>
+      <header class="learn-header">
+        <nav class="learn-breadcrumb">
+          <a href="{{ '/learn/' | relative_url }}">Learn</a> / {{ page.category | default: "Article" }}
+        </nav>
+        <h1>{{ page.title }}</h1>
+        <div class="learn-meta">
+          {% if page.author %}<span class="author">By {{ page.author }}</span>{% endif %}
+          <span class="date">{{ page.date | date: "%B %d, %Y" }}</span>
+          {% if page.reading_time %}<span class="reading-time">{{ page.reading_time }} min read</span>{% endif %}
+        </div>
+        {% if page.tags %}
+        <div class="learn-tags">
+          {% for tag in page.tags %}
+          <span>{{ tag }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </header>
+
+      <div class="learn-content">
+        {{ content }}
+      </div>
+
+      {% if page.sources %}
+      <section class="sources">
+        <h3>Sources</h3>
+        <ul>
+          {% for source in page.sources %}
+          <li><a href="{{ source.url }}" target="_blank" rel="noopener">{{ source.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </section>
+      {% endif %}
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-bottom">
+      <p>&copy; {{ site.time | date: '%Y' }} AI Tool Review. Community-curated. | <a href="{{ '/about.html' | relative_url }}">About</a> | <a href="{{ '/contact.html' | relative_url }}">Contact</a> | <a href="{{ '/privacy.html' | relative_url }}">Privacy Policy</a></p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  {% if jekyll.environment != "production" %}
+  <script src="{{ '/js/config-local.js' | relative_url }}"></script>
+  {% endif %}
+  <script src="{{ '/js/supabase-client.js' | relative_url }}"></script>
+  <script src="{{ '/js/auth-ui.js' | relative_url }}"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.AuthUI) {
+        window.AuthUI.init('auth-container');
+      }
+    });
+  </script>
+</body>
+</html>

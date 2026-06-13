@@ -135,18 +135,17 @@
       .verdict-grid { grid-template-columns: 1fr; }
     }
 
-    /* Tool Page Tags */
-    .tool-page-tags { margin: 1rem 0 2rem; display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
-    .tool-page-tags .tag-badge { padding: 4px 10px; font-size: 12px; border-radius: 4px; background: #3c3c3c; color: #ccc; text-decoration: none; transition: all 0.15s ease; }
-    .tool-page-tags .tag-badge:hover { background: #505050; color: #fff; }
-
-    /* Breadcrumb Navigation */
-    .breadcrumb-nav { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 1rem 0; }
-    .breadcrumb-link { font-size: 12px; color: #858585; text-decoration: none; transition: color 0.15s ease; }
-    .breadcrumb-link:hover { color: #007acc; }
-    .breadcrumb-link .separator { margin: 0 4px; opacity: 0.5; }
-    .breadcrumb-link.primary { color: #ccc; }
-    .breadcrumb-link.additional { color: #858585; font-size: 11px; }
+    /* Tool Taxonomy — breadcrumb path + tags, no box, no labels */
+    .tool-taxonomy { margin: 1.25rem 0 2rem; text-align: center; }
+    .tool-taxonomy .taxonomy-path { font-size: 0.95rem; color: #ccc; }
+    .tool-taxonomy .taxonomy-path a { color: #569cd6; text-decoration: none; transition: color 0.15s ease; }
+    .tool-taxonomy .taxonomy-path a:hover { color: #007acc; text-decoration: underline; }
+    .tool-taxonomy .taxonomy-path .sep { color: #858585; margin: 0 0.5rem; opacity: 0.6; }
+    .tool-taxonomy .taxonomy-path .sep.also { margin: 0 0.4rem; }
+    .tool-taxonomy .taxonomy-tags { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+    .tool-taxonomy .tag-badge { padding: 4px 10px; font-size: 12px; border-radius: 4px; background: #3c3c3c; color: #ccc; text-decoration: none; transition: all 0.15s ease; }
+    .tool-taxonomy .tag-badge:hover { background: #505050; color: #fff; }
+    .tool-taxonomy .taxonomy-empty { color: #6e6e6e; }
   </style>
 </head>
 <body>
@@ -167,7 +166,6 @@
         <h1><a href="{{ page.website }}" target="_blank" rel="noopener">{{ page.name }} <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; opacity: 0.5;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a></h1>
         <p class="tool-meta">
           <span class="tool-type">{{ page.type }}</span>
-          <span class="tool-category">{{ page.category | replace: '-', ' ' | capitalize }}</span>
           {% if page.pricing_model %}
           <span class="tool-pricing">{{ page.pricing_model | capitalize }}</span>
           {% endif %}
@@ -178,35 +176,32 @@
         <p class="tool-description">{{ page.description }}</p>
       </header>
 
-      <!-- Category Breadcrumbs -->
-      <nav class="breadcrumb-nav" aria-label="Categories">
-        <!-- Primary category -->
-        <a class="breadcrumb-link primary" href="/?subcategory={{ page.subcategory }}">
-          <span>{{ page.category | replace: '-', ' ' | capitalize }}</span>
-          <span class="separator">›</span>
-          <span>{{ page.subcategory | replace: '-', ' ' | capitalize }}</span>
-        </a>
+      <!-- Taxonomy: Category › Subcategory path + Tags (shown on every tool page) -->
+      <div class="tool-taxonomy">
+        <nav class="taxonomy-path" aria-label="Tool classification">
+          <a href="/?category={{ page.category }}">{{ page.category | replace: '-', ' ' | capitalize }}</a>
+          {% if page.subcategory %}
+          <span class="sep" aria-hidden="true">›</span>
+          <a href="/?subcategory={{ page.subcategory }}">{{ page.subcategory | replace: '-', ' ' | capitalize }}</a>
+          {% endif %}
+          {% if page.additional_categories %}
+          {% for cat in page.additional_categories %}
+          <span class="sep also" aria-hidden="true">·</span>
+          <a href="/?subcategory={{ cat.subcategory }}">{{ cat.category | replace: '-', ' ' | capitalize }} › {{ cat.subcategory | replace: '-', ' ' | capitalize }}</a>
+          {% endfor %}
+          {% endif %}
+        </nav>
 
-        {% if page.additional_categories %}
-        <!-- Additional categories -->
-        {% for cat in page.additional_categories %}
-        <a class="breadcrumb-link additional" href="/?subcategory={{ cat.subcategory }}">
-          {{ cat.category | replace: '-', ' ' | capitalize }}
-          <span class="separator">›</span>
-          {{ cat.subcategory | replace: '-', ' ' | capitalize }}
-        </a>
-        {% endfor %}
-        {% endif %}
-      </nav>
-
-      {% if page.tags %}
-      <!-- Tags -->
-      <div class="tag-badges tool-page-tags">
-        {% for tag in page.tags %}
-        <a class="tag-badge default" href="/?tag={{ tag }}">{{ tag | replace: '-', ' ' }}</a>
-        {% endfor %}
+        <div class="taxonomy-tags" aria-label="Tags">
+          {% if page.tags and page.tags != empty %}
+          {% for tag in page.tags %}
+          <a class="tag-badge" href="/?tag={{ tag }}">{{ tag | replace: '-', ' ' }}</a>
+          {% endfor %}
+          {% else %}
+          <span class="taxonomy-empty">—</span>
+          {% endif %}
+        </div>
       </div>
-      {% endif %}
 
       <div class="tool-content">
         {{ content }}

@@ -16,6 +16,8 @@ pricing_model: "free"
 founded_year: 2025
 last_verified: "2026-06-08"
 confidence_score: 0.95
+tags:
+  - skill
 source_urls:
   - "https://impeccable.style/"
   - "https://github.com/pbakaus/impeccable"

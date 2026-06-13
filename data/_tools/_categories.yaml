@@ -110,14 +110,6 @@ users:
         name: "Voice Agents"
         description: "AI voice agents and automated receptionists"
 
-  ai-contact-center:
-    name: "AI Contact Center"
-    description: "AI-powered contact center and omnichannel communication platforms"
-    subcategories:
-      contact-center:
-        name: "Contact Center Platforms"
-        description: "Full-featured AI contact center solutions"
-
 developers:
   foundation-models:
     name: "Foundation Models & Model Hubs"
@@ -286,9 +278,9 @@ developers:
     name: "Security"
     description: "AI-powered security tools for vulnerability discovery, red teaming, and securing AI systems"
     subcategories:
-      security-scanning:
-        name: "Security Scanning"
-        description: "LLM-based vulnerability discovery and code security scanning"
       red-teaming:
         name: "Red Teaming & AI Security"
         description: "AI security testing and red teaming"
+      security-scanning:
+        name: "Security Scanning"
+        description: "LLM-based vulnerability discovery and code security scanning"

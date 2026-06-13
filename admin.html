@@ -38,9 +38,8 @@
         </header>
 
         <!-- Not Logged In State -->
-        <div id="login-required" class="auth-state hidden">
-            <!-- Sign-in card populated by auth-signin.js -->
-        </div>
+        <!-- Sign-in card populated by auth-signin.js (shared AuthSignIn module) -->
+        <div id="login-required" class="auth-state hidden"></div>
 
         <!-- Access Denied State -->
         <div id="access-denied" class="auth-state hidden">
@@ -366,7 +365,7 @@
                 tab.addEventListener('click', () => switchView(tab.dataset.view));
             });
 
-            // Render sign-in card using component
+            // Render sign-in card using shared AuthSignIn component
             loginRequired.innerHTML = window.AuthSignIn.renderCard({
                 title: 'Sign in required',
                 description: 'You need to sign in with your admin account to access the moderation dashboard.'

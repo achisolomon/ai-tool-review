@@ -1452,35 +1452,6 @@ const landscapeData = {
               "additional_categories": [
 
               ]
-            },
-            {
-              "name": "Voiceflow",
-              "slug": "voiceflow",
-              "url": "https://www.voiceflow.com/",
-              "desc": "No-code AI agent platform for building conversational voice and chat experiences with visual workflow builder and multi-channel deployment",
-              "type": "commercial",
-              "github_stars": null,
-              "pricing_model": "freemium",
-              "pricing_starting": null,
-              "user_count": null,
-              "tags": [
-                "no-code"
-              ],
-              "all_tags": [
-                "no-code"
-              ],
-              "category_id": "voice-ai-agents",
-              "category_name": "Voice AI Agents",
-              "subcategory_id": "voice-agents",
-              "subcategory_name": "Voice Agents",
-              "additional_categories": [
-                {
-                  "category_id": "no-code-builders",
-                  "category_name": "No-Code AI Builders",
-                  "subcategory_id": "workflow-builders",
-                  "subcategory_name": "Workflow & App Builders"
-                }
-              ]
             }
           ]
         }
@@ -2252,48 +2223,6 @@ const landscapeData = {
       ]
     },
     {
-      "id": "ai-contact-center",
-      "name": "AI Contact Center",
-      "track": "users",
-      "subcategories": [
-        {
-          "id": "contact-center",
-          "name": "Contact Center Platforms",
-          "tools": [
-            {
-              "name": "RingCentral",
-              "slug": "ringcentral",
-              "url": "https://www.ringcentral.com/",
-              "desc": "AI-powered unified communications platform with voice AI, contact center, and business phone solutions serving 600K+ businesses worldwide",
-              "type": "commercial",
-              "github_stars": null,
-              "pricing_model": "paid",
-              "pricing_starting": null,
-              "user_count": null,
-              "tags": [
-                "api-available"
-              ],
-              "all_tags": [
-                "api-available"
-              ],
-              "category_id": "ai-contact-center",
-              "category_name": "AI Contact Center",
-              "subcategory_id": "contact-center",
-              "subcategory_name": "Contact Center Platforms",
-              "additional_categories": [
-                {
-                  "category_id": "voice-ai-agents",
-                  "category_name": "Voice AI Agents",
-                  "subcategory_id": "voice-agents",
-                  "subcategory_name": "Voice Agents"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
       "id": "voice-ai-agents",
       "name": "Voice AI Agents",
       "track": "users",
@@ -2302,35 +2231,6 @@ const landscapeData = {
           "id": "voice-agents",
           "name": "Voice Agents",
           "tools": [
-            {
-              "name": "RingCentral",
-              "slug": "ringcentral",
-              "url": "https://www.ringcentral.com/",
-              "desc": "AI-powered unified communications platform with voice AI, contact center, and business phone solutions serving 600K+ businesses worldwide",
-              "type": "commercial",
-              "github_stars": null,
-              "pricing_model": "paid",
-              "pricing_starting": null,
-              "user_count": null,
-              "tags": [
-                "api-available"
-              ],
-              "all_tags": [
-                "api-available"
-              ],
-              "category_id": "ai-contact-center",
-              "category_name": "AI Contact Center",
-              "subcategory_id": "contact-center",
-              "subcategory_name": "Contact Center Platforms",
-              "additional_categories": [
-                {
-                  "category_id": "voice-ai-agents",
-                  "category_name": "Voice AI Agents",
-                  "subcategory_id": "voice-agents",
-                  "subcategory_name": "Voice Agents"
-                }
-              ]
-            },
             {
               "name": "Voiceflow",
               "slug": "voiceflow",
@@ -2352,12 +2252,7 @@ const landscapeData = {
               "subcategory_id": "voice-agents",
               "subcategory_name": "Voice Agents",
               "additional_categories": [
-                {
-                  "category_id": "no-code-builders",
-                  "category_name": "No-Code AI Builders",
-                  "subcategory_id": "workflow-builders",
-                  "subcategory_name": "Workflow & App Builders"
-                }
+
               ]
             },
             {
@@ -2423,6 +2318,30 @@ const landscapeData = {
               ],
               "all_tags": [
 
+              ],
+              "category_id": "voice-ai-agents",
+              "category_name": "Voice AI Agents",
+              "subcategory_id": "voice-agents",
+              "subcategory_name": "Voice Agents",
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "RingCentral",
+              "slug": "ringcentral",
+              "url": "https://www.ringcentral.com/",
+              "desc": "AI-powered unified communications platform with voice AI, contact center, and business phone solutions serving 600K+ businesses worldwide",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "paid",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "api-available"
+              ],
+              "all_tags": [
+                "api-available"
               ],
               "category_id": "voice-ai-agents",
               "category_name": "Voice AI Agents",
@@ -5550,12 +5469,10 @@ const landscapeData = {
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-                "browser-automation",
-                "skill"
+                "browser-automation"
               ],
               "all_tags": [
-                "browser-automation",
-                "skill"
+                "browser-automation"
               ],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
@@ -6810,10 +6727,10 @@ const landscapeData = {
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-                "skill"
+
               ],
               "all_tags": [
-                "skill"
+
               ],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
@@ -6834,10 +6751,10 @@ const landscapeData = {
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-                "skill"
+
               ],
               "all_tags": [
-                "skill"
+
               ],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
@@ -7036,10 +6953,10 @@ const landscapeData = {
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-                "skill"
+
               ],
               "all_tags": [
-                "skill"
+
               ],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
@@ -7224,16 +7141,18 @@ const landscapeData = {
               "slug": "graphify",
               "url": "https://github.com/safishamsi/graphify",
               "desc": "AI coding assistant skill that transforms code, docs, and media into queryable knowledge graphs with 71x fewer tokens than raw file reading",
-              "type": "open-source",
+              "type": "oss",
               "github_stars": 64633,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
               "tags": [
+                "skill",
                 "multimodal",
                 "rag"
               ],
               "all_tags": [
+                "skill",
                 "multimodal",
                 "rag"
               ],
@@ -8883,7 +8802,7 @@ const landscapeData = {
     },
     {
       "id": "observability-safety",
-      "name": "Observability & Evaluation",
+      "name": "Observability, Evaluation & Safety",
       "track": "developers",
       "subcategories": [
         {
@@ -8907,7 +8826,7 @@ const landscapeData = {
 
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
               "additional_categories": [
@@ -8931,7 +8850,7 @@ const landscapeData = {
                 "python"
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
               "additional_categories": [
@@ -8955,7 +8874,7 @@ const landscapeData = {
 
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
               "additional_categories": [
@@ -8979,7 +8898,7 @@ const landscapeData = {
 
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
               "additional_categories": [
@@ -9003,7 +8922,7 @@ const landscapeData = {
                 "self-hosted"
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
               "additional_categories": [
@@ -9027,7 +8946,7 @@ const landscapeData = {
 
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
               "additional_categories": [
@@ -9051,7 +8970,7 @@ const landscapeData = {
 
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
               "additional_categories": [
@@ -9079,7 +8998,7 @@ const landscapeData = {
                 "real-time"
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
               "additional_categories": [
@@ -9103,7 +9022,7 @@ const landscapeData = {
 
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
               "additional_categories": [
@@ -9120,24 +9039,20 @@ const landscapeData = {
               "name": "W&B Weave",
               "slug": "wandb-weave",
               "url": "https://wandb.ai/site/weave",
-              "desc": "Open source LLM observability and evaluation toolkit from Weights & Biases. Trace, evaluate, and monitor AI applications from experimentation to production with a single line of code.",
-              "type": "open-source",
-              "github_stars": 1100,
+              "desc": "Weights & Biases LLM observability and evaluation platform. Integrates tracing, evaluation, and monitoring within W&B ecosystem for end-to-end LLM application visibility.",
+              "type": "commercial",
+              "github_stars": null,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-                "observability",
-                "tracing",
-                "agents"
+
               ],
               "all_tags": [
-                "observability",
-                "tracing",
-                "agents"
+
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
               "additional_categories": [
@@ -9161,7 +9076,7 @@ const landscapeData = {
 
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
               "additional_categories": [
@@ -9185,7 +9100,7 @@ const landscapeData = {
 
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
               "additional_categories": [
@@ -9209,7 +9124,7 @@ const landscapeData = {
 
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
               "additional_categories": [
@@ -9233,7 +9148,7 @@ const landscapeData = {
                 "observability"
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
               "additional_categories": [
@@ -9257,7 +9172,7 @@ const landscapeData = {
 
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
               "additional_categories": [
@@ -9281,7 +9196,7 @@ const landscapeData = {
 
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
               "additional_categories": [
@@ -9305,7 +9220,7 @@ const landscapeData = {
 
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
               "additional_categories": [
@@ -9329,7 +9244,7 @@ const landscapeData = {
 
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
               "additional_categories": [
@@ -9355,7 +9270,7 @@ const landscapeData = {
                 "self-hosted"
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
               "additional_categories": [
@@ -9379,7 +9294,7 @@ const landscapeData = {
                 "observability"
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
               "additional_categories": [
@@ -9403,7 +9318,7 @@ const landscapeData = {
 
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
               "additional_categories": [
@@ -9427,7 +9342,7 @@ const landscapeData = {
 
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
               "additional_categories": [
@@ -9451,7 +9366,7 @@ const landscapeData = {
                 "observability"
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
               "additional_categories": [
@@ -9483,7 +9398,7 @@ const landscapeData = {
                 "self-hosted"
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "app-observability",
               "subcategory_name": "Application Observability & FinOps",
               "additional_categories": [
@@ -9511,7 +9426,7 @@ const landscapeData = {
                 "self-hosted"
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "app-observability",
               "subcategory_name": "Application Observability & FinOps",
               "additional_categories": [
@@ -9539,7 +9454,7 @@ const landscapeData = {
                 "self-hosted"
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "app-observability",
               "subcategory_name": "Application Observability & FinOps",
               "additional_categories": [
@@ -9569,7 +9484,7 @@ const landscapeData = {
                 "python"
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
               "additional_categories": [
@@ -9593,7 +9508,7 @@ const landscapeData = {
 
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
               "additional_categories": [
@@ -9617,7 +9532,7 @@ const landscapeData = {
 
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
               "additional_categories": [
@@ -9641,7 +9556,7 @@ const landscapeData = {
                 "python"
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
               "additional_categories": [
@@ -9665,7 +9580,7 @@ const landscapeData = {
 
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
               "additional_categories": [
@@ -9689,7 +9604,7 @@ const landscapeData = {
 
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
               "additional_categories": [
@@ -9713,7 +9628,7 @@ const landscapeData = {
                 "observability"
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
               "additional_categories": [
@@ -9737,7 +9652,7 @@ const landscapeData = {
                 "observability"
               ],
               "category_id": "observability-safety",
-              "category_name": "Observability & Evaluation",
+              "category_name": "Observability, Evaluation & Safety",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
               "additional_categories": [
@@ -9840,10 +9755,10 @@ const landscapeData = {
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-                "skill"
+
               ],
               "all_tags": [
-                "skill"
+
               ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
@@ -10476,12 +10391,10 @@ const landscapeData = {
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-                "agents",
-                "skill"
+                "agents"
               ],
               "all_tags": [
-                "agents",
-                "skill"
+                "agents"
               ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
@@ -10671,7 +10584,7 @@ const landscapeData = {
         },
         {
           "id": "llm-skills",
-          "name": "LLM Skills",
+          "name": "Llm Skills",
           "tools": [
             {
               "name": "Impeccable",
@@ -10692,7 +10605,7 @@ const landscapeData = {
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "llm-skills",
-              "subcategory_name": "LLM Skills",
+              "subcategory_name": "Llm Skills",
               "additional_categories": [
 
               ]
@@ -10716,7 +10629,7 @@ const landscapeData = {
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "llm-skills",
-              "subcategory_name": "LLM Skills",
+              "subcategory_name": "Llm Skills",
               "additional_categories": [
 
               ]
@@ -10738,10 +10651,10 @@ const landscapeData = {
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-                "skill"
+
               ],
               "all_tags": [
-                "skill"
+
               ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
@@ -10786,12 +10699,10 @@ const landscapeData = {
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-                "mcp-server",
-                "skill"
+                "mcp-server"
               ],
               "all_tags": [
-                "mcp-server",
-                "skill"
+                "mcp-server"
               ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
@@ -10812,12 +10723,10 @@ const landscapeData = {
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-                "mcp-server",
-                "skill"
+                "mcp-server"
               ],
               "all_tags": [
-                "mcp-server",
-                "skill"
+                "mcp-server"
               ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
@@ -10838,10 +10747,10 @@ const landscapeData = {
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-                "skill"
+
               ],
               "all_tags": [
-                "skill"
+
               ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",

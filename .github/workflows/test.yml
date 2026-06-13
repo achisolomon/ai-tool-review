@@ -43,6 +43,9 @@ jobs:
       - name: Validate GitHub Actions workflows
         run: npm run validate:workflows
 
+      - name: Validate auth-page parity
+        run: npm run validate:auth-pages
+
       - name: Build Jekyll site
         run: bundle exec jekyll build
 
