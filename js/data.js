@@ -9278,7 +9278,7 @@ const landscapeData = {
             },
             "llm-skills": {
               "name": "LLM Skills",
-              "description": "Reusable skills and capability packs for coding agents"
+              "description": "Reusable AI skills and methodologies for LLMs and coding agents"
             }
           }
         },
@@ -9421,8 +9421,8 @@ const landscapeData = {
           }
         },
         "observability-safety": {
-          "name": "Observability, Evaluation & Safety",
-          "description": "Tools for monitoring, evaluating, and securing AI systems",
+          "name": "Observability & Evaluation",
+          "description": "Tools for monitoring and evaluating AI systems",
           "subcategories": {
             "llm-observability": {
               "name": "LLM Observability & Tracing",
@@ -9444,7 +9444,7 @@ const landscapeData = {
         },
         "security": {
           "name": "Security",
-          "description": "AI security testing, red teaming, and security scanning",
+          "description": "AI-powered security tools for vulnerability discovery, red teaming, and securing AI systems",
           "subcategories": {
             "red-teaming": {
               "name": "Red Teaming & AI Security",
@@ -9452,7 +9452,7 @@ const landscapeData = {
             },
             "security-scanning": {
               "name": "Security Scanning",
-              "description": "AI-powered security scanning and code forensics"
+              "description": "LLM-based vulnerability discovery and code security scanning"
             }
           }
         },
@@ -9474,6 +9474,11 @@ const landscapeData = {
     },
     "tags": {
       "capabilities": [
+        {
+          "slug": "skill",
+          "name": "Skill",
+          "description": "LLM skill/plugin that extends agent capabilities"
+        },
         {
           "slug": "reasoning",
           "name": "Reasoning",
@@ -9503,6 +9508,21 @@ const landscapeData = {
           "slug": "fine-tuning",
           "name": "Fine-Tuning",
           "description": "Supports model fine-tuning"
+        },
+        {
+          "slug": "memory",
+          "name": "Memory",
+          "description": "Persistent memory/context across sessions"
+        },
+        {
+          "slug": "coding",
+          "name": "Coding",
+          "description": "Code generation/assistance capabilities"
+        },
+        {
+          "slug": "multi-model",
+          "name": "Multi-Model",
+          "description": "Supports multiple AI models"
         }
       ],
       "integrations": [
@@ -9540,19 +9560,24 @@ const landscapeData = {
           "slug": "vscode-extension",
           "name": "VS Code Extension",
           "description": "VS Code integration available"
+        },
+        {
+          "slug": "cli",
+          "name": "CLI",
+          "description": "Command-line interface available"
+        },
+        {
+          "slug": "api",
+          "name": "API",
+          "description": "General API integration"
+        },
+        {
+          "slug": "email",
+          "name": "Email",
+          "description": "Email integration"
         }
       ],
       "deployment": [
-        {
-          "slug": "enterprise",
-          "name": "Enterprise",
-          "description": "Enterprise features (SSO, audit logs, compliance)"
-        },
-        {
-          "slug": "open-source",
-          "name": "Open Source",
-          "description": "Core is open source"
-        },
         {
           "slug": "self-hosted",
           "name": "Self-Hosted",
@@ -9567,6 +9592,16 @@ const landscapeData = {
           "slug": "cli",
           "name": "CLI",
           "description": "Command-line interface"
+        },
+        {
+          "slug": "sandboxes",
+          "name": "Sandboxes",
+          "description": "Sandboxed execution environment"
+        },
+        {
+          "slug": "yc",
+          "name": "YC",
+          "description": "Y Combinator backed"
         }
       ],
       "use-cases": [
@@ -9586,11 +9621,6 @@ const landscapeData = {
           "description": "Automates browser interactions"
         },
         {
-          "slug": "evaluation",
-          "name": "Evaluation",
-          "description": "LLM evaluation & testing"
-        },
-        {
           "slug": "observability",
           "name": "Observability",
           "description": "Tracing, monitoring, debugging"
@@ -9599,6 +9629,16 @@ const landscapeData = {
           "slug": "multilingual",
           "name": "Multilingual",
           "description": "Supports multiple human languages"
+        },
+        {
+          "slug": "tracing",
+          "name": "Tracing",
+          "description": "Request/call tracing"
+        },
+        {
+          "slug": "memory-management",
+          "name": "Memory Management",
+          "description": "Agent memory management"
         }
       ]
     }
