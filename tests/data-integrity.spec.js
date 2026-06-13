@@ -119,4 +119,17 @@ test.describe('data.js integrity', () => {
       .map(tag => `${tag}: ${occurrences[tag]} occurrences vs ${uniques[tag].size} unique tools`);
     expect(mismatches, mismatches.join('\n')).toEqual([]);
   });
+
+  test('landscapeData embeds taxonomy and changelog', async ({ page }) => {
+    await page.goto('/landscape.html');
+    await page.waitForFunction(() => typeof landscapeData !== 'undefined');
+    const shape = await page.evaluate(() => ({
+      hasCats: !!(landscapeData.taxonomy && landscapeData.taxonomy.categories.developers),
+      hasTags: Array.isArray(landscapeData.taxonomy.tags.capabilities),
+      changelogIsArray: Array.isArray(landscapeData.changelog),
+    }));
+    expect(shape.hasCats).toBe(true);
+    expect(shape.hasTags).toBe(true);
+    expect(shape.changelogIsArray).toBe(true);
+  });
 });

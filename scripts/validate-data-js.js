@@ -60,6 +60,13 @@ function validateDataJs() {
         errors.push('landscapeData.developers is not an array');
       }
 
+      if (data.taxonomy && (!data.taxonomy.categories || !data.taxonomy.tags)) {
+        errors.push('landscapeData.taxonomy present but missing categories/tags');
+      }
+      if (data.changelog && !Array.isArray(data.changelog)) {
+        errors.push('landscapeData.changelog is not an array');
+      }
+
       // Count tools
       let totalTools = 0;
       ['users', 'developers'].forEach(track => {

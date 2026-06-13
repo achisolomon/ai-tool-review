@@ -38,6 +38,21 @@ def parse_frontmatter(file_path)
   end
 end
 
+# Load full taxonomy (ids + names + descriptions) for the picker UIs.
+def load_taxonomy(categories_file, tags_file)
+  categories = File.exist?(categories_file) ? (YAML.safe_load(File.read(categories_file)) || {}) : {}
+  tags = File.exist?(tags_file) ? (YAML.safe_load(File.read(tags_file)) || {}) : {}
+  { 'categories' => categories, 'tags' => tags }
+end
+
+# Load the append-only contributor changelog (newest first).
+def load_changelog(changelog_file)
+  return [] unless File.exist?(changelog_file)
+  data = YAML.safe_load(File.read(changelog_file), permitted_classes: [Date]) || {}
+  entries = data['entries'] || []
+  entries.sort_by { |e| e['date'].to_s }.reverse
+end
+
 # Build tools data structure
 def build_tools_json(tools_dir, category_names = {})
   tools_by_track = { 'users' => {}, 'developers' => {} }
