@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Changelog - AI Tool Review</title>
+    <meta name="description" content="A full history of changes to the AI Tool Review landscape — new tools, taxonomy updates, and corrections contributed by the community.">
+    <meta name="robots" content="index, follow">
+
+    <!-- Google Consent Mode - Set defaults BEFORE loading any Google scripts -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+
+        // Default: deny all until user consents
+        gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied',
+            'wait_for_update': 500
+        });
+
+        // Check for existing consent
+        const savedConsent = localStorage.getItem('cookie_consent');
+        if (savedConsent === 'accepted') {
+            gtag('consent', 'update', {
+                'ad_storage': 'granted',
+                'ad_user_data': 'granted',
+                'ad_personalization': 'granted',
+                'analytics_storage': 'granted'
+            });
+        }
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MZE53DJ7JP"></script>
+    <script>
+        gtag('js', new Date());
+        gtag('config', 'G-MZE53DJ7JP');
+    </script>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7272761067250869"
+        crossorigin="anonymous"></script>
+
+    <style>
+        .changes-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.7;
+        }
+        .changes-container h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .changes-container .tagline {
+            color: #888;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1rem;
+            color: #4a9eff;
+            text-decoration: none;
+        }
+        .back-link:hover { text-decoration: underline; }
+
+        .changes-month {
+            margin-top: 2.5rem;
+        }
+        .changes-month-heading {
+            font-size: 1.1rem;
+            color: #4a9eff;
+            border-bottom: 1px solid #2a2a4a;
+            padding-bottom: 0.4rem;
+            margin-bottom: 1rem;
+        }
+        .change-entry {
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #2a2a3a;
+        }
+        .change-entry:last-child { border-bottom: none; }
+        .change-date {
+            color: #666;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            min-width: 5rem;
+            padding-top: 0.1rem;
+        }
+        .change-badge {
+            font-size: 0.7rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+        }
+        .change-badge-new_tool { background: #1a3a1a; color: #4ec9b0; border: 1px solid #2a5a2a; }
+        .change-badge-taxonomy_change { background: #1a1a3a; color: #7aa0d4; border: 1px solid #2a2a5a; }
+        .change-badge-tool_placement { background: #2a1a1a; color: #ce9178; border: 1px solid #4a2a2a; }
+        .change-badge-tool_edit { background: #2a2a1a; color: #dcdcaa; border: 1px solid #4a4a2a; }
+        .change-badge-other { background: #2a2a2a; color: #aaa; border: 1px solid #444; }
+        .change-summary {
+            color: #ccc;
+            flex: 1;
+        }
+        .change-credit {
+            color: #666;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+
+        .changes-empty {
+            margin-top: 3rem;
+            padding: 2rem;
+            text-align: center;
+            color: #666;
+            background: #1a1a2a;
+            border: 1px solid #2a2a4a;
+            border-radius: 8px;
+        }
+        .changes-empty p { margin: 0; }
+
+        @media (max-width: 768px) {
+            .changes-container { padding: 1.5rem 1rem; }
+            .changes-container h1 { font-size: 1.5rem; }
+            .change-entry { flex-wrap: wrap; gap: 0.4rem; }
+            .change-date { min-width: auto; }
+        }
+    </style>
+</head>
+<body>
+    <div class="changes-container">
+        <a href="landscape.html" class="back-link">&larr; Back to Landscape</a>
+
+        <h1>Changelog</h1>
+        <p class="tagline">Every tool addition, taxonomy update, and fix — contributed by the community.</p>
+
+        <div id="changes-content">
+            <!-- Rendered by inline script below -->
+        </div>
+    </div>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-consent" class="cookie-banner" style="display: none;">
+        <div class="cookie-content">
+            <p>We use cookies for analytics and personalized ads. By clicking "Accept", you consent to our use of cookies. <a href="privacy.html">Privacy Policy</a></p>
+            <div class="cookie-buttons">
+                <button id="cookie-reject" class="cookie-btn cookie-btn-secondary">Reject</button>
+                <button id="cookie-accept" class="cookie-btn cookie-btn-primary">Accept</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script>
+        (function() {
+            'use strict';
+
+            // Escape HTML to prevent XSS
+            function escapeHtml(text) {
+                if (!text) return '';
+                const map = {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'};
+                return String(text).replace(/[&<>"']/g, m => map[m]);
+            }
+
+            // Kind badge label
+            function kindLabel(kind) {
+                const labels = {
+                    new_tool: 'New Tool',
+                    taxonomy_change: 'Taxonomy',
+                    tool_placement: 'Placement',
+                    tool_edit: 'Edit',
+                };
+                return labels[kind] || (kind || 'Change');
+            }
+
+            function badgeClass(kind) {
+                const known = ['new_tool', 'taxonomy_change', 'tool_placement', 'tool_edit'];
+                return 'change-badge change-badge-' + (known.includes(kind) ? escapeHtml(kind) : 'other');
+            }
+
+            // Group entries by YYYY-MM
+            function groupByMonth(entries) {
+                const groups = {};
+                for (const entry of entries) {
+                    const d = entry.date ? String(entry.date).slice(0, 7) : 'unknown';
+                    if (!groups[d]) groups[d] = [];
+                    groups[d].push(entry);
+                }
+                return groups;
+            }
+
+            function monthHeading(yyyyMm) {
+                if (yyyyMm === 'unknown') return 'Unknown date';
+                try {
+                    const [y, m] = yyyyMm.split('-');
+                    return new Date(Number(y), Number(m) - 1, 1)
+                        .toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+                } catch (e) {
+                    return escapeHtml(yyyyMm);
+                }
+            }
+
+            function formatDate(dateStr) {
+                if (!dateStr) return '';
+                try {
+                    const d = new Date(String(dateStr));
+                    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                } catch (e) {
+                    return escapeHtml(String(dateStr).slice(0, 10));
+                }
+            }
+
+            function render() {
+                const container = document.getElementById('changes-content');
+                if (!container) return;
+
+                const changelog = (window.landscapeData && window.landscapeData.changelog) || [];
+
+                if (changelog.length === 0) {
+                    container.innerHTML = '<div class="changes-empty"><p>No changes recorded yet. Check back after the first community suggestions are applied to the map.</p></div>';
+                    return;
+                }
+
+                // Already newest-first from data.js; group by month
+                const groups = groupByMonth(changelog);
+                // Sort months newest first
+                const months = Object.keys(groups).sort((a, b) => b.localeCompare(a));
+
+                let html = '';
+                for (const month of months) {
+                    html += `<div class="changes-month">`;
+                    html += `<h2 class="changes-month-heading">${monthHeading(month)}</h2>`;
+                    for (const entry of groups[month]) {
+                        const summary = escapeHtml(entry.summary || '');
+                        const credit = entry.credit ? `<span class="change-credit">· ${escapeHtml(entry.credit)}</span>` : '';
+                        const date = formatDate(entry.date);
+                        html += `
+                            <div class="change-entry">
+                                <span class="change-date">${escapeHtml(date)}</span>
+                                <span class="${badgeClass(entry.kind)}">${escapeHtml(kindLabel(entry.kind))}</span>
+                                <span class="change-summary">${summary}</span>
+                                ${credit}
+                            </div>
+                        `;
+                    }
+                    html += `</div>`;
+                }
+
+                container.innerHTML = html;
+            }
+
+            document.addEventListener('DOMContentLoaded', render);
+        })();
+    </script>
+    <script>
+        // Cookie Consent Handler
+        (function() {
+            const banner = document.getElementById('cookie-consent');
+            const acceptBtn = document.getElementById('cookie-accept');
+            const rejectBtn = document.getElementById('cookie-reject');
+
+            if (!localStorage.getItem('cookie_consent')) {
+                banner.style.display = 'block';
+            }
+
+            acceptBtn.addEventListener('click', function() {
+                localStorage.setItem('cookie_consent', 'accepted');
+                banner.style.display = 'none';
+                gtag('consent', 'update', {
+                    'ad_storage': 'granted',
+                    'ad_user_data': 'granted',
+                    'ad_personalization': 'granted',
+                    'analytics_storage': 'granted'
+                });
+            });
+
+            rejectBtn.addEventListener('click', function() {
+                localStorage.setItem('cookie_consent', 'rejected');
+                banner.style.display = 'none';
+                gtag('consent', 'update', {
+                    'ad_storage': 'denied',
+                    'ad_user_data': 'denied',
+                    'ad_personalization': 'denied',
+                    'analytics_storage': 'denied'
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
