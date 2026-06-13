@@ -123,9 +123,12 @@
     escHandler = function (e) { if (e.key === 'Escape') close(); };
     document.addEventListener('keydown', escHandler);
 
-    // Backdrop click (click on overlay but not inside .suggest-modal)
+    // Backdrop click (click on overlay but not inside .suggest-modal).
+    // Guard on isConnected: when a chooser button is clicked it replaces the
+    // modal body and detaches itself; the bubbling click must NOT be read as a
+    // backdrop click. Detached targets report isConnected === false.
     ol.addEventListener('click', function (e) {
-      if (!e.target.closest('.suggest-modal')) close();
+      if (e.target.isConnected && !e.target.closest('.suggest-modal')) close();
     });
 
     // Close button

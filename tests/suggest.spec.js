@@ -112,25 +112,17 @@ async function openNewToolForm(page) {
   await expect(newToolCard).toBeVisible({ timeout: 5000 });
   await newToolCard.click();
 
-  // The Next button should be enabled now.
-  // IMPORTANT: The Next button's click handler calls showInModal() which
-  // synchronously replaces body.innerHTML, detaching the button from the DOM.
-  // The click event continues to bubble through the captured composed path to
-  // the overlay, where e.target.closest('.suggest-modal') returns null on the
-  // now-detached button element, so the backdrop handler calls close().
-  //
-  // Fix: before firing the click, register a bubble-phase listener on the button
-  // itself (after wireChooser's handler) that calls stopPropagation().  This runs
-  // after routeToForm completes (button already detached) and prevents the event
-  // from reaching the overlay's backdrop handler.
+  // Clicking Next replaces the modal body (detaching the button). Fire a genuine
+  // DOM click (via evaluate, since Playwright's native click errors when the
+  // target detaches mid-click) and let it bubble naturally — NO stopPropagation.
+  // The backdrop handler must NOT misread the bubbling click from the now-detached
+  // button as a backdrop click; this exercises the isConnected guard in suggest.js.
   const nextBtn = modal.locator('#suggest-chooser-next');
   await expect(nextBtn).toBeEnabled();
-  await page.evaluate(() => {
-    const btn = document.querySelector('#suggest-chooser-next');
-    if (!btn) return;
-    btn.addEventListener('click', (e) => e.stopPropagation(), { once: true });
-    btn.click();
-  });
+  await page.evaluate(() => document.querySelector('#suggest-chooser-next')?.click());
+
+  // Regression guard: the modal stays open after Next (did not close).
+  await expect(modal).toBeVisible();
 
   // Wait for Form A to be fully in the DOM and stable.
   // showInModal() replaces the modal body, then wireNewToolSubmit is awaited
