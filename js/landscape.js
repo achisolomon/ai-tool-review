@@ -178,6 +178,9 @@ document.addEventListener('DOMContentLoaded', () => {
                  data-desc="${tool.desc}"
                  data-type="${tool.type}"
                  data-stars="${tool.github_stars || ''}">
+                <button class="card-suggest" data-slug="${slug}" type="button"
+                        title="Suggest an edit"
+                        aria-label="Suggest an edit to ${tool.name}">&#9998;</button>
                 <div class="tool-icon" data-initial="${initial}">
                     ${logoUrl ? `<img src="${logoUrl}" alt="${tool.name}" loading="lazy" onerror="this.parentElement.textContent=this.parentElement.dataset.initial">` : initial}
                 </div>
@@ -188,6 +191,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
         `;
+    }
+
+    // Find a tool object by slug across all landscapeData tracks
+    function findToolBySlug(slug) {
+        if (!window.SuggestLogic || !window.landscapeData) return null;
+        return window.SuggestLogic.allTools(window.landscapeData).find(t => (t.slug || '') === slug) || null;
     }
 
     // Filter tools based on current state
@@ -260,8 +269,19 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Tool card click - open internal tool page
+        // Tool card click - open internal tool page (or suggest edit)
         landscape.addEventListener('click', (e) => {
+            // Per-card suggest affordance (stop propagation so card nav doesn't fire)
+            const sug = e.target.closest('.card-suggest');
+            if (sug) {
+                e.stopPropagation();
+                if (window.Suggest) {
+                    const t = findToolBySlug(sug.dataset.slug);
+                    window.Suggest.open({ mode: 'tool', tool: t, trigger: sug });
+                }
+                return;
+            }
+
             const card = e.target.closest('.tool-card');
             if (card) {
                 const slug = card.dataset.slug;

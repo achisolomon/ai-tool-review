@@ -99,6 +99,7 @@
                 </button>
             </div>
         </div>
+        <button class="suggest-btn-toolbar" id="suggest-open" type="button">+ Suggest</button>
         </div>
     </section>
 
@@ -158,6 +159,17 @@
     <script src="js/data.js?t=1780999110"></script>
     <script src="js/landscape.js?t=1717430601"></script>
     <script src="js/admin-api.js"></script>
+    <link rel="stylesheet" href="css/suggest.css">
+    <script src="js/supabase-client.js"></script>
+    <script src="js/auth-signin.js"></script>
+    <script src="js/suggest-logic.js"></script>
+    <script src="js/suggest.js"></script>
+    <script>
+        // Wire "+" Suggest toolbar button
+        document.getElementById('suggest-open')?.addEventListener('click', function(e) {
+            window.Suggest.open({ mode: 'add', trigger: e.currentTarget });
+        });
+    </script>
 
     <!-- Cookie Consent Banner -->
     <div id="cookie-consent" class="cookie-banner" style="display: none;">
