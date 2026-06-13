@@ -1,7 +1,7 @@
 ---
 name: "Agent-to-Agent (A2A)"
 slug: "agent-to-agent-a2a"
-website: "https://google.github.io/A2A/"
+website: "https://a2a-protocol.org/"
 type: oss
 track: developers
 category: "agent-frameworks"
@@ -12,7 +12,7 @@ pricing_model: free
 founded_year: 2025
 headquarters: "Mountain View, CA"
 github_url: "https://github.com/google/a2a"
-github_stars: 24266
+github_stars: 24272
 tags:
   - agents
 last_verified: "2026-06-03"

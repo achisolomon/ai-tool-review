@@ -1,7 +1,7 @@
 ---
 name: "Serena MCP"
 slug: "serena-mcp"
-website: "https://github.com/serena-ai/serena-mcp"
+website: "https://github.com/oraios/serena"
 type: oss
 track: developers
 category: "ai-coding"
@@ -11,8 +11,8 @@ description: "MCP (Model Context Protocol) server providing AI agents with intel
 pricing_model: free
 founded_year: 2024
 headquarters: "—"
-github_url: "https://github.com/serena-ai/serena-mcp"
-github_stars: 150
+github_url: "https://github.com/oraios/serena"
+github_stars: 25314
 tags:
   - agents
 last_verified: "2026-06-03"

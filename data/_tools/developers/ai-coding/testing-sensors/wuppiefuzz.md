@@ -10,8 +10,9 @@ status: active
 subcategory: testing-sensors
 track: developers
 type: oss
-website: https://github.com/AceFLex/WuppieFuzz
-github_stars: 250
+website: "https://github.com/TNO-S3/WuppieFuzz"
+github_stars: 208
+github_url: "https://github.com/TNO-S3/WuppieFuzz"
 ---
 
 <div class="key-stats">
