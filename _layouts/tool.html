@@ -31,6 +31,7 @@
     .tool-stars .star-btn { display: flex; align-items: center; gap: 4px; padding: 3px 10px; }
     .tool-stars .star-count { padding: 3px 10px; border-left: 1px solid #30363d; background: #21262d; }
     .tool-description { color: #ccc; font-size: 1.15rem; line-height: 1.7; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .tool-credit { color: #666; font-size: 0.8rem; margin-top: -1.25rem; margin-bottom: 1.5rem; text-align: center; }
     .key-stats { display: flex; justify-content: center; gap: 3rem; padding: 2rem 0; margin: 2rem 0; border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; }
     .key-stat { text-align: center; }
     .key-stat .number { font-size: 2rem; font-weight: 700; color: #007acc; display: block; line-height: 1; }
@@ -174,6 +175,9 @@
         </p>
         <p class="tool-description">{{ page.description }}</p>
         <button class="suggest-btn suggest-btn-sm" id="tool-suggest-open" type="button">&#9998; Suggest an edit</button>
+        {% if page.suggested_by %}
+        <p class="tool-credit">🧭 on the map thanks to {{ page.suggested_by }}</p>
+        {% endif %}
       </header>
 
       <!-- Taxonomy: Category › Subcategory path + Tags (shown on every tool page) -->
