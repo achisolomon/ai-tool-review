@@ -124,6 +124,18 @@ module StarsLib
     scored.max_by { |s| s[:confidence] }
   end
 
+  # Insert github_url: into frontmatter if absent. Returns true if changed.
+  def self.update_frontmatter_url(path, url)
+    content = File.read(path)
+    return false unless content =~ /\A(---\s*\n)(.*?)(\n---\s*\n)/m
+    head, fm, tail = $1, $2, $3
+    rest = content[($1.length + $2.length + $3.length)..-1]
+    return false if fm =~ /^github_url:/
+    new_content = "#{head}#{fm}\ngithub_url: \"#{url}\"#{tail}#{rest}"
+    File.write(path, new_content)
+    true
+  end
+
   class AuthError < StandardError; end
   class ApiError < StandardError; end
 

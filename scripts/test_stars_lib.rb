@@ -283,3 +283,25 @@ class TestResolveScoring < Minitest::Test
     assert_nil StarsLib.best_candidate('n8n', 100, [])
   end
 end
+
+class TestResolveFrontmatter < Minitest::Test
+  def test_inserts_github_url_when_high_confidence
+    Tempfile.create(['tool', '.md']) do |f|
+      f.write("---\nslug: \"x\"\ngithub_stars: 100\n---\n\nBody.\n")
+      f.flush
+      changed = StarsLib.update_frontmatter_url(f.path, 'https://github.com/o/x')
+      assert changed
+      assert_includes File.read(f.path), 'github_url: "https://github.com/o/x"'
+    end
+  end
+
+  def test_does_not_overwrite_existing_github_url
+    Tempfile.create(['tool', '.md']) do |f|
+      f.write("---\nslug: \"x\"\ngithub_url: \"https://github.com/o/orig\"\n---\n\nB.\n")
+      f.flush
+      changed = StarsLib.update_frontmatter_url(f.path, 'https://github.com/o/new')
+      refute changed
+      assert_includes File.read(f.path), 'orig'
+    end
+  end
+end
