@@ -1629,7 +1629,7 @@ const landscapeData = {
       "subcategories": [
         {
           "id": "ai-presentations",
-          "name": "Ai Presentations",
+          "name": "AI Presentations",
           "tools": [
             {
               "name": "Claude Artifacts Slides",
@@ -1646,7 +1646,7 @@ const landscapeData = {
               "category_id": "slide-creation",
               "category_name": "Slide Creation",
               "subcategory_id": "ai-presentations",
-              "subcategory_name": "Ai Presentations",
+              "subcategory_name": "AI Presentations",
               "additional_categories": []
             },
             {
@@ -1664,7 +1664,7 @@ const landscapeData = {
               "category_id": "slide-creation",
               "category_name": "Slide Creation",
               "subcategory_id": "ai-presentations",
-              "subcategory_name": "Ai Presentations",
+              "subcategory_name": "AI Presentations",
               "additional_categories": []
             }
           ]
@@ -1691,15 +1691,9 @@ const landscapeData = {
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-                "open-source",
-                "hebrew",
-                "transcription"
+                "multilingual"
               ],
               "all_tags": [
-                "open-source",
-                "hebrew",
-                "transcription",
-                "free",
                 "multilingual"
               ],
               "category_id": "transcription",
@@ -2706,8 +2700,7 @@ const landscapeData = {
               "all_tags": [
                 "agents",
                 "email",
-                "api",
-                "yc"
+                "api"
               ],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
@@ -2886,12 +2879,10 @@ const landscapeData = {
               "user_count": null,
               "tags": [
                 "agents",
-                "memory",
                 "rag"
               ],
               "all_tags": [
                 "agents",
-                "memory",
                 "rag"
               ],
               "category_id": "agent-frameworks",
@@ -3007,17 +2998,119 @@ const landscapeData = {
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-                "agents",
-                "yc"
+                "agents"
               ],
               "all_tags": [
-                "agents",
-                "yc"
+                "agents"
               ],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-payments",
               "subcategory_name": "Agent Payments",
+              "additional_categories": []
+            }
+          ]
+        },
+        {
+          "id": "agent-platforms",
+          "name": "Agent Platforms",
+          "tools": [
+            {
+              "name": "Cabinet",
+              "slug": "cabinet",
+              "url": "https://runcabinet.com",
+              "desc": "AI-first knowledge base and startup OS where everything lives as markdown files on disk with autonomous AI agents",
+              "type": "open-source",
+              "github_stars": 2220,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "self-hosted",
+                "workflow-automation"
+              ],
+              "all_tags": [
+                "agents",
+                "self-hosted",
+                "workflow-automation"
+              ],
+              "category_id": "agent-frameworks",
+              "category_name": "Agent Frameworks & Orchestration",
+              "subcategory_id": "agent-platforms",
+              "subcategory_name": "Agent Platforms",
+              "additional_categories": []
+            },
+            {
+              "name": "Nimbalyst",
+              "slug": "nimbalyst",
+              "url": "https://nimbalyst.com",
+              "desc": "Open-source visual workspace for AI coding agents with session kanban, visual editors, and task management for Claude Code, Codex, and more",
+              "type": "oss",
+              "github_stars": "—",
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents"
+              ],
+              "all_tags": [
+                "agents"
+              ],
+              "category_id": "agent-frameworks",
+              "category_name": "Agent Frameworks & Orchestration",
+              "subcategory_id": "agent-platforms",
+              "subcategory_name": "Agent Platforms",
+              "additional_categories": []
+            },
+            {
+              "name": "Overcut",
+              "slug": "overcut",
+              "url": "https://overcut.ai/",
+              "desc": "Autonomous AI agents that coordinate across Jira, Linear, GitHub, and more to automate PR reviews, ticket triage, and spec generation for engineering teams",
+              "type": "commercial",
+              "github_stars": "—",
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "workflow-automation"
+              ],
+              "all_tags": [
+                "agents",
+                "workflow-automation"
+              ],
+              "category_id": "agent-frameworks",
+              "category_name": "Agent Frameworks & Orchestration",
+              "subcategory_id": "agent-platforms",
+              "subcategory_name": "Agent Platforms",
+              "additional_categories": []
+            },
+            {
+              "name": "xpander.ai",
+              "slug": "xpander-ai",
+              "url": "https://xpander.ai/",
+              "desc": "Self-hosted AI agent platform with 2,000+ integrations that deploys governed, always-on agents with zero per-user configuration required",
+              "type": "commercial",
+              "github_stars": "—",
+              "pricing_model": "enterprise",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "self-hosted",
+                "workflow-automation"
+              ],
+              "all_tags": [
+                "agents",
+                "self-hosted",
+                "workflow-automation"
+              ],
+              "category_id": "agent-frameworks",
+              "category_name": "Agent Frameworks & Orchestration",
+              "subcategory_id": "agent-platforms",
+              "subcategory_name": "Agent Platforms",
               "additional_categories": []
             }
           ]
@@ -3442,13 +3535,11 @@ const landscapeData = {
               "user_count": null,
               "tags": [
                 "agents",
-                "typescript",
-                "sandboxes"
+                "typescript"
               ],
               "all_tags": [
                 "agents",
-                "typescript",
-                "sandboxes"
+                "typescript"
               ],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
@@ -4114,110 +4205,6 @@ const landscapeData = {
               "additional_categories": []
             }
           ]
-        },
-        {
-          "id": "agent-platforms",
-          "name": "Agent Platforms",
-          "tools": [
-            {
-              "name": "Cabinet",
-              "slug": "cabinet",
-              "url": "https://runcabinet.com",
-              "desc": "AI-first knowledge base and startup OS where everything lives as markdown files on disk with autonomous AI agents",
-              "type": "open-source",
-              "github_stars": 2220,
-              "pricing_model": "free",
-              "pricing_starting": null,
-              "user_count": null,
-              "tags": [
-                "agents",
-                "self-hosted",
-                "workflow-automation"
-              ],
-              "all_tags": [
-                "agents",
-                "self-hosted",
-                "workflow-automation"
-              ],
-              "category_id": "agent-frameworks",
-              "category_name": "Agent Frameworks & Orchestration",
-              "subcategory_id": "agent-platforms",
-              "subcategory_name": "Agent Platforms",
-              "additional_categories": []
-            },
-            {
-              "name": "Nimbalyst",
-              "slug": "nimbalyst",
-              "url": "https://nimbalyst.com",
-              "desc": "Open-source visual workspace for AI coding agents with session kanban, visual editors, and task management for Claude Code, Codex, and more",
-              "type": "oss",
-              "github_stars": "—",
-              "pricing_model": "free",
-              "pricing_starting": null,
-              "user_count": null,
-              "tags": [
-                "agents"
-              ],
-              "all_tags": [
-                "agents"
-              ],
-              "category_id": "agent-frameworks",
-              "category_name": "Agent Frameworks & Orchestration",
-              "subcategory_id": "agent-platforms",
-              "subcategory_name": "Agent Platforms",
-              "additional_categories": []
-            },
-            {
-              "name": "Overcut",
-              "slug": "overcut",
-              "url": "https://overcut.ai/",
-              "desc": "Autonomous AI agents that coordinate across Jira, Linear, GitHub, and more to automate PR reviews, ticket triage, and spec generation for engineering teams",
-              "type": "commercial",
-              "github_stars": "—",
-              "pricing_model": "freemium",
-              "pricing_starting": null,
-              "user_count": null,
-              "tags": [
-                "agents",
-                "workflow-automation"
-              ],
-              "all_tags": [
-                "agents",
-                "workflow-automation"
-              ],
-              "category_id": "agent-frameworks",
-              "category_name": "Agent Frameworks & Orchestration",
-              "subcategory_id": "agent-platforms",
-              "subcategory_name": "Agent Platforms",
-              "additional_categories": []
-            },
-            {
-              "name": "xpander.ai",
-              "slug": "xpander-ai",
-              "url": "https://xpander.ai/",
-              "desc": "Self-hosted AI agent platform with 2,000+ integrations that deploys governed, always-on agents with zero per-user configuration required",
-              "type": "commercial",
-              "github_stars": "—",
-              "pricing_model": "enterprise",
-              "pricing_starting": null,
-              "user_count": null,
-              "tags": [
-                "agents",
-                "self-hosted",
-                "workflow-automation"
-              ],
-              "all_tags": [
-                "agents",
-                "self-hosted",
-                "workflow-automation"
-              ],
-              "category_id": "agent-frameworks",
-              "category_name": "Agent Frameworks & Orchestration",
-              "subcategory_id": "agent-platforms",
-              "subcategory_name": "Agent Platforms",
-              "additional_categories": []
-            }
-          ]
         }
       ]
     },
@@ -4857,12 +4844,10 @@ const landscapeData = {
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-                "agents",
-                "multi-model"
+                "agents"
               ],
               "all_tags": [
-                "agents",
-                "multi-model"
+                "agents"
               ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
@@ -4926,12 +4911,10 @@ const landscapeData = {
               "user_count": null,
               "tags": [
                 "agents",
-                "memory-management",
                 "reasoning"
               ],
               "all_tags": [
                 "agents",
-                "memory-management",
                 "reasoning"
               ],
               "category_id": "ai-coding",
@@ -4996,12 +4979,11 @@ const landscapeData = {
               "user_count": null,
               "tags": [
                 "agents",
-                "coding",
-                "cli"
+                "cli",
+                "typescript"
               ],
               "all_tags": [
                 "agents",
-                "coding",
                 "cli",
                 "typescript"
               ],
@@ -5215,7 +5197,7 @@ const landscapeData = {
         },
         {
           "id": "llm-skills",
-          "name": "Llm Skills",
+          "name": "LLM Skills",
           "tools": [
             {
               "name": "Frontend Design Skill",
@@ -5227,16 +5209,12 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-                "skill"
-              ],
-              "all_tags": [
-                "skill"
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "llm-skills",
-              "subcategory_name": "Llm Skills",
+              "subcategory_name": "LLM Skills",
               "additional_categories": []
             },
             {
@@ -5249,16 +5227,12 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-                "skill"
-              ],
-              "all_tags": [
-                "skill"
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "llm-skills",
-              "subcategory_name": "Llm Skills",
+              "subcategory_name": "LLM Skills",
               "additional_categories": []
             }
           ]
@@ -5331,12 +5305,8 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-                "skill"
-              ],
-              "all_tags": [
-                "skill"
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "spec-driven",
@@ -6963,30 +6933,6 @@ const landscapeData = {
       "track": "developers",
       "subcategories": [
         {
-          "id": "engineering-analytics",
-          "name": "Engineering Analytics",
-          "tools": [
-            {
-              "name": "Jellyfish",
-              "slug": "jellyfish",
-              "url": "https://jellyfish.co/",
-              "desc": "Software Engineering Intelligence Platform that transforms developer tool data into productivity insights for AI-integrated R&D organizations",
-              "type": "commercial",
-              "github_stars": null,
-              "pricing_model": "enterprise",
-              "pricing_starting": null,
-              "user_count": null,
-              "tags": [],
-              "all_tags": [],
-              "category_id": "engineering-intelligence",
-              "category_name": "Engineering Intelligence",
-              "subcategory_id": "engineering-analytics",
-              "subcategory_name": "Engineering Analytics",
-              "additional_categories": []
-            }
-          ]
-        },
-        {
           "id": "developer-portals",
           "name": "Developer Portals",
           "tools": [
@@ -7010,6 +6956,30 @@ const landscapeData = {
               "category_name": "Engineering Intelligence",
               "subcategory_id": "developer-portals",
               "subcategory_name": "Developer Portals",
+              "additional_categories": []
+            }
+          ]
+        },
+        {
+          "id": "engineering-analytics",
+          "name": "Engineering Analytics",
+          "tools": [
+            {
+              "name": "Jellyfish",
+              "slug": "jellyfish",
+              "url": "https://jellyfish.co/",
+              "desc": "Software Engineering Intelligence Platform that transforms developer tool data into productivity insights for AI-integrated R&D organizations",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "enterprise",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [],
+              "all_tags": [],
+              "category_id": "engineering-intelligence",
+              "category_name": "Engineering Intelligence",
+              "subcategory_id": "engineering-analytics",
+              "subcategory_name": "Engineering Analytics",
               "additional_categories": []
             }
           ]
@@ -8683,13 +8653,11 @@ const landscapeData = {
               "user_count": null,
               "tags": [
                 "agents",
-                "python",
-                "sandboxes"
+                "python"
               ],
               "all_tags": [
                 "agents",
-                "python",
-                "sandboxes"
+                "python"
               ],
               "category_id": "security",
               "category_name": "Security",
@@ -9091,12 +9059,10 @@ const landscapeData = {
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-                "skill",
                 "multimodal",
                 "rag"
               ],
               "all_tags": [
-                "skill",
                 "multimodal",
                 "rag"
               ],
