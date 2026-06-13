@@ -41,9 +41,15 @@
     <meta property="og:title" content="AI Tool Review">
     <meta property="og:description" content="Find the right AI tool for the job. Explore 330+ tools across 15+ categories.">
     <meta property="og:type" content="website">
+    <meta property="og:image" content="/assets/og-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="/assets/og-card.png">
     <meta name="theme-color" content="#1e1e1e">
     <link rel="stylesheet" href="css/style.css?t=1780500001">
     <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/auth.css">
 
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7272761067250869"
@@ -64,57 +70,50 @@
             <nav class="nav-links">
                 <a href="/" class="nav-link nav-link-text nav-active">Search</a>
                 <a href="landscape.html" class="nav-link nav-link-text">Landscape</a>
+                <a href="/learn/" class="nav-link nav-link-text">Learn</a>
                 <a href="admin.html" id="admin-badge" class="nav-link admin-badge hidden">
                     Admin <span id="admin-badge-count"></span>
                 </a>
+                <div id="auth-container"></div>
             </nav>
         </div>
     </header>
 
     <!-- Hero Section - Action Mode -->
     <section class="hero hero-action" id="hero-action">
-        <h1 class="hero-title">What do you want to build?</h1>
-        <p class="hero-subtitle">Describe your goal and find the right AI tools</p>
-        <div class="action-search">
-            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
-                <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-            <input type="text" id="action-input" class="action-input" placeholder="Try 'Generative Media' or 'Agent Frameworks'..." autocomplete="off">
-            <div class="autocomplete-dropdown hidden" id="autocomplete-dropdown"></div>
+        <canvas id="hero-map" aria-hidden="true"></canvas>
+        <div class="hero-content">
+            <p class="hero-eyebrow">
+                <span class="hero-eyebrow-line line1"><span class="eyebrow-dim">//</span> For developers by developers</span>
+                <span class="hero-eyebrow-line line2"><span class="eyebrow-dim">//</span> Community-curated, honestly ranked</span>
+            </p>
+            <h1 class="hero-title">Map the AI <span class="tok-type">landscape</span>. Together.</h1>
+            <p class="hero-subtitle">Find the right tool, share what you know — <span id="hero-tool-count">330+</span> tools across <span id="hero-cat-count">15+</span> categories.</p>
+            <div class="action-search">
+                <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                    <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <input type="text" id="action-input" class="action-input" placeholder="Search tools: try 'Coding Agents' or 'RAG'..." autocomplete="off" aria-label="Search AI tools">
+                <kbd class="search-kbd" aria-hidden="true">/</kbd>
+                <div class="autocomplete-dropdown hidden" id="autocomplete-dropdown"></div>
+            </div>
+            <a href="landscape.html" class="browse-toggle">Browse The AI Tools Landscape</a>
         </div>
-        <div class="quick-actions">
-            <button class="action-chip" data-query="Image Generation">Image Generation</button>
-            <button class="action-chip" data-query="Code Assistant">Code Assistant</button>
-            <button class="action-chip" data-query="Agent Frameworks">Agent Frameworks</button>
-            <button class="action-chip" data-query="LLM Observability">LLM Observability</button>
-            <button class="action-chip" data-query="RAG">RAG</button>
-        </div>
-        <a href="landscape.html" class="browse-toggle">Browse The AI Tools Landscape</a>
     </section>
 
     <!-- Search Results - Flat Grid (Hidden by default) -->
     <section class="search-results hidden" id="search-results">
-        <div class="results-header">
-            <span class="results-count" id="results-count">0 tools found</span>
-            <div class="results-actions">
-                <button class="copy-link" id="copy-link">
-                    <svg class="copy-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
-                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
-                    </svg>
-                    <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                    <span class="copy-text">Copy Link</span>
-                </button>
-                <button class="clear-search" id="clear-search">Clear</button>
+        <span id="results-count" role="status" aria-live="polite" style="display:none"></span>
+        <button id="clear-search" style="display:none"></button>
+        <button id="copy-link" style="display:none"><span class="copy-text"></span></button>
+        <!-- Loading State: skeleton cards -->
+        <div class="results-loading hidden" id="results-loading" aria-label="Searching tools" role="status">
+            <div class="skeleton-grid">
+                <div class="skeleton-card"><div class="skeleton-icon"></div><div class="skeleton-lines"><div class="skeleton-line w-60"></div><div class="skeleton-line w-90"></div><div class="skeleton-line w-40"></div></div></div>
+                <div class="skeleton-card"><div class="skeleton-icon"></div><div class="skeleton-lines"><div class="skeleton-line w-50"></div><div class="skeleton-line w-80"></div><div class="skeleton-line w-30"></div></div></div>
+                <div class="skeleton-card"><div class="skeleton-icon"></div><div class="skeleton-lines"><div class="skeleton-line w-70"></div><div class="skeleton-line w-85"></div><div class="skeleton-line w-45"></div></div></div>
             </div>
-        </div>
-        <!-- Loading State -->
-        <div class="results-loading hidden" id="results-loading">
-            <div class="loading-spinner"></div>
-            <span class="loading-text">Searching tools...</span>
         </div>
         <div class="results-grid" id="results-grid">
             <!-- Dynamically populated -->
@@ -123,22 +122,8 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>AI Tool Review</h3>
-                <p>Your guide to AI tools. Community reviews and ratings coming soon.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Legend</h3>
-                <div class="legend">
-                    <div class="legend-item"><span class="badge badge-oss">OSS</span> Open Source</div>
-                    <div class="legend-item"><span class="badge badge-saas">SaaS</span> Managed/Cloud</div>
-                    <div class="legend-item"><span class="badge badge-commercial">COM</span> Commercial/Paid</div>
-                </div>
-            </div>
-        </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 AI Tool Review. Community-curated. | <a href="about.html">About</a> | <a href="contact.html">Contact</a> | <a href="privacy.html">Privacy Policy</a></p>
+            <p>&copy; 2026 AI Tool Review. | <a href="about.html">About</a> | <a href="contact.html">Contact</a> | <a href="privacy.html">Privacy Policy</a></p>
         </div>
         <!-- Ad Section -->
         <div class="footer-ad">
@@ -154,8 +139,13 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/auth-ui.js"></script>
     <script src="js/data.js?t=1780999110"></script>
-    <script src="js/app.js?t=1780854803"></script>
+    <script src="js/app.js?t=1781340001"></script>
+    <script src="js/hero-map.js?t=1781270001"></script>
+    <script src="js/card-glow.js?t=1781270001"></script>
     <script src="js/admin-api.js"></script>
 
     <!-- Cookie Consent Banner -->
@@ -221,6 +211,15 @@
                 ad.innerHTML = '<div style="color:#4a9eff;font-size:12px;">Ad Placeholder</div>';
             });
         }
+    </script>
+
+    <script>
+    // Initialize auth dropdown
+    document.addEventListener('DOMContentLoaded', function() {
+        if (window.AuthUI) {
+            window.AuthUI.init('auth-container');
+        }
+    });
     </script>
 
     <script>
