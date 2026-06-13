@@ -146,6 +146,7 @@ async function openNewToolForm(page) {
 
 test.describe('Test 1: Signed-out gate', () => {
   test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => { sessionStorage.setItem('suggestions_available', '1'); });
     await acceptCookies(page);
   });
 
@@ -177,6 +178,7 @@ test.describe('Test 1: Signed-out gate', () => {
 
 test.describe('Test 2: Modal a11y', () => {
   test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => { sessionStorage.setItem('suggestions_available', '1'); });
     await acceptCookies(page);
   });
 
@@ -235,6 +237,7 @@ test.describe('Test 2: Modal a11y', () => {
 
 test.describe('Test 3: Mocked-auth form tests', () => {
   test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => { sessionStorage.setItem('suggestions_available', '1'); });
     await acceptCookies(page);
   });
 
@@ -397,6 +400,53 @@ test.describe('Test 3: Mocked-auth form tests', () => {
     const successBlock = modal.locator('.suggest-success');
     await expect(successBlock).toBeVisible({ timeout: 5000 });
     await expect(successBlock).toContainText('Thank you');
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Test 3e — Graceful degradation (suggestions table missing)
+// ---------------------------------------------------------------------------
+
+test.describe('Graceful degradation (table missing)', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => { sessionStorage.setItem('suggestions_available', '0'); });
+    await page.addInitScript(() => { localStorage.setItem('cookie_consent', 'accepted'); });
+  });
+
+  test('3e: #suggest-open is hidden and no console errors when table unavailable', async ({ page }) => {
+    const consoleErrors = [];
+    page.on('console', msg => {
+      if (msg.type() === 'error') consoleErrors.push(msg.text());
+    });
+
+    await page.route('https://www.googletagmanager.com/**', route => route.abort());
+    await page.route('https://pagead2.googlesyndication.com/**', route => route.abort());
+    await page.route('https://cdn.jsdelivr.net/**', route => route.abort());
+    await page.goto('/landscape.html', { waitUntil: 'domcontentloaded', timeout: 30000 });
+
+    // Wait for DOMContentLoaded bootstrap to run
+    await page.waitForFunction(() => document.documentElement.classList.contains('suggestions-disabled'), { timeout: 5000 });
+
+    // #suggest-open must NOT be visible (hidden by bootstrap)
+    const suggestBtn = page.locator('#suggest-open');
+    await expect(suggestBtn).not.toBeVisible();
+
+    // .card-suggest elements (if any) must be hidden via CSS class
+    const cardSuggests = page.locator('.card-suggest');
+    const count = await cardSuggests.count();
+    for (let i = 0; i < count; i++) {
+      await expect(cardSuggests.nth(i)).not.toBeVisible();
+    }
+
+    // No console errors (filter expected CDN/analytics noise)
+    const relevant = consoleErrors.filter(e =>
+      !e.includes('supabase') &&
+      !e.includes('cdn.jsdelivr') &&
+      !e.includes('googletagmanager') &&
+      !e.includes('net::ERR') &&
+      !e.includes('Failed to fetch')
+    );
+    expect(relevant).toHaveLength(0);
   });
 });
 

@@ -44,10 +44,12 @@ const MOCK_SUGGESTIONS = [
 
 test.describe('Admin Suggestions tab (mocked auth)', () => {
 
-    // Set up localStorage consent so cookie banner doesn't block
+    // Set up localStorage consent and mark suggestions available so cookie
+    // banner doesn't block and the Suggestions tab is not hidden.
     test.beforeEach(async ({ page }) => {
         await page.addInitScript(() => {
             localStorage.setItem('cookie_consent', 'accepted');
+            sessionStorage.setItem('suggestions_available', '1');
         });
     });
 

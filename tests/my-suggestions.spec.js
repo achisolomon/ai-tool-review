@@ -9,6 +9,7 @@ test.describe('My Suggestions Page', () => {
   test.beforeEach(async ({ page }) => {
     await page.addInitScript(() => {
       localStorage.setItem('cookie_consent', 'accepted');
+      sessionStorage.setItem('suggestions_available', '1');
     });
   });
 
