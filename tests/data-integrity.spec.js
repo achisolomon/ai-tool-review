@@ -4,10 +4,8 @@
 // browser-level search-consistency suite even starts.
 
 import { test, expect } from '@playwright/test';
-import { readFileSync } from 'fs';
+import fs, { readFileSync } from 'fs';
 import path from 'path';
-const fs = require('fs');
-const fsPath = require('path');
 import vm from 'vm';
 
 function loadLandscapeData() {
@@ -126,7 +124,7 @@ test.describe('data.js integrity', () => {
 function walkTools(dir) {
   let out = [];
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-    const p = fsPath.join(dir, e.name);
+    const p = path.join(dir, e.name);
     if (e.isDirectory()) out = out.concat(walkTools(p));
     else if (e.name.endsWith('.md') && !e.name.startsWith('_')) out.push(p);
   }
@@ -141,7 +139,7 @@ test('no tool description prose hardcodes a GitHub star figure', () => {
   for (const file of walkTools('data/_tools')) {
     const content = fs.readFileSync(file, 'utf8');
     const body = content.replace(/^---[\s\S]*?---/, ''); // strip frontmatter
-    if (re.test(body)) offenders.push(fsPath.relative('data/_tools', file));
+    if (re.test(body)) offenders.push(path.relative('data/_tools', file));
   }
   expect(offenders, `Star figures must live only in the badge:\n${offenders.join('\n')}`).toEqual([]);
 });

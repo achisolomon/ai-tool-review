@@ -64,7 +64,7 @@ github_url: "https://github.com/ggml-org/llama.cpp"
   <div class="pros-list">
     <h3>What's Great</h3>
     <ul>
-      <li>Most popular LLM inference engine with broad community adoption</li>
+      <li>C/C++ LLM inference engine with broad platform support</li>
       <li>Runs entirely locally with no cloud dependencies</li>
       <li>Minimal RAM usage via advanced quantization (4-bit, 8-bit)</li>
       <li>Cross-platform support (Windows, macOS, Linux, mobile)</li>

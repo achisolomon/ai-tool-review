@@ -39,7 +39,7 @@ confidence_score: 0.95
 ## Overview
 
 <div class="overview">
-<p>Browser Use is an open-source Python library that enables AI agents to automate browser tasks using natural language. Built on Playwright, it allows any LLM (GPT-4, Claude, Gemini, or local models via Ollama) to interact with websites just like a human - clicking, typing, navigating, and extracting data. The project exploded in popularity since its October 2024 launch, becoming one of the fastest-growing browser automation frameworks. It supports both local self-hosted deployment and a managed cloud service with stealth browsing, proxy rotation, and CAPTCHA solving.</p>
+<p>Browser Use is an open-source Python library that enables AI agents to automate browser tasks using natural language. Built on Playwright, it allows any LLM (GPT-4, Claude, Gemini, or local models via Ollama) to interact with websites just like a human - clicking, typing, navigating, and extracting data. The project exploded in popularity since its October 2024 launch, a browser automation framework for AI agents. It supports both local self-hosted deployment and a managed cloud service with stealth browsing, proxy rotation, and CAPTCHA solving.</p>
 </div>
 
 ## The Verdict
@@ -79,7 +79,7 @@ confidence_score: 0.95
       <li>Built-in CLI for rapid testing and iteration</li>
       <li>Claude Code skill integration available</li>
       <li>Active development with frequent releases</li>
-      <li>Massive community with active development and forks</li>
+      <li>Active community with frequent contributions and forks</li>
     </ul>
     <div class="source"><a href="https://github.com/browser-use/browser-use" target="_blank">GitHub</a> - <a href="https://docs.browser-use.com" target="_blank">Official Docs</a></div>
   </div>

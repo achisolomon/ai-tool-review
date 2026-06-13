@@ -38,7 +38,7 @@ confidence_score: 0.95
 ## Overview
 
 <div class="overview">
-<p>Meta Llama is an open-access large language model family that has become the foundation for generative AI innovation globally. Unlike proprietary models, Llama's weights are freely available for researchers and commercial use, fostering collaboration across developers, researchers, and organizations. The latest Llama 4 introduces mixture-of-experts (MoE) architecture with models like Scout (17B-16E) and Maverick (17B-128E), supporting up to 10 million token context windows and native multimodal capabilities. With hundreds of millions of downloads and thousands of community projects, Llama has become the most widely adopted open foundation model ecosystem.</p>
+<p>Meta Llama is an open-access large language model family that has become the foundation for generative AI innovation globally. Unlike proprietary models, Llama's weights are freely available for researchers and commercial use, fostering collaboration across developers, researchers, and organizations. The latest Llama 4 introduces mixture-of-experts (MoE) architecture with models like Scout (17B-16E) and Maverick (17B-128E), supporting up to 10 million token context windows and native multimodal capabilities. With hundreds of millions of downloads and thousands of community projects, Llama has built a broad open foundation model ecosystem.</p>
 </div>
 
 ## The Verdict
@@ -75,7 +75,7 @@ confidence_score: 0.95
       <li>Completely free and open-weight models</li>
       <li>Industry-leading 10M token context (Llama 4 Scout)</li>
       <li>MoE architecture for efficient inference</li>
-      <li>Massive ecosystem with broad platform support</li>
+      <li>Large ecosystem with broad platform support</li>
       <li>Native multimodal capabilities (vision + text)</li>
       <li>Commercial use permitted with license</li>
     </ul>
@@ -198,9 +198,9 @@ confidence_score: 0.95
   <div class="info-card">
     <h4>Community Stats</h4>
     <ul>
-      <li>Widely adopted llama repo</li>
+      <li>Reference implementation in the llama repo</li>
       <li>34M+ HuggingFace downloads</li>
-      <li>Active llama-models repository</li>
+      <li>Model weights and cards in the llama-models repo</li>
       <li>Thousands of community projects</li>
     </ul>
     <div class="source"><a href="https://github.com/meta-llama/llama" target="_blank">GitHub, June 2026</a></div>
