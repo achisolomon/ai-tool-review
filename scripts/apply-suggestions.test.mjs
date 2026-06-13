@@ -1,5 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import matter from 'gray-matter';
 import { safeComponent, toolPath, buildFrontmatter, changelogEntry } from './apply-suggestions.mjs';
 
 test('safeComponent accepts slug-shaped strings, rejects traversal', () => {
@@ -56,4 +60,73 @@ test('changelogEntry maps a row to a changelog record, crediting only when opted
   assert.match(e.summary, /Letta/);
   const anon = changelogEntry({ kind: 'new_tool', tool_slug: 'x', public_credit: false, payload: { name: 'X' } }, '2026-06-13');
   assert.equal('credit' in anon, false);
+});
+
+// ── Task 2.3: Validation tests ───────────────────────────────────────────────
+import { validateRow, loadTaxonomy } from './apply-suggestions.mjs';
+
+function fixtureTree() {
+  const root = mkdtempSync(join(tmpdir(), 'apply-'));
+  const tools = join(root, 'data', '_tools');
+  mkdirSync(join(tools, 'developers', 'agent-frameworks', 'agent-memory'), { recursive: true });
+  writeFileSync(join(tools, '_categories.yaml'),
+    'developers:\n  agent-frameworks:\n    name: "Agent Frameworks"\n    subcategories:\n      agent-memory:\n        name: "Agent Memory"\n      orchestration:\n        name: "Orchestration"\n');
+  writeFileSync(join(tools, '_tags.yaml'),
+    'capabilities:\n  - slug: agents\n    name: Agents\ndeployment:\n  - slug: open-source\n    name: Open Source\n');
+  writeFileSync(join(tools, 'developers', 'agent-frameworks', 'agent-memory', 'mem0.md'),
+    matter.stringify('body', { name: 'Mem0', slug: 'mem0', website: 'https://mem0.ai', type: 'oss',
+      track: 'developers', category: 'agent-frameworks', subcategory: 'agent-memory', description: 'Memory', tags: ['agents'] }));
+  return root;
+}
+
+test('validateRow: new_tool with known placement and tags is ok', () => {
+  const root = fixtureTree();
+  const tax = loadTaxonomy(root);
+  const row = { kind: 'new_tool', payload: { name: 'Letta', slug: 'letta', website: 'https://letta.com',
+    description: 'd', type: 'oss', placement: { track: 'developers', category: 'agent-frameworks', subcategory: 'agent-memory' },
+    tags: ['agents'] } };
+  assert.equal(validateRow(row, root, tax).ok, true);
+  rmSync(root, { recursive: true, force: true });
+});
+
+test('validateRow: new_tool with unknown subcategory is rejected', () => {
+  const root = fixtureTree();
+  const tax = loadTaxonomy(root);
+  const row = { kind: 'new_tool', payload: { name: 'L', slug: 'l', website: 'https://l.io', description: 'd', type: 'oss',
+    placement: { track: 'developers', category: 'agent-frameworks', subcategory: 'nope' }, tags: [] } };
+  const r = validateRow(row, root, tax);
+  assert.equal(r.ok, false);
+  assert.match(r.reason, /subcategory/);
+  rmSync(root, { recursive: true, force: true });
+});
+
+test('validateRow: new_tool slug collision is rejected', () => {
+  const root = fixtureTree();
+  const tax = loadTaxonomy(root);
+  const row = { kind: 'new_tool', payload: { name: 'Mem0', slug: 'mem0', website: 'https://x.io', description: 'd', type: 'oss',
+    placement: { track: 'developers', category: 'agent-frameworks', subcategory: 'agent-memory' }, tags: [] } };
+  assert.equal(validateRow(row, root, tax).ok, false);
+  rmSync(root, { recursive: true, force: true });
+});
+
+test('validateRow: tool_placement stale current is rejected', () => {
+  const root = fixtureTree();
+  const tax = loadTaxonomy(root);
+  const row = { kind: 'tool_placement', tool_slug: 'mem0',
+    payload: { current: { category: 'agent-frameworks', subcategory: 'orchestration' },   // wrong; file says agent-memory
+      proposed: { category: 'agent-frameworks', subcategory: 'orchestration' } } };
+  const r = validateRow(row, root, tax);
+  assert.equal(r.ok, false);
+  assert.match(r.reason, /stale|current/i);
+  rmSync(root, { recursive: true, force: true });
+});
+
+test('validateRow: tool_placement with unknown tag in tags_add is rejected', () => {
+  const root = fixtureTree();
+  const tax = loadTaxonomy(root);
+  const row = { kind: 'tool_placement', tool_slug: 'mem0',
+    payload: { current: { category: 'agent-frameworks', subcategory: 'agent-memory', tags: ['agents'] },
+      proposed: { category: 'agent-frameworks', subcategory: 'orchestration', tags_add: ['ghost-tag'] } } };
+  assert.equal(validateRow(row, root, tax).ok, false);
+  rmSync(root, { recursive: true, force: true });
 });
