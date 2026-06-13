@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page.title }} | Learning AI | AI Tool Review</title>
   <meta name="description" content="{{ page.description }}">
+  {% if page.hero_image %}
+  <meta property="og:image" content="{{ page.hero_image | absolute_url }}">
+  <meta property="og:title" content="{{ page.title }}">
+  <meta property="og:description" content="{{ page.description }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{{ page.hero_image | absolute_url }}">
+  {% endif %}
   <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
   <link rel="stylesheet" href="{{ '/css/auth.css' | relative_url }}?v={{ site.time | date: '%s' }}">
   <style>
@@ -22,6 +29,10 @@
     .learn-meta .reading-time { }
     .learn-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
     .learn-tags span { font-family: 'Consolas', 'Monaco', monospace; font-size: 12px; padding: 2px 8px; border-radius: 3px; background: #3c3c3c; color: #a8a8a8; }
+
+    .learn-hero { margin: 0 0 2rem 0; border-radius: 10px; overflow: hidden; border: 1px solid #3c3c3c; line-height: 0; }
+    .learn-hero img { width: 100%; height: auto; display: block; }
+    .learn-hero figcaption { font-size: 0.8rem; color: #858585; padding: 0.6rem 0.9rem; background: #252526; line-height: 1.4; }
 
     .learn-content { line-height: 1.8; font-size: 1.05rem; }
     .learn-content h2 { font-size: 1.5rem; color: #fff; margin: 2.5rem 0 1rem 0; font-weight: 600; }
@@ -110,6 +121,13 @@
         </div>
         {% endif %}
       </header>
+
+      {% if page.hero_image %}
+      <figure class="learn-hero">
+        <img src="{{ page.hero_image | relative_url }}" alt="{{ page.hero_image_alt | default: page.title }}" width="1200" height="628" loading="eager">
+        {% if page.hero_image_caption %}<figcaption>{{ page.hero_image_caption }}</figcaption>{% endif %}
+      </figure>
+      {% endif %}
 
       <div class="learn-content">
         {{ content }}
