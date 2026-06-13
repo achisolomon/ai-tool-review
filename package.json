@@ -26,6 +26,7 @@
     "test:apply": "node --test scripts/apply-suggestions.test.mjs"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.3",
     "@playwright/test": "^1.44.0",
     "@supabase/supabase-js": "^2.45.0",
     "dotenv": "^16.4.5",
