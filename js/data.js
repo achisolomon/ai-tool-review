@@ -1798,6 +1798,62 @@ const landscapeData = {
               "additional_categories": []
             },
             {
+              "name": "ChatBotKit",
+              "slug": "chatbotkit",
+              "url": "https://chatbotkit.com",
+              "desc": "AI agent infrastructure platform for deploying bots across Slack, Discord, WhatsApp, Telegram, Messenger, and Teams from a single configuration, with conversation persistence and audit trails",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "api-available",
+                "real-time"
+              ],
+              "all_tags": [
+                "agents",
+                "api-available",
+                "real-time",
+                "workflow-automation",
+                "messaging-observability"
+              ],
+              "category_id": "vertical-ai",
+              "category_name": "Vertical AI (Industry-Specific)",
+              "subcategory_id": "customer-support",
+              "subcategory_name": "Customer Support",
+              "additional_categories": []
+            },
+            {
+              "name": "Chatwoot",
+              "slug": "chatwoot",
+              "url": "https://www.chatwoot.com",
+              "desc": "Open-source omnichannel customer support platform with AI agent (Captain) that unifies Telegram, WhatsApp, email, and 9+ channels in one inbox — self-hosted or cloud",
+              "type": "open-source",
+              "github_stars": 30983,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "api-available",
+                "self-hosted"
+              ],
+              "all_tags": [
+                "agents",
+                "api-available",
+                "self-hosted",
+                "real-time",
+                "messaging-observability"
+              ],
+              "category_id": "vertical-ai",
+              "category_name": "Vertical AI (Industry-Specific)",
+              "subcategory_id": "customer-support",
+              "subcategory_name": "Customer Support",
+              "additional_categories": []
+            },
+            {
               "name": "Cresta",
               "slug": "cresta",
               "url": "https://cresta.com/",
@@ -7851,6 +7907,35 @@ const landscapeData = {
           "name": "Application Observability & FinOps",
           "tools": [
             {
+              "name": "BotMux",
+              "slug": "botmux",
+              "url": "https://docs.botmux.dev",
+              "desc": "Self-hosted Telegram bot management dashboard with real-time message logging to SQLite, inter-bot routing, and bridges to Slack, Discord, and webhooks",
+              "type": "open-source",
+              "github_stars": 16,
+              "pricing_model": "open-source",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "self-hosted",
+                "observability",
+                "real-time"
+              ],
+              "all_tags": [
+                "self-hosted",
+                "observability",
+                "real-time",
+                "agents",
+                "api-available",
+                "messaging-observability"
+              ],
+              "category_id": "observability-safety",
+              "category_name": "Observability & Evaluation",
+              "subcategory_id": "app-observability",
+              "subcategory_name": "Application Observability & FinOps",
+              "additional_categories": []
+            },
+            {
               "name": "ClickStack",
               "slug": "clickstack",
               "url": "https://clickhouse.com/clickstack",
@@ -9639,6 +9724,28 @@ const landscapeData = {
           "slug": "memory-management",
           "name": "Memory Management",
           "description": "Agent memory management"
+        },
+        {
+          "slug": "messaging-observability",
+          "name": "Messaging Observability",
+          "description": "Logs and monitors AI agent conversations on messaging platforms (Telegram, WhatsApp, Slack, etc.) in real-time"
+        },
+        {
+          "slug": "free",
+          "name": "Free",
+          "description": "Completely free to use with no paid tiers"
+        }
+      ],
+      "language-support": [
+        {
+          "slug": "hebrew",
+          "name": "Hebrew",
+          "description": "Hebrew language support"
+        },
+        {
+          "slug": "multilingual",
+          "name": "Multilingual",
+          "description": "Supports multiple languages beyond English"
         }
       ]
     }

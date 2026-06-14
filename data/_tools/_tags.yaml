@@ -106,3 +106,17 @@ use-cases:
   - slug: memory-management
     name: "Memory Management"
     description: "Agent memory management"
+  - slug: messaging-observability
+    name: "Messaging Observability"
+    description: "Logs and monitors AI agent conversations on messaging platforms (Telegram, WhatsApp, Slack, etc.) in real-time"
+  - slug: free
+    name: "Free"
+    description: "Completely free to use with no paid tiers"
+
+language-support:
+  - slug: hebrew
+    name: "Hebrew"
+    description: "Hebrew language support"
+  - slug: multilingual
+    name: "Multilingual"
+    description: "Supports multiple languages beyond English"
