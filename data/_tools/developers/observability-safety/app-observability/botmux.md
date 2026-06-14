@@ -65,7 +65,7 @@ tags:
         <li>WhatsApp monitoring — not supported</li>
         <li>Native Slack or Discord inbox (bridged through Telegram, not standalone)</li>
         <li>Teams needing LLM-layer observability (token usage, prompt traces) — use Langfuse/LangSmith</li>
-        <li>Production-critical setups (project is early-stage, v0.2.0, 16 GitHub stars)</li>
+        <li>Production-critical setups (project is early-stage, v0.2.0 with a small community)</li>
       </ul>
     </div>
   </div>
@@ -89,7 +89,7 @@ tags:
     <h3>Watch Out For</h3>
     <ul>
       <li>Early-stage project (v0.2.0, launched March 2026) — expect rough edges</li>
-      <li>Only 16 GitHub stars — small community, limited ecosystem support</li>
+      <li>Very small community — limited ecosystem support and few contributors</li>
       <li>WhatsApp is entirely unsupported</li>
       <li>Slack/Discord support is a bridge routed through Telegram, not a native inbox</li>
       <li>No SaaS option — requires self-hosting infrastructure</li>

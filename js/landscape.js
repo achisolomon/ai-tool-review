@@ -270,6 +270,15 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
+        // Recently Mapped strip collapsible toggle
+        const recentlyMappedToggle = document.getElementById('recently-mapped-toggle');
+        if (recentlyMappedToggle) {
+            recentlyMappedToggle.addEventListener('click', function() {
+                const expanded = recentlyMappedToggle.getAttribute('aria-expanded') === 'true';
+                recentlyMappedToggle.setAttribute('aria-expanded', String(!expanded));
+            });
+        }
+
         // Tool card click - open internal tool page (or suggest edit)
         landscape.addEventListener('click', (e) => {
             // Per-card suggest affordance (stop propagation so card nav doesn't fire)
@@ -386,13 +395,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }).join('');
 
         section.hidden = false;
-
-        // Collapsible toggle
-        if (toggle) {
-            toggle.addEventListener('click', function() {
-                const expanded = toggle.getAttribute('aria-expanded') === 'true';
-                toggle.setAttribute('aria-expanded', String(!expanded));
-            });
-        }
     }
 });

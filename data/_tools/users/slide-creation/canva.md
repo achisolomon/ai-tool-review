@@ -15,7 +15,6 @@ tags:
   - no-code
   - multimodal
   - workflow-automation
-  - enterprise
   - real-time
 last_verified: "2026-06-14"
 confidence_score: 0.95

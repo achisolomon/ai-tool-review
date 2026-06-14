@@ -41,7 +41,7 @@ confidence_score: 0.91
 ## Overview
 
 <div class="overview">
-<p>Chatwoot is a modern open-source customer support platform that consolidates conversations from Telegram, WhatsApp, Facebook, Instagram, email, and web chat into a single shared inbox. Founded in 2019 and backed by Y Combinator, it has grown to 31,000+ GitHub stars and serves 15,000+ businesses. Its built-in AI agent, Captain, automates responses by learning from your help center content and past conversations. Chatwoot delivers messages to AI agent bots via outbound webhooks — bots receive events at a configured URL and post responses back via API, making it well-suited for teams building AI agents that handle customer messaging across multiple channels. Self-hosting gives full data control; the cloud option removes infrastructure overhead.</p>
+<p>Chatwoot is a modern open-source customer support platform that consolidates conversations from Telegram, WhatsApp, Facebook, Instagram, email, and web chat into a single shared inbox. Founded in 2019 and backed by Y Combinator, it has grown to serve 15,000+ businesses. Its built-in AI agent, Captain, automates responses by learning from your help center content and past conversations. Chatwoot delivers messages to AI agent bots via outbound webhooks — bots receive events at a configured URL and post responses back via API, making it well-suited for teams building AI agents that handle customer messaging across multiple channels. Self-hosting gives full data control; the cloud option removes infrastructure overhead.</p>
 </div>
 
 ## The Verdict
@@ -76,7 +76,7 @@ confidence_score: 0.91
     <h3>What's Great</h3>
     <ul>
       <li>9+ channels unified: Telegram, WhatsApp, Facebook, Instagram, email, web chat, Line</li>
-      <li>Open-source (MIT) with active community and 31K GitHub stars</li>
+      <li>Open-source (MIT) with a large, active community</li>
       <li>Captain AI learns from your help center and past chats — no prompt engineering needed</li>
       <li>Real-time signed webhook callbacks for external systems</li>
       <li>Integrates with Dialogflow, Rasa, and Amazon Lex for existing NLP stacks</li>
