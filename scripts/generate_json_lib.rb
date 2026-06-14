@@ -51,9 +51,11 @@ def build_tools_json(tools_dir, category_names = {})
     track = frontmatter['track'] || 'developers'
     track = 'developers' if track == 'both'  # Default to developers for 'both'
     category = frontmatter['category']
-    subcategory = frontmatter['subcategory']
+    # Flat categories (no subcategories defined) use the category id as the subcategory.
+    # This means subcategory is never required in frontmatter.
+    subcategory = frontmatter['subcategory'] || category
 
-    next unless category && subcategory
+    next unless category
 
     tools_by_track[track][category] ||= { 'subcategories' => {} }
     tools_by_track[track][category]['subcategories'][subcategory] ||= []

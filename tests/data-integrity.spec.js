@@ -131,6 +131,27 @@ function walkTools(dir) {
   return out;
 }
 
+test('every tool .md file appears in data.js (no silent drops)', () => {
+  // Guards against generate_json_lib.rb silently skipping tools due to
+  // missing required frontmatter fields (e.g. subcategory was previously
+  // mandatory, causing flat-category tools to vanish from search).
+  const toolFiles = walkTools('data/_tools');
+  const slugsInDataJs = new Set();
+  forEachTool(tool => slugsInDataJs.add(tool.slug));
+
+  const missing = [];
+  for (const file of toolFiles) {
+    const content = fs.readFileSync(file, 'utf8');
+    const match = content.match(/^---[\s\S]*?^slug:\s*"?([^"\n]+)"?/m);
+    if (!match) { missing.push(`${path.relative('data/_tools', file)}: no slug in frontmatter`); continue; }
+    const slug = match[1].trim();
+    if (!slugsInDataJs.has(slug)) {
+      missing.push(`${path.relative('data/_tools', file)}: slug "${slug}" present in .md but missing from data.js`);
+    }
+  }
+  expect(missing, `Tools dropped by generator:\n${missing.join('\n')}`).toEqual([]);
+});
+
 test('no tool description prose hardcodes a GitHub star figure', () => {
   const offenders = [];
   // A star FIGURE (number + optional k/+) followed by "stars", excluding "N/M stars" ratings
