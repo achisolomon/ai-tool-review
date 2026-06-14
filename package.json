@@ -12,7 +12,7 @@
     "serve": "node server.js",
     "serve:jekyll": "bundle exec jekyll serve --port 8080",
     "serve:static": "python3 -m http.server 8080 --directory _site",
-    "validate": "ruby scripts/validate-no-duplicates.rb data/_tools",
+    "validate": "ruby scripts/validate-no-duplicates.rb data/_tools && ruby scripts/validate_tags.rb data/_tools",
     "validate:data": "node scripts/validate-data-js.js",
     "validate:workflows": "node scripts/validate-workflows.js",
     "validate:auth-pages": "node scripts/validate-auth-pages.js",
@@ -22,11 +22,17 @@
     "build": "bundle exec jekyll build",
     "prepare": "husky",
     "test:search": "playwright test tests/data-integrity.spec.js tests/search-consistency.spec.js tests/search.spec.js tests/autocomplete.spec.js tests/shareable-links.spec.js",
+    "apply-suggestions": "node scripts/apply-suggestions.mjs",
+    "test:apply": "node --test scripts/apply-suggestions.test.mjs",
     "test:port": "PORT=${PORT:-8081} playwright test",
     "test:ci": "CI=1 playwright test --workers=4"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.3",
     "@playwright/test": "^1.44.0",
+    "@supabase/supabase-js": "^2.45.0",
+    "dotenv": "^16.4.5",
+    "gray-matter": "^4.0.3",
     "husky": "^9.0.11",
     "yaml": "^2.9.0"
   }

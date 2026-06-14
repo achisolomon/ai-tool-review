@@ -39,6 +39,12 @@ integrations:
   - slug: api-available
     name: "API Available"
     description: "Has public API"
+  - slug: api
+    name: "API"
+    description: "Exposes a programmatic API"
+  - slug: email
+    name: "Email"
+    description: "Email integration / automation"
   - slug: mcp-server
     name: "MCP Server"
     description: "Model Context Protocol server available"
@@ -68,6 +74,9 @@ deployment:
   - slug: serverless
     name: "Serverless"
     description: "Serverless deployment option"
+  - slug: cli
+    name: "CLI"
+    description: "Command-line interface"
   - slug: sandboxes
     name: "Sandboxes"
     description: "Sandboxed execution environment"
@@ -88,9 +97,26 @@ use-cases:
   - slug: observability
     name: "Observability"
     description: "Tracing, monitoring, debugging"
+  - slug: multilingual
+    name: "Multilingual"
+    description: "Supports multiple human languages"
   - slug: tracing
     name: "Tracing"
     description: "Request/call tracing"
   - slug: memory-management
     name: "Memory Management"
     description: "Agent memory management"
+  - slug: messaging-observability
+    name: "Messaging Observability"
+    description: "Logs and monitors AI agent conversations on messaging platforms (Telegram, WhatsApp, Slack, etc.) in real-time"
+  - slug: free
+    name: "Free"
+    description: "Completely free to use with no paid tiers"
+
+language-support:
+  - slug: hebrew
+    name: "Hebrew"
+    description: "Hebrew language support"
+  - slug: multilingual
+    name: "Multilingual"
+    description: "Supports multiple languages beyond English"

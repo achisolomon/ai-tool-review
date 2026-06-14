@@ -248,6 +248,95 @@ async function getAllUsers() {
     return { users, error: null };
 }
 
+/**
+ * Fetch suggestions for moderation
+ * @param {string} status - 'pending', 'approved', 'rejected', 'applied', or 'all'
+ * @param {string} kind - 'new_tool', 'taxonomy_change', 'tool_placement', 'tool_edit', or 'all'
+ * @returns {Promise<{suggestions: Array, error?: string}>}
+ */
+async function getSuggestions(status = 'pending', kind = 'all') {
+    const supabase = getSupabaseOrNull();
+    if (!supabase) return { suggestions: [], error: 'not initialized' };
+    let q = supabase.from('suggestions').select('*').order('created_at', { ascending: true });
+    if (status !== 'all') q = q.eq('status', status);
+    if (kind !== 'all') q = q.eq('kind', kind);
+    q = q.limit(500);
+    const { data, error } = await q;
+    return { suggestions: data || [], error: error?.message };
+}
+
+/**
+ * Get count of pending suggestions
+ * @returns {Promise<number>}
+ */
+async function getSuggestionPendingCount() {
+    const supabase = getSupabaseOrNull();
+    if (!supabase) return 0;
+    const { count } = await supabase
+        .from('suggestions')
+        .select('id', { count: 'exact', head: true })
+        .eq('status', 'pending');
+    return count || 0;
+}
+
+/**
+ * Approve a suggestion, optionally patching the payload with admin edits
+ * @param {string} id - UUID of the suggestion
+ * @param {Object|null} payloadPatch - Admin-completed/corrected payload (e.g. slug + placement for new_tool)
+ * @returns {Promise<{success: boolean, error?: string}>}
+ */
+async function approveSuggestion(id, payloadPatch) {
+    const supabase = getSupabaseOrNull();
+    if (!supabase) return { success: false, error: 'not initialized' };
+    const user = await window.SupabaseClient.getCurrentUser();
+    const update = {
+        status: 'approved',
+        reviewed_by: user?.id,
+        reviewed_at: new Date().toISOString(),
+    };
+    if (payloadPatch) update.payload = payloadPatch; // admin-completed payload
+    const { error } = await supabase.from('suggestions').update(update).eq('id', id);
+    return { success: !error, error: error?.message };
+}
+
+/**
+ * Reject a suggestion — requires a non-empty admin note
+ * @param {string} id - UUID of the suggestion
+ * @param {string} note - Rejection reason (required)
+ * @returns {Promise<{success: boolean, error?: string}>}
+ */
+async function rejectSuggestion(id, note) {
+    const supabase = getSupabaseOrNull();
+    if (!supabase) return { success: false, error: 'not initialized' };
+    if (!note || !note.trim()) return { success: false, error: 'A note is required to reject.' };
+    const user = await window.SupabaseClient.getCurrentUser();
+    const { error } = await supabase
+        .from('suggestions')
+        .update({
+            status: 'rejected',
+            admin_note: note.trim(),
+            reviewed_by: user?.id,
+            reviewed_at: new Date().toISOString(),
+        })
+        .eq('id', id);
+    return { success: !error, error: error?.message };
+}
+
+/**
+ * Mark an approved suggestion as applied (for hand-applied op:other taxonomy changes)
+ * @param {string} id - UUID of the suggestion
+ * @returns {Promise<{success: boolean, error?: string}>}
+ */
+async function markSuggestionApplied(id) {
+    const supabase = getSupabaseOrNull();
+    if (!supabase) return { success: false, error: 'not initialized' };
+    const { error } = await supabase
+        .from('suggestions')
+        .update({ status: 'applied', applied_at: new Date().toISOString() })
+        .eq('id', id);
+    return { success: !error, error: error?.message };
+}
+
 // Export for use in admin page
 window.AdminAPI = {
     checkIsAdmin,
@@ -257,4 +346,9 @@ window.AdminAPI = {
     rejectReview,
     deleteReviewAdmin,
     getAllUsers,
+    getSuggestions,
+    getSuggestionPendingCount,
+    approveSuggestion,
+    rejectSuggestion,
+    markSuggestionApplied,
 };

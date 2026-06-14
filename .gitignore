@@ -32,4 +32,7 @@ scripts/.batches/
 # Local dev config (contains dev Supabase credentials)
 js/config-local.js
 
+# Apply script env (contains service role key)
+.env
+
 .superpowers/

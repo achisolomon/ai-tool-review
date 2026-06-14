@@ -14,7 +14,6 @@ pricing_model: free
 founded_year: 2026
 headquarters: Y Combinator S26
 tags:
-  - skill
   - multimodal
   - rag
 last_verified: '2026-06-10'

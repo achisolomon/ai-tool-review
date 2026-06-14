@@ -119,6 +119,12 @@ test.describe('data.js integrity', () => {
       .map(tag => `${tag}: ${occurrences[tag]} occurrences vs ${uniques[tag].size} unique tools`);
     expect(mismatches, mismatches.join('\n')).toEqual([]);
   });
+
+  test('landscapeData embeds taxonomy and changelog', () => {
+    expect(data.taxonomy && data.taxonomy.categories.developers).toBeTruthy();
+    expect(Array.isArray(data.taxonomy.tags.capabilities)).toBe(true);
+    expect(Array.isArray(data.changelog)).toBe(true);
+  });
 });
 
 function walkTools(dir) {

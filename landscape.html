@@ -102,6 +102,19 @@
                 </button>
             </div>
         </div>
+        <button class="suggest-btn-toolbar" id="suggest-open" type="button">+ Suggest</button>
+        </div>
+    </section>
+
+    <!-- Recently Mapped Strip -->
+    <section id="recently-mapped" hidden aria-label="Recently added or updated tools">
+        <div class="recently-mapped-inner">
+            <button class="recently-mapped-toggle" id="recently-mapped-toggle" type="button" aria-expanded="true">
+                <span class="recently-mapped-label">Recently mapped</span>
+                <span class="recently-mapped-chevron" aria-hidden="true">▲</span>
+            </button>
+            <ul class="recently-mapped-list" id="recently-mapped-list"></ul>
+            <a href="/changes.html" class="recently-mapped-all">all changes →</a>
         </div>
     </section>
 
@@ -139,7 +152,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 AI Tool Review. Community-curated. | <a href="about.html">About</a> | <a href="contact.html">Contact</a> | <a href="privacy.html">Privacy Policy</a></p>
+            <p>&copy; 2026 AI Tool Review. Community-curated. | <a href="about.html">About</a> | <a href="about.html#how-its-organized">How the map is organized</a> | <a href="contact.html">Contact</a> | <a href="privacy.html">Privacy Policy</a></p>
         </div>
         <!-- Ad Section -->
         <div class="footer-ad">
@@ -164,6 +177,18 @@
     <script src="js/data.js?t=1780999110"></script>
     <script src="js/landscape.js?t=1717430601"></script>
     <script src="js/admin-api.js"></script>
+    <link rel="stylesheet" href="css/suggest.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/auth-signin.js"></script>
+    <script src="js/suggest-logic.js"></script>
+    <script src="js/suggest.js"></script>
+    <script>
+        // Wire "+" Suggest toolbar button
+        document.getElementById('suggest-open')?.addEventListener('click', function(e) {
+            window.Suggest.open({ mode: 'add', trigger: e.currentTarget });
+        });
+    </script>
 
     <!-- Cookie Consent Banner -->
     <div id="cookie-consent" class="cookie-banner" style="display: none;">

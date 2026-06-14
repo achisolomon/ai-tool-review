@@ -26,7 +26,7 @@ const SUPABASE_URL = SUPABASE_CONFIG[ENV].url;
 const SUPABASE_ANON_KEY = SUPABASE_CONFIG[ENV].anonKey;
 
 // Log environment for debugging (remove in production if needed)
-console.log(`[Supabase] Using ${ENV} environment: ${SUPABASE_URL}`);
+if (IS_LOCAL) console.log(`[Supabase] Using ${ENV} environment: ${SUPABASE_URL}`);
 
 // Note: Both anon and service_role keys are JWTs starting with 'eyJ'
 // The key distinction is in the payload - anon has role:"anon", service_role has role:"service_role"
@@ -131,6 +131,76 @@ async function updateLastSignIn() {
         .eq('id', user.id);
 }
 
+// Create a new suggestion row (born pending, user_id injected server-side from session)
+async function createSuggestion(row) {
+    const supabase = getSupabase();
+    if (!supabase) return { data: null, error: { message: 'Supabase not initialized' } };
+    const user = await getCurrentUser();
+    if (!user) return { data: null, error: { message: 'Sign in required' } };
+    return await supabase.from('suggestions').insert({ ...row, user_id: user.id, status: 'pending' }).select().single();
+}
+
+// List the current user's own suggestions, newest-updated first
+async function listMySuggestions() {
+    const supabase = getSupabase();
+    if (!supabase) return { data: null, error: { message: 'Supabase not initialized' } };
+    const user = await getCurrentUser();
+    if (!user) return { data: [], error: null };
+    return await supabase.from('suggestions').select('*').eq('user_id', user.id).order('updated_at', { ascending: false });
+}
+
+// Patch the user's own pending suggestion (status and user_id are stripped — RLS guards them)
+async function updateMySuggestion(id, patch) {
+    const supabase = getSupabase();
+    if (!supabase) return { data: null, error: { message: 'Supabase not initialized' } };
+    const user = await getCurrentUser();
+    if (!user) return { data: null, error: { message: 'Sign in required' } };
+    // RLS restricts this to own pending rows; never send status.
+    const { status, user_id, ...safe } = patch;
+    return await supabase.from('suggestions').update(safe).eq('id', id).eq('user_id', user.id).select().single();
+}
+
+// Delete (withdraw) the user's own pending suggestion
+async function withdrawSuggestion(id) {
+    const supabase = getSupabase();
+    if (!supabase) return { error: { message: 'Supabase not initialized' } };
+    const user = await getCurrentUser();
+    if (!user) return { error: { message: 'Sign in required' } };
+    return await supabase.from('suggestions').delete().eq('id', id).eq('user_id', user.id);
+}
+
+// Probe whether the `suggestions` table exists in this Supabase project.
+// Never throws. Cached in sessionStorage ('1' = available only; negative not cached to avoid transient failure locking).
+// Skips caching when the Supabase client isn't initialized yet (client may
+// become available later in the same page load).
+async function isSuggestionsAvailable() {
+    try {
+        const cached = sessionStorage.getItem('suggestions_available');
+        if (cached === '1') return true;
+
+        const sb = getSupabase();
+        if (!sb) return false; // not cached — client may init later
+
+        const { error } = await sb.from('suggestions').select('id', { head: true, count: 'exact' });
+        const available = !error;
+        if (available) sessionStorage.setItem('suggestions_available', '1');
+        return available;
+    } catch (_) {
+        return false;
+    }
+}
+
+// Return a count of the current user's pending suggestions (friendly pre-check before the DB cap)
+async function countMyPending() {
+    const supabase = getSupabase();
+    if (!supabase) return 0;
+    const user = await getCurrentUser();
+    if (!user) return 0;
+    const { count } = await supabase.from('suggestions').select('id', { count: 'exact', head: true })
+        .eq('user_id', user.id).eq('status', 'pending');
+    return count || 0;
+}
+
 // Export for use in other modules
 window.SupabaseClient = {
     getSupabase,
@@ -142,5 +212,11 @@ window.SupabaseClient = {
     getSession,
     getUserProfile,
     updateLastSignIn,
+    isSuggestionsAvailable,
+    createSuggestion,
+    listMySuggestions,
+    updateMySuggestion,
+    withdrawSuggestion,
+    countMyPending,
     SUPABASE_URL,
 };

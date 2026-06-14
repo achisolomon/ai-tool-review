@@ -1,0 +1,676 @@
+/* ===========================================
+   SUGGEST MODAL — Community Suggestions
+   Mirrors reviews.css modal conventions.
+   Uses VS Code CSS variables from style.css.
+   =========================================== */
+
+/* Graceful degradation: hide dynamic .card-suggest buttons added by landscape.js
+   when the suggestions table is not yet available in this environment. */
+html.suggestions-disabled .card-suggest {
+    display: none !important;
+}
+
+/* Also hide the "My Suggestions" nav link added dynamically by auth-ui.js */
+html.suggestions-disabled a[href="/my-suggestions.html"] {
+    display: none !important;
+}
+
+/* --- Overlay -------------------------------- */
+.suggest-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1100;
+    opacity: 0;
+    visibility: hidden;
+    /* Animation gated by prefers-reduced-motion */
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .suggest-modal-overlay {
+        transition: opacity 0.2s ease, visibility 0.2s ease;
+    }
+}
+
+.suggest-modal-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* --- Dialog box ----------------------------- */
+.suggest-modal {
+    background: var(--color-surface, #252526);
+    border: 1px solid var(--color-border, #3c3c3c);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 640px;
+    max-height: 92vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    transform: scale(0.97);
+    /* Animation gated by prefers-reduced-motion */
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .suggest-modal {
+        transition: transform 0.2s ease;
+    }
+    .suggest-modal-overlay.is-open .suggest-modal {
+        transform: scale(1);
+    }
+}
+
+/* --- Header --------------------------------- */
+.suggest-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--color-border, #3c3c3c);
+    flex-shrink: 0;
+}
+
+.suggest-modal-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-text, #cccccc);
+}
+
+.suggest-modal-close {
+    background: none;
+    border: none;
+    color: var(--vscode-text-muted, #858585);
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 4px;
+}
+
+.suggest-modal-close:hover {
+    color: var(--color-text, #cccccc);
+    background: var(--vscode-list-hover, #2a2d2e);
+}
+
+/* --- Body ----------------------------------- */
+.suggest-modal-body {
+    padding: 24px;
+    flex: 1;
+}
+
+/* --- Auth gate (signed-out) ----------------- */
+.suggest-auth-gate {
+    display: flex;
+    justify-content: center;
+    padding: 8px 0;
+}
+
+.suggest-auth-gate .auth-card {
+    text-align: center;
+    max-width: 380px;
+}
+
+.suggest-auth-gate .auth-icon svg {
+    stroke: var(--color-primary, #007acc);
+}
+
+.suggest-auth-gate h2 {
+    color: var(--color-text, #cccccc);
+    font-size: 18px;
+    margin: 12px 0 8px;
+}
+
+.suggest-auth-gate p {
+    color: var(--vscode-text-muted, #858585);
+    font-size: 14px;
+    margin: 0 0 20px;
+}
+
+.suggest-auth-gate .auth-signin-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* --- Mode chooser (radio group) ------------- */
+.suggest-chooser {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.suggest-chooser-label {
+    font-size: 13px;
+    color: var(--vscode-text-muted, #858585);
+    margin-bottom: 4px;
+}
+
+/* Role="radiogroup" wrapper */
+.suggest-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Each card acts as role="radio" */
+.suggest-radio-card {
+    display: flex;
+    flex-direction: column;
+    padding: 14px 16px;
+    border: 1px solid var(--color-border, #3c3c3c);
+    border-radius: 8px;
+    background: var(--vscode-editor-bg, #1e1e1e);
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+}
+
+.suggest-radio-card:hover,
+.suggest-radio-card:focus-visible {
+    border-color: var(--color-primary, #007acc);
+    background: var(--vscode-list-hover, #2a2d2e);
+}
+
+.suggest-radio-card[aria-checked="true"] {
+    border-color: var(--color-primary, #007acc);
+    background: var(--vscode-list-active, #094771);
+}
+
+.suggest-radio-card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text, #cccccc);
+    margin: 0 0 4px;
+}
+
+.suggest-radio-card-desc {
+    font-size: 13px;
+    color: var(--vscode-text-muted, #858585);
+    margin: 0;
+}
+
+.suggest-chooser-actions {
+    margin-top: 16px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* --- Form layout ---------------------------- */
+.suggest-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.suggest-form-group {
+    margin-bottom: 18px;
+}
+
+.suggest-form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text, #cccccc);
+    margin-bottom: 6px;
+}
+
+.suggest-form-group label .required {
+    color: #d16969;
+    margin-left: 2px;
+}
+
+.suggest-input,
+.suggest-select,
+.suggest-textarea {
+    width: 100%;
+    padding: 9px 12px;
+    background: var(--vscode-editor-bg, #1e1e1e);
+    border: 1px solid var(--color-border, #3c3c3c);
+    border-radius: 6px;
+    color: var(--color-text, #cccccc);
+    font-size: 14px;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.suggest-input:focus,
+.suggest-select:focus,
+.suggest-textarea:focus {
+    outline: none;
+    border-color: var(--color-primary, #007acc);
+}
+
+.suggest-input:invalid {
+    border-color: #d16969;
+}
+
+.suggest-textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.suggest-hint {
+    font-size: 12px;
+    color: var(--vscode-text-muted, #858585);
+    margin-top: 4px;
+}
+
+/* --- Duplicate warning ---------------------- */
+.suggest-dup-warning {
+    padding: 10px 14px;
+    background: rgba(220, 180, 0, 0.12);
+    border: 1px solid rgba(220, 180, 0, 0.35);
+    border-radius: 6px;
+    font-size: 13px;
+    color: var(--vscode-text-muted, #858585);
+    margin-top: 6px;
+}
+
+.suggest-dup-warning strong {
+    color: #d7ba7d;
+}
+
+.suggest-dup-warning a {
+    color: var(--vscode-text-link, #3794ff);
+    text-decoration: none;
+}
+
+.suggest-dup-warning a:hover {
+    text-decoration: underline;
+}
+
+/* --- Collapsible placement section ---------- */
+.suggest-collapsible {
+    border: 1px solid var(--color-border, #3c3c3c);
+    border-radius: 8px;
+    margin-bottom: 18px;
+    overflow: hidden;
+}
+
+.suggest-collapsible-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--vscode-editor-bg, #1e1e1e);
+    border: none;
+    color: var(--color-text, #cccccc);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: left;
+}
+
+.suggest-collapsible-trigger:hover {
+    background: var(--vscode-list-hover, #2a2d2e);
+}
+
+.suggest-collapsible-trigger .chevron {
+    font-size: 12px;
+    color: var(--vscode-text-muted, #858585);
+    transition: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .suggest-collapsible-trigger .chevron {
+        transition: transform 0.2s ease;
+    }
+}
+
+.suggest-collapsible-trigger[aria-expanded="true"] .chevron {
+    transform: rotate(180deg);
+}
+
+.suggest-collapsible-body {
+    display: none;
+    padding: 16px;
+    border-top: 1px solid var(--color-border, #3c3c3c);
+    background: var(--vscode-editor-bg, #1e1e1e);
+}
+
+.suggest-collapsible-body.is-open {
+    display: block;
+}
+
+/* --- Tag checkboxes ------------------------- */
+.suggest-tag-group {
+    margin-bottom: 16px;
+}
+
+.suggest-tag-family-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--vscode-text-muted, #858585);
+    margin-bottom: 8px;
+}
+
+.suggest-tag-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.suggest-tag-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border: 1px solid var(--color-border, #3c3c3c);
+    border-radius: 12px;
+    font-size: 12px;
+    color: var(--color-text, #cccccc);
+    cursor: pointer;
+    background: none;
+}
+
+.suggest-tag-chip input[type="checkbox"] {
+    margin: 0;
+    accent-color: var(--color-primary, #007acc);
+}
+
+.suggest-tag-chip:has(input:checked) {
+    border-color: var(--color-primary, #007acc);
+    background: rgba(0, 122, 204, 0.15);
+}
+
+/* Subcategory/tag helper text */
+.suggest-placement-helper {
+    font-size: 11.5px;
+    color: var(--vscode-text-muted, #858585);
+    margin: 2px 0 14px;
+    line-height: 1.45;
+}
+
+/* --- Credit consent block ------------------- */
+.suggest-credit-block {
+    border: 1px solid var(--color-border, #3c3c3c);
+    border-radius: 8px;
+    padding: 9px 12px;
+    margin-bottom: 14px;
+    background: var(--vscode-editor-bg, #1e1e1e);
+}
+
+.suggest-credit-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0;
+}
+
+.suggest-credit-row input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--color-primary, #007acc);
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.suggest-credit-row label {
+    font-size: 14px;
+    color: var(--color-text, #cccccc);
+    cursor: pointer;
+}
+
+.suggest-credit-name-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 10px;
+}
+
+.suggest-credit-name-field label {
+    font-size: 12px;
+    color: var(--vscode-text-muted, #858585);
+}
+
+.suggest-credit-disclosure {
+    font-size: 12px;
+    color: var(--vscode-text-muted, #858585);
+    font-style: italic;
+    margin: 0;
+}
+
+/* --- Rationale textarea --------------------- */
+.suggest-rationale-group {
+    margin-bottom: 18px;
+}
+
+/* --- Form actions --------------------------- */
+.suggest-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding-top: 8px;
+    border-top: 1px solid var(--color-border, #3c3c3c);
+    margin-top: 8px;
+}
+
+/* --- Buttons -------------------------------- */
+.suggest-btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid var(--color-border, #3c3c3c);
+    background: var(--vscode-button-secondary-bg, #3c3c3c);
+    color: var(--color-text, #cccccc);
+    white-space: nowrap;
+}
+
+.suggest-btn:hover {
+    background: var(--vscode-button-secondary-hover, #505050);
+}
+
+.suggest-btn-primary {
+    background: var(--color-primary, #007acc);
+    border-color: var(--color-primary, #007acc);
+    color: #fff;
+}
+
+.suggest-btn-primary:hover {
+    background: var(--color-primary-dark, #0e639c);
+    border-color: var(--color-primary-dark, #0e639c);
+}
+
+.suggest-btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Toolbar button (landscape) */
+.suggest-btn-toolbar {
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid var(--color-primary, #007acc);
+    background: transparent;
+    color: var(--color-primary, #007acc);
+    white-space: nowrap;
+}
+
+.suggest-btn-toolbar:hover {
+    background: rgba(0, 122, 204, 0.12);
+}
+
+/* Small variant (tool pages) */
+.suggest-btn-sm {
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 5px;
+}
+
+/* Per-card edit affordance */
+.card-suggest {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(37, 37, 38, 0.85);
+    border: 1px solid var(--color-border, #3c3c3c);
+    border-radius: 4px;
+    color: var(--vscode-text-muted, #858585);
+    font-size: 12px;
+    padding: 2px 5px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 5;
+    line-height: 1.4;
+}
+
+.tool-card {
+    position: relative;
+}
+
+.tool-card:hover .card-suggest {
+    opacity: 1;
+}
+
+.card-suggest:hover,
+.card-suggest:focus-visible {
+    background: var(--vscode-list-hover, #2a2d2e);
+    color: var(--color-text, #cccccc);
+    opacity: 1;
+    outline: 1px solid var(--color-primary, #007acc);
+}
+
+/* --- Error message -------------------------- */
+.suggest-error {
+    padding: 10px 14px;
+    background: rgba(209, 105, 105, 0.12);
+    border: 1px solid rgba(209, 105, 105, 0.4);
+    border-radius: 6px;
+    font-size: 13px;
+    color: #d16969;
+    margin-bottom: 14px;
+}
+
+/* --- Success / confirmation ----------------- */
+.suggest-success {
+    text-align: center;
+    padding: 24px 16px;
+}
+
+.suggest-success-icon {
+    font-size: 36px;
+    margin-bottom: 12px;
+}
+
+.suggest-success h3 {
+    color: var(--color-text, #cccccc);
+    font-size: 18px;
+    margin: 0 0 8px;
+}
+
+.suggest-success p {
+    color: var(--vscode-text-muted, #858585);
+    font-size: 14px;
+    margin: 0 0 16px;
+}
+
+.suggest-success a {
+    color: var(--vscode-text-link, #3794ff);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.suggest-success a:hover {
+    text-decoration: underline;
+}
+
+/* --- Cap message ---------------------------- */
+.suggest-cap-msg {
+    padding: 16px;
+    background: rgba(220, 180, 0, 0.1);
+    border: 1px solid rgba(220, 180, 0, 0.3);
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--color-text, #cccccc);
+    text-align: center;
+}
+
+/* ── Type-ahead pickers (subcategory #2B + tags #3A) ─────────────────────── */
+/* The menus are absolutely positioned under their input, so the wrapping
+   form-group needs relative positioning. */
+.suggest-form-group:has(#suggest-subcat-menu),
+.suggest-form-group:has(#suggest-tag-menu) { position: relative; }
+
+.suggest-typeahead-menu {
+    position: absolute;
+    left: 0; right: 0;
+    top: calc(100% + 2px);
+    z-index: 20;
+    background: var(--vscode-editor-bg, #1e1e1e);
+    border: 1px solid var(--color-border, #3c3c3c);
+    border-radius: 6px;
+    max-height: 240px;
+    overflow-y: auto;
+    box-shadow: 0 6px 18px rgba(0,0,0,.4);
+}
+.suggest-typeahead-menu[hidden] { display: none; }
+.suggest-typeahead-item {
+    padding: 8px 11px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--color-text, #cccccc);
+    border-bottom: 1px solid rgba(255,255,255,.04);
+}
+.suggest-typeahead-item:last-child { border-bottom: 0; }
+.suggest-typeahead-item:hover,
+.suggest-typeahead-item.is-active {
+    background: var(--vscode-list-active, #04395e);
+    color: #fff;
+}
+.suggest-typeahead-item--new { color: var(--color-primary, #4ec9b0); }
+.suggest-typeahead-meta { color: #8b8b8b; font-size: 11.5px; }
+.suggest-typeahead-noresult { padding: 8px 11px; color: #8b8b8b; font-size: 12.5px; cursor: default; }
+
+/* Selected-tag chips */
+.suggest-tag-chips-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.suggest-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #0e639c; color: #fff;
+    border-radius: 14px; padding: 3px 6px 3px 11px; font-size: 12.5px;
+}
+.suggest-chip--current { background: var(--vscode-button-secondary-bg, #2d2d30); color: var(--color-text, #ccc); border: 1px solid var(--color-border, #3c3c3c); }
+.suggest-chip--new { background: #1f6f63; color: #d6fff6; }
+.suggest-chip button {
+    background: none; border: 0; color: inherit; cursor: pointer;
+    font-size: 14px; line-height: 1; padding: 0 2px; opacity: .8;
+}
+.suggest-chip button:hover { opacity: 1; }
+
+/* "Suggested:" quick-add buttons — soft dashed chips, NOT default white buttons */
+.suggest-tag-sugg-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.suggest-sugg-btn {
+    background: transparent;
+    border: 1px dashed var(--color-border, #3c3c3c);
+    color: #9d9d9d;
+    border-radius: 14px;
+    padding: 3px 11px;
+    font-size: 12.5px;
+    cursor: pointer;
+    transition: color .12s ease, border-color .12s ease;
+}
+.suggest-sugg-btn:hover,
+.suggest-sugg-btn:focus-visible {
+    color: var(--vscode-text-link, #3794ff);
+    border-color: var(--vscode-text-link, #3794ff);
+}
+
+/* Compact credit block (name is read-only, from OAuth identity) */
+.suggest-credit-row { display: flex; align-items: center; gap: 8px; cursor: pointer; flex-wrap: wrap; }
+.suggest-credit-row input[type="checkbox"] { margin: 0; }
+/* Disclosure now sits inline at the end of the credit row (single line). */
+.suggest-credit-disclosure { color: #8b8b8b; font-size: 11.5px; font-style: italic; margin: 0; }

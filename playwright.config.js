@@ -1,5 +1,7 @@
 import { defineConfig } from '@playwright/test';
 
+// PORT lets parallel git worktrees run their suites on distinct ports so they
+// don't reuse each other's dev server (reuseExistingServer). Defaults to 8080.
 const PORT = process.env.PORT || '8080';
 const BASE_URL = `http://localhost:${PORT}`;
 
@@ -24,8 +26,9 @@ export default defineConfig({
     },
   },
   webServer: {
-    // Node server with clean URL support (run 'npm run build' first if needed)
-    // PORT is forwarded so multiple worktrees can run on different ports simultaneously.
+    // Node server with clean URL support (run 'npm run build' first if needed).
+    // Pass PORT through so the spawned server and baseURL agree when a worktree
+    // overrides the port.
     command: `PORT=${PORT} node server.js`,
     url: BASE_URL,
     // Reuse an already-running dev server unless CI or pre-push hook (both own the lifecycle)

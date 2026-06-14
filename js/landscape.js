@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderLandscape();
     updateStats();
     applyViewState();
+    renderRecentlyMapped();
 
     // Default to expanded view with compact layout for maximum tool density
     landscape.classList.add('all-expanded');
@@ -178,6 +179,9 @@ document.addEventListener('DOMContentLoaded', () => {
                  data-desc="${tool.desc}"
                  data-type="${tool.type}"
                  data-stars="${typeof tool.github_stars === 'number' ? tool.github_stars : ''}">
+                <button class="card-suggest" data-slug="${slug}" type="button"
+                        title="Suggest an edit"
+                        aria-label="Suggest an edit to ${tool.name}">&#9998;</button>
                 <div class="tool-icon" data-initial="${initial}">
                     ${logoUrl ? `<img src="${logoUrl}" alt="${tool.name}" loading="lazy" onerror="this.parentElement.textContent=this.parentElement.dataset.initial">` : initial}
                 </div>
@@ -188,6 +192,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
         `;
+    }
+
+    // Find a tool object by slug across all landscapeData tracks
+    function findToolBySlug(slug) {
+        if (!window.SuggestLogic || !window.landscapeData) return null;
+        return window.SuggestLogic.allTools(window.landscapeData).find(t => (t.slug || '') === slug) || null;
     }
 
     // Filter tools based on current state
@@ -260,8 +270,28 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Tool card click - open internal tool page
+        // Recently Mapped strip collapsible toggle
+        const recentlyMappedToggle = document.getElementById('recently-mapped-toggle');
+        if (recentlyMappedToggle) {
+            recentlyMappedToggle.addEventListener('click', function() {
+                const expanded = recentlyMappedToggle.getAttribute('aria-expanded') === 'true';
+                recentlyMappedToggle.setAttribute('aria-expanded', String(!expanded));
+            });
+        }
+
+        // Tool card click - open internal tool page (or suggest edit)
         landscape.addEventListener('click', (e) => {
+            // Per-card suggest affordance (stop propagation so card nav doesn't fire)
+            const sug = e.target.closest('.card-suggest');
+            if (sug) {
+                e.stopPropagation();
+                if (window.Suggest) {
+                    const t = findToolBySlug(sug.dataset.slug);
+                    window.Suggest.open({ mode: 'tool', tool: t, trigger: sug });
+                }
+                return;
+            }
+
             const card = e.target.closest('.tool-card');
             if (card) {
                 const slug = card.dataset.slug;
@@ -335,5 +365,35 @@ document.addEventListener('DOMContentLoaded', () => {
     // Hide tooltip
     function hideTooltip() {
         tooltip.classList.remove('visible');
+    }
+
+    // Escape HTML to prevent XSS
+    function escapeHtml(text) {
+        if (!text) return '';
+        const map = {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'};
+        return String(text).replace(/[&<>"']/g, m => map[m]);
+    }
+
+    // Render the Recently Mapped strip (Task 5.1)
+    function renderRecentlyMapped() {
+        const section = document.getElementById('recently-mapped');
+        const list = document.getElementById('recently-mapped-list');
+        const toggle = document.getElementById('recently-mapped-toggle');
+        if (!section || !list) return;
+
+        const changelog = (window.landscapeData && window.landscapeData.changelog) || [];
+        if (changelog.length === 0) {
+            // Stay hidden
+            return;
+        }
+
+        const recent = changelog.slice(0, 5);
+        list.innerHTML = recent.map(entry => {
+            const summary = escapeHtml(entry.summary || '');
+            const credit = entry.credit ? ' · ' + escapeHtml(entry.credit) : '';
+            return `<li class="recently-mapped-item">${summary}${credit ? '<span class="recently-mapped-credit">' + credit + '</span>' : ''}</li>`;
+        }).join('');
+
+        section.hidden = false;
     }
 });

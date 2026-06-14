@@ -16,7 +16,6 @@ founded_year: 2023
 headquarters: San Francisco, CA
 tags:
 - agents
-- multi-model
 last_verified: '2026-06-12'
 confidence_score: 0.95
 ---

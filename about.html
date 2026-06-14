@@ -162,8 +162,36 @@
         </ul>
 
         <div class="highlight-box info">
-            <strong>Have a tool to suggest?</strong> We're always looking to expand our directory with quality AI tools. If you know of a tool that should be included, reach out to us!
+            <strong>Have a tool to suggest?</strong> You can now suggest tools and taxonomy changes directly from the site — just sign in and click <strong>+ Suggest</strong> on the <a href="landscape.html">landscape page</a>. <a href="CONTRIBUTING.md">Prefer a pull request? See CONTRIBUTING.md.</a>
         </div>
+
+        <h2 id="how-its-organized">How the map is organized</h2>
+
+        <p>The AI landscape is structured as a two-level tree inside two <strong>tracks</strong>:</p>
+        <ul>
+            <li><strong>For Users</strong> — tools end-users interact with directly (chat, search, creative, productivity)</li>
+            <li><strong>For Developers</strong> — tools builders use to create AI-powered software (models, infrastructure, SDKs, agents)</li>
+        </ul>
+
+        <p>Within each track, tools are organized into <strong>categories</strong> (broad domains) and <strong>subcategories</strong> (specific shelves). Every tool lives in exactly one subcategory — its primary home on the map.</p>
+
+        <div class="highlight-box">
+            <strong>Subcategory vs Tags — the key rule of thumb:</strong>
+            <ul style="margin-top: 0.5rem;">
+                <li><strong>Subcategory</strong> = where a tool <em>lives</em>. Pick the best single home. Example: an agent framework belongs in "Agent Frameworks", not in "LLM APIs" even if it calls one.</li>
+                <li><strong>Tags</strong> = what's <em>true</em> about a tool. Tags are cross-cutting — a tool can have many. Example: "self-hosted", "api-available", "open-source" can all apply to the same tool regardless of its subcategory.</li>
+            </ul>
+        </div>
+
+        <h3>The four tag families</h3>
+        <ul>
+            <li><strong>Capabilities</strong> — what the tool can do (e.g. <em>fine-tuning, code-generation, multi-modal</em>)</li>
+            <li><strong>Integrations</strong> — what it connects to (e.g. <em>github, slack, vscode</em>)</li>
+            <li><strong>Deployment</strong> — how it's delivered (e.g. <em>self-hosted, api-available, cli</em>)</li>
+            <li><strong>Use Cases</strong> — primary scenarios it's built for (e.g. <em>research, enterprise, education</em>)</li>
+        </ul>
+
+        <p>When suggesting a new tool or a taxonomy change, use this structure to place tools accurately. If you're unsure, leave placement blank and add a note — reviewers will place it.</p>
 
         <p style="margin-top: 2rem; text-align: center; color: #666;">
             <a href="index.html">&larr; Back to AI Tool Review</a>

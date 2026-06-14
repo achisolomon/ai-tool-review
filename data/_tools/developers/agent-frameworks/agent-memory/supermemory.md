@@ -16,7 +16,6 @@ founded_year: 2024
 headquarters: "—"
 tags:
 - agents
-- memory
 - rag
 last_verified: '2026-06-11'
 confidence_score: 0.93

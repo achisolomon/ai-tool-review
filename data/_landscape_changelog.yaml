@@ -1,0 +1,3 @@
+# Append-only. Written by scripts/apply-suggestions.mjs when a suggestion is applied.
+# Each entry: { date, kind, summary, tool?, credit? }. Embedded into js/data.js at build.
+entries: []

@@ -777,6 +777,311 @@
     }
 }
 
+/* Suggestions tab badge */
+.suggestions-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    background: #f5a623;
+    color: #000;
+    border-radius: 9px;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* Suggestions View */
+.suggestions-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.suggestions-header h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--vscode-text);
+}
+
+.suggestions-filters {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.suggestions-select {
+    padding: 8px 12px;
+    background: var(--vscode-sidebar-bg);
+    border: 1px solid var(--vscode-border);
+    border-radius: 6px;
+    color: var(--vscode-text);
+    font-size: 13px;
+    cursor: pointer;
+    min-width: 140px;
+}
+
+.suggestions-select:focus {
+    outline: none;
+    border-color: var(--vscode-button-bg);
+}
+
+/* Suggestion group header */
+.suggestion-group-header {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--vscode-text-muted);
+    padding: 16px 0 6px;
+    border-bottom: 1px solid var(--vscode-border);
+    margin-bottom: 4px;
+    opacity: 0.7;
+}
+
+/* Suggestion queue rows */
+.suggestion-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--vscode-sidebar-bg);
+    border: 1px solid var(--vscode-border);
+    border-radius: 6px;
+    margin-bottom: 6px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+}
+
+.suggestion-row:hover {
+    border-color: var(--vscode-text-muted);
+    background: var(--vscode-list-hover);
+}
+
+.suggestion-row.active {
+    border-color: var(--vscode-button-bg);
+    background: rgba(47, 129, 247, 0.06);
+}
+
+.suggestion-kind-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.suggestion-kind-badge.new-tool {
+    background: rgba(35, 134, 54, 0.2);
+    color: #3fb950;
+}
+
+.suggestion-kind-badge.taxonomy-change {
+    background: rgba(79, 70, 229, 0.2);
+    color: #818cf8;
+}
+
+.suggestion-kind-badge.tool-move {
+    background: rgba(234, 88, 12, 0.2);
+    color: #fb923c;
+}
+
+.suggestion-kind-badge.detail-fix {
+    background: rgba(14, 165, 233, 0.2);
+    color: #38bdf8;
+}
+
+.suggestion-row-summary {
+    flex: 1;
+    font-size: 13px;
+    color: var(--vscode-text);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.suggestion-row-meta {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 12px;
+    color: var(--vscode-text-muted);
+    flex-shrink: 0;
+}
+
+/* Decision view panel */
+.suggestion-decision {
+    margin-top: 24px;
+    background: var(--vscode-sidebar-bg);
+    border: 1px solid var(--vscode-border);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.suggestion-decision-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--vscode-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.suggestion-decision-header h3 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--vscode-text);
+}
+
+.suggestion-decision-body {
+    padding: 20px;
+}
+
+.suggestion-payload-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 13px;
+}
+
+.suggestion-payload-table th {
+    text-align: left;
+    padding: 6px 12px 6px 0;
+    color: var(--vscode-text-muted);
+    font-weight: 500;
+    width: 140px;
+    vertical-align: top;
+}
+
+.suggestion-payload-table td {
+    padding: 6px 0;
+    color: var(--vscode-text);
+    word-break: break-word;
+}
+
+.suggestion-rationale {
+    margin-bottom: 20px;
+    padding: 12px 16px;
+    background: rgba(0,0,0,0.15);
+    border-radius: 6px;
+    font-size: 13px;
+    color: var(--vscode-text-muted);
+    line-height: 1.6;
+}
+
+.suggestion-rationale strong {
+    color: var(--vscode-text);
+    display: block;
+    margin-bottom: 4px;
+}
+
+/* Editable placement fields for new_tool */
+.suggestion-edit-fields {
+    background: rgba(47, 129, 247, 0.04);
+    border: 1px solid rgba(47, 129, 247, 0.2);
+    border-radius: 6px;
+    padding: 16px;
+    margin-bottom: 20px;
+}
+
+.suggestion-edit-fields h4 {
+    margin: 0 0 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--vscode-text);
+}
+
+.suggestion-field-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.suggestion-field-row label {
+    width: 120px;
+    font-size: 12px;
+    color: var(--vscode-text-muted);
+    font-weight: 500;
+    flex-shrink: 0;
+}
+
+.suggestion-field-row select,
+.suggestion-field-row input {
+    flex: 1;
+    min-width: 160px;
+    padding: 7px 10px;
+    background: var(--vscode-sidebar-bg);
+    border: 1px solid var(--vscode-border);
+    border-radius: 5px;
+    color: var(--vscode-text);
+    font-size: 13px;
+}
+
+.suggestion-field-row select:focus,
+.suggestion-field-row input:focus {
+    outline: none;
+    border-color: var(--vscode-button-bg);
+}
+
+.suggestion-approve-hint {
+    font-size: 12px;
+    color: #f5a623;
+    margin-top: 4px;
+}
+
+/* Reject note textarea */
+.suggestion-reject-area {
+    margin-bottom: 16px;
+}
+
+.suggestion-reject-area label {
+    display: block;
+    font-size: 12px;
+    color: var(--vscode-text-muted);
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+.suggestion-reject-area textarea {
+    width: 100%;
+    padding: 10px 12px;
+    background: var(--vscode-sidebar-bg);
+    border: 1px solid var(--vscode-border);
+    border-radius: 6px;
+    color: var(--vscode-text);
+    font-size: 13px;
+    line-height: 1.5;
+    resize: vertical;
+    min-height: 72px;
+    box-sizing: border-box;
+}
+
+.suggestion-reject-area textarea:focus {
+    outline: none;
+    border-color: var(--vscode-button-bg);
+}
+
+.suggestion-decision-actions {
+    padding: 16px 20px;
+    border-top: 1px solid var(--vscode-border);
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    background: rgba(0,0,0,0.1);
+}
+
 /* Admin Badge (for main site header) */
 .admin-badge {
     display: inline-flex;

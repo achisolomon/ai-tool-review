@@ -18,7 +18,9 @@
 
     .tool-page { max-width: 800px; margin: 0 auto; padding: 3rem 1.5rem; }
     .tool-header { text-align: center; margin-bottom: 2rem; }
-    .tool-header h1 { font-size: 2.5rem; color: #fff; margin: 0 0 1rem 0; font-weight: 700; }
+    .tool-header h1 { font-size: 2.5rem; color: #fff; margin: 0 0 1rem 0; font-weight: 700; display: inline-flex; align-items: center; gap: 14px; }
+    .tool-favicon { width: 52px; height: 52px; border-radius: 8px; background: #2d2d2d; display: inline-flex; align-items: center; justify-content: center; overflow: hidden; flex: none; }
+    .tool-favicon img { width: 42px; height: 42px; object-fit: contain; border-radius: 4px; }
     .tool-header h1 a { color: #fff; text-decoration: none; transition: color 0.15s ease; }
     .tool-header h1 a:hover { color: #007acc; }
     .tool-meta { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
@@ -31,6 +33,7 @@
     .tool-stars .star-btn { display: flex; align-items: center; gap: 4px; padding: 3px 10px; }
     .tool-stars .star-count { padding: 3px 10px; border-left: 1px solid #30363d; background: #21262d; }
     .tool-description { color: #ccc; font-size: 1.15rem; line-height: 1.7; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .tool-credit { color: #666; font-size: 0.8rem; margin-top: -1.25rem; margin-bottom: 1.5rem; text-align: center; }
     .key-stats { display: flex; justify-content: center; gap: 3rem; padding: 2rem 0; margin: 2rem 0; border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; }
     .key-stat { text-align: center; }
     .key-stat .number { font-size: 2rem; font-weight: 700; color: #007acc; display: block; line-height: 1; }
@@ -123,7 +126,9 @@
 
     @media (max-width: 768px) {
       .tool-page { padding: 2rem 1rem; }
-      .tool-header h1 { font-size: 1.75rem; }
+      .tool-header h1 { font-size: 1.75rem; gap: 10px; }
+      .tool-favicon { width: 40px; height: 40px; }
+      .tool-favicon img { width: 32px; height: 32px; }
       .key-stats { flex-wrap: wrap; gap: 1.5rem; }
       .key-stat .number { font-size: 1.5rem; }
       .pros-cons { grid-template-columns: 1fr; }
@@ -163,7 +168,8 @@
   <main class="tool-page">
     <article>
       <header class="tool-header">
-        <h1><a href="{{ page.website }}" target="_blank" rel="noopener">{{ page.name }} <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; opacity: 0.5;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a></h1>
+        {% assign _host = page.website | remove: 'https://' | remove: 'http://' | remove: 'www.' | split: '/' | first %}
+        <h1>{% if _host and _host != '' %}<span class="tool-favicon"><img src="https://www.google.com/s2/favicons?domain={{ _host }}&sz=64" alt="{{ page.name }} icon" loading="lazy" onerror="this.parentElement.remove()"></span>{% endif %}<a href="{{ page.website }}" target="_blank" rel="noopener">{{ page.name }} <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; opacity: 0.5;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a></h1>
         <p class="tool-meta">
           <span class="tool-type">{{ page.type }}</span>
           {% if page.pricing_model %}
@@ -174,6 +180,10 @@
           {% endif %}
         </p>
         <p class="tool-description">{{ page.description }}</p>
+        <button class="tool-suggest-corner" id="tool-suggest-open" type="button" title="Suggest an edit to this tool">&#9998; Suggest an edit</button>
+        {% if page.suggested_by %}
+        <p class="tool-credit">🧭 on the map thanks to {{ page.suggested_by }}</p>
+        {% endif %}
       </header>
 
       <!-- Taxonomy: Category › Subcategory path + Tags (shown on every tool page) -->
@@ -234,12 +244,32 @@
   <script src="{{ '/js/reviews-api.js' | relative_url }}"></script>
   <script src="{{ '/js/review-components.js' | relative_url }}"></script>
   <script src="{{ '/js/auth-ui.js' | relative_url }}"></script>
+  <link rel="stylesheet" href="{{ '/css/suggest.css' | relative_url }}">
+  <script src="{{ '/js/auth-signin.js' | relative_url }}"></script>
+  <!-- Taxonomy data so the suggest modal's category/subcategory/tag dropdowns populate -->
+  <script src="{{ '/js/data.js' | relative_url }}"></script>
+  <script src="{{ '/js/suggest-logic.js' | relative_url }}"></script>
+  <script src="{{ '/js/suggest.js' | relative_url }}"></script>
   <script>
     // Initialize auth dropdown
     document.addEventListener('DOMContentLoaded', function() {
       if (window.AuthUI) {
         window.AuthUI.init('auth-container');
       }
+    });
+  </script>
+  <script>
+    // Wire "Suggest an edit" button with tool context from Jekyll page vars
+    document.getElementById('tool-suggest-open')?.addEventListener('click', function(e) {
+      window.Suggest.open({ mode: 'tool', trigger: e.currentTarget, tool: {
+        name: {{ page.name | jsonify }},
+        slug: {{ page.slug | jsonify }},
+        category: {{ page.category | jsonify }},
+        subcategory: {{ page.subcategory | default: "" | jsonify }},
+        url: {{ page.website | default: "" | jsonify }},
+        type: {{ page.type | default: "" | jsonify }},
+        desc: {{ page.description | default: "" | jsonify }}
+      }});
     });
   </script>
   <script>
@@ -288,8 +318,6 @@
           // Tool not in DB yet - show empty state with Leave a Review button
           summaryContainer.innerHTML = `
             <div class="review-summary-empty">
-              <h3>No reviews yet</h3>
-              <p>Be the first to review ${window.ReviewComponents.escapeHtml(toolName)}!</p>
               <button class="btn-cta" id="leave-review-btn">Leave a Review</button>
             </div>
           `;
@@ -385,8 +413,6 @@
           // Tool exists but has no reviews yet
           summaryContainer.innerHTML = `
             <div class="review-summary-empty">
-              <h3>No reviews yet</h3>
-              <p>Be the first to review ${window.ReviewComponents.escapeHtml(tool.name || toolName)}!</p>
               <button class="btn-cta" id="leave-review-btn">Leave a Review</button>
             </div>
           `;

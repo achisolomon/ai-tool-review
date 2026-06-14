@@ -144,6 +144,21 @@ test.describe('Tool Page Review Modal', () => {
   });
 });
 
+test('a tool with no reviews shows no "No reviews yet" text', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('cookie_consent', 'accepted'));
+  await page.goto('/tools/cursor', { waitUntil: 'domcontentloaded' });
+  await page.waitForTimeout(1500);
+  await expect(page.getByText('No reviews yet')).toHaveCount(0);
+});
+
+test('tool page exposes window.landscapeData with taxonomy (populates suggest dropdowns)', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('cookie_consent', 'accepted'));
+  await page.goto('/tools/cursor/', { waitUntil: 'domcontentloaded' });
+  await page.waitForFunction(() => typeof window.landscapeData !== 'undefined', { timeout: 8000 });
+  const cats = await page.evaluate(() => Object.keys(window.landscapeData?.taxonomy?.categories || {}));
+  expect(cats).toContain('developers');
+});
+
 // The star-badge tests assert client behavior driven by data/stars.json. They must
 // not depend on third-party scripts (e.g. the Supabase CDN), which can be slow and
 // would otherwise stall page 'load'. Block external hosts so these tests are hermetic.

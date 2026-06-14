@@ -10,12 +10,17 @@ categories_file = File.join(tools_dir, '_categories.yaml')
 category_names = load_category_names(categories_file)
 tools_data = build_tools_json(tools_dir, category_names)
 
+taxonomy = load_taxonomy(categories_file, File.join(tools_dir, '_tags.yaml'))
+changelog = load_changelog(File.join(tools_dir, '..', '_landscape_changelog.yaml'))
+
+output = tools_data.merge('taxonomy' => taxonomy, 'changelog' => changelog)
+
 # Output as JavaScript module
 js_content = <<~JS
 // AI Landscape Data
 // Auto-generated from markdown files - DO NOT EDIT MANUALLY
 
-const landscapeData = #{JSON.pretty_generate(tools_data)};
+const landscapeData = #{JSON.pretty_generate(output)};
 if (typeof window !== 'undefined') window.landscapeData = landscapeData;
 JS
 

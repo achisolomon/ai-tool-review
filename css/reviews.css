@@ -338,33 +338,12 @@
     gap: 16px;
 }
 
-.review-list-empty {
-    padding: 48px;
-    text-align: center;
-    color: var(--vscode-text-muted);
-    background: var(--vscode-sidebar-bg);
-    border: 1px solid var(--vscode-border);
-    border-radius: 8px;
-}
-
 .review-summary-empty {
     padding: 48px;
     text-align: center;
     background: var(--vscode-sidebar-bg);
     border: 1px solid var(--vscode-border);
     border-radius: 8px;
-}
-
-.review-summary-empty h3 {
-    margin: 0 0 12px;
-    color: var(--vscode-text);
-    font-size: 20px;
-}
-
-.review-summary-empty p {
-    margin: 0 0 24px;
-    color: var(--vscode-text-muted);
-    font-size: 16px;
 }
 
 .review-card {
