@@ -42,13 +42,75 @@ function getSupabase() {
     return supabaseClient;
 }
 
-// Helper to get current user
+// ---------------------------------------------------------------------------
+// Resilience: timeouts + health gate
+// ---------------------------------------------------------------------------
+// When the database host is unreachable, supabase-js fetches can hang
+// indefinitely (or eventually surface the raw Supabase URL). That leaves
+// loading spinners spinning forever and dead clicks. Every DB-dependent call
+// must fail fast, and DB-dependent UI must gate on a single health probe.
+
+const DB_TIMEOUT_MS = 4000;
+
+// Race a promise against a timeout. Rejects with a tagged error on timeout so
+// callers can distinguish a slow/unreachable DB from a real query error.
+function withTimeout(promise, ms = DB_TIMEOUT_MS) {
+    return Promise.race([
+        promise,
+        new Promise((_, reject) =>
+            setTimeout(() => reject(new Error('db-timeout')), ms)
+        ),
+    ]);
+}
+
+// One-per-page-load health probe. Memoized so all consumers (auth UI, nav,
+// tool reviews) share a single request. Returns true only on a genuine
+// response; timeout / network failure / uninitialized client → false.
+// Never throws.
+let _healthPromise = null;
+// forceFresh: bypass the page-load memo and run a new probe (used by click-time
+// sign-in re-checks so a backend that died after load is detected). The fresh
+// result replaces the memo so later default callers see current state.
+function isDatabaseHealthy(forceFresh = false) {
+    if (_healthPromise && !forceFresh) return _healthPromise;
+    _healthPromise = (async () => {
+        // Probe the REST endpoint with a raw fetch + AbortController. We don't go
+        // through supabase-js here because its internal retry/queue behaviour can
+        // mask an unreachable host; a plain fetch gives a clean reachable/not
+        // signal. ANY HTTP response (even 401/404/permission) means the host
+        // answered → healthy. Only a network error or timeout → unhealthy.
+        try {
+            const controller = new AbortController();
+            const timer = setTimeout(() => controller.abort(), DB_TIMEOUT_MS);
+            try {
+                await fetch(SUPABASE_URL + '/rest/v1/', {
+                    method: 'HEAD',
+                    headers: { apikey: SUPABASE_ANON_KEY },
+                    cache: 'no-store',
+                    signal: controller.signal,
+                });
+                return true; // host responded
+            } finally {
+                clearTimeout(timer);
+            }
+        } catch (_) {
+            return false; // aborted (timeout) or network failure
+        }
+    })();
+    return _healthPromise;
+}
+
+// Helper to get current user. Times out so a dead DB can't hang callers.
 async function getCurrentUser() {
     const supabase = getSupabase();
     if (!supabase) return null;
 
-    const { data: { user } } = await supabase.auth.getUser();
-    return user;
+    try {
+        const { data: { user } } = await withTimeout(supabase.auth.getUser());
+        return user;
+    } catch (_) {
+        return null;
+    }
 }
 
 // Helper to check if logged in
@@ -91,13 +153,17 @@ async function signOut() {
     return { error };
 }
 
-// Get current session
+// Get current session. Times out so a dead DB can't hang callers.
 async function getSession() {
     const supabase = getSupabase();
     if (!supabase) return null;
 
-    const { data: { session } } = await supabase.auth.getSession();
-    return session;
+    try {
+        const { data: { session } } = await withTimeout(supabase.auth.getSession());
+        return session;
+    } catch (_) {
+        return null;
+    }
 }
 
 // Get current user's profile from user_profiles table
@@ -140,13 +206,21 @@ async function createSuggestion(row) {
     return await supabase.from('suggestions').insert({ ...row, user_id: user.id, status: 'pending' }).select().single();
 }
 
-// List the current user's own suggestions, newest-updated first
+// List the current user's own suggestions, newest-updated first.
+// Timeout-wrapped so a dead DB surfaces an error the page can show instead of
+// leaving the "Loading suggestions…" spinner running forever.
 async function listMySuggestions() {
     const supabase = getSupabase();
     if (!supabase) return { data: null, error: { message: 'Supabase not initialized' } };
     const user = await getCurrentUser();
     if (!user) return { data: [], error: null };
-    return await supabase.from('suggestions').select('*').eq('user_id', user.id).order('updated_at', { ascending: false });
+    try {
+        return await withTimeout(
+            supabase.from('suggestions').select('*').eq('user_id', user.id).order('updated_at', { ascending: false })
+        );
+    } catch (_) {
+        return { data: null, error: { message: 'Database unavailable' } };
+    }
 }
 
 // Patch the user's own pending suggestion (status and user_id are stripped — RLS guards them)
@@ -187,7 +261,7 @@ async function isSuggestionsAvailable() {
         const sb = getSupabase();
         if (!sb) return false; // not cached — client may init later
 
-        const { error } = await sb.from('suggestions').select('id', { head: true, count: 'exact' });
+        const { error } = await withTimeout(sb.from('suggestions').select('id', { head: true, count: 'exact' }));
         // Table exists but anon lacks SELECT grant (42501) or auth (401/403) → available.
         // Only a missing-table error (42P01 / PGRST204) means truly unavailable.
         const available = !error ||
@@ -219,6 +293,8 @@ async function countMyPending() {
 // Export for use in other modules
 window.SupabaseClient = {
     getSupabase,
+    withTimeout,
+    isDatabaseHealthy,
     getCurrentUser,
     isAuthenticated,
     onAuthStateChange,

@@ -32,6 +32,9 @@
   }
 
   function init() {
+    // auth-ui runs its own health check so a dead DB can't hang its spinner.
+    // The "+ Suggest" button / Admin badge are hidden by the suggest.js
+    // bootstrap (suggestions-disabled) when the DB is unreachable.
     initAuth();
     wireSuggest();
     initAdminBadge();

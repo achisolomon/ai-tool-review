@@ -27,54 +27,37 @@ Reachability contract: `window.SupabaseClient.isDatabaseHealthy(forceFresh?)` �
 **Files:**
 - Modify: `js/supabase-client.js` (the `isDatabaseHealthy` function, ~lines 70-88)
 
-- [ ] **Step 1: Replace the function**
+- [ ] **Step 1: Add the `forceFresh` param to the on-disk function**
 
-Current:
+The current on-disk `isDatabaseHealthy()` uses a raw fetch HEAD to `/rest/v1/`
+(uncommitted draft). Change ONLY the function signature line and the cache guard
+— do NOT rewrite the probe body. Make exactly these two edits:
+
+Edit 1 — the signature:
 
 ```javascript
-let _healthPromise = null;
 function isDatabaseHealthy() {
-    if (_healthPromise) return _healthPromise;
-    _healthPromise = (async () => {
-        try {
-            const supabase = getSupabase();
-            if (!supabase) return false;
-            await withTimeout(
-                supabase.from('tools').select('id', { head: true, count: 'exact' })
-            );
-            return true;
-        } catch (_) {
-            return false;
-        }
-    })();
-    return _healthPromise;
-}
 ```
-
-Replace with:
-
+becomes:
 ```javascript
-let _healthPromise = null;
 // forceFresh: bypass the page-load memo and run a new probe (used by click-time
 // sign-in re-checks so a backend that died after load is detected). The fresh
 // result replaces the memo so later default callers see current state.
 function isDatabaseHealthy(forceFresh = false) {
-    if (_healthPromise && !forceFresh) return _healthPromise;
-    _healthPromise = (async () => {
-        try {
-            const supabase = getSupabase();
-            if (!supabase) return false;
-            await withTimeout(
-                supabase.from('tools').select('id', { head: true, count: 'exact' })
-            );
-            return true;
-        } catch (_) {
-            return false;
-        }
-    })();
-    return _healthPromise;
-}
 ```
+
+Edit 2 — the cache guard (the very next line):
+
+```javascript
+    if (_healthPromise) return _healthPromise;
+```
+becomes:
+```javascript
+    if (_healthPromise && !forceFresh) return _healthPromise;
+```
+
+Leave the entire `_healthPromise = (async () => { ... })()` probe body and the
+`return _healthPromise;` exactly as they are.
 
 - [ ] **Step 2: Sanity-check the build still loads the file**
 

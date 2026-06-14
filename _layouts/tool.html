@@ -263,7 +263,9 @@
     });
   </script>
   <script>
-    // Wire "Suggest an edit" button with tool context from Jekyll page vars
+    // Wire "Suggest an edit" button with tool context from Jekyll page vars.
+    // The button itself is hidden by the suggest.js bootstrap (suggestions-disabled)
+    // when the DB is unreachable, so no health gate is needed here.
     document.getElementById('tool-suggest-open')?.addEventListener('click', function(e) {
       window.Suggest.open({ mode: 'tool', trigger: e.currentTarget, tool: {
         name: {{ page.name | jsonify }},
@@ -297,10 +299,20 @@
       const summaryContainer = document.getElementById('review-summary-container');
       const listContainer = document.getElementById('review-list-container');
 
+      // If the DB is unreachable, hide the whole reviews section rather than
+      // leaving "Loading reviews…" spinning forever.
+      if (typeof window.SupabaseClient?.isDatabaseHealthy === 'function') {
+        const healthy = await window.SupabaseClient.isDatabaseHealthy();
+        if (!healthy) {
+          reviewsSection.hidden = true;
+          return;
+        }
+      }
+
       try {
         const supabase = window.SupabaseClient.getSupabase();
         if (!supabase) {
-          summaryContainer.innerHTML = '<p class="no-reviews">Reviews unavailable</p>';
+          reviewsSection.hidden = true;
           return;
         }
 

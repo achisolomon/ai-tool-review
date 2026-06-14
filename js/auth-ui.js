@@ -113,6 +113,18 @@
             return;
         }
 
+        // If the DB is unreachable, don't render the auth control at all —
+        // a sign-in button that leads nowhere (and a forever-spinner) is worse
+        // than no button. Clear the loading state and bail. (Guarded so test
+        // stubs that replace SupabaseClient without this method still render.)
+        if (typeof window.SupabaseClient.isDatabaseHealthy === 'function') {
+            const healthy = await window.SupabaseClient.isDatabaseHealthy();
+            if (!healthy) {
+                container.innerHTML = '';
+                return;
+            }
+        }
+
         // Get current user and profile
         const user = await window.SupabaseClient.getCurrentUser();
         let profile = null;
@@ -170,13 +182,23 @@
             });
         }
 
-        // Sign in button
+        // Sign in button — re-check backend reachability at CLICK time (fresh,
+        // bypassing the page-load cache) so a backend that died after load does
+        // not bounce the user to a dead OAuth URL.
         if (signinBtn) {
             signinBtn.addEventListener('click', async function() {
+                this.disabled = true;
+                const healthy = await window.SupabaseClient.isDatabaseHealthy(true);
+                if (!healthy) {
+                    alert('Sign-in is temporarily unavailable. Please try again in a few minutes.');
+                    container.innerHTML = '';
+                    return;
+                }
                 const { error } = await window.SupabaseClient.signInWithProvider('github');
                 if (error) {
                     console.error('[AuthUI] Sign in failed:', error);
                     alert('Sign in failed: ' + error.message);
+                    this.disabled = false;
                 }
             });
         }
