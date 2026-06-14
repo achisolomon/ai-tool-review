@@ -143,3 +143,11 @@ test.describe('Tool Page Review Modal', () => {
     }
   });
 });
+
+test('tool page exposes window.landscapeData with taxonomy (populates suggest dropdowns)', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('cookie_consent', 'accepted'));
+  await page.goto('/tools/cursor/', { waitUntil: 'domcontentloaded' });
+  await page.waitForFunction(() => typeof window.landscapeData !== 'undefined', { timeout: 8000 });
+  const cats = await page.evaluate(() => Object.keys(window.landscapeData?.taxonomy?.categories || {}));
+  expect(cats).toContain('developers');
+});
