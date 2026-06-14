@@ -1311,12 +1311,30 @@
       }
     });
 
+    // Blur guard: revert display input to the committed label when focus leaves without
+    // a valid selection.  mousedown on menu items calls e.preventDefault() (above), so
+    // the blur fires AFTER selectSubcategory() has already updated hiddenInput — meaning
+    // the committed slug is already correct by the time we read it here, and we safely
+    // skip the revert for a genuine click selection.
+    searchInput.addEventListener('blur', () => {
+      const committedSlug = hiddenInput.value;
+      if (!committedSlug) {
+        // Nothing committed yet — clear any partial query text
+        searchInput.value = '';
+      } else {
+        // Restore the display label for the committed slug
+        const committed = allSubs.find(s => s.slug === committedSlug);
+        searchInput.value = committed ? committed.label : committedSlug;
+      }
+      closeMenu();
+    });
+
     // Close menu when clicking outside
     function onDocClick(e) {
       if (!menu.contains(e.target) && e.target !== searchInput) closeMenu();
     }
     document.addEventListener('click', onDocClick);
-    // Clean up listener if modal is closed
+    // TODO: cleanup is observer-based and coupled to overlay-removal DOM structure; prefer an explicit cleanup()/AbortController from destroyOverlay if the modal nesting changes.
     const observer = new MutationObserver(() => {
       if (!document.contains(modal)) {
         document.removeEventListener('click', onDocClick);
@@ -1506,6 +1524,7 @@
       if (!menu.contains(e.target) && e.target !== searchInput) closeMenu();
     }
     document.addEventListener('click', onDocClick);
+    // TODO: cleanup is observer-based and coupled to overlay-removal DOM structure; prefer an explicit cleanup()/AbortController from destroyOverlay if the modal nesting changes.
     const observer = new MutationObserver(() => {
       if (!document.contains(modal)) {
         document.removeEventListener('click', onDocClick);
@@ -1539,6 +1558,7 @@
         return;
       }
 
+      // TODO: this placement-value reading (subcategory + tagsAdd/tagsRemove + new-tag slugs) is duplicated in wireEditSubmit; extract a shared readPlacementFormValues(form, tool) helper.
       // Read subcategory from the hidden input (set by wireSubcategoryTypeahead)
       const hiddenSub = form.querySelector('#suggest-new-subcategory');
       const proposedSubcategory = hiddenSub ? hiddenSub.value : '';
@@ -2148,6 +2168,7 @@
           showError(modal, 'Rationale is required.');
           return;
         }
+        // TODO: this placement-value reading (subcategory + tagsAdd/tagsRemove + new-tag slugs) is duplicated in wireEditSubmit; extract a shared readPlacementFormValues(form, tool) helper.
         // Read subcategory from hidden input (set by wireSubcategoryTypeahead)
         const hiddenSub = form.querySelector('#suggest-new-subcategory');
         const proposedSubcategory = hiddenSub ? hiddenSub.value : '';

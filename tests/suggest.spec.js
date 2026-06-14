@@ -935,6 +935,64 @@ test.describe('Test 3: Move/re-tag type-ahead pickers', () => {
     expect(placement).not.toBeUndefined();
     expect(placement.payload.proposed.tags_add).toContain('zzznovel');
   });
+
+  // -----------------------------------------------------------------------
+  // 3m — Blur without selection reverts display; hidden input unchanged
+  // -----------------------------------------------------------------------
+
+  test('3m: blurring #suggest-subcat-search without selecting reverts display to committed label', async ({ page }) => {
+    const modal = await openMoveRetagForm(page);
+
+    // Step 1: commit a selection by typing "memory" and clicking the result
+    await page.evaluate(() => {
+      const inp = document.querySelector('#suggest-subcat-search');
+      inp.value = 'memory';
+      inp.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+    await expect(modal.locator('#suggest-subcat-menu [data-slug]')).toHaveCount(1, { timeout: 3000 });
+    await page.evaluate(() => {
+      const item = document.querySelector('#suggest-subcat-menu [data-slug]');
+      if (item) item.click();
+    });
+
+    // Confirm committed state
+    const committedState = await page.evaluate(() => {
+      const hidden = document.querySelector('#suggest-new-subcategory');
+      const display = document.querySelector('#suggest-subcat-search');
+      return { slug: hidden ? hidden.value : null, displayValue: display ? display.value : null };
+    });
+    expect(committedState.slug).toBe('memory-context');
+    expect(committedState.displayValue).toContain('Memory');
+
+    // Step 2: type a partial non-matching query WITHOUT clicking any result
+    await page.evaluate(() => {
+      const inp = document.querySelector('#suggest-subcat-search');
+      inp.value = 'mem';
+      inp.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+
+    // Step 3: blur the input (focus another element)
+    await page.evaluate(() => {
+      // Focus the rationale textarea so the blur fires on the search input
+      const ta = document.querySelector('#suggest-retag-rationale');
+      if (ta) ta.focus();
+    });
+    // Allow the blur handler to run
+    await page.waitForTimeout(50);
+
+    // Step 4: assert the display reverted to the committed label, hidden input unchanged
+    const afterBlur = await page.evaluate(() => {
+      const hidden = document.querySelector('#suggest-new-subcategory');
+      const display = document.querySelector('#suggest-subcat-search');
+      return { slug: hidden ? hidden.value : null, displayValue: display ? display.value : null };
+    });
+
+    // Hidden input must still hold the committed slug
+    expect(afterBlur.slug).toBe('memory-context');
+    // Display must have reverted to the committed label (not the partial "mem" query)
+    expect(afterBlur.displayValue).not.toBe('mem');
+    expect(afterBlur.displayValue).toContain('Memory');
+  });
 });
 
 test.skip('5: RLS: user cannot self-approve [requires signed-in session + migration 009]', async ({ page }) => {
