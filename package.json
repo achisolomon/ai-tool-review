@@ -23,7 +23,9 @@
     "prepare": "husky",
     "test:search": "playwright test tests/data-integrity.spec.js tests/search-consistency.spec.js tests/search.spec.js tests/autocomplete.spec.js tests/shareable-links.spec.js",
     "apply-suggestions": "node scripts/apply-suggestions.mjs",
-    "test:apply": "node --test scripts/apply-suggestions.test.mjs"
+    "test:apply": "node --test scripts/apply-suggestions.test.mjs",
+    "test:port": "PORT=${PORT:-8081} playwright test",
+    "test:ci": "CI=1 playwright test --workers=4"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.11.3",

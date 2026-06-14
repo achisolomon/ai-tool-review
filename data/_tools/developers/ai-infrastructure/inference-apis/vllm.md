@@ -2,7 +2,7 @@
 category: ai-infrastructure
 confidence_score: 0.9
 description: High-throughput memory-efficient LLM inference engine with PagedAttention, supporting production deployments at massive scale.
-github_stars: 81800
+github_stars: 82807
 last_verified: '2026-06-03'
 name: vLLM
 pricing_model: free
@@ -12,6 +12,7 @@ subcategory: inference-apis
 track: developers
 type: oss
 website: https://github.com/vllm-project/vllm
+github_url: "https://github.com/vllm-project/vllm"
 ---
 
 <div class="key-stats">
@@ -63,7 +64,7 @@ website: https://github.com/vllm-project/vllm
   <div class="pros-list">
     <h3>What's Great</h3>
     <ul>
-      <li>81.8K+ stars, most mature LLM inference framework</li>
+      <li>High-throughput LLM inference and serving engine</li>
       <li>PagedAttention delivers state-of-the-art throughput</li>
       <li>Comprehensive model support (LLMs, vision, audio)</li>
       <li>Production-proven at major tech companies</li>

@@ -11,7 +11,7 @@ status: active
 subcategory: app-frameworks
 track: developers
 type: oss
-website: https://www.askmarvin.ai/
+website: "https://askmarvin.ai/"
 ---
 
 <div class="key-stats">

@@ -12,7 +12,7 @@ pricing_model: usage-based
 founded_year: 2024
 headquarters: "San Francisco, CA"
 github_url: "—"
-github_stars: —
+github_stars: null
 tags:
   - browser-automation
 last_verified: "2026-06-03"

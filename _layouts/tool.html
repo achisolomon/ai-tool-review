@@ -298,7 +298,7 @@
         // Get the tool by slug (use maybeSingle to avoid 406 error when tool doesn't exist)
         const { data: tool, error: toolError } = await supabase
           .from('tools')
-          .select('id, name, average_rating, review_count, rating_distribution, ai_summary, pros_aggregated, cons_aggregated, is_open_source, github_stars, github_url')
+          .select('id, name, average_rating, review_count, rating_distribution, ai_summary, pros_aggregated, cons_aggregated, is_open_source')
           .eq('slug', toolSlug)
           .maybeSingle();
 
@@ -358,9 +358,7 @@
             aiSummary: tool.ai_summary,
             prosAggregated: tool.pros_aggregated || [],
             consAggregated: tool.cons_aggregated || [],
-            isOpenSource: tool.is_open_source || false,
-            githubStars: tool.github_stars,
-            githubUrl: tool.github_url
+            isOpenSource: tool.is_open_source || false
           };
 
           // Transform reviews to component format
@@ -823,5 +821,6 @@
       deleteModal.classList.add('active');
     }
   </script>
+  <script src="{{ '/js/stars.js' | relative_url }}?t={{ site.time | date: '%s' }}"></script>
 </body>
 </html>

@@ -12,7 +12,7 @@ pricing_model: freemium
 founded_year: 2022
 headquarters: "London, UK"
 github_url: "—"
-github_stars: —
+github_stars: null
 tags:
   - agents
 last_verified: "2026-06-03"

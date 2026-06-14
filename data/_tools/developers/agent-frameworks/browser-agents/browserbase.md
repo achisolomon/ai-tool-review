@@ -12,7 +12,7 @@ pricing_model: freemium
 founded_year: 2024
 headquarters: "San Francisco, California"
 github_url: —
-github_stars: —
+github_stars: null
 tags:
   - agents
   - browser-automation

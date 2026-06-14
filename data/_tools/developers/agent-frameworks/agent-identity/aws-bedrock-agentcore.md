@@ -12,7 +12,7 @@ pricing_model: usage-based
 founded_year: 2024
 headquarters: "Seattle, Washington"
 github_url: —
-github_stars: —
+github_stars: null
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

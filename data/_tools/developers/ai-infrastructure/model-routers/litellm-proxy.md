@@ -68,7 +68,7 @@ website: https://docs.litellm.ai/docs/simple_proxy
       <li>Extensive provider support (100+ models across major platforms)</li>
       <li>Built-in load balancing and automatic fallback handling</li>
       <li>Comprehensive spend tracking and budget alerts</li>
-      <li>Active community with 13K+ GitHub stars</li>
+      <li>Active community with broad adoption</li>
       <li>Free and open-source with optional managed service</li>
     </ul>
     <div class="source"><a href="https://docs.litellm.ai/docs/simple_proxy" target="_blank">Official Site</a></div>

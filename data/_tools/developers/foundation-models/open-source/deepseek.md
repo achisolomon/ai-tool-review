@@ -201,7 +201,7 @@ confidence_score: 0.92
     <h4>Community Adoption</h4>
     <ul>
       <li>10M+ HuggingFace downloads (V3)</li>
-      <li>50K+ GitHub stars across repos</li>
+      <li>Strong community adoption across repos</li>
       <li>Integrated in 100+ inference platforms</li>
       <li>Top model on OpenRouter by usage</li>
     </ul>

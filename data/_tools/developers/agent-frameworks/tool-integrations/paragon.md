@@ -12,7 +12,7 @@ pricing_model: freemium
 founded_year: 2021
 headquarters: "Los Angeles, CA"
 github_url: "—"
-github_stars: —
+github_stars: null
 tags:
   - workflow-automation
 last_verified: "2026-06-03"

@@ -12,7 +12,7 @@ pricing_model: freemium
 founded_year: 2022
 headquarters: "Paris, France"
 github_url: "https://github.com/NangoHQ/nango"
-github_stars: 8500
+github_stars: 10495
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---
@@ -68,7 +68,7 @@ confidence_score: 0.9
   <div class="pros-list">
     <h3>What's Great</h3>
     <ul>
-      <li>Open-source with active community (8.5K+ stars)</li>
+      <li>Open-source with active community</li>
       <li>800+ pre-configured API integrations</li>
       <li>Code-first approach with full control</li>
       <li>Built-in OAuth and token management</li>
@@ -150,7 +150,7 @@ confidence_score: 0.9
 | Feature | Nango | Composio | Paragon |
 |---------|--------|--------------|--------------|
 | Integrations | 800+ | 1,000+ | 100+ |
-| Open Source | Yes (8.5K stars) | Yes (12.5K stars) | No |
+| Open Source | Yes | Yes | No |
 | Deployment | Self-hosted + Cloud | Cloud + Self-hosted | Cloud Only |
 | Pricing | $0-$50-$500+ | $0-$99+ | Custom |
 | Best For | Code-first Integrations | Agent Tooling | Embedded Integration UX |

@@ -9,7 +9,7 @@ subcategory: "app-frameworks"
 status: "active"
 description: "Spring Framework's official AI integration bringing familiar Spring idioms to GenAI with support for all major LLM providers"
 github_url: "https://github.com/spring-projects/spring-ai"
-github_stars: 8800
+github_stars: 8938
 pricing_model: "free"
 founded_year: 2023
 headquarters: "Palo Alto, CA"
@@ -226,7 +226,6 @@ source_urls:
   <div class="info-card">
     <h4>Community & Adoption</h4>
     <ul>
-      <li>3,200+ GitHub stars</li>
       <li>Active VMware/Broadcom backing</li>
       <li>Regular Spring Office Hours coverage</li>
       <li>Growing enterprise adoption</li>

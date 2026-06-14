@@ -9,7 +9,7 @@ subcategory: "cost-reduction"
 status: "active"
 description: "CLI proxy that reduces LLM token consumption by 60-90% on common dev commands with zero dependencies"
 github_url: "https://github.com/rtk-ai/rtk"
-github_stars: 60071
+github_stars: 62172
 pricing_model: "free"
 founded_year: 2026
 last_verified: "2026-06-08"
@@ -72,7 +72,7 @@ source_urls:
   <div class="pros-list">
     <h3>What's Great</h3>
     <ul>
-      <li>60K+ GitHub stars—widely adopted</li>
+      <li>Widely adopted with strong community support</li>
       <li>Zero dependencies, single Rust binary</li>
       <li>Sub-10ms overhead—virtually invisible</li>
       <li>Auto-rewrite hook for 100% adoption</li>

@@ -9,7 +9,7 @@ subcategory: "code-first"
 status: "active"
 description: "Framework for orchestrating role-playing, autonomous AI agents that work together seamlessly on complex tasks"
 github_url: "https://github.com/crewAIInc/crewAI"
-github_stars: 52681
+github_stars: 53513
 pricing_model: "open-core"
 founded_year: 2023
 headquarters: "San Francisco, CA"
@@ -76,7 +76,7 @@ confidence_score: 0.95
       <li>Simple Python API with minimal boilerplate</li>
       <li>Built-in memory and context management</li>
       <li>50+ pre-built tools available</li>
-      <li>Strong community (52K+ stars)</li>
+      <li>Strong community</li>
       <li>MIT licensed, fully open source</li>
     </ul>
     <div class="source"><a href="https://github.com/crewAIInc/crewAI" target="_blank">GitHub</a> - <a href="https://docs.crewai.com" target="_blank">Official Docs</a></div>
@@ -167,7 +167,6 @@ confidence_score: 0.95
   <div class="info-card">
     <h4>Community Stats</h4>
     <ul>
-      <li>52,600+ GitHub stars</li>
       <li>7,300+ forks</li>
       <li>380+ contributors</li>
       <li>Active Discord community</li>

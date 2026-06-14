@@ -2,7 +2,7 @@
 category: ai-infrastructure
 confidence_score: 0.9
 description: Pure C/C++ LLM inference engine enabling local model execution on CPU and GPU with minimal dependencies and maximum portability.
-github_stars: 114000
+github_stars: 116441
 last_verified: '2026-06-03'
 name: llama.cpp
 pricing_model: free
@@ -12,6 +12,7 @@ subcategory: inference-apis
 track: developers
 type: oss
 website: https://github.com/ggml-org/llama.cpp
+github_url: "https://github.com/ggml-org/llama.cpp"
 ---
 
 <div class="key-stats">
@@ -63,7 +64,7 @@ website: https://github.com/ggml-org/llama.cpp
   <div class="pros-list">
     <h3>What's Great</h3>
     <ul>
-      <li>114K+ GitHub stars, most popular LLM inference engine</li>
+      <li>C/C++ LLM inference engine with broad platform support</li>
       <li>Runs entirely locally with no cloud dependencies</li>
       <li>Minimal RAM usage via advanced quantization (4-bit, 8-bit)</li>
       <li>Cross-platform support (Windows, macOS, Linux, mobile)</li>

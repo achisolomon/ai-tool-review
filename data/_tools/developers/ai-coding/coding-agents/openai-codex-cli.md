@@ -65,7 +65,7 @@ github_stars: 88100
     <h3>What's Great</h3>
     <ul>
       <li>Direct access to OpenAI's powerful Codex models</li>
-      <li>Highly popular with 88K+ GitHub stars</li>
+      <li>Open-source CLI with active community development</li>
       <li>Flexible CLI interface for automation and scripting</li>
       <li>Works across multiple programming languages</li>
       <li>Integrates with existing terminal workflows</li>

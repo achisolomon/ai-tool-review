@@ -9,7 +9,7 @@ subcategory: "dedicated"
 status: "active"
 description: "Open-source vector database with native hybrid search combining BM25 and vector search"
 github_url: "https://github.com/weaviate/weaviate"
-github_stars: 12000
+github_stars: 16322
 pricing_model: "freemium"
 founded_year: 2019
 headquarters: "Amsterdam, Netherlands"
@@ -179,7 +179,6 @@ confidence_score: 0.95
   <div class="info-card">
     <h4>Community Stats</h4>
     <ul>
-      <li>12,000+ GitHub stars</li>
       <li>200+ contributors</li>
       <li>Active Slack community (10k+ members)</li>
       <li>Weekly office hours</li>

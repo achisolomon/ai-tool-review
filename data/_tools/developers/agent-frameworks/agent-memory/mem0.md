@@ -9,7 +9,7 @@ subcategory: "agent-memory"
 status: "active"
 description: "Universal memory layer for AI Agents that enables personalized, context-aware interactions"
 github_url: "https://github.com/mem0ai/mem0"
-github_stars: 57419
+github_stars: 58510
 pricing_model: "freemium"
 founded_year: 2023
 headquarters: "San Francisco, CA"
@@ -78,7 +78,7 @@ confidence_score: 0.95
       <li>Token-efficient single-pass memory extraction</li>
       <li>Multi-level memory (User, Session, Agent)</li>
       <li>Flexible deployment: library, self-hosted, or cloud</li>
-      <li>Strong OSS community (57K+ GitHub stars)</li>
+      <li>Strong OSS community</li>
       <li>Y Combinator backed (S24)</li>
       <li>Simple API with Python and Node.js SDKs</li>
       <li>Entity linking and temporal reasoning built-in</li>
@@ -210,7 +210,6 @@ confidence_score: 0.95
   <div class="info-card">
     <h4>Community Stats</h4>
     <ul>
-      <li>57,400+ GitHub stars</li>
       <li>6,500+ forks</li>
       <li>Y Combinator S24 company</li>
       <li>Active Discord community</li>

@@ -2,7 +2,7 @@
 category: ai-infrastructure
 confidence_score: 0.9
 description: High-performance serving framework for LLMs and multimodal models with advanced optimizations and structured generation support.
-github_stars: 28900
+github_stars: 28978
 last_verified: '2026-06-03'
 name: SGLang
 pricing_model: free
@@ -12,6 +12,7 @@ subcategory: inference-apis
 track: developers
 type: oss
 website: https://github.com/sgl-project/sglang
+github_url: "https://github.com/sgl-project/sglang"
 ---
 
 <div class="key-stats">
@@ -63,7 +64,7 @@ website: https://github.com/sgl-project/sglang
   <div class="pros-list">
     <h3>What's Great</h3>
     <ul>
-      <li>28.9K+ stars, fastest-growing inference framework</li>
+      <li>Inference framework with a fast execution runtime</li>
       <li>RadixAttention for efficient KV cache reuse</li>
       <li>Native support for structured generation (JSON, regex)</li>
       <li>Multimodal support (text, image, video, audio)</li>

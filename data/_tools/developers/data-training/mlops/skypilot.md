@@ -11,7 +11,8 @@ type: oss
 website: https://skypilot.co/
 description: "Framework for running ML workloads efficiently on any cloud with automatic cost optimization and multi-cloud scheduling"
 pricing_model: free
-github_stars: 10100
+github_stars: 10139
+github_url: "https://github.com/skypilot-org/skypilot"
 ---
 
 <div class="key-stats">

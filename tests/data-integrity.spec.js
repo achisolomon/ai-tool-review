@@ -4,7 +4,7 @@
 // browser-level search-consistency suite even starts.
 
 import { test, expect } from '@playwright/test';
-import { readFileSync } from 'fs';
+import fs, { readFileSync } from 'fs';
 import path from 'path';
 import vm from 'vm';
 
@@ -125,4 +125,81 @@ test.describe('data.js integrity', () => {
     expect(Array.isArray(data.taxonomy.tags.capabilities)).toBe(true);
     expect(Array.isArray(data.changelog)).toBe(true);
   });
+});
+
+function walkTools(dir) {
+  let out = [];
+  for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+    const p = path.join(dir, e.name);
+    if (e.isDirectory()) out = out.concat(walkTools(p));
+    else if (e.name.endsWith('.md') && !e.name.startsWith('_') && !e.name.startsWith('zzz-test-')) out.push(p);
+  }
+  return out;
+}
+
+test('every tool .md file appears in data.js (no silent drops)', () => {
+  // Guards against generate_json_lib.rb silently skipping tools due to
+  // missing required frontmatter fields (e.g. subcategory was previously
+  // mandatory, causing flat-category tools to vanish from search).
+  const toolFiles = walkTools('data/_tools');
+  const slugsInDataJs = new Set();
+  forEachTool(tool => slugsInDataJs.add(tool.slug));
+
+  const missing = [];
+  for (const file of toolFiles) {
+    const content = fs.readFileSync(file, 'utf8');
+    const match = content.match(/^---[\s\S]*?^slug:\s*"?([^"\n]+)"?/m);
+    if (!match) { missing.push(`${path.relative('data/_tools', file)}: no slug in frontmatter`); continue; }
+    const slug = match[1].trim();
+    if (!slugsInDataJs.has(slug)) {
+      missing.push(`${path.relative('data/_tools', file)}: slug "${slug}" present in .md but missing from data.js`);
+    }
+  }
+  expect(missing, `Tools dropped by generator:\n${missing.join('\n')}`).toEqual([]);
+});
+
+test('tools without a subcategory field are not dropped (flat-category regression)', () => {
+  // Regression test: generate_json_lib.rb used to require subcategory and silently
+  // drop tools that omitted it. Now it defaults to the category id.
+  // Uses a Ruby tmpdir so no disk fixture pollutes the real tools tree.
+  const { execSync, spawnSync } = require('child_process');
+  const os = require('os');
+  const root = process.cwd();
+
+  // Write a self-contained Ruby script to a temp file
+  const scriptFile = path.join(os.tmpdir(), 'test-flat-category-regression.rb');
+  fs.writeFileSync(scriptFile, [
+    `$LOAD_PATH.unshift(File.join(${JSON.stringify(root)}, 'scripts'))`,
+    `require 'generate_json_lib'`,
+    `require 'tmpdir'`,
+    `require 'fileutils'`,
+    `tmpdir = Dir.mktmpdir`,
+    `FileUtils.mkdir_p(File.join(tmpdir, 'users/slide-creation'))`,
+    `File.write(File.join(tmpdir, 'users/slide-creation/flat-tool.md'),`,
+    `  "---\\nname: \\"Flat Tool\\"\\nslug: \\"flat-tool-regression\\"\\nwebsite: \\"https://example.com\\"\\ntype: \\"commercial\\"\\ntrack: \\"users\\"\\ncategory: \\"slide-creation\\"\\nstatus: \\"active\\"\\ndescription: \\"test\\"\\npricing_model: \\"freemium\\"\\nlast_verified: \\"2026-06-14\\"\\n---\\n")`,
+    `result = build_tools_json(tmpdir, {})`,
+    `FileUtils.rm_rf(tmpdir)`,
+    `slugs = result['users'].flat_map { |c| c['subcategories'].flat_map { |s| s['tools'].map { |t| t['slug'] } } }`,
+    `puts slugs.include?('flat-tool-regression') ? 'PASS' : 'FAIL:' + slugs.inspect`,
+  ].join("\n"));
+
+  const result = spawnSync('ruby', [scriptFile], { cwd: root, encoding: 'utf8' });
+  fs.unlinkSync(scriptFile);
+
+  const output = (result.stdout || '').trim();
+  expect(result.status, `Ruby script error: ${result.stderr}`).toBe(0);
+  expect(output, `Generator dropped flat-category tool. Slugs found: ${output}`).toBe('PASS');
+});
+
+test('no tool description prose hardcodes a GitHub star figure', () => {
+  const offenders = [];
+  // A star FIGURE (number + optional k/+) followed by "stars", excluding "N/M stars" ratings
+  // via the negative lookbehind on '/' or a digit.
+  const re = /(?<![\/\d])\b\d[\d.,]*\s*[kK]?\+?\s*(github\s+)?stars?\b/i;
+  for (const file of walkTools('data/_tools')) {
+    const content = fs.readFileSync(file, 'utf8');
+    const body = content.replace(/^---[\s\S]*?---/, ''); // strip frontmatter
+    if (re.test(body)) offenders.push(path.relative('data/_tools', file));
+  }
+  expect(offenders, `Star figures must live only in the badge:\n${offenders.join('\n')}`).toEqual([]);
 });

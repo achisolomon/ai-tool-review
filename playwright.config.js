@@ -2,7 +2,8 @@ import { defineConfig } from '@playwright/test';
 
 // PORT lets parallel git worktrees run their suites on distinct ports so they
 // don't reuse each other's dev server (reuseExistingServer). Defaults to 8080.
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || '8080';
+const BASE_URL = `http://localhost:${PORT}`;
 
 export default defineConfig({
   testDir: './tests',
@@ -14,7 +15,7 @@ export default defineConfig({
   reporter: 'html',
   globalSetup: './tests/global-setup.js',
   use: {
-    baseURL: `http://localhost:${PORT}`,
+    baseURL: BASE_URL,
     trace: 'on-first-retry',
     // Route browser HTTPS traffic through the blocking proxy started in
     // global-setup.js — this ensures ad CDN hosts fail fast rather than
@@ -29,7 +30,7 @@ export default defineConfig({
     // Pass PORT through so the spawned server and baseURL agree when a worktree
     // overrides the port.
     command: `PORT=${PORT} node server.js`,
-    url: `http://localhost:${PORT}`,
+    url: BASE_URL,
     // Reuse an already-running dev server unless CI or pre-push hook (both own the lifecycle)
     reuseExistingServer: !process.env.CI && !process.env.PREPUSH,
   },

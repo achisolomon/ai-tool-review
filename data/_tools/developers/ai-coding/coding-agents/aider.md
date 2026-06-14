@@ -9,7 +9,7 @@ subcategory: "coding-agents"
 status: "active"
 description: "AI pair programming in your terminal - works with GPT-4, Claude, and local models"
 github_url: "https://github.com/paul-gauthier/aider"
-github_stars: 25000
+github_stars: 46179
 pricing_model: "free"
 founded_year: 2023
 tags:

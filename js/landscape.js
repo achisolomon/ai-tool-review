@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Format star count (e.g., 15400 -> "15.4k")
     function formatStars(count) {
-        if (!count || count < 0) return null;
+        if (typeof count !== 'number' || !isFinite(count) || count < 0) return null;
         if (count >= 1000000) {
             return (count / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
         }
@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const logoUrl = domain ? `https://www.google.com/s2/favicons?domain=${domain}&sz=64` : '';
         const stars = formatStars(tool.github_stars);
-        const starsHtml = stars ? `<span class="stars-badge stars-badge-sm" title="${tool.github_stars.toLocaleString()} GitHub stars"><svg class="star-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25z"/></svg>${stars}</span>` : '';
+        const starsHtml = stars ? `<span class="stars-badge stars-badge-sm" title="${stars} GitHub stars"><svg class="star-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25z"/></svg>${stars}</span>` : '';
 
         return `
             <div class="tool-card"
@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
                  data-url="${tool.url}"
                  data-desc="${tool.desc}"
                  data-type="${tool.type}"
-                 data-stars="${tool.github_stars || ''}">
+                 data-stars="${typeof tool.github_stars === 'number' ? tool.github_stars : ''}">
                 <button class="card-suggest" data-slug="${slug}" type="button"
                         title="Suggest an edit"
                         aria-label="Suggest an edit to ${tool.name}">&#9998;</button>
@@ -322,8 +322,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function showTooltip(card) {
         const name = card.dataset.name;
         const desc = card.dataset.desc;
-        const stars = card.dataset.stars;
-        const starsHtml = stars ? `<div class="tooltip-stars"><svg viewBox="0 0 16 16" fill="#e3b341" style="width:12px;height:12px;"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25z"/></svg>${parseInt(stars).toLocaleString()} stars</div>` : '';
+        const starsNum = parseInt(card.dataset.stars, 10);
+        const starsLabel = formatStars(starsNum);
+        const starsHtml = starsLabel ? `<div class="tooltip-stars"><svg viewBox="0 0 16 16" fill="#e3b341" style="width:12px;height:12px;"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25z"/></svg>${starsLabel} stars</div>` : '';
 
         tooltip.innerHTML = `
             <div class="tooltip-title">${name}</div>

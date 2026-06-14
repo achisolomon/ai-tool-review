@@ -10,7 +10,7 @@ status: active
 subcategory: fine-tuning
 track: developers
 type: commercial
-website: https://www.together.ai/products/fine-tuning
+website: "https://www.together.ai/"
 ---
 
 <div class="key-stats">
