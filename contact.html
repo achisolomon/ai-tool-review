@@ -44,9 +44,16 @@
 
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7272761067250869"
-        crossorigin="anonymous"></script>
+    <!-- Google AdSense (skipped on localhost to keep the dev console clean) -->
+    <script>
+        if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+            var s = document.createElement('script');
+            s.async = true;
+            s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7272761067250869';
+            s.crossOrigin = 'anonymous';
+            document.head.appendChild(s);
+        }
+    </script>
 
     <style>
         .contact-container {

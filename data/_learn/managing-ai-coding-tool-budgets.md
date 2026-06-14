@@ -25,7 +25,7 @@ sources:
 ---
 
 <div class="tldr">
-  <strong>Bottom line:</strong> A key or seat per developer is table stakes, not the solution. Real cost control needs two things: <em>visibility</em> — one view of who's spending what across Claude Code, Cursor, and Copilot — and <em>enforcement</em> — hard per-person spend caps, daily or monthly, that block requests at the limit. A proxy gives you both; a written policy gives you neither. A policy without enforcement is optimism, not budget management.
+  <strong>Bottom line:</strong> A key or seat per developer is table stakes, not the solution. Real cost control needs two things: <em>visibility</em> — one view of who's spending what across Claude Code, Cursor, and Copilot — and <em>enforcement</em> — hard per-person spend caps, daily or monthly, that block requests at the limit. <strong>Find out which tools deliver both — and how to do it manually — in the guide below.</strong>
 </div>
 
 <nav class="article-outline">

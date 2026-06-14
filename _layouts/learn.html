@@ -133,6 +133,9 @@
         <a href="{{ '/' | relative_url }}" class="nav-link nav-link-text">Search</a>
         <a href="{{ '/landscape.html' | relative_url }}" class="nav-link nav-link-text">Landscape</a>
         <a href="{{ '/guides/' | relative_url }}" class="nav-link nav-link-text nav-active">Guides</a>
+        <a href="{{ '/admin.html' | relative_url }}" id="admin-badge" class="nav-link admin-badge hidden">
+          Admin <span id="admin-badge-count"></span>
+        </a>
         <div id="auth-container"></div>
       </nav>
     </div>
@@ -221,7 +224,21 @@
   {% endif %}
   <script src="{{ '/js/supabase-client.js' | relative_url }}"></script>
   <script src="{{ '/js/auth-ui.js' | relative_url }}"></script>
+  <script src="{{ '/js/admin-api.js' | relative_url }}"></script>
   <script>
+    // Admin badge initialization (hidden unless signed-in admin)
+    (async function initAdminBadge() {
+      if (!window.AdminAPI) return;
+      const result = await window.AdminAPI.checkIsAdmin();
+      if (!result.isAdmin) return;
+      const badge = document.getElementById('admin-badge');
+      const countSpan = document.getElementById('admin-badge-count');
+      if (!badge || !countSpan) return;
+      const count = await window.AdminAPI.getPendingCount();
+      if (count > 0) countSpan.textContent = `(${count})`;
+      badge.classList.remove('hidden');
+    })();
+
     document.addEventListener('DOMContentLoaded', function() {
       if (window.AuthUI) {
         window.AuthUI.init('auth-container');

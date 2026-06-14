@@ -54,7 +54,17 @@
     <link rel="stylesheet" href="css/auth.css">
 
     <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7272761067250869"></script>
+    <!-- Google AdSense (skipped on localhost so the dev ad placeholder doesn't
+         collide with the real tag and throw no_div / availableWidth=0) -->
+    <script>
+        if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+            var s = document.createElement('script');
+            s.async = true;
+            s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7272761067250869';
+            s.crossOrigin = 'anonymous';
+            document.head.appendChild(s);
+        }
+    </script>
 </head>
 <body>
     <!-- Header -->
@@ -137,7 +147,12 @@
                 data-ad-format="auto"
                 data-full-width-responsive="true"></ins>
             <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
+                // Skip the real AdSense push on localhost: the dev placeholder
+                // below replaces the slot's contents, which makes adsbygoogle.js
+                // throw "no_div"/"availableWidth=0". Production still pushes normally.
+                if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                }
             </script>
         </div>
     </footer>

@@ -894,10 +894,7 @@ document.addEventListener('DOMContentLoaded', () => {
             domain = '';
         }
 
-        // favicon.im returns HTTP 200 (with a fallback glyph) for every domain,
-        // unlike google.com/s2/favicons which 404s for unknown domains. onerror still
-        // falls back to the initial if the image element itself fails to render.
-        const logoUrl = domain ? `https://favicon.im/${domain}?larger=true` : '';
+        const logoUrl = domain ? `https://www.google.com/s2/favicons?domain=${domain}&sz=64` : '';
 
         // GitHub stars (show for any tool with github_stars)
         const stars = formatStars(tool.github_stars);

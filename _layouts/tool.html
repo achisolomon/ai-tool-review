@@ -171,7 +171,7 @@
     <article>
       <header class="tool-header">
         {% assign _host = page.website | remove: 'https://' | remove: 'http://' | remove: 'www.' | split: '/' | first %}
-        <h1>{% if _host and _host != '' %}<span class="tool-favicon"><img src="https://favicon.im/{{ _host }}?larger=true" alt="{{ page.name }} icon" loading="lazy" onerror="this.parentElement.remove()"></span>{% endif %}<a href="{{ page.website }}" target="_blank" rel="noopener">{{ page.name }} <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; opacity: 0.5;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a></h1>
+        <h1>{% if _host and _host != '' %}<span class="tool-favicon"><img src="https://www.google.com/s2/favicons?domain={{ _host }}&sz=64" alt="{{ page.name }} icon" loading="lazy" onerror="this.parentElement.remove()"></span>{% endif %}<a href="{{ page.website }}" target="_blank" rel="noopener">{{ page.name }} <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; opacity: 0.5;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a></h1>
         <p class="tool-meta">
           <span class="tool-type">{{ page.type }}</span>
           {% if page.pricing_model %}
