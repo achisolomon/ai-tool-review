@@ -1,3 +1,6 @@
+---
+permalink: /landscape.html
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,16 +75,7 @@
                 </svg>
                 <span class="logo-text">AI Tool Review</span>
             </a>
-            <nav class="nav-links">
-                <a href="/" class="nav-link nav-link-text">Search</a>
-                <a href="landscape.html" class="nav-link nav-link-text nav-active">Landscape</a>
-                <a href="/guides/" class="nav-link nav-link-text">Guides</a>
-                <a href="admin.html" id="admin-badge" class="nav-link admin-badge hidden">
-                    Admin <span id="admin-badge-count"></span>
-                </a>
-                <button class="suggest-btn-toolbar" id="suggest-open" type="button">+ Suggest</button>
-                <div id="auth-container"></div>
-            </nav>
+            {% include nav.html active="landscape" %}
         </div>
     </header>
 
@@ -191,17 +185,7 @@
     <script src="js/auth-ui.js"></script>
     <script src="js/data.js?t=1780999110"></script>
     <script src="js/landscape.js?t=1717430601"></script>
-    <script src="js/admin-api.js"></script>
-    <link rel="stylesheet" href="css/suggest.css">
-    <script src="js/auth-signin.js"></script>
-    <script src="js/suggest-logic.js"></script>
-    <script src="js/suggest.js"></script>
-    <script>
-        // Wire "+" Suggest toolbar button
-        document.getElementById('suggest-open')?.addEventListener('click', function(e) {
-            window.Suggest.open({ mode: 'add', trigger: e.currentTarget });
-        });
-    </script>
+    {% include nav-scripts.html %}
 
     <!-- Cookie Consent Banner -->
     <div id="cookie-consent" class="cookie-banner" style="display: none;">
@@ -268,33 +252,6 @@
         }
     </script>
 
-    <script>
-    // Initialize auth dropdown
-    document.addEventListener('DOMContentLoaded', function() {
-        if (window.AuthUI) {
-            window.AuthUI.init('auth-container');
-        }
-    });
-    </script>
-
-    <script>
-    // Admin badge initialization
-    (async function initAdminBadge() {
-        if (!window.AdminAPI) return;
-
-        const result = await window.AdminAPI.checkIsAdmin();
-        if (!result.isAdmin) return;
-
-        const badge = document.getElementById('admin-badge');
-        const countSpan = document.getElementById('admin-badge-count');
-        if (!badge || !countSpan) return;
-
-        const count = await window.AdminAPI.getPendingCount();
-        if (count > 0) {
-            countSpan.textContent = `(${count})`;
-        }
-        badge.classList.remove('hidden');
-    })();
-    </script>
+    <!-- auth, admin badge, and + Suggest are initialized by nav-init.js (nav-scripts.html) -->
 </body>
 </html>

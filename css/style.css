@@ -157,6 +157,10 @@ body > div:not(.cookie-banner):not(#tooltip) > ins.adsbygoogle {
 html {
     scroll-behavior: smooth;
     background: var(--vscode-editor-bg);
+    /* Always reserve the scrollbar gutter so the viewport width is identical
+       on short pages (no scrollbar) and long pages (scrollbar present).
+       Without this, the right-anchored toolbar shifts ~15px between pages. */
+    scrollbar-gutter: stable;
 }
 
 body {
@@ -250,6 +254,34 @@ a:hover {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    /* Span the full row so the fixed group's right anchor is the header edge,
+       not the shrink-wrapped content width. Without this the trio drifts as
+       the variable group changes width. */
+    flex: 1;
+}
+
+/* Two-group nav: variable items (Admin / + Suggest) sit left of a
+   right-anchored fixed group (Search · Landscape · Guides · auth) so the
+   fixed trio never changes position between pages or auth states. */
+.nav-variable {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.nav-fixed {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto;
+}
+
+/* Reserve a stable slot for the async-rendered auth control (empty →
+   "Sign in" → avatar) so the trio never reflows when auth state resolves. */
+.nav-fixed #auth-container {
+    min-width: 72px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .nav-link {

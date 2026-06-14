@@ -1,3 +1,6 @@
+---
+permalink: /
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,15 +81,7 @@
                 </svg>
                 <span class="logo-text">AI Tool Review</span>
             </a>
-            <nav class="nav-links">
-                <a href="/" class="nav-link nav-link-text nav-active">Search</a>
-                <a href="landscape.html" class="nav-link nav-link-text">Landscape</a>
-                <a href="/guides/" class="nav-link nav-link-text">Guides</a>
-                <a href="admin.html" id="admin-badge" class="nav-link admin-badge hidden">
-                    Admin <span id="admin-badge-count"></span>
-                </a>
-                <div id="auth-container"></div>
-            </nav>
+            {% include nav.html active="search" %}
         </div>
     </header>
 
@@ -164,7 +159,7 @@
     <script src="js/app.js?t=1781340001"></script>
     <script src="js/hero-map.js?t=1781270001"></script>
     <script src="js/card-glow.js?t=1781270001"></script>
-    <script src="js/admin-api.js"></script>
+    {% include nav-scripts.html %}
 
     <!-- Cookie Consent Banner -->
     <div id="cookie-consent" class="cookie-banner" style="display: none;">
@@ -231,33 +226,6 @@
         }
     </script>
 
-    <script>
-    // Initialize auth dropdown
-    document.addEventListener('DOMContentLoaded', function() {
-        if (window.AuthUI) {
-            window.AuthUI.init('auth-container');
-        }
-    });
-    </script>
-
-    <script>
-    // Admin badge initialization
-    (async function initAdminBadge() {
-        if (!window.AdminAPI) return;
-
-        const result = await window.AdminAPI.checkIsAdmin();
-        if (!result.isAdmin) return;
-
-        const badge = document.getElementById('admin-badge');
-        const countSpan = document.getElementById('admin-badge-count');
-        if (!badge || !countSpan) return;
-
-        const count = await window.AdminAPI.getPendingCount();
-        if (count > 0) {
-            countSpan.textContent = `(${count})`;
-        }
-        badge.classList.remove('hidden');
-    })();
-    </script>
+    <!-- auth, admin badge, and + Suggest are initialized by nav-init.js (nav-scripts.html) -->
 </body>
 </html>

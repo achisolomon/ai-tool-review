@@ -1,0 +1,19 @@
+<!-- Canonical site toolbar. Single source of truth — used by every page.
+     Param: active = "search" | "landscape" | "guides" (optional).
+     Variable items (Admin, + Suggest) sit left of a right-anchored fixed
+     group (Search · Landscape · Guides · auth) so the fixed trio never
+     shifts position between pages. -->
+<nav class="nav-links">
+  <div class="nav-variable">
+    <button class="suggest-btn-toolbar" id="suggest-open" type="button">+ Suggest</button>
+    <a href="/admin.html" id="admin-badge" class="nav-link admin-badge hidden">
+      Admin <span id="admin-badge-count"></span>
+    </a>
+  </div>
+  <div class="nav-fixed">
+    <a href="/" class="nav-link nav-link-text{% if include.active == 'search' %} nav-active{% endif %}">Search</a>
+    <a href="/landscape.html" class="nav-link nav-link-text{% if include.active == 'landscape' %} nav-active{% endif %}">Landscape</a>
+    <a href="/guides/" class="nav-link nav-link-text{% if include.active == 'guides' %} nav-active{% endif %}">Guides</a>
+    <div id="auth-container"></div>
+  </div>
+</nav>
