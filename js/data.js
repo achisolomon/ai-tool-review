@@ -1801,14 +1801,22 @@ const landscapeData = {
               "name": "Cresta",
               "slug": "cresta",
               "url": "https://cresta.com/",
-              "desc": "Real-time AI agent guidance for contact centers, improving agent performance and customer satisfaction",
+              "desc": "Generative AI platform for the contact center that unifies autonomous AI agents with real-time guidance for human agents across voice and digital channels",
               "type": "commercial",
               "github_stars": null,
-              "pricing_model": "subscription",
+              "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "real-time",
+                "workflow-automation",
+                "multimodal"
+              ],
+              "all_tags": [
+                "real-time",
+                "workflow-automation",
+                "multimodal"
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "customer-support",
