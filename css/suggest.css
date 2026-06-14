@@ -398,16 +398,16 @@ html.suggestions-disabled a[href="/my-suggestions.html"] {
 .suggest-credit-block {
     border: 1px solid var(--color-border, #3c3c3c);
     border-radius: 8px;
-    padding: 14px 16px;
-    margin-bottom: 18px;
+    padding: 9px 12px;
+    margin-bottom: 14px;
     background: var(--vscode-editor-bg, #1e1e1e);
 }
 
 .suggest-credit-row {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
+    gap: 8px;
+    margin-bottom: 0;
 }
 
 .suggest-credit-row input[type="checkbox"] {
@@ -676,4 +676,4 @@ html.suggestions-disabled a[href="/my-suggestions.html"] {
 /* Compact credit block (name is read-only, from OAuth identity) */
 .suggest-credit-row { display: flex; align-items: center; gap: 8px; cursor: pointer; }
 .suggest-credit-row input[type="checkbox"] { margin: 0; }
-.suggest-credit-disclosure { color: #8b8b8b; font-size: 11.5px; margin: 6px 0 0; }
+.suggest-credit-disclosure { color: #8b8b8b; font-size: 11px; margin: 3px 0 0; line-height: 1.3; }
