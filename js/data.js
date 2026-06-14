@@ -13,6 +13,94 @@ const landscapeData = {
           "name": "Ai Presentations",
           "tools": [
             {
+              "name": "Canva",
+              "slug": "canva",
+              "url": "https://www.canva.com",
+              "desc": "Visual design platform for 265 million users with Magic Studio AI suite for image generation, copywriting, and automatic content creation",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "no-code",
+                "multimodal",
+                "workflow-automation"
+              ],
+              "all_tags": [
+                "no-code",
+                "multimodal",
+                "workflow-automation",
+                "enterprise",
+                "real-time"
+              ],
+              "category_id": "slide-creation",
+              "category_name": "Slide Creation",
+              "subcategory_id": "ai-presentations",
+              "subcategory_name": "Ai Presentations",
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "Claude Design",
+              "slug": "claude-design",
+              "url": "https://claude.ai/design",
+              "desc": "Anthropic Labs tool that creates interactive prototypes, slides, one-pagers, and landing pages through conversation — outputs live HTML/CSS/React, not static images",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "subscription",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "multimodal",
+                "no-code",
+                "enterprise"
+              ],
+              "all_tags": [
+                "multimodal",
+                "no-code",
+                "enterprise",
+                "real-time"
+              ],
+              "category_id": "slide-creation",
+              "category_name": "Slide Creation",
+              "subcategory_id": "ai-presentations",
+              "subcategory_name": "Ai Presentations",
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "Gamma",
+              "slug": "gamma",
+              "url": "https://gamma.app",
+              "desc": "AI-native presentation, document, and webpage builder that generates polished decks from a prompt — no design skills required",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "no-code",
+                "multimodal",
+                "workflow-automation"
+              ],
+              "all_tags": [
+                "no-code",
+                "multimodal",
+                "workflow-automation",
+                "enterprise"
+              ],
+              "category_id": "slide-creation",
+              "category_name": "Slide Creation",
+              "subcategory_id": "ai-presentations",
+              "subcategory_name": "Ai Presentations",
+              "additional_categories": [
+
+              ]
+            },
+            {
               "name": "Claude Artifacts Slides",
               "slug": "claude-artifacts-slides",
               "url": "https://claude.ai",
