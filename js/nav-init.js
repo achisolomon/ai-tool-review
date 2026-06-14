@@ -11,6 +11,7 @@
   function wireSuggest() {
     var btn = document.getElementById('suggest-open');
     if (btn && window.Suggest) {
+      btn.hidden = false; // revealed only when the DB is healthy
       btn.addEventListener('click', function (e) {
         window.Suggest.open({ mode: 'add', trigger: e.currentTarget });
       });
@@ -31,11 +32,19 @@
     } catch (_) { /* non-admin or offline — leave badge hidden */ }
   }
 
-  function init() {
-    // auth-ui runs its own health check so a dead DB can't hang its spinner.
-    // The "+ Suggest" button / Admin badge are hidden by the suggest.js
-    // bootstrap (suggestions-disabled) when the DB is unreachable.
+  async function init() {
+    // auth-ui runs its own health check (so it can clear its spinner fast).
     initAuth();
+
+    // Gate the DB-dependent toolbar items on a single health probe. The
+    // "+ Suggest" button starts hidden (see _includes/nav.html) and the Admin
+    // badge starts hidden; both are revealed only when the DB is reachable.
+    // When unreachable, they stay hidden rather than opening a modal / loading
+    // data that can't reach the database.
+    if (!window.SupabaseClient) return;
+    var healthy = await window.SupabaseClient.isDatabaseHealthy();
+    if (!healthy) return;
+
     wireSuggest();
     initAdminBadge();
   }
