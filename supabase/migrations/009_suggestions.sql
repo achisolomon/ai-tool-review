@@ -170,3 +170,9 @@ CREATE POLICY "Staff delete any suggestion"
 ON public.suggestions FOR DELETE TO authenticated
 USING (EXISTS (SELECT 1 FROM public.user_roles
                WHERE user_id = auth.uid() AND role IN ('admin','moderator')));
+
+-- Allow anon to probe table existence (RLS returns 0 rows; no data exposed).
+-- Without this, the anon HEAD request gets 42501 "permission denied" at the
+-- ACL layer before RLS even runs, which made isSuggestionsAvailable() return
+-- false and hide all suggest UI for unauthenticated visitors.
+GRANT SELECT ON public.suggestions TO anon;

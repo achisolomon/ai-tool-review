@@ -182,9 +182,13 @@ async function isSuggestionsAvailable() {
         if (!sb) return false; // not cached — client may init later
 
         const { error } = await sb.from('suggestions').select('id', { head: true, count: 'exact' });
-        // 401/403 = table exists but requires auth → treat as available.
-        // Only a missing-table error (42P01 / "does not exist") means unavailable.
-        const available = !error || error.code === 'PGRST301' || error.status === 401 || error.status === 403;
+        // Table exists but anon lacks SELECT grant (42501) or auth (401/403) → available.
+        // Only a missing-table error (42P01 / PGRST204) means truly unavailable.
+        const available = !error ||
+            error.code === '42501' ||   // permission denied — table exists, anon not granted SELECT
+            error.code === 'PGRST301' || // JWT required
+            error.status === 401 ||
+            error.status === 403;
         if (available) sessionStorage.setItem('suggestions_available', '1');
         return available;
     } catch (_) {
