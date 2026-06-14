@@ -44,44 +44,76 @@ const MOCK_SUGGESTIONS = [
 
 test.describe('Admin Suggestions tab (mocked auth)', () => {
 
-    // Set up localStorage consent and mark suggestions available so cookie
-    // banner doesn't block and the Suggestions tab is not hidden.
+    // Stubs returned via page.route() — replace the real JS modules so the
+    // admin init IIFE sees an authenticated admin + available suggestions table
+    // without any network calls to Supabase. Both modules must be stubbed because
+    // the init IIFE calls SupabaseClient.getCurrentUser() and AdminAPI.checkIsAdmin()
+    // synchronously during DOMContentLoaded before any post-navigation evaluate() runs.
+    const SUPABASE_CLIENT_STUB = `
+window.SupabaseClient = {
+    getCurrentUser: async () => ({
+        id: 'mock-admin-id',
+        email: 'admin@example.com',
+        user_metadata: { full_name: 'Mock Admin' },
+    }),
+    getSession: async () => ({ session: { user: { id: 'mock-admin-id' } } }),
+    isSuggestionsAvailable: async () => true,
+    isAuthenticated: async () => true,
+    onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } }),
+    signInWithProvider: async () => {},
+    signOut: async () => {},
+    getUserProfile: async () => null,
+    updateLastSignIn: async () => {},
+};
+`;
+
+    const ADMIN_API_STUB = `
+window.AdminAPI = {
+    checkIsAdmin: async () => ({ isAdmin: true, role: 'admin' }),
+    getPendingCount: async () => 0,
+    getReviewsForModeration: async () => ({ reviews: [], total: 0 }),
+    getAllUsers: async () => ({ users: [], error: null }),
+    getSuggestions: async () => ({ suggestions: [], error: null }),
+    getSuggestionPendingCount: async () => 3,
+    approveSuggestion: async () => ({ error: null }),
+    rejectSuggestion: async () => ({ error: null }),
+    markSuggestionApplied: async () => ({ error: null }),
+    updateUserRole: async () => ({ error: null }),
+    deleteReview: async () => ({ error: null }),
+};
+`;
+
+    // Set up localStorage consent and route both Supabase modules to stubs so the
+    // admin init IIFE sees a valid admin session without any CDN/network dependency.
     test.beforeEach(async ({ page }) => {
         await page.addInitScript(() => {
             localStorage.setItem('cookie_consent', 'accepted');
             sessionStorage.setItem('suggestions_available', '1');
         });
+        await page.route('**/js/supabase-client.js', route =>
+            route.fulfill({ contentType: 'application/javascript', body: SUPABASE_CLIENT_STUB })
+        );
+        await page.route('**/js/admin-api.js', route =>
+            route.fulfill({ contentType: 'application/javascript', body: ADMIN_API_STUB })
+        );
     });
 
-    // Helper: navigate to admin page and inject mocks
+    // Helper: navigate to admin page and wait for init to complete
     async function gotoAdminMocked(page) {
         await page.goto('/admin.html', { waitUntil: 'domcontentloaded' });
-        // Give local scripts time to parse (CDN Supabase may still be loading)
+        // Both supabase-client.js and admin-api.js are stubbed via route(), so the
+        // init IIFE will complete synchronously with mocked values. Wait for AdminAPI.
         await page.waitForFunction(() => typeof window.AdminAPI !== 'undefined', { timeout: 10000 });
     }
 
-    // Inject all the API mocks
+    // Inject additional mock data (called after gotoAdminMocked for tests that need suggestions data)
     async function injectMocks(page) {
-        await page.evaluate((suggestions) => {
-            // Mock SupabaseClient so auth check passes
-            if (window.SupabaseClient) {
-                window.SupabaseClient.getCurrentUser = async () => ({
-                    id: 'mock-admin-id',
-                    email: 'admin@example.com',
-                    user_metadata: { full_name: 'Mock Admin' },
-                });
-                window.SupabaseClient.getSession = async () => ({ session: {} });
-            }
-            // Mock AdminAPI
+        await page.evaluate((mockSuggestions) => {
             if (window.AdminAPI) {
-                window.AdminAPI.checkIsAdmin = async () => ({ isAdmin: true, role: 'admin' });
+                window.AdminAPI.getSuggestions = async () => ({ suggestions: mockSuggestions, error: null });
                 window.AdminAPI.getSuggestionPendingCount = async () => 3;
-                window.AdminAPI.getSuggestions = async () => ({ suggestions, error: null });
-                window.AdminAPI.getPendingCount = async () => 0;
-                window.AdminAPI.getReviewsForModeration = async () => ({ reviews: [], total: 0 });
-                window.AdminAPI.getAllUsers = async () => ({ users: [], error: null });
             }
-        }, suggestions);
+        }, MOCK_SUGGESTIONS);
     }
 
     // Helper: show the suggestions view and load the queue
