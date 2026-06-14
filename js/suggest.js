@@ -424,9 +424,9 @@
         <label class="suggest-credit-row">
           <input type="checkbox" id="suggest-public-credit" name="public_credit" checked>
           <span>Credit me publicly as <strong id="suggest-credit-name-wrapper">${safeName || 'me'}</strong></span>
+          <span class="suggest-credit-disclosure">— shown on the tool page if approved</span>
         </label>
         <input type="hidden" id="suggest-credit-name" name="credit_name" value="${safeName}">
-        <p class="suggest-credit-disclosure">Your name may appear on the tool page if approved.</p>
       </div>
     `;
   }

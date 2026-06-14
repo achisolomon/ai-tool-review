@@ -674,6 +674,7 @@ html.suggestions-disabled a[href="/my-suggestions.html"] {
 }
 
 /* Compact credit block (name is read-only, from OAuth identity) */
-.suggest-credit-row { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.suggest-credit-row { display: flex; align-items: center; gap: 8px; cursor: pointer; flex-wrap: wrap; }
 .suggest-credit-row input[type="checkbox"] { margin: 0; }
-.suggest-credit-disclosure { color: #8b8b8b; font-size: 11px; margin: 3px 0 0; line-height: 1.3; }
+/* Disclosure now sits inline at the end of the credit row (single line). */
+.suggest-credit-disclosure { color: #8b8b8b; font-size: 11.5px; font-style: italic; margin: 0; }
