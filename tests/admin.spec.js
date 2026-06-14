@@ -165,8 +165,10 @@ test.describe('Admin Review Moderation', () => {
             const adminBadge = page.locator('#admin-badge');
             const count = await adminBadge.count();
             if (count > 0) {
+                // Shared nav include (_includes/nav.html) uses an absolute path so
+                // the link is correct from nested pages (/guides/, articles) too.
                 const href = await adminBadge.getAttribute('href');
-                expect(href).toBe('admin.html');
+                expect(href).toBe('/admin.html');
             }
         });
     });

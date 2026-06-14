@@ -221,14 +221,18 @@ test('no HTML page loads supabase-client.js more than once', () => {
 
 // Regression: #suggest-open button was last child of controls-toolbar (flex-wrap:wrap)
 // and wrapped off-screen at typical viewport widths. Fix: moved into nav-links.
-// Guard: the button must live inside <nav class="nav-links">, not in .controls-toolbar.
-test('#suggest-open button is inside nav-links, not controls-toolbar', () => {
-  const html = fs.readFileSync(path.join(process.cwd(), 'landscape.html'), 'utf8');
-  // nav-links section ends at </nav>; controls-toolbar is a sibling div after </header>
-  const navBlock = html.match(/<nav class="nav-links"[\s\S]*?<\/nav>/)?.[0] ?? '';
-  expect(navBlock, '#suggest-open must be inside <nav class="nav-links">').toContain('id="suggest-open"');
-  // Must NOT appear in controls-toolbar
-  const toolbarBlock = html.match(/class="controls-toolbar"[\s\S]*?<\/div>/)?.[0] ?? '';
+// The toolbar is now a shared include (_includes/nav.html) used by every page,
+// so the button lives in the include's <nav class="nav-links">, not inline in
+// landscape.html and never in .controls-toolbar. Assert against the include
+// (single source of truth) and confirm landscape.html no longer carries it inline.
+test('#suggest-open button is inside the shared nav include, not controls-toolbar', () => {
+  const navInclude = fs.readFileSync(path.join(process.cwd(), '_includes/nav.html'), 'utf8');
+  const navBlock = navInclude.match(/<nav class="nav-links"[\s\S]*?<\/nav>/)?.[0] ?? '';
+  expect(navBlock, '#suggest-open must be inside <nav class="nav-links"> in _includes/nav.html').toContain('id="suggest-open"');
+
+  // landscape.html must use the include and must NOT place the button in controls-toolbar.
+  const landscape = fs.readFileSync(path.join(process.cwd(), 'landscape.html'), 'utf8');
+  const toolbarBlock = landscape.match(/class="controls-toolbar"[\s\S]*?<\/div>/)?.[0] ?? '';
   expect(toolbarBlock, '#suggest-open must NOT be inside .controls-toolbar').not.toContain('id="suggest-open"');
 });
 
