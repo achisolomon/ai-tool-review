@@ -884,6 +884,57 @@ test.describe('Test 3: Move/re-tag type-ahead pickers', () => {
     // Menu should close after selection
     await expect(modal.locator('#suggest-tag-menu')).not.toBeVisible({ timeout: 2000 });
   });
+
+  // -----------------------------------------------------------------------
+  // 3l — New tag slug appears in tool_placement payload's tags_add
+  // -----------------------------------------------------------------------
+
+  test('3l: submitting with a new tag includes its slug in tool_placement tags_add', async ({ page }) => {
+    const modal = await openMoveRetagForm(page);
+
+    // Capture all payloads passed to createSuggestion (called once for tool_placement, then per new tag)
+    await page.evaluate(() => {
+      window.__capturedSuggestions = [];
+      const orig = window.SupabaseClient.createSuggestion;
+      window.SupabaseClient.createSuggestion = async (row) => {
+        window.__capturedSuggestions.push(row);
+        return orig ? orig(row) : { data: { id: 'fake-id', ...row }, error: null };
+      };
+    });
+
+    // Type a non-existent tag name and click the "+ Suggest new tag" item
+    await page.evaluate(() => {
+      const inp = document.querySelector('#suggest-tag-search');
+      inp.value = 'zzznovel';
+      inp.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+    await expect(modal.locator('#suggest-tag-menu [data-new-tag]')).toBeVisible({ timeout: 3000 });
+    await page.evaluate(() => {
+      const item = document.querySelector('#suggest-tag-menu [data-new-tag]');
+      if (item) item.click();
+    });
+
+    // Confirm chip appeared
+    await expect(modal.locator('#suggest-tag-chips [data-new-tag="zzznovel"]')).toBeVisible({ timeout: 3000 });
+
+    // Fill rationale (required field in the move/re-tag form)
+    await modal.locator('#suggest-retag-rationale').fill('Adding a novel test tag.');
+
+    // Submit the form
+    await page.evaluate(() => {
+      const form = document.querySelector('#suggest-move-retag-form');
+      if (form) form.requestSubmit();
+    });
+
+    // Wait for createSuggestion to be called at least once (tool_placement call)
+    await page.waitForFunction(() => window.__capturedSuggestions && window.__capturedSuggestions.length > 0, { timeout: 5000 });
+
+    // Assert the tool_placement payload's proposed.tags_add includes 'zzznovel'
+    const allCaptured = await page.evaluate(() => window.__capturedSuggestions);
+    const placement = allCaptured.find(r => r.kind === 'tool_placement');
+    expect(placement).not.toBeUndefined();
+    expect(placement.payload.proposed.tags_add).toContain('zzznovel');
+  });
 });
 
 test.skip('5: RLS: user cannot self-approve [requires signed-in session + migration 009]', async ({ page }) => {

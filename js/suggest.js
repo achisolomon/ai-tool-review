@@ -1548,7 +1548,9 @@
       const currentTags = tool && Array.isArray(tool.tags) ? tool.tags : [];
       const selectedTagSlugs = Array.from(form.querySelectorAll('input[name="selected_tag"]')).map(i => i.value);
       const newTagNames = Array.from(form.querySelectorAll('input[name="new_tag"]')).map(i => i.value);
-      const tagsAdd = selectedTagSlugs.filter(s => !currentTags.includes(s));
+      const selectedExistingAdds = selectedTagSlugs.filter(s => !currentTags.includes(s));
+      const newSlugs = newTagNames.map(n => window.SuggestLogic.slugify(n)).filter(Boolean);
+      const tagsAdd = [...new Set([...selectedExistingAdds, ...newSlugs])];
       const tagsRemove = currentTags.filter(s => !selectedTagSlugs.includes(s));
 
       const current = {
@@ -2154,7 +2156,10 @@
         const currentTool = tool || {};
         const currentTagsList = currentTool.tags || [];
         const selectedTagSlugs = Array.from(form.querySelectorAll('input[name="selected_tag"]')).map(i => i.value);
-        const tagsAdd = selectedTagSlugs.filter(s => !currentTagsList.includes(s));
+        const newTagNamesEdit = Array.from(form.querySelectorAll('input[name="new_tag"]')).map(i => i.value);
+        const selectedExistingAddsEdit = selectedTagSlugs.filter(s => !currentTagsList.includes(s));
+        const newSlugsEdit = newTagNamesEdit.map(n => window.SuggestLogic.slugify(n)).filter(Boolean);
+        const tagsAdd = [...new Set([...selectedExistingAddsEdit, ...newSlugsEdit])];
         const tagsRemove = currentTagsList.filter(s => !selectedTagSlugs.includes(s));
         const current = {
           category: currentTool.category || '',
