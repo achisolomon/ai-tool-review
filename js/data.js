@@ -2568,6 +2568,36 @@ const landscapeData = {
               ]
             },
             {
+              "name": "ChatBotKit",
+              "slug": "chatbotkit",
+              "url": "https://chatbotkit.com",
+              "desc": "AI agent infrastructure platform for deploying bots across Slack, Discord, WhatsApp, Telegram, Messenger, and Teams from a single configuration, with conversation persistence and audit trails",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "api-available",
+                "real-time"
+              ],
+              "all_tags": [
+                "agents",
+                "api-available",
+                "real-time",
+                "workflow-automation",
+                "enterprise"
+              ],
+              "category_id": "vertical-ai",
+              "category_name": "Vertical AI (Industry-Specific)",
+              "subcategory_id": "customer-support",
+              "subcategory_name": "Customer Support",
+              "additional_categories": [
+
+              ]
+            },
+            {
               "name": "Ada",
               "slug": "ada",
               "url": "https://www.ada.cx/",
@@ -2606,6 +2636,37 @@ const landscapeData = {
               ],
               "all_tags": [
 
+              ],
+              "category_id": "vertical-ai",
+              "category_name": "Vertical AI (Industry-Specific)",
+              "subcategory_id": "customer-support",
+              "subcategory_name": "Customer Support",
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "Chatwoot",
+              "slug": "chatwoot",
+              "url": "https://www.chatwoot.com",
+              "desc": "Open-source omnichannel customer support platform with AI agent (Captain) that unifies Telegram, WhatsApp, email, and 9+ channels in one inbox — self-hosted or cloud",
+              "type": "open-source",
+              "github_stars": 30983,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "api-available",
+                "open-source"
+              ],
+              "all_tags": [
+                "agents",
+                "api-available",
+                "open-source",
+                "self-hosted",
+                "real-time",
+                "enterprise"
               ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
@@ -9267,6 +9328,37 @@ const landscapeData = {
                 "api-available",
                 "observability",
                 "self-hosted"
+              ],
+              "category_id": "observability-safety",
+              "category_name": "Observability & Evaluation",
+              "subcategory_id": "app-observability",
+              "subcategory_name": "Application Observability & FinOps",
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "BotMux",
+              "slug": "botmux",
+              "url": "https://docs.botmux.dev",
+              "desc": "Self-hosted Telegram bot management dashboard with real-time message logging to SQLite, inter-bot routing, and bridges to Slack, Discord, and webhooks",
+              "type": "open-source",
+              "github_stars": 16,
+              "pricing_model": "open-source",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "open-source",
+                "self-hosted",
+                "observability"
+              ],
+              "all_tags": [
+                "open-source",
+                "self-hosted",
+                "observability",
+                "real-time",
+                "agents",
+                "api-available"
               ],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
