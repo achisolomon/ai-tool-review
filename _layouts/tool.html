@@ -313,8 +313,6 @@
           // Tool not in DB yet - show empty state with Leave a Review button
           summaryContainer.innerHTML = `
             <div class="review-summary-empty">
-              <h3>No reviews yet</h3>
-              <p>Be the first to review ${window.ReviewComponents.escapeHtml(toolName)}!</p>
               <button class="btn-cta" id="leave-review-btn">Leave a Review</button>
             </div>
           `;
@@ -412,8 +410,6 @@
           // Tool exists but has no reviews yet
           summaryContainer.innerHTML = `
             <div class="review-summary-empty">
-              <h3>No reviews yet</h3>
-              <p>Be the first to review ${window.ReviewComponents.escapeHtml(tool.name || toolName)}!</p>
               <button class="btn-cta" id="leave-review-btn">Leave a Review</button>
             </div>
           `;

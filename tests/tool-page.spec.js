@@ -144,6 +144,13 @@ test.describe('Tool Page Review Modal', () => {
   });
 });
 
+test('a tool with no reviews shows no "No reviews yet" text', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('cookie_consent', 'accepted'));
+  await page.goto('/tools/cursor', { waitUntil: 'domcontentloaded' });
+  await page.waitForTimeout(1500);
+  await expect(page.getByText('No reviews yet')).toHaveCount(0);
+});
+
 test('tool page exposes window.landscapeData with taxonomy (populates suggest dropdowns)', async ({ page }) => {
   await page.addInitScript(() => localStorage.setItem('cookie_consent', 'accepted'));
   await page.goto('/tools/cursor/', { waitUntil: 'domcontentloaded' });

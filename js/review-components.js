@@ -326,11 +326,7 @@ function renderReviewCard(review, toolName) {
  */
 function renderReviewList(reviews, toolName) {
     if (reviews.length === 0) {
-        return `
-            <div class="review-list-empty">
-                <p>No reviews yet. Be the first to leave a review!</p>
-            </div>
-        `;
+        return '';
     }
 
     let html = '<div class="review-list">';
