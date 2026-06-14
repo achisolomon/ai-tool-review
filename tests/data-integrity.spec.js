@@ -203,3 +203,18 @@ test('no tool description prose hardcodes a GitHub star figure', () => {
   }
   expect(offenders, `Star figures must live only in the badge:\n${offenders.join('\n')}`).toEqual([]);
 });
+
+// Regression: supabase-client.js was loaded twice on landscape.html, causing
+// "IS_LOCAL already declared" SyntaxError that silently killed all suggest UI.
+test('no HTML page loads supabase-client.js more than once', () => {
+  const htmlFiles = ['landscape.html', 'index.html', '_layouts/tool.html', '_layouts/learn.html'];
+  const offenders = [];
+  for (const f of htmlFiles) {
+    const full = path.join(process.cwd(), f);
+    if (!fs.existsSync(full)) continue;
+    const content = fs.readFileSync(full, 'utf8');
+    const matches = (content.match(/supabase-client\.js/g) || []).length;
+    if (matches > 1) offenders.push(`${f}: loaded ${matches}×`);
+  }
+  expect(offenders, `supabase-client.js must be loaded exactly once per page:\n${offenders.join('\n')}`).toEqual([]);
+});
