@@ -576,6 +576,56 @@ test.describe('Graceful degradation (table missing)', () => {
 });
 
 // ---------------------------------------------------------------------------
+// Test 3f — 401 from Supabase probe must NOT hide the suggest UI
+// Root cause: isSuggestionsAvailable() treated 401 (RLS blocks anon reads on
+// an existing table) the same as "table missing". Fix: 401/403 → available=true.
+// ---------------------------------------------------------------------------
+
+const SUPABASE_CLIENT_STUB_401 = `
+window.SupabaseClient = {
+    getCurrentUser: async () => null,
+    getSession: async () => ({ session: null }),
+    isSuggestionsAvailable: async () => {
+        // Simulate: table exists but RLS blocks anon HEAD probe → 401
+        const err = { status: 401, message: 'JWT required' };
+        const available = !err || err.status === 401 || err.status === 403;
+        return available;
+    },
+    isAuthenticated: async () => false,
+    onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } }),
+    signInWithProvider: async () => {},
+    signOut: async () => {},
+    submitSuggestion: async () => ({ error: { message: 'not authenticated' } }),
+    getMySuggestions: async () => ({ suggestions: [], error: null }),
+    countMyPending: async () => 0,
+};
+`;
+
+test.describe('Suggest UI visible when Supabase probe returns 401 (RLS blocks anon)', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => { localStorage.setItem('cookie_consent', 'accepted'); });
+    await page.route('**/js/supabase-client.js', route =>
+      route.fulfill({ contentType: 'application/javascript', body: SUPABASE_CLIENT_STUB_401 })
+    );
+    await page.route('https://www.googletagmanager.com/**', route => route.abort());
+    await page.route('https://pagead2.googlesyndication.com/**', route => route.abort());
+    await page.route('https://cdn.jsdelivr.net/**', route => route.abort());
+  });
+
+  test('3f: #suggest-open IS visible on landscape when probe returns 401', async ({ page }) => {
+    await page.goto('/landscape.html', { waitUntil: 'domcontentloaded', timeout: 30000 });
+    await page.waitForFunction(() =>
+      document.documentElement.classList.contains('suggestions-enabled') ||
+      document.documentElement.classList.contains('suggestions-disabled'),
+      { timeout: 8000 }
+    );
+    // A 401 means table exists → suggestions-enabled, button must be visible
+    await expect(page.locator('#suggest-open')).toBeVisible();
+    expect(await page.evaluate(() => document.documentElement.classList.contains('suggestions-disabled'))).toBe(false);
+  });
+});
+
+// ---------------------------------------------------------------------------
 // Test 4 — Real end-to-end submit (SKIPPED: requires signed-in Supabase session)
 // ---------------------------------------------------------------------------
 

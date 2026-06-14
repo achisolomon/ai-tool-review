@@ -182,7 +182,9 @@ async function isSuggestionsAvailable() {
         if (!sb) return false; // not cached — client may init later
 
         const { error } = await sb.from('suggestions').select('id', { head: true, count: 'exact' });
-        const available = !error;
+        // 401/403 = table exists but requires auth → treat as available.
+        // Only a missing-table error (42P01 / "does not exist") means unavailable.
+        const available = !error || error.code === 'PGRST301' || error.status === 401 || error.status === 403;
         if (available) sessionStorage.setItem('suggestions_available', '1');
         return available;
     } catch (_) {

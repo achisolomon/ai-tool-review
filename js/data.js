@@ -1668,7 +1668,6 @@ const landscapeData = {
                 "no-code",
                 "multimodal",
                 "workflow-automation",
-                "enterprise",
                 "real-time"
               ],
               "category_id": "slide-creation",
@@ -1690,12 +1689,11 @@ const landscapeData = {
               "tags": [
                 "multimodal",
                 "no-code",
-                "enterprise"
+                "real-time"
               ],
               "all_tags": [
                 "multimodal",
                 "no-code",
-                "enterprise",
                 "real-time"
               ],
               "category_id": "slide-creation",
@@ -1722,8 +1720,7 @@ const landscapeData = {
               "all_tags": [
                 "no-code",
                 "multimodal",
-                "workflow-automation",
-                "enterprise"
+                "workflow-automation"
               ],
               "category_id": "slide-creation",
               "category_name": "Slide Creation",
