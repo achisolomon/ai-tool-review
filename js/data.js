@@ -2587,7 +2587,8 @@ const landscapeData = {
                 "api-available",
                 "real-time",
                 "workflow-automation",
-                "enterprise"
+                "enterprise",
+                "messaging-observability"
               ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
@@ -2666,7 +2667,8 @@ const landscapeData = {
                 "open-source",
                 "self-hosted",
                 "real-time",
-                "enterprise"
+                "enterprise",
+                "messaging-observability"
               ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
@@ -9358,7 +9360,8 @@ const landscapeData = {
                 "observability",
                 "real-time",
                 "agents",
-                "api-available"
+                "api-available",
+                "messaging-observability"
               ],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
