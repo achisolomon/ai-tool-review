@@ -47,5 +47,22 @@
     throw new Error('unknown kind ' + kind);
   }
 
-  window.SuggestLogic = { slugify, registrableDomain, findDuplicates, buildPayload, allTools };
+  function taxonomyObjects(taxonomy, kind) {
+    const out = [];
+    if (!taxonomy) return out;
+    if (kind === 'category') {
+      for (const cats of Object.values(taxonomy.categories || {}))
+        for (const [slug, c] of Object.entries(cats || {})) out.push({ slug, label: c.name });
+    } else if (kind === 'subcategory') {
+      for (const cats of Object.values(taxonomy.categories || {}))
+        for (const c of Object.values(cats || {}))
+          for (const [slug, s] of Object.entries(c.subcategories || {})) out.push({ slug, label: `${c.name} › ${s.name}` });
+    } else if (kind === 'tag') {
+      for (const [family, tags] of Object.entries(taxonomy.tags || {}))
+        if (Array.isArray(tags)) for (const t of tags) out.push({ slug: t.slug, label: `${t.name} (${family})` });
+    }
+    return out;
+  }
+
+  window.SuggestLogic = { slugify, registrableDomain, findDuplicates, buildPayload, allTools, taxonomyObjects };
 })();

@@ -52,3 +52,28 @@ test('buildPayload(tool_edit) keeps only changed fields as {from,to}', async ({ 
   expect(Object.keys(p.changes)).toEqual(['description']);
   expect(p.changes.description).toEqual({ from: 'Old', to: 'New' });
 });
+
+test('taxonomyObjects lists categories/subcategories/tags as {slug,label}', async ({ page }) => {
+  await load(page);
+  const res = await page.evaluate(() => {
+    const tax = {
+      categories: {
+        developers: {
+          'ai-coding': {
+            name: 'AI Coding',
+            subcategories: { 'ai-ides': { name: 'AI IDEs' } },
+          },
+        },
+      },
+      tags: { capabilities: [{ slug: 'reasoning', name: 'Reasoning' }] },
+    };
+    return {
+      cats: SuggestLogic.taxonomyObjects(tax, 'category'),
+      subs: SuggestLogic.taxonomyObjects(tax, 'subcategory'),
+      tags: SuggestLogic.taxonomyObjects(tax, 'tag'),
+    };
+  });
+  expect(res.cats).toContainEqual({ slug: 'ai-coding', label: 'AI Coding' });
+  expect(res.subs).toContainEqual({ slug: 'ai-ides', label: 'AI Coding › AI IDEs' });
+  expect(res.tags).toContainEqual({ slug: 'reasoning', label: 'Reasoning (capabilities)' });
+});

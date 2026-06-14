@@ -934,9 +934,11 @@
           </select>
         </div>
         <div class="suggest-form-group">
-          <label for="taxop-target">Current name / slug <span class="required">*</span></label>
-          <input class="suggest-input" type="text" id="taxop-target" name="target" required maxlength="100"
-                 placeholder="e.g. agent-memory or Agent Memory">
+          <label for="taxop-target">Which one? <span class="required">*</span></label>
+          <select class="suggest-select" id="taxop-target" name="target" required disabled>
+            <option value="">Select what to rename first…</option>
+          </select>
+          <div class="suggest-hint">Pick the existing item to rename.</div>
         </div>
         <div class="suggest-form-group">
           <label for="taxop-new-name">Proposed new name <span class="required">*</span></label>
@@ -996,6 +998,18 @@
     const cancelBtn = modal.querySelector('#suggest-form-cancel');
     if (cancelBtn) cancelBtn.addEventListener('click', close);
     if (!form) return;
+
+    const kindSel = form.querySelector('#taxop-target-kind');
+    const targetSel = form.querySelector('#taxop-target');
+    if (kindSel && targetSel && targetSel.tagName === 'SELECT') {
+      kindSel.addEventListener('change', () => {
+        const objs = window.SuggestLogic.taxonomyObjects(window.landscapeData && window.landscapeData.taxonomy, kindSel.value);
+        targetSel.innerHTML = objs.length
+          ? '<option value="">Select…</option>' + objs.map(o => `<option value="${escapeHtml(o.slug)}">${escapeHtml(o.label)} (${escapeHtml(o.slug)})</option>`).join('')
+          : '<option value="">Select what to rename first…</option>';
+        targetSel.disabled = !objs.length;
+      });
+    }
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();

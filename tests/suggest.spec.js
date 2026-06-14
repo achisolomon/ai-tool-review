@@ -475,6 +475,73 @@ test.describe('Test 3: Mocked-auth form tests', () => {
     await expect(successBlock).toBeVisible({ timeout: 5000 });
     await expect(successBlock).toContainText('Saved!');
   });
+
+  // -----------------------------------------------------------------------
+  // 3h — Taxonomy rename: target is a populated cascade dropdown
+  // -----------------------------------------------------------------------
+
+  test('3h: taxonomy rename target is a populated dropdown that cascades on kind', async ({ page }) => {
+    await gotoLandscape(page);
+    await mockAuthSignedIn(page);
+
+    // Ensure landscapeData.taxonomy is available in window scope for the cascade
+    await page.evaluate(() => {
+      if (window.landscapeData && !window.landscapeData.taxonomy) {
+        // Provide a minimal taxonomy stub so taxonomyObjects returns real results
+        window.landscapeData.taxonomy = {
+          categories: {
+            developers: {
+              'ai-coding': {
+                name: 'AI Coding',
+                subcategories: { 'ai-ides': { name: 'AI IDEs' } },
+              },
+            },
+          },
+          tags: { capabilities: [{ slug: 'reasoning', name: 'Reasoning' }] },
+        };
+      } else if (!window.landscapeData) {
+        window.landscapeData = {
+          taxonomy: {
+            categories: {
+              developers: {
+                'ai-coding': {
+                  name: 'AI Coding',
+                  subcategories: { 'ai-ides': { name: 'AI IDEs' } },
+                },
+              },
+            },
+            tags: { capabilities: [{ slug: 'reasoning', name: 'Reasoning' }] },
+          },
+        };
+      }
+    });
+
+    await page.locator('#suggest-open').click();
+    const modal = page.locator('[role="dialog"][aria-modal="true"]');
+    await expect(modal).toBeVisible({ timeout: 5000 });
+
+    // Pick "Improve the taxonomy" mode
+    await page.locator('.suggest-radio-card[data-mode="taxonomy"]').click();
+    await page.locator('#suggest-chooser-next').click();
+
+    // Taxonomy op chooser: pick "Rename something"
+    await expect(page.locator('.suggest-radio-card[data-taxop="rename"]')).toBeVisible({ timeout: 5000 });
+    await page.locator('.suggest-radio-card[data-taxop="rename"]').click();
+    await page.locator('#suggest-taxop-next').click();
+
+    // Rename form is now shown
+    await expect(page.locator('#taxop-target')).toBeVisible({ timeout: 5000 });
+
+    // Target dropdown should be disabled until a kind is selected
+    await expect(page.locator('#taxop-target')).toBeDisabled();
+
+    // Select "subcategory" kind — this should cascade-populate the target dropdown
+    await page.selectOption('#taxop-target-kind', 'subcategory');
+    await expect(page.locator('#taxop-target')).toBeEnabled();
+
+    const opts = await page.locator('#taxop-target option').count();
+    expect(opts).toBeGreaterThan(1); // placeholder + real subcategories
+  });
 });
 
 // ---------------------------------------------------------------------------
