@@ -343,7 +343,7 @@
           <option value="">Select a category…</option>
         </select>
       </div>
-      <div class="suggest-form-group" id="suggest-subcategory-group">
+      <div class="suggest-form-group" id="suggest-subcategory-group" hidden>
         <label for="suggest-subcategory">Subcategory</label>
         <select class="suggest-select" id="suggest-subcategory" name="subcategory">
           <option value="">Select a subcategory…</option>
