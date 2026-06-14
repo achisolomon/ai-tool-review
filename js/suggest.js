@@ -124,12 +124,17 @@
     document.addEventListener('keydown', escHandler);
 
     // Backdrop click (click on overlay but not inside .suggest-modal).
+    // Deferred one tick so the opening click event doesn't immediately re-close
+    // the modal (the trigger button is outside .suggest-modal, so the bubbling
+    // click would satisfy the backdrop condition without the defer).
     // Guard on isConnected: when a chooser button is clicked it replaces the
     // modal body and detaches itself; the bubbling click must NOT be read as a
     // backdrop click. Detached targets report isConnected === false.
-    ol.addEventListener('click', function (e) {
-      if (e.target.isConnected && !e.target.closest('.suggest-modal')) close();
-    });
+    setTimeout(() => {
+      ol.addEventListener('click', function (e) {
+        if (e.target.isConnected && !e.target.closest('.suggest-modal')) close();
+      });
+    }, 0);
 
     // Close button
     const closeBtn = ol.querySelector('.suggest-modal-close');
