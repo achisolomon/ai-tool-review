@@ -384,14 +384,10 @@ html.suggestions-disabled a[href="/my-suggestions.html"] {
 
 /* Subcategory/tag helper text */
 .suggest-placement-helper {
-    font-size: 12px;
+    font-size: 11.5px;
     color: var(--vscode-text-muted, #858585);
-    background: rgba(255, 255, 255, 0.04);
-    border-left: 3px solid var(--color-border, #3c3c3c);
-    padding: 8px 12px;
-    border-radius: 0 4px 4px 0;
-    margin: -4px 0 16px;
-    line-height: 1.5;
+    margin: 2px 0 14px;
+    line-height: 1.45;
 }
 
 /* --- Credit consent block ------------------- */
