@@ -160,3 +160,27 @@ Re-ran the suite and isolated each failure to root cause:
 ### 6.4 Corrected merge-readiness note
 
 §5's posture holds, with one correction: finding **AP-4 was only half-complete in `6e9cdbc`** — taxonomy add ops would have failed (or, pre-validator-fix, corrupted YAML) at apply time. With **R-1** that path is now correct end-to-end and exercised by the existing `applyTaxonomyChange` unit tests (add_subcategory + rename, both green). The remaining non-blocking items in §5 stand; add the admin-suggestions **test-harness** fix (§6.3) to that follow-up list.
+
+---
+
+## 7. UX simplification pass (2026-06-14)
+
+Driven by the maintainer's goal: *make suggesting effortless from the user's side; keep it simple — no scattered inline UI.* An earlier draft proposed per-field hover pencils + inline editors; that was **rejected as too complex**. Final approach: keep one obvious entry point per context (the existing "+ Suggest" / "Suggest an edit" button → existing modal + chooser), and make the forms behind it simple. Plan: `docs/superpowers/plans/2026-06-14-suggestion-ux-easy.md`. Executed subagent-driven (implementer + spec review + quality review per task).
+
+| Task | Item | Change | Commit |
+|------|------|--------|--------|
+| 1 | #2 | **Tool page now loads `js/data.js`** so the modal's category/subcategory/tag dropdowns populate. Root cause: `window.landscapeData` was undefined on tool pages (only `data.js` sets it, and `_layouts/tool.html` never loaded it) → the empty "Select a subcategory…" the maintainer screenshotted. | `94ae8d2` |
+| 2 | #5 | **Removed the user-facing slug field** (and its regex-pattern hint) from the new-tool form; slug is derived from the name at apply time (`applyNewTool` `baseSlug = payload.slug \|\| slugify(name)`). **Placement (category/subcategory/tags) is now optional** with a clean progressive cascade (track → category → subcategory) and an "Optional — leave blank…" hint. **Fixed a real bug** found in review: `wireEditSubmit` still required a phantom slug, which permanently blocked editing/resubmitting any new-tool suggestion. | `72e4a78` |
+| 3 | #6 | **Taxonomy "rename"**: the free-text "Current name / slug" input became a **populated, cascading dropdown** (`SuggestLogic.taxonomyObjects` lists existing categories/subcategories/tags; option value = slug, which is what the apply script matches on). No more typing the target from memory. | `6286c71` |
+| 4 | #4 | **Removed the "No reviews yet" placeholder** (both tool-page empty-state blocks + `review-components.js`), kept the "Leave a Review" button, and removed the now-orphaned CSS. | `c1aa888` |
+
+**Friction win:** the new-tool form loses its scariest field (slug); placement and taxonomy-rename become click-to-pick instead of type-from-memory; dropdowns that were silently empty now work.
+
+### 7.1 Verification status (IMPORTANT local-build caveat)
+
+- **`npm run test:apply` → 31/31** (incl. the new derive-slug-from-name test). Verified locally.
+- **`SuggestLogic.taxonomyObjects` unit test** → pass. Verified locally.
+- The **Playwright UI tests for the suggest modal and tool page cannot be verified in this local sandbox.** `bundle exec jekyll build` fails here (system Ruby 2.6 vs the Gemfile's required bundler 2.5.11; no write access to install it). The local Playwright `webServer` serves a **stale pre-built `_site`** that predates the suggest feature, so those specs time out locally on `#suggest-open`. This is a **pre-existing local toolchain limitation, not a defect** — `_site/` is gitignored and **CI builds fresh on Ruby 3.2 (`bundler-cache: true`) then runs the suite**, where these specs execute against the real build. Source correctness of the layout/JS edits was verified by reading + the final holistic review.
+- **Pre-existing, unrelated:** the 8 `admin-suggestions.spec.js` harness failures (§6.3) still stand — not touched by this pass.
+
+**Recommended follow-ups (non-blocking):** fix the local Jekyll toolchain (rbenv/chruby with Ruby 3.2) so the UI suite can run locally; the admin-suggestions test-harness `addInitScript` fix (§6.3).
