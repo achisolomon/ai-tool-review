@@ -2653,6 +2653,37 @@ a:hover {
     margin-bottom: 2rem !important;
     padding: 0 !important;
     border: none !important;
+    position: relative; /* anchor for the corner "Suggest an edit" affordance */
+}
+
+/* Small, unobtrusive "Suggest an edit" pinned to the header's top-right —
+   out of the centered content flow so it costs no vertical space. */
+.tool-page .tool-suggest-corner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: transparent;
+    border: 1px solid var(--vscode-border, #333);
+    color: var(--vscode-text-muted, #8b8b8b);
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    line-height: 1.2;
+    transition: color .12s ease, border-color .12s ease;
+}
+.tool-page .tool-suggest-corner:hover,
+.tool-page .tool-suggest-corner:focus-visible {
+    color: var(--vscode-text-link, #3794ff);
+    border-color: var(--vscode-text-link, #3794ff);
+}
+@media (max-width: 600px) {
+    /* On narrow screens, drop back into the flow so it never overlaps the title */
+    .tool-page .tool-suggest-corner {
+        position: static;
+        display: inline-block;
+        margin-top: 12px;
+    }
 }
 
 .tool-page .tool-header h1 {
