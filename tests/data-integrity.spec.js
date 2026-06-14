@@ -218,3 +218,23 @@ test('no HTML page loads supabase-client.js more than once', () => {
   }
   expect(offenders, `supabase-client.js must be loaded exactly once per page:\n${offenders.join('\n')}`).toEqual([]);
 });
+
+// Regression: #suggest-open button was last child of controls-toolbar (flex-wrap:wrap)
+// and wrapped off-screen at typical viewport widths. Fix: moved into nav-links.
+// Guard: the button must live inside <nav class="nav-links">, not in .controls-toolbar.
+test('#suggest-open button is inside nav-links, not controls-toolbar', () => {
+  const html = fs.readFileSync(path.join(process.cwd(), 'landscape.html'), 'utf8');
+  // nav-links section ends at </nav>; controls-toolbar is a sibling div after </header>
+  const navBlock = html.match(/<nav class="nav-links"[\s\S]*?<\/nav>/)?.[0] ?? '';
+  expect(navBlock, '#suggest-open must be inside <nav class="nav-links">').toContain('id="suggest-open"');
+  // Must NOT appear in controls-toolbar
+  const toolbarBlock = html.match(/class="controls-toolbar"[\s\S]*?<\/div>/)?.[0] ?? '';
+  expect(toolbarBlock, '#suggest-open must NOT be inside .controls-toolbar').not.toContain('id="suggest-open"');
+});
+
+// Regression: tool.html must include #tool-suggest-open so the corner edit button renders.
+test('tool.html layout includes #tool-suggest-open corner button', () => {
+  const html = fs.readFileSync(path.join(process.cwd(), '_layouts/tool.html'), 'utf8');
+  expect(html).toContain('id="tool-suggest-open"');
+  expect(html).toContain('tool-suggest-corner');
+});

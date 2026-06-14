@@ -626,6 +626,99 @@ test.describe('Suggest UI visible when Supabase probe returns 401 (RLS blocks an
 });
 
 // ---------------------------------------------------------------------------
+// Test 3g — 42501 (permission denied, anon lacks SELECT grant) must NOT hide UI
+// Root cause: migration was missing GRANT SELECT ON suggestions TO anon, so
+// Postgres blocked the probe at the ACL layer before RLS ran, returning
+// error.code='42501'. isSuggestionsAvailable() treated it as unavailable.
+// Fix: 42501 → available=true. Permanent fix: GRANT SELECT TO anon in migration.
+// ---------------------------------------------------------------------------
+
+const SUPABASE_CLIENT_STUB_42501 = `
+window.SupabaseClient = {
+    getCurrentUser: async () => null,
+    getSession: async () => ({ session: null }),
+    isSuggestionsAvailable: async () => {
+        // Simulate: anon probe returns Postgres 42501 "permission denied for table"
+        const err = { code: '42501', message: 'permission denied for table suggestions' };
+        const available = !err || err.code === '42501' || err.code === 'PGRST301' ||
+                          err.status === 401 || err.status === 403;
+        return available;
+    },
+    isAuthenticated: async () => false,
+    onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } }),
+    signInWithProvider: async () => {},
+    signOut: async () => {},
+    submitSuggestion: async () => ({ error: { message: 'not authenticated' } }),
+    getMySuggestions: async () => ({ suggestions: [], error: null }),
+    countMyPending: async () => 0,
+};
+`;
+
+test.describe('Suggest UI visible when Supabase probe returns 42501 (anon lacks SELECT grant)', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => { localStorage.setItem('cookie_consent', 'accepted'); });
+    await page.route('**/js/supabase-client.js', route =>
+      route.fulfill({ contentType: 'application/javascript', body: SUPABASE_CLIENT_STUB_42501 })
+    );
+    await page.route('https://www.googletagmanager.com/**', route => route.abort());
+    await page.route('https://pagead2.googlesyndication.com/**', route => route.abort());
+    await page.route('https://cdn.jsdelivr.net/**', route => route.abort());
+  });
+
+  test('3g: #suggest-open IS visible on landscape when probe returns 42501', async ({ page }) => {
+    await page.goto('/landscape.html', { waitUntil: 'domcontentloaded', timeout: 30000 });
+    await page.waitForFunction(() =>
+      document.documentElement.classList.contains('suggestions-enabled') ||
+      document.documentElement.classList.contains('suggestions-disabled'),
+      { timeout: 8000 }
+    );
+    await expect(page.locator('#suggest-open')).toBeVisible();
+    expect(await page.evaluate(() => document.documentElement.classList.contains('suggestions-disabled'))).toBe(false);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Test 3h — #tool-suggest-open visible on tool page when probe returns 42501
+// ---------------------------------------------------------------------------
+
+const SUPABASE_CLIENT_STUB_TOOL_42501 = `
+window.SupabaseClient = {
+    getCurrentUser: async () => null,
+    getSession: async () => ({ session: null }),
+    isSuggestionsAvailable: async () => true,
+    isAuthenticated: async () => false,
+    onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } }),
+    signInWithProvider: async () => {},
+    signOut: async () => {},
+    submitSuggestion: async () => ({ error: { message: 'not authenticated' } }),
+    getMySuggestions: async () => ({ suggestions: [], error: null }),
+    countMyPending: async () => 0,
+};
+`;
+
+test.describe('Tool page: #tool-suggest-open visible when suggestions available', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => { localStorage.setItem('cookie_consent', 'accepted'); });
+    await page.route('**/js/supabase-client.js', route =>
+      route.fulfill({ contentType: 'application/javascript', body: SUPABASE_CLIENT_STUB_TOOL_42501 })
+    );
+    await page.route('https://www.googletagmanager.com/**', route => route.abort());
+    await page.route('https://pagead2.googlesyndication.com/**', route => route.abort());
+    await page.route('https://cdn.jsdelivr.net/**', route => route.abort());
+  });
+
+  test('3h: #tool-suggest-open corner button is visible on a tool page', async ({ page }) => {
+    await page.goto('/tools/claude-code/', { waitUntil: 'domcontentloaded', timeout: 30000 });
+    await page.waitForFunction(() =>
+      document.documentElement.classList.contains('suggestions-enabled') ||
+      document.documentElement.classList.contains('suggestions-disabled'),
+      { timeout: 8000 }
+    );
+    await expect(page.locator('#tool-suggest-open')).toBeVisible();
+  });
+});
+
+// ---------------------------------------------------------------------------
 // Test 4 — Real end-to-end submit (SKIPPED: requires signed-in Supabase session)
 // ---------------------------------------------------------------------------
 
