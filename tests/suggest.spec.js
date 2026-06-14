@@ -409,6 +409,72 @@ test.describe('Test 3: Mocked-auth form tests', () => {
     await expect(successBlock).toBeVisible({ timeout: 5000 });
     await expect(successBlock).toContainText('Thank you');
   });
+
+  // -----------------------------------------------------------------------
+  // 3g — Edit-mode resubmit: phantom slug requirement must NOT block submit
+  // -----------------------------------------------------------------------
+
+  test('3g: edit-mode new_tool resubmit is not blocked by phantom slug requirement', async ({ page }) => {
+    await gotoLandscape(page);
+    await mockAuthSignedIn(page);
+
+    // Also mock updateMySuggestion so the edit-mode submit path can complete
+    await page.evaluate(() => {
+      window.SupabaseClient.updateMySuggestion = async (_id, _patch) => ({ error: null });
+    });
+
+    // Open modal in edit mode for a new_tool suggestion (simulates my-suggestions flow)
+    await page.evaluate(() => {
+      window.Suggest.open({
+        mode: 'edit',
+        suggestion: {
+          id: 'fake-suggestion-id',
+          kind: 'new_tool',
+          rationale: 'Initial rationale',
+          credit_name: null,
+          public_credit: true,
+          payload: {
+            name: 'Pre-filled Tool',
+            website: 'https://prefilled.example.com',
+            description: 'A pre-filled description for edit mode.',
+          },
+        },
+      });
+    });
+
+    const modal = page.locator('[role="dialog"][aria-modal="true"]');
+    await expect(modal).toBeVisible({ timeout: 5000 });
+
+    // The edit form should be pre-filled with the new_tool form
+    const nameInput = modal.locator('#suggest-name');
+    await expect(nameInput).toBeVisible({ timeout: 8000 });
+
+    // No slug field should exist
+    await expect(modal.locator('#suggest-slug')).toHaveCount(0);
+
+    // Submit the form — should NOT be blocked by "slug required" error
+    await page.evaluate(() => {
+      const form = document.querySelector('#suggest-new-tool-form');
+      if (form) form.requestSubmit();
+    });
+
+    // The old bug showed an error block with slug in the message; verify it does NOT appear
+    const errBlock = modal.locator('.suggest-error');
+    // Give a short window for any error to appear
+    await page.waitForTimeout(500);
+
+    // If an error IS visible it must not mention slug
+    const errVisible = await errBlock.isVisible();
+    if (errVisible) {
+      const errText = await errBlock.textContent();
+      expect(errText).not.toContain('slug');
+    }
+
+    // The success state should appear (mocked updateMySuggestion returns no error)
+    const successBlock = modal.locator('.suggest-success');
+    await expect(successBlock).toBeVisible({ timeout: 5000 });
+    await expect(successBlock).toContainText('Saved!');
+  });
 });
 
 // ---------------------------------------------------------------------------

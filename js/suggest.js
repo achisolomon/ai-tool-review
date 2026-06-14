@@ -1567,7 +1567,6 @@
       // Prefill fields
       const nameInput = modal.querySelector('#suggest-name');
       const websiteInput = modal.querySelector('#suggest-website');
-      const slugInput = modal.querySelector('#suggest-slug');
       const descInput = modal.querySelector('#suggest-description');
       const rationaleInput = modal.querySelector('#suggest-rationale');
       const creditNameInput = modal.querySelector('#suggest-credit-name');
@@ -1575,7 +1574,6 @@
 
       if (nameInput) nameInput.value = payload.name || '';
       if (websiteInput) websiteInput.value = payload.website || '';
-      if (slugInput) slugInput.value = payload.slug || '';
       if (descInput) descInput.value = payload.description || '';
       if (rationaleInput) rationaleInput.value = row.rationale || '';
       if (creditNameInput) creditNameInput.value = row.credit_name || '';
@@ -1754,7 +1752,6 @@
       if (formKind === 'new_tool') {
         const name = form.querySelector('#suggest-name')?.value.trim() || '';
         const website = form.querySelector('#suggest-website')?.value.trim() || '';
-        const slug = form.querySelector('#suggest-slug')?.value.trim() || '';
         const description = form.querySelector('#suggest-description')?.value.trim() || '';
         const rationale = form.querySelector('#suggest-rationale')?.value.trim() || '';
         const track = form.querySelector('#suggest-track')?.value || null;
@@ -1764,15 +1761,15 @@
         const type = form.querySelector('#suggest-type')?.value || null;
         const pricing_model = form.querySelector('#suggest-pricing-model')?.value || null;
 
-        if (!name || !website || !slug || !description) {
-          showError(modal, 'Name, website, slug, and description are required.');
+        if (!name || !website || !description) {
+          showError(modal, 'Name, website, and description are required.');
           return;
         }
 
         let payload;
         try {
           payload = window.SuggestLogic.buildPayload('new_tool', {
-            name, slug, website, description,
+            name, website, description,
             placementProvided: !!(track && subcategory),
             track, category, subcategory,
             tags, type, pricing_model, notes: null
