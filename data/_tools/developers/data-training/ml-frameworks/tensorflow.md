@@ -11,7 +11,7 @@ type: oss
 website: https://www.tensorflow.org/
 description: "End-to-end open source platform for machine learning with tools for training, optimization, and deployment"
 pricing_model: free
-github_stars: 195632
+github_stars: 195644
 github_url: "https://github.com/tensorflow/tensorflow"
 ---
 
