@@ -205,7 +205,6 @@
         </div>
         <div class="suggest-chooser-actions">
           <button class="suggest-btn" type="button" id="suggest-chooser-cancel">Cancel</button>
-          <button class="suggest-btn suggest-btn-primary" type="button" id="suggest-chooser-next" disabled>Next</button>
         </div>
       </div>
     `;
@@ -236,13 +235,12 @@
                aria-checked="false"
                tabindex="-1"
                data-mode="fix-details">
-            <span class="suggest-radio-card-title">Fix details</span>
-            <p class="suggest-radio-card-desc">Correct the description, website, pricing, or other factual fields.</p>
+            <span class="suggest-radio-card-title">Suggest edits</span>
+            <p class="suggest-radio-card-desc">Update the description, website, pricing, or other details.</p>
           </div>
         </div>
         <div class="suggest-chooser-actions">
           <button class="suggest-btn" type="button" id="suggest-chooser-cancel">Cancel</button>
-          <button class="suggest-btn suggest-btn-primary" type="button" id="suggest-chooser-next" disabled>Next</button>
         </div>
       </div>
     `;
@@ -259,7 +257,11 @@
     if (!group) return;
 
     const cards = Array.from(group.querySelectorAll('.suggest-radio-card'));
-    let selectedMode = null;
+
+    function advance(card) {
+      const mode = card.dataset.mode;
+      if (mode) onNext(mode);
+    }
 
     function selectCard(card) {
       cards.forEach(c => {
@@ -268,16 +270,16 @@
       });
       card.setAttribute('aria-checked', 'true');
       card.setAttribute('tabindex', '0');
-      selectedMode = card.dataset.mode;
-      if (nextBtn) nextBtn.disabled = false;
     }
 
     cards.forEach(card => {
-      card.addEventListener('click', () => selectCard(card));
+      // Clicking a card advances immediately — no separate "Next" step.
+      card.addEventListener('click', () => { selectCard(card); advance(card); });
       card.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           selectCard(card);
+          advance(card);
         }
         if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
           e.preventDefault();
@@ -297,7 +299,12 @@
     });
 
     if (cancelBtn) cancelBtn.addEventListener('click', close);
-    if (nextBtn) nextBtn.addEventListener('click', () => { if (selectedMode) onNext(selectedMode); });
+    // Cards advance on click/Enter; the explicit Next button is removed. If one
+    // is still present (older markup), keep it working off the checked card.
+    if (nextBtn) nextBtn.addEventListener('click', () => {
+      const checked = cards.find(c => c.getAttribute('aria-checked') === 'true');
+      if (checked) advance(checked);
+    });
   }
 
   // ---------------------------------------------------------------------------
@@ -779,7 +786,6 @@
 
         <div class="suggest-chooser-actions">
           <button class="suggest-btn" type="button" id="suggest-taxop-cancel">Cancel</button>
-          <button class="suggest-btn suggest-btn-primary" type="button" id="suggest-taxop-next" disabled>Next</button>
         </div>
       </div>
     `;
@@ -792,7 +798,6 @@
     if (!group) return;
 
     const cards = Array.from(group.querySelectorAll('.suggest-radio-card'));
-    let selectedOp = null;
 
     function selectCard(card) {
       cards.forEach(c => {
@@ -801,14 +806,22 @@
       });
       card.setAttribute('aria-checked', 'true');
       card.setAttribute('tabindex', '0');
-      selectedOp = card.dataset.taxop;
-      if (nextBtn) nextBtn.disabled = false;
+    }
+
+    function advance(card) {
+      const op = card.dataset.taxop;
+      if (!op) return;
+      const titleEl = modal.querySelector('#suggest-modal-title');
+      if (titleEl) titleEl.textContent = 'Suggest a taxonomy change';
+      showInModal(modal, renderTaxonomyOpForm(op, taxonomy, user));
+      wireTaxonomyOpForm(modal, op, taxonomy, user);
     }
 
     cards.forEach(card => {
-      card.addEventListener('click', () => selectCard(card));
+      // Clicking a card advances immediately — no separate "Next" step.
+      card.addEventListener('click', () => { selectCard(card); advance(card); });
       card.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectCard(card); }
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectCard(card); advance(card); }
         if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
           e.preventDefault();
           const idx = cards.indexOf(card);
@@ -826,12 +839,8 @@
 
     if (cancelBtn) cancelBtn.addEventListener('click', close);
     if (nextBtn) nextBtn.addEventListener('click', () => {
-      if (selectedOp) {
-        const titleEl = modal.querySelector('#suggest-modal-title');
-        if (titleEl) titleEl.textContent = 'Suggest a taxonomy change';
-        showInModal(modal, renderTaxonomyOpForm(selectedOp, taxonomy, user));
-        wireTaxonomyOpForm(modal, selectedOp, taxonomy, user);
-      }
+      const checked = cards.find(c => c.getAttribute('aria-checked') === 'true');
+      if (checked) advance(checked);
     });
   }
 
@@ -1108,66 +1117,23 @@
     const currentSub = tool ? escapeHtml(tool.subcategory || '') : '';
     const currentTags = tool && Array.isArray(tool.tags) ? tool.tags : [];
 
-    // Find the current subcategory's display label for pre-fill
-    let currentSubLabel = currentSub;
-    if (taxonomy && taxonomy.categories && tool && tool.subcategory) {
-      outer: for (const [track, cats] of Object.entries(taxonomy.categories)) {
-        for (const [catId, cat] of Object.entries(cats || {})) {
-          for (const [subId, sub] of Object.entries(cat.subcategories || {})) {
-            if (subId === tool.subcategory) {
-              const trackLabel = track === 'users' ? 'For Users' : 'For Developers';
-              currentSubLabel = `${trackLabel} › ${cat.name} › ${sub.name}`;
-              break outer;
-            }
-          }
-        }
-      }
-    }
-
-    const currentPlacementHtml = `
-      <div class="suggest-current-placement">
-        <strong>Current placement:</strong>
-        ${currentCat ? `<span class="suggest-badge">${currentCat}</span> › <span class="suggest-badge">${currentSub}</span>` : '<em>unknown</em>'}
-        ${currentTags.length ? `<div class="suggest-current-tags">${currentTags.map(t => `<span class="suggest-tag-chip suggest-tag-chip--display">${escapeHtml(t)}</span>`).join('')}</div>` : ''}
-      </div>
-    `;
-
-    // Pre-fill subcategory search display and hidden slug
-    const prefilledSubSlug = (tool && tool.subcategory) ? escapeHtml(tool.subcategory) : '';
-    const prefilledSubCat = (tool && tool.category) ? escapeHtml(tool.category) : '';
-    const prefilledSubTrack = (() => {
-      if (!taxonomy || !taxonomy.categories || !tool || !tool.subcategory) return '';
-      for (const [track, cats] of Object.entries(taxonomy.categories)) {
-        for (const [catId, cat] of Object.entries(cats || {})) {
-          if (cat.subcategories && cat.subcategories[tool.subcategory]) return track;
-        }
-      }
-      return '';
-    })();
-
     return `
       <form class="suggest-form" id="suggest-move-retag-form" novalidate>
         <div id="suggest-form-error" class="suggest-error" hidden></div>
 
-        ${currentPlacementHtml}
-
         <div class="suggest-form-group">
-          <label for="suggest-subcat-search">Proposed subcategory</label>
+          <label for="suggest-subcat-search">Move to a different subcategory?</label>
           <div class="suggest-typeahead" style="position:relative">
             <input class="suggest-input" type="text" id="suggest-subcat-search"
                    autocomplete="off"
-                   placeholder="Type to search… e.g. memory, ides"
-                   value="${escapeHtml(currentSubLabel)}"
+                   placeholder="Type a category or subcategory… e.g. memory, ides"
                    aria-label="Search subcategories"
                    aria-autocomplete="list"
                    aria-controls="suggest-subcat-menu">
             <div id="suggest-subcat-menu" class="suggest-typeahead-menu" role="listbox" hidden></div>
           </div>
-          <input type="hidden" id="suggest-new-subcategory"
-                 value="${prefilledSubSlug}"
-                 data-category="${prefilledSubCat}"
-                 data-track="${prefilledSubTrack}">
-          <div class="suggest-hint">Leave at the current value if you only want to change tags.</div>
+          <input type="hidden" id="suggest-new-subcategory" value="" data-category="" data-track="">
+          <div class="suggest-hint">Leave blank to keep <strong>${currentSub || 'the current placement'}</strong> and only change tags.</div>
         </div>
 
         <p class="suggest-placement-helper">
@@ -1197,7 +1163,6 @@
           <label for="suggest-retag-rationale">Why? <span class="required">*</span></label>
           <textarea class="suggest-textarea" id="suggest-retag-rationale" name="rationale" required maxlength="500"
                     placeholder="Explain why this placement or tag change is more accurate…"></textarea>
-          <div class="suggest-hint">Required.</div>
         </div>
 
         ${renderCreditConsent(user)}
@@ -1676,7 +1641,7 @@
       <form class="suggest-form" id="suggest-fix-details-form" novalidate>
         <div id="suggest-form-error" class="suggest-error" hidden></div>
 
-        <p class="suggest-hint">Edit only the fields that are wrong. Only changed fields will be submitted.</p>
+        <p class="suggest-hint">Edit any field you'd like to update. Only changed fields are submitted.</p>
 
         <div class="suggest-form-group">
           <label for="fix-description">Description</label>
@@ -1697,27 +1662,6 @@
           <input class="suggest-input" type="url" id="fix-github-url" name="github_url"
                  value="${escapeHtml(t.github_url || '')}"
                  placeholder="https://github.com/org/repo">
-        </div>
-
-        <div class="suggest-form-group">
-          <label for="fix-type">Type</label>
-          <select class="suggest-select" id="fix-type" name="type">
-            <option value="" ${!t.type ? 'selected' : ''}>Unknown</option>
-            <option value="oss" ${t.type === 'oss' ? 'selected' : ''}>Open Source</option>
-            <option value="saas" ${t.type === 'saas' ? 'selected' : ''}>SaaS / Managed</option>
-            <option value="commercial" ${t.type === 'commercial' ? 'selected' : ''}>Commercial</option>
-          </select>
-        </div>
-
-        <div class="suggest-form-group">
-          <label for="fix-pricing-model">Pricing Model</label>
-          <select class="suggest-select" id="fix-pricing-model" name="pricing_model">
-            <option value="" ${!t.pricing_model ? 'selected' : ''}>Unknown</option>
-            <option value="free" ${t.pricing_model === 'free' ? 'selected' : ''}>Free</option>
-            <option value="freemium" ${t.pricing_model === 'freemium' ? 'selected' : ''}>Freemium</option>
-            <option value="paid" ${t.pricing_model === 'paid' ? 'selected' : ''}>Paid</option>
-            <option value="open-source" ${t.pricing_model === 'open-source' ? 'selected' : ''}>Open Source</option>
-          </select>
         </div>
 
         <div class="suggest-form-group">
@@ -1750,8 +1694,6 @@
       description: t.desc || t.description || '',
       website: t.url || t.website || '',
       github_url: t.github_url || '',
-      type: t.type || '',
-      pricing_model: t.pricing_model || ''
     };
 
     form.addEventListener('submit', async (e) => {
@@ -1761,8 +1703,6 @@
         description: (form.querySelector('#fix-description')?.value || '').trim(),
         website: (form.querySelector('#fix-website')?.value || '').trim(),
         github_url: (form.querySelector('#fix-github-url')?.value || '').trim(),
-        type: form.querySelector('#fix-type')?.value || '',
-        pricing_model: form.querySelector('#fix-pricing-model')?.value || ''
       };
 
       let payload;
@@ -1872,7 +1812,7 @@
       if (firstInput) firstInput.focus();
     } else if (subMode === 'fix-details') {
       const titleEl = modal.querySelector('#suggest-modal-title');
-      if (titleEl) titleEl.textContent = 'Fix details: ' + (tool ? escapeHtml(tool.name) : 'tool');
+      if (titleEl) titleEl.textContent = 'Suggest edits: ' + (tool ? escapeHtml(tool.name) : 'tool');
       showInModal(modal, renderFixDetailsForm(tool, user));
       wireFixDetailsForm(modal, tool, user);
       const firstInput = modal.querySelector('#fix-description');
@@ -2032,15 +1972,13 @@
         type: orig.type || '',
         pricing_model: orig.pricing_model || '',
       };
-      const modal = mountAndOpen('Edit suggestion: fix details', renderFixDetailsForm(tool, user));
+      const modal = mountAndOpen('Edit suggestion: ' + (tool ? escapeHtml(tool.name) : 'tool'), renderFixDetailsForm(tool, user));
 
       // Prefill with proposed (edited) values if present
       const proposed = payload.edited || payload.changes || {};
       const descInput = modal.querySelector('#fix-description');
       const websiteInput = modal.querySelector('#fix-website');
       const githubInput = modal.querySelector('#fix-github-url');
-      const typeSelect = modal.querySelector('#fix-type');
-      const pricingSelect = modal.querySelector('#fix-pricing-model');
       const rationaleInput = modal.querySelector('#fix-rationale');
       const creditNameInput = modal.querySelector('#suggest-credit-name');
       const publicCreditBox = modal.querySelector('#suggest-public-credit');
@@ -2048,8 +1986,6 @@
       if (descInput && proposed.description) descInput.value = proposed.description;
       if (websiteInput && proposed.website) websiteInput.value = proposed.website;
       if (githubInput && proposed.github_url) githubInput.value = proposed.github_url;
-      if (typeSelect && proposed.type) typeSelect.value = proposed.type;
-      if (pricingSelect && proposed.pricing_model) pricingSelect.value = proposed.pricing_model;
       if (rationaleInput) rationaleInput.value = row.rationale || '';
       if (creditNameInput) creditNameInput.value = row.credit_name || '';
       if (publicCreditBox) publicCreditBox.checked = row.public_credit !== false;
@@ -2206,15 +2142,11 @@
           description: t.desc || t.description || '',
           website: t.url || t.website || '',
           github_url: t.github_url || '',
-          type: t.type || '',
-          pricing_model: t.pricing_model || '',
         };
         const edited = {
           description: (form.querySelector('#fix-description')?.value || '').trim(),
           website: (form.querySelector('#fix-website')?.value || '').trim(),
           github_url: (form.querySelector('#fix-github-url')?.value || '').trim(),
-          type: form.querySelector('#fix-type')?.value || '',
-          pricing_model: form.querySelector('#fix-pricing-model')?.value || '',
         };
         let payload;
         try {

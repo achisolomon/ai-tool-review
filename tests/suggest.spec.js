@@ -110,18 +110,13 @@ async function openNewToolForm(page) {
   // The chooser shows; pick "Add a missing tool" radio card
   const newToolCard = modal.locator('[data-mode="new-tool"]');
   await expect(newToolCard).toBeVisible({ timeout: 5000 });
-  await newToolCard.click();
+  // Clicking a chooser card advances directly to the form (no separate Next step).
+  // Fire a genuine DOM click via evaluate since clicking replaces the modal body
+  // (detaching the card mid-click); the backdrop handler must NOT misread the
+  // bubbling click from the now-detached card as a backdrop click.
+  await page.evaluate(() => document.querySelector('.suggest-radio-card[data-mode="new-tool"]')?.click());
 
-  // Clicking Next replaces the modal body (detaching the button). Fire a genuine
-  // DOM click (via evaluate, since Playwright's native click errors when the
-  // target detaches mid-click) and let it bubble naturally — NO stopPropagation.
-  // The backdrop handler must NOT misread the bubbling click from the now-detached
-  // button as a backdrop click; this exercises the isConnected guard in suggest.js.
-  const nextBtn = modal.locator('#suggest-chooser-next');
-  await expect(nextBtn).toBeEnabled();
-  await page.evaluate(() => document.querySelector('#suggest-chooser-next')?.click());
-
-  // Regression guard: the modal stays open after Next (did not close).
+  // Regression guard: the modal stays open after advancing (did not close).
   await expect(modal).toBeVisible();
 
   // Wait for Form A to be fully in the DOM and stable.
@@ -507,14 +502,12 @@ test.describe('Test 3: Mocked-auth form tests', () => {
     const modal = page.locator('[role="dialog"][aria-modal="true"]');
     await expect(modal).toBeVisible({ timeout: 5000 });
 
-    // Pick "Improve the taxonomy" mode
+    // Pick "Improve the taxonomy" mode — card click advances directly
     await page.locator('.suggest-radio-card[data-mode="taxonomy"]').click();
-    await page.locator('#suggest-chooser-next').click();
 
-    // Taxonomy op chooser: pick "Rename something"
+    // Taxonomy op chooser: pick "Rename something" — card click advances directly
     await expect(page.locator('.suggest-radio-card[data-taxop="rename"]')).toBeVisible({ timeout: 5000 });
     await page.locator('.suggest-radio-card[data-taxop="rename"]').click();
-    await page.locator('#suggest-taxop-next').click();
 
     // Rename form is now shown
     await expect(page.locator('#taxop-target')).toBeVisible({ timeout: 5000 });
@@ -692,7 +685,7 @@ async function openMoveRetagForm(page) {
     window.landscapeData.taxonomy = taxonomy;
   }, MOVE_RETAG_TAXONOMY);
 
-  // Open in 'tool' mode — shows the tool chooser (Move or re-tag / Fix details)
+  // Open in 'tool' mode — shows the tool chooser (Move or re-tag / Suggest edits)
   await page.evaluate((tool) => {
     window.Suggest.open({ mode: 'tool', tool });
   }, MOVE_RETAG_TOOL);
@@ -700,14 +693,10 @@ async function openMoveRetagForm(page) {
   const modal = page.locator('[role="dialog"][aria-modal="true"]');
   await expect(modal).toBeVisible({ timeout: 5000 });
 
-  // Pick "Move or re-tag"
+  // Pick "Move or re-tag" — card click advances directly to the form (no Next step)
   const moveRetagCard = modal.locator('[data-mode="move-retag"]');
   await expect(moveRetagCard).toBeVisible({ timeout: 5000 });
   await page.evaluate(() => document.querySelector('[data-mode="move-retag"]')?.click());
-
-  // Click Next to advance to the form
-  await expect(modal.locator('#suggest-chooser-next')).toBeEnabled({ timeout: 3000 });
-  await page.evaluate(() => document.querySelector('#suggest-chooser-next')?.click());
 
   // Wait for the type-ahead search input to appear (new UI)
   await expect(modal.locator('#suggest-subcat-search')).toBeVisible({ timeout: 8000 });
