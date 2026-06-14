@@ -644,6 +644,248 @@ test.skip('4: submit fix_details suggestion persists a row [requires signed-in s
 //   3. Note the id of a pending suggestion owned by the test user.
 //   4. Remove the test.skip wrapper and fill in ownPendingId below.
 
+// ---------------------------------------------------------------------------
+// Tests 3i, 3j, 3k — Move/Re-tag type-ahead pickers
+// ---------------------------------------------------------------------------
+
+/**
+ * Taxonomy stub used by the move/re-tag typeahead tests.
+ * Contains:
+ *   - A subcategory named "Memory & Context" (slug: memory-context) so that
+ *     typing "memory" returns it in the subcategory type-ahead.
+ *   - The existing "ai-ides" subcategory so the tool's current placement works.
+ *   - A tag "reasoning" (current tag for the test tool).
+ *   - A tag "api-available" (a second real tag, used for the add-chip test).
+ */
+const MOVE_RETAG_TAXONOMY = {
+  categories: {
+    developers: {
+      'ai-coding': {
+        name: 'AI Coding',
+        subcategories: {
+          'ai-ides': { name: 'AI IDEs' },
+          'memory-context': { name: 'Memory & Context' },
+        },
+      },
+    },
+  },
+  tags: {
+    capabilities: [
+      { slug: 'reasoning', name: 'Reasoning', description: 'Tool supports reasoning' },
+      { slug: 'api-available', name: 'API Available', description: 'Provides an API' },
+    ],
+    integrations: [],
+    deployment: [],
+    'use-cases': [],
+  },
+};
+
+/** The test tool — ai-ides placement, current tag: reasoning. */
+const MOVE_RETAG_TOOL = {
+  slug: 'cursor',
+  name: 'Cursor',
+  category: 'ai-coding',
+  subcategory: 'ai-ides',
+  tags: ['reasoning'],
+};
+
+/**
+ * Navigate to landscape, mock auth + taxonomy, then open the move/re-tag form
+ * for MOVE_RETAG_TOOL via window.Suggest.open({mode:'tool', tool}).  Returns
+ * the modal locator once #suggest-subcat-search is visible (the new type-ahead
+ * input that replaces the old <select>).
+ */
+async function openMoveRetagForm(page) {
+  await gotoLandscape(page);
+  await mockAuthSignedIn(page);
+
+  // Inject our minimal taxonomy so suggest.js picks it up via window.landscapeData
+  await page.evaluate((taxonomy) => {
+    if (!window.landscapeData) window.landscapeData = {};
+    window.landscapeData.taxonomy = taxonomy;
+  }, MOVE_RETAG_TAXONOMY);
+
+  // Open in 'tool' mode — shows the tool chooser (Move or re-tag / Fix details)
+  await page.evaluate((tool) => {
+    window.Suggest.open({ mode: 'tool', tool });
+  }, MOVE_RETAG_TOOL);
+
+  const modal = page.locator('[role="dialog"][aria-modal="true"]');
+  await expect(modal).toBeVisible({ timeout: 5000 });
+
+  // Pick "Move or re-tag"
+  const moveRetagCard = modal.locator('[data-mode="move-retag"]');
+  await expect(moveRetagCard).toBeVisible({ timeout: 5000 });
+  await page.evaluate(() => document.querySelector('[data-mode="move-retag"]')?.click());
+
+  // Click Next to advance to the form
+  await expect(modal.locator('#suggest-chooser-next')).toBeEnabled({ timeout: 3000 });
+  await page.evaluate(() => document.querySelector('#suggest-chooser-next')?.click());
+
+  // Wait for the type-ahead search input to appear (new UI)
+  await expect(modal.locator('#suggest-subcat-search')).toBeVisible({ timeout: 8000 });
+
+  // Extra stability wait
+  await page.waitForTimeout(100);
+
+  return modal;
+}
+
+test.describe('Test 3: Move/re-tag type-ahead pickers', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => { sessionStorage.setItem('suggestions_available', '1'); });
+    await acceptCookies(page);
+  });
+
+  // -----------------------------------------------------------------------
+  // 3i — Subcategory type-ahead filters and selects
+  // -----------------------------------------------------------------------
+
+  test('3i: subcategory type-ahead filters on "memory" and clicking a result sets hidden input', async ({ page }) => {
+    const modal = await openMoveRetagForm(page);
+
+    // The old <select> must be gone; the type-ahead search input must be present
+    await expect(modal.locator('select#suggest-new-subcategory')).toHaveCount(0);
+    await expect(modal.locator('#suggest-subcat-search')).toBeVisible();
+
+    // Type "memory" — should filter to "Memory & Context"
+    await page.evaluate(() => {
+      const inp = document.querySelector('#suggest-subcat-search');
+      inp.value = 'memory';
+      inp.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+
+    // Menu should open and show a matching item
+    await expect(modal.locator('#suggest-subcat-menu')).toBeVisible({ timeout: 3000 });
+    const menuItems = modal.locator('#suggest-subcat-menu [data-slug]');
+    await expect(menuItems).toHaveCount(1, { timeout: 3000 });
+
+    // Click the first result
+    await page.evaluate(() => {
+      const item = document.querySelector('#suggest-subcat-menu [data-slug]');
+      if (item) item.click();
+    });
+
+    // Hidden input #suggest-new-subcategory must have the slug value + dataset attrs
+    const result = await page.evaluate(() => {
+      const hidden = document.querySelector('#suggest-new-subcategory');
+      return {
+        value: hidden ? hidden.value : null,
+        category: hidden ? hidden.dataset.category : null,
+        track: hidden ? hidden.dataset.track : null,
+      };
+    });
+
+    expect(result.value).toBe('memory-context');
+    expect(result.category).toBe('ai-coding');
+    expect(result.track).toBe('developers');
+
+    // Menu should close after selection
+    await expect(modal.locator('#suggest-subcat-menu')).not.toBeVisible({ timeout: 2000 });
+  });
+
+  // -----------------------------------------------------------------------
+  // 3j — Tag type-ahead: add a chip, remove a current-tag chip
+  // -----------------------------------------------------------------------
+
+  test('3j: current tag "reasoning" appears as a chip; typing adds a chip; clicking × removes it', async ({ page }) => {
+    const modal = await openMoveRetagForm(page);
+
+    // The old checkbox grids must be gone
+    await expect(modal.locator('input[name="tag_add"]')).toHaveCount(0);
+    await expect(modal.locator('input[name="tag_remove"]')).toHaveCount(0);
+
+    // Current tag "reasoning" should appear as a chip (pre-filled)
+    const reasoningChip = modal.locator('#suggest-tag-chips [data-slug="reasoning"]');
+    await expect(reasoningChip).toBeVisible({ timeout: 3000 });
+
+    // Type "api" to filter tags
+    await page.evaluate(() => {
+      const inp = document.querySelector('#suggest-tag-search');
+      inp.value = 'api';
+      inp.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+
+    // Menu opens with "API Available"
+    await expect(modal.locator('#suggest-tag-menu')).toBeVisible({ timeout: 3000 });
+    const tagMenuItems = modal.locator('#suggest-tag-menu [data-slug]');
+    await expect(tagMenuItems).toHaveCount(1, { timeout: 3000 });
+
+    // Click the result to add it as a chip
+    await page.evaluate(() => {
+      const item = document.querySelector('#suggest-tag-menu [data-slug]');
+      if (item) item.click();
+    });
+
+    // "api-available" chip should appear
+    const apiChip = modal.locator('#suggest-tag-chips [data-slug="api-available"]');
+    await expect(apiChip).toBeVisible({ timeout: 3000 });
+
+    // Hidden inputs reflect: selected_tag = reasoning + api-available
+    const selectedSlugs = await page.evaluate(() => {
+      return Array.from(document.querySelectorAll('input[name="selected_tag"]')).map(i => i.value);
+    });
+    expect(selectedSlugs).toContain('reasoning');
+    expect(selectedSlugs).toContain('api-available');
+
+    // Now remove "reasoning" by clicking its × button
+    await page.evaluate(() => {
+      const removeBtn = document.querySelector('#suggest-tag-chips [data-slug="reasoning"] button');
+      if (removeBtn) removeBtn.click();
+    });
+
+    // Chip must be gone
+    await expect(modal.locator('#suggest-tag-chips [data-slug="reasoning"]')).toHaveCount(0, { timeout: 3000 });
+
+    // Hidden inputs no longer include reasoning
+    const afterRemove = await page.evaluate(() => {
+      return Array.from(document.querySelectorAll('input[name="selected_tag"]')).map(i => i.value);
+    });
+    expect(afterRemove).not.toContain('reasoning');
+    expect(afterRemove).toContain('api-available');
+  });
+
+  // -----------------------------------------------------------------------
+  // 3k — Inline new tag: "+" item appears for unknown text; clicking adds chip
+  // -----------------------------------------------------------------------
+
+  test('3k: typing a non-existent tag shows "+ Suggest new tag" item; clicking adds a new-tag chip', async ({ page }) => {
+    const modal = await openMoveRetagForm(page);
+
+    // Type a tag name that doesn't exist in the taxonomy
+    await page.evaluate(() => {
+      const inp = document.querySelector('#suggest-tag-search');
+      inp.value = 'zzznovel';
+      inp.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+
+    // Menu should open with the "+ Suggest new tag" item
+    await expect(modal.locator('#suggest-tag-menu')).toBeVisible({ timeout: 3000 });
+    const newTagItem = modal.locator('#suggest-tag-menu [data-new-tag]');
+    await expect(newTagItem).toBeVisible({ timeout: 3000 });
+    await expect(newTagItem).toContainText('zzznovel');
+
+    // Click it
+    await page.evaluate(() => {
+      const item = document.querySelector('#suggest-tag-menu [data-new-tag]');
+      if (item) item.click();
+    });
+
+    // A new-tag chip should appear (visually distinct)
+    const newChip = modal.locator('#suggest-tag-chips [data-new-tag="zzznovel"]');
+    await expect(newChip).toBeVisible({ timeout: 3000 });
+
+    // A hidden input[name="new_tag"] should exist with the new tag name
+    const newTagHiddens = await page.evaluate(() => {
+      return Array.from(document.querySelectorAll('input[name="new_tag"]')).map(i => i.value);
+    });
+    expect(newTagHiddens).toContain('zzznovel');
+
+    // Menu should close after selection
+    await expect(modal.locator('#suggest-tag-menu')).not.toBeVisible({ timeout: 2000 });
+  });
+});
+
 test.skip('5: RLS: user cannot self-approve [requires signed-in session + migration 009]', async ({ page }) => {
   // The owner must replace this with the actual id of a pending suggestion
   // belonging to the authenticated test user.

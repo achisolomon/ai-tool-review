@@ -1111,64 +1111,18 @@
     const currentSub = tool ? escapeHtml(tool.subcategory || '') : '';
     const currentTags = tool && Array.isArray(tool.tags) ? tool.tags : [];
 
-    // Build subcategory picker from full taxonomy
-    let subOptions = '<option value="">Select a subcategory…</option>';
-    if (taxonomy && taxonomy.categories) {
-      for (const [track, cats] of Object.entries(taxonomy.categories)) {
-        const trackLabel = track === 'users' ? 'For Users' : 'For Developers';
+    // Find the current subcategory's display label for pre-fill
+    let currentSubLabel = currentSub;
+    if (taxonomy && taxonomy.categories && tool && tool.subcategory) {
+      outer: for (const [track, cats] of Object.entries(taxonomy.categories)) {
         for (const [catId, cat] of Object.entries(cats || {})) {
           for (const [subId, sub] of Object.entries(cat.subcategories || {})) {
-            const label = `${trackLabel} › ${cat.name} › ${sub.name}`;
-            const selected = (subId === (tool && tool.subcategory)) ? ' selected' : '';
-            subOptions += `<option value="${escapeHtml(subId)}" data-track="${escapeHtml(track)}" data-category="${escapeHtml(catId)}"${selected}>${escapeHtml(label)}</option>`;
+            if (subId === tool.subcategory) {
+              const trackLabel = track === 'users' ? 'For Users' : 'For Developers';
+              currentSubLabel = `${trackLabel} › ${cat.name} › ${sub.name}`;
+              break outer;
+            }
           }
-        }
-      }
-    }
-
-    // Render tag groups for add/remove, with current tags pre-checked for remove
-    const tagFamilies = { capabilities: 'Capabilities', integrations: 'Integrations', deployment: 'Deployment', 'use-cases': 'Use Cases' };
-    let tagsAddHtml = '';
-    let tagsRemoveHtml = '';
-
-    if (taxonomy && taxonomy.tags) {
-      for (const [family, label] of Object.entries(tagFamilies)) {
-        const tags = taxonomy.tags[family];
-        if (!tags || !tags.length) continue;
-
-        const addChips = tags
-          .filter(t => !currentTags.includes(t.slug))
-          .map(t => `
-            <label class="suggest-tag-chip">
-              <input type="checkbox" name="tag_add" value="${escapeHtml(t.slug)}" title="${escapeHtml(t.description || t.name)}">
-              ${escapeHtml(t.name)}
-            </label>
-          `).join('');
-
-        const removeChips = tags
-          .filter(t => currentTags.includes(t.slug))
-          .map(t => `
-            <label class="suggest-tag-chip suggest-tag-chip--current">
-              <input type="checkbox" name="tag_remove" value="${escapeHtml(t.slug)}" title="${escapeHtml(t.description || t.name)}">
-              ${escapeHtml(t.name)}
-            </label>
-          `).join('');
-
-        if (addChips) {
-          tagsAddHtml += `
-            <div class="suggest-tag-group">
-              <div class="suggest-tag-family-label">${escapeHtml(label)}</div>
-              <div class="suggest-tag-grid">${addChips}</div>
-            </div>
-          `;
-        }
-        if (removeChips) {
-          tagsRemoveHtml += `
-            <div class="suggest-tag-group">
-              <div class="suggest-tag-family-label">${escapeHtml(label)}</div>
-              <div class="suggest-tag-grid">${removeChips}</div>
-            </div>
-          `;
         }
       }
     }
@@ -1181,6 +1135,19 @@
       </div>
     `;
 
+    // Pre-fill subcategory search display and hidden slug
+    const prefilledSubSlug = (tool && tool.subcategory) ? escapeHtml(tool.subcategory) : '';
+    const prefilledSubCat = (tool && tool.category) ? escapeHtml(tool.category) : '';
+    const prefilledSubTrack = (() => {
+      if (!taxonomy || !taxonomy.categories || !tool || !tool.subcategory) return '';
+      for (const [track, cats] of Object.entries(taxonomy.categories)) {
+        for (const [catId, cat] of Object.entries(cats || {})) {
+          if (cat.subcategories && cat.subcategories[tool.subcategory]) return track;
+        }
+      }
+      return '';
+    })();
+
     return `
       <form class="suggest-form" id="suggest-move-retag-form" novalidate>
         <div id="suggest-form-error" class="suggest-error" hidden></div>
@@ -1188,10 +1155,21 @@
         ${currentPlacementHtml}
 
         <div class="suggest-form-group">
-          <label for="suggest-new-subcategory">Proposed subcategory</label>
-          <select class="suggest-select" id="suggest-new-subcategory" name="subcategory">
-            ${subOptions}
-          </select>
+          <label for="suggest-subcat-search">Proposed subcategory</label>
+          <div class="suggest-typeahead" style="position:relative">
+            <input class="suggest-input" type="text" id="suggest-subcat-search"
+                   autocomplete="off"
+                   placeholder="Type to search… e.g. memory, ides"
+                   value="${escapeHtml(currentSubLabel)}"
+                   aria-label="Search subcategories"
+                   aria-autocomplete="list"
+                   aria-controls="suggest-subcat-menu">
+            <div id="suggest-subcat-menu" class="suggest-typeahead-menu" role="listbox" hidden></div>
+          </div>
+          <input type="hidden" id="suggest-new-subcategory"
+                 value="${prefilledSubSlug}"
+                 data-category="${prefilledSubCat}"
+                 data-track="${prefilledSubTrack}">
           <div class="suggest-hint">Leave at the current value if you only want to change tags.</div>
         </div>
 
@@ -1202,19 +1180,21 @@
           <a href="/about.html#how-its-organized" target="_blank" rel="noopener" class="suggest-explainer-link">How the map is organized →</a>
         </p>
 
-        ${tagsAddHtml ? `
-          <div class="suggest-form-group">
-            <div class="suggest-tag-section-label">Add tags</div>
-            ${tagsAddHtml}
+        <div class="suggest-form-group">
+          <label>Tags</label>
+          <div id="suggest-tag-chips" class="suggest-tag-chips-row"></div>
+          <div class="suggest-typeahead" style="position:relative;margin-top:6px">
+            <input class="suggest-input" type="text" id="suggest-tag-search"
+                   autocomplete="off"
+                   placeholder="Type to add a tag…"
+                   aria-label="Search tags"
+                   aria-autocomplete="list"
+                   aria-controls="suggest-tag-menu">
+            <div id="suggest-tag-menu" class="suggest-typeahead-menu" role="listbox" hidden></div>
           </div>
-        ` : ''}
-
-        ${tagsRemoveHtml ? `
-          <div class="suggest-form-group">
-            <div class="suggest-tag-section-label">Remove tags (currently applied)</div>
-            ${tagsRemoveHtml}
-          </div>
-        ` : ''}
+          <div class="suggest-hint" style="margin-top:4px">Suggested:</div>
+          <div id="suggest-tag-sugg" class="suggest-tag-sugg-row"></div>
+        </div>
 
         <div class="suggest-form-group">
           <label for="suggest-retag-rationale">Why? <span class="required">*</span></label>
@@ -1233,8 +1213,318 @@
     `;
   }
 
+  // ---------------------------------------------------------------------------
+  // Type-ahead helpers for Move/Re-tag form
+  // ---------------------------------------------------------------------------
+
+  /**
+   * Wire the subcategory type-ahead (#suggest-subcat-search → #suggest-subcat-menu
+   * → #suggest-new-subcategory hidden input).
+   * Builds a flat list of all subcategories from taxonomy at wire time.
+   */
+  function wireSubcategoryTypeahead(modal, taxonomy) {
+    const searchInput = modal.querySelector('#suggest-subcat-search');
+    const menu = modal.querySelector('#suggest-subcat-menu');
+    const hiddenInput = modal.querySelector('#suggest-new-subcategory');
+    if (!searchInput || !menu || !hiddenInput) return;
+
+    // Build flat subcategory list once
+    const allSubs = [];
+    if (taxonomy && taxonomy.categories) {
+      for (const [track, cats] of Object.entries(taxonomy.categories)) {
+        const trackLabel = track === 'users' ? 'For Users' : 'For Developers';
+        for (const [catId, cat] of Object.entries(cats || {})) {
+          for (const [subId, sub] of Object.entries(cat.subcategories || {})) {
+            allSubs.push({
+              slug: subId,
+              name: sub.name,
+              catId,
+              catName: cat.name,
+              track,
+              trackLabel,
+              label: `${trackLabel} › ${cat.name} › ${sub.name}`,
+            });
+          }
+        }
+      }
+    }
+
+    function openMenu(items) {
+      if (!items.length) {
+        menu.innerHTML = `<div class="suggest-typeahead-noresult">No match</div>`;
+      } else {
+        menu.innerHTML = items.map(s =>
+          `<div class="suggest-typeahead-item" role="option" tabindex="-1"
+                data-slug="${escapeHtml(s.slug)}"
+                data-category="${escapeHtml(s.catId)}"
+                data-track="${escapeHtml(s.track)}">${escapeHtml(s.name)} <span class="suggest-typeahead-meta">— ${escapeHtml(s.catName)}</span></div>`
+        ).join('');
+        // Wire both mousedown (prevents blur) and click (handles programmatic clicks)
+        menu.querySelectorAll('[data-slug]').forEach(item => {
+          item.addEventListener('mousedown', (e) => {
+            e.preventDefault(); // don't blur the input before we update
+            selectSubcategory(item);
+          });
+          item.addEventListener('click', () => {
+            selectSubcategory(item);
+          });
+        });
+      }
+      menu.hidden = false;
+    }
+
+    function closeMenu() {
+      menu.hidden = true;
+      menu.innerHTML = '';
+    }
+
+    function selectSubcategory(item) {
+      const slug = item.dataset.slug;
+      const category = item.dataset.category;
+      const track = item.dataset.track;
+      // Update hidden input
+      hiddenInput.value = slug;
+      hiddenInput.dataset.category = category;
+      hiddenInput.dataset.track = track;
+      // Update display text
+      const sub = allSubs.find(s => s.slug === slug);
+      searchInput.value = sub ? sub.label : slug;
+      closeMenu();
+    }
+
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.toLowerCase().trim();
+      if (!q) { closeMenu(); return; }
+      const matches = allSubs
+        .filter(s => s.name.toLowerCase().includes(q) || s.catName.toLowerCase().includes(q) || s.slug.includes(q))
+        .slice(0, 10);
+      openMenu(matches);
+    });
+
+    searchInput.addEventListener('focus', () => {
+      const q = searchInput.value.toLowerCase().trim();
+      if (q) {
+        const matches = allSubs
+          .filter(s => s.name.toLowerCase().includes(q) || s.catName.toLowerCase().includes(q) || s.slug.includes(q))
+          .slice(0, 10);
+        if (matches.length) openMenu(matches);
+      }
+    });
+
+    // Close menu when clicking outside
+    function onDocClick(e) {
+      if (!menu.contains(e.target) && e.target !== searchInput) closeMenu();
+    }
+    document.addEventListener('click', onDocClick);
+    // Clean up listener if modal is closed
+    const observer = new MutationObserver(() => {
+      if (!document.contains(modal)) {
+        document.removeEventListener('click', onDocClick);
+        observer.disconnect();
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: false });
+  }
+
+  /**
+   * Wire the tag type-ahead (#suggest-tag-search → #suggest-tag-menu → chips).
+   * Selected tags are reflected as hidden inputs[name="selected_tag"] and
+   * new tags as hidden inputs[name="new_tag"] for the submit handlers to read.
+   *
+   * @param {Element} modal
+   * @param {object} taxonomy
+   * @param {object} tool  — used to determine current (pre-selected) tags
+   */
+  function wireTagTypeahead(modal, taxonomy, tool) {
+    const chipsContainer = modal.querySelector('#suggest-tag-chips');
+    const searchInput = modal.querySelector('#suggest-tag-search');
+    const menu = modal.querySelector('#suggest-tag-menu');
+    const suggRow = modal.querySelector('#suggest-tag-sugg');
+    if (!chipsContainer || !searchInput || !menu || !suggRow) return;
+
+    const currentTags = (tool && Array.isArray(tool.tags)) ? tool.tags : [];
+
+    // Build flat tag list
+    const allTags = [];
+    if (taxonomy && taxonomy.tags) {
+      const families = ['capabilities', 'integrations', 'deployment', 'use-cases'];
+      for (const fam of families) {
+        const tags = taxonomy.tags[fam];
+        if (tags && tags.length) {
+          tags.forEach(t => allTags.push({ slug: t.slug, name: t.name, fam }));
+        }
+      }
+    }
+
+    // State: selected slugs (Set) and new tag names (Set)
+    const selectedSlugs = new Set(currentTags);
+    const newTagNames = new Set();
+
+    function nameOf(slug) {
+      const t = allTags.find(x => x.slug === slug);
+      return t ? t.name : slug;
+    }
+
+    function rebuildHiddenInputs() {
+      // Remove old hidden inputs
+      modal.querySelectorAll('input[name="selected_tag"], input[name="new_tag"]').forEach(el => el.remove());
+      const form = modal.querySelector('#suggest-move-retag-form');
+      if (!form) return;
+      selectedSlugs.forEach(slug => {
+        const inp = document.createElement('input');
+        inp.type = 'hidden';
+        inp.name = 'selected_tag';
+        inp.value = slug;
+        form.appendChild(inp);
+      });
+      newTagNames.forEach(name => {
+        const inp = document.createElement('input');
+        inp.type = 'hidden';
+        inp.name = 'new_tag';
+        inp.value = name;
+        form.appendChild(inp);
+      });
+    }
+
+    function renderChips() {
+      const parts = [];
+      // Existing taxonomy tag chips
+      selectedSlugs.forEach(slug => {
+        const isCurrent = currentTags.includes(slug);
+        parts.push(
+          `<span class="suggest-chip${isCurrent ? ' suggest-chip--current' : ''}" data-slug="${escapeHtml(slug)}">${escapeHtml(nameOf(slug))}<button type="button" aria-label="Remove ${escapeHtml(nameOf(slug))}">×</button></span>`
+        );
+      });
+      // New-tag chips (visually distinct)
+      newTagNames.forEach(name => {
+        parts.push(
+          `<span class="suggest-chip suggest-chip--new" data-new-tag="${escapeHtml(name)}">${escapeHtml(name)}<button type="button" aria-label="Remove ${escapeHtml(name)}">×</button></span>`
+        );
+      });
+      chipsContainer.innerHTML = parts.join('');
+      // Wire remove buttons
+      chipsContainer.querySelectorAll('[data-slug] button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const chip = btn.closest('[data-slug]');
+          if (chip) {
+            selectedSlugs.delete(chip.dataset.slug);
+            renderChips();
+            renderSuggested();
+            rebuildHiddenInputs();
+          }
+        });
+      });
+      chipsContainer.querySelectorAll('[data-new-tag] button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const chip = btn.closest('[data-new-tag]');
+          if (chip) {
+            newTagNames.delete(chip.dataset.newTag);
+            renderChips();
+            rebuildHiddenInputs();
+          }
+        });
+      });
+    }
+
+    function renderSuggested() {
+      const suggested = allTags.filter(t => !selectedSlugs.has(t.slug)).slice(0, 6);
+      if (!suggested.length) { suggRow.innerHTML = ''; return; }
+      suggRow.innerHTML = suggested.map(t =>
+        `<button type="button" class="suggest-sugg-btn" data-slug="${escapeHtml(t.slug)}">+ ${escapeHtml(t.name)}</button>`
+      ).join('');
+      suggRow.querySelectorAll('[data-slug]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          selectedSlugs.add(btn.dataset.slug);
+          renderChips();
+          renderSuggested();
+          rebuildHiddenInputs();
+        });
+      });
+    }
+
+    function closeMenu() {
+      menu.hidden = true;
+      menu.innerHTML = '';
+    }
+
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.toLowerCase().trim();
+      if (!q) { closeMenu(); return; }
+
+      const matches = allTags
+        .filter(t => !selectedSlugs.has(t.slug) && (t.name.toLowerCase().includes(q) || t.slug.includes(q)))
+        .slice(0, 8);
+
+      let html = matches.map(t =>
+        `<div class="suggest-typeahead-item" role="option" tabindex="-1"
+              data-slug="${escapeHtml(t.slug)}">${escapeHtml(t.name)} <span class="suggest-typeahead-meta">— ${escapeHtml(t.fam)}</span></div>`
+      ).join('');
+
+      // Inline new-tag option: show if typed text doesn't exactly match any tag
+      const rawInput = searchInput.value.trim();
+      const exactMatch = allTags.some(t => t.name.toLowerCase() === q || t.slug === q);
+      if (rawInput && !exactMatch) {
+        html += `<div class="suggest-typeahead-item suggest-typeahead-item--new" role="option" tabindex="-1"
+                      data-new-tag="${escapeHtml(rawInput)}">+ Suggest new tag "${escapeHtml(rawInput)}"</div>`;
+      }
+
+      if (!html) {
+        menu.innerHTML = `<div class="suggest-typeahead-noresult">No match</div>`;
+      } else {
+        menu.innerHTML = html;
+        // Wire existing-tag items (both mousedown to prevent blur and click for programmatic)
+        menu.querySelectorAll('[data-slug]').forEach(item => {
+          const addTag = () => {
+            selectedSlugs.add(item.dataset.slug);
+            searchInput.value = '';
+            closeMenu();
+            renderChips();
+            renderSuggested();
+            rebuildHiddenInputs();
+          };
+          item.addEventListener('mousedown', (e) => { e.preventDefault(); addTag(); });
+          item.addEventListener('click', () => { addTag(); });
+        });
+        // Wire new-tag item (both mousedown and click)
+        menu.querySelectorAll('[data-new-tag]').forEach(item => {
+          const addNewTag = () => {
+            newTagNames.add(item.dataset.newTag);
+            searchInput.value = '';
+            closeMenu();
+            renderChips();
+            rebuildHiddenInputs();
+          };
+          item.addEventListener('mousedown', (e) => { e.preventDefault(); addNewTag(); });
+          item.addEventListener('click', () => { addNewTag(); });
+        });
+      }
+      menu.hidden = false;
+    });
+
+    // Close menu when clicking outside
+    function onDocClick(e) {
+      if (!menu.contains(e.target) && e.target !== searchInput) closeMenu();
+    }
+    document.addEventListener('click', onDocClick);
+    const observer = new MutationObserver(() => {
+      if (!document.contains(modal)) {
+        document.removeEventListener('click', onDocClick);
+        observer.disconnect();
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: false });
+
+    // Initial render
+    renderChips();
+    renderSuggested();
+    rebuildHiddenInputs();
+  }
+
   function wireMoveRetagForm(modal, tool, taxonomy, user) {
     wireCreditConsent(modal);
+    wireSubcategoryTypeahead(modal, taxonomy);
+    wireTagTypeahead(modal, taxonomy, tool);
+
     const form = modal.querySelector('#suggest-move-retag-form');
     const cancelBtn = modal.querySelector('#suggest-form-cancel');
     if (cancelBtn) cancelBtn.addEventListener('click', close);
@@ -1249,18 +1539,18 @@
         return;
       }
 
-      // Resolve proposed subcategory and its parent category/track
-      const subSelect = form.querySelector('#suggest-new-subcategory');
-      const selectedOption = subSelect ? subSelect.options[subSelect.selectedIndex] : null;
-      const proposedSubcategory = subSelect ? subSelect.value : '';
-      const proposedCategory = selectedOption ? (selectedOption.dataset.category || '') : '';
-      const proposedTrack = selectedOption ? (selectedOption.dataset.track || '') : '';
+      // Read subcategory from the hidden input (set by wireSubcategoryTypeahead)
+      const hiddenSub = form.querySelector('#suggest-new-subcategory');
+      const proposedSubcategory = hiddenSub ? hiddenSub.value : '';
+      const proposedCategory = hiddenSub ? (hiddenSub.dataset.category || '') : '';
 
-      // Build tags_add and tags_remove
-      const tagsAdd = Array.from(form.querySelectorAll('input[name="tag_add"]:checked')).map(i => i.value);
-      const tagsRemove = Array.from(form.querySelectorAll('input[name="tag_remove"]:checked')).map(i => i.value);
-
+      // Read tags from hidden inputs (set by wireTagTypeahead)
       const currentTags = tool && Array.isArray(tool.tags) ? tool.tags : [];
+      const selectedTagSlugs = Array.from(form.querySelectorAll('input[name="selected_tag"]')).map(i => i.value);
+      const newTagNames = Array.from(form.querySelectorAll('input[name="new_tag"]')).map(i => i.value);
+      const tagsAdd = selectedTagSlugs.filter(s => !currentTags.includes(s));
+      const tagsRemove = currentTags.filter(s => !selectedTagSlugs.includes(s));
+
       const current = {
         category: tool ? (tool.category || '') : '',
         subcategory: tool ? (tool.subcategory || '') : '',
@@ -1313,6 +1603,28 @@
           return;
         }
 
+        // Fire add_tag taxonomy suggestions for any inline new tags (non-blocking)
+        if (newTagNames.length) {
+          const slugify = (window.SuggestLogic && window.SuggestLogic.slugify)
+            ? window.SuggestLogic.slugify
+            : (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+          for (const name of newTagNames) {
+            try {
+              await window.SupabaseClient.createSuggestion({
+                kind: 'taxonomy_change',
+                tool_slug: null,
+                payload: { op: 'add_tag', family: 'capabilities', name },
+                rationale: 'Proposed alongside a re-tag suggestion',
+                credit_name: credit_name || null,
+                public_credit
+              });
+            } catch (_) {
+              // Non-blocking: log but don't fail the main suggestion
+              console.warn('[suggest] Failed to file add_tag suggestion for:', name);
+            }
+          }
+        }
+
         const body = modal.querySelector('.suggest-modal-body');
         const titleEl = modal.querySelector('#suggest-modal-title');
         if (titleEl) titleEl.textContent = 'Suggestion submitted!';
@@ -1322,6 +1634,7 @@
               <div class="suggest-success-icon">✓</div>
               <h3>Thank you!</h3>
               <p>Your placement suggestion for <strong>${escapeHtml(tool ? tool.name : 'this tool')}</strong> has been submitted and is pending review.</p>
+              ${newTagNames.length ? `<p class="suggest-hint">New tag suggestion(s) also filed: ${newTagNames.map(n => escapeHtml(n)).join(', ')}</p>` : ''}
               <a href="/my-suggestions.html">Track it under My Suggestions</a>
             </div>
           `;
@@ -1536,7 +1849,7 @@
       if (titleEl) titleEl.textContent = 'Move or re-tag: ' + (tool ? escapeHtml(tool.name) : 'tool');
       showInModal(modal, renderMoveRetagForm(tool, taxonomy, user));
       wireMoveRetagForm(modal, tool, taxonomy, user);
-      const firstInput = modal.querySelector('#suggest-new-subcategory');
+      const firstInput = modal.querySelector('#suggest-subcat-search');
       if (firstInput) firstInput.focus();
     } else if (subMode === 'fix-details') {
       const titleEl = modal.querySelector('#suggest-modal-title');
@@ -1680,6 +1993,9 @@
       if (publicCreditBox) publicCreditBox.checked = row.public_credit !== false;
 
       wireCreditConsent(modal);
+      // Wire type-ahead pickers (must run before wireEditSubmit so hidden inputs exist)
+      wireSubcategoryTypeahead(modal, taxonomy);
+      wireTagTypeahead(modal, taxonomy, tool);
       wireEditSubmit(modal, row, kind, 'tool_placement', null, tool);
 
       const cancelBtn = modal.querySelector('#suggest-form-cancel');
@@ -1830,18 +2146,20 @@
           showError(modal, 'Rationale is required.');
           return;
         }
-        const subSelect = form.querySelector('#suggest-new-subcategory');
-        const selectedOption = subSelect ? subSelect.options[subSelect.selectedIndex] : null;
-        const proposedSubcategory = subSelect ? subSelect.value : '';
-        const proposedCategory = selectedOption ? (selectedOption.dataset.category || '') : '';
-        const proposedTrack = selectedOption ? (selectedOption.dataset.track || '') : '';
-        const tagsAdd = Array.from(form.querySelectorAll('input[name="tag_add"]:checked')).map(i => i.value);
-        const tagsRemove = Array.from(form.querySelectorAll('input[name="tag_remove"]:checked')).map(i => i.value);
+        // Read subcategory from hidden input (set by wireSubcategoryTypeahead)
+        const hiddenSub = form.querySelector('#suggest-new-subcategory');
+        const proposedSubcategory = hiddenSub ? hiddenSub.value : '';
+        const proposedCategory = hiddenSub ? (hiddenSub.dataset.category || '') : '';
+        // Read tags from hidden inputs (set by wireTagTypeahead)
         const currentTool = tool || {};
+        const currentTagsList = currentTool.tags || [];
+        const selectedTagSlugs = Array.from(form.querySelectorAll('input[name="selected_tag"]')).map(i => i.value);
+        const tagsAdd = selectedTagSlugs.filter(s => !currentTagsList.includes(s));
+        const tagsRemove = currentTagsList.filter(s => !selectedTagSlugs.includes(s));
         const current = {
           category: currentTool.category || '',
           subcategory: currentTool.subcategory || '',
-          tags: currentTool.tags || [],
+          tags: currentTagsList,
         };
         const proposed = {
           category: proposedCategory || current.category,
