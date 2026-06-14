@@ -97,6 +97,18 @@ body > div:not(.cookie-banner):not(#tooltip) > ins.adsbygoogle {
     z-index: auto !important;
     opacity: 1 !important;
     pointer-events: auto !important;
+    /* AdSense needs a resolved non-zero width at push() time. The .footer-ad ins
+       override below sets inline-block, which collapses to width:0 for an empty
+       auto-format <ins> → "No slot size for availableWidth=0" TagError. Force a
+       sized block so the responsive slot can measure itself, but cap the height
+       so an unfilled/placeholder slot stays a compact leaderboard strip rather
+       than a giant empty box. */
+    display: block !important;
+    width: 100%;
+    max-width: 728px;
+    height: 90px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Ensure main content sections maintain their layout (when visible) */

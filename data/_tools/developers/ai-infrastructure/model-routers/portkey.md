@@ -84,6 +84,19 @@ website: https://portkey.ai/
   </div>
 </div>
 
+## Team Budget & Governance
+
+<div class="overview">
+<p>Portkey gives each developer or team a <strong>virtual key</strong> with a USD or token budget. When the cap is hit, the key automatically expires — blocking further spend rather than just reporting it. As a managed SaaS, it requires no self-hosting, and routes Claude Code, Cursor, and other tools through a single governed gateway.</p>
+<ul>
+  <li><strong>Enforced per-key caps</strong> in USD or token count, with alert thresholds</li>
+  <li><strong>Custom reset windows</strong> — 1 to 365 days via the API (<code>periodic_reset_days: 1</code> for daily); the dashboard presets cover weekly and monthly</li>
+  <li><strong>Workspace-level budget &amp; rate-limit policies</strong> for org-wide governance</li>
+  <li><strong>Note:</strong> hard budget enforcement is an Enterprise-plan feature; lower tiers get observability only</li>
+</ul>
+<div class="source"><a href="https://portkey.ai/docs/product/ai-gateway/virtual-keys/budget-limits" target="_blank" rel="noopener">Budget Limits docs</a></div>
+</div>
+
 ## Pricing
 
 <div class="pricing-grid">

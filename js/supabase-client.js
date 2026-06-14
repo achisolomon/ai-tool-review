@@ -170,13 +170,19 @@ async function withdrawSuggestion(id) {
 }
 
 // Probe whether the `suggestions` table exists in this Supabase project.
-// Never throws. Cached in sessionStorage ('1' = available only; negative not cached to avoid transient failure locking).
+// Never throws. The positive result ('1' = available) is cached in localStorage
+// so the probe runs at most ONCE per browser, not once per tab/session — this
+// eliminates the repeated `suggestions?select=id` HEAD request (logged by the
+// browser as net::ERR_ABORTED when the page settles before it resolves) on
+// every page after the first. Negative results are never cached, so a transient
+// first-load failure can't lock the feature off. The legacy sessionStorage key
+// is still honoured on read for backward compatibility within an open tab.
 // Skips caching when the Supabase client isn't initialized yet (client may
 // become available later in the same page load).
 async function isSuggestionsAvailable() {
     try {
-        const cached = sessionStorage.getItem('suggestions_available');
-        if (cached === '1') return true;
+        if (localStorage.getItem('suggestions_available') === '1') return true;
+        if (sessionStorage.getItem('suggestions_available') === '1') return true;
 
         const sb = getSupabase();
         if (!sb) return false; // not cached — client may init later
@@ -189,7 +195,10 @@ async function isSuggestionsAvailable() {
             error.code === 'PGRST301' || // JWT required
             error.status === 401 ||
             error.status === 403;
-        if (available) sessionStorage.setItem('suggestions_available', '1');
+        if (available) {
+            try { localStorage.setItem('suggestions_available', '1'); } catch (_) {}
+            sessionStorage.setItem('suggestions_available', '1');
+        }
         return available;
     } catch (_) {
         return false;

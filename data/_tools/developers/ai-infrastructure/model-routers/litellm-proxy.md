@@ -2,8 +2,8 @@
 category: ai-infrastructure
 confidence_score: 0.9
 description: OpenAI-compatible proxy server for 100+ LLM providers with unified API, load balancing, fallbacks, and cost tracking for production AI applications.
-github_stars: 13500
-last_verified: '2026-06-03'
+github_stars: 50307
+last_verified: '2026-06-14'
 name: LiteLLM Proxy
 pricing_model: freemium
 slug: litellm-proxy
@@ -16,7 +16,7 @@ website: https://docs.litellm.ai/docs/simple_proxy
 
 <div class="key-stats">
   <div class="key-stat">
-    <span class="number">13.5K+</span>
+    <span class="number">50K+</span>
     <span class="label">GitHub Stars</span>
   </div>
   <div class="key-stat">
@@ -84,6 +84,19 @@ website: https://docs.litellm.ai/docs/simple_proxy
   </div>
 </div>
 
+## Team Budget & Governance
+
+<div class="overview">
+<p>This is where LiteLLM Proxy earns its place in a team's stack. Each developer (or team) gets a <strong>virtual key</strong> with a dollar cap that's enforced in real time — requests are blocked the moment the budget is exhausted, not flagged after the invoice arrives. Because it's an OpenAI-compatible proxy, Claude Code, Cursor (via BYOK), and Gemini CLI can all route through one instance, giving you a single per-developer spend view across every tool.</p>
+<ul>
+  <li><strong>Enforced per-user / per-team caps</strong> — hard limits, not just observation</li>
+  <li><strong>Daily, weekly, or monthly windows</strong> — set <code>budget_duration: "1d"</code> for a daily runaway-session circuit breaker (also <code>7d</code>, <code>30d</code>); resets at midnight UTC</li>
+  <li><strong>Per-user dashboard</strong> — spend by developer, model, and request</li>
+  <li><strong>Self-hosted</strong> — keys and usage data stay on your infrastructure</li>
+</ul>
+<div class="source"><a href="https://docs.litellm.ai/docs/proxy/users" target="_blank" rel="noopener">Budgets &amp; Rate Limits docs</a> · <a href="https://docs.litellm.ai/docs/proxy/budget_reset_and_tz" target="_blank" rel="noopener">Budget reset windows</a></div>
+</div>
+
 ## Pricing
 
 <div class="pricing-grid">
@@ -140,11 +153,13 @@ website: https://docs.litellm.ai/docs/simple_proxy
 
 | Feature | LiteLLM Proxy | Helicone | Portkey |
 |---------|---------------|----------|---------|
-| Open Source | Yes | Yes | Partial |
+| Open Source | <span class="highlight">Yes</span> | Yes | Partial |
 | Providers | 100+ | 100+ | 250+ |
-| Load Balancing | Built-in | No | Yes |
+| Load Balancing | <span class="highlight">Built-in</span> | No | Yes |
+| Enforced budget caps | Yes | No (observe only) | Yes (Enterprise) |
+| Daily budget window | <span class="highlight">Yes</span> | N/A | Yes (via API) |
 | Free Tier | Unlimited (OSS) | 10K req/mo | 10K req/mo |
 | Hosted Option | Pay-per-use | $20/mo | $99/mo |
-| Best For | Multi-provider routing | Cost tracking | Enterprise features |
+| Best For | Multi-provider routing + governance | Cost tracking | Enterprise features |
 
 </div>

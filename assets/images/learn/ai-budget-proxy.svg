@@ -1,0 +1,198 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 628" width="1200" height="628" font-family="'Courier New', 'Lucida Console', monospace">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#232323" stroke-width="0.5"/>
+    </pattern>
+    <filter id="blueglow">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="greenglow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="10" flood-color="#000" flood-opacity="0.6"/>
+    </filter>
+    <!-- Arrow markers -->
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#007acc"/>
+    </marker>
+    <marker id="arrowGray" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#555"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#4caf50"/>
+    </marker>
+    <!-- Blue gradient for proxy box -->
+    <linearGradient id="proxyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d2b3e"/>
+      <stop offset="100%" stop-color="#071a26"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="628" fill="#1e1e1e"/>
+  <rect width="1200" height="628" fill="url(#grid)"/>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- LEFT COLUMN: Three Developer Rows -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+
+  <!-- Column header -->
+  <text x="195" y="58" font-family="'Courier New', monospace" font-size="11" fill="#444" text-anchor="middle" letter-spacing="2">DEVELOPERS</text>
+
+  <!-- ─── Row 1: Alex ─── -->
+  <g transform="translate(0, 0)">
+    <!-- Avatar -->
+    <circle cx="68" cy="160" r="26" fill="#1f3040" stroke="#007acc" stroke-width="1.5"/>
+    <text x="68" y="165" font-family="'Courier New', monospace" font-size="13" font-weight="bold" fill="#58a6d4" text-anchor="middle">AL</text>
+
+    <!-- Name -->
+    <text x="106" y="152" font-family="'Courier New', monospace" font-size="14" font-weight="bold" fill="#ccc">Alex</text>
+
+    <!-- Tool icon: Claude Code (stylized C) -->
+    <rect x="102" y="160" width="24" height="24" rx="5" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+    <text x="114" y="177" font-family="'Courier New', monospace" font-size="13" font-weight="bold" fill="#888" text-anchor="middle">C</text>
+    <text x="138" y="175" font-family="'Courier New', monospace" font-size="9" fill="#555">Claude Code</text>
+
+    <!-- Virtual Key Badge -->
+    <rect x="188" y="134" width="130" height="52" rx="6" fill="#0f2318" stroke="#4caf50" stroke-width="1.5"/>
+    <text x="204" y="153" font-family="'Courier New', monospace" font-size="10" fill="#4caf50">Virtual Key</text>
+    <text x="204" y="170" font-family="'Courier New', monospace" font-size="13" font-weight="bold" fill="#fff">$150 / mo</text>
+    <!-- Progress bar -->
+    <rect x="204" y="176" width="100" height="5" rx="2" fill="#1a3325"/>
+    <rect x="204" y="176" width="72" height="5" rx="2" fill="#4caf50"/><!-- 72% used -->
+    <text x="308" y="181" font-family="'Courier New', monospace" font-size="8" fill="#4caf50">72%</text>
+  </g>
+
+  <!-- ─── Row 2: Maya ─── -->
+  <g transform="translate(0, 0)">
+    <circle cx="68" cy="314" r="26" fill="#1f3040" stroke="#007acc" stroke-width="1.5"/>
+    <text x="68" y="319" font-family="'Courier New', monospace" font-size="13" font-weight="bold" fill="#58a6d4" text-anchor="middle">MK</text>
+
+    <text x="106" y="306" font-family="'Courier New', monospace" font-size="14" font-weight="bold" fill="#ccc">Maya</text>
+
+    <!-- Tool icon: Cursor (arrow shape) -->
+    <rect x="102" y="314" width="24" height="24" rx="5" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+    <!-- cursor arrow approximation -->
+    <polygon points="109,319 109,333 113,329 117,337 119.5,336 115.5,328 121,328" fill="#888"/>
+    <text x="138" y="329" font-family="'Courier New', monospace" font-size="9" fill="#555">Cursor</text>
+
+    <rect x="188" y="288" width="130" height="52" rx="6" fill="#0f2318" stroke="#4caf50" stroke-width="1.5"/>
+    <text x="204" y="307" font-family="'Courier New', monospace" font-size="10" fill="#4caf50">Virtual Key</text>
+    <text x="204" y="324" font-family="'Courier New', monospace" font-size="13" font-weight="bold" fill="#fff">$200 / mo</text>
+    <rect x="204" y="330" width="100" height="5" rx="2" fill="#1a3325"/>
+    <rect x="204" y="330" width="45" height="5" rx="2" fill="#4caf50"/><!-- 45% used -->
+    <text x="308" y="335" font-family="'Courier New', monospace" font-size="8" fill="#4caf50">45%</text>
+  </g>
+
+  <!-- ─── Row 3: Roey ─── -->
+  <g transform="translate(0, 0)">
+    <circle cx="68" cy="468" r="26" fill="#1f3040" stroke="#007acc" stroke-width="1.5"/>
+    <text x="68" y="473" font-family="'Courier New', monospace" font-size="13" font-weight="bold" fill="#58a6d4" text-anchor="middle">RB</text>
+
+    <text x="106" y="460" font-family="'Courier New', monospace" font-size="14" font-weight="bold" fill="#ccc">Roey</text>
+
+    <!-- Tool icon: Copilot (two rings) -->
+    <rect x="102" y="468" width="24" height="24" rx="5" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+    <circle cx="111" cy="480" r="5" fill="none" stroke="#888" stroke-width="1.5"/>
+    <circle cx="117" cy="480" r="5" fill="none" stroke="#888" stroke-width="1.5"/>
+    <text x="138" y="483" font-family="'Courier New', monospace" font-size="9" fill="#555">Copilot</text>
+
+    <rect x="188" y="442" width="130" height="52" rx="6" fill="#0f2318" stroke="#4caf50" stroke-width="1.5"/>
+    <text x="204" y="461" font-family="'Courier New', monospace" font-size="10" fill="#4caf50">Virtual Key</text>
+    <text x="204" y="478" font-family="'Courier New', monospace" font-size="13" font-weight="bold" fill="#fff">$100 / mo</text>
+    <rect x="204" y="484" width="100" height="5" rx="2" fill="#1a3325"/>
+    <rect x="204" y="484" width="88" height="5" rx="2" fill="#f0a040"/><!-- 88% used — orange warning -->
+    <text x="308" y="489" font-family="'Courier New', monospace" font-size="8" fill="#f0a040">88%</text>
+  </g>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- ARROWS: Virtual Keys → Proxy -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <line x1="320" y1="160" x2="456" y2="270" stroke="#007acc" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrowBlue)"/>
+  <line x1="320" y1="314" x2="456" y2="314" stroke="#007acc" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrowBlue)"/>
+  <line x1="320" y1="468" x2="456" y2="358" stroke="#007acc" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrowBlue)"/>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- CENTER: Proxy Gateway Box -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+
+  <!-- Outer glow ring -->
+  <rect x="454" y="194" width="292" height="240" rx="12" fill="none" stroke="#007acc" stroke-width="1" opacity="0.3"/>
+
+  <!-- Main proxy box -->
+  <rect x="462" y="200" width="276" height="228" rx="10" fill="url(#proxyGrad)" stroke="#007acc" stroke-width="2" filter="url(#blueglow)"/>
+
+  <!-- "Per-user limits enforced" banner at top -->
+  <rect x="462" y="200" width="276" height="36" rx="10" fill="#0c2d1a"/>
+  <rect x="462" y="222" width="276" height="14" fill="#0c2d1a"/>
+  <!-- Shield icon (mini) -->
+  <path d="M478,208 L484,205 L490,208 L490,216 Q484,220 478,216 Z" fill="#4caf50" filter="url(#greenglow)"/>
+  <text x="500" y="222" font-family="'Courier New', monospace" font-size="11" font-weight="bold" fill="#4caf50" letter-spacing="0.5">Per-user limits enforced</text>
+
+  <!-- Proxy label -->
+  <text x="600" y="274" font-family="'Courier New', monospace" font-size="20" font-weight="bold" fill="#007acc" text-anchor="middle">LiteLLM</text>
+  <text x="600" y="296" font-family="'Courier New', monospace" font-size="13" fill="#0f6ba8" text-anchor="middle">/ Portkey</text>
+
+  <!-- Center shield (large) -->
+  <g transform="translate(600, 355)">
+    <!-- Shield body -->
+    <path d="M0,-38 L30,-28 L30,4 Q0,30 -30,4 L-30,-28 Z" fill="#071a26" stroke="#007acc" stroke-width="2"/>
+    <!-- Shield inner glow -->
+    <path d="M0,-30 L22,-22 L22,2 Q0,22 -22,2 L-22,-22 Z" fill="none" stroke="#007acc" stroke-width="0.8" opacity="0.4"/>
+    <!-- Checkmark inside shield -->
+    <polyline points="-12,0 -4,10 16,-12" stroke="#4caf50" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Proxy column header -->
+  <text x="600" y="58" font-family="'Courier New', monospace" font-size="11" fill="#444" text-anchor="middle" letter-spacing="2">GATEWAY</text>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- ARROWS: Proxy → Providers -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <line x1="739" y1="270" x2="862" y2="170" stroke="#555" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrowGray)"/>
+  <line x1="739" y1="314" x2="862" y2="314" stroke="#555" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrowGray)"/>
+  <line x1="739" y1="358" x2="862" y2="456" stroke="#555" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrowGray)"/>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- RIGHT COLUMN: Provider Boxes -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+
+  <!-- Column header -->
+  <text x="1000" y="58" font-family="'Courier New', monospace" font-size="11" fill="#444" text-anchor="middle" letter-spacing="2">PROVIDERS</text>
+
+  <!-- Anthropic -->
+  <rect x="862" y="122" width="180" height="64" rx="8" fill="#1a1a1a" stroke="#3d3d3d" stroke-width="1.5"/>
+  <!-- Anthropic logo approximation: stylized A -->
+  <text x="886" y="162" font-family="'Courier New', monospace" font-size="28" font-weight="bold" fill="#3d3d3d">∧</text>
+  <text x="922" y="150" font-family="'Courier New', monospace" font-size="14" font-weight="bold" fill="#999">Anthropic</text>
+  <text x="922" y="167" font-family="'Courier New', monospace" font-size="10" fill="#555">Claude 3.5 / 4</text>
+
+  <!-- OpenAI -->
+  <rect x="862" y="282" width="180" height="64" rx="8" fill="#1a1a1a" stroke="#3d3d3d" stroke-width="1.5"/>
+  <!-- OpenAI logo approximation: circle with star -->
+  <circle cx="886" cy="314" r="16" fill="none" stroke="#3d3d3d" stroke-width="1.5"/>
+  <circle cx="886" cy="314" r="6" fill="#3d3d3d"/>
+  <text x="912" y="308" font-family="'Courier New', monospace" font-size="14" font-weight="bold" fill="#999">OpenAI</text>
+  <text x="912" y="325" font-family="'Courier New', monospace" font-size="10" fill="#555">GPT-4o / o3</text>
+
+  <!-- Google -->
+  <rect x="862" y="420" width="180" height="64" rx="8" fill="#1a1a1a" stroke="#3d3d3d" stroke-width="1.5"/>
+  <!-- Google logo approximation: G shape -->
+  <path d="M886,452 Q876,436 886,428 Q900,420 908,430 L902,434 Q898,428 890,430 Q882,436 886,452 Q890,462 900,458 L900,454 L894,454 L894,448 L908,448 L908,460 Q898,468 882,460 Q872,452 886,452" fill="#3d3d3d"/>
+  <text x="918" y="446" font-family="'Courier New', monospace" font-size="14" font-weight="bold" fill="#999">Google</text>
+  <text x="918" y="463" font-family="'Courier New', monospace" font-size="10" fill="#555">Gemini 2.0</text>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- BOTTOM LABEL -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <line x1="80" y1="556" x2="1120" y2="556" stroke="#252525" stroke-width="1"/>
+
+  <text x="600" y="590" font-family="'Courier New', monospace" font-size="16" fill="#888" text-anchor="middle" letter-spacing="1">Per-user keys.  Real-time limits.  Full observability.</text>
+
+  <!-- Corner labels -->
+  <text x="48" y="620" font-family="'Courier New', monospace" font-size="10" fill="#333">// THE SOLUTION</text>
+  <text x="1152" y="620" font-family="'Courier New', monospace" font-size="10" fill="#333" text-anchor="end">fig. 02</text>
+</svg>

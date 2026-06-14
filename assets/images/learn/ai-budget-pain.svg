@@ -1,0 +1,181 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 628" width="1200" height="628" font-family="'Courier New', 'Lucida Console', monospace">
+  <defs>
+    <style>
+      .label { font-family: 'Courier New', monospace; }
+      .mono { font-family: 'Courier New', monospace; }
+    </style>
+    <!-- Subtle grid pattern for depth -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#2a2a2a" stroke-width="0.5"/>
+    </pattern>
+    <!-- Red glow filter -->
+    <filter id="redGlow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <!-- Soft shadow -->
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+    <!-- Arrow marker -->
+    <marker id="arrowRed" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#e05252"/>
+    </marker>
+    <marker id="arrowGray" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#555"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="628" fill="#1e1e1e"/>
+  <rect width="1200" height="628" fill="url(#grid)"/>
+
+  <!-- ─── LEFT PANEL: Terminal Dashboard ─── -->
+  <g filter="url(#shadow)">
+    <!-- Panel body -->
+    <rect x="48" y="80" width="360" height="240" rx="6" fill="#141414" stroke="#2d2d2d" stroke-width="1.5"/>
+    <!-- Title bar -->
+    <rect x="48" y="80" width="360" height="36" rx="6" fill="#252525"/>
+    <rect x="48" y="104" width="360" height="12" fill="#252525"/>
+    <!-- Traffic lights -->
+    <circle cx="72" cy="98" r="6" fill="#e05252"/>
+    <circle cx="92" cy="98" r="6" fill="#d4a017"/>
+    <circle cx="112" cy="98" r="6" fill="#3a3a3a"/>
+    <!-- Panel label -->
+    <text x="140" y="103" font-family="'Courier New', monospace" font-size="13" fill="#666">cost-monitor — bash</text>
+  </g>
+
+  <!-- Terminal content -->
+  <text x="68" y="142" font-family="'Courier New', monospace" font-size="12" fill="#555">$ billing summary --month=current</text>
+
+  <!-- Divider line -->
+  <line x1="68" y1="154" x2="388" y2="154" stroke="#2d2d2d" stroke-width="1"/>
+
+  <!-- Main cost display -->
+  <text x="68" y="178" font-family="'Courier New', monospace" font-size="12" fill="#888">API Spend This Month</text>
+  <text x="68" y="208" font-family="'Courier New', monospace" font-size="36" font-weight="bold" fill="#e05252">$4,847</text>
+
+  <!-- Red up arrow (SVG path) -->
+  <g transform="translate(68, 222)">
+    <!-- upward arrow -->
+    <polygon points="12,0 24,18 0,18" fill="#e05252"/>
+  </g>
+  <text x="100" y="238" font-family="'Courier New', monospace" font-size="16" font-weight="bold" fill="#e05252">↑ 340% vs last month</text>
+
+  <!-- Separator -->
+  <line x1="68" y1="258" x2="388" y2="258" stroke="#2d2d2d" stroke-width="1"/>
+
+  <!-- Additional line items -->
+  <text x="68" y="278" font-family="'Courier New', monospace" font-size="11" fill="#555">Breakdown by user....... N/A</text>
+  <text x="68" y="296" font-family="'Courier New', monospace" font-size="11" fill="#555">Breakdown by tool....... N/A</text>
+  <text x="68" y="312" font-family="'Courier New', monospace" font-size="11" fill="#555">Usage by project........ N/A</text>
+
+  <!-- ─── CENTER: Developers + Shared Key ─── -->
+
+  <!-- Section header -->
+  <text x="490" y="72" font-family="'Courier New', monospace" font-size="11" fill="#444" text-anchor="middle">TEAM</text>
+
+  <!-- Dev 1: AL -->
+  <g>
+    <!-- Avatar circle -->
+    <circle cx="490" cy="142" r="30" fill="#2a2a2a" stroke="#3d3d3d" stroke-width="1.5"/>
+    <text x="490" y="147" font-family="'Courier New', monospace" font-size="14" font-weight="bold" fill="#999" text-anchor="middle">AL</text>
+    <!-- Tool badge: Cursor arrow icon -->
+    <g transform="translate(508, 115)">
+      <rect width="20" height="20" rx="4" fill="#1a1a1a" stroke="#3d3d3d" stroke-width="1"/>
+      <!-- cursor icon -->
+      <polygon points="4,4 4,16 8,12 12,18 14,17 10,11 16,11" fill="#888" transform="scale(0.7) translate(2,2)"/>
+    </g>
+    <text x="490" y="186" font-family="'Courier New', monospace" font-size="10" fill="#555" text-anchor="middle">Cursor</text>
+  </g>
+
+  <!-- Dev 2: MK -->
+  <g>
+    <circle cx="490" cy="280" r="30" fill="#2a2a2a" stroke="#3d3d3d" stroke-width="1.5"/>
+    <text x="490" y="285" font-family="'Courier New', monospace" font-size="14" font-weight="bold" fill="#999" text-anchor="middle">MK</text>
+    <!-- Tool badge: terminal bracket -->
+    <g transform="translate(508, 253)">
+      <rect width="20" height="20" rx="4" fill="#1a1a1a" stroke="#3d3d3d" stroke-width="1"/>
+      <text x="10" y="15" font-family="'Courier New', monospace" font-size="12" fill="#888" text-anchor="middle">&gt;_</text>
+    </g>
+    <text x="490" y="324" font-family="'Courier New', monospace" font-size="10" fill="#555" text-anchor="middle">Terminal</text>
+  </g>
+
+  <!-- Dev 3: RB -->
+  <g>
+    <circle cx="490" cy="418" r="30" fill="#2a2a2a" stroke="#3d3d3d" stroke-width="1.5"/>
+    <text x="490" y="423" font-family="'Courier New', monospace" font-size="14" font-weight="bold" fill="#999" text-anchor="middle">RB</text>
+    <!-- Tool badge: copilot approximation (two overlapping rings) -->
+    <g transform="translate(508, 391)">
+      <rect width="20" height="20" rx="4" fill="#1a1a1a" stroke="#3d3d3d" stroke-width="1"/>
+      <circle cx="7" cy="10" r="5" fill="none" stroke="#888" stroke-width="1.5"/>
+      <circle cx="13" cy="10" r="5" fill="none" stroke="#888" stroke-width="1.5"/>
+    </g>
+    <text x="490" y="462" font-family="'Courier New', monospace" font-size="10" fill="#555" text-anchor="middle">Copilot</text>
+  </g>
+
+  <!-- Connecting lines from devs → shared key (converging) -->
+  <!-- AL line -->
+  <line x1="520" y1="142" x2="630" y2="290" stroke="#3d3d3d" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrowGray)"/>
+  <!-- MK line -->
+  <line x1="520" y1="280" x2="630" y2="290" stroke="#3d3d3d" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrowGray)"/>
+  <!-- RB line -->
+  <line x1="520" y1="418" x2="630" y2="295" stroke="#3d3d3d" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrowGray)"/>
+
+  <!-- ─── SHARED KEY ICON ─── -->
+  <g transform="translate(638, 258)" filter="url(#shadow)">
+    <!-- Key box -->
+    <rect x="-34" y="-10" width="68" height="68" rx="8" fill="#1f1f1f" stroke="#e05252" stroke-width="2"/>
+    <!-- Key SVG icon -->
+    <!-- Key head (circle) -->
+    <circle cx="0" cy="16" r="14" fill="none" stroke="#e05252" stroke-width="2.5"/>
+    <circle cx="0" cy="16" r="7" fill="none" stroke="#e05252" stroke-width="2"/>
+    <!-- Key shaft -->
+    <line x1="10" y1="22" x2="32" y2="44" stroke="#e05252" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Teeth -->
+    <line x1="24" y1="36" x2="28" y2="32" stroke="#e05252" stroke-width="2" stroke-linecap="round"/>
+    <line x1="30" y1="42" x2="34" y2="38" stroke="#e05252" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <text x="638" y="344" font-family="'Courier New', monospace" font-size="10" fill="#e05252" text-anchor="middle">SHARED KEY</text>
+
+  <!-- Arrow from key → VP -->
+  <line x1="680" y1="290" x2="790" y2="290" stroke="#e05252" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrowRed)"/>
+
+  <!-- ─── RIGHT: VP of Engineering Figure ─── -->
+
+  <!-- VP silhouette (simple geometric person) -->
+  <g transform="translate(870, 200)">
+    <!-- Head -->
+    <circle cx="0" cy="0" r="32" fill="#2a2a2a" stroke="#3d3d3d" stroke-width="1.5"/>
+    <!-- Face features (subtle) -->
+    <circle cx="-10" cy="-4" r="3" fill="#3d3d3d"/>
+    <circle cx="10" cy="-4" r="3" fill="#3d3d3d"/>
+    <path d="M-8,10 Q0,6 8,10" stroke="#3d3d3d" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <!-- Body -->
+    <rect x="-28" y="36" width="56" height="70" rx="8" fill="#2a2a2a" stroke="#3d3d3d" stroke-width="1.5"/>
+    <!-- Tie detail -->
+    <polygon points="0,40 -6,50 0,90 6,50" fill="#3a3a3a"/>
+    <!-- Arms -->
+    <rect x="-50" y="40" width="22" height="10" rx="5" fill="#2a2a2a" stroke="#3d3d3d" stroke-width="1"/>
+    <rect x="28" y="40" width="22" height="10" rx="5" fill="#2a2a2a" stroke="#3d3d3d" stroke-width="1"/>
+    <!-- Label -->
+    <text x="0" y="126" font-family="'Courier New', monospace" font-size="10" fill="#555" text-anchor="middle">VP Engineering</text>
+  </g>
+
+  <!-- Big RED "?" -->
+  <text x="870" y="170" font-family="'Courier New', monospace" font-size="80" font-weight="bold" fill="#e05252" text-anchor="middle" filter="url(#redGlow)" opacity="0.95">?</text>
+
+  <!-- Sweat drops (subtle panic) -->
+  <ellipse cx="912" cy="196" rx="4" ry="6" fill="#555" opacity="0.6"/>
+  <ellipse cx="920" cy="210" rx="3" ry="5" fill="#555" opacity="0.4"/>
+
+  <!-- ─── BOTTOM LABEL ─── -->
+  <!-- Divider -->
+  <line x1="80" y1="548" x2="1120" y2="548" stroke="#2d2d2d" stroke-width="1"/>
+
+  <text x="600" y="584" font-family="'Courier New', monospace" font-size="18" fill="#888" text-anchor="middle" letter-spacing="2">One shared key.  No visibility.  One invoice.</text>
+
+  <!-- Corner decorations (editorial touch) -->
+  <text x="48" y="620" font-family="'Courier New', monospace" font-size="10" fill="#333">// THE PAIN</text>
+  <text x="1152" y="620" font-family="'Courier New', monospace" font-size="10" fill="#333" text-anchor="end">fig. 01</text>
+</svg>

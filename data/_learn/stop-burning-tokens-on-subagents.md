@@ -9,6 +9,7 @@ reading_time: 5
 hero_image: /assets/images/learn/stop-burning-tokens-receipt.png
 hero_image_alt: "A mock Claude Code receipt itemizing trivial subagent tasks like 'read the file' and 'list the dir' all charged at OPUS rates, with a total of 'ALL OF THEM' tokens."
 hero_image_caption: "Every subagent inherits your session model — even the one that just read a file."
+bottom_line: "If you keep hitting your Claude usage limit, the cause is usually **model inheritance** — every subagent inherits your session model, so trivial file-reads run on expensive Opus. Route work by task instead: Haiku for search/read/format, Sonnet for analysis, Opus only for hard reasoning. Three changes — a lower default model, a `TaskCreated` hook, and `/clear` between tasks — cut subagent cost sharply without removing a single agent."
 tags:
   - Claude Code
   - Token Usage
@@ -25,6 +26,26 @@ sources:
 You open Claude Code in the morning. By noon, you're rate-limited. Sound familiar?
 
 If you're using workflows, skills, or the Agent tool heavily, the culprit is almost always **model inheritance**: every subagent you spawn defaults to whatever model your session is running — even when it's doing something as simple as reading a file or checking a spec.
+
+You can fix this by hand (we cover the manual steps below), but the fastest route is tooling built for exactly this problem. So let's start there.
+
+## The Tools That Fix This
+
+The AI landscape's [**cost-reduction category**](/?subcategory=cost-reduction) collects tools built to cut token spend. Here's how the five main ones compare — what each is best at, and what to watch for:
+
+| Tool | Best at | Token reduction | Watch out for | Stars |
+|---|---|---|---|---|
+| [**Token Optimizer**](/tools/token-optimizer/) | All-round waste detection inside Claude Code — model routing, loop detection, conversation-history awareness | 99%+ per-output; real bill savings | PolyForm Noncommercial license; plugin install needed | ~1.3K |
+| [**Headroom**](/tools/headroom/) | Compressing everything agents read — tool output, logs, RAG, files | 60–95% | Adds processing overhead; can lose nuance | ~27K |
+| [**RTK**](/tools/rtk/) | Cutting token use on CLI/dev commands, near-zero overhead | 60–90% | Limited native Windows (use WSL) | ~62K |
+| [**Context Mode**](/tools/context-mode/) | Sandboxing tool output across 16 platforms; persistent knowledge base | up to 98% on tool outputs | Adds an indirection layer; MCP required | ~17K |
+| [**Claude Dashboard**](/tools/claude-dashboard/) | Seeing where tokens go — local usage dashboard, burn-rate, heatmaps | Tracking only | New project; Claude Code logs only | ~9 |
+
+**Start here:** [**Token Optimizer**](/tools/token-optimizer/) is the one that did this for us — it's the only tool above that covers all the major waste sources (model routing, loop detection, and the conversation history that's 60–75% of your bill), not just one. If your pain is specifically agents reading huge files, pair it with [**Headroom**](/tools/headroom/). And if you just want to *see* where your tokens go before changing anything, start with [**Claude Dashboard**](/tools/claude-dashboard/).
+
+## Prefer to Do It Yourself?
+
+If you'd rather understand exactly what's happening and fix it by hand — or you want to squeeze out the last bit of savings that tooling leaves on the table — the rest of this guide walks through it. You'll learn how to diagnose where your tokens actually go, then apply four manual fixes. These compound with the tools above: tooling does the heavy lifting, the habits keep it from creeping back.
 
 ## Step 0: Find Your Usage Breakdown
 
@@ -85,6 +106,9 @@ Not all tasks need the same intelligence. Claude offers three tiers with very di
 | **Haiku** | Search, read, list, format, spec-check, file counts | Any reasoning or synthesis |
 | **Sonnet** | Code review, analysis, moderate reasoning, summaries | Deep architecture work |
 | **Opus** | Complex debugging, multi-file refactoring, hard reasoning | Anything routine |
+
+![A routing dashboard showing three rows — Haiku for search and read tasks at low cost, Sonnet for analysis at medium cost, Opus for architecture at high cost — with a status of "routing active, within limits".](/assets/images/learn/stop-burning-tokens-routing.png)
+*After: each subagent dispatched to the cheapest model that can do the job. Same agents, same output, far fewer tokens.*
 
 The mistake most users make: they pick a model for their *session* and forget that every subagent inherits it.
 
@@ -170,3 +194,10 @@ One user's results after applying these fixes:
 The 60% subagent cost dropped sharply — not because they ran fewer agents, but because file-reading and spec-checking tasks stopped running on a model 5× more expensive than needed.
 
 You don't need to do less. You need to do it at the right tier.
+
+## Related Resources
+
+- [**Browse all cost-reduction tools →**](/?subcategory=cost-reduction) — the full category, including [Token Optimizer](/tools/token-optimizer/), [Headroom](/tools/headroom/), [RTK](/tools/rtk/), [Context Mode](/tools/context-mode/), and [Claude Dashboard](/tools/claude-dashboard/)
+- [Managing AI Coding Tool Budgets](/guides/managing-ai-coding-tool-budgets/) — a broader look at keeping AI-assisted development affordable
+- [Loop Engineering](/guides/loop-engineering/) — how to build agent loops that don't run away with your budget
+- [Coding agents](/?subcategory=coding-agents) — compare [Cline](/tools/cline/), [Aider](/tools/aider/), [GitHub Copilot](/tools/github-copilot/), and other terminal/CLI agents

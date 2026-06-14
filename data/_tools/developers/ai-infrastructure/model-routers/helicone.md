@@ -2,8 +2,8 @@
 category: ai-infrastructure
 confidence_score: 0.9
 description: Open-source LLM observability and monitoring platform for AI applications with request logging, caching, and cost tracking across all major providers.
-github_stars: 2800
-last_verified: '2026-06-03'
+github_stars: 5810
+last_verified: '2026-06-14'
 name: Helicone
 pricing_model: freemium
 slug: helicone
@@ -16,7 +16,7 @@ website: https://www.helicone.ai/
 
 <div class="key-stats">
   <div class="key-stat">
-    <span class="number">2.8K+</span>
+    <span class="number">5.8K+</span>
     <span class="label">GitHub Stars</span>
   </div>
   <div class="key-stat">
@@ -81,6 +81,14 @@ website: https://www.helicone.ai/
     </ul>
     <div class="source"><a href="https://github.com/Helicone/helicone" target="_blank">GitHub</a></div>
   </div>
+</div>
+
+## Team Budget & Governance
+
+<div class="overview">
+<p>Helicone is the <strong>visibility-first</strong> choice. With a one-line integration it gives you per-request cost tracking and per-user breakdowns across 100+ providers — the fastest way to answer "where is the money going?" before committing to a heavier architecture.</p>
+<p>The important caveat: Helicone primarily <strong>observes</strong>, it doesn't <strong>enforce</strong>. There are no hard per-user spend caps that block requests at a limit. If your goal is enforcement rather than visibility, pair it with — or move to — a proxy like LiteLLM, Portkey, or Cloudflare AI Gateway. Note also that Helicone was acquired by Mintlify in early 2026, so its long-term roadmap is uncertain.</p>
+<div class="source"><a href="https://docs.helicone.ai/guides/cookbooks/cost-tracking" target="_blank" rel="noopener">Cost Tracking docs</a></div>
 </div>
 
 ## Pricing

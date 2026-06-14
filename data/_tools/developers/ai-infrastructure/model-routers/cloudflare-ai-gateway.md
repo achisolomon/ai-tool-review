@@ -81,6 +81,19 @@ website: https://developers.cloudflare.com/ai-gateway/
   </div>
 </div>
 
+## Team Budget & Governance
+
+<div class="overview">
+<p>In June 2026 Cloudflare added <strong>spend limits</strong> to AI Gateway — making it a genuine budget-enforcement layer, not just an observability proxy. It's the lowest-friction option here: no self-hosting, and spend limits are available on any paid Cloudflare account.</p>
+<ul>
+  <li><strong>Daily, weekly, or monthly windows</strong> — fixed (calendar reset) or rolling (trailing N days); daily is a first-class option, not an afterthought</li>
+  <li><strong>Metadata-scoped limits</strong> — cap spend by user ID, team, or application, up to 20 rules per gateway</li>
+  <li><strong>Block or downgrade</strong> — return HTTP 429 at the cap, or route to a cheaper fallback model instead of failing</li>
+  <li><strong>Caveat:</strong> lacks deep per-team RBAC and virtual-key hierarchies that LiteLLM and Portkey offer</li>
+</ul>
+<div class="source"><a href="https://developers.cloudflare.com/ai-gateway/features/spend-limits/" target="_blank" rel="noopener">Spend Limits docs</a></div>
+</div>
+
 ## Pricing
 
 <div class="pricing-grid">

@@ -1,16 +1,19 @@
 ---
 layout: null
-title: "Learn | AI Tool Review"
-description: "Guides, deep-dives, and tutorials on AI tools, development workflows, and best practices."
-permalink: /learn/
+title: "AI Guides & Best Practices | AI Tool Review"
+description: "Practical guides, best practices, and tips for AI coding tools, development workflows, and cost control."
+permalink: /guides/
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.svg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Learn | AI Tool Review</title>
-  <meta name="description" content="Guides, deep-dives, and tutorials on AI tools, development workflows, and best practices.">
+  <title>AI Guides & Best Practices | AI Tool Review</title>
+  <meta name="description" content="Practical guides, best practices, and tips for AI coding tools, development workflows, and cost control.">
+  <link rel="canonical" href="https://aitoolreview.ai/guides/">
   <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
   <link rel="stylesheet" href="{{ '/css/auth.css' | relative_url }}?v={{ site.time | date: '%s' }}">
   <style>
@@ -40,15 +43,15 @@ permalink: /learn/
       <nav class="nav-links">
         <a href="{{ '/' | relative_url }}" class="nav-link nav-link-text">Search</a>
         <a href="{{ '/landscape.html' | relative_url }}" class="nav-link nav-link-text">Landscape</a>
-        <a href="{{ '/learn/' | relative_url }}" class="nav-link nav-link-text nav-active">Learn</a>
+        <a href="{{ '/guides/' | relative_url }}" class="nav-link nav-link-text nav-active">Guides</a>
         <div id="auth-container"></div>
       </nav>
     </div>
   </header>
 
   <main class="learn-index">
-    <h1>Learn</h1>
-    <p class="subtitle">Guides, deep-dives, and tutorials on AI tools, development workflows, and best practices.</p>
+    <h1>AI Guides &amp; Best Practices</h1>
+    <p class="subtitle">Practical guides, best practices, and tips for AI coding tools, development workflows, and cost control.</p>
 
     {% assign articles = site.learn | sort: "date" | reverse %}
     {% for article in articles %}

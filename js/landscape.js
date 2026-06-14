@@ -167,7 +167,10 @@ document.addEventListener('DOMContentLoaded', () => {
             domain = '';
         }
 
-        const logoUrl = domain ? `https://www.google.com/s2/favicons?domain=${domain}&sz=64` : '';
+        // favicon.im returns HTTP 200 (with a fallback glyph) for every domain,
+        // unlike google.com/s2/favicons which 404s for domains it has no icon for
+        // and pollutes the console. The card already falls back to the initial via onerror.
+        const logoUrl = domain ? `https://favicon.im/${domain}?larger=true` : '';
         const stars = formatStars(tool.github_stars);
         const starsHtml = stars ? `<span class="stars-badge stars-badge-sm" title="${stars} GitHub stars"><svg class="star-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25z"/></svg>${stars}</span>` : '';
 

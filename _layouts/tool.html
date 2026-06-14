@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.svg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {% include head-seo.html %}
   {% include schema-jsonld.html %}
@@ -159,7 +161,7 @@
       <a href="{{ '/' | relative_url }}">AI Tool Review</a>
       <a href="{{ '/developers/' | relative_url }}">Developers</a>
       <a href="{{ '/users/' | relative_url }}">Users</a>
-      <a href="{{ '/learn/' | relative_url }}">Learn</a>
+      <a href="{{ '/guides/' | relative_url }}">Guides</a>
       <div style="flex: 1;"></div>
       <div id="auth-container"></div>
     </nav>
@@ -169,7 +171,7 @@
     <article>
       <header class="tool-header">
         {% assign _host = page.website | remove: 'https://' | remove: 'http://' | remove: 'www.' | split: '/' | first %}
-        <h1>{% if _host and _host != '' %}<span class="tool-favicon"><img src="https://www.google.com/s2/favicons?domain={{ _host }}&sz=64" alt="{{ page.name }} icon" loading="lazy" onerror="this.parentElement.remove()"></span>{% endif %}<a href="{{ page.website }}" target="_blank" rel="noopener">{{ page.name }} <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; opacity: 0.5;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a></h1>
+        <h1>{% if _host and _host != '' %}<span class="tool-favicon"><img src="https://favicon.im/{{ _host }}?larger=true" alt="{{ page.name }} icon" loading="lazy" onerror="this.parentElement.remove()"></span>{% endif %}<a href="{{ page.website }}" target="_blank" rel="noopener">{{ page.name }} <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; opacity: 0.5;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a></h1>
         <p class="tool-meta">
           <span class="tool-type">{{ page.type }}</span>
           {% if page.pricing_model %}
@@ -237,8 +239,10 @@
   <!-- Supabase & Reviews Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   {% if jekyll.environment != "production" %}
-  <!-- Local dev config - only in development mode (file is gitignored) -->
-  <script src="{{ '/js/config-local.js' | relative_url }}"></script>
+  <!-- Local dev config - only in development mode (file is gitignored).
+       onerror removes the node so a missing optional file doesn't surface as an
+       uncaught load error; the 404 itself only ever occurs in local dev. -->
+  <script src="{{ '/js/config-local.js' | relative_url }}" onerror="this.remove()"></script>
   {% endif %}
   <script src="{{ '/js/supabase-client.js' | relative_url }}"></script>
   <script src="{{ '/js/reviews-api.js' | relative_url }}"></script>

@@ -11,7 +11,7 @@ collections:
     permalink: /tools/:slug/
   learn:
     output: true
-    permalink: /learn/:slug/
+    permalink: /guides/:slug/
 
 # Default layout for tools and learn articles
 defaults:

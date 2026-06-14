@@ -70,14 +70,14 @@ confidence_score: 0.85
     <h3>What's Great</h3>
     <ul>
       <li>Single API for 300+ models across providers</li>
-      <li>OpenAI-compatible endpoint (drop-in replacement)</li>
-      <li>Automatic fallbacks when providers fail</li>
-      <li>Transparent per-token pricing</li>
-      <li>No monthly minimums or commitments</li>
-      <li>Real-time model availability dashboard</li>
-      <li>Built-in usage analytics</li>
+      <li>OpenAI-compatible endpoint (drop-in replacement, no code change to switch models)</li>
+      <li>Automatic routing to the fastest provider, with fallbacks when one goes down</li>
+      <li>Per-API-key spend limits that hold across every model — the cap follows the key whether the request hits Gemini or Claude Opus</li>
+      <li>Zero Data Retention (ZDR) available as a default org-level setting</li>
+      <li>Transparent per-token pricing, no monthly minimums</li>
+      <li>Built-in usage analytics dashboard</li>
     </ul>
-    <div class="source"><a href="https://openrouter.ai/docs" target="_blank">OpenRouter Docs</a> · <a href="https://openrouter.ai/models" target="_blank">Models Page</a></div>
+    <div class="source"><a href="https://openrouter.ai/docs/guides/features/guardrails" target="_blank">Guardrails &amp; Limits</a> · <a href="https://openrouter.ai/models" target="_blank">Models Page</a></div>
   </div>
   <div class="cons-list">
     <h3>Watch Out For</h3>
@@ -90,6 +90,20 @@ confidence_score: 0.85
     </ul>
     <div class="source"><a href="https://www.reddit.com/r/LocalLLaMA/comments/openrouter" target="_blank">Reddit Discussions</a></div>
   </div>
+</div>
+
+## Team Budget & Governance
+
+<div class="overview">
+<p>OpenRouter is a strong fit for team cost control because the spend limit lives on the <strong>API key</strong>, not the model. Issue a key per developer, set a cap, and it's enforced no matter which provider the request routes to — Gemini, Claude Opus, GPT, or anything else. Switching models needs no code change, so governance survives model churn.</p>
+<ul>
+  <li><strong>Per-key spend limits</strong> with automatic daily, weekly, or monthly resets — the daily window doubles as a runaway-session circuit breaker</li>
+  <li><strong>Limit is model-agnostic</strong> — one cap covers all providers behind the key, so you can't dodge it by switching models</li>
+  <li><strong>Zero Data Retention (ZDR)</strong> available as an org-level guardrail; when on, the lower of the ZDR and key budgets wins</li>
+  <li><strong>Automatic fastest-provider routing + fallbacks</strong> keep teams productive without per-provider key management</li>
+  <li><strong>Caveat:</strong> traffic flows through OpenRouter's infrastructure with a small markup — weigh against direct billing for compliance-sensitive or high-volume teams</li>
+</ul>
+<div class="source"><a href="https://openrouter.ai/docs/guides/features/guardrails" target="_blank" rel="noopener">Guardrails &amp; budget docs</a></div>
 </div>
 
 ## Pricing
