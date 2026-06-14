@@ -414,19 +414,12 @@
     const safeName = escapeHtml(rawName.slice(0, 40));
     return `
       <div class="suggest-credit-block">
-        <div class="suggest-credit-row">
+        <label class="suggest-credit-row">
           <input type="checkbox" id="suggest-public-credit" name="public_credit" checked>
-          <label for="suggest-public-credit">Credit me publicly as</label>
-        </div>
-        <div class="suggest-credit-name-field" id="suggest-credit-name-wrapper">
-          <label for="suggest-credit-name">Display name (shown on the site)</label>
-          <input class="suggest-input" type="text" id="suggest-credit-name" name="credit_name"
-                 value="${safeName}" maxlength="40"
-                 placeholder="Your name (max 40 chars)">
-        </div>
-        <p class="suggest-credit-disclosure">
-          If approved, your name may appear permanently on the tool page as the contributor who suggested it.
-        </p>
+          <span>Credit me publicly as <strong id="suggest-credit-name-wrapper">${safeName || 'me'}</strong></span>
+        </label>
+        <input type="hidden" id="suggest-credit-name" name="credit_name" value="${safeName}">
+        <p class="suggest-credit-disclosure">Your name may appear on the tool page if approved.</p>
       </div>
     `;
   }
@@ -584,9 +577,13 @@
   function wireCreditConsent(modal) {
     const checkbox = modal.querySelector('#suggest-public-credit');
     const nameWrapper = modal.querySelector('#suggest-credit-name-wrapper');
-    if (!checkbox || !nameWrapper) return;
+    const hiddenName = modal.querySelector('#suggest-credit-name');
+    if (!checkbox) return;
     checkbox.addEventListener('change', () => {
-      nameWrapper.hidden = !checkbox.checked;
+      // Dim the displayed name when opting out; clear the submitted value so
+      // an unchecked box never sends a credit name.
+      if (nameWrapper) nameWrapper.style.opacity = checkbox.checked ? '1' : '0.4';
+      if (hiddenName) hiddenName.disabled = !checkbox.checked;
     });
   }
 

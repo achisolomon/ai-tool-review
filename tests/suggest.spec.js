@@ -302,66 +302,53 @@ test.describe('Test 3: Mocked-auth form tests', () => {
   // 3c — Credit consent
   // -----------------------------------------------------------------------
 
-  test('3c: credit consent checkbox, name field, and permanence disclosure are present; unchecking hides name field', async ({ page }) => {
+  test('3c: credit consent shows read-only OAuth name; opting out dims it and clears the submitted value', async ({ page }) => {
     await openNewToolForm(page);
 
-    // The form is long; scroll to the credit section at the bottom.
     await page.evaluate(() => {
       const el = document.querySelector('#suggest-public-credit');
       if (el) el.scrollIntoView({ block: 'center' });
     });
 
-    // Use page.evaluate to verify presence and the toggle behaviour in a single
-    // roundtrip — avoids the cross-tick locator staleness that causes flakiness
-    // when Playwright re-queries the DOM after each async await.
     const result = await page.evaluate(() => {
       const checkbox = document.querySelector('#suggest-public-credit');
-      const nameWrapper = document.querySelector('#suggest-credit-name-wrapper');
-      const nameField = document.querySelector('#suggest-credit-name');
+      const nameDisplay = document.querySelector('#suggest-credit-name-wrapper'); // now an inline <strong>
+      const nameField = document.querySelector('#suggest-credit-name');           // now type=hidden
       const disclosure = document.querySelector('.suggest-credit-disclosure');
 
-      if (!checkbox || !nameWrapper || !nameField || !disclosure) {
-        return {
-          ok: false,
-          error: 'Missing elements: ' + [
-            !checkbox && '#suggest-public-credit',
-            !nameWrapper && '#suggest-credit-name-wrapper',
-            !nameField && '#suggest-credit-name',
-            !disclosure && '.suggest-credit-disclosure',
-          ].filter(Boolean).join(', '),
-        };
+      if (!checkbox || !nameDisplay || !nameField || !disclosure) {
+        return { ok: false, error: 'Missing elements' };
       }
 
       const initiallyChecked = checkbox.checked;
-      const disclosureText = disclosure.textContent;
-      const initiallyHidden = nameWrapper.hidden;
+      // Name is read-only (not a user-editable text input)
+      const nameIsReadOnly = nameField.type === 'hidden';
+      // The displayed name reflects the OAuth identity passed to the modal
+      const showsName = nameDisplay.textContent.trim().length > 0;
+      // No "Display name" editable label anymore
+      const hasOldLabel = !!document.querySelector('label[for="suggest-credit-name"]');
 
-      // Simulate uncheck
       checkbox.checked = false;
       checkbox.dispatchEvent(new Event('change'));
-      const hiddenAfterUncheck = nameWrapper.hidden;
+      const dimmedAfterUncheck = nameDisplay.style.opacity === '0.4';
+      const valueClearedAfterUncheck = nameField.disabled === true;
 
-      // Simulate re-check
       checkbox.checked = true;
       checkbox.dispatchEvent(new Event('change'));
-      const hiddenAfterRecheck = nameWrapper.hidden;
+      const restoredAfterRecheck = nameDisplay.style.opacity === '1' && nameField.disabled === false;
 
-      return {
-        ok: true,
-        initiallyChecked,
-        disclosureHasPermanently: disclosureText.includes('permanently'),
-        initiallyHidden,         // should be false (visible)
-        hiddenAfterUncheck,      // should be true (hidden)
-        hiddenAfterRecheck,      // should be false (visible again)
-      };
+      return { ok: true, initiallyChecked, nameIsReadOnly, showsName, hasOldLabel,
+               dimmedAfterUncheck, valueClearedAfterUncheck, restoredAfterRecheck };
     });
 
     expect(result.ok).toBe(true);
     expect(result.initiallyChecked).toBe(true);
-    expect(result.disclosureHasPermanently).toBe(true);
-    expect(result.initiallyHidden).toBe(false);    // wrapper visible initially
-    expect(result.hiddenAfterUncheck).toBe(true);  // hidden after uncheck
-    expect(result.hiddenAfterRecheck).toBe(false); // visible after re-check
+    expect(result.nameIsReadOnly).toBe(true);          // name comes from GitHub/Google, not editable
+    expect(result.showsName).toBe(true);               // identity name displayed
+    expect(result.hasOldLabel).toBe(false);            // "Display name (shown on the site)" removed
+    expect(result.dimmedAfterUncheck).toBe(true);      // opting out dims the name
+    expect(result.valueClearedAfterUncheck).toBe(true);// hidden value disabled so it isn't submitted
+    expect(result.restoredAfterRecheck).toBe(true);    // re-checking restores
   });
 
   // -----------------------------------------------------------------------
