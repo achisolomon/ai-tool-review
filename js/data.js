@@ -6056,6 +6056,33 @@ const landscapeData = {
           "name": "Model Routers & Gateways",
           "tools": [
             {
+              "name": "Bifrost",
+              "slug": "bifrost",
+              "url": "https://www.getmaxim.ai/bifrost",
+              "desc": "High-performance open-source LLM gateway from Maxim AI providing a unified OpenAI-compatible API for 1000+ models across 23+ providers, with automatic fallbacks, load balancing, MCP support, and sub-100µs overhead at 5,000 RPS.",
+              "type": "oss",
+              "github_stars": 5746,
+              "pricing_model": "open-source",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "api-available",
+                "self-hosted",
+                "mcp-server"
+              ],
+              "all_tags": [
+                "api-available",
+                "self-hosted",
+                "mcp-server",
+                "observability"
+              ],
+              "category_id": "ai-infrastructure",
+              "category_name": "AI Infrastructure (Inference, Compute, Routing)",
+              "subcategory_id": "model-routers",
+              "subcategory_name": "Model Routers & Gateways",
+              "additional_categories": []
+            },
+            {
               "name": "Cloudflare AI Gateway",
               "slug": "cloudflare-ai-gateway",
               "url": "https://developers.cloudflare.com/ai-gateway/",
