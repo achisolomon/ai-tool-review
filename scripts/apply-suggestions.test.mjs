@@ -211,6 +211,16 @@ test('applyTaxonomyChange rename cascades to YAML and tool frontmatter', () => {
   rmSync(root, { recursive: true, force: true });
 });
 
+test('applyNewTool derives slug from name when payload.slug is absent', () => {
+  const root = fixtureTree();
+  const row = { kind: 'new_tool', public_credit: false, payload: {
+    name: 'Brand New Tool', website: 'https://x.com', description: 'd',
+    placement: { track: 'developers', category: 'agent-frameworks', subcategory: 'agent-memory' } } };
+  const msg = applyNewTool(row, root, loadTaxonomy(root));
+  assert.match(msg, /brand-new-tool/);
+  rmSync(root, { recursive: true, force: true });
+});
+
 // ── Task 2.5: Orchestration pure tests ──────────────────────────────────────
 import { orderForApply, appendChangelog } from './apply-suggestions.mjs';
 

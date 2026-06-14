@@ -245,30 +245,26 @@ test.describe('Test 3: Mocked-auth form tests', () => {
   // 3a — Slug derivation
   // -----------------------------------------------------------------------
 
-  test('3a: typing a tool name auto-derives the slug; invalid slug shows validity error', async ({ page }) => {
+  test('3a: typing a tool name triggers duplicate check; name field is present and required', async ({ page }) => {
+    // Note: slug field was removed in Task 2. This test now covers name field presence
+    // and that typing a name triggers the duplicate-check flow (no slug derivation to verify).
     const modal = await openNewToolForm(page);
 
     const nameInput = modal.locator('#suggest-name');
-    const slugInput = modal.locator('#suggest-slug');
 
-    // Type the name — the input event should auto-fill the slug
+    // Name field must be present and required
+    await expect(nameInput).toBeVisible();
+    await expect(nameInput).toHaveAttribute('required', '');
+
+    // Slug field must NOT be present
+    await expect(modal.locator('#suggest-slug')).toHaveCount(0);
+
+    // Typing a name dispatches an input event — duplicate-check wiring must not throw
     await nameInput.fill('Letta AI');
     await nameInput.dispatchEvent('input');
 
-    // Wait for slug to be derived (SuggestLogic.slugify is synchronous inside the handler)
-    await expect(slugInput).toHaveValue('letta-ai', { timeout: 2000 });
-
-    // Now type an invalid slug directly and trigger input event
-    await slugInput.fill('INVALID SLUG!');
-    await slugInput.dispatchEvent('input');
-
-    // setCustomValidity should mark it invalid
-    const validity = await slugInput.evaluate((el) => ({
-      valid: el.validity.valid,
-      message: el.validationMessage,
-    }));
-    expect(validity.valid).toBe(false);
-    expect(validity.message.length).toBeGreaterThan(0);
+    // The name value is stable (no crash, no redirect)
+    await expect(nameInput).toHaveValue('Letta AI');
   });
 
   // -----------------------------------------------------------------------
@@ -369,6 +365,23 @@ test.describe('Test 3: Mocked-auth form tests', () => {
   });
 
   // -----------------------------------------------------------------------
+  // 3f — No slug field; category/subcategory optional
+  // -----------------------------------------------------------------------
+
+  test('3f: new-tool form has no slug field; category/subcategory are optional', async ({ page }) => {
+    const modal = await openNewToolForm(page);
+
+    // No slug field in the form
+    await expect(page.locator('#suggest-slug')).toHaveCount(0);
+
+    // Category and subcategory selects are in the DOM (inside the collapsible) but NOT required
+    await expect(page.locator('#suggest-category')).toBeAttached();
+    await expect(page.locator('#suggest-category')).not.toHaveAttribute('required', /.*/);
+    await expect(page.locator('#suggest-subcategory')).toBeAttached();
+    await expect(page.locator('#suggest-subcategory')).not.toHaveAttribute('required', /.*/);
+  });
+
+  // -----------------------------------------------------------------------
   // 3d — Successful mocked submit shows confirmation
   // -----------------------------------------------------------------------
 
@@ -381,11 +394,6 @@ test.describe('Test 3: Mocked-auth form tests', () => {
     await nameInput.dispatchEvent('input');
 
     await modal.locator('#suggest-website').fill('https://testtool.example.com');
-
-    // Slug should have been auto-derived; ensure it's valid
-    const slugInput = modal.locator('#suggest-slug');
-    await slugInput.fill('test-tool-xyz');
-    await slugInput.dispatchEvent('input');
 
     // Description (required, min 10 chars)
     await modal.locator('#suggest-description').fill('A test tool for playwright e2e spec.');

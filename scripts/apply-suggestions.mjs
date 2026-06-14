@@ -205,14 +205,15 @@ export function slugWithSuffix(root, slug) {
 }
 
 export function applyNewTool(row, root, tax) {
-  const finalSlug = slugWithSuffix(root, row.payload.slug);
-  const renamed = finalSlug !== row.payload.slug;
+  const baseSlug = row.payload.slug || slugify(row.payload.name);
+  const finalSlug = slugWithSuffix(root, baseSlug);
+  const renamed = finalSlug !== baseSlug;
   const fm = buildFrontmatter({ ...row, payload: { ...row.payload, slug: finalSlug } });
   const rel = toolPath({ track: fm.track, category: fm.category, subcategory: fm.subcategory, slug: finalSlug });
   const abs = _join(root, rel);
   mkdirSync(dirname(abs), { recursive: true });
   writeFileSync(abs, matter.stringify(`\n${row.payload.description}\n`, fm));
-  return `created ${rel}${renamed ? ` (slug renamed from ${row.payload.slug})` : ''}`;
+  return `created ${rel}${renamed ? ` (slug renamed from ${baseSlug})` : ''}`;
 }
 
 export function applyToolPlacement(row, root, tax) {

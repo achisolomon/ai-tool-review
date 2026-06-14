@@ -330,6 +330,7 @@
     trackOpts += '<option value="developers">For Developers</option>';
 
     return `
+      <div class="suggest-hint">Optional — leave blank and a reviewer will place it.</div>
       <div class="suggest-form-group">
         <label for="suggest-track">Track</label>
         <select class="suggest-select" id="suggest-track" name="track">
@@ -342,7 +343,7 @@
           <option value="">Select a category…</option>
         </select>
       </div>
-      <div class="suggest-form-group" id="suggest-subcategory-group" hidden>
+      <div class="suggest-form-group" id="suggest-subcategory-group">
         <label for="suggest-subcategory">Subcategory</label>
         <select class="suggest-select" id="suggest-subcategory" name="subcategory">
           <option value="">Select a subcategory…</option>
@@ -449,14 +450,6 @@
         </div>
 
         <div class="suggest-form-group">
-          <label for="suggest-slug">Slug (URL identifier) <span class="required">*</span></label>
-          <input class="suggest-input" type="text" id="suggest-slug" name="slug"
-                 required pattern="^[a-z0-9]+(-[a-z0-9]+)*$"
-                 placeholder="auto-derived from name" autocomplete="off">
-          <div class="suggest-hint">Lowercase letters and hyphens only. Pattern: <code>^[a-z0-9]+(-[a-z0-9]+)*$</code></div>
-        </div>
-
-        <div class="suggest-form-group">
           <label for="suggest-description">One-line description <span class="required">*</span></label>
           <textarea class="suggest-textarea" id="suggest-description" name="description"
                     required minlength="10" maxlength="300"
@@ -554,7 +547,6 @@
 
   function wireDuplicateCheck(modal, taxonomy) {
     const nameInput = modal.querySelector('#suggest-name');
-    const slugInput = modal.querySelector('#suggest-slug');
     const websiteInput = modal.querySelector('#suggest-website');
     const dupWarning = modal.querySelector('#suggest-dup-warning');
 
@@ -583,27 +575,10 @@
     }
 
     nameInput.addEventListener('input', () => {
-      // Auto-derive slug
-      if (window.SuggestLogic && slugInput) {
-        const derived = window.SuggestLogic.slugify(nameInput.value);
-        slugInput.value = derived;
-      }
       checkDuplicates();
     });
 
     if (websiteInput) websiteInput.addEventListener('input', checkDuplicates);
-
-    // Slug pattern validation feedback
-    if (slugInput) {
-      slugInput.addEventListener('input', () => {
-        const pattern = /^[a-z0-9]+(-[a-z0-9]+)*$/;
-        if (slugInput.value && !pattern.test(slugInput.value)) {
-          slugInput.setCustomValidity('Only lowercase letters and hyphens (e.g. my-tool-name)');
-        } else {
-          slugInput.setCustomValidity('');
-        }
-      });
-    }
   }
 
   function wireCreditConsent(modal) {
@@ -637,7 +612,6 @@
       // Read fields
       const name = form.querySelector('#suggest-name')?.value.trim() || '';
       const website = form.querySelector('#suggest-website')?.value.trim() || '';
-      const slug = form.querySelector('#suggest-slug')?.value.trim() || '';
       const description = form.querySelector('#suggest-description')?.value.trim() || '';
       const rationale = form.querySelector('#suggest-rationale')?.value.trim() || '';
 
@@ -679,7 +653,7 @@
       let payload;
       try {
         payload = window.SuggestLogic.buildPayload('new_tool', {
-          name, slug, website, description,
+          name, website, description,
           placementProvided, track, category, subcategory,
           tags, type, pricing_model, notes
         });
