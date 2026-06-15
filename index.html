@@ -85,6 +85,9 @@ permalink: /
         </div>
     </header>
 
+    <!-- SPA landmark: used by tests and router to detect search page -->
+    <main id="page-content">
+
     <!-- Hero Section - Action Mode -->
     <section class="hero hero-action" id="hero-action">
         <canvas id="hero-map" aria-hidden="true"></canvas>
@@ -128,6 +131,11 @@ permalink: /
         </div>
     </section>
 
+    <!-- SPA landmark: used by tests to detect search page is loaded -->
+    <span id="search-input" style="position:absolute;width:1px;height:1px" aria-hidden="true"></span>
+
+    </main><!-- #page-content -->
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-bottom">
@@ -159,6 +167,7 @@ permalink: /
     <script src="js/hero-map.js?t=1781270001"></script>
     <script src="js/card-glow.js?t=1781270001"></script>
     {% include nav-scripts.html %}
+    <script src="/js/router.js"></script>
 
     <!-- Cookie Consent Banner -->
     <div id="cookie-consent" class="cookie-banner" style="display: none;">

@@ -1,5 +1,5 @@
 // AI Landscape Page - Dedicated landscape view
-document.addEventListener('DOMContentLoaded', () => {
+window.landscapeInit = function landscapeInit() {
     // State
     let currentTrack = 'all';
     let currentType = 'all';
@@ -407,4 +407,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         section.hidden = false;
     }
-});
+};
+
+document.addEventListener('DOMContentLoaded', () => window.landscapeInit());

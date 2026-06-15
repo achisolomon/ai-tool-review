@@ -1,7 +1,7 @@
 // AI Tool Review - Homepage Search Application
 
 // Populate hero subtitle counts from live data
-(function updateHeroCounts() {
+function updateHeroCounts() {
     if (typeof landscapeData === 'undefined') return;
     let toolCount = 0, catCount = 0;
     for (const track of ['users', 'developers']) {
@@ -17,9 +17,10 @@
     const ccEl = document.getElementById('hero-cat-count');
     if (tcEl) tcEl.textContent = toolCount + '+';
     if (ccEl) ccEl.textContent = catCount + '+';
-})();
+}
 
-document.addEventListener('DOMContentLoaded', () => {
+window.appInit = function appInit() {
+    updateHeroCounts();
     // State
     let searchQuery = '';
 
@@ -1248,4 +1249,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize
     setupEventListeners();
     initFromURL();
-});
+};
+
+document.addEventListener('DOMContentLoaded', () => window.appInit());

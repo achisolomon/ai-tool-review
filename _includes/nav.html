@@ -12,9 +12,9 @@
     </a>
   </div>
   <div class="nav-fixed">
-    <a href="/" class="nav-link nav-link-text{% if include.active == 'search' %} nav-active{% endif %}">Search</a>
-    <a href="/landscape.html" class="nav-link nav-link-text{% if include.active == 'landscape' %} nav-active{% endif %}">Landscape</a>
-    <a href="/guides/" class="nav-link nav-link-text{% if include.active == 'guides' %} nav-active{% endif %}">Guides</a>
+    <a href="/" data-spa-link class="nav-link nav-link-text{% if include.active == 'search' %} nav-active{% endif %}">Search</a>
+    <a href="/landscape.html" data-spa-link class="nav-link nav-link-text{% if include.active == 'landscape' %} nav-active{% endif %}">Landscape</a>
+    <a href="/guides/" data-spa-link class="nav-link nav-link-text{% if include.active == 'guides' %} nav-active{% endif %}">Guides</a>
     <div id="auth-container"></div>
   </div>
 </nav>
