@@ -112,6 +112,9 @@ use-cases:
   - slug: free
     name: "Free"
     description: "Completely free to use with no paid tiers"
+  - slug: reduces-costs
+    name: "Reduces Costs"
+    description: "Measurably reduces AI token/compute costs"
 
 language-support:
   - slug: hebrew
