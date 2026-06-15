@@ -2,7 +2,7 @@
 category: data-training
 confidence_score: 0.9
 description: "LangExtract is an open-source library for automated language detection and text extraction from multilingual documents."
-github_stars: 36883
+github_stars: 36892
 last_verified: '2026-06-03'
 name: LangExtract
 pricing_model: free

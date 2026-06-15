@@ -9,7 +9,7 @@ subcategory: "open-source"
 status: "active"
 description: "Open-access large language model family designed for developers, researchers, and businesses to build, experiment, and responsibly scale their generative AI ideas"
 github_url: "https://github.com/meta-llama/llama-models"
-github_stars: 7628
+github_stars: 7630
 pricing_model: "free"
 founded_year: 2023
 headquarters: "Menlo Park, CA"
