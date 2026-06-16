@@ -189,10 +189,17 @@
         if (signinBtn) {
             signinBtn.addEventListener('click', async function() {
                 this.disabled = true;
+                try {
+                    await window.SupabaseClient.ensureSupabase();
+                } catch (_) {
+                    alert('Sign-in is temporarily unavailable. Please try again in a few minutes.');
+                    this.disabled = false;
+                    return;
+                }
                 const healthy = await window.SupabaseClient.isDatabaseHealthy(true);
                 if (!healthy) {
                     alert('Sign-in is temporarily unavailable. Please try again in a few minutes.');
-                    container.innerHTML = '';
+                    this.disabled = false;
                     return;
                 }
                 const { error } = await window.SupabaseClient.signInWithProvider('github');
