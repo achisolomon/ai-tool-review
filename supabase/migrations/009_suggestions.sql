@@ -176,3 +176,10 @@ USING (EXISTS (SELECT 1 FROM public.user_roles
 -- ACL layer before RLS even runs, which made isSuggestionsAvailable() return
 -- false and hide all suggest UI for unauthenticated visitors.
 GRANT SELECT ON public.suggestions TO anon;
+
+-- Grant table-level access to authenticated (RLS policies above still restrict
+-- to the right rows). Without this, every authenticated query — including
+-- staff/admin reads — fails with "permission denied for table suggestions"
+-- before RLS ever runs. Backfilled for databases where this migration already
+-- ran: see 011_grant_suggestions.sql.
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.suggestions TO authenticated;
