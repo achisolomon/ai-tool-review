@@ -9,7 +9,7 @@ subcategory: "guardrails"
 status: "active"
 description: "NVIDIA's open-source toolkit for implementing guardrails on LLMs. Uses configuration-as-code for defining conversational rules, handling harmful content, and preventing undesired behaviors with rail specifications."
 github_url: "https://github.com/NVIDIA-NeMo/Guardrails"
-github_stars: 6430
+github_stars: 6446
 pricing_model: "free"
 founded_year: 2023
 headquarters: "Santa Clara, CA"

@@ -9,7 +9,7 @@ subcategory: "app-frameworks"
 status: "active"
 description: "Structured text generation library that guarantees LLM outputs conform to JSON schemas, regex patterns, or context-free grammars using finite-state machine guided generation"
 github_url: "https://github.com/dottxt-ai/outlines"
-github_stars: 13961
+github_stars: 13965
 pricing_model: "free"
 founded_year: 2023
 last_verified: "2026-06-03"

@@ -11,7 +11,7 @@ description: Open source LLM observability and evaluation toolkit from Weights &
   Trace, evaluate, and monitor AI applications from experimentation to production
   with a single line of code.
 github_url: https://github.com/wandb/weave
-github_stars: 1101
+github_stars: 1103
 pricing_model: freemium
 founded_year: 2017
 headquarters: San Francisco, CA
