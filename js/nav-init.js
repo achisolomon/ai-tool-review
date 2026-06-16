@@ -21,6 +21,7 @@
   async function initAdminBadge() {
     if (!window.AdminAPI) return;
     try {
+      if (window.SupabaseClient && window.SupabaseClient.ensureSupabase) await window.SupabaseClient.ensureSupabase();
       var result = await window.AdminAPI.checkIsAdmin();
       if (!result || !result.isAdmin) return;
       var badge = document.getElementById('admin-badge');
@@ -32,21 +33,19 @@
     } catch (_) { /* non-admin or offline — leave badge hidden */ }
   }
 
-  async function init() {
-    // auth-ui runs its own health check (so it can clear its spinner fast).
+  function init() {
     initAuth();
-
-    // Gate the DB-dependent toolbar items on a single health probe. The
-    // "+ Suggest" button starts hidden (see _includes/nav.html) and the Admin
-    // badge starts hidden; both are revealed only when the DB is reachable.
-    // When unreachable, they stay hidden rather than opening a modal / loading
-    // data that can't reach the database.
-    if (!window.SupabaseClient) return;
-    var healthy = await window.SupabaseClient.isDatabaseHealthy();
-    if (!healthy) return;
-
+    // No DB probe on load — content pages stay request-free. The + Suggest
+    // button always shows; its modal lazy-loads Supabase and degrades
+    // gracefully (auth gate / "unavailable") if the DB/CDN is down.
     wireSuggest();
-    initAdminBadge();
+    // Admin badge needs the DB, but only matters for a signed-in admin. Gate on
+    // the cached session (localStorage, no network); only then check in the
+    // background. Logged-out visitors trigger zero DB calls.
+    if (window.SupabaseClient && window.SupabaseClient.getCachedSession &&
+        window.SupabaseClient.getCachedSession()) {
+      initAdminBadge();
+    }
   }
 
   if (document.readyState === 'loading') {

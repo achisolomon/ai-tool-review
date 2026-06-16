@@ -412,6 +412,53 @@ Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>"
 
 ---
 
+## Task 6b: Console-log CDN/DB failures (dev-visible, user-hidden)
+
+**Requirement (added during execution):** When a request to Supabase or the CDN times out or errors, log it to the browser console for developers, but never surface it to the user (no alert/UI text beyond the existing graceful fallbacks).
+
+**Files:**
+- Modify: `js/supabase-client.js`
+
+- [ ] **Step 1: Add a logger helper** (after the SUPABASE_URL/KEY consts, before `getSupabase`):
+
+```javascript
+// Dev-visible, user-hidden logging for Supabase/CDN reachability problems.
+// console.warn surfaces in DevTools but never reaches the UI.
+function logSupabaseError(context, err) {
+    try { console.warn(`[Supabase] ${context}:`, err && (err.message || err)); } catch (_) {}
+}
+```
+
+- [ ] **Step 2: Log at the two source failure points.**
+
+In `ensureSupabase()`, change the retry-reset catch so it logs first:
+```javascript
+    // A failed load must not be cached permanently — allow a later retry.
+    _supabaseLibPromise.catch((err) => { logSupabaseError('library failed to load from CDN', err); _supabaseLibPromise = null; });
+```
+
+In `isDatabaseHealthy()`, change the inner `catch (_) { return false; }` to:
+```javascript
+        } catch (err) {
+            logSupabaseError('database health probe failed (timeout or network error)', err);
+            return false; // aborted (timeout) or network failure
+        }
+```
+
+- [ ] **Step 3: Export the helper** — add `logSupabaseError,` to `window.SupabaseClient`.
+
+- [ ] **Step 4: node --check + commit**
+
+```bash
+node --check js/supabase-client.js
+git add js/supabase-client.js
+git commit -m "feat(supabase): console.warn CDN/DB failures (dev-visible, user-hidden)
+
+Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>"
+```
+
+---
+
 ## Task 7: Add ensureSupabase to test stubs + revert global-setup block
 
 **Files:**
@@ -545,6 +592,57 @@ Expected: PASS — content pages make zero jsdelivr/supabase requests, `window.s
 ```bash
 git add index.html landscape.html guides.html admin.html my-suggestions.html my-reviews.html _layouts/tool.html _layouts/learn.html
 git commit -m "feat: remove static supabase-js script; content fully CDN/DB-decoupled
+
+Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>"
+```
+
+---
+
+## Task 9b: nav-init makes zero DB calls on load (the last eager probe)
+
+**Gap found during execution:** `js/nav-init.js` (loaded on every page via `nav-scripts.html`) calls `isDatabaseHealthy()` on page load to gate `+ Suggest` and the admin badge — a DB request on content pages, breaking the zero-request guarantee. Decision: `+ Suggest` always shows (its modal already lazy-loads Supabase and degrades gracefully via Task 5); the admin badge is gated on the cached session (no network), with the admin check done in the background only if a session exists.
+
+**Files:**
+- Modify: `js/nav-init.js`
+
+- [ ] **Step 1: Replace `init()` to remove the eager health probe**
+
+`wireSuggest()` keeps `btn.hidden = false` (always reveal). Replace `init()` with:
+```javascript
+  async function init() {
+    initAuth();
+    // No DB probe on load — content pages stay request-free. The + Suggest
+    // button always shows; its modal lazy-loads Supabase and degrades
+    // gracefully (auth gate / "unavailable") if the DB/CDN is down.
+    wireSuggest();
+    // Admin badge needs the DB, but only matters for a signed-in admin. Gate on
+    // the cached session (localStorage, no network); only then check in the
+    // background. Logged-out visitors trigger zero DB calls.
+    if (window.SupabaseClient && window.SupabaseClient.getCachedSession &&
+        window.SupabaseClient.getCachedSession()) {
+      initAdminBadge();
+    }
+  }
+```
+(`initAdminBadge` is already async and already loads what it needs; it calls `window.AdminAPI` which goes through `getSupabase()` — ensure AdminAPI path loads the lib. If `AdminAPI.checkIsAdmin` needs the library, it must `await ensureSupabase()` first. Verify: if `checkIsAdmin` calls `getSupabase()` and the lib isn't loaded, it returns null/non-admin and the badge stays hidden — acceptable. To make the badge actually appear for admins, add `await window.SupabaseClient.ensureSupabase();` as the first line of `initAdminBadge()` inside its try block.)
+
+- [ ] **Step 2: Add ensureSupabase to initAdminBadge**
+
+In `initAdminBadge()`, inside the `try {`, make the first statement:
+```javascript
+      if (window.SupabaseClient && window.SupabaseClient.ensureSupabase) await window.SupabaseClient.ensureSupabase();
+```
+
+- [ ] **Step 3: node --check + build + run content-no-supabase + a nav-dependent suite**
+
+Run: `node --check js/nav-init.js && export PATH="$HOME/.rbenv/shims:$PATH" && eval "$(rbenv init - 2>/dev/null)"; bundle exec jekyll build 2>&1 | tail -1; npx playwright test tests/content-no-supabase.spec.js tests/suggest.spec.js --reporter=line`
+Expected: content-no-supabase ALL PASS (zero requests now); suggest suite still green.
+
+- [ ] **Step 4: Commit**
+
+```bash
+git add js/nav-init.js
+git commit -m "feat(nav): no DB probe on load; + Suggest always shows, admin badge gated on cached session
 
 Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>"
 ```

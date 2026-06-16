@@ -2279,49 +2279,14 @@
   };
 
   // ---------------------------------------------------------------------------
-  // Graceful degradation bootstrap
+  // No load-time DB probe (decoupling)
   // ---------------------------------------------------------------------------
-  // Runs on DOMContentLoaded. If the suggestions table does not exist yet,
-  // hides all entry points so the site looks exactly like pre-feature UI.
-  // Uses a <html> class so that dynamically-generated .card-suggest elements
-  // (added later by landscape.js) are also hidden via CSS.
-
-  document.addEventListener('DOMContentLoaded', async function suggestBootstrap() {
-    if (!window.SupabaseClient || typeof window.SupabaseClient.isSuggestionsAvailable !== 'function') return;
-
-    // Two-layer gate. isSuggestionsAvailable() fails OPEN on a timeout/network
-    // error (it assumes the DB is reachable and only the table might be missing).
-    // So we must FIRST confirm the DB host is reachable; if it is not, the
-    // feature is unavailable regardless of the table check. Without this, a fully
-    // unreachable DB leaves the tool-page "Suggest an edit" button visible.
-    let available = true;
-    if (typeof window.SupabaseClient.isDatabaseHealthy === 'function') {
-      const healthy = await window.SupabaseClient.isDatabaseHealthy();
-      if (!healthy) available = false;
-    }
-    if (available) {
-      available = await window.SupabaseClient.isSuggestionsAvailable();
-    }
-
-    if (!available) {
-      // Mark root so CSS can hide dynamic .card-suggest elements
-      document.documentElement.classList.add('suggestions-disabled');
-
-      // Hide static entry points
-      const suggestOpen = document.getElementById('suggest-open');
-      if (suggestOpen) suggestOpen.style.display = 'none';
-
-      const toolSuggestOpen = document.getElementById('tool-suggest-open');
-      if (toolSuggestOpen) toolSuggestOpen.style.display = 'none';
-
-      // Hide .card-suggest buttons already in the DOM (static)
-      document.querySelectorAll('.card-suggest').forEach(el => { el.style.display = 'none'; });
-
-      // Hide the "My Suggestions" link in the auth dropdown (if already rendered)
-      document.querySelectorAll('a[href="/my-suggestions.html"]').forEach(el => { el.style.display = 'none'; });
-    } else {
-      document.documentElement.classList.add('suggestions-enabled');
-    }
-  });
+  // Previously a DOMContentLoaded handler probed Supabase (isDatabaseHealthy +
+  // isSuggestionsAvailable) to hide the entry points when the DB/table was
+  // unavailable. That probe ran on EVERY page — including content pages that
+  // must make zero DB/CDN requests. It is removed. The + Suggest / Suggest-an-edit
+  // buttons always show; opening the modal lazy-loads Supabase via
+  // ensureSupabase() and degrades gracefully (auth gate / "temporarily
+  // unavailable" / save error) if the CDN, DB, or suggestions table is missing.
 
 })();
