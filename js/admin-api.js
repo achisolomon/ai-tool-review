@@ -4,10 +4,14 @@
 /**
  * Safe accessor: pages like the homepage load admin-api.js without
  * supabase-client.js, so window.SupabaseClient may be undefined.
- * @returns {object|null}
+ * Lazy-loads the supabase-js library first (it is no longer auto-loaded via a
+ * static <script> tag) so a fresh page load doesn't see a null client.
+ * @returns {Promise<object|null>}
  */
-function getSupabaseOrNull() {
-    return window.SupabaseClient ? window.SupabaseClient.getSupabase() : null;
+async function getSupabaseOrNull() {
+    if (!window.SupabaseClient) return null;
+    try { await window.SupabaseClient.ensureSupabase(); } catch (_) { return null; }
+    return window.SupabaseClient.getSupabase();
 }
 
 /**
@@ -15,12 +19,18 @@ function getSupabaseOrNull() {
  * @returns {Promise<{isAdmin: boolean, role: string|null}>}
  */
 async function checkIsAdmin() {
-    const supabase = getSupabaseOrNull();
+    if (!window.SupabaseClient) {
+        return { isAdmin: false, role: null };
+    }
+    // getCurrentUser() lazy-loads the library itself, but getSupabaseOrNull()
+    // checked it FIRST (synchronously) and bailed before getCurrentUser() ever
+    // ran — so the library never loaded and a real admin was always reported
+    // as non-admin. Call getCurrentUser() first so the lazy-load happens.
+    const user = await window.SupabaseClient.getCurrentUser();
+    const supabase = await getSupabaseOrNull();
     if (!supabase) {
         return { isAdmin: false, role: null };
     }
-
-    const user = await window.SupabaseClient.getCurrentUser();
     if (!user) {
         return { isAdmin: false, role: null };
     }
@@ -44,7 +54,7 @@ async function checkIsAdmin() {
  * @returns {Promise<number>}
  */
 async function getPendingCount() {
-    const supabase = getSupabaseOrNull();
+    const supabase = await getSupabaseOrNull();
     if (!supabase) return 0;
 
     const { count, error } = await supabase
@@ -67,7 +77,7 @@ async function getPendingCount() {
  * @returns {Promise<{reviews: Array, total: number}>}
  */
 async function getReviewsForModeration(status, { limit = 50, offset = 0 } = {}) {
-    const supabase = getSupabaseOrNull();
+    const supabase = await getSupabaseOrNull();
     if (!supabase) return { reviews: [], total: 0 };
 
     const ascending = status === 'pending'; // Pending: oldest first (FIFO), others: newest first
@@ -112,7 +122,7 @@ async function getReviewsForModeration(status, { limit = 50, offset = 0 } = {}) 
  * @returns {Promise<{success: boolean, error?: string}>}
  */
 async function approveReview(reviewId) {
-    const supabase = getSupabaseOrNull();
+    const supabase = await getSupabaseOrNull();
     if (!supabase) return { success: false, error: 'Supabase not initialized' };
 
     const { error } = await supabase
@@ -134,7 +144,7 @@ async function approveReview(reviewId) {
  * @returns {Promise<{success: boolean, error?: string}>}
  */
 async function rejectReview(reviewId) {
-    const supabase = getSupabaseOrNull();
+    const supabase = await getSupabaseOrNull();
     if (!supabase) return { success: false, error: 'Supabase not initialized' };
 
     const { error } = await supabase
@@ -156,7 +166,7 @@ async function rejectReview(reviewId) {
  * @returns {Promise<{success: boolean, error?: string}>}
  */
 async function deleteReviewAdmin(reviewId) {
-    const supabase = getSupabaseOrNull();
+    const supabase = await getSupabaseOrNull();
     if (!supabase) return { success: false, error: 'Supabase not initialized' };
 
     const { error } = await supabase
@@ -177,7 +187,7 @@ async function deleteReviewAdmin(reviewId) {
  * @returns {Promise<{users: Array, error?: string}>}
  */
 async function getAllUsers() {
-    const supabase = getSupabaseOrNull();
+    const supabase = await getSupabaseOrNull();
     if (!supabase) return { users: [], error: 'Supabase not initialized' };
 
     // Get user profiles with roles
@@ -255,7 +265,7 @@ async function getAllUsers() {
  * @returns {Promise<{suggestions: Array, error?: string}>}
  */
 async function getSuggestions(status = 'pending', kind = 'all') {
-    const supabase = getSupabaseOrNull();
+    const supabase = await getSupabaseOrNull();
     if (!supabase) return { suggestions: [], error: 'not initialized' };
     let q = supabase.from('suggestions').select('*').order('created_at', { ascending: true });
     if (status !== 'all') q = q.eq('status', status);
@@ -270,7 +280,7 @@ async function getSuggestions(status = 'pending', kind = 'all') {
  * @returns {Promise<number>}
  */
 async function getSuggestionPendingCount() {
-    const supabase = getSupabaseOrNull();
+    const supabase = await getSupabaseOrNull();
     if (!supabase) return 0;
     const { count } = await supabase
         .from('suggestions')
@@ -286,7 +296,7 @@ async function getSuggestionPendingCount() {
  * @returns {Promise<{success: boolean, error?: string}>}
  */
 async function approveSuggestion(id, payloadPatch) {
-    const supabase = getSupabaseOrNull();
+    const supabase = await getSupabaseOrNull();
     if (!supabase) return { success: false, error: 'not initialized' };
     const user = await window.SupabaseClient.getCurrentUser();
     const update = {
@@ -306,7 +316,7 @@ async function approveSuggestion(id, payloadPatch) {
  * @returns {Promise<{success: boolean, error?: string}>}
  */
 async function rejectSuggestion(id, note) {
-    const supabase = getSupabaseOrNull();
+    const supabase = await getSupabaseOrNull();
     if (!supabase) return { success: false, error: 'not initialized' };
     if (!note || !note.trim()) return { success: false, error: 'A note is required to reject.' };
     const user = await window.SupabaseClient.getCurrentUser();
@@ -328,7 +338,7 @@ async function rejectSuggestion(id, note) {
  * @returns {Promise<{success: boolean, error?: string}>}
  */
 async function markSuggestionApplied(id) {
-    const supabase = getSupabaseOrNull();
+    const supabase = await getSupabaseOrNull();
     if (!supabase) return { success: false, error: 'not initialized' };
     const { error } = await supabase
         .from('suggestions')

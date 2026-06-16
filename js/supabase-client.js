@@ -155,6 +155,12 @@ function isDatabaseHealthy(forceFresh = false) {
 
 // Helper to get current user. Times out so a dead DB can't hang callers.
 async function getCurrentUser() {
+    // Auth-gated full pages (my-reviews, my-suggestions, admin) call this
+    // directly without ever calling ensureSupabase() themselves. Without this,
+    // getSupabase() returns null (library never loaded) and a SIGNED-IN user
+    // is reported as signed out. Ensure the library first; on CDN failure,
+    // fall through to "no user" rather than throwing.
+    try { await ensureSupabase(); } catch (_) { return null; }
     const supabase = getSupabase();
     if (!supabase) return null;
 
@@ -173,7 +179,8 @@ async function isAuthenticated() {
 }
 
 // Listen for auth state changes
-function onAuthStateChange(callback) {
+async function onAuthStateChange(callback) {
+    try { await ensureSupabase(); } catch (_) { return null; }
     const supabase = getSupabase();
     if (!supabase) return null;
 
@@ -184,6 +191,7 @@ function onAuthStateChange(callback) {
 
 // Sign in with OAuth provider (GitHub or Google)
 async function signInWithProvider(provider) {
+    try { await ensureSupabase(); } catch (_) { return { error: { message: 'Supabase not initialized' } }; }
     const supabase = getSupabase();
     if (!supabase) return { error: { message: 'Supabase not initialized' } };
 
@@ -199,6 +207,7 @@ async function signInWithProvider(provider) {
 
 // Sign out
 async function signOut() {
+    try { await ensureSupabase(); } catch (_) { return { error: { message: 'Supabase not initialized' } }; }
     const supabase = getSupabase();
     if (!supabase) return { error: { message: 'Supabase not initialized' } };
 
@@ -208,6 +217,10 @@ async function signOut() {
 
 // Get current session. Times out so a dead DB can't hang callers.
 async function getSession() {
+    // Same lazy-load requirement as getCurrentUser — see comment there. This is
+    // the call OAuth-callback pages use to pick up the just-completed session
+    // (tokens land in the URL hash; getSession() reads/exchanges them).
+    try { await ensureSupabase(); } catch (_) { return null; }
     const supabase = getSupabase();
     if (!supabase) return null;
 
