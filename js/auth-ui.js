@@ -113,52 +113,53 @@
             return;
         }
 
-        // If the DB is unreachable, don't render the auth control at all —
-        // a sign-in button that leads nowhere (and a forever-spinner) is worse
-        // than no button. Clear the loading state and bail. (Guarded so test
-        // stubs that replace SupabaseClient without this method still render.)
-        if (typeof window.SupabaseClient.isDatabaseHealthy === 'function') {
-            const healthy = await window.SupabaseClient.isDatabaseHealthy();
-            if (!healthy) {
-                container.innerHTML = '';
-                return;
-            }
-        }
-
-        // Get current user and profile
-        const user = await window.SupabaseClient.getCurrentUser();
-        let profile = null;
-
-        if (user) {
-            const { data } = await window.SupabaseClient.getUserProfile();
-            profile = data;
-
-            // Update last sign-in
-            await window.SupabaseClient.updateLastSignIn();
-        }
-
-        // Render dropdown
-        container.innerHTML = renderAuthDropdown(user, profile);
-
-        // Setup event handlers
+        // Cached-session-first: render the toolbar instantly from the session in
+        // localStorage — no library, no network. Content pages stay Supabase-free
+        // for logged-out visitors (the library is never loaded for them).
+        const cached = window.SupabaseClient.getCachedSession?.() || null;
+        const cachedUser = cached?.user || null;
+        container.innerHTML = renderAuthDropdown(cachedUser, null);
         setupDropdownHandlers(container);
 
-        // Listen for auth state changes
-        window.SupabaseClient.onAuthStateChange(async (event, session) => {
-            if (event === 'SIGNED_IN' || event === 'SIGNED_OUT') {
-                const newUser = session?.user || null;
-                let newProfile = null;
+        // If there is a cached session, reconcile in the BACKGROUND: load the
+        // library, confirm the session is still valid, refresh profile/avatar.
+        // Logged-out visitors skip this entirely → Supabase never loads.
+        if (cachedUser) {
+            (async () => {
+                try {
+                    await window.SupabaseClient.ensureSupabase();
+                    const user = await window.SupabaseClient.getCurrentUser();
+                    let profile = null;
+                    if (user) {
+                        const { data } = await window.SupabaseClient.getUserProfile();
+                        profile = data;
+                        await window.SupabaseClient.updateLastSignIn();
+                    }
+                    container.innerHTML = renderAuthDropdown(user, profile);
+                    setupDropdownHandlers(container);
+                } catch (_) { /* CDN/DB down — keep the optimistic cached render */ }
+            })();
+        }
 
-                if (newUser) {
-                    const { data } = await window.SupabaseClient.getUserProfile();
-                    newProfile = data;
-                    await window.SupabaseClient.updateLastSignIn();
+        // React to real auth events once the library is present (sign-in/out).
+        function attachAuthListener() {
+            if (typeof window.SupabaseClient.onAuthStateChange !== 'function') return;
+            window.SupabaseClient.onAuthStateChange(async (event, session) => {
+                if (event === 'SIGNED_IN' || event === 'SIGNED_OUT') {
+                    const newUser = session?.user || null;
+                    let newProfile = null;
+                    if (newUser) {
+                        const { data } = await window.SupabaseClient.getUserProfile();
+                        newProfile = data;
+                        await window.SupabaseClient.updateLastSignIn();
+                    }
+                    container.innerHTML = renderAuthDropdown(newUser, newProfile);
+                    setupDropdownHandlers(container);
                 }
-
-                container.innerHTML = renderAuthDropdown(newUser, newProfile);
-                setupDropdownHandlers(container);
-            }
-        });
+            });
+        }
+        if (window.supabase) attachAuthListener();
+        else if (cachedUser) window.SupabaseClient.ensureSupabase().then(attachAuthListener).catch(() => {});
     }
 
     // Store references to document-level event handlers so they can be removed
