@@ -538,7 +538,7 @@ test.describe('Graceful degradation (table missing)', () => {
     await page.addInitScript(() => { localStorage.setItem('cookie_consent', 'accepted'); });
   });
 
-  test('3e: #suggest-open is hidden and no console errors when table unavailable', async ({ page }) => {
+  test('3e: #suggest-open is always visible (modal handles unavailability) with no console errors', async ({ page }) => {
     const consoleErrors = [];
     page.on('console', msg => {
       if (msg.type() === 'error') consoleErrors.push(msg.text());
@@ -549,19 +549,13 @@ test.describe('Graceful degradation (table missing)', () => {
     await page.route('https://cdn.jsdelivr.net/**', route => route.abort());
     await page.goto('/landscape.html', { waitUntil: 'domcontentloaded', timeout: 30000 });
 
-    // Wait for DOMContentLoaded bootstrap to run
-    await page.waitForFunction(() => document.documentElement.classList.contains('suggestions-disabled'), { timeout: 5000 });
-
-    // #suggest-open must NOT be visible (hidden by bootstrap)
+    // New contract: content pages make no load-time DB probe. The + Suggest
+    // button always shows; the modal handles table/DB unavailability when opened.
     const suggestBtn = page.locator('#suggest-open');
-    await expect(suggestBtn).not.toBeVisible();
+    await expect(suggestBtn).toBeVisible();
 
-    // .card-suggest elements (if any) must be hidden via CSS class
-    const cardSuggests = page.locator('.card-suggest');
-    const count = await cardSuggests.count();
-    for (let i = 0; i < count; i++) {
-      await expect(cardSuggests.nth(i)).not.toBeVisible();
-    }
+    // No suggestions-disabled/enabled class is set anymore (no load probe).
+    expect(await page.evaluate(() => document.documentElement.classList.contains('suggestions-disabled'))).toBe(false);
 
     // No console errors (filter expected CDN/analytics noise)
     const relevant = consoleErrors.filter(e =>
@@ -570,9 +564,6 @@ test.describe('Graceful degradation (table missing)', () => {
       !e.includes('googletagmanager') &&
       !e.includes('net::ERR') &&
       !e.includes('Failed to fetch') &&
-      // Ad/analytics CDN hosts are aborted by the global-setup proxy, surfacing
-      // as generic "Failed to load resource: …404" lines with no URL. Same
-      // expected noise the host-specific filters above target.
       !e.includes('Failed to load resource')
     );
     expect(relevant).toHaveLength(0);
@@ -622,14 +613,8 @@ test.describe('Suggest UI visible when Supabase probe returns 401 (RLS blocks an
 
   test('3f: #suggest-open IS visible on landscape when probe returns 401', async ({ page }) => {
     await page.goto('/landscape.html', { waitUntil: 'domcontentloaded', timeout: 30000 });
-    await page.waitForFunction(() =>
-      document.documentElement.classList.contains('suggestions-enabled') ||
-      document.documentElement.classList.contains('suggestions-disabled'),
-      { timeout: 8000 }
-    );
-    // A 401 means table exists → suggestions-enabled, button must be visible
+    // Button always shows now (no load-time probe gates it).
     await expect(page.locator('#suggest-open')).toBeVisible();
-    expect(await page.evaluate(() => document.documentElement.classList.contains('suggestions-disabled'))).toBe(false);
   });
 });
 
@@ -679,13 +664,7 @@ test.describe('Suggest UI visible when Supabase probe returns 42501 (anon lacks 
 
   test('3g: #suggest-open IS visible on landscape when probe returns 42501', async ({ page }) => {
     await page.goto('/landscape.html', { waitUntil: 'domcontentloaded', timeout: 30000 });
-    await page.waitForFunction(() =>
-      document.documentElement.classList.contains('suggestions-enabled') ||
-      document.documentElement.classList.contains('suggestions-disabled'),
-      { timeout: 8000 }
-    );
     await expect(page.locator('#suggest-open')).toBeVisible();
-    expect(await page.evaluate(() => document.documentElement.classList.contains('suggestions-disabled'))).toBe(false);
   });
 });
 
@@ -725,11 +704,6 @@ test.describe('Tool page: #tool-suggest-open visible when suggestions available'
 
   test('3h: #tool-suggest-open corner button is visible on a tool page', async ({ page }) => {
     await page.goto('/tools/claude-code/', { waitUntil: 'domcontentloaded', timeout: 30000 });
-    await page.waitForFunction(() =>
-      document.documentElement.classList.contains('suggestions-enabled') ||
-      document.documentElement.classList.contains('suggestions-disabled'),
-      { timeout: 8000 }
-    );
     await expect(page.locator('#tool-suggest-open')).toBeVisible();
   });
 });
