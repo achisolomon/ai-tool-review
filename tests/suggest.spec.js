@@ -583,6 +583,9 @@ test.describe('Graceful degradation (table missing)', () => {
 
 const SUPABASE_CLIENT_STUB_401 = `
 window.SupabaseClient = {
+    ensureSupabase: async () => ({}),
+    getCachedSession: () => null,
+    logSupabaseError: () => {},
     getCurrentUser: async () => null,
     getSession: async () => ({ session: null }),
     isSuggestionsAvailable: async () => {
@@ -635,6 +638,9 @@ test.describe('Suggest UI visible when Supabase probe returns 401 (RLS blocks an
 
 const SUPABASE_CLIENT_STUB_42501 = `
 window.SupabaseClient = {
+    ensureSupabase: async () => ({}),
+    getCachedSession: () => null,
+    logSupabaseError: () => {},
     getCurrentUser: async () => null,
     getSession: async () => ({ session: null }),
     isSuggestionsAvailable: async () => {
@@ -683,6 +689,9 @@ test.describe('Suggest UI visible when Supabase probe returns 42501 (anon lacks 
 
 const SUPABASE_CLIENT_STUB_TOOL_42501 = `
 window.SupabaseClient = {
+    ensureSupabase: async () => ({}),
+    getCachedSession: () => null,
+    logSupabaseError: () => {},
     getCurrentUser: async () => null,
     getSession: async () => ({ session: null }),
     isSuggestionsAvailable: async () => true,
