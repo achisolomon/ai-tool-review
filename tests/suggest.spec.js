@@ -36,6 +36,10 @@ async function acceptCookies(page) {
 async function mockAuthSignedIn(page) {
   await page.evaluate(() => {
     // SupabaseClient mock
+    // ensureSupabase() is overridden to resolve immediately: these tests mock
+    // auth and block the jsdelivr CDN (see gotoLandscape), so the real lazy
+    // loader would reject and the modal would fall back to the auth gate.
+    window.SupabaseClient.ensureSupabase = async () => ({});
     window.SupabaseClient.isAuthenticated = async () => true;
     window.SupabaseClient.getCurrentUser = async () => ({
       id: 'test-user-id',
@@ -583,6 +587,7 @@ test.describe('Graceful degradation (table missing)', () => {
 
 const SUPABASE_CLIENT_STUB_401 = `
 window.SupabaseClient = {
+    isDatabaseHealthy: async () => true,
     ensureSupabase: async () => ({}),
     getCachedSession: () => null,
     logSupabaseError: () => {},
@@ -638,6 +643,7 @@ test.describe('Suggest UI visible when Supabase probe returns 401 (RLS blocks an
 
 const SUPABASE_CLIENT_STUB_42501 = `
 window.SupabaseClient = {
+    isDatabaseHealthy: async () => true,
     ensureSupabase: async () => ({}),
     getCachedSession: () => null,
     logSupabaseError: () => {},
@@ -689,6 +695,7 @@ test.describe('Suggest UI visible when Supabase probe returns 42501 (anon lacks 
 
 const SUPABASE_CLIENT_STUB_TOOL_42501 = `
 window.SupabaseClient = {
+    isDatabaseHealthy: async () => true,
     ensureSupabase: async () => ({}),
     getCachedSession: () => null,
     logSupabaseError: () => {},
