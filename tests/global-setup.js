@@ -12,6 +12,12 @@ const BLOCKED_HOSTS = new Set([
   'adservice.google.com',
   'securepubads.g.doubleclick.net',
   'tpc.googlesyndication.com',
+  // jsdelivr serves the supabase-js library via a (deferred) <script>. When the
+  // CDN is unreachable from the test machine it accepts the TCP connection but
+  // never responds, so the deferred script keeps the load/DOMContentLoaded event
+  // pending and every page.goto() times out. Fail it fast like the ad hosts —
+  // the site's data render does not depend on this library (see db-cdn-resilience spec).
+  'cdn.jsdelivr.net',
 ]);
 
 let proxyServer;

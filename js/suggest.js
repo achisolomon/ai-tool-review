@@ -2278,7 +2278,19 @@
   document.addEventListener('DOMContentLoaded', async function suggestBootstrap() {
     if (!window.SupabaseClient || typeof window.SupabaseClient.isSuggestionsAvailable !== 'function') return;
 
-    const available = await window.SupabaseClient.isSuggestionsAvailable();
+    // Two-layer gate. isSuggestionsAvailable() fails OPEN on a timeout/network
+    // error (it assumes the DB is reachable and only the table might be missing).
+    // So we must FIRST confirm the DB host is reachable; if it is not, the
+    // feature is unavailable regardless of the table check. Without this, a fully
+    // unreachable DB leaves the tool-page "Suggest an edit" button visible.
+    let available = true;
+    if (typeof window.SupabaseClient.isDatabaseHealthy === 'function') {
+      const healthy = await window.SupabaseClient.isDatabaseHealthy();
+      if (!healthy) available = false;
+    }
+    if (available) {
+      available = await window.SupabaseClient.isSuggestionsAvailable();
+    }
 
     if (!available) {
       // Mark root so CSS can hide dynamic .card-suggest elements
