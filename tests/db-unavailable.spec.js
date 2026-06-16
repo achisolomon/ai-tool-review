@@ -1,13 +1,13 @@
 import { test, expect } from '@playwright/test';
 
-// Emergency graceful-degradation behaviour: when the database host is
-// unreachable, DB-dependent UI must not hang on a spinner or render controls
-// (sign-in, Suggest) that lead nowhere. It should hide silently and fast.
+// Graceful-degradation behaviour when the database host is unreachable.
 //
-// The health gate (supabase-client.js → isDatabaseHealthy) probes the Supabase
-// REST endpoint with a raw fetch + 4s timeout. We simulate a dead DB by
-// aborting every request to *.supabase.co, and a live DB by fulfilling the
-// REST probe with a 200.
+// Decoupling model (see lazy-supabase-decoupling spec): content + entry-point
+// BUTTONS always render (no load-time DB probe). The + Suggest / Suggest-an-edit
+// buttons show regardless of DB state; their modal lazy-loads Supabase and
+// degrades gracefully when clicked. Only genuinely DB-backed content — the
+// reviews section — hides when the DB is unreachable. We simulate a dead DB by
+// aborting every request to *.supabase.co.
 
 const SUPABASE_GLOB = '**://*.supabase.co/**';
 const A_TOOL_PAGE = '/tools/abridge/';
@@ -32,32 +32,33 @@ test.describe('Graceful degradation when the DB is unavailable', () => {
     });
   });
 
-  test('homepage: + Suggest hidden and no auth sign-in button / stuck spinner', async ({ page }) => {
+  test('homepage: + Suggest still visible, no stuck spinner (modal handles DB-down)', async ({ page }) => {
     await killDatabase(page);
     await page.goto('/');
 
-    await expect(page.locator('#suggest-open')).toBeHidden();
-    // Health probe (4s timeout) resolves, then auth UI clears itself.
-    await expect(page.locator('#auth-signin-btn')).toHaveCount(0, { timeout: 8000 });
+    // The button always shows now; clicking it (not tested here) degrades
+    // gracefully via the modal. The toolbar must not be stuck on a spinner.
+    await expect(page.locator('#suggest-open')).toBeVisible({ timeout: 8000 });
     await expect(page.locator('.auth-loading')).toHaveCount(0);
   });
 
-  test('tool page: reviews section hidden and "Suggest an edit" stays hidden', async ({ page }) => {
+  test('tool page: reviews section hidden when DB dead; "Suggest an edit" stays visible', async ({ page }) => {
     await killDatabase(page);
     await page.goto(A_TOOL_PAGE);
 
-    await expect(page.locator('#tool-suggest-open')).toBeHidden();
-    // Hidden rather than stuck on "Loading reviews…".
+    // Suggest-an-edit always shows (modal handles failure on click)…
+    await expect(page.locator('#tool-suggest-open')).toBeVisible({ timeout: 8000 });
+    // …but the genuinely DB-backed reviews section hides rather than spinning.
     await expect(page.locator('#reviews')).toBeHidden({ timeout: 8000 });
   });
 
-  test('healthy DB: + Suggest button becomes visible', async ({ page }) => {
+  test('healthy DB: + Suggest button is visible', async ({ page }) => {
     await reviveDatabase(page);
     await page.goto('/');
     await expect(page.locator('#suggest-open')).toBeVisible({ timeout: 8000 });
   });
 
-  test('healthy DB: tool page reveals "Suggest an edit" and keeps reviews visible', async ({ page }) => {
+  test('healthy DB: tool page shows "Suggest an edit" and keeps reviews visible', async ({ page }) => {
     await reviveDatabase(page);
     await page.goto(A_TOOL_PAGE);
     await expect(page.locator('#tool-suggest-open')).toBeVisible({ timeout: 8000 });

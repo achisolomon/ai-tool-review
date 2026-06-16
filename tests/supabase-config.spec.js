@@ -50,7 +50,8 @@ test.describe('Supabase Environment Configuration', () => {
         await page.goto('/admin.html');
 
         const hasClient = await page.evaluate(async () => {
-            await new Promise(resolve => setTimeout(resolve, 500));
+            // The library is no longer auto-loaded on page load — load it on demand.
+            await window.SupabaseClient.ensureSupabase();
             const client = window.SupabaseClient?.getSupabase();
             return client !== null && typeof client === 'object';
         });
