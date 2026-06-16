@@ -1831,6 +1831,7 @@
   // ---------------------------------------------------------------------------
 
   async function openEditMode(suggestion, trigger) {
+    try { await window.SupabaseClient.ensureSupabase(); } catch (_) { return; }
     triggerEl = trigger || document.activeElement || null;
 
     // Auth check (user must be signed in to edit their own row)
@@ -2206,6 +2207,16 @@
     // Phase-5: edit mode implementation
     if (mode === 'edit') {
       await openEditMode(suggestion, trigger);
+      return;
+    }
+
+    // Load the library on demand before any auth/DB call. If the CDN is down,
+    // show the auth gate's graceful error rather than throwing.
+    try {
+      await window.SupabaseClient.ensureSupabase();
+    } catch (_) {
+      const modal = mountAndOpen('Suggest a change', renderAuthGate());
+      if (window.AuthSignIn) window.AuthSignIn.initHandlers(modal, (err) => showError(modal, err));
       return;
     }
 
