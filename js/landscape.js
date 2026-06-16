@@ -36,16 +36,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const categoryCountEl = document.getElementById('category-count');
     const tooltip = document.getElementById('tooltip');
 
-    // Initialize
+    // Initialize.
+    // Set ALL structural layout classes on #landscape BEFORE rendering the grid,
+    // so the markup is painted once in its final state. Previously these classes
+    // (and the collapse pass in applyViewState) were applied AFTER renderLandscape,
+    // causing subcategories to paint expanded and then collapse — a visible flicker.
+    landscape.classList.add('preload'); // disable transitions for first paint
+    landscape.classList.add('all-expanded');
+    landscape.classList.add('compact-filter');
+    landscape.classList.add(`view-${currentView}`);
+
     setupEventListeners();
     renderLandscape();
     updateStats();
     applyViewState();
     renderRecentlyMapped();
 
-    // Default to expanded view with compact layout for maximum tool density
-    landscape.classList.add('all-expanded');
-    landscape.classList.add('compact-filter');
+    // Re-enable transitions after the first paint so user interactions animate
+    // but the initial collapsed render does not flicker.
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => landscape.classList.remove('preload'));
+    });
 
     // Apply view state to all categories and subcategories
     function applyViewState() {

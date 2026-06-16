@@ -1106,6 +1106,13 @@ a:hover {
     transition: max-height 0.2s ease, opacity 0.2s ease, padding 0.2s ease;
 }
 
+/* Suppress all collapse/expand transitions during initial render so the grid
+   paints once in its final (collapsed) state instead of animating open→closed
+   on load. landscape.js removes .preload after the first frame. */
+.landscape.preload * {
+    transition: none !important;
+}
+
 .subcategory.collapsed .subcategory-content {
     max-height: 0;
     opacity: 0;
