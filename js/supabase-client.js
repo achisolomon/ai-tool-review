@@ -32,6 +32,12 @@ if (IS_LOCAL) console.log(`[Supabase] Using ${ENV} environment: ${SUPABASE_URL}`
 // The key distinction is in the payload - anon has role:"anon", service_role has role:"service_role"
 // Security is enforced by RLS policies, not by hiding keys
 
+// Dev-visible, user-hidden logging for Supabase/CDN reachability problems.
+// console.warn surfaces in DevTools but never reaches the UI.
+function logSupabaseError(context, err) {
+    try { console.warn(`[Supabase] ${context}:`, err && (err.message || err)); } catch (_) {}
+}
+
 // Initialize Supabase client (requires supabase-js loaded via CDN)
 let supabaseClient = null;
 
@@ -67,7 +73,7 @@ function ensureSupabase() {
         document.head.appendChild(s);
     });
     // A failed load must not be cached permanently — allow a later retry.
-    _supabaseLibPromise.catch(() => { _supabaseLibPromise = null; });
+    _supabaseLibPromise.catch((err) => { logSupabaseError('library failed to load from CDN', err); _supabaseLibPromise = null; });
     return _supabaseLibPromise;
 }
 
@@ -139,7 +145,8 @@ function isDatabaseHealthy(forceFresh = false) {
             } finally {
                 clearTimeout(timer);
             }
-        } catch (_) {
+        } catch (err) {
+            logSupabaseError('database health probe failed (timeout or network error)', err);
             return false; // aborted (timeout) or network failure
         }
     })();
@@ -341,6 +348,7 @@ window.SupabaseClient = {
     getSupabase,
     ensureSupabase,
     getCachedSession,
+    logSupabaseError,
     withTimeout,
     isDatabaseHealthy,
     getCurrentUser,
