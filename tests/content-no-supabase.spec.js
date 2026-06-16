@@ -11,8 +11,11 @@ test.describe('Content pages are Supabase-independent', () => {
       await page.addInitScript(() => localStorage.setItem('cookie_consent', 'accepted'));
       const hits = [];
       page.on('request', req => {
-        const u = req.url();
-        if (u.includes('cdn.jsdelivr.net') || u.includes('supabase.co')) hits.push(u);
+        // Match the request HOST only — not substrings in query strings (e.g. a
+        // favicon lookup for the "Supabase" tool with ?url=http://supabase.com).
+        let host = '';
+        try { host = new URL(req.url()).hostname; } catch (_) {}
+        if (host === 'cdn.jsdelivr.net' || host.endsWith('.supabase.co')) hits.push(req.url());
       });
 
       await page.goto(path, { waitUntil: 'domcontentloaded' });
