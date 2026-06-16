@@ -712,7 +712,11 @@
   }
 
   function showError(modal, msg) {
-    const errorEl = modal.querySelector('#suggest-form-error');
+    // #suggest-form-error exists in the suggestion forms; #auth-card-error
+    // exists in the sign-in gate card (AuthSignIn.renderCard). Without this
+    // fallback, an auth failure on the sign-in gate (e.g. CDN/DB down) showed
+    // no error at all — the buttons just silently re-enabled.
+    const errorEl = modal.querySelector('#suggest-form-error') || modal.querySelector('#auth-card-error');
     if (errorEl) {
       errorEl.textContent = msg;
       errorEl.hidden = false;

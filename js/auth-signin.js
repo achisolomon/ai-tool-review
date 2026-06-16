@@ -50,6 +50,7 @@
                 </div>
                 <h2>${title}</h2>
                 <p>${description}</p>
+                <div id="auth-card-error" class="auth-card-error" hidden></div>
                 <div class="auth-signin-buttons">
                     ${renderSignInButtons()}
                 </div>
@@ -88,9 +89,15 @@
                 try {
                     const { error } = await window.SupabaseClient.signInWithProvider(provider);
                     if (error) {
-                        console.error(`[AuthSignIn] ${provider} sign in failed:`, error);
+                        // Log the real error for developers; never leak internal
+                        // messages (e.g. "Supabase not initialized") to the user.
+                        if (window.SupabaseClient.logSupabaseError) {
+                            window.SupabaseClient.logSupabaseError(`${provider} sign in failed`, error);
+                        } else {
+                            console.error(`[AuthSignIn] ${provider} sign in failed:`, error);
+                        }
                         if (onError) {
-                            onError(`Failed to sign in with ${provider}: ${error.message}`);
+                            onError('Sign in is not available right now. Please try again in a few minutes.');
                         }
                         // Re-enable button on error
                         this.disabled = false;
@@ -98,9 +105,13 @@
                     }
                     // On success, page will redirect to OAuth provider
                 } catch (err) {
-                    console.error(`[AuthSignIn] ${provider} sign in error:`, err);
+                    if (window.SupabaseClient.logSupabaseError) {
+                        window.SupabaseClient.logSupabaseError(`${provider} sign in error`, err);
+                    } else {
+                        console.error(`[AuthSignIn] ${provider} sign in error:`, err);
+                    }
                     if (onError) {
-                        onError(`Failed to sign in with ${provider}`);
+                        onError('Sign in is not available right now. Please try again in a few minutes.');
                     }
                     this.disabled = false;
                     this.innerHTML = originalText;

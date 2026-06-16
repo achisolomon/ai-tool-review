@@ -192,20 +192,26 @@
                 try {
                     await window.SupabaseClient.ensureSupabase();
                 } catch (_) {
-                    alert('Sign-in is temporarily unavailable. Please try again in a few minutes.');
+                    alert('Sign in is not available right now. Please try again in a few minutes.');
                     this.disabled = false;
                     return;
                 }
                 const healthy = await window.SupabaseClient.isDatabaseHealthy(true);
                 if (!healthy) {
-                    alert('Sign-in is temporarily unavailable. Please try again in a few minutes.');
+                    alert('Sign in is not available right now. Please try again in a few minutes.');
                     this.disabled = false;
                     return;
                 }
                 const { error } = await window.SupabaseClient.signInWithProvider('github');
                 if (error) {
-                    console.error('[AuthUI] Sign in failed:', error);
-                    alert('Sign in failed: ' + error.message);
+                    // Log the real error for developers; never leak internal
+                    // messages (e.g. "Supabase not initialized") to the user.
+                    if (window.SupabaseClient.logSupabaseError) {
+                        window.SupabaseClient.logSupabaseError('sign-in failed', error);
+                    } else {
+                        console.error('[AuthUI] Sign in failed:', error);
+                    }
+                    alert('Sign in is not available right now. Please try again in a few minutes.');
                     this.disabled = false;
                 }
             });

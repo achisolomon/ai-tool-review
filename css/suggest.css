@@ -556,6 +556,19 @@ html.suggestions-disabled a[href="/my-suggestions.html"] {
     margin-bottom: 14px;
 }
 
+/* Error slot inside the sign-in gate card (AuthSignIn.renderCard) — same
+   treatment as .suggest-error so a failed sign-in click is visible. */
+.auth-card-error {
+    padding: 10px 14px;
+    background: rgba(209, 105, 105, 0.12);
+    border: 1px solid rgba(209, 105, 105, 0.4);
+    border-radius: 6px;
+    font-size: 13px;
+    color: #d16969;
+    margin: 12px 0;
+    text-align: left;
+}
+
 /* --- Success / confirmation ----------------- */
 .suggest-success {
     text-align: center;

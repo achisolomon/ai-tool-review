@@ -86,7 +86,7 @@ test.describe('Sign-in re-checks backend at click time', () => {
     await page.unroute('**://*.supabase.co/**');
     await page.route('**://*.supabase.co/**', route => route.abort());
 
-    // Phase 3: click sign-in. Wait for the "temporarily unavailable" alert — this proves
+    // Phase 3: click sign-in. Wait for the "not available right now" alert — this proves
     // the click handler completed its unhealthy branch (not just timed out). The DB probe
     // can take up to DB_TIMEOUT_MS=4000ms, so we give it 8s headroom.
     //
@@ -99,7 +99,7 @@ test.describe('Sign-in re-checks backend at click time', () => {
     const dialogPromise = page.waitForEvent('dialog', { timeout: 8000 });
     const clickPromise = signinBtn.click(); // fire but don't await yet
     const dialog = await dialogPromise;
-    expect(dialog.message()).toContain('temporarily unavailable');
+    expect(dialog.message()).toContain('not available right now');
     await dialog.dismiss();
     await clickPromise; // click() can now complete (dialog dismissed)
 
