@@ -77,6 +77,15 @@
                 this.innerHTML = svg + ' Connecting...';
 
                 try {
+                    await window.SupabaseClient.ensureSupabase();
+                } catch (_) {
+                    if (onError) onError('Sign-in is temporarily unavailable. Please try again in a few minutes.');
+                    this.disabled = false;
+                    this.innerHTML = originalText;
+                    return;
+                }
+
+                try {
                     const { error } = await window.SupabaseClient.signInWithProvider(provider);
                     if (error) {
                         console.error(`[AuthSignIn] ${provider} sign in failed:`, error);
