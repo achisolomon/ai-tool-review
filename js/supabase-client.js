@@ -42,6 +42,52 @@ function getSupabase() {
     return supabaseClient;
 }
 
+// Lazy CDN loader. The supabase-js library is NOT loaded on page load — content
+// pages (search/landscape/tool) never need it. Auth/DB entry points call this to
+// inject it on demand, in the background. Memoized: one injection, shared promise.
+let _supabaseLibPromise = null;
+function ensureSupabase() {
+    if (window.supabase) return Promise.resolve(window.supabase);
+    if (_supabaseLibPromise) return _supabaseLibPromise;
+    _supabaseLibPromise = new Promise((resolve, reject) => {
+        const existing = document.querySelector('script[src*="supabase-js@2"]');
+        const timer = setTimeout(() => reject(new Error('supabase-cdn-timeout')), DB_TIMEOUT_MS);
+        function onReady() { clearTimeout(timer); window.supabase ? resolve(window.supabase) : reject(new Error('supabase-cdn-failed')); }
+        if (existing) {
+            existing.addEventListener('load', onReady, { once: true });
+            existing.addEventListener('error', () => { clearTimeout(timer); reject(new Error('supabase-cdn-failed')); }, { once: true });
+            if (window.supabase) onReady();
+            return;
+        }
+        const s = document.createElement('script');
+        s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+        s.async = true;
+        s.addEventListener('load', onReady, { once: true });
+        s.addEventListener('error', () => { clearTimeout(timer); reject(new Error('supabase-cdn-failed')); }, { once: true });
+        document.head.appendChild(s);
+    });
+    // A failed load must not be cached permanently — allow a later retry.
+    _supabaseLibPromise.catch(() => { _supabaseLibPromise = null; });
+    return _supabaseLibPromise;
+}
+
+// Read the cached Supabase auth session from localStorage WITHOUT the library or
+// network. supabase-js uses no custom storageKey, so the key is
+// `sb-<project-ref>-auth-token` where <project-ref> is the SUPABASE_URL subdomain.
+// Returns the parsed session object (has .user, .access_token) or null.
+function getCachedSession() {
+    try {
+        const ref = new URL(SUPABASE_URL).hostname.split('.')[0];
+        const raw = localStorage.getItem(`sb-${ref}-auth-token`);
+        if (!raw) return null;
+        const parsed = JSON.parse(raw);
+        // supabase-js stores either the session directly or { currentSession }.
+        return parsed?.currentSession || parsed?.access_token ? (parsed.currentSession || parsed) : null;
+    } catch (_) {
+        return null;
+    }
+}
+
 // ---------------------------------------------------------------------------
 // Resilience: timeouts + health gate
 // ---------------------------------------------------------------------------
@@ -293,6 +339,8 @@ async function countMyPending() {
 // Export for use in other modules
 window.SupabaseClient = {
     getSupabase,
+    ensureSupabase,
+    getCachedSession,
     withTimeout,
     isDatabaseHealthy,
     getCurrentUser,
