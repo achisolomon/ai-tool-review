@@ -299,8 +299,14 @@
       const summaryContainer = document.getElementById('review-summary-container');
       const listContainer = document.getElementById('review-list-container');
 
-      // If the DB is unreachable, hide the whole reviews section rather than
-      // leaving "Loading reviews…" spinning forever.
+      // Reviews need the library + DB. Load it on demand; if the CDN or DB is
+      // unreachable, hide the whole reviews section rather than spinning forever.
+      try {
+        await window.SupabaseClient.ensureSupabase();
+      } catch (_) {
+        reviewsSection.hidden = true;
+        return;
+      }
       if (typeof window.SupabaseClient?.isDatabaseHealthy === 'function') {
         const healthy = await window.SupabaseClient.isDatabaseHealthy();
         if (!healthy) {
