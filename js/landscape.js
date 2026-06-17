@@ -409,4 +409,8 @@ window.landscapeInit = function landscapeInit() {
     }
 };
 
-document.addEventListener('DOMContentLoaded', () => window.landscapeInit());
+// Auto-init only when landing directly on the landscape page (not via SPA nav).
+// The router calls landscapeInit() explicitly on SPA transitions.
+if (location.pathname === '/landscape.html' || location.pathname === '/landscape') {
+    document.addEventListener('DOMContentLoaded', () => window.landscapeInit());
+}

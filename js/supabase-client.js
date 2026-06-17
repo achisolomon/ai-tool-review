@@ -43,7 +43,11 @@ let supabaseClient = null;
 
 function getSupabase() {
     if (!supabaseClient && window.supabase) {
-        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        try {
+            supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        } catch (e) {
+            logSupabaseError('createClient failed', e);
+        }
     }
     return supabaseClient;
 }
@@ -135,8 +139,9 @@ function isDatabaseHealthy(forceFresh = false) {
             const controller = new AbortController();
             const timer = setTimeout(() => controller.abort(), DB_TIMEOUT_MS);
             try {
-                await fetch(SUPABASE_URL + '/rest/v1/', {
-                    method: 'HEAD',
+                // Use /auth/v1/health — returns 200 with the anon key, no 401.
+                // Avoids a red console network error from the previous /rest/v1/ HEAD probe.
+                await fetch(SUPABASE_URL + '/auth/v1/health', {
                     headers: { apikey: SUPABASE_ANON_KEY },
                     cache: 'no-store',
                     signal: controller.signal,
