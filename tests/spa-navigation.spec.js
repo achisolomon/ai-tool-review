@@ -109,11 +109,12 @@ test.describe('SPA: Client-side navigation', () => {
 
     await page.locator('[data-spa-link][href="/guides/"]').click();
 
+    // Wait on the URL (reliable nav signal) before asserting content/flags.
+    await page.waitForURL(/\/guides\/$/, { timeout: 5000 });
     await expect(page.locator('.learn-index h1').or(page.locator('#page-content h1'))).toBeVisible({ timeout: 5000 });
 
     const flag = await page.evaluate(() => window.__spaLoaded);
     expect(flag).toBe(true);
-    expect(page.url()).toMatch(/guides/);
   });
 
   test('topbar auth avatar persists across SPA navigation', async ({ page }) => {

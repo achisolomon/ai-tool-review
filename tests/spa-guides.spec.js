@@ -83,20 +83,20 @@ test.describe('SPA Phase 1: navigate to articles', () => {
     await page.goto('/guides/', { waitUntil: 'domcontentloaded' });
     await page.evaluate(() => { window.__spaLoaded = true; });
     await page.locator('a.article-card[data-spa-link]').first().click();
-    await expect(page.locator('#page-content h1')).toBeVisible({ timeout: 5000 });
+    // Wait on the URL (reliable nav signal — the index already has an h1).
+    await page.waitForURL(/\/guides\/.+\//, { timeout: 5000 });
     expect(await page.evaluate(() => window.__spaLoaded)).toBe(true);
-    expect(page.url()).toMatch(/\/guides\/.+\//);
   });
 
   test('A6: browser back from article restores guides index', async ({ page }) => {
     await page.goto('/guides/', { waitUntil: 'domcontentloaded' });
     await page.evaluate(() => { window.__spaLoaded = true; });
     await page.locator('a.article-card[data-spa-link]').first().click();
-    await expect(page.locator('#page-content h1')).toBeVisible({ timeout: 5000 });
+    await page.waitForURL(/\/guides\/.+\//, { timeout: 5000 });
     await page.goBack();
+    await page.waitForURL(/\/guides\/$/, { timeout: 5000 });
     await expect(page.locator('.article-card').first()).toBeVisible({ timeout: 5000 });
     expect(await page.evaluate(() => window.__spaLoaded)).toBe(true);
-    expect(page.url()).toMatch(/\/guides\/$/);
   });
 });
 
@@ -109,16 +109,27 @@ test.describe('SPA Phase 1: head metadata swap', () => {
 
   test('title and description update when navigating to an article', async ({ page }) => {
     await page.goto('/guides/', { waitUntil: 'domcontentloaded' });
+
+    // Capture the index's description so we can prove the swap actually changed it.
+    const indexDesc = await page.evaluate(() =>
+      document.querySelector('meta[name="description"]')?.getAttribute('content'));
+
     const card = page.locator('a.article-card[data-spa-link]').first();
     const expectedTitlePart = await card.locator('h2').textContent();
     await card.click();
-    await expect(page.locator('#page-content h1')).toBeVisible({ timeout: 5000 });
+
+    // Wait for the SPA navigation to actually complete (URL changes to the article).
+    // The guides index already has an h1 in #page-content, so waiting on the URL
+    // is the reliable signal that the swap finished.
+    await page.waitForURL(/\/guides\/.+\//, { timeout: 5000 });
 
     const title = await page.title();
     expect(title).toContain(expectedTitlePart.trim());
 
-    const desc = await page.evaluate(() =>
+    // The description node must be swapped to the article's — different from the index's.
+    const articleDesc = await page.evaluate(() =>
       document.querySelector('meta[name="description"]')?.getAttribute('content'));
-    expect(desc).toBeTruthy();
+    expect(articleDesc).toBeTruthy();
+    expect(articleDesc).not.toBe(indexDesc);
   });
 });
