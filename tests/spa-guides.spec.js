@@ -31,3 +31,20 @@ test.describe('SPA Phase 1: route matching', () => {
     expect(r.guidesIndexParams).toEqual({});
   });
 });
+
+test.describe('SPA Phase 1: article init', () => {
+  test('articlePageInit builds TOC from article headings', async ({ page }) => {
+    await page.goto('/guides/managing-ai-coding-tool-budgets/', { waitUntil: 'domcontentloaded' });
+    const count = await page.locator('#toc-list li').count();
+    expect(count).toBeGreaterThan(0);
+    expect(await page.evaluate(() => typeof window.articlePageInit)).toBe('function');
+  });
+
+  test('articlePageInit is idempotent (no duplicate TOC entries on re-run)', async ({ page }) => {
+    await page.goto('/guides/managing-ai-coding-tool-budgets/', { waitUntil: 'domcontentloaded' });
+    const before = await page.locator('#toc-list li').count();
+    await page.evaluate(() => window.articlePageInit());
+    const after = await page.locator('#toc-list li').count();
+    expect(after).toBe(before);
+  });
+});
