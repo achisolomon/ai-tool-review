@@ -186,4 +186,29 @@ test.describe('SPA Phase 1: head metadata swap', () => {
       document.querySelector('link[rel="canonical"]')?.getAttribute('href'));
     expect(canonical).toMatch(/\/guides\/.+\//);
   });
+
+  test('reverse: home retains its meta after article → home navigation', async ({ page }) => {
+    // Guards against the swap stripping the destination page's head tags and
+    // leaving none (regression: index.html meta must be data-spa-head too).
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    const homeDesc = await page.evaluate(() =>
+      document.querySelector('meta[name="description"]')?.getAttribute('content'));
+    expect(homeDesc).toBeTruthy();
+
+    // Home → Guides → first article (SPA), then back to home via the Search nav link.
+    await page.locator('[data-spa-link][href="/guides/"]').click();
+    await page.waitForURL(/\/guides\/$/, { timeout: 5000 });
+    await page.locator('a.article-card[data-spa-link]').first().click();
+    await page.waitForURL(/\/guides\/.+\//, { timeout: 5000 });
+    await page.locator('.nav-link-text[href="/"]').click();
+    await page.waitForURL(/localhost:\d+\/$/, { timeout: 5000 });
+
+    // The home page's own meta must be restored, not left empty.
+    const restoredDesc = await page.evaluate(() =>
+      document.querySelector('meta[name="description"]')?.getAttribute('content'));
+    expect(restoredDesc).toBe(homeDesc);
+    const ogTitle = await page.evaluate(() =>
+      document.querySelector('meta[property="og:title"]')?.getAttribute('content'));
+    expect(ogTitle).toBe('AI Tool Review');
+  });
 });
