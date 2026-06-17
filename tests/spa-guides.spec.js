@@ -55,3 +55,19 @@ test.describe('SPA Phase 1: DOM prerequisites', () => {
     await expect(page.locator('#page-content')).toBeAttached();
   });
 });
+
+test.describe('SPA Phase 1: cross-page nav from article', () => {
+  test('article → search works without full reload and search initializes', async ({ page }) => {
+    await page.addInitScript(() => { localStorage.setItem('cookie_consent', 'accepted'); });
+    await page.route('https://www.googletagmanager.com/**', r => r.abort());
+    await page.route('https://cdn.jsdelivr.net/**', r => r.abort());
+    await page.goto('/guides/managing-ai-coding-tool-budgets/', { waitUntil: 'domcontentloaded' });
+    await page.evaluate(() => { window.__spaLoaded = true; });
+
+    await page.locator('.nav-link-text[href="/"]').click();
+
+    await expect(page.locator('#search-input')).toBeVisible({ timeout: 5000 });
+    expect(await page.evaluate(() => window.__spaLoaded)).toBe(true); // no reload
+    expect(page.url()).toMatch(/localhost:\d+\/$/);
+  });
+});

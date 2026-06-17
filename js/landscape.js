@@ -1,5 +1,6 @@
 // AI Landscape Page - Dedicated landscape view
 window.landscapeInit = function landscapeInit() {
+    if (!document.getElementById('landscape')) return;
     // State
     let currentTrack = 'all';
     let currentType = 'all';

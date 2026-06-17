@@ -20,6 +20,7 @@ function updateHeroCounts() {
 }
 
 window.appInit = function appInit() {
+    if (!document.getElementById('action-input')) return;
     updateHeroCounts();
     // State
     let searchQuery = '';
