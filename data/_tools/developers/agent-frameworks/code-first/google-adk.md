@@ -13,6 +13,9 @@ founded_year: 2024
 headquarters: "Mountain View, CA"
 github_url: "https://github.com/google/adk"
 github_stars: 4200
+tags:
+  - agents
+  - agent-to-agent
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

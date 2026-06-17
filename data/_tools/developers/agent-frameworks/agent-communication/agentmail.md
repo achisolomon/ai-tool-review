@@ -13,6 +13,7 @@ founded_year: 2025
 headquarters: "San Francisco, CA"
 tags:
   - agents
+  - agent-to-agent
   - email
   - api
 last_verified: "2026-06-11"

@@ -15,6 +15,7 @@ founded_year: 2023
 headquarters: "San Francisco, CA"
 tags:
   - agents
+  - agent-to-agent
   - python
   - typescript
 last_verified: "2026-06-02"

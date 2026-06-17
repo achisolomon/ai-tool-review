@@ -15,6 +15,7 @@ github_url: "https://github.com/openai/openai-agents-python"
 github_stars: 27203
 tags:
   - agents
+  - agent-to-agent
   - python
   - typescript
 last_verified: "2026-06-03"
