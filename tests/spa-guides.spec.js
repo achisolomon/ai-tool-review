@@ -21,11 +21,13 @@ test.describe('SPA Phase 1: route matching', () => {
       home: !!window.SpaRouter.matchRoute('/'),
       unknown: !!window.SpaRouter.matchRoute('/nope/'),
       articleSlug: window.SpaRouter.matchRoute('/guides/some-slug/')?.params?.slug,
+      guidesIndexParams: window.SpaRouter.matchRoute('/guides/')?.params,
     }));
     expect(r.guidesIndex).toBe(true);
     expect(r.article).toBe(true);
     expect(r.home).toBe(true);
     expect(r.unknown).toBe(false);
     expect(r.articleSlug).toBe('some-slug');
+    expect(r.guidesIndexParams).toEqual({});
   });
 });

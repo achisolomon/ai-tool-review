@@ -1,6 +1,9 @@
 (function () {
     'use strict';
 
+    // Route table. Each init(params) receives matched URL params as { [name]: string }.
+    // Within each group (static, then param), declaration order is the tiebreaker —
+    // declare more specific patterns first.
     const ROUTES = [
         { pattern: '/',               init: () => {
             if (window.appInit) window.appInit();
@@ -15,7 +18,11 @@
     // Compile a route pattern to a regex; ':name' segments become capture groups.
     function compile(pattern) {
         const names = [];
-        const rx = pattern.replace(/:[^/]+/g, (m) => { names.push(m.slice(1)); return '([^/]+)'; });
+        // Escape regex metacharacters in the literal parts, then turn ':name'
+        // segments into capture groups. Escaping first keeps '.' in paths like
+        // '/landscape.html' literal instead of a wildcard.
+        const escaped = pattern.replace(/[.+*?^${}()|[\]\\]/g, '\\$&');
+        const rx = escaped.replace(/:[^/]+/g, (m) => { names.push(m.slice(1)); return '([^/]+)'; });
         return { re: new RegExp('^' + rx + '$'), names };
     }
 
