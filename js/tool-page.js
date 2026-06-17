@@ -28,6 +28,9 @@
     });
   }
 
+  // The router calls toolPageInit(slug), but the slug arg is intentionally
+  // ignored — tool data is read from the #tool-data island (the source of
+  // truth, present on both direct load and after an SPA content swap).
   function toolPageInit() {
     var tool = readToolData();
     if (!tool) return;
