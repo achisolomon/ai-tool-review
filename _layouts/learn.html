@@ -205,6 +205,7 @@
   {% endif %}
   <script src="{{ '/js/supabase-client.js' | relative_url }}"></script>
   <script src="{{ '/js/auth-ui.js' | relative_url }}"></script>
+  {% include spa-scripts.html %}
   {% include nav-scripts.html %}
   <script>
     document.addEventListener('DOMContentLoaded', function() {
