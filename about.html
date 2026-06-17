@@ -1,3 +1,5 @@
+---
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -140,6 +142,9 @@
     </style>
 </head>
 <body>
+  <header class="header">
+    {% include nav.html %}
+  </header>
     <div class="about-container">
         <a href="index.html" class="back-link">&larr; Back to AI Tool Review</a>
 
@@ -257,5 +262,9 @@
             });
         })();
     </script>
+
+  <script src="/js/supabase-client.js"></script>
+  <script src="/js/auth-ui.js"></script>
+  {% include nav-scripts.html %}
 </body>
 </html>

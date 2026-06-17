@@ -1,3 +1,5 @@
+---
+---
 <!--
     TODO: UPDATE THIS PRIVACY POLICY WHEN ADDING USER DATABASE/REVIEWS
 
@@ -104,6 +106,9 @@
     </style>
 </head>
 <body>
+  <header class="header">
+    {% include nav.html %}
+  </header>
     <div class="privacy-container">
         <a href="index.html" class="back-link">&larr; Back to AI Tool Review</a>
 
@@ -312,5 +317,9 @@
             <a href="index.html">&larr; Back to AI Tool Review</a>
         </p>
     </div>
+
+  <script src="/js/supabase-client.js"></script>
+  <script src="/js/auth-ui.js"></script>
+  {% include nav-scripts.html %}
 </body>
 </html>
