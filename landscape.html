@@ -138,42 +138,24 @@ permalink: /landscape.html
     </div><!-- #page-content -->
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>AI Tool Review</h3>
-                <p>Your guide to AI tools. Community reviews and ratings coming soon.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Legend</h3>
-                <div class="legend">
-                    <div class="legend-item"><span class="badge badge-oss">OSS</span> Open Source</div>
-                    <div class="legend-item"><span class="badge badge-saas">SaaS</span> Managed/Cloud</div>
-                    <div class="legend-item"><span class="badge badge-commercial">COM</span> Commercial/Paid</div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 AI Tool Review. Community-curated. | <a href="about.html">About</a> | <a href="about.html#how-its-organized">How the map is organized</a> | <a href="contact.html">Contact</a> | <a href="privacy.html">Privacy Policy</a></p>
-        </div>
-        <!-- Ad Section -->
-        <div class="footer-ad">
-            <ins class="adsbygoogle"
-                style="display:block"
-                data-ad-client="ca-pub-7272761067250869"
-                data-ad-slot="1939469484"
-                data-ad-format="auto"
-                data-full-width-responsive="true"></ins>
-            <script>
-                // Skip the real AdSense push on localhost: the dev placeholder
-                // below replaces the slot's contents, which makes adsbygoogle.js
-                // throw "no_div"/"availableWidth=0". Production still pushes normally.
-                if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                }
-            </script>
-        </div>
-    </footer>
+    {% include footer.html %}
+    <!-- Ad Section -->
+    <div class="footer-ad">
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-7272761067250869"
+            data-ad-slot="1939469484"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+            // Skip the real AdSense push on localhost: the dev placeholder
+            // below replaces the slot's contents, which makes adsbygoogle.js
+            // throw "no_div"/"availableWidth=0". Production still pushes normally.
+            if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            }
+        </script>
+    </div>
 
     <!-- Tooltip -->
     <div id="tooltip" class="tooltip"></div>
@@ -186,7 +168,7 @@ permalink: /landscape.html
     <!-- Cookie Consent Banner -->
     <div id="cookie-consent" class="cookie-banner" style="display: none;">
         <div class="cookie-content">
-            <p>We use cookies for analytics and personalized ads. By clicking "Accept", you consent to our use of cookies. <a href="privacy.html">Privacy Policy</a></p>
+            <p>We use cookies for analytics and personalized ads. By clicking "Accept", you consent to our use of cookies. <a href="/privacy.html">Privacy Policy</a></p>
             <div class="cookie-buttons">
                 <button id="cookie-reject" class="cookie-btn cookie-btn-secondary">Reject</button>
                 <button id="cookie-accept" class="cookie-btn cookie-btn-primary">Accept</button>

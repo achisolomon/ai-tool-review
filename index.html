@@ -131,28 +131,24 @@ permalink: /
     </main><!-- #page-content -->
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-bottom">
-            <p>&copy; 2026 AI Tool Review. | <a href="about.html">About</a> | <a href="contact.html">Contact</a> | <a href="privacy.html">Privacy Policy</a></p>
-        </div>
-        <!-- Ad Section -->
-        <div class="footer-ad">
-            <ins class="adsbygoogle"
-                style="display:block"
-                data-ad-client="ca-pub-7272761067250869"
-                data-ad-slot="1939469484"
-                data-ad-format="auto"
-                data-full-width-responsive="true"></ins>
-            <script>
-                // Skip the real AdSense push on localhost: the dev placeholder
-                // below replaces the slot's contents, which makes adsbygoogle.js
-                // throw "no_div"/"availableWidth=0". Production still pushes normally.
-                if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                }
-            </script>
-        </div>
-    </footer>
+    {% include footer.html %}
+    <!-- Ad Section -->
+    <div class="footer-ad">
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-7272761067250869"
+            data-ad-slot="1939469484"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+            // Skip the real AdSense push on localhost: the dev placeholder
+            // below replaces the slot's contents, which makes adsbygoogle.js
+            // throw "no_div"/"availableWidth=0". Production still pushes normally.
+            if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            }
+        </script>
+    </div>
 
     <script src="js/supabase-client.js"></script>
     <script src="js/auth-ui.js"></script>
@@ -162,7 +158,7 @@ permalink: /
     <!-- Cookie Consent Banner -->
     <div id="cookie-consent" class="cookie-banner" style="display: none;">
         <div class="cookie-content">
-            <p>We use cookies for analytics and personalized ads. By clicking "Accept", you consent to our use of cookies. <a href="privacy.html">Privacy Policy</a></p>
+            <p>We use cookies for analytics and personalized ads. By clicking "Accept", you consent to our use of cookies. <a href="/privacy.html">Privacy Policy</a></p>
             <div class="cookie-buttons">
                 <button id="cookie-reject" class="cookie-btn cookie-btn-secondary">Reject</button>
                 <button id="cookie-accept" class="cookie-btn cookie-btn-primary">Accept</button>

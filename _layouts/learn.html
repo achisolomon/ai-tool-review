@@ -98,11 +98,7 @@
     </div>
   </main>
 
-  <footer class="footer">
-    <div class="footer-bottom">
-      <p>&copy; {{ site.time | date: '%Y' }} AI Tool Review. Community-curated. | <a href="{{ '/about.html' | relative_url }}">About</a> | <a href="{{ '/contact.html' | relative_url }}">Contact</a> | <a href="{{ '/privacy.html' | relative_url }}">Privacy Policy</a></p>
-    </div>
-  </footer>
+  {% include footer.html %}
 
   {% if jekyll.environment != "production" %}
   <script src="{{ '/js/config-local.js' | relative_url }}" onerror="this.remove()"></script>
