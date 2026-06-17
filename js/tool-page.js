@@ -396,16 +396,21 @@
         if (e.target === modal) closeModal();
       });
 
-      // Close on Escape key
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') {
-          if (modal.classList.contains('active')) closeModal();
-          if (authModal.classList.contains('active')) {
-            authModal.classList.remove('active');
-            document.body.style.overflow = '';
-          }
+      // Close on Escape key.
+      // Replace stale Escape handler so navigations don't stack document listeners.
+      if (window.__toolReviewEscHandler) {
+        document.removeEventListener('keydown', window.__toolReviewEscHandler);
+      }
+      function escHandler(e) {
+        if (e.key !== 'Escape') return;
+        if (modal.classList.contains('active')) closeModal();
+        if (authModal && authModal.classList.contains('active')) {
+          authModal.classList.remove('active');
+          document.body.style.overflow = '';
         }
-      });
+      }
+      window.__toolReviewEscHandler = escHandler;
+      document.addEventListener('keydown', escHandler);
 
       // Star rating interaction
       if (ratingInput) {
@@ -623,10 +628,16 @@
 
       deleteModal.addEventListener('click', function (e) {
         if (e.target === deleteModal) closeDeleteModal();
-      });
+      }, { once: true });
 
-      // Confirm delete
+      // Confirm delete — clone-and-replace to drop any stale listener from a
+      // previous showDeleteConfirmation call, while preserving the retry path
+      // (the handler re-enables the button on failure, so { once: true } would
+      // break a second attempt after an error).
       if (confirmBtn) {
+        var freshConfirmBtn = confirmBtn.cloneNode(true);
+        confirmBtn.replaceWith(freshConfirmBtn);
+        confirmBtn = freshConfirmBtn;
         confirmBtn.addEventListener('click', async function () {
           confirmBtn.disabled = true;
           confirmBtn.textContent = 'Deleting...';
