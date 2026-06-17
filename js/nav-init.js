@@ -46,6 +46,16 @@
         window.SupabaseClient.getCachedSession()) {
       initAdminBadge();
     }
+    // OAuth redirect: SIGNED_IN fires after the library processes the hash.
+    // auth-ui.js dispatches this DOM event so we don't need to load the
+    // library here (it's already loaded by the time the event fires).
+    document.addEventListener('auth:statechange', function (e) {
+      if (e.detail.event === 'SIGNED_IN') initAdminBadge();
+      if (e.detail.event === 'SIGNED_OUT') {
+        var badge = document.getElementById('admin-badge');
+        if (badge) badge.classList.add('hidden');
+      }
+    });
   }
 
   if (document.readyState === 'loading') {

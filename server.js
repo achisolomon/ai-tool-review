@@ -52,6 +52,16 @@ function resolveFilePath(urlPath) {
 }
 
 const server = http.createServer((req, res) => {
+  // Redirect .html extension URLs to clean URLs (mirrors Jekyll permalink behavior,
+  // and heals stale browser caches from previous Jekyll dev server sessions).
+  const urlPath = req.url.split('?')[0];
+  if (urlPath.endsWith('.html') && urlPath !== '/index.html') {
+    const clean = urlPath.slice(0, -5) || '/';
+    res.writeHead(301, { Location: clean });
+    res.end();
+    return;
+  }
+
   const filePath = resolveFilePath(req.url);
 
   if (!filePath) {

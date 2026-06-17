@@ -155,11 +155,20 @@
                     }
                     container.innerHTML = renderAuthDropdown(newUser, newProfile);
                     setupDropdownHandlers(container);
+                    document.dispatchEvent(new CustomEvent('auth:statechange', { detail: { event, user: newUser } }));
                 }
             });
         }
-        if (window.supabase) attachAuthListener();
-        else if (cachedUser) window.SupabaseClient.ensureSupabase().then(attachAuthListener).catch(() => {});
+        // Always attach the auth listener once the library is loaded.
+        // Without a cached user the library loads lazily on sign-in click,
+        // but an OAuth redirect lands with no cached session yet — the hash
+        // is processed by supabase-js only after ensureSupabase() runs. We
+        // must ensure the library loads so the SIGNED_IN event is captured.
+        if (window.supabase) {
+            attachAuthListener();
+        } else {
+            window.SupabaseClient.ensureSupabase().then(attachAuthListener).catch(() => {});
+        }
     }
 
     // Store references to document-level event handlers so they can be removed
