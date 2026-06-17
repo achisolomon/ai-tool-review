@@ -3459,11 +3459,12 @@ const landscapeData = {
               "user_count": null,
               "tags": [
                 "agents",
-                "email",
-                "api"
+                "agent-to-agent",
+                "email"
               ],
               "all_tags": [
                 "agents",
+                "agent-to-agent",
                 "email",
                 "api"
               ],
@@ -4220,10 +4221,12 @@ const landscapeData = {
               "user_count": null,
               "tags": [
                 "agents",
+                "agent-to-agent",
                 "python"
               ],
               "all_tags": [
                 "agents",
+                "agent-to-agent",
                 "python"
               ],
               "category_id": "agent-frameworks",
@@ -4270,10 +4273,12 @@ const landscapeData = {
               "user_count": null,
               "tags": [
                 "agents",
+                "agent-to-agent",
                 "python"
               ],
               "all_tags": [
                 "agents",
+                "agent-to-agent",
                 "python"
               ],
               "category_id": "agent-frameworks",
@@ -4322,10 +4327,12 @@ const landscapeData = {
               "user_count": null,
               "tags": [
                 "agents",
+                "agent-to-agent",
                 "python"
               ],
               "all_tags": [
                 "agents",
+                "agent-to-agent",
                 "python"
               ],
               "category_id": "agent-frameworks",
@@ -4421,10 +4428,12 @@ const landscapeData = {
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-
+                "agents",
+                "agent-to-agent"
               ],
               "all_tags": [
-
+                "agents",
+                "agent-to-agent"
               ],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
@@ -4524,11 +4533,12 @@ const landscapeData = {
               "user_count": null,
               "tags": [
                 "agents",
-                "python",
-                "typescript"
+                "agent-to-agent",
+                "python"
               ],
               "all_tags": [
                 "agents",
+                "agent-to-agent",
                 "python",
                 "typescript"
               ],
@@ -4679,11 +4689,12 @@ const landscapeData = {
               "user_count": null,
               "tags": [
                 "agents",
-                "python",
-                "typescript"
+                "agent-to-agent",
+                "python"
               ],
               "all_tags": [
                 "agents",
+                "agent-to-agent",
                 "python",
                 "typescript"
               ],
@@ -4960,10 +4971,12 @@ const landscapeData = {
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-                "agents"
+                "agents",
+                "agent-to-agent"
               ],
               "all_tags": [
-                "agents"
+                "agents",
+                "agent-to-agent"
               ],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
@@ -7526,17 +7539,50 @@ const landscapeData = {
               "name": "Docling",
               "slug": "docling",
               "url": "https://github.com/DS4SD/docling",
-              "desc": "Docling is an advanced document parser supporting PDF, DOCX, and more with layout-aware processing and AI integration.",
-              "type": "oss",
-              "github_stars": 5000,
-              "pricing_model": "free",
+              "desc": "Docling is an open-source document parser by IBM Research that converts PDFs, Office files, and 20+ formats into structured, LLM-ready data using layout-aware AI models with best-in-class table extraction accuracy.",
+              "type": "open-source",
+              "github_stars": 61719,
+              "pricing_model": "open-source",
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-
+                "rag",
+                "python",
+                "self-hosted"
               ],
               "all_tags": [
-
+                "rag",
+                "python",
+                "self-hosted",
+                "mcp-server"
+              ],
+              "category_id": "data-training",
+              "category_name": "Data & Training",
+              "subcategory_id": "data-ingestion",
+              "subcategory_name": "Data Ingestion & Document Processing",
+              "additional_categories": []
+            },
+            {
+              "name": "LandingAI",
+              "slug": "landingai",
+              "url": "https://landing.ai/agentic-document-extraction",
+              "desc": "LandingAI's Agentic Document Extraction (ADE) is a vision-first API that converts complex PDFs, forms, and scanned documents into structured, citation-grounded data — scoring highest among agentic document extraction tools with 99.16% accuracy on DocVQA.",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "api-available",
+                "rag",
+                "multimodal"
+              ],
+              "all_tags": [
+                "api-available",
+                "rag",
+                "multimodal",
+                "python",
+                "typescript"
               ],
               "category_id": "data-training",
               "category_name": "Data & Training",
@@ -7550,17 +7596,22 @@ const landscapeData = {
               "name": "LangExtract",
               "slug": "langextract",
               "url": "https://github.com/google/langextract",
-              "desc": "LangExtract is an open-source library for automated language detection and text extraction from multilingual documents.",
-              "type": "oss",
+              "desc": "LangExtract is Google's open-source Python library that extracts structured information from unstructured text using LLMs, grounding every extraction to its exact character position in the source document for verifiable, hallucination-filtered output.",
+              "type": "open-source",
               "github_stars": 36907,
-              "pricing_model": "free",
+              "pricing_model": "open-source",
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-
+                "rag",
+                "python",
+                "multimodal"
               ],
               "all_tags": [
-
+                "rag",
+                "python",
+                "multimodal",
+                "api-available"
               ],
               "category_id": "data-training",
               "category_name": "Data & Training",
@@ -7573,18 +7624,24 @@ const landscapeData = {
             {
               "name": "LlamaParse",
               "slug": "llamaparse",
-              "url": "https://cloud.llamaindex.ai/",
-              "desc": "LlamaParse is a commercial API service by LlamaIndex for intelligent document parsing with layout awareness and structured data extraction.",
+              "url": "https://www.llamaindex.ai/llamaparse",
+              "desc": "LlamaParse is an enterprise document parsing API by LlamaIndex that converts complex PDFs, scans, and 130+ file formats into structured, LLM-ready data using agentic OCR with layout-aware multimodal understanding.",
               "type": "commercial",
               "github_stars": null,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-
+                "api-available",
+                "rag",
+                "multimodal"
               ],
               "all_tags": [
-
+                "api-available",
+                "rag",
+                "multimodal",
+                "python",
+                "typescript"
               ],
               "category_id": "data-training",
               "category_name": "Data & Training",
@@ -7597,18 +7654,23 @@ const landscapeData = {
             {
               "name": "PageIndex",
               "slug": "pageindex",
-              "url": "https://www.pageindex.dev/",
-              "desc": "PageIndex is a platform for intelligent document indexing with semantic search capabilities for PDF, SEC filings, and financial documents.",
-              "type": "commercial",
-              "github_stars": null,
-              "pricing_model": "freemium",
+              "url": "https://pageindex.ai",
+              "desc": "PageIndex is a vectorless document retrieval and AI platform by VectifyAI that uses hierarchical tree indexing and LLM reasoning instead of embeddings, achieving 98.7% accuracy on FinanceBench — far surpassing standard vector RAG approaches.",
+              "type": "open-source",
+              "github_stars": 26000,
+              "pricing_model": "open-source",
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-
+                "rag",
+                "reasoning",
+                "api-available"
               ],
               "all_tags": [
-
+                "rag",
+                "reasoning",
+                "api-available",
+                "mcp-server"
               ],
               "category_id": "data-training",
               "category_name": "Data & Training",
@@ -7622,17 +7684,23 @@ const landscapeData = {
               "name": "Unstructured",
               "slug": "unstructured",
               "url": "https://unstructured.io/",
-              "desc": "Unstructured is an open-source library that ingests and processes diverse document formats (PDF, DOCX, images) for AI and LLM pipelines.",
-              "type": "oss",
-              "github_stars": 8500,
+              "desc": "Unstructured is an open-source and commercial ETL platform that converts 64+ file types into structured, AI-ready data for LLM and RAG pipelines, trusted by 87% of Fortune 1000 companies with SOC 2 Type II, HIPAA, and FedRAMP High compliance.",
+              "type": "open-source",
+              "github_stars": 14948,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-
+                "rag",
+                "api-available",
+                "python"
               ],
               "all_tags": [
-
+                "rag",
+                "api-available",
+                "python",
+                "workflow-automation",
+                "self-hosted"
               ],
               "category_id": "data-training",
               "category_name": "Data & Training",
@@ -11627,6 +11695,11 @@ const landscapeData = {
           "slug": "agents",
           "name": "Agents",
           "description": "Autonomous agent capabilities"
+        },
+        {
+          "slug": "agent-to-agent",
+          "name": "Agent-to-Agent",
+          "description": "Agents coordinate, communicate, or hand off work to other agents (multi-agent / A2A)"
         },
         {
           "slug": "multimodal",
