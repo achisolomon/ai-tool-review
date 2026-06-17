@@ -1,0 +1,8 @@
+<!-- Site-wide ambient background + cursor aura. Single source of truth, pulled
+     in by nav-scripts.html so it lands on every page. Decorative only
+     (aria-hidden). The canvas runs "Gentle Gather"; the glow is the page-level
+     cursor aura. See VISUAL-DESIGN.md Section 6. -->
+<link rel="stylesheet" href="/css/ambient.css">
+<canvas id="ambient-bg" aria-hidden="true"></canvas>
+<div id="cursor-glow" aria-hidden="true"></div>
+<script src="/js/ambient.js" defer></script>

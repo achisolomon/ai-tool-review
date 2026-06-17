@@ -4,8 +4,9 @@
 <script src="{{ '/js/data.js' | relative_url }}"></script>
 <script src="{{ '/js/app.js' | relative_url }}"></script>
 <script src="{{ '/js/landscape.js' | relative_url }}"></script>
-<script src="{{ '/js/hero-map.js' | relative_url }}"></script>
-<script src="{{ '/js/card-glow.js' | relative_url }}"></script>
+<!-- hero-map.js + card-glow.js retired: the site-wide ambient background,
+     cursor aura, and hover light-up now load once via nav-scripts.html
+     (_includes/ambient.html). Single source, no per-page canvas. -->
 <script src="{{ '/js/learn-page.js' | relative_url }}"></script>
 <script src="{{ '/js/reviews-api.js' | relative_url }}"></script>
 <script src="{{ '/js/review-components.js' | relative_url }}"></script>
