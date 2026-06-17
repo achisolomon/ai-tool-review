@@ -11,3 +11,21 @@ test.describe('SPA Phase 1: shared bootstrap', () => {
     expect(has.landscapeInit).toBe('function');
   });
 });
+
+test.describe('SPA Phase 1: route matching', () => {
+  test('matchRoute resolves static and param routes with correct precedence', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    const r = await page.evaluate(() => ({
+      guidesIndex: !!window.SpaRouter.matchRoute('/guides/'),
+      article: !!window.SpaRouter.matchRoute('/guides/some-slug/'),
+      home: !!window.SpaRouter.matchRoute('/'),
+      unknown: !!window.SpaRouter.matchRoute('/nope/'),
+      articleSlug: window.SpaRouter.matchRoute('/guides/some-slug/')?.params?.slug,
+    }));
+    expect(r.guidesIndex).toBe(true);
+    expect(r.article).toBe(true);
+    expect(r.home).toBe(true);
+    expect(r.unknown).toBe(false);
+    expect(r.articleSlug).toBe('some-slug');
+  });
+});

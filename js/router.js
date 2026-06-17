@@ -1,15 +1,40 @@
 (function () {
     'use strict';
 
-    const PAGE_INITS = {
-        '/': () => {
+    const ROUTES = [
+        { pattern: '/',               init: () => {
             if (window.appInit) window.appInit();
             if (window.HeroMap) window.HeroMap.start();
             if (window.CardGlow) window.CardGlow.init();
-        },
-        '/landscape.html': () => { if (window.landscapeInit) window.landscapeInit(); },
-        '/guides/':        () => { /* static — no JS init needed */ },
-    };
+        } },
+        { pattern: '/landscape.html', init: () => { if (window.landscapeInit) window.landscapeInit(); } },
+        { pattern: '/guides/',        init: () => { /* guides index — static */ } },
+        { pattern: '/guides/:slug/',  init: () => { if (window.articlePageInit) window.articlePageInit(); } },
+    ];
+
+    // Compile a route pattern to a regex; ':name' segments become capture groups.
+    function compile(pattern) {
+        const names = [];
+        const rx = pattern.replace(/:[^/]+/g, (m) => { names.push(m.slice(1)); return '([^/]+)'; });
+        return { re: new RegExp('^' + rx + '$'), names };
+    }
+
+    // Exact patterns first, then param patterns, so '/guides/' beats '/guides/:slug/'.
+    const COMPILED = ROUTES
+        .map(r => ({ ...r, ...compile(r.pattern), isParam: r.pattern.includes(':') }))
+        .sort((a, b) => (a.isParam === b.isParam) ? 0 : a.isParam ? 1 : -1);
+
+    function matchRoute(pathname) {
+        for (const r of COMPILED) {
+            const m = r.re.exec(pathname);
+            if (m) {
+                const params = {};
+                r.names.forEach((n, i) => { params[n] = m[i + 1]; });
+                return { init: r.init, params };
+            }
+        }
+        return null;
+    }
 
     function normalize(href) {
         try {
@@ -84,8 +109,8 @@
 
             window.scrollTo(0, 0);
 
-            const init = PAGE_INITS[toPathname];
-            if (init) init();
+            const route = matchRoute(toPathname);
+            if (route) route.init(route.params);
 
             document.dispatchEvent(new CustomEvent('spa:navigate', { detail: { href, pathname: toPathname } }));
         } finally {
@@ -98,7 +123,7 @@
         if (!a) return;
         const href = a.getAttribute('href');
         const pathname = normalize(href);
-        if (!PAGE_INITS.hasOwnProperty(pathname)) return;
+        if (!matchRoute(pathname)) return;
         e.preventDefault();
         navigate(href);
     });
@@ -109,5 +134,5 @@
         navigate(href, false, prevPathname);
     });
 
-    window.SpaRouter = { navigate };
+    window.SpaRouter = { navigate, matchRoute };
 })();
