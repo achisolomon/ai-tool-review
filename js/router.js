@@ -78,7 +78,8 @@
         const doc = new DOMParser().parseFromString(html, 'text/html');
         const content = doc.getElementById('page-content');
         const title = doc.querySelector('title')?.textContent ?? document.title;
-        return { innerHTML: content?.innerHTML ?? '', title };
+        const headNodes = Array.from(doc.querySelectorAll('head [data-spa-head]'));
+        return { innerHTML: content?.innerHTML ?? '', title, headNodes };
     }
 
     async function navigate(href, pushState = true, fromOverride) {
@@ -107,6 +108,9 @@
             slot.innerHTML = pageData.innerHTML;
 
             document.title = pageData.title;
+            // Swap head metadata so in-session navigation keeps meta/og accurate.
+            document.head.querySelectorAll('[data-spa-head]').forEach(n => n.remove());
+            pageData.headNodes.forEach(n => document.head.appendChild(n.cloneNode(true)));
             if (pushState) {
                 history.pushState({ spa: true, href }, pageData.title, href);
             }

@@ -99,3 +99,26 @@ test.describe('SPA Phase 1: navigate to articles', () => {
     expect(page.url()).toMatch(/\/guides\/$/);
   });
 });
+
+test.describe('SPA Phase 1: head metadata swap', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => { localStorage.setItem('cookie_consent', 'accepted'); });
+    await page.route('https://www.googletagmanager.com/**', r => r.abort());
+    await page.route('https://cdn.jsdelivr.net/**', r => r.abort());
+  });
+
+  test('title and description update when navigating to an article', async ({ page }) => {
+    await page.goto('/guides/', { waitUntil: 'domcontentloaded' });
+    const card = page.locator('a.article-card[data-spa-link]').first();
+    const expectedTitlePart = await card.locator('h2').textContent();
+    await card.click();
+    await expect(page.locator('#page-content h1')).toBeVisible({ timeout: 5000 });
+
+    const title = await page.title();
+    expect(title).toContain(expectedTitlePart.trim());
+
+    const desc = await page.evaluate(() =>
+      document.querySelector('meta[name="description"]')?.getAttribute('content'));
+    expect(desc).toBeTruthy();
+  });
+});
