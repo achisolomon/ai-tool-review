@@ -7146,6 +7146,34 @@ const landscapeData = {
               ]
             },
             {
+              "name": "Inference.net",
+              "slug": "inference-net",
+              "url": "https://inference.net/",
+              "desc": "Full-stack LLM lifecycle platform with OpenAI-compatible serverless inference, fine-tuning, observability, and custom models at up to 90% lower cost than frontier models.",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "api-available",
+                "serverless",
+                "agents"
+              ],
+              "all_tags": [
+                "api-available",
+                "serverless",
+                "agents",
+                "observability",
+                "real-time"
+              ],
+              "category_id": "ai-infrastructure",
+              "category_name": "AI Infrastructure (Inference, Compute, Routing)",
+              "subcategory_id": "inference-apis",
+              "subcategory_name": "Inference APIs / Serverless LLMs",
+              "additional_categories": []
+            },
+            {
               "name": "Lepton AI",
               "slug": "lepton-ai",
               "url": "https://www.lepton.ai/",
