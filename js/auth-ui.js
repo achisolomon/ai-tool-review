@@ -128,6 +128,7 @@
             (async () => {
                 try {
                     await window.SupabaseClient.ensureSupabase();
+                    attachAuthListener();
                     const user = await window.SupabaseClient.getCurrentUser();
                     let profile = null;
                     if (user) {
@@ -139,6 +140,22 @@
                     setupDropdownHandlers(container);
                 } catch (_) { /* CDN/DB down — keep the optimistic cached render */ }
             })();
+        } else if (isOAuthRedirect()) {
+            // No cached session, but an OAuth provider redirect just landed
+            // (hash/query carries the token/code). Load the library so supabase-js
+            // processes the hash and fires SIGNED_IN. A plain logged-out visitor
+            // (no redirect) hits NEITHER branch → Supabase is never loaded, keeping
+            // content pages Supabase-independent.
+            window.SupabaseClient.ensureSupabase().then(attachAuthListener).catch(() => {});
+        }
+
+        // Detect an in-progress OAuth redirect: Supabase implicit flow puts
+        // access_token in the URL hash; PKCE flow puts ?code= in the query.
+        function isOAuthRedirect() {
+            var h = window.location.hash || '';
+            var s = window.location.search || '';
+            return h.indexOf('access_token') !== -1 || h.indexOf('error') !== -1 ||
+                   /[?&]code=/.test(s);
         }
 
         // React to real auth events once the library is present (sign-in/out).
@@ -159,15 +176,13 @@
                 }
             });
         }
-        // Always attach the auth listener once the library is loaded.
-        // Without a cached user the library loads lazily on sign-in click,
-        // but an OAuth redirect lands with no cached session yet — the hash
-        // is processed by supabase-js only after ensureSupabase() runs. We
-        // must ensure the library loads so the SIGNED_IN event is captured.
+        // If the library is already present (e.g. another component loaded it),
+        // attach the listener now. Otherwise it is attached by the cached-session
+        // or OAuth-redirect branches above — a plain logged-out visitor never
+        // loads the library, so there is nothing to listen to yet (the sign-in
+        // click loads it lazily and re-renders).
         if (window.supabase) {
             attachAuthListener();
-        } else {
-            window.SupabaseClient.ensureSupabase().then(attachAuthListener).catch(() => {});
         }
     }
 
