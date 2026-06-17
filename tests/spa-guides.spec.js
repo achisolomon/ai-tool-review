@@ -100,6 +100,55 @@ test.describe('SPA Phase 1: navigate to articles', () => {
   });
 });
 
+test.describe('SPA Phase 1: toolbar loads once', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => { localStorage.setItem('cookie_consent', 'accepted'); });
+    await page.route('https://www.googletagmanager.com/**', r => r.abort());
+    await page.route('https://cdn.jsdelivr.net/**', r => r.abort());
+  });
+
+  test('E2: auth container HTML persists across guides → article nav', async ({ page }) => {
+    await page.goto('/guides/', { waitUntil: 'domcontentloaded' });
+    const before = await page.locator('#auth-container').innerHTML();
+    await page.locator('a.article-card[data-spa-link]').first().click();
+    await page.waitForURL(/\/guides\/.+\//, { timeout: 5000 });
+    const after = await page.locator('#auth-container').innerHTML();
+    expect(after).toBe(before);
+  });
+
+  test('E1: AuthUI.init does not re-run on SPA nav (call count stable)', async ({ page }) => {
+    // Instrument AuthUI.init BEFORE any script assigns window.AuthUI, by intercepting
+    // the property setter. Counts every call to AuthUI.init across the page lifetime.
+    await page.addInitScript(() => {
+      window.__authInitCalls = 0;
+      let _authui;
+      Object.defineProperty(window, 'AuthUI', {
+        configurable: true,
+        get() { return _authui; },
+        set(v) {
+          _authui = v;
+          if (v && typeof v.init === 'function' && !v.__counted) {
+            const realInit = v.init.bind(v);
+            v.init = function (...args) { window.__authInitCalls++; return realInit(...args); };
+            v.__counted = true;
+          }
+        },
+      });
+    });
+    await page.goto('/guides/', { waitUntil: 'domcontentloaded' });
+    await page.waitForTimeout(400); // let nav-init.js run
+    const initial = await page.evaluate(() => window.__authInitCalls);
+
+    await page.locator('a.article-card[data-spa-link]').first().click();
+    await page.waitForURL(/\/guides\/.+\//, { timeout: 5000 });
+    await page.waitForTimeout(400);
+    const afterNav = await page.evaluate(() => window.__authInitCalls);
+
+    expect(initial).toBeGreaterThanOrEqual(1); // sanity: auth wired on first load
+    expect(afterNav).toBe(initial);            // not re-initialized on SPA nav
+  });
+});
+
 test.describe('SPA Phase 1: head metadata swap', () => {
   test.beforeEach(async ({ page }) => {
     await page.addInitScript(() => { localStorage.setItem('cookie_consent', 'accepted'); });
