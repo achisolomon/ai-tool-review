@@ -13,6 +13,7 @@
         { pattern: '/landscape.html', init: () => { if (window.landscapeInit) window.landscapeInit(); } },
         { pattern: '/guides/',        init: () => { /* guides index — static */ } },
         { pattern: '/guides/:slug/',  init: () => { if (window.articlePageInit) window.articlePageInit(); } },
+        { pattern: '/tools/:slug/',   init: (p) => { if (window.toolPageInit) window.toolPageInit(p.slug); } },
     ];
 
     // Compile a route pattern to a regex; ':name' segments become capture groups.

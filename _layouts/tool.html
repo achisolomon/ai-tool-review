@@ -157,7 +157,19 @@
     {% include nav.html active="search" %}
   </header>
 
-  <main class="tool-page">
+  <main class="tool-page" id="page-content">
+    <script type="application/json" id="tool-data">
+      {
+        "slug": {{ page.slug | jsonify }},
+        "name": {{ page.name | jsonify }},
+        "website": {{ page.website | default: "" | jsonify }},
+        "url": {{ page.url | default: "" | jsonify }},
+        "type": {{ page.type | default: "" | jsonify }},
+        "category": {{ page.category | jsonify }},
+        "subcategory": {{ page.subcategory | default: "" | jsonify }},
+        "description": {{ page.description | default: "" | jsonify }}
+      }
+    </script>
     <article>
       <header class="tool-header">
         {% assign _host = page.website | remove: 'https://' | remove: 'http://' | remove: 'www.' | split: '/' | first %}
