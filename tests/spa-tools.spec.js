@@ -201,3 +201,39 @@ test.describe('SPA Phase 2: idempotency + load-once', () => {
     expect(afterCanonical).toContain('docling');
   });
 });
+
+test.describe('SPA Phase 2: tool styling survives SPA nav', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => { localStorage.setItem('cookie_consent', 'accepted'); });
+    await page.route('https://www.googletagmanager.com/**', r => r.abort());
+    await page.route('https://cdn.jsdelivr.net/**', r => r.abort());
+  });
+
+  test('tool-specific CSS (.verdict) is available after SPA nav from home', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof window.SpaRouter !== 'undefined');
+    await page.evaluate(() => window.SpaRouter.navigate('/tools/llamaparse/'));
+    await page.waitForURL(/\/tools\/llamaparse\//, { timeout: 5000 });
+    // .verdict styling must be applied — assert a known rule from the tool CSS is in effect.
+    // Inject a probe element with class 'verdict' inside page-content and check computed style.
+    const hasVerdictStyle = await page.evaluate(() => {
+      const probe = document.createElement('div');
+      probe.className = 'verdict';
+      document.getElementById('page-content').appendChild(probe);
+      const cs = getComputedStyle(probe);
+      const styled = cs.borderRadius !== '0px' || cs.padding !== '0px' || cs.borderTopWidth !== '0px';
+      probe.remove();
+      return styled;
+    });
+    expect(hasVerdictStyle).toBe(true);
+  });
+
+  test('tool.css is loaded on home, landscape, guides, and tool pages', async ({ page }) => {
+    for (const url of ['/', '/landscape', '/guides/', '/tools/llamaparse/']) {
+      await page.goto(url, { waitUntil: 'domcontentloaded' });
+      const hasToolCss = await page.evaluate(() =>
+        !!document.querySelector('link[rel="stylesheet"][href*="tool.css"]'));
+      expect(hasToolCss, `tool.css missing on ${url}`).toBe(true);
+    }
+  });
+});

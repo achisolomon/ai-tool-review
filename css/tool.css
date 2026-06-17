@@ -1,0 +1,139 @@
+/* Tool Page Styles - loaded on all SPA pages for consistent tool page rendering */
+/* Note: body and footer global rules removed — covered by style.css (html bg, body color/font) */
+footer { background: #252526; padding: 1rem; text-align: center; color: #858585; font-size: 12px; border-top: 1px solid #3c3c3c; }
+
+.tool-page { max-width: 800px; margin: 0 auto; padding: 3rem 1.5rem; }
+.tool-header { text-align: center; margin-bottom: 2rem; }
+.tool-header h1 { font-size: 2.5rem; color: #fff; margin: 0 0 1rem 0; font-weight: 700; display: inline-flex; align-items: center; gap: 14px; }
+.tool-favicon { width: 52px; height: 52px; border-radius: 8px; background: #2d2d2d; display: inline-flex; align-items: center; justify-content: center; overflow: hidden; flex: none; }
+.tool-favicon img { width: 42px; height: 42px; object-fit: contain; border-radius: 4px; }
+.tool-header h1 a { color: #fff; text-decoration: none; transition: color 0.15s ease; }
+.tool-header h1 a:hover { color: #007acc; }
+.tool-meta { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.tool-meta span { font-size: 0.7rem; padding: 0.35rem 0.75rem; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+.tool-type { background: #007acc; color: white; }
+.tool-category { background: #3c3c3c; color: #858585; }
+.tool-pricing { background: #4ec9b0; color: #1e1e1e; }
+.tool-stars { background: #21262d; color: #c9d1d9; text-decoration: none; transition: all 0.15s ease; border: 1px solid #30363d; display: inline-flex; align-items: center; border-radius: 6px; font-size: 12px; font-weight: 500; padding: 0; overflow: hidden; text-transform: none; letter-spacing: normal; }
+.tool-stars:hover { background: #30363d; border-color: #8b949e; }
+.tool-stars .star-btn { display: flex; align-items: center; gap: 4px; padding: 3px 10px; }
+.tool-stars .star-count { padding: 3px 10px; border-left: 1px solid #30363d; background: #21262d; }
+.tool-description { color: #ccc; font-size: 1.15rem; line-height: 1.7; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+.tool-credit { color: #666; font-size: 0.8rem; margin-top: -1.25rem; margin-bottom: 1.5rem; text-align: center; }
+.key-stats { display: flex; justify-content: center; gap: 3rem; padding: 2rem 0; margin: 2rem 0; border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; }
+.key-stat { text-align: center; }
+.key-stat .number { font-size: 2rem; font-weight: 700; color: #007acc; display: block; line-height: 1; }
+.key-stat .label { font-size: 0.75rem; color: #858585; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.5rem; display: block; }
+
+.pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0; }
+.pros-list, .cons-list { background: #252526; border-radius: 12px; padding: 1.5rem; border: 1px solid #3c3c3c; }
+.pros-list h3, .cons-list h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 1rem 0; }
+.pros-list h3 { color: #4ec9b0; }
+.cons-list h3 { color: #ce9178; }
+.pros-list ul, .cons-list ul { list-style: none; padding: 0; margin: 0; }
+.pros-list li, .cons-list li { padding: 0.6rem 0 0.6rem 1.5rem; border-bottom: 1px solid #3c3c3c; font-size: 0.9rem; color: #ccc; position: relative; }
+.pros-list li:last-child, .cons-list li:last-child { border-bottom: none; }
+.pros-list li::before { content: "✓"; color: #4ec9b0; font-weight: bold; position: absolute; left: 0; }
+.cons-list li::before { content: "✗"; color: #ce9178; font-weight: bold; position: absolute; left: 0; }
+
+.tool-content h2 { font-size: 1rem; color: #858585; margin: 3rem 0 1.5rem 0; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
+
+.pricing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 1.5rem 0; }
+.pricing-card { background: #252526; border: 1px solid #3c3c3c; border-radius: 12px; padding: 1.5rem 1rem; text-align: center; transition: all 0.15s ease; text-decoration: none; display: block; cursor: pointer; }
+.pricing-card:hover { border-color: #007acc; transform: translateY(-2px); }
+.pricing-card.featured { border-color: #007acc; background: linear-gradient(135deg, rgba(0,122,204,0.15), rgba(0,122,204,0.05)); }
+a.pricing-card { color: inherit; }
+.pricing-card .plan-name { font-weight: 600; color: #ccc; margin-bottom: 0.5rem; font-size: 0.9rem; }
+.pricing-card .price { font-size: 1.5rem; font-weight: 700; color: #007acc; }
+.pricing-card .price small { font-size: 0.75rem; color: #858585; font-weight: normal; }
+.pricing-card .desc { font-size: 0.75rem; color: #858585; margin-top: 0.5rem; }
+
+details.more-details { display: block; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #3c3c3c; }
+details.more-details summary { font-size: 0.9rem; color: #858585; cursor: pointer; padding: 0.5rem 0; list-style: none; }
+details.more-details summary::-webkit-details-marker { display: none; }
+.detail-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 1.5rem; }
+.detail-section h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: #858585; margin: 0 0 0.75rem 0; }
+.detail-section ul { list-style: none; padding: 0; margin: 0; }
+.detail-section li { font-size: 0.85rem; color: #ccc; padding: 0.35rem 0; }
+
+/* Overview section */
+.overview { margin: 2rem 0; padding: 1.5rem; background: #252526; border-radius: 12px; border: 1px solid #3c3c3c; }
+.overview p { color: #ccc; font-size: 0.95rem; line-height: 1.8; margin: 0; }
+
+/* Use cases */
+.use-cases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0; }
+.use-case { background: #252526; border: 1px solid #3c3c3c; border-radius: 10px; padding: 1.25rem; text-align: center; transition: all 0.15s ease; }
+.use-case:hover { border-color: #007acc; transform: translateY(-2px); }
+.use-case-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+.use-case-title { font-weight: 600; color: #fff; font-size: 0.9rem; margin-bottom: 0.25rem; }
+.use-case-desc { font-size: 0.75rem; color: #858585; }
+
+/* Comparison table */
+.comparison { margin: 1.5rem 0; overflow-x: auto; }
+.comparison table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.comparison th { background: #323233; color: #858585; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.05em; padding: 0.75rem; text-align: left; border-bottom: 1px solid #3c3c3c; }
+.comparison td { padding: 0.75rem; border-bottom: 1px solid #3c3c3c; color: #ccc; }
+.comparison tr:hover { background: rgba(0,122,204,0.05); }
+.comparison .highlight { color: #4ec9b0; font-weight: 600; }
+
+/* Quick start */
+.quick-start { background: #252526; border: 1px solid #3c3c3c; border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; }
+.quick-start > code { display: block; background: #1e1e1e; padding: 1rem; border-radius: 6px; font-family: 'Consolas', 'Monaco', monospace; font-size: 0.85rem; color: #ce9178; overflow-x: auto; }
+.quick-start p { color: #858585; font-size: 0.85rem; margin-top: 1rem; margin-bottom: 0; }
+.quick-start p code { display: inline; background: #1e1e1e; padding: 0.2rem 0.4rem; border-radius: 4px; font-family: 'Consolas', 'Monaco', monospace; font-size: 0.8rem; color: #ce9178; }
+
+/* Benchmarks section */
+.benchmarks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0; }
+.benchmark-card { background: #252526; border: 1px solid #3c3c3c; border-radius: 10px; padding: 1.25rem; }
+.benchmark-card .score { font-size: 1.75rem; font-weight: 700; color: #4ec9b0; }
+.benchmark-card .benchmark-name { font-size: 0.9rem; color: #fff; font-weight: 600; margin: 0.25rem 0; }
+.benchmark-card .benchmark-desc { font-size: 0.75rem; color: #858585; }
+.benchmark-card .source { font-size: 0.65rem; color: #569cd6; margin-top: 0.5rem; }
+.benchmark-card .source a { color: #569cd6; text-decoration: none; }
+.benchmark-card .source a:hover { text-decoration: underline; }
+
+/* Info cards */
+.info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0; }
+.info-card { background: #252526; border: 1px solid #3c3c3c; border-radius: 10px; padding: 1.25rem; }
+.info-card h4 { font-size: 0.8rem; color: #858585; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 0.75rem 0; }
+.info-card ul { list-style: none; padding: 0; margin: 0; }
+.info-card li { font-size: 0.85rem; color: #ccc; padding: 0.4rem 0; border-bottom: 1px solid #3c3c3c; }
+.info-card li:last-child { border-bottom: none; }
+.info-card .source { font-size: 0.65rem; color: #569cd6; }
+
+/* Verdict section */
+.verdict { background: linear-gradient(135deg, rgba(0,122,204,0.1), rgba(78,201,176,0.05)); border: 1px solid #007acc; border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
+.verdict h3 { color: #007acc; font-size: 1rem; margin: 0 0 1rem 0; }
+.verdict-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.verdict-section h4 { font-size: 0.75rem; color: #4ec9b0; text-transform: uppercase; margin: 0 0 0.5rem 0; }
+.verdict-section.not-for h4 { color: #ce9178; }
+.verdict-section ul { list-style: none; padding: 0; margin: 0; }
+.verdict-section li { font-size: 0.85rem; color: #ccc; padding: 0.3rem 0; }
+
+@media (max-width: 768px) {
+  .tool-page { padding: 2rem 1rem; }
+  .tool-header h1 { font-size: 1.75rem; gap: 10px; }
+  .tool-favicon { width: 40px; height: 40px; }
+  .tool-favicon img { width: 32px; height: 32px; }
+  .key-stats { flex-wrap: wrap; gap: 1.5rem; }
+  .key-stat .number { font-size: 1.5rem; }
+  .pros-cons { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr 1fr; }
+  .detail-grid { grid-template-columns: 1fr 1fr; }
+  .use-cases { grid-template-columns: 1fr; }
+  .benchmarks { grid-template-columns: 1fr; }
+  .info-grid { grid-template-columns: 1fr; }
+  .verdict-grid { grid-template-columns: 1fr; }
+}
+
+/* Tool Taxonomy — breadcrumb path + tags, no box, no labels */
+.tool-taxonomy { margin: 1.25rem 0 2rem; text-align: center; }
+.tool-taxonomy .taxonomy-path { font-size: 0.95rem; color: #ccc; }
+.tool-taxonomy .taxonomy-path a { color: #569cd6; text-decoration: none; transition: color 0.15s ease; }
+.tool-taxonomy .taxonomy-path a:hover { color: #007acc; text-decoration: underline; }
+.tool-taxonomy .taxonomy-path .sep { color: #858585; margin: 0 0.5rem; opacity: 0.6; }
+.tool-taxonomy .taxonomy-path .sep.also { margin: 0 0.4rem; }
+.tool-taxonomy .taxonomy-tags { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+.tool-taxonomy .tag-badge { padding: 4px 10px; font-size: 12px; border-radius: 4px; background: #3c3c3c; color: #ccc; text-decoration: none; transition: all 0.15s ease; }
+.tool-taxonomy .tag-badge:hover { background: #505050; color: #fff; }
+.tool-taxonomy .taxonomy-empty { color: #6e6e6e; }
