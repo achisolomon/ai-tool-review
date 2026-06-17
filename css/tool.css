@@ -1,6 +1,8 @@
 /* Tool Page Styles - loaded on all SPA pages for consistent tool page rendering */
-/* Note: body and footer global rules removed — covered by style.css (html bg, body color/font) */
-footer { background: #252526; padding: 1rem; text-align: center; color: #858585; font-size: 12px; border-top: 1px solid #3c3c3c; }
+/* Note: global body rule removed — covered by style.css (html bg, body color/font).
+   Footer rule scoped to .tool-footer so it only styles the tool page's bare
+   footer, never the .footer on home/landscape/guides (loaded site-wide). */
+.tool-footer { background: #252526; padding: 1rem; text-align: center; color: #858585; font-size: 12px; border-top: 1px solid #3c3c3c; }
 
 .tool-page { max-width: 800px; margin: 0 auto; padding: 3rem 1.5rem; }
 .tool-header { text-align: center; margin-bottom: 2rem; }
