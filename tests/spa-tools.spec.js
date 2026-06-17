@@ -32,3 +32,23 @@ test.describe('SPA Phase 2: tool head metadata', () => {
     expect(schema).toBe(true);
   });
 });
+
+test.describe('SPA Phase 2: tool-page init exists + suggest wiring', () => {
+  test('window.toolPageInit is a function and suggest-edit button is present', async ({ page }) => {
+    await page.goto('/tools/llamaparse/', { waitUntil: 'domcontentloaded' });
+    expect(await page.evaluate(() => typeof window.toolPageInit)).toBe('function');
+    await expect(page.locator('#tool-suggest-open')).toBeAttached();
+  });
+
+  test('toolPageInit is idempotent for suggest wiring (no double-binding)', async ({ page }) => {
+    await page.goto('/tools/llamaparse/', { waitUntil: 'domcontentloaded' });
+    // Re-running init must not re-bind the suggest button (guard via dataset flag).
+    const wiredTwice = await page.evaluate(() => {
+      const btn = document.getElementById('tool-suggest-open');
+      window.toolPageInit();
+      window.toolPageInit();
+      return btn?.dataset.wired;
+    });
+    expect(wiredTwice).toBe('1');
+  });
+});
