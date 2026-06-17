@@ -156,15 +156,8 @@
   </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="{{ '/' | relative_url }}">AI Tool Review</a>
-      <a href="{{ '/developers/' | relative_url }}">Developers</a>
-      <a href="{{ '/users/' | relative_url }}">Users</a>
-      <a href="{{ '/guides/' | relative_url }}">Guides</a>
-      <div style="flex: 1;"></div>
-      <div id="auth-container"></div>
-    </nav>
+  <header class="header">
+    {% include nav.html active="search" %}
   </header>
 
   <main class="tool-page">
@@ -848,5 +841,6 @@
     }
   </script>
   <script src="{{ '/js/stars.js' | relative_url }}?t={{ site.time | date: '%s' }}"></script>
+  {% include nav-scripts.html %}
 </body>
 </html>
