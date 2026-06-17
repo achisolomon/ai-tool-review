@@ -238,25 +238,12 @@
     <p>© {{ site.time | date: '%Y' }} AI Tool Review</p>
   </footer>
 
-  <!-- Supabase & Reviews Scripts -->
   {% if jekyll.environment != "production" %}
-  <!-- Local dev config - only in development mode (file is gitignored).
-       onerror removes the node so a missing optional file doesn't surface as an
-       uncaught load error; the 404 itself only ever occurs in local dev. -->
   <script src="{{ '/js/config-local.js' | relative_url }}" onerror="this.remove()"></script>
   {% endif %}
   <script src="{{ '/js/supabase-client.js' | relative_url }}"></script>
-  <script src="{{ '/js/reviews-api.js' | relative_url }}"></script>
-  <script src="{{ '/js/review-components.js' | relative_url }}"></script>
   <script src="{{ '/js/auth-ui.js' | relative_url }}"></script>
-  <link rel="stylesheet" href="{{ '/css/suggest.css' | relative_url }}">
-  <script src="{{ '/js/auth-signin.js' | relative_url }}"></script>
-  <!-- Taxonomy data so the suggest modal's category/subcategory/tag dropdowns populate -->
-  <script src="{{ '/js/data.js' | relative_url }}"></script>
-  <script src="{{ '/js/suggest-logic.js' | relative_url }}"></script>
-  <script src="{{ '/js/suggest.js' | relative_url }}"></script>
-  <script src="{{ '/js/tool-page.js' | relative_url }}"></script>
-  <script src="{{ '/js/stars.js' | relative_url }}?t={{ site.time | date: '%s' }}"></script>
   {% include nav-scripts.html %}
+  {% include spa-scripts.html %}
 </body>
 </html>

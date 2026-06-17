@@ -84,3 +84,19 @@ test.describe('SPA Phase 2: reviews init via tool-page.js', () => {
     expect(dupes).toEqual([]);
   });
 });
+
+test.describe('SPA Phase 2: tool libs available cross-page', () => {
+  test('from home, tool-page libraries are loaded', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    const libs = await page.evaluate(() => ({
+      reviewsApi: typeof window.ReviewsAPI,
+      reviewComponents: typeof window.ReviewComponents,
+      suggest: typeof window.Suggest,
+      toolPageInit: typeof window.toolPageInit,
+    }));
+    expect(libs.reviewsApi).toBe('object');
+    expect(libs.reviewComponents).toBe('object');
+    expect(libs.suggest).toBe('object');
+    expect(libs.toolPageInit).toBe('function');
+  });
+});
