@@ -44,7 +44,7 @@ website: https://github.com/DS4SD/docling
 ## Overview
 
 <div class="overview">
-<p>Docling is IBM Research's open-source document intelligence toolkit, designed to get documents ready for generative AI. It converts PDFs, DOCX, PPTX, XLSX, HTML, images, audio, and more into a unified structured representation using state-of-the-art layout models and the TableFormer model — trained on 1M+ tables — for 97.9% cell accuracy on complex tables. It runs fully local with no API costs, GPU acceleration support, and air-gapped deployment capability, making it the go-to choice for privacy-sensitive and cost-sensitive RAG pipelines. Donated to the Linux Foundation's Agentic AI Foundation in 2025, it has amassed over 61,000 GitHub stars since its public launch in August 2025.</p>
+<p>Docling is IBM Research's open-source document intelligence toolkit, designed to get documents ready for generative AI. It converts PDFs, DOCX, PPTX, XLSX, HTML, images, audio, and more into a unified structured representation using state-of-the-art layout models and the TableFormer model — trained on 1M+ tables — for 97.9% cell accuracy on complex tables. It runs fully local with no API costs, GPU acceleration support, and air-gapped deployment capability, making it the go-to choice for privacy-sensitive and cost-sensitive RAG pipelines. Donated to the Linux Foundation's Agentic AI Foundation in 2025, it has seen rapid community adoption since its public launch in August 2025.</p>
 </div>
 
 ## The Verdict

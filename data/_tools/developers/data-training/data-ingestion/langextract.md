@@ -43,7 +43,7 @@ website: "https://github.com/google/langextract"
 ## Overview
 
 <div class="overview">
-<p>LangExtract is Google's open-source Python library for extracting structured information from unstructured text using LLMs, with every extracted entity grounded back to its exact character position in the source document. Unlike traditional document parsers that convert formats, LangExtract specializes in semantic extraction — turning a clinical report, a legal contract, or a batch of customer reviews into structured JSON that is fully traceable back to the source text. Built-in hallucination filtering removes model-fabricated content not found in the source. Launched in July 2025, it reached nearly 37K GitHub stars within months, with users citing it as a free replacement for enterprise extraction tools historically costing $50K+.</p>
+<p>LangExtract is Google's open-source Python library for extracting structured information from unstructured text using LLMs, with every extracted entity grounded back to its exact character position in the source document. Unlike traditional document parsers that convert formats, LangExtract specializes in semantic extraction — turning a clinical report, a legal contract, or a batch of customer reviews into structured JSON that is fully traceable back to the source text. Built-in hallucination filtering removes model-fabricated content not found in the source. Launched in July 2025, it gained rapid traction within months, with users citing it as a free replacement for enterprise extraction tools historically costing $50K+.</p>
 </div>
 
 ## The Verdict
