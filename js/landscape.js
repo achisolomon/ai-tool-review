@@ -307,7 +307,8 @@ window.landscapeInit = function landscapeInit() {
             const card = e.target.closest('.tool-card');
             if (card) {
                 const slug = card.dataset.slug;
-                window.location.href = `/tools/${slug}/`;
+                if (window.SpaRouter) { window.SpaRouter.navigate(`/tools/${slug}/`); }
+                else { window.location.href = `/tools/${slug}/`; }
             }
         });
 

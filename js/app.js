@@ -606,7 +606,8 @@ window.appInit = function appInit() {
             }, 50);
         } else if (item.type === 'tool') {
             // Navigate to tool page
-            window.location.href = `/tools/${item.slug}/`;
+            if (window.SpaRouter) { window.SpaRouter.navigate(`/tools/${item.slug}/`); }
+            else { window.location.href = `/tools/${item.slug}/`; }
         }
     }
 
@@ -1134,7 +1135,8 @@ window.appInit = function appInit() {
             if (card) {
                 const slug = card.dataset.slug;
                 if (slug) {
-                    window.location.href = `/tools/${slug}/`;
+                    if (window.SpaRouter) { window.SpaRouter.navigate(`/tools/${slug}/`); }
+                    else { window.location.href = `/tools/${slug}/`; }
                 }
             }
         });
@@ -1147,7 +1149,8 @@ window.appInit = function appInit() {
                 e.preventDefault();
                 const slug = card.dataset.slug;
                 if (slug) {
-                    window.location.href = `/tools/${slug}/`;
+                    if (window.SpaRouter) { window.SpaRouter.navigate(`/tools/${slug}/`); }
+                    else { window.location.href = `/tools/${slug}/`; }
                 }
             }
         });
