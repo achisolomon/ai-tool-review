@@ -50,7 +50,14 @@
     headings.forEach(function (h) { observer.observe(h); });
   }
 
+  // Disconnect the scroll-spy observer when leaving an article so it doesn't
+  // retain references to detached heading nodes. Called by the router's teardown.
+  function articlePageTeardown() {
+    if (observer) { observer.disconnect(); observer = null; }
+  }
+
   window.articlePageInit = articlePageInit;
+  window.articlePageTeardown = articlePageTeardown;
 
   // First load: run on DOMContentLoaded (router handles subsequent SPA navs).
   if (document.readyState === 'loading') {

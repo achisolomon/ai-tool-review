@@ -69,6 +69,10 @@
         if (fromPathname === '/' && window.HeroMap) {
             window.HeroMap.stop();
         }
+        // Leaving an article: disconnect its scroll-spy observer.
+        if (/^\/guides\/.+\//.test(fromPathname) && window.articlePageTeardown) {
+            window.articlePageTeardown();
+        }
     }
 
     async function fetchPage(href) {

@@ -98,6 +98,20 @@ test.describe('SPA Phase 1: navigate to articles', () => {
     await expect(page.locator('.article-card').first()).toBeVisible({ timeout: 5000 });
     expect(await page.evaluate(() => window.__spaLoaded)).toBe(true);
   });
+
+  test('sidebar "More articles" link navigates article→article without full reload', async ({ page }) => {
+    await page.goto('/guides/', { waitUntil: 'domcontentloaded' });
+    await page.locator('a.article-card[data-spa-link]').first().click();
+    await page.waitForURL(/\/guides\/.+\//, { timeout: 5000 });
+    const firstUrl = page.url();
+    await page.evaluate(() => { window.__spaLoaded = true; });
+
+    // The sidebar "More articles" links are inside #page-content and must be SPA-aware.
+    await page.locator('.learn-toc-more a[data-spa-link]').first().click();
+    await page.waitForURL((u) => /\/guides\/.+\//.test(u.pathname) && u.href !== firstUrl, { timeout: 5000 });
+    expect(await page.evaluate(() => window.__spaLoaded)).toBe(true);
+    expect(await page.locator('#toc-list li').count()).toBeGreaterThan(0); // new article's TOC rebuilt
+  });
 });
 
 test.describe('SPA Phase 1: toolbar loads once', () => {
