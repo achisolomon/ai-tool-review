@@ -1,3 +1,5 @@
+---
+---
 <!--
     TODO: UPDATE THIS PRIVACY POLICY WHEN ADDING USER DATABASE/REVIEWS
 
@@ -25,6 +27,7 @@
     <meta name="description" content="Privacy Policy for AI Tool Review. Learn how we handle your data, cookies, and advertising.">
     <meta name="robots" content="noindex">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
     <style>
         .privacy-container {
             max-width: 800px;
@@ -104,6 +107,9 @@
     </style>
 </head>
 <body>
+  <header class="header">
+    {% include nav.html %}
+  </header>
     <div class="privacy-container">
         <a href="index.html" class="back-link">&larr; Back to AI Tool Review</a>
 
@@ -312,5 +318,11 @@
             <a href="index.html">&larr; Back to AI Tool Review</a>
         </p>
     </div>
+
+  {% include footer.html %}
+
+  <script src="/js/supabase-client.js"></script>
+  <script src="/js/auth-ui.js"></script>
+  {% include nav-scripts.html %}
 </body>
 </html>

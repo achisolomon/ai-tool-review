@@ -42,14 +42,18 @@ permalink: /landscape.html
         gtag('config', 'G-MZE53DJ7JP');
     </script>
 
-    <meta name="description" content="Browse the complete AI tools landscape. Explore 330+ tools organized by category - foundation models, coding assistants, agents, and more.">
-    <meta property="og:title" content="AI Tools Landscape">
-    <meta property="og:description" content="Browse 330+ AI tools across 15+ categories. The complete landscape view.">
-    <meta property="og:type" content="website">
+    <!-- data-spa-head: swapped by the SPA router on navigation so meta stays accurate. -->
+    <meta name="description" content="Browse the complete AI tools landscape. Explore 330+ tools organized by category - foundation models, coding assistants, agents, and more." data-spa-head>
+    <meta property="og:title" content="AI Tools Landscape" data-spa-head>
+    <meta property="og:description" content="Browse 330+ AI tools across 15+ categories. The complete landscape view." data-spa-head>
+    <meta property="og:type" content="website" data-spa-head>
     <meta name="theme-color" content="#1e1e1e">
     <link rel="stylesheet" href="css/style.css?t=1780517697">
+    <link rel="stylesheet" href="css/tool.css">
+    <link rel="stylesheet" href="css/reviews.css">
     <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/learn.css">
 
     <!-- Google AdSense (skipped on localhost so the dev ad placeholder doesn't
          collide with the real tag and throw no_div / availableWidth=0) -->
@@ -66,18 +70,10 @@ permalink: /landscape.html
 <body>
     <!-- Header -->
     <header class="header">
-        <div class="header-content">
-            <a href="/" class="logo">
-                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span class="logo-text">AI Tool Review</span>
-            </a>
-            {% include nav.html active="landscape" %}
-        </div>
+        {% include nav.html active="landscape" %}
     </header>
+
+    <div id="page-content">
 
     <!-- Landscape Mode Controls -->
     <section class="controls" id="landscape-controls" data-nosnippet data-ad-layout-exclude="true">
@@ -139,57 +135,40 @@ permalink: /landscape.html
         <!-- Categories will be dynamically inserted here -->
     </main>
 
+    </div><!-- #page-content -->
+
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>AI Tool Review</h3>
-                <p>Your guide to AI tools. Community reviews and ratings coming soon.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Legend</h3>
-                <div class="legend">
-                    <div class="legend-item"><span class="badge badge-oss">OSS</span> Open Source</div>
-                    <div class="legend-item"><span class="badge badge-saas">SaaS</span> Managed/Cloud</div>
-                    <div class="legend-item"><span class="badge badge-commercial">COM</span> Commercial/Paid</div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 AI Tool Review. Community-curated. | <a href="about.html">About</a> | <a href="about.html#how-its-organized">How the map is organized</a> | <a href="contact.html">Contact</a> | <a href="privacy.html">Privacy Policy</a></p>
-        </div>
-        <!-- Ad Section -->
-        <div class="footer-ad">
-            <ins class="adsbygoogle"
-                style="display:block"
-                data-ad-client="ca-pub-7272761067250869"
-                data-ad-slot="1939469484"
-                data-ad-format="auto"
-                data-full-width-responsive="true"></ins>
-            <script>
-                // Skip the real AdSense push on localhost: the dev placeholder
-                // below replaces the slot's contents, which makes adsbygoogle.js
-                // throw "no_div"/"availableWidth=0". Production still pushes normally.
-                if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                }
-            </script>
-        </div>
-    </footer>
+    {% include footer.html %}
+    <!-- Ad Section -->
+    <div class="footer-ad">
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-7272761067250869"
+            data-ad-slot="1939469484"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+            // Skip the real AdSense push on localhost: the dev placeholder
+            // below replaces the slot's contents, which makes adsbygoogle.js
+            // throw "no_div"/"availableWidth=0". Production still pushes normally.
+            if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            }
+        </script>
+    </div>
 
     <!-- Tooltip -->
     <div id="tooltip" class="tooltip"></div>
 
     <script src="js/supabase-client.js"></script>
     <script src="js/auth-ui.js"></script>
-    <script src="js/data.js?t=1780999110"></script>
-    <script src="js/landscape.js?t=1717430601"></script>
     {% include nav-scripts.html %}
+    {% include spa-scripts.html %}
 
     <!-- Cookie Consent Banner -->
     <div id="cookie-consent" class="cookie-banner" style="display: none;">
         <div class="cookie-content">
-            <p>We use cookies for analytics and personalized ads. By clicking "Accept", you consent to our use of cookies. <a href="privacy.html">Privacy Policy</a></p>
+            <p>We use cookies for analytics and personalized ads. By clicking "Accept", you consent to our use of cookies. <a href="/privacy.html">Privacy Policy</a></p>
             <div class="cookie-buttons">
                 <button id="cookie-reject" class="cookie-btn cookie-btn-secondary">Reject</button>
                 <button id="cookie-accept" class="cookie-btn cookie-btn-primary">Accept</button>

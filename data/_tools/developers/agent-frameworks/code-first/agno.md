@@ -15,6 +15,7 @@ github_url: "https://github.com/agno-agi/agno"
 github_stars: 40737
 tags:
   - agents
+  - agent-to-agent
   - python
 last_verified: "2026-06-03"
 confidence_score: 0.9

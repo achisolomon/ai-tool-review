@@ -1,3 +1,5 @@
+---
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,10 +10,14 @@
     <title>Review Moderation - AI Tool Review</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/reviews.css">
+    <link rel="stylesheet" href="css/auth.css">
     <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
-    <div class="admin-container">
+  <header class="header">
+    {% include nav.html %}
+  </header>
+  <div class="admin-container">
         <!-- Header -->
         <header class="admin-header">
             <div class="admin-header-left">
@@ -248,9 +254,11 @@
         <div id="toast" class="toast hidden"></div>
     </div>
 
+    {% include footer.html %}
+
     <script src="js/supabase-client.js"></script>
-    <script src="js/auth-signin.js"></script>
-    <script src="js/admin-api.js"></script>
+    <script src="js/auth-ui.js"></script>
+    {% include nav-scripts.html %}
     <script src="js/data.js"></script>
     <script src="js/admin-suggestions.js"></script>
     <script>

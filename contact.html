@@ -1,3 +1,5 @@
+---
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,6 +45,8 @@
     </script>
 
     <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="css/auth.css">
 
     <!-- Google AdSense (skipped on localhost to keep the dev console clean) -->
     <script>
@@ -100,6 +104,9 @@
     </style>
 </head>
 <body>
+  <header class="header">
+    {% include nav.html %}
+  </header>
     <div class="contact-container">
         <a href="index.html" class="back-link">&larr; Back to AI Tool Review</a>
 
@@ -116,7 +123,7 @@
     <!-- Cookie Consent Banner -->
     <div id="cookie-consent" class="cookie-banner" style="display: none;">
         <div class="cookie-content">
-            <p>We use cookies for analytics and personalized ads. By clicking "Accept", you consent to our use of cookies. <a href="privacy.html">Privacy Policy</a></p>
+            <p>We use cookies for analytics and personalized ads. By clicking "Accept", you consent to our use of cookies. <a href="/privacy.html">Privacy Policy</a></p>
             <div class="cookie-buttons">
                 <button id="cookie-reject" class="cookie-btn cookie-btn-secondary">Reject</button>
                 <button id="cookie-accept" class="cookie-btn cookie-btn-primary">Accept</button>
@@ -163,5 +170,11 @@
             });
         })();
     </script>
+
+  {% include footer.html %}
+
+  <script src="/js/supabase-client.js"></script>
+  <script src="/js/auth-ui.js"></script>
+  {% include nav-scripts.html %}
 </body>
 </html>

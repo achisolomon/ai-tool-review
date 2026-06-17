@@ -88,7 +88,7 @@ test.describe('Cookie Consent Banner', () => {
   test('privacy policy link is present and correct', async ({ page }) => {
     await page.goto('/');
 
-    const privacyLink = page.locator('#cookie-consent a[href="privacy.html"]');
+    const privacyLink = page.locator('#cookie-consent a[href="/privacy.html"]');
     await expect(privacyLink).toBeVisible();
     await expect(privacyLink).toHaveText('Privacy Policy');
   });

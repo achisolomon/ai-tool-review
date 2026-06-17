@@ -13,6 +13,9 @@ capabilities:
   - slug: agents
     name: "Agents"
     description: "Autonomous agent capabilities"
+  - slug: agent-to-agent
+    name: "Agent-to-Agent"
+    description: "Agents coordinate, communicate, or hand off work to other agents (multi-agent / A2A)"
   - slug: multimodal
     name: "Multimodal"
     description: "Handles text + images/audio/video"

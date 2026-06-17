@@ -1,3 +1,5 @@
+---
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,11 +9,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Reviews - AI Tool Review</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
     <link rel="stylesheet" href="css/reviews.css">
     <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
-    <div class="admin-container">
+  <header class="header">
+    {% include nav.html %}
+  </header>
+  <div class="admin-container">
         <!-- Header -->
         <header class="admin-header">
             <div class="admin-header-left">
@@ -115,7 +121,8 @@
     </div>
 
     <script src="js/supabase-client.js"></script>
-    <script src="js/auth-signin.js"></script>
+    <script src="js/auth-ui.js"></script>
+    {% include nav-scripts.html %}
     <script src="js/data.js"></script>
     <script>
         // My Reviews page initialization
@@ -376,5 +383,7 @@
             }
         })();
     </script>
+
+    {% include footer.html %}
 </body>
 </html>

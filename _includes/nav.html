@@ -1,20 +1,32 @@
 <!-- Canonical site toolbar. Single source of truth — used by every page.
+     Renders the full header bar: logo + nav links inside .header-content.
+     Pages include this file inside <header class="header">.
      Param: active = "search" | "landscape" | "guides" (optional).
      Variable items (Admin, + Suggest) sit left of a right-anchored fixed
      group (Search · Landscape · Guides · auth) so the fixed trio never
      shifts position between pages. -->
-<nav class="nav-links">
-  <div class="nav-variable">
-    <!-- hidden until nav-init.js confirms the DB is reachable -->
-    <button class="suggest-btn-toolbar" id="suggest-open" type="button" hidden>+ Suggest</button>
-    <a href="/admin.html" id="admin-badge" class="nav-link admin-badge hidden">
-      Admin <span id="admin-badge-count"></span>
-    </a>
-  </div>
-  <div class="nav-fixed">
-    <a href="/" class="nav-link nav-link-text{% if include.active == 'search' %} nav-active{% endif %}">Search</a>
-    <a href="/landscape.html" class="nav-link nav-link-text{% if include.active == 'landscape' %} nav-active{% endif %}">Landscape</a>
-    <a href="/guides/" class="nav-link nav-link-text{% if include.active == 'guides' %} nav-active{% endif %}">Guides</a>
-    <div id="auth-container"></div>
-  </div>
-</nav>
+<div class="header-content">
+  <a href="/" data-spa-link class="logo">
+    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="logo-text">AI Tool Review</span>
+  </a>
+  <nav class="nav-links">
+    <div class="nav-variable">
+      <!-- hidden until nav-init.js confirms the DB is reachable -->
+      <button class="suggest-btn-toolbar" id="suggest-open" type="button" hidden>+ Suggest</button>
+      <a href="/admin.html" id="admin-badge" class="nav-link admin-badge hidden">
+        Admin <span id="admin-badge-count"></span>
+      </a>
+    </div>
+    <div class="nav-fixed">
+      <a href="/" data-spa-link class="nav-link nav-link-text{% if include.active == 'search' %} nav-active{% endif %}">Search</a>
+      <a href="/landscape.html" data-spa-link class="nav-link nav-link-text{% if include.active == 'landscape' %} nav-active{% endif %}">Landscape</a>
+      <a href="/guides/" data-spa-link class="nav-link nav-link-text{% if include.active == 'guides' %} nav-active{% endif %}">Guides</a>
+      <div id="auth-container"></div>
+    </div>
+  </nav>
+</div>

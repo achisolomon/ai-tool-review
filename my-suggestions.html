@@ -1,3 +1,5 @@
+---
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Suggestions - AI Tool Review</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
     <link rel="stylesheet" href="css/reviews.css">
     <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="css/suggest.css">
@@ -42,7 +45,10 @@
     </style>
 </head>
 <body>
-    <div class="admin-container">
+  <header class="header">
+    {% include nav.html %}
+  </header>
+  <div class="admin-container">
         <!-- Header -->
         <header class="admin-header">
             <div class="admin-header-left">
@@ -105,10 +111,9 @@
     </div>
 
     <script src="js/supabase-client.js"></script>
-    <script src="js/auth-signin.js"></script>
+    <script src="js/auth-ui.js"></script>
+    {% include nav-scripts.html %}
     <script src="js/data.js"></script>
-    <script src="js/suggest-logic.js"></script>
-    <script src="js/suggest.js"></script>
     <script>
         // Render sign-in card using the shared AuthSignIn component
         // (Required by validate:auth-pages — must call AuthSignIn.renderCard)
@@ -132,5 +137,7 @@
         })();
     </script>
     <script src="js/my-suggestions.js"></script>
+
+    {% include footer.html %}
 </body>
 </html>

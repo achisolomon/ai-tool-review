@@ -2,12 +2,6 @@
 (function () {
     'use strict';
 
-    const canvas = document.getElementById('hero-map');
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-
     const PALETTE = [
         { color: '78, 201, 176' },   // teal
         { color: '86, 156, 214' },   // blue
@@ -19,6 +13,8 @@
     const LINK_DIST = 130;
     const MOUSE_RADIUS = 150;
 
+    let canvas = null;
+    let ctx = null;
     let nodes = [];
     let width = 0;
     let height = 0;
@@ -26,11 +22,14 @@
     let rafId = null;
     let mouse = { x: -9999, y: -9999 };
 
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
     function nodeCount() {
         return width < 640 ? 45 : 95;
     }
 
     function resize() {
+        if (!canvas) return;
         dpr = Math.min(window.devicePixelRatio || 1, 2);
         width = window.innerWidth;
         height = window.innerHeight;
@@ -81,6 +80,7 @@
     }
 
     function draw() {
+        if (!ctx) return;
         ctx.fillStyle = '#1e1e1e';
         ctx.fillRect(0, 0, width, height);
 
@@ -117,19 +117,27 @@
         rafId = requestAnimationFrame(loop);
     }
 
-    function start() {
-        stop();
-        if (reduceMotion.matches) {
-            draw();
-        } else {
-            rafId = requestAnimationFrame(loop);
-        }
-    }
-
     function stop() {
         if (rafId) {
             cancelAnimationFrame(rafId);
             rafId = null;
+        }
+    }
+
+    function start() {
+        stop();
+
+        // Re-acquire canvas each time — the DOM element may have been replaced by a SPA swap
+        canvas = document.getElementById('hero-map');
+        if (!canvas) return;
+        ctx = canvas.getContext('2d');
+
+        resize();
+
+        if (reduceMotion.matches) {
+            draw();
+        } else {
+            rafId = requestAnimationFrame(loop);
         }
     }
 
@@ -161,6 +169,10 @@
 
     reduceMotion.addEventListener('change', start);
 
-    resize();
-    start();
+    window.HeroMap = { start, stop };
+
+    // Auto-start if canvas is already present at load time (direct page load of index.html)
+    if (document.getElementById('hero-map')) {
+        start();
+    }
 })();

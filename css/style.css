@@ -3578,3 +3578,21 @@ a:hover {
         transform: translateY(0);
     }
 }
+
+/* Guides page */
+.learn-index { max-width: 800px; width: 100%; box-sizing: border-box; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; flex: 1; }
+.learn-index h1 { font-size: 2rem; color: #fff; margin: 0 0 0.5rem 0; font-weight: 700; }
+.learn-index .subtitle { color: #858585; font-size: 1rem; margin-bottom: 2.5rem; }
+.article-card { display: block; padding: 1.25rem 1.5rem; border: 1px solid #2a2a2a; border-radius: 8px; margin-bottom: 1rem; background: rgba(255,255,255,0.03); text-decoration: none; transition: border-color 0.15s, background 0.15s; }
+.article-card:hover { border-color: #007acc; background: rgba(0,122,204,0.06); }
+.article-card h2 { font-size: 1.2rem; color: #fff; margin: 0 0 0.4rem 0; font-weight: 600; }
+.article-card p { color: #999; font-size: 0.9rem; margin: 0 0 0.6rem 0; line-height: 1.5; }
+.article-meta { font-size: 0.8rem; color: #666; }
+.article-tag { display: inline-block; background: rgba(0,122,204,0.15); color: #7ab4e8; padding: 2px 8px; border-radius: 3px; margin-right: 6px; font-size: 0.75rem; }
+.external-resources { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #2a2a2a; }
+.external-resources h2 { font-size: 1.3rem; color: #fff; margin: 0 0 1rem 0; font-weight: 700; }
+.external-link-card { display: block; padding: 1.25rem 1.5rem; border: 1px solid #2a2a2a; border-radius: 8px; margin-bottom: 1rem; background: rgba(255,255,255,0.03); text-decoration: none; transition: border-color 0.15s, background 0.15s; }
+.external-link-card:hover { border-color: #007acc; background: rgba(0,122,204,0.06); }
+.external-link-card h3 { font-size: 1.1rem; color: #fff; margin: 0 0 0.4rem 0; font-weight: 600; }
+.external-link-card h3 .external-badge { font-size: 0.7rem; color: #666; font-weight: 500; margin-left: 0.5rem; }
+.external-link-card p { color: #999; font-size: 0.9rem; margin: 0; line-height: 1.5; }

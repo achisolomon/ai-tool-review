@@ -1,5 +1,6 @@
 // AI Landscape Page - Dedicated landscape view
-document.addEventListener('DOMContentLoaded', () => {
+window.landscapeInit = function landscapeInit() {
+    if (!document.getElementById('landscape')) return;
     // State
     let currentTrack = 'all';
     let currentType = 'all';
@@ -306,7 +307,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = e.target.closest('.tool-card');
             if (card) {
                 const slug = card.dataset.slug;
-                window.location.href = `/tools/${slug}/`;
+                if (window.SpaRouter) { window.SpaRouter.navigate(`/tools/${slug}/`); }
+                else { window.location.href = `/tools/${slug}/`; }
             }
         });
 
@@ -407,4 +409,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         section.hidden = false;
     }
-});
+};
+
+// Auto-init only when landing directly on the landscape page (not via SPA nav).
+// The router calls landscapeInit() explicitly on SPA transitions.
+if (location.pathname === '/landscape.html' || location.pathname === '/landscape') {
+    document.addEventListener('DOMContentLoaded', () => window.landscapeInit());
+}

@@ -1,7 +1,7 @@
 // AI Tool Review - Homepage Search Application
 
 // Populate hero subtitle counts from live data
-(function updateHeroCounts() {
+function updateHeroCounts() {
     if (typeof landscapeData === 'undefined') return;
     let toolCount = 0, catCount = 0;
     for (const track of ['users', 'developers']) {
@@ -17,9 +17,11 @@
     const ccEl = document.getElementById('hero-cat-count');
     if (tcEl) tcEl.textContent = toolCount + '+';
     if (ccEl) ccEl.textContent = catCount + '+';
-})();
+}
 
-document.addEventListener('DOMContentLoaded', () => {
+window.appInit = function appInit() {
+    if (!document.getElementById('action-input')) return;
+    updateHeroCounts();
     // State
     let searchQuery = '';
 
@@ -604,7 +606,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 50);
         } else if (item.type === 'tool') {
             // Navigate to tool page
-            window.location.href = `/tools/${item.slug}/`;
+            if (window.SpaRouter) { window.SpaRouter.navigate(`/tools/${item.slug}/`); }
+            else { window.location.href = `/tools/${item.slug}/`; }
         }
     }
 
@@ -1132,7 +1135,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (card) {
                 const slug = card.dataset.slug;
                 if (slug) {
-                    window.location.href = `/tools/${slug}/`;
+                    if (window.SpaRouter) { window.SpaRouter.navigate(`/tools/${slug}/`); }
+                    else { window.location.href = `/tools/${slug}/`; }
                 }
             }
         });
@@ -1145,7 +1149,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
                 const slug = card.dataset.slug;
                 if (slug) {
-                    window.location.href = `/tools/${slug}/`;
+                    if (window.SpaRouter) { window.SpaRouter.navigate(`/tools/${slug}/`); }
+                    else { window.location.href = `/tools/${slug}/`; }
                 }
             }
         });
@@ -1248,4 +1253,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize
     setupEventListeners();
     initFromURL();
-});
+};
+
+document.addEventListener('DOMContentLoaded', () => window.appInit());
