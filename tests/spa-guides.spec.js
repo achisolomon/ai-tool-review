@@ -48,3 +48,10 @@ test.describe('SPA Phase 1: article init', () => {
     expect(after).toBe(before);
   });
 });
+
+test.describe('SPA Phase 1: DOM prerequisites', () => {
+  test('article page has #page-content', async ({ page }) => {
+    await page.goto('/guides/managing-ai-coding-tool-budgets/', { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('#page-content')).toBeAttached();
+  });
+});
