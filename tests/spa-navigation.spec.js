@@ -189,3 +189,53 @@ test.describe('SPA: Search page re-init', () => {
     expect(glowX).toBeTruthy();
   });
 });
+
+test.describe('SPA: Router API', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => { localStorage.setItem('cookie_consent', 'accepted'); });
+    await page.route('https://www.googletagmanager.com/**', r => r.abort());
+    await page.route('https://cdn.jsdelivr.net/**', r => r.abort());
+  });
+
+  test('window.SpaRouter.navigate is a function', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    const has = await page.evaluate(() => typeof window.SpaRouter?.navigate === 'function');
+    expect(has).toBe(true);
+  });
+
+  test('window.SpaRouter.navigate navigates programmatically', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await page.evaluate(() => window.SpaRouter.navigate('/landscape.html'));
+    await expect(page.locator('#landscape')).toBeVisible({ timeout: 5000 });
+    expect(page.url()).toMatch(/landscape/);
+  });
+});
+
+test.describe('SPA: Full navigation sequence', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => { localStorage.setItem('cookie_consent', 'accepted'); });
+    await page.route('https://www.googletagmanager.com/**', r => r.abort());
+    await page.route('https://cdn.jsdelivr.net/**', r => r.abort());
+  });
+
+  test('full navigation: search -> landscape -> guides -> back', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('#search-input')).toBeAttached();
+    expect(page.url()).toMatch(/\/$/);
+
+    await page.locator('[data-spa-link][href="/landscape.html"]').click();
+    await expect(page.locator('#landscape')).toBeVisible({ timeout: 5000 });
+    expect(page.url()).toMatch(/landscape/);
+
+    await page.locator('[data-spa-link][href="/guides/"]').click();
+    await expect(page.locator('.learn-index h1').or(page.locator('#page-content h1'))).toBeVisible({ timeout: 5000 });
+    expect(page.url()).toMatch(/guides/);
+
+    await page.locator('[data-spa-link][href="/"]').click();
+    await expect(page.locator('#search-input')).toBeVisible({ timeout: 5000 });
+    expect(page.url()).toMatch(/\/$/);
+
+    const activeCount = await page.locator('[data-spa-link][href="/"].nav-active').count();
+    expect(activeCount).toBe(1);
+  });
+});
