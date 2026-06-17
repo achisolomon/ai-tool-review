@@ -20,3 +20,15 @@ test.describe('SPA Phase 2: tool routing + landmarks', () => {
     expect(m.params.slug).toBe('llamaparse');
   });
 });
+
+test.describe('SPA Phase 2: tool head metadata', () => {
+  test('tool page head SEO/schema nodes are marked data-spa-head', async ({ page }) => {
+    await page.goto('/tools/llamaparse/', { waitUntil: 'domcontentloaded' });
+    const desc = await page.evaluate(() =>
+      document.querySelector('meta[name="description"][data-spa-head]')?.getAttribute('content'));
+    expect(desc).toBeTruthy();
+    const schema = await page.evaluate(() =>
+      !!document.querySelector('script[type="application/ld+json"][data-spa-head]'));
+    expect(schema).toBe(true);
+  });
+});
