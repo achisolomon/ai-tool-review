@@ -23,7 +23,11 @@ for (const file of htmlFiles) {
   const hasLoginSlot = /id=["']login-required["']/.test(src);
   if (!hasLoginSlot) continue;
 
-  const loadsModule = /<script[^>]+src=["'][^"']*js\/auth-signin\.js[^"']*["']/.test(src);
+  // auth-signin.js may be loaded directly or via the nav-scripts.html include
+  // (which contains it). Both satisfy the contract.
+  const loadsModule =
+    /<script[^>]+src=["'][^"']*js\/auth-signin\.js[^"']*["']/.test(src) ||
+    /include nav-scripts\.html/.test(src);
   const callsRender = /AuthSignIn\.renderCard/.test(src);
 
   if (!loadsModule) {
