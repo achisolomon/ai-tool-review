@@ -273,7 +273,8 @@
       var googleBtn  = document.getElementById('auth-google');
 
       function closeAuthModal() {
-        authModal.classList.remove('active');
+        var m = document.getElementById('auth-modal');
+        if (m) m.classList.remove('active');
         document.body.style.overflow = '';
         pendingReviewOpen = false; // Reset if user closes without signing in
       }

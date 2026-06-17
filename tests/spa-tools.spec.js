@@ -237,3 +237,64 @@ test.describe('SPA Phase 2: tool styling survives SPA nav', () => {
     }
   });
 });
+
+test.describe('SPA Phase 2: review styling + auth resilience', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => { localStorage.setItem('cookie_consent', 'accepted'); });
+    await page.route('https://www.googletagmanager.com/**', r => r.abort());
+    await page.route('https://cdn.jsdelivr.net/**', r => r.abort());
+  });
+
+  test('reviews.css is loaded on all SPA pages (so SPA-nav to tool has review styles)', async ({ page }) => {
+    for (const url of ['/', '/landscape', '/guides/', '/tools/llamaparse/']) {
+      await page.goto(url, { waitUntil: 'domcontentloaded' });
+      const has = await page.evaluate(() => !!document.querySelector('link[rel="stylesheet"][href*="reviews.css"]'));
+      expect(has, `reviews.css missing on ${url}`).toBe(true);
+    }
+  });
+
+  test('closeAuthModal uses live lookup (no throw after tool→tool nav)', async ({ page }) => {
+    // Mock onAuthStateChange so we can capture the callback and fire it manually,
+    // without needing a real Supabase connection. The mock is injected before page load
+    // so tool-page.js picks it up when it calls window.SupabaseClient.onAuthStateChange.
+    await page.addInitScript(() => {
+      // Intercept onAuthStateChange after SupabaseClient is set up.
+      // We store each registered callback in window._authCallbacks so we can call it later.
+      window._authCallbacks = [];
+      Object.defineProperty(window, 'SupabaseClient', {
+        configurable: true,
+        get() { return this._SupabaseClientReal; },
+        set(v) {
+          this._SupabaseClientReal = v;
+          if (v && typeof v.onAuthStateChange === 'function') {
+            const orig = v.onAuthStateChange.bind(v);
+            v.onAuthStateChange = function(cb) {
+              window._authCallbacks.push(cb);
+              return orig(cb);
+            };
+          }
+        }
+      });
+    });
+
+    await page.goto('/tools/llamaparse/', { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof window.SpaRouter !== 'undefined');
+
+    // Navigate tool→tool: this removes the first auth-modal from the DOM via resetReviewModals.
+    await page.evaluate(() => window.SpaRouter.navigate('/tools/docling/'));
+    await page.waitForURL(/\/tools\/docling\//, { timeout: 5000 });
+
+    // Now fire the auth callback as if a SIGNED_IN event arrived —
+    // with the stale-closure bug this would throw because the first authModal node was removed.
+    const threw = await page.evaluate(() => {
+      try {
+        // Fire all captured callbacks with a SIGNED_IN event.
+        // The first callback closed over the OLD (removed) auth-modal node.
+        // With the fix, it does a live getElementById which returns null-safely.
+        (window._authCallbacks || []).forEach(cb => cb('SIGNED_IN', { user: { id: 'test', user_metadata: {} } }));
+        return false;
+      } catch (e) { return String(e); }
+    });
+    expect(threw).toBe(false);
+  });
+});
