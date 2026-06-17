@@ -54,14 +54,17 @@ test.describe('SPA Phase 2: tool-page init exists + suggest wiring', () => {
 });
 
 test.describe('SPA Phase 2: reviews init via tool-page.js', () => {
-  // Block external CDNs (Supabase) so ensureSupabase() fails fast and
-  // networkidle can fire. Reviews degrade to hidden/empty — tests tolerate that.
+  // Block external CDNs (Supabase) so ensureSupabase() fails fast. Do NOT use
+  // waitUntil:'networkidle' — with requests aborted the network never settles
+  // and the goto times out. Wait on domcontentloaded + toolPageInit instead.
   test.beforeEach(async ({ page }) => {
     await page.route(/^https?:\/\/(?!localhost)/, route => route.abort());
   });
 
   test('reviews section renders or hides gracefully on direct load', async ({ page }) => {
-    await page.goto('/tools/llamaparse/', { waitUntil: 'networkidle' });
+    await page.goto('/tools/llamaparse/', { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof window.toolPageInit === 'function');
+    await page.waitForTimeout(300); // let initReviews settle (CDN blocked → hides)
     const state = await page.evaluate(() => {
       const sec = document.getElementById('reviews');
       if (!sec) return 'no-section';
@@ -73,7 +76,8 @@ test.describe('SPA Phase 2: reviews init via tool-page.js', () => {
   });
 
   test('re-running toolPageInit does not duplicate review modals', async ({ page }) => {
-    await page.goto('/tools/llamaparse/', { waitUntil: 'networkidle' });
+    await page.goto('/tools/llamaparse/', { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof window.toolPageInit === 'function');
     await page.evaluate(() => { window.toolPageInit(); window.toolPageInit(); });
     await page.waitForTimeout(300);
     // No modal id should appear more than once.
@@ -141,7 +145,7 @@ test.describe('SPA Phase 2: idempotency + load-once', () => {
   });
 
   test('tool→tool nav: data island matches current tool, no duplicate modals', async ({ page }) => {
-    await page.goto('/tools/llamaparse/', { waitUntil: 'networkidle' });
+    await page.goto('/tools/llamaparse/', { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof window.SpaRouter !== 'undefined');
     await page.evaluate(() => window.SpaRouter.navigate('/tools/docling/'));
     await page.waitForURL(/\/tools\/docling\//, { timeout: 5000 });
