@@ -58,7 +58,7 @@ test.describe('UX redesign regression', () => {
       const lines = page.locator('.hero-eyebrow .hero-eyebrow-line');
       await expect(lines).toHaveCount(2);
 
-      await expect(page.locator('.hero-eyebrow .line1')).toHaveText('// For developers by developers');
+      await expect(page.locator('.hero-eyebrow .line1')).toHaveText('// For developers by developers (and claude)');
       await expect(page.locator('.hero-eyebrow .line2')).toHaveText('// Community-curated, honestly ranked');
     });
 
@@ -343,7 +343,7 @@ test.describe('Reduced-motion contract', () => {
   });
 
   test('both eyebrow lines are fully shown (no clipped typing state)', async ({ page }) => {
-    await expect(page.locator('.hero-eyebrow .line1')).toHaveText('// For developers by developers');
+    await expect(page.locator('.hero-eyebrow .line1')).toHaveText('// For developers by developers (and claude)');
     await expect(page.locator('.hero-eyebrow .line2')).toHaveText('// Community-curated, honestly ranked');
   });
 });
