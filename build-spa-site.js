@@ -30,7 +30,7 @@ function renderLearnArticles() {
     const dateStr = a.date ? new Date(a.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: '2-digit' }) : '';
     const readingTime = a.reading_time ? ` &middot; <span>${a.reading_time} min read</span>` : '';
     const tags = a.tags.slice(0, 3).map(t => `<span class="article-tag">${t}</span>`).join('');
-    return `<a href="/guides/${a.slug}/" class="article-card">
+    return `<a href="/guides/${a.slug}/" data-spa-link class="article-card">
       <h2>${a.title}</h2>
       ${a.description ? `<p>${a.description}</p>` : ''}
       <div class="article-meta">

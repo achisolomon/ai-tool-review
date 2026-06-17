@@ -29,7 +29,7 @@ permalink: /guides/
 
     {% assign articles = site.learn | sort: "date" | reverse %}
     {% for article in articles %}
-    <a href="{{ article.url | relative_url }}" class="article-card">
+    <a href="{{ article.url | relative_url }}" data-spa-link class="article-card">
       <h2>{{ article.title }}</h2>
       {% if article.description %}<p>{{ article.description }}</p>{% endif %}
       <div class="article-meta">

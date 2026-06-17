@@ -71,3 +71,31 @@ test.describe('SPA Phase 1: cross-page nav from article', () => {
     expect(page.url()).toMatch(/localhost:\d+\/$/);
   });
 });
+
+test.describe('SPA Phase 1: navigate to articles', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => { localStorage.setItem('cookie_consent', 'accepted'); });
+    await page.route('https://www.googletagmanager.com/**', r => r.abort());
+    await page.route('https://cdn.jsdelivr.net/**', r => r.abort());
+  });
+
+  test('A3: clicking an article card navigates without full reload', async ({ page }) => {
+    await page.goto('/guides/', { waitUntil: 'domcontentloaded' });
+    await page.evaluate(() => { window.__spaLoaded = true; });
+    await page.locator('a.article-card[data-spa-link]').first().click();
+    await expect(page.locator('#page-content h1')).toBeVisible({ timeout: 5000 });
+    expect(await page.evaluate(() => window.__spaLoaded)).toBe(true);
+    expect(page.url()).toMatch(/\/guides\/.+\//);
+  });
+
+  test('A6: browser back from article restores guides index', async ({ page }) => {
+    await page.goto('/guides/', { waitUntil: 'domcontentloaded' });
+    await page.evaluate(() => { window.__spaLoaded = true; });
+    await page.locator('a.article-card[data-spa-link]').first().click();
+    await expect(page.locator('#page-content h1')).toBeVisible({ timeout: 5000 });
+    await page.goBack();
+    await expect(page.locator('.article-card').first()).toBeVisible({ timeout: 5000 });
+    expect(await page.evaluate(() => window.__spaLoaded)).toBe(true);
+    expect(page.url()).toMatch(/\/guides\/$/);
+  });
+});
