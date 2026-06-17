@@ -132,3 +132,72 @@ test.describe('SPA Phase 2: navigate to tool pages', () => {
     expect(await page.title()).toMatch(/AI Tool Review/);
   });
 });
+
+test.describe('SPA Phase 2: idempotency + load-once', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => { localStorage.setItem('cookie_consent', 'accepted'); });
+    await page.route('https://www.googletagmanager.com/**', r => r.abort());
+    await page.route('https://cdn.jsdelivr.net/**', r => r.abort());
+  });
+
+  test('tool→tool nav: data island matches current tool, no duplicate modals', async ({ page }) => {
+    await page.goto('/tools/llamaparse/', { waitUntil: 'networkidle' });
+    await page.waitForFunction(() => typeof window.SpaRouter !== 'undefined');
+    await page.evaluate(() => window.SpaRouter.navigate('/tools/docling/'));
+    await page.waitForURL(/\/tools\/docling\//, { timeout: 5000 });
+    await page.waitForTimeout(400);
+    const slug = await page.evaluate(() => JSON.parse(document.getElementById('tool-data').textContent).slug);
+    expect(slug).toBe('docling');
+    const dupes = await page.evaluate(() => {
+      const ids = ['review-modal', 'auth-modal', 'existing-review-modal', 'delete-confirm-modal'];
+      return ids.filter(id => document.querySelectorAll('#' + id).length > 1);
+    });
+    expect(dupes).toEqual([]);
+  });
+
+  test('E1: AuthUI.init not re-run on tool→tool SPA nav', async ({ page }) => {
+    await page.addInitScript(() => {
+      window.__authInitCalls = 0;
+      let _a;
+      Object.defineProperty(window, 'AuthUI', {
+        configurable: true,
+        get() { return _a; },
+        set(v) { _a = v; if (v && typeof v.init === 'function' && !v.__counted) {
+          const real = v.init.bind(v); v.init = function (...a) { window.__authInitCalls++; return real(...a); }; v.__counted = true;
+        } },
+      });
+    });
+    await page.goto('/tools/llamaparse/', { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof window.SpaRouter !== 'undefined');
+    await page.waitForTimeout(400);
+    const initial = await page.evaluate(() => window.__authInitCalls);
+    await page.evaluate(() => window.SpaRouter.navigate('/tools/docling/'));
+    await page.waitForURL(/\/tools\/docling\//, { timeout: 5000 });
+    await page.waitForTimeout(400);
+    const after = await page.evaluate(() => window.__authInitCalls);
+    expect(initial).toBeGreaterThanOrEqual(1);
+    expect(after).toBe(initial);
+  });
+
+  test('E2: auth container persists across tool→tool nav', async ({ page }) => {
+    await page.goto('/tools/llamaparse/', { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof window.SpaRouter !== 'undefined');
+    const before = await page.locator('#auth-container').innerHTML();
+    await page.evaluate(() => window.SpaRouter.navigate('/tools/docling/'));
+    await page.waitForURL(/\/tools\/docling\//, { timeout: 5000 });
+    const after = await page.locator('#auth-container').innerHTML();
+    expect(after).toBe(before);
+  });
+
+  test('tool→tool nav: head metadata (title/canonical) updates to new tool', async ({ page }) => {
+    await page.goto('/tools/llamaparse/', { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof window.SpaRouter !== 'undefined');
+    const beforeCanonical = await page.evaluate(() => document.querySelector('link[rel="canonical"]')?.href);
+    await page.evaluate(() => window.SpaRouter.navigate('/tools/docling/'));
+    await page.waitForURL(/\/tools\/docling\//, { timeout: 5000 });
+    const afterCanonical = await page.evaluate(() => document.querySelector('link[rel="canonical"]')?.href);
+    expect(afterCanonical).toBeTruthy();
+    expect(afterCanonical).not.toBe(beforeCanonical);
+    expect(afterCanonical).toContain('docling');
+  });
+});
