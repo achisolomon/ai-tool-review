@@ -52,3 +52,35 @@ test.describe('SPA Phase 2: tool-page init exists + suggest wiring', () => {
     expect(wiredTwice).toBe('1');
   });
 });
+
+test.describe('SPA Phase 2: reviews init via tool-page.js', () => {
+  // Block external CDNs (Supabase) so ensureSupabase() fails fast and
+  // networkidle can fire. Reviews degrade to hidden/empty — tests tolerate that.
+  test.beforeEach(async ({ page }) => {
+    await page.route(/^https?:\/\/(?!localhost)/, route => route.abort());
+  });
+
+  test('reviews section renders or hides gracefully on direct load', async ({ page }) => {
+    await page.goto('/tools/llamaparse/', { waitUntil: 'networkidle' });
+    const state = await page.evaluate(() => {
+      const sec = document.getElementById('reviews');
+      if (!sec) return 'no-section';
+      if (sec.hidden) return 'hidden';
+      const sum = document.getElementById('review-summary-container');
+      return sum && sum.innerHTML.trim().length > 0 ? 'rendered' : 'empty';
+    });
+    expect(['hidden', 'rendered', 'empty']).toContain(state);
+  });
+
+  test('re-running toolPageInit does not duplicate review modals', async ({ page }) => {
+    await page.goto('/tools/llamaparse/', { waitUntil: 'networkidle' });
+    await page.evaluate(() => { window.toolPageInit(); window.toolPageInit(); });
+    await page.waitForTimeout(300);
+    // No modal id should appear more than once.
+    const dupes = await page.evaluate(() => {
+      const ids = ['review-modal', 'auth-modal', 'existing-review-modal', 'delete-confirm-modal'];
+      return ids.filter(id => document.querySelectorAll('#' + id).length > 1);
+    });
+    expect(dupes).toEqual([]);
+  });
+});
