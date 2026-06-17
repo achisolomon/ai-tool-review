@@ -14,7 +14,15 @@ Today the router (`js/router.js`) only intercepts `/`, `/landscape.html`, `/guid
 ## Non-Goals
 - No redesign of tool/article page content or styling.
 - No change to how pages are generated/served on **direct load** (crawlers, deep links keep getting full correct HTML).
-- The `/learn/:slug` vs `/guides/:slug` permalink discrepancy in `build-spa-site.js` (line 33 emits `/learn/`, Jekyll uses `/guides/`) is **noted but out of scope** unless it proves to be a live bug during implementation.
+
+## Phasing
+
+This ships as **two independent phases** with a checkpoint between them. Phase 1 must be working in the browser before Phase 2 begins.
+
+- **Phase 1 — Guides/article pages** (low risk): Sections 1, 2, 4 (head swap for articles), and the article-link parts of Section 5. Delivers "load once" for articles and proves the router extension end-to-end.
+- **Phase 2 — Tool pages** (high risk): Section 3 (the 570-line refactor), head swap for tool pages, and the tool-link parts of Section 5. Begins only after Phase 1 is verified working.
+
+Each phase gets its own implementation plan and its own test runs.
 
 ---
 
@@ -156,6 +164,8 @@ Technique: set `window.__noReload` on first load; if it survives navigation, no 
 - **E1** `AuthUI.init` called once across tool→tool nav (spy on call count)
 - **E2** auth avatar/admin badge HTML persists unchanged across tool nav
 
+**Phase split:** Phase 1 (guides) covers A3, A5, A6 (article variants), the article cases of D1–D3, and E1–E2 across guides nav. Phase 2 (tools) covers A1, A2, A4, A7, all of B and C, full D, and E across tool nav.
+
 Tests written TDD-style alongside each implementation task. Run via `npm test` (existing harness; no new infra).
 
 ---
@@ -168,8 +178,11 @@ Tests written TDD-style alongside each implementation task. Run via `npm test` (
 | Idempotency bugs (dup modals, double listeners) | Group B tests; modal cleanup + guarded binding by design |
 | Stale async data on fast nav | Group C tests; slug guard in `toolPageInit` |
 | Head metadata drift hurts social previews | Group D tests; `data-spa-head` swap |
-| build-spa-site.js `/learn/` vs `/guides/` mismatch | Flagged; verify during impl, fix only if live bug |
 | Scripts re-executing on swap | Router extracts only innerHTML + JSON island (inert); page JS via init functions only |
+
+## Prerequisite (done)
+
+- `build-spa-site.js` article links corrected from `/learn/:slug/` to `/guides/:slug/` to match Jekyll's collection permalink (`_config.yml` learn → `/guides/:slug/`). Committed separately ahead of this work.
 
 ## Rollout
 Foundation-first ordering: Section 1 (router) → Section 2 (articles, low risk, proves the extension) → Section 4 (head swap) → Section 3 (tool refactor, highest risk) → Section 5 (links) — with tests landing per section.
