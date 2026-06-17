@@ -19,6 +19,9 @@
     --z-ambient-bg: 0;
     --z-ambient-aura: 1;
     --z-content: 2;
+    --z-search: 3;     /* hero/search-input area: above sibling .search-results
+                          so the autocomplete dropdown is never covered by the
+                          results grid (both were tied at --z-content) */
     --z-sticky: 100;
 }
 
@@ -54,7 +57,6 @@
    The wrapper list mirrors the sticky-footer flex children in style.css so
    every page's main content clears the canvas + aura. */
 .header { z-index: var(--z-sticky); }
-.hero-content,
 main,
 .search-results,
 .footer,
@@ -67,6 +69,14 @@ main,
 .changes-container {
     position: relative;
     z-index: var(--z-content);
+}
+/* The hero holds the search input + its absolutely-positioned autocomplete
+   dropdown (z-index:1000 within this context). It must stack ABOVE the sibling
+   .search-results (--z-content) so the results grid can never cover the open
+   dropdown (this caused intercepted clicks in the search-consistency tests). */
+.hero-content {
+    position: relative;
+    z-index: var(--z-search);
 }
 
 /* ---- SHARED LIGHT-UP ----

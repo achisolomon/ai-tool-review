@@ -84,7 +84,7 @@ source_urls:
       <li>Single phrase trigger ("use context7") — zero workflow friction</li>
       <li>MCP-native: integrates with any MCP-compatible AI coding tool</li>
       <li>2-minute setup via GitHub</li>
-      <li>57K+ GitHub stars — large community validation</li>
+      <li>Large, active GitHub community — strong adoption signal</li>
       <li>Free tier covers 1,000 API calls/month for individuals</li>
     </ul>
     <div class="source"><a href="https://context7.com/" target="_blank" rel="noopener">Official Site</a> · <a href="https://github.com/upstash/context7" target="_blank" rel="noopener">GitHub</a></div>

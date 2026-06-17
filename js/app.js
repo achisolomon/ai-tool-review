@@ -556,54 +556,44 @@ window.appInit = function appInit() {
         // Reset flag after a delay long enough for all nested setTimeout(50) and debounce(250) to settle
         setTimeout(() => { isSelectingFromAutocomplete = false; }, 350);
 
+        // URL, title AND the filtered results are all applied SYNCHRONOUSLY.
+        // Previously the render was deferred in setTimeout(50), which left a
+        // window where an already-fired debounced free-text search (rendered
+        // before the click) stayed on screen and the selection's results never
+        // replaced it under CPU contention (the search-consistency flake:
+        // expected "7 tools" but saw "40 tools"). Rendering inline closes the
+        // race entirely; the loading state is skipped because the data is local
+        // and synchronous (no async fetch to mask).
         if (item.type === 'category') {
-            // Show all tools in this category.
-            // URL + title are set synchronously (not in the deferred timer) so a
-            // selection's URL can never be clobbered by an in-flight debounced
-            // text search under CPU contention.
             searchResults.classList.remove('hidden');
-            showLoading();
             updateURL('category', item.id);
             updatePageTitle(item.name);
-            setTimeout(() => {
-                try {
-                    const tools = getToolsByCategory(item.id || item.name);
-                    renderSearchResults(tools, item.name);
-                } catch (error) {
-                    console.error('Category load error:', error);
-                    hideLoading();
-                }
-            }, 50);
+            try {
+                renderSearchResults(getToolsByCategory(item.id || item.name), item.name);
+            } catch (error) {
+                console.error('Category load error:', error);
+                hideLoading();
+            }
         } else if (item.type === 'subcategory') {
-            // Show all tools in this subcategory
             showSearchResults();
-            showLoading();
             updateURL('subcategory', item.id);
             updatePageTitle(item.name);
-            setTimeout(() => {
-                try {
-                    const tools = getToolsByCategory(item.categoryId || item.categoryName, item.id || item.name);
-                    renderSearchResults(tools, item.name);
-                } catch (error) {
-                    console.error('Subcategory load error:', error);
-                    hideLoading();
-                }
-            }, 50);
+            try {
+                renderSearchResults(getToolsByCategory(item.categoryId || item.categoryName, item.id || item.name), item.name);
+            } catch (error) {
+                console.error('Subcategory load error:', error);
+                hideLoading();
+            }
         } else if (item.type === 'tag') {
-            // Show all tools with this tag
             searchResults.classList.remove('hidden');
-            showLoading();
             updateURL('tag', item.slug);
             updatePageTitle(item.name);
-            setTimeout(() => {
-                try {
-                    const tools = getToolsByTag(item.slug);
-                    renderSearchResults(tools, item.name);
-                } catch (error) {
-                    console.error('Tag load error:', error);
-                    hideLoading();
-                }
-            }, 50);
+            try {
+                renderSearchResults(getToolsByTag(item.slug), item.name);
+            } catch (error) {
+                console.error('Tag load error:', error);
+                hideLoading();
+            }
         } else if (item.type === 'tool') {
             // Navigate to tool page
             if (window.SpaRouter) { window.SpaRouter.navigate(`/tools/${item.slug}/`); }
