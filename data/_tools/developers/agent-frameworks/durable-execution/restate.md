@@ -12,7 +12,7 @@ pricing_model: freemium
 founded_year: 2023
 headquarters: —
 github_url: "https://github.com/restatedev/restate"
-github_stars: 4012
+github_stars: 4020
 tags:
   - agents
 last_verified: "2026-06-03"

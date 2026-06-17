@@ -9,7 +9,7 @@ subcategory: "evaluation"
 status: "active"
 description: "Open-source framework for evaluating RAG pipelines with reference-free LLM-as-judge metrics"
 github_url: "https://github.com/explodinggradients/ragas"
-github_stars: 14385
+github_stars: 14400
 pricing_model: "free"
 founded_year: 2023
 headquarters: "Remote / Open Source"
