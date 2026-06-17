@@ -56,7 +56,7 @@ website: https://landing.ai/agentic-document-extraction
       <ul>
         <li>Regulated industries needing auditable extraction — every output includes page number, bounding box, and confidence score</li>
         <li>Complex financial documents with dense tables, merged cells, and mixed text+table on the same page</li>
-        <li>Healthcare and legal workflows requiring HIPAA compliance and zero data retention guarantees</li>
+        <li>Healthcare and legal workflows requiring HIPAA compliance and zero data retention guarantees — practitioners in medical document processing report standardizing on ADE as their sole extraction vendor</li>
         <li>Large document batches (1,000+ pages) where smart chunking and agentic verification matter</li>
         <li>Teams processing forms with signatures, checkboxes, barcodes, or handwriting</li>
       </ul>
@@ -91,7 +91,7 @@ website: https://landing.ai/agentic-document-extraction
   <div class="cons-list">
     <h3>Watch Out For</h3>
     <ul>
-      <li>Credit-based pricing makes cost forecasting difficult at scale — no flat per-page rate</li>
+      <li>Credit-based pricing makes cost forecasting difficult at scale — no flat per-page rate. After the 1,000 free credits run out (~330 pages), parsing runs ~$30 per 1,000 pages at standard DPT-2 rates, climbing toward $40 once extraction is added — users report it's the most expensive option in the category</li>
       <li>No webhook support — limits real-time integration patterns</li>
       <li>No built-in human-in-the-loop review UI for validating extractions</li>
       <li>No workflow orchestration or evaluation framework — pipeline assembly is on the developer</li>
@@ -108,7 +108,7 @@ website: https://landing.ai/agentic-document-extraction
   <a href="https://landing.ai/pricing-agentic-apis" class="pricing-card" target="_blank" rel="noopener">
     <div class="plan-name">Explore</div>
     <div class="price">Free</div>
-    <div class="desc">1,000 free credits. Single seat. For development and validation. ($1 = 100 credits after free tier.)</div>
+    <div class="desc">1,000 free credits (~330 pages at 3 credits/page on DPT-2). Single seat. For development and validation. ($1 = 100 credits after free tier.)</div>
   </a>
   <a href="https://landing.ai/pricing-agentic-apis" class="pricing-card featured" target="_blank" rel="noopener">
     <div class="plan-name">Team</div>
@@ -144,7 +144,7 @@ website: https://landing.ai/agentic-document-extraction
       <li>Signature, checkbox, and barcode detection</li>
       <li>Composer AI — auto-experiments with prompts/schemas to maximize accuracy</li>
       <li>Smart chunking for 1,000+ page files</li>
-      <li>50+ language support</li>
+      <li>50+ language support — users report strong results on non-English documents including Hebrew, though accuracy trails English and depends on scan/input quality</li>
     </ul>
   </div>
   <div class="detail-section">
