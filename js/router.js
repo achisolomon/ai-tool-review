@@ -84,7 +84,11 @@
         const content = doc.getElementById('page-content');
         const title = doc.querySelector('title')?.textContent ?? document.title;
         const headNodes = Array.from(doc.querySelectorAll('head [data-spa-head]'));
-        return { innerHTML: content?.innerHTML ?? '', title, headNodes };
+        // Capture the class list of the fetched page's #page-content so the live
+        // slot element can be updated (e.g. <main class="learn-layout"> on articles
+        // vs plain <main> on home/guides-index — otherwise the layout CSS won't apply).
+        const contentClass = content?.className ?? '';
+        return { innerHTML: content?.innerHTML ?? '', title, headNodes, contentClass };
     }
 
     async function navigate(href, pushState = true, fromOverride) {
@@ -110,6 +114,10 @@
         try {
             const slot = document.getElementById('page-content');
             if (!slot) { location.href = href; return; }
+            // Sync the class attribute of the live slot to match the destination page's
+            // #page-content (e.g. article pages use class="learn-layout" for their
+            // two-column flex layout, while home/guides-index have no class).
+            slot.className = pageData.contentClass;
             slot.innerHTML = pageData.innerHTML;
 
             document.title = pageData.title;

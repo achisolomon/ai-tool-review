@@ -163,6 +163,47 @@ test.describe('SPA Phase 1: toolbar loads once', () => {
   });
 });
 
+test.describe('SPA Phase 1 fix: article layout styled via SPA nav', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => { localStorage.setItem('cookie_consent', 'accepted'); });
+    await page.route('https://www.googletagmanager.com/**', r => r.abort());
+    await page.route('https://cdn.jsdelivr.net/**', r => r.abort());
+  });
+
+  test('article reached via SPA nav has the two-column layout applied', async ({ page }) => {
+    await page.goto('/guides/', { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof window.SpaRouter !== 'undefined');
+    await page.locator('a.article-card[data-spa-link]').first().click();
+    await page.waitForURL(/\/guides\/.+\//, { timeout: 5000 });
+    await page.waitForTimeout(300);
+    const layoutDisplay = await page.evaluate(() => {
+      const el = document.querySelector('.learn-layout');
+      return el ? getComputedStyle(el).display : 'NO-LAYOUT';
+    });
+    expect(layoutDisplay).toBe('flex');
+    const tocWidth = await page.evaluate(() => {
+      const el = document.querySelector('.learn-toc');
+      return el ? parseFloat(getComputedStyle(el).width) : 9999;
+    });
+    expect(tocWidth).toBeLessThan(400); // sidebar is narrow (~220px), not full-width
+  });
+
+  test('learn.css is loaded on home/landscape/guides/article', async ({ page }) => {
+    for (const url of ['/', '/landscape', '/guides/', '/guides/managing-ai-coding-tool-budgets/']) {
+      await page.goto(url, { waitUntil: 'domcontentloaded' });
+      const has = await page.evaluate(() => !!document.querySelector('link[rel="stylesheet"][href*="learn.css"]'));
+      expect(has, `learn.css missing on ${url}`).toBe(true);
+    }
+  });
+
+  test('home page body is not forced to flex by learn.css (no cross-page regression)', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    const bodyDisplay = await page.evaluate(() => getComputedStyle(document.body).display);
+    // home should NOT be display:flex from learn.css leaking in
+    expect(bodyDisplay).not.toBe('flex');
+  });
+});
+
 test.describe('SPA Phase 1: head metadata swap', () => {
   test.beforeEach(async ({ page }) => {
     await page.addInitScript(() => { localStorage.setItem('cookie_consent', 'accepted'); });

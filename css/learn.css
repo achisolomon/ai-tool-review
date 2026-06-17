@@ -1,0 +1,106 @@
+/* Article / guide layout styles — loaded on all SPA pages so they survive
+   client-side navigation to a guide article from home / landscape / guides-index.
+   NOTE: The original inline style had `body { display: flex; flex-direction: column; }`
+   which was needed to let `.learn-layout { flex: 1 }` push the footer down.
+   That rule is intentionally OMITTED here to avoid cross-page regressions: article
+   content is long enough that the footer is naturally pushed down without it, and
+   scoping it to a body class would require the SPA router to toggle the class on
+   every navigation (fragile). */
+
+/* Two-column layout: sticky sidebar + article */
+.learn-layout { display: flex; flex: 1; max-width: 1200px; width: 100%; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; gap: 3rem; box-sizing: border-box; }
+
+/* Left sidebar TOC */
+.learn-toc { width: 220px; flex-shrink: 0; }
+.learn-toc-inner { position: sticky; top: 5.5rem; max-height: calc(100vh - 7rem); overflow-y: auto; }
+.learn-toc-inner h4 { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: #555; margin: 0 0 0.75rem 0; font-weight: 600; }
+.learn-toc-inner ol { list-style: none; padding: 0; margin: 0; border-left: 2px solid #2a2a2a; }
+.learn-toc-inner ol li { padding: 0; margin: 0; }
+.learn-toc-inner ol li a { display: block; padding: 0.35rem 0 0.35rem 0.85rem; font-size: 0.8rem; color: #777; text-decoration: none; line-height: 1.4; transition: color 0.15s, border-color 0.15s; border-left: 2px solid transparent; margin-left: -2px; }
+.learn-toc-inner ol li a:hover { color: #ccc; }
+.learn-toc-inner ol li a.toc-active { color: #007acc; border-left-color: #007acc; }
+.learn-toc-inner ol li.toc-h3 a { padding-left: 1.5rem; font-size: 0.75rem; color: #555; }
+.learn-toc-inner ol li.toc-h3 a:hover { color: #999; }
+.learn-toc-inner ol li.toc-h3 a.toc-active { color: #007acc; border-left-color: #007acc; }
+
+/* "More articles" block in sidebar */
+.learn-toc-more { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #2a2a2a; }
+.learn-toc-more h4 { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: #555; margin: 0 0 0.75rem 0; font-weight: 600; }
+.learn-toc-more ul { list-style: none; padding: 0; margin: 0; }
+.learn-toc-more li { margin: 0 0 0.6rem 0; }
+.learn-toc-more li a { display: block; font-size: 0.8rem; color: #999; text-decoration: none; line-height: 1.4; transition: color 0.15s; }
+.learn-toc-more li a:hover { color: #007acc; }
+.learn-toc-all { display: inline-block; margin-top: 0.5rem; font-size: 0.75rem; color: #007acc; text-decoration: none; }
+.learn-toc-all:hover { text-decoration: underline; }
+
+/* Main article column */
+.learn-page { flex: 1; min-width: 0; padding: 0; }
+
+.learn-header { margin-bottom: 2rem; }
+.learn-breadcrumb { font-size: 0.85rem; color: #858585; margin-bottom: 1rem; }
+.learn-breadcrumb a { color: #007acc; text-decoration: none; }
+.learn-breadcrumb a:hover { text-decoration: underline; }
+.learn-header h1 { font-size: 2.25rem; color: #fff; margin: 0 0 1rem 0; font-weight: 700; line-height: 1.3; }
+.learn-meta { display: flex; gap: 1rem; flex-wrap: wrap; color: #858585; font-size: 0.85rem; }
+.learn-meta .author { color: #ccc; }
+.learn-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
+.learn-tags span { font-family: 'Consolas', 'Monaco', monospace; font-size: 12px; padding: 2px 8px; border-radius: 3px; background: #3c3c3c; color: #a8a8a8; }
+
+/* Hide inline article-outline nav (replaced by sidebar) */
+.learn-content .article-outline { display: none; }
+
+.learn-hero { margin: 0 0 2rem 0; border-radius: 10px; overflow: hidden; border: 1px solid #3c3c3c; line-height: 0; }
+.learn-hero img { width: 100%; height: auto; display: block; }
+.learn-hero figcaption { font-size: 0.8rem; color: #858585; padding: 0.6rem 0.9rem; background: #252526; line-height: 1.4; }
+
+/* BLUF / bottom-line block */
+.tldr { background: rgba(0,122,204,0.10); border: 1px solid rgba(0,122,204,0.40); border-left: 4px solid #007acc; border-radius: 6px; padding: 1.1rem 1.4rem; margin: 0 0 2rem 0; font-size: 1.02rem; line-height: 1.65; color: #d4d4d4; }
+.tldr strong { color: #3794ff; }
+.tldr code { font-family: 'Consolas', 'Monaco', monospace; background: #252526; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.9em; color: #ce9178; }
+
+/* In-body figures/images */
+.learn-content figure { margin: 1.75rem 0; }
+.learn-content figure img { max-width: 100%; height: auto; display: block; border-radius: 8px; border: 1px solid #3c3c3c; }
+.learn-content figcaption { font-size: 0.85rem; color: #858585; font-style: italic; margin-top: 0.5rem; }
+
+.learn-content { line-height: 1.8; font-size: 1.05rem; }
+.learn-content h2 { font-size: 1.5rem; color: #fff; margin: 2.5rem 0 1rem 0; font-weight: 600; scroll-margin-top: 80px; }
+.learn-content h3 { font-size: 1.15rem; color: #ccc; margin: 2rem 0 0.75rem 0; font-weight: 600; scroll-margin-top: 80px; }
+.learn-content p { margin: 1rem 0; color: #ccc; }
+.learn-content ul, .learn-content ol { margin: 1rem 0; padding-left: 1.5rem; }
+.learn-content li { margin: 0.5rem 0; color: #ccc; }
+.learn-content a { color: #007acc; text-decoration: none; }
+.learn-content a:hover { text-decoration: underline; }
+.learn-content blockquote { margin: 1.5rem 0; padding: 1rem 1.5rem; background: rgba(0,122,204,0.08); border: 1px solid rgba(0,122,204,0.35); border-radius: 6px; }
+.learn-content blockquote p { margin: 0; font-style: italic; color: #ccc; }
+.learn-content code { font-family: 'Consolas', 'Monaco', monospace; background: #252526; padding: 0.2rem 0.4rem; border-radius: 4px; font-size: 0.9em; color: #ce9178; }
+.learn-content pre { background: #252526; border: 1px solid #3c3c3c; border-radius: 8px; padding: 1rem; overflow-x: auto; margin: 1.5rem 0; }
+.learn-content pre code { background: none; padding: 0; font-size: 0.85rem; color: #ccc; }
+.learn-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; }
+.learn-content th { background: #323233; color: #858585; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; padding: 0.75rem; text-align: left; border-bottom: 1px solid #3c3c3c; }
+.learn-content td { padding: 0.75rem; border-bottom: 1px solid #3c3c3c; color: #ccc; }
+.learn-content tr:hover { background: rgba(0,122,204,0.05); }
+.learn-content strong { color: #fff; }
+.learn-content hr { border: none; border-top: 1px solid #3c3c3c; margin: 2rem 0; }
+
+.key-takeaways { background: rgba(0,122,204,0.08); border: 1px solid rgba(0,122,204,0.35); border-radius: 6px; padding: 1.5rem; margin: 2rem 0; }
+.key-takeaways h3 { color: #3794ff; font-size: 1rem; margin: 0 0 1rem 0; }
+.key-takeaways ul { margin: 0; padding-left: 1.25rem; }
+.key-takeaways li { margin: 0.5rem 0; }
+
+.sources { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #3c3c3c; }
+.sources h3 { font-size: 1rem; color: #858585; margin: 0 0 1rem 0; text-transform: uppercase; letter-spacing: 0.05em; }
+.sources ul { list-style: none; padding: 0; margin: 0; }
+.sources li { padding: 0.5rem 0; }
+.sources a { color: #007acc; text-decoration: none; font-size: 0.9rem; }
+.sources a:hover { text-decoration: underline; }
+
+@media (max-width: 900px) {
+  .learn-layout { flex-direction: column; gap: 0; padding: 1.5rem 1rem 4rem; }
+  .learn-toc { display: none; }
+  .learn-content .article-outline { display: block !important; }
+}
+@media (max-width: 768px) {
+  .learn-header h1 { font-size: 1.75rem; }
+  .learn-content { font-size: 1rem; }
+}
