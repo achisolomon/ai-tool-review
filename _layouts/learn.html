@@ -6,7 +6,9 @@
   <link rel="icon" type="image/x-icon" href="/favicon.svg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page.title }} | AI Guides | AI Tool Review</title>
+  <!-- data-spa-head: nodes the SPA router swaps on navigation to keep meta accurate. Mark page-specific head tags with it. -->
   <meta name="description" content="{{ page.description }}" data-spa-head>
+  <link rel="canonical" href="{{ page.url | absolute_url }}" data-spa-head>
   {% if page.hero_image %}
   <meta property="og:image" content="{{ page.hero_image | absolute_url }}" data-spa-head>
   <meta property="og:title" content="{{ page.title }}" data-spa-head>

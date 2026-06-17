@@ -131,5 +131,10 @@ test.describe('SPA Phase 1: head metadata swap', () => {
       document.querySelector('meta[name="description"]')?.getAttribute('content'));
     expect(articleDesc).toBeTruthy();
     expect(articleDesc).not.toBe(indexDesc);
+
+    // Canonical must point at the article URL, not the stale /guides/ index.
+    const canonical = await page.evaluate(() =>
+      document.querySelector('link[rel="canonical"]')?.getAttribute('href'));
+    expect(canonical).toMatch(/\/guides\/.+\//);
   });
 });
