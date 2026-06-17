@@ -63,6 +63,12 @@
 .learn-content figure img { max-width: 100%; height: auto; display: block; border-radius: 8px; border: 1px solid #3c3c3c; }
 .learn-content figcaption { font-size: 0.85rem; color: #858585; font-style: italic; margin-top: 0.5rem; }
 
+/* Markdown renders ![alt](src)\n*caption* as <p><img><em>…</em></p>.
+   Give those the same treatment as <figure> elements. */
+.learn-content p:has(> img:first-child) { margin: 1.75rem 0; }
+.learn-content p > img:first-child { max-width: 100%; height: auto; display: block; border-radius: 8px; border: 1px solid #3c3c3c; }
+.learn-content p > img:first-child + em { display: block; font-size: 0.85rem; color: #858585; font-style: italic; margin-top: 0.5rem; }
+
 .learn-content { line-height: 1.8; font-size: 1.05rem; }
 .learn-content h2 { font-size: 1.5rem; color: #fff; margin: 2.5rem 0 1rem 0; font-weight: 600; scroll-margin-top: 80px; }
 .learn-content h3 { font-size: 1.15rem; color: #ccc; margin: 2rem 0 0.75rem 0; font-weight: 600; scroll-margin-top: 80px; }
