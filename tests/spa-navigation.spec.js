@@ -47,8 +47,10 @@ test.describe('SPA: DOM prerequisites', () => {
 
   test('nav.html has data-spa-link on Search, Landscape, Guides links', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    const count = await page.locator('[data-spa-link]').count();
-    expect(count).toBe(3);
+    // The three nav-text links plus the logo (also SPA-navigable home link) carry data-spa-link.
+    const navLinks = await page.locator('.nav-link-text[data-spa-link]').count();
+    expect(navLinks).toBe(3);
+    await expect(page.locator('.logo[data-spa-link]')).toHaveCount(1);
   });
 
   test('index.html has #page-content', async ({ page }) => {
@@ -92,7 +94,7 @@ test.describe('SPA: Client-side navigation', () => {
     await page.goto('/landscape.html', { waitUntil: 'domcontentloaded' });
     await page.evaluate(() => { window.__spaLoaded = true; });
 
-    await page.locator('[data-spa-link][href="/"]').click();
+    await page.locator('.nav-link-text[href="/"]').click();
 
     await expect(page.locator('#search-input')).toBeVisible({ timeout: 5000 });
 
@@ -147,7 +149,7 @@ test.describe('SPA: Client-side navigation', () => {
     const landscapeIsActive = await page.locator('[data-spa-link][href="/landscape.html"]').evaluate(
       el => el.classList.contains('nav-active')
     );
-    const searchIsActive = await page.locator('[data-spa-link][href="/"]').evaluate(
+    const searchIsActive = await page.locator('.nav-link-text[href="/"]').evaluate(
       el => el.classList.contains('nav-active')
     );
     expect(landscapeIsActive).toBe(true);
@@ -164,7 +166,7 @@ test.describe('SPA: Search page re-init', () => {
 
   test('HeroMap restarts after navigating back to search from landscape', async ({ page }) => {
     await page.goto('/landscape.html', { waitUntil: 'domcontentloaded' });
-    await page.locator('[data-spa-link][href="/"]').click();
+    await page.locator('.nav-link-text[href="/"]').click();
     await expect(page.locator('#search-input')).toBeVisible({ timeout: 5000 });
 
     const heroMapExists = await page.evaluate(() => typeof window.HeroMap?.start === 'function');
@@ -177,7 +179,7 @@ test.describe('SPA: Search page re-init', () => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await page.locator('[data-spa-link][href="/landscape.html"]').click();
     await expect(page.locator('#landscape')).toBeVisible({ timeout: 5000 });
-    await page.locator('[data-spa-link][href="/"]').click();
+    await page.locator('.nav-link-text[href="/"]').click();
     await expect(page.locator('#search-input')).toBeVisible({ timeout: 5000 });
 
     await page.fill('#action-input', 'cursor');
@@ -354,7 +356,7 @@ test.describe('SPA: Shell integrity after navigation', () => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await page.locator('[data-spa-link][href="/landscape.html"]').click();
     await expect(page.locator('#landscape')).toBeVisible({ timeout: 5000 });
-    await page.locator('[data-spa-link][href="/"]').click();
+    await page.locator('.nav-link-text[href="/"]').click();
     await expect(page.locator('#search-input')).toBeVisible({ timeout: 5000 });
     const text = await page.locator('body').innerText();
     expect(text).not.toContain('permalink');
@@ -371,7 +373,7 @@ test.describe('SPA: Shell integrity after navigation', () => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await page.locator('[data-spa-link][href="/landscape.html"]').click();
     await expect(page.locator('#landscape')).toBeVisible({ timeout: 5000 });
-    await page.locator('[data-spa-link][href="/"]').click();
+    await page.locator('.nav-link-text[href="/"]').click();
     await expect(page.locator('#search-input')).toBeVisible({ timeout: 5000 });
     const legendCount = await page.locator('.legend').count();
     expect(legendCount).toBe(0);
@@ -436,11 +438,11 @@ test.describe('SPA: Full navigation sequence', () => {
     await expect(page.locator('.learn-index h1').or(page.locator('#page-content h1'))).toBeVisible({ timeout: 5000 });
     expect(page.url()).toMatch(/guides/);
 
-    await page.locator('[data-spa-link][href="/"]').click();
+    await page.locator('.nav-link-text[href="/"]').click();
     await expect(page.locator('#search-input')).toBeVisible({ timeout: 5000 });
     expect(page.url()).toMatch(/\/$/);
 
-    const activeCount = await page.locator('[data-spa-link][href="/"].nav-active').count();
+    const activeCount = await page.locator('.nav-link-text[href="/"].nav-active').count();
     expect(activeCount).toBe(1);
   });
 });
