@@ -11,7 +11,7 @@ subcategory: testing-sensors
 track: developers
 type: oss
 website: "https://github.com/TNO-S3/WuppieFuzz"
-github_stars: 209
+github_stars: 210
 github_url: "https://github.com/TNO-S3/WuppieFuzz"
 ---
 

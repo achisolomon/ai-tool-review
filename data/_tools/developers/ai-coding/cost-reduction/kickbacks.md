@@ -9,7 +9,7 @@ subcategory: "cost-reduction"
 status: "active"
 description: "Ad marketplace that places subtle, clickable sponsored messages in the Claude Code and Codex thinking spinner, splitting 50% of ad revenue back to the developers whose machines display them"
 github_url: "https://github.com/andrewmccalip/kickbacks.ai"
-github_stars: 381
+github_stars: 398
 pricing_model: "free"
 founded_year: 2026
 tags:

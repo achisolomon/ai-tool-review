@@ -4,7 +4,7 @@ confidence_score: 0.92
 description: "PageIndex is a vectorless document retrieval and AI platform by VectifyAI that uses hierarchical tree indexing and LLM reasoning instead of embeddings, achieving 98.7% accuracy on FinanceBench — far surpassing standard vector RAG approaches."
 founded_year: 2025
 github_url: "https://github.com/VectifyAI/PageIndex"
-github_stars: 26000
+github_stars: 33178
 headquarters: "United States"
 last_verified: '2026-06-17'
 name: PageIndex
