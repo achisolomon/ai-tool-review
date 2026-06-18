@@ -169,6 +169,19 @@ body {
     color: var(--vscode-text);
     line-height: 1.6;
     font-size: 13px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#page-content,
+#main-content,
+#admin-main,
+.about-container,
+.contact-container,
+.privacy-container,
+.changes-container {
+    flex: 1;
 }
 
 a {
@@ -349,29 +362,9 @@ a:hover {
     pointer-events: none;
 }
 
-/* Full-screen cursor light pool — same size/color as old per-card glow */
-#cursor-glow {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    background: radial-gradient(
-        180px circle at var(--mouse-x, -9999px) var(--mouse-y, -9999px),
-        rgba(0, 122, 204, 0.10),
-        transparent 70%
-    );
-}
-
-/* Constellation canvas covers full viewport as a reactive background */
-#hero-map {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
-    pointer-events: none;
-}
+/* #cursor-glow and the constellation canvas (#ambient-bg) are owned by
+   css/ambient.css now (site-wide, with hover-damping + the z-scale). The old
+   #hero-map / #cursor-glow rules were removed here to keep a single owner. */
 
 .hero-content {
     position: relative;
@@ -386,7 +379,7 @@ a:hover {
     font-family: 'Consolas', 'Courier New', monospace;
     color: var(--vscode-type);
     margin: 0 auto 0.75rem;
-    width: 37ch;
+    width: 44ch;
     max-width: 100%;
     text-align: left;
     position: relative;
@@ -407,19 +400,19 @@ a:hover {
 
 .hero-eyebrow .line1 {
     animation:
-        eyebrow-type-1 1.05s steps(31, end) 0.4s both,
+        eyebrow-type-1 1.4s steps(44, end) 0.4s both,
         eyebrow-caret 0.4s step-end 0.4s 3 forwards;
 }
 
 .hero-eyebrow .line2 {
     animation:
-        eyebrow-type-2 1.25s steps(37, end) 1.6s both,
-        eyebrow-caret 0.5s step-end 1.6s 5 forwards;
+        eyebrow-type-2 1.25s steps(37, end) 1.9s both,
+        eyebrow-caret 0.5s step-end 1.9s 5 forwards;
 }
 
 @keyframes eyebrow-type-1 {
     from { width: 0; }
-    to { width: 31ch; }
+    to { width: 44ch; }
 }
 
 @keyframes eyebrow-type-2 {
@@ -620,7 +613,8 @@ a:hover {
     display: flex;
     justify-content: center;
     gap: 1rem;
-    background: var(--vscode-editor-bg);
+    /* transparent so the constellation shows through the stats bar */
+    background: transparent;
     border-bottom: 1px solid var(--vscode-border);
 }
 
@@ -647,7 +641,9 @@ a:hover {
     max-width: 100%;
     margin: 0 auto;
     padding: 0.5rem;
-    background: var(--vscode-editor-bg);
+    /* transparent so the constellation canvas + cursor aura show through the
+       empty grid cells and gaps (cards keep their own translucent surfaces) */
+    background: transparent;
     display: flex;
     flex-wrap: wrap;
     gap: 4px;
@@ -791,8 +787,6 @@ a:hover {
 }
 
 .landscape.view-all .category-header {
-    border-left: 3px solid var(--vscode-button-bg);
-    padding-left: 8px;
     margin-bottom: 10px;
 }
 
@@ -910,8 +904,10 @@ a:hover {
 
 /* Category Section - Base styles (width controlled by .landscape .category) */
 .category {
-    background: var(--vscode-sidebar-bg);
-    border: 1px solid var(--vscode-border);
+    /* semi-transparent like result/tool cards so the constellation breathes
+       through and between the landscape cards (Alive-Background rule) */
+    background: rgba(37, 37, 38, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.07);
     border-radius: 0;
     overflow: hidden;
     transition: box-shadow 0.2s ease;
@@ -953,8 +949,26 @@ a:hover {
     align-items: center;
     justify-content: space-between;
     transition: background 0.15s ease;
-    border-left: 2px solid transparent;
     user-select: none;
+}
+
+/* Track signal: a leading colored dot (teal=users, blue=developers), not a
+   colored left-stripe (a banned side-stripe pattern). */
+.category-header.users::before,
+.category-header.developers::before {
+    content: '';
+    flex: 0 0 auto;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 8px;
+    background: var(--vscode-text-muted);
+}
+.category-header.users::before {
+    background: var(--vscode-type);
+}
+.category-header.developers::before {
+    background: var(--vscode-keyword);
 }
 
 .category-header:hover {
@@ -963,14 +977,6 @@ a:hover {
 
 .category-header:active {
     background: #4a4a50;
-}
-
-.category-header.users {
-    border-left-color: var(--vscode-type);
-}
-
-.category-header.developers {
-    border-left-color: var(--vscode-keyword);
 }
 
 .category-title {
@@ -1022,7 +1028,9 @@ a:hover {
 
 .category-content {
     padding: 6px;
-    background: var(--vscode-sidebar-bg);
+    /* transparent so the translucent .category card lets the constellation
+       show faintly through the card body (header stays a solid label bar) */
+    background: transparent;
     max-height: none;
     opacity: 1;
     transition: padding 0.2s ease, opacity 0.2s ease;
@@ -1133,8 +1141,9 @@ a:hover {
 
 /* Tool Card - CNCF-Style Compact */
 .tool-card {
-    background: var(--vscode-editor-bg);
-    border: 1px solid var(--vscode-border);
+    /* translucent so the constellation shows through (matches result cards) */
+    background: rgba(37, 37, 38, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.07);
     border-radius: 4px;
     padding: 8px 6px;
     cursor: pointer;
@@ -2252,28 +2261,9 @@ a:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
 }
 
-/* Type indicator stripe on left edge */
-.result-card::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    border-radius: 8px 0 0 8px;
-}
-
-.result-card[data-type="oss"]::before {
-    background: var(--color-oss);
-}
-
-.result-card[data-type="saas"]::before {
-    background: var(--color-saas);
-}
-
-.result-card[data-type="commercial"]::before {
-    background: var(--color-commercial);
-}
+/* License/type signal moved off the left side-stripe (a banned pattern) and
+   onto the icon: tinted icon background + ring per data-type, in css/ambient.css.
+   Reinforced by the type badge. */
 
 /* Icon - larger */
 .result-icon {
@@ -2590,10 +2580,46 @@ a:hover {
     color: white;
 }
 
-/* Focus visible for accessibility */
-:focus-visible {
+/* Focus visible for accessibility. Kept visible (WCAG) but softened: rounded
+   and paired with a faint glow instead of a hard blue rectangle.
+   Scoped to genuinely interactive elements so large containers (body, main,
+   the SPA content slot) that can receive programmatic focus after navigation
+   never draw a full-width outline that reads as a stray line under the header. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+summary:focus-visible,
+[role="button"]:focus-visible,
+[role="link"]:focus-visible,
+[role="tab"]:focus-visible,
+[tabindex="0"]:focus-visible {
     outline: 2px solid var(--vscode-focus-border);
     outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Never show a focus ring on non-interactive containers focused by script
+   (e.g. SPA scroll/route targets). */
+body:focus,
+body:focus-visible,
+main:focus,
+main:focus-visible,
+#page-content:focus,
+#page-content:focus-visible,
+[tabindex="-1"]:focus,
+[tabindex="-1"]:focus-visible {
+    outline: none !important;
+}
+
+/* The logo is a tight inline link; a full rounded ring + soft glow reads as
+   intentional rather than a stray blue box under the toolbar. */
+.logo:focus-visible {
+    outline: 1.5px solid var(--vscode-focus-border);
+    outline-offset: 3px;
+    border-radius: 6px;
+    box-shadow: 0 0 0 4px rgba(0, 122, 204, 0.12);
 }
 
 /* ==========================================
@@ -2690,7 +2716,9 @@ a:hover {
     max-width: 800px !important;
     margin: 0 auto !important;
     padding: 3rem 1.5rem !important;
-    background: var(--vscode-editor-bg) !important;
+    /* transparent so the constellation canvas + cursor aura show through the
+       content column (inner panels keep their own #252526 surfaces). */
+    background: transparent !important;
 }
 
 .tool-page article {

@@ -196,11 +196,17 @@ test.describe('SPA Phase 1 fix: article layout styled via SPA nav', () => {
     }
   });
 
-  test('home page body is not forced to flex by learn.css (no cross-page regression)', async ({ page }) => {
+  test('home body uses the intended sticky-footer flex column (from style.css, not learn.css)', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    const bodyDisplay = await page.evaluate(() => getComputedStyle(document.body).display);
-    // home should NOT be display:flex from learn.css leaking in
-    expect(bodyDisplay).not.toBe('flex');
+    const layout = await page.evaluate(() => {
+      const cs = getComputedStyle(document.body);
+      return { display: cs.display, direction: cs.flexDirection };
+    });
+    // style.css intentionally makes <body> a flex column site-wide for the
+    // sticky footer. The original concern was learn.css *leaking* a non-column
+    // flex onto home; assert the layout is the intended column, not broken.
+    expect(layout.display).toBe('flex');
+    expect(layout.direction).toBe('column');
   });
 });
 

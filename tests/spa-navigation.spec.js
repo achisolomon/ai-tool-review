@@ -1,20 +1,22 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('SPA: HeroMap API', () => {
+test.describe('SPA: ambient background', () => {
   test.beforeEach(async ({ page }) => {
     await page.addInitScript(() => { localStorage.setItem('cookie_consent', 'accepted'); });
     await page.route('https://www.googletagmanager.com/**', r => r.abort());
     await page.route('https://cdn.jsdelivr.net/**', r => r.abort());
   });
 
-  test('window.HeroMap.stop and .start are functions', async ({ page }) => {
+  // The ambient background (ambient.js) replaced HeroMap. It is a self-contained
+  // IIFE with no global API; the contract is that the canvas + aura mount on the
+  // page (site-wide, via _includes/ambient.html).
+  test('the ambient canvas and cursor aura mount on the page', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    const api = await page.evaluate(() => ({
-      hasStop: typeof window.HeroMap?.stop === 'function',
-      hasStart: typeof window.HeroMap?.start === 'function',
-    }));
-    expect(api.hasStop).toBe(true);
-    expect(api.hasStart).toBe(true);
+    await expect(page.locator('#ambient-bg')).toBeAttached();
+    await expect(page.locator('#cursor-glow')).toBeAttached();
+    // canvas got sized by the engine (width set on the element)
+    const sized = await page.locator('#ambient-bg').evaluate(c => c.width > 0 && c.height > 0);
+    expect(sized).toBe(true);
   });
 });
 
@@ -165,31 +167,31 @@ test.describe('SPA: Search page re-init', () => {
     await page.route('https://cdn.jsdelivr.net/**', r => r.abort());
   });
 
-  test('HeroMap restarts after navigating back to search from landscape', async ({ page }) => {
+  test('ambient background persists after navigating back to search from landscape', async ({ page }) => {
+    // The constellation canvas (#ambient-bg) is site-wide and lives outside the
+    // SPA content slot, so it persists across route changes (no per-page restart).
     await page.goto('/landscape.html', { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('#ambient-bg')).toBeAttached();
     await page.locator('.nav-link-text[href="/"]').click();
     await expect(page.locator('#search-input')).toBeVisible({ timeout: 5000 });
 
-    const heroMapExists = await page.evaluate(() => typeof window.HeroMap?.start === 'function');
-    expect(heroMapExists).toBe(true);
-
-    await expect(page.locator('#hero-map')).toBeAttached();
+    await expect(page.locator('#ambient-bg')).toBeAttached();
   });
 
-  test('card-glow pointermove listener works after returning to search', async ({ page }) => {
+  test('page-level cursor aura tracks the mouse after returning to search', async ({ page }) => {
+    // Single page-level aura (Single-Glow-Source rule): pointermove sets
+    // --mouse-x/--mouse-y on <html>; there is no per-card glow.
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await page.locator('[data-spa-link][href="/landscape.html"]').click();
     await expect(page.locator('#landscape')).toBeVisible({ timeout: 5000 });
     await page.locator('.nav-link-text[href="/"]').click();
     await expect(page.locator('#search-input')).toBeVisible({ timeout: 5000 });
 
-    await page.fill('#action-input', 'cursor');
-    await page.waitForSelector('.result-card', { timeout: 5000 });
-
-    const card = page.locator('.result-card').first();
-    await card.hover();
-    const glowX = await card.evaluate(el => el.style.getPropertyValue('--glow-x'));
-    expect(glowX).toBeTruthy();
+    await page.mouse.move(430, 320);
+    await page.waitForTimeout(60);
+    const mouseX = await page.evaluate(() =>
+      document.documentElement.style.getPropertyValue('--mouse-x'));
+    expect(mouseX).toBe('430px');
   });
 });
 

@@ -1,0 +1,191 @@
+/* Site-wide ambient + light-up system. Loaded after style.css on every page
+   via _includes/ambient.html. Owns: the cursor aura, the background canvas
+   placement, and the shared hover/focus "light-up" applied to every
+   interactive surface. See VISUAL-DESIGN.md Section 6.
+
+   Reuses existing tokens from style.css (--vscode-type, --color-primary,
+   --color-oss/saas/commercial, etc.); only NEW tokens are defined here. */
+
+:root {
+    --mouse-x: -9999px;
+    --mouse-y: -9999px;
+    --aura-strength: 0.10;          /* cursor-glow opacity at rest */
+    --aura-strength-hover: 0.04;    /* dims while over an interactive element */
+
+    --aura: rgba(0, 122, 204, 0.45);       /* shared light-up accent (hover border) */
+    --aura-soft: rgba(0, 122, 204, 0.15);  /* shared light-up glow ring */
+
+    /* semantic z-scale (mirrors the existing header z-index:100) */
+    --z-ambient-bg: 0;
+    --z-ambient-aura: 1;
+    --z-content: 2;
+    --z-search: 3;     /* hero/search-input area: above sibling .search-results
+                          so the autocomplete dropdown is never covered by the
+                          results grid (both were tied at --z-content) */
+    --z-sticky: 100;
+}
+
+/* ---- background placement: fixed, behind content ----
+   style.css already sets `html { background: #1e1e1e }` and
+   `body { background: transparent }`, so the canvas (which paints its own
+   #1e1e1e each frame) shows through. We only place the canvas + aura here. */
+#ambient-bg {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: var(--z-ambient-bg);
+    pointer-events: none;
+}
+
+/* ---- cursor aura: one page-level glow that follows the mouse ---- */
+#cursor-glow {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: var(--z-ambient-aura);
+    background: radial-gradient(
+        180px circle at var(--mouse-x) var(--mouse-y),
+        rgba(0, 122, 204, var(--aura-strength)),
+        transparent 70%
+    );
+    transition: background .25s ease;
+}
+
+/* Keep page content above the ambient layers. The sticky header already
+   sets z-index:100; this lifts the rest of the document above the canvas.
+   The wrapper list mirrors the sticky-footer flex children in style.css so
+   every page's main content clears the canvas + aura. */
+.header { z-index: var(--z-sticky); }
+main,
+.search-results,
+.footer,
+#page-content,
+#main-content,
+#admin-main,
+.about-container,
+.contact-container,
+.privacy-container,
+.changes-container {
+    position: relative;
+    z-index: var(--z-content);
+}
+/* The hero holds the search input + its absolutely-positioned autocomplete
+   dropdown (z-index:1000 within this context). It must stack ABOVE the sibling
+   .search-results (--z-content) so the results grid can never cover the open
+   dropdown (this caused intercepted clicks in the search-consistency tests). */
+.hero-content {
+    position: relative;
+    z-index: var(--z-search);
+}
+
+/* ---- SHARED LIGHT-UP ----
+   One vocabulary across every interactive surface. The transition is
+   unconditional (cheap props only); the :hover trigger is gated to fine
+   pointers so touch devices don't get stuck states, but :focus-visible
+   produces the SAME treatment so keyboard users always get feedback. */
+.lights-up,
+.result-card,
+.tool-card,
+.guide-card,
+.review-card {
+    transition: background .2s cubic-bezier(.4,0,.2,1),
+                border-color .2s cubic-bezier(.4,0,.2,1),
+                transform .2s cubic-bezier(.4,0,.2,1),
+                box-shadow .2s cubic-bezier(.4,0,.2,1);
+}
+
+/* cards & tiles: keyboard focus -> solid accent ring (distinct from hover glow) */
+.lights-up:focus-visible,
+.result-card:focus-visible,
+.tool-card:focus-visible,
+.guide-card:focus-visible,
+.review-card:focus-visible {
+    outline: none;
+    background: rgba(50, 50, 52, 0.72);
+    border-color: var(--aura);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,.35), 0 0 0 2px var(--color-primary, #007acc);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .lights-up:hover,
+    .result-card:hover,
+    .tool-card:hover,
+    .guide-card:hover,
+    .review-card:hover {
+        background: rgba(50, 50, 52, 0.72);
+        border-color: var(--aura);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0,0,0,.35), 0 0 0 1px var(--aura-soft);
+    }
+    /* nav & in-content links: soft glow on hover. Blue is the single
+       interaction accent (VISUAL-DESIGN.md Syntax Accent Rule); teal is
+       reserved for semantic meaning (OSS / success), not hover. */
+    a.lights-up-link:hover,
+    .nav-link:hover,
+    .page-content a:not(.btn):not(.nav-link):hover {
+        color: var(--vscode-text-link, #3794ff);
+        text-shadow: 0 0 12px rgba(0, 122, 204, .45);
+    }
+    /* buttons: accent ring + drop glow on hover */
+    .btn:hover,
+    button.lights-up:hover,
+    .browse-toggle:hover {
+        box-shadow: 0 0 0 1px var(--aura), 0 6px 18px rgba(0,122,204,.25);
+    }
+}
+
+/* links & buttons: keyboard focus parity (visible ring, not only glow) */
+a.lights-up-link:focus-visible,
+.nav-link:focus-visible,
+.page-content a:not(.btn):focus-visible,
+.btn:focus-visible,
+button.lights-up:focus-visible,
+.browse-toggle:focus-visible {
+    outline: none;
+    color: var(--vscode-text-link, #3794ff);
+    box-shadow: 0 0 0 2px var(--color-primary, #007acc);
+    border-radius: 4px;
+}
+
+/* inputs bloom on focus regardless of pointer type */
+.action-input:focus,
+.search-input:focus,
+input[type="text"].lights-up-input:focus,
+.field:focus,
+.field:focus-within {
+    outline: none;
+    border-color: var(--color-primary, #007acc);
+    box-shadow: 0 0 0 3px rgba(0,122,204,.22), 0 0 18px rgba(0,122,204,.18);
+}
+
+/* ---- card license signal on the icon (replaces the banned 4px side-stripe).
+   Covers both the search/result icon (.result-icon) and the landscape tool
+   icon (.tool-icon). ---- */
+.result-card[data-type="oss"] .result-icon,
+.tool-card[data-type="oss"] .result-icon,
+.tool-card[data-type="oss"] .tool-icon {
+    background: rgba(78,201,176,.14); color: var(--color-oss, #4ec9b0);
+    box-shadow: inset 0 0 0 1px rgba(78,201,176,.35);
+}
+.result-card[data-type="saas"] .result-icon,
+.tool-card[data-type="saas"] .result-icon,
+.tool-card[data-type="saas"] .tool-icon {
+    background: rgba(86,156,214,.14); color: var(--color-saas, #569cd6);
+    box-shadow: inset 0 0 0 1px rgba(86,156,214,.35);
+}
+.result-card[data-type="commercial"] .result-icon,
+.tool-card[data-type="commercial"] .result-icon,
+.tool-card[data-type="commercial"] .tool-icon {
+    background: rgba(220,220,170,.14); color: var(--color-commercial, #dcdcaa);
+    box-shadow: inset 0 0 0 1px rgba(220,220,170,.35);
+}
+
+/* The Reduced-Motion Contract: no transitions/aura tween; canvas renders a
+   single static frame (handled in ambient.js). State changes still apply. */
+@media (prefers-reduced-motion: reduce) {
+    *, #cursor-glow {
+        transition-duration: 0.01ms !important;
+    }
+}

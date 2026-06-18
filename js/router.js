@@ -60,7 +60,11 @@
     let navigating = false;
 
     function updateActiveLink(pathname) {
+        // Only nav links get the active treatment. The logo also points to "/"
+        // and is a [data-spa-link], but it must never render as the current
+        // nav item (it was getting the blue active fill + underline on home).
         document.querySelectorAll('[data-spa-link]').forEach(a => {
+            if (a.classList.contains('logo')) return;
             const linkPath = normalize(a.getAttribute('href'));
             a.classList.toggle('nav-active', linkPath === pathname);
         });

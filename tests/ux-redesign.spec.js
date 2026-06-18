@@ -290,10 +290,14 @@ test.describe('UX redesign regression', () => {
   // -------------------------------------------------------- constellation bg
   test.describe('Constellation canvas is a full-viewport background', () => {
     test('canvas is fixed, sits behind content, and spans the viewport', async ({ page }) => {
-      const canvas = page.locator('#hero-map');
+      // Site-wide ambient background (#ambient-bg). It sits at the bottom of the
+      // z-scale (0), above the page bg but below content; it is NOT z-index:-1
+      // (that hid the canvas behind an opaque body). See VISUAL-DESIGN.md S6.
+      const canvas = page.locator('#ambient-bg');
       await expect(canvas).toHaveCount(1);
-      expect(await css(page, '#hero-map', 'position')).toBe('fixed');
-      expect(parseInt(await css(page, '#hero-map', 'z-index'), 10)).toBeLessThan(0);
+      expect(await css(page, '#ambient-bg', 'position')).toBe('fixed');
+      expect(parseInt(await css(page, '#ambient-bg', 'z-index'), 10)).toBeGreaterThanOrEqual(0);
+      expect(await css(page, '#ambient-bg', 'pointer-events')).toBe('none');
 
       const vp = page.viewportSize();
       const boxW = await canvas.evaluate((el) => el.getBoundingClientRect().width);

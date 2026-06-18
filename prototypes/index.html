@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Landscape Prototypes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #fff;
+            padding: 40px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle {
+            color: #94a3b8;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(124, 58, 237, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        .card-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #7c3aed, #00d4ff);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        .card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+        .card p {
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .card-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .tag {
+            background: rgba(124, 58, 237, 0.2);
+            color: #a78bfa;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #94a3b8;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: color 0.2s;
+        }
+        .back-link:hover {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Back to Main Site
+        </a>
+
+        <h1>AI Landscape Prototypes</h1>
+        <p class="subtitle">Explore different ways to visualize 330+ AI tools</p>
+
+        <div class="grid">
+            <a href="treemap.html" class="card">
+                <div class="card-icon">🗺️</div>
+                <h2>Zoomable Treemap</h2>
+                <p>Hierarchical visualization where nested rectangles represent categories. Click to zoom into subcategories and explore tools within.</p>
+                <div class="card-tags">
+                    <span class="tag">D3.js</span>
+                    <span class="tag">Hierarchical</span>
+                    <span class="tag">Interactive</span>
+                </div>
+            </a>
+
+            <a href="bubbles.html" class="card">
+                <div class="card-icon">🫧</div>
+                <h2>Force-Directed Bubbles</h2>
+                <p>Physics-based simulation where tools cluster by category. Drag nodes around, watch them settle, and discover relationships.</p>
+                <div class="card-tags">
+                    <span class="tag">D3.js</span>
+                    <span class="tag">Physics</span>
+                    <span class="tag">Clusters</span>
+                </div>
+            </a>
+
+            <a href="logo-grid.html" class="card">
+                <div class="card-icon">🏢</div>
+                <h2>CNCF-Style Grid</h2>
+                <p>Dense, scannable grid inspired by the CNCF Landscape. Category headers with compact tool cards featuring logos.</p>
+                <div class="card-tags">
+                    <span class="tag">Logo Grid</span>
+                    <span class="tag">Dense</span>
+                    <span class="tag">Filterable</span>
+                </div>
+            </a>
+
+            <a href="radial.html" class="card">
+                <div class="card-icon">🎯</div>
+                <h2>Radial/Sunburst</h2>
+                <p>Circular visualization radiating from center. Categories as rings, tools as segments. Great for showing proportions.</p>
+                <div class="card-tags">
+                    <span class="tag">D3.js</span>
+                    <span class="tag">Circular</span>
+                    <span class="tag">Proportional</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

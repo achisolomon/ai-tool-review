@@ -190,7 +190,9 @@
     background: rgba(47, 129, 247, 0.08);
 }
 
-.stat-value {
+/* Scoped to the admin dashboard so it doesn't leak onto other pages that
+   reuse .stat-value (e.g. the landscape stats bar). */
+.admin-container .stat-value {
     display: block;
     font-size: 28px;
     font-weight: 600;
@@ -1145,7 +1147,7 @@
         text-align: left;
     }
 
-    .stat-value {
+    .admin-container .stat-value {
         font-size: 24px;
     }
 
