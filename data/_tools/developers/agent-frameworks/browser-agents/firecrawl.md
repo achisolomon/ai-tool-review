@@ -9,7 +9,7 @@ subcategory: "browser-agents"
 status: "active"
 description: "Turn any website into LLM-ready markdown or structured data with a single API call"
 github_url: "https://github.com/mendableai/firecrawl"
-github_stars: 134936
+github_stars: 135477
 pricing_model: "freemium"
 founded_year: 2024
 headquarters: "San Francisco, CA"

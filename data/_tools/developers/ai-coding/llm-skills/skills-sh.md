@@ -9,7 +9,7 @@ subcategory: "llm-skills"
 status: "active"
 description: "Open registry and CLI for discovering and installing reusable AI agent skills across Claude Code, Cursor, Copilot, Codex, and 67+ other coding agents"
 github_url: "https://github.com/vercel-labs/skills"
-github_stars: 22884
+github_stars: 22978
 pricing_model: "free"
 founded_year: 2026
 headquarters: "San Francisco, CA"
