@@ -255,7 +255,7 @@ test.describe('SPA: Guides page integrity', () => {
   test('guides direct load: external resources section is present', async ({ page }) => {
     await page.goto('/guides/', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('.external-resources')).toBeVisible();
-    await expect(page.locator('.external-link-card')).toBeVisible();
+    await expect(page.locator('.external-link-card').first()).toBeVisible();
   });
 
   test('guides direct load: .learn-index provides centered layout', async ({ page }) => {
