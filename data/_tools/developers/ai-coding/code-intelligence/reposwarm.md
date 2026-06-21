@@ -87,7 +87,7 @@ confidence_score: 0.9
     <ul>
       <li>Requires Docker to run all services</li>
       <li>Self-hosted only — no managed cloud offering</li>
-      <li>Early-stage project (249 stars, born from a hackathon)</li>
+      <li>Early-stage, hackathon-origin project with limited community adoption so far</li>
       <li>Claude API costs accrue per repo analyzed</li>
       <li>DynamoDB Local setup has had auth quirks on fresh installs</li>
     </ul>
