@@ -312,17 +312,24 @@ window.landscapeInit = function landscapeInit() {
             }
         });
 
-        // Tool card hover - show tooltip
+        // Tool card hover - show tooltip.
+        // Use relatedTarget checks so moving between child elements inside the
+        // same card doesn't flicker/hide the tooltip (mouseout fires on every
+        // child transition, not just true card-boundary crossings).
         landscape.addEventListener('mouseover', (e) => {
             const card = e.target.closest('.tool-card');
-            if (card) {
+            if (!card) return;
+            // Only show when entering the card from outside it
+            if (!card.contains(e.relatedTarget)) {
                 showTooltip(card);
             }
         });
 
         landscape.addEventListener('mouseout', (e) => {
             const card = e.target.closest('.tool-card');
-            if (card) {
+            if (!card) return;
+            // Only hide when leaving the card entirely (not moving to a sibling child)
+            if (!card.contains(e.relatedTarget)) {
                 hideTooltip();
             }
         });

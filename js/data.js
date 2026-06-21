@@ -22,19 +22,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-chat-search",
               "category_name": "AI Chat Assistants & Search",
               "subcategory_id": "ai-search",
               "subcategory_name": "AI Search Engines",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Brave Search",
@@ -46,19 +40,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-chat-search",
               "category_name": "AI Chat Assistants & Search",
               "subcategory_id": "ai-search",
               "subcategory_name": "AI Search Engines",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "ChatGPT Search",
@@ -70,19 +58,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-chat-search",
               "category_name": "AI Chat Assistants & Search",
               "subcategory_id": "ai-search",
               "subcategory_name": "AI Search Engines",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Kagi Search",
@@ -94,19 +76,13 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-chat-search",
               "category_name": "AI Chat Assistants & Search",
               "subcategory_id": "ai-search",
               "subcategory_name": "AI Search Engines",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Perplexity",
@@ -118,19 +94,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-chat-search",
               "category_name": "AI Chat Assistants & Search",
               "subcategory_id": "ai-search",
               "subcategory_name": "AI Search Engines",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "You.com",
@@ -142,19 +112,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-chat-search",
               "category_name": "AI Chat Assistants & Search",
               "subcategory_id": "ai-search",
               "subcategory_name": "AI Search Engines",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -182,9 +146,7 @@ const landscapeData = {
               "category_name": "AI Chat Assistants & Search",
               "subcategory_id": "chat-assistants",
               "subcategory_name": "AI Chat Assistants",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Claude.ai",
@@ -196,19 +158,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-chat-search",
               "category_name": "AI Chat Assistants & Search",
               "subcategory_id": "chat-assistants",
               "subcategory_name": "AI Chat Assistants",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "DeepSeek Chat",
@@ -230,9 +186,7 @@ const landscapeData = {
               "category_name": "AI Chat Assistants & Search",
               "subcategory_id": "chat-assistants",
               "subcategory_name": "AI Chat Assistants",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Google Gemini",
@@ -254,9 +208,7 @@ const landscapeData = {
               "category_name": "AI Chat Assistants & Search",
               "subcategory_id": "chat-assistants",
               "subcategory_name": "AI Chat Assistants",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Meta AI",
@@ -278,9 +230,7 @@ const landscapeData = {
               "category_name": "AI Chat Assistants & Search",
               "subcategory_id": "chat-assistants",
               "subcategory_name": "AI Chat Assistants",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Microsoft Copilot",
@@ -292,19 +242,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-chat-search",
               "category_name": "AI Chat Assistants & Search",
               "subcategory_id": "chat-assistants",
               "subcategory_name": "AI Chat Assistants",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Mistral Le Chat",
@@ -316,19 +260,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-chat-search",
               "category_name": "AI Chat Assistants & Search",
               "subcategory_id": "chat-assistants",
               "subcategory_name": "AI Chat Assistants",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Qwen Chat",
@@ -350,9 +288,7 @@ const landscapeData = {
               "category_name": "AI Chat Assistants & Search",
               "subcategory_id": "chat-assistants",
               "subcategory_name": "AI Chat Assistants",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         }
@@ -387,9 +323,7 @@ const landscapeData = {
               "category_name": "Enterprise AI Platforms",
               "subcategory_id": "enterprise",
               "subcategory_name": "Enterprise Platforms",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Glean",
@@ -401,19 +335,13 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "enterprise-platforms",
               "category_name": "Enterprise AI Platforms",
               "subcategory_id": "enterprise",
               "subcategory_name": "Enterprise Platforms",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "IBM watsonx Orchestrate",
@@ -437,9 +365,7 @@ const landscapeData = {
               "category_name": "Enterprise AI Platforms",
               "subcategory_id": "enterprise",
               "subcategory_name": "Enterprise Platforms",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Microsoft Copilot Studio",
@@ -461,9 +387,7 @@ const landscapeData = {
               "category_name": "Enterprise AI Platforms",
               "subcategory_id": "enterprise",
               "subcategory_name": "Enterprise Platforms",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Salesforce Agentforce",
@@ -485,9 +409,7 @@ const landscapeData = {
               "category_name": "Enterprise AI Platforms",
               "subcategory_id": "enterprise",
               "subcategory_name": "Enterprise Platforms",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "SAP Joule",
@@ -509,9 +431,7 @@ const landscapeData = {
               "category_name": "Enterprise AI Platforms",
               "subcategory_id": "enterprise",
               "subcategory_name": "Enterprise Platforms",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "ServiceNow AI Agents",
@@ -535,9 +455,7 @@ const landscapeData = {
               "category_name": "Enterprise AI Platforms",
               "subcategory_id": "enterprise",
               "subcategory_name": "Enterprise Platforms",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Workday Illuminate",
@@ -559,9 +477,7 @@ const landscapeData = {
               "category_name": "Enterprise AI Platforms",
               "subcategory_id": "enterprise",
               "subcategory_name": "Enterprise Platforms",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         }
@@ -596,9 +512,7 @@ const landscapeData = {
               "category_name": "Generative Media",
               "subcategory_id": "3d-other",
               "subcategory_name": "3D / Other Modalities",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Meshy",
@@ -610,19 +524,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "3d-other",
               "subcategory_name": "3D / Other Modalities",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Skybox (Blockade Labs)",
@@ -644,9 +552,7 @@ const landscapeData = {
               "category_name": "Generative Media",
               "subcategory_id": "3d-other",
               "subcategory_name": "3D / Other Modalities",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Tripo AI",
@@ -668,9 +574,7 @@ const landscapeData = {
               "category_name": "Generative Media",
               "subcategory_id": "3d-other",
               "subcategory_name": "3D / Other Modalities",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -688,19 +592,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "image-generation",
               "subcategory_name": "Image Generation",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "FLUX (Black Forest Labs)",
@@ -722,9 +620,7 @@ const landscapeData = {
               "category_name": "Generative Media",
               "subcategory_id": "image-generation",
               "subcategory_name": "Image Generation",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Ideogram",
@@ -736,19 +632,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "image-generation",
               "subcategory_name": "Image Generation",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Krea AI",
@@ -770,9 +660,7 @@ const landscapeData = {
               "category_name": "Generative Media",
               "subcategory_id": "image-generation",
               "subcategory_name": "Image Generation",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Leonardo.AI",
@@ -794,9 +682,7 @@ const landscapeData = {
               "category_name": "Generative Media",
               "subcategory_id": "image-generation",
               "subcategory_name": "Image Generation",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Midjourney",
@@ -808,19 +694,13 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "image-generation",
               "subcategory_name": "Image Generation",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Nano Banana",
@@ -832,19 +712,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "image-generation",
               "subcategory_name": "Image Generation",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "OpenAI DALL-E",
@@ -866,9 +740,7 @@ const landscapeData = {
               "category_name": "Generative Media",
               "subcategory_id": "image-generation",
               "subcategory_name": "Image Generation",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Recraft",
@@ -890,9 +762,7 @@ const landscapeData = {
               "category_name": "Generative Media",
               "subcategory_id": "image-generation",
               "subcategory_name": "Image Generation",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -910,19 +780,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "music-generation",
               "subcategory_name": "Music Generation",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "ElevenLabs Music",
@@ -934,19 +798,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "music-generation",
               "subcategory_name": "Music Generation",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Suno",
@@ -958,19 +816,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "music-generation",
               "subcategory_name": "Music Generation",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Udio",
@@ -982,19 +834,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "music-generation",
               "subcategory_name": "Music Generation",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -1012,19 +858,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "video-generation",
               "subcategory_name": "Video Generation",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Hedra",
@@ -1036,19 +876,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "video-generation",
               "subcategory_name": "Video Generation",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "HeyGen",
@@ -1060,19 +894,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "video-generation",
               "subcategory_name": "Video Generation",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Kling AI",
@@ -1084,19 +912,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "video-generation",
               "subcategory_name": "Video Generation",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Luma Dream Machine",
@@ -1108,19 +930,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "video-generation",
               "subcategory_name": "Video Generation",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "OpenAI Sora 2",
@@ -1132,19 +948,13 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "video-generation",
               "subcategory_name": "Video Generation",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Pika",
@@ -1156,19 +966,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "video-generation",
               "subcategory_name": "Video Generation",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Runway",
@@ -1180,19 +984,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "video-generation",
               "subcategory_name": "Video Generation",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Synthesia",
@@ -1204,19 +1002,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "video-generation",
               "subcategory_name": "Video Generation",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -1234,19 +1026,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "voice-speech",
               "subcategory_name": "Voice / Speech",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "ElevenLabs",
@@ -1258,19 +1044,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "voice-speech",
               "subcategory_name": "Voice / Speech",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Hume AI",
@@ -1282,19 +1062,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "voice-speech",
               "subcategory_name": "Voice / Speech",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "PlayHT",
@@ -1306,19 +1080,13 @@ const landscapeData = {
               "pricing_model": "Pay-as-you-go & Subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "voice-speech",
               "subcategory_name": "Voice / Speech",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Resemble AI",
@@ -1330,19 +1098,13 @@ const landscapeData = {
               "pricing_model": "usage-based",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "voice-speech",
               "subcategory_name": "Voice / Speech",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Rime AI",
@@ -1354,19 +1116,13 @@ const landscapeData = {
               "pricing_model": "API-based pricing",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "voice-speech",
               "subcategory_name": "Voice / Speech",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         }
@@ -1391,19 +1147,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "meeting-notetakers",
               "category_name": "Meeting Notetakers & Voice",
               "subcategory_id": "notetakers",
               "subcategory_name": "Meeting Notetakers",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Fellow",
@@ -1415,19 +1165,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "meeting-notetakers",
               "category_name": "Meeting Notetakers & Voice",
               "subcategory_id": "notetakers",
               "subcategory_name": "Meeting Notetakers",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Fireflies.ai",
@@ -1439,19 +1183,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "meeting-notetakers",
               "category_name": "Meeting Notetakers & Voice",
               "subcategory_id": "notetakers",
               "subcategory_name": "Meeting Notetakers",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Granola",
@@ -1463,19 +1201,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "meeting-notetakers",
               "category_name": "Meeting Notetakers & Voice",
               "subcategory_id": "notetakers",
               "subcategory_name": "Meeting Notetakers",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Otter",
@@ -1487,19 +1219,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": "Free tier",
               "user_count": "35M+",
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "meeting-notetakers",
               "category_name": "Meeting Notetakers & Voice",
               "subcategory_id": "notetakers",
               "subcategory_name": "Meeting Notetakers",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Read.ai",
@@ -1511,19 +1237,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "meeting-notetakers",
               "category_name": "Meeting Notetakers & Voice",
               "subcategory_id": "notetakers",
               "subcategory_name": "Meeting Notetakers",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Spinach AI",
@@ -1535,19 +1255,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "meeting-notetakers",
               "category_name": "Meeting Notetakers & Voice",
               "subcategory_id": "notetakers",
               "subcategory_name": "Meeting Notetakers",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "tl;dv",
@@ -1559,19 +1273,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "meeting-notetakers",
               "category_name": "Meeting Notetakers & Voice",
               "subcategory_id": "notetakers",
               "subcategory_name": "Meeting Notetakers",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         }
@@ -1608,9 +1316,7 @@ const landscapeData = {
               "category_name": "No-Code AI Builders",
               "subcategory_id": "workflow-builders",
               "subcategory_name": "Workflow & App Builders",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Coze",
@@ -1636,9 +1342,7 @@ const landscapeData = {
               "category_name": "No-Code AI Builders",
               "subcategory_id": "workflow-builders",
               "subcategory_name": "Workflow & App Builders",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Dify",
@@ -1664,9 +1368,7 @@ const landscapeData = {
               "category_name": "No-Code AI Builders",
               "subcategory_id": "workflow-builders",
               "subcategory_name": "Workflow & App Builders",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Flowise",
@@ -1693,9 +1395,7 @@ const landscapeData = {
               "category_name": "No-Code AI Builders",
               "subcategory_id": "workflow-builders",
               "subcategory_name": "Workflow & App Builders",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Gumloop",
@@ -1707,19 +1407,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "no-code-builders",
               "category_name": "No-Code AI Builders",
               "subcategory_id": "workflow-builders",
               "subcategory_name": "Workflow & App Builders",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Lindy",
@@ -1731,19 +1425,13 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "no-code-builders",
               "category_name": "No-Code AI Builders",
               "subcategory_id": "workflow-builders",
               "subcategory_name": "Workflow & App Builders",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Make",
@@ -1765,9 +1453,7 @@ const landscapeData = {
               "category_name": "No-Code AI Builders",
               "subcategory_id": "workflow-builders",
               "subcategory_name": "Workflow & App Builders",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "n8n",
@@ -1779,19 +1465,13 @@ const landscapeData = {
               "pricing_model": "open-source + cloud",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "no-code-builders",
               "category_name": "No-Code AI Builders",
               "subcategory_id": "workflow-builders",
               "subcategory_name": "Workflow & App Builders",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Wordware",
@@ -1803,19 +1483,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "no-code-builders",
               "category_name": "No-Code AI Builders",
               "subcategory_id": "workflow-builders",
               "subcategory_name": "Workflow & App Builders",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Zapier Agents",
@@ -1839,9 +1513,7 @@ const landscapeData = {
               "category_name": "No-Code AI Builders",
               "subcategory_id": "workflow-builders",
               "subcategory_name": "Workflow & App Builders",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         }
@@ -1866,19 +1538,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "personal-assistants",
               "category_name": "Personal Assistants & Browsers",
               "subcategory_id": "browsers",
               "subcategory_name": "AI Browsers & Assistants",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Comet (Perplexity)",
@@ -1890,19 +1556,13 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "personal-assistants",
               "category_name": "Personal Assistants & Browsers",
               "subcategory_id": "browsers",
               "subcategory_name": "AI Browsers & Assistants",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Dia",
@@ -1914,19 +1574,13 @@ const landscapeData = {
               "pricing_model": "beta",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "personal-assistants",
               "category_name": "Personal Assistants & Browsers",
               "subcategory_id": "browsers",
               "subcategory_name": "AI Browsers & Assistants",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Rabbit r1",
@@ -1938,19 +1592,13 @@ const landscapeData = {
               "pricing_model": "hardware",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "personal-assistants",
               "category_name": "Personal Assistants & Browsers",
               "subcategory_id": "browsers",
               "subcategory_name": "AI Browsers & Assistants",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         }
@@ -1975,19 +1623,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "slide-creation",
               "category_name": "Slide Creation",
               "subcategory_id": "ai-presentations",
               "subcategory_name": "AI Presentations",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Gemini Canvas",
@@ -1999,19 +1641,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "slide-creation",
               "category_name": "Slide Creation",
               "subcategory_id": "ai-presentations",
               "subcategory_name": "AI Presentations",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Canva",
@@ -2038,9 +1674,7 @@ const landscapeData = {
               "category_name": "Slide Creation",
               "subcategory_id": "ai-presentations",
               "subcategory_name": "AI Presentations",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Claude Design",
@@ -2066,9 +1700,7 @@ const landscapeData = {
               "category_name": "Slide Creation",
               "subcategory_id": "ai-presentations",
               "subcategory_name": "AI Presentations",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Gamma",
@@ -2094,9 +1726,7 @@ const landscapeData = {
               "category_name": "Slide Creation",
               "subcategory_id": "ai-presentations",
               "subcategory_name": "AI Presentations",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         }
@@ -2131,9 +1761,7 @@ const landscapeData = {
               "category_name": "Transcription",
               "subcategory_id": "transcription-tools",
               "subcategory_name": "Transcription Tools",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         }
@@ -2158,19 +1786,13 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "customer-support",
               "subcategory_name": "Customer Support",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "ChatBotKit",
@@ -2198,9 +1820,7 @@ const landscapeData = {
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "customer-support",
               "subcategory_name": "Customer Support",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Chatwoot",
@@ -2228,9 +1848,7 @@ const landscapeData = {
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "customer-support",
               "subcategory_name": "Customer Support",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Cresta",
@@ -2256,9 +1874,7 @@ const landscapeData = {
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "customer-support",
               "subcategory_name": "Customer Support",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Decagon",
@@ -2270,19 +1886,13 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "customer-support",
               "subcategory_name": "Customer Support",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Intercom Fin",
@@ -2294,19 +1904,13 @@ const landscapeData = {
               "pricing_model": "add-on",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "customer-support",
               "subcategory_name": "Customer Support",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Intercom",
@@ -2318,19 +1922,13 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "customer-support",
               "subcategory_name": "Customer Support",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Sierra",
@@ -2342,19 +1940,13 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "customer-support",
               "subcategory_name": "Customer Support",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Zendesk AI",
@@ -2366,19 +1958,13 @@ const landscapeData = {
               "pricing_model": "add-on",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "customer-support",
               "subcategory_name": "Customer Support",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -2390,25 +1976,28 @@ const landscapeData = {
               "name": "Figma AI",
               "slug": "figma-ai",
               "url": "https://www.figma.com/ai/",
-              "desc": "AI-powered design generation and enhancement tools built directly into Figma for designers",
+              "desc": "AI tools built into Figma for design generation, prototyping, image editing, and design-to-code — with a canvas-based AI agent and MCP integration for coding tools.",
               "type": "commercial",
               "github_stars": null,
-              "pricing_model": "add-on",
+              "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-
+                "multimodal",
+                "no-code",
+                "real-time"
               ],
               "all_tags": [
-
+                "multimodal",
+                "no-code",
+                "real-time",
+                "mcp-server"
               ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "design",
               "subcategory_name": "Design / Creative",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Google Stitch",
@@ -2420,19 +2009,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "design",
               "subcategory_name": "Design / Creative",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Uizard",
@@ -2444,19 +2027,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "design",
               "subcategory_name": "Design / Creative",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -2474,19 +2051,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "education",
               "subcategory_name": "Education / Tutoring",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Khanmigo",
@@ -2498,19 +2069,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "education",
               "subcategory_name": "Education / Tutoring",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "MagicSchool",
@@ -2522,19 +2087,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "education",
               "subcategory_name": "Education / Tutoring",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Speak",
@@ -2546,19 +2105,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "education",
               "subcategory_name": "Education / Tutoring",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -2576,19 +2129,13 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "finance",
               "subcategory_name": "Finance / Accounting",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Hebbia",
@@ -2600,19 +2147,13 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "finance",
               "subcategory_name": "Finance / Accounting",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Klarity",
@@ -2624,19 +2165,13 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "finance",
               "subcategory_name": "Finance / Accounting",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Rogo",
@@ -2648,19 +2183,13 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "finance",
               "subcategory_name": "Finance / Accounting",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -2678,19 +2207,13 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "healthcare",
               "subcategory_name": "Healthcare / Medical",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Hippocratic AI",
@@ -2702,19 +2225,13 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "healthcare",
               "subcategory_name": "Healthcare / Medical",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Nabla",
@@ -2726,19 +2243,13 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "healthcare",
               "subcategory_name": "Healthcare / Medical",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "OpenEvidence",
@@ -2750,19 +2261,13 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "healthcare",
               "subcategory_name": "Healthcare / Medical",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Suki",
@@ -2774,19 +2279,13 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "healthcare",
               "subcategory_name": "Healthcare / Medical",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -2804,19 +2303,13 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "legal",
               "subcategory_name": "Legal",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Harvey",
@@ -2828,19 +2321,13 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "legal",
               "subcategory_name": "Legal",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Ironclad AI",
@@ -2852,19 +2339,13 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "legal",
               "subcategory_name": "Legal",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Spellbook",
@@ -2876,19 +2357,13 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "legal",
               "subcategory_name": "Legal",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -2906,19 +2381,13 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "recruiting",
               "subcategory_name": "Recruiting / HR",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Mercor",
@@ -2930,19 +2399,13 @@ const landscapeData = {
               "pricing_model": "commission",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "recruiting",
               "subcategory_name": "Recruiting / HR",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Paradox Olivia",
@@ -2954,19 +2417,13 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "recruiting",
               "subcategory_name": "Recruiting / HR",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -2984,19 +2441,13 @@ const landscapeData = {
               "pricing_model": "commission",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "sales-marketing",
               "subcategory_name": "Sales / Marketing / GTM",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Apollo",
@@ -3008,19 +2459,13 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "sales-marketing",
               "subcategory_name": "Sales / Marketing / GTM",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Clay",
@@ -3032,19 +2477,13 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "sales-marketing",
               "subcategory_name": "Sales / Marketing / GTM",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Gong",
@@ -3056,19 +2495,13 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "sales-marketing",
               "subcategory_name": "Sales / Marketing / GTM",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Regie.ai",
@@ -3080,19 +2513,13 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "sales-marketing",
               "subcategory_name": "Sales / Marketing / GTM",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Writer",
@@ -3104,19 +2531,13 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "sales-marketing",
               "subcategory_name": "Sales / Marketing / GTM",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         }
@@ -3141,19 +2562,13 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "voice-ai-agents",
               "category_name": "Voice AI Agents",
               "subcategory_id": "voice-agents",
               "subcategory_name": "Voice Agents",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Retell AI",
@@ -3165,19 +2580,13 @@ const landscapeData = {
               "pricing_model": "usage-based",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "voice-ai-agents",
               "category_name": "Voice AI Agents",
               "subcategory_id": "voice-agents",
               "subcategory_name": "Voice Agents",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "RingCentral",
@@ -3199,9 +2608,7 @@ const landscapeData = {
               "category_name": "Voice AI Agents",
               "subcategory_id": "voice-agents",
               "subcategory_name": "Voice Agents",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Synthflow",
@@ -3213,19 +2620,13 @@ const landscapeData = {
               "pricing_model": "usage-based",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "voice-ai-agents",
               "category_name": "Voice AI Agents",
               "subcategory_id": "voice-agents",
               "subcategory_name": "Voice Agents",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Voiceflow",
@@ -3247,9 +2648,7 @@ const landscapeData = {
               "category_name": "Voice AI Agents",
               "subcategory_id": "voice-agents",
               "subcategory_name": "Voice Agents",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         }
@@ -3274,19 +2673,13 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "writing-productivity",
               "category_name": "Writing & Productivity",
               "subcategory_id": "writing-tools",
               "subcategory_name": "Writing Tools",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Copy.ai",
@@ -3308,9 +2701,7 @@ const landscapeData = {
               "category_name": "Writing & Productivity",
               "subcategory_id": "writing-tools",
               "subcategory_name": "Writing Tools",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Grammarly",
@@ -3322,19 +2713,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "writing-productivity",
               "category_name": "Writing & Productivity",
               "subcategory_id": "writing-tools",
               "subcategory_name": "Writing Tools",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Jasper",
@@ -3346,19 +2731,13 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "writing-productivity",
               "category_name": "Writing & Productivity",
               "subcategory_id": "writing-tools",
               "subcategory_name": "Writing Tools",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Notion AI",
@@ -3380,9 +2759,7 @@ const landscapeData = {
               "category_name": "Writing & Productivity",
               "subcategory_id": "writing-tools",
               "subcategory_name": "Writing Tools",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Obsidian",
@@ -3404,9 +2781,7 @@ const landscapeData = {
               "category_name": "Writing & Productivity",
               "subcategory_id": "writing-tools",
               "subcategory_name": "Writing Tools",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Sudowrite",
@@ -3418,19 +2793,13 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "writing-productivity",
               "category_name": "Writing & Productivity",
               "subcategory_id": "writing-tools",
               "subcategory_name": "Writing Tools",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         }
@@ -3472,9 +2841,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-communication",
               "subcategory_name": "Agent Communication",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -3492,19 +2859,13 @@ const landscapeData = {
               "pricing_model": "usage-based",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-identity",
               "subcategory_name": "Agent Identity & Auth",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "SPIFFE",
@@ -3516,19 +2877,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-identity",
               "subcategory_name": "Agent Identity & Auth",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "SPIRE",
@@ -3540,19 +2895,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-identity",
               "subcategory_name": "Agent Identity & Auth",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -3582,9 +2931,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-memory",
               "subcategory_name": "Agent Memory",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Letta",
@@ -3596,19 +2943,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-memory",
               "subcategory_name": "Agent Memory",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Mem0",
@@ -3635,9 +2976,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-memory",
               "subcategory_name": "Agent Memory",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "MemClaw",
@@ -3661,9 +3000,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-memory",
               "subcategory_name": "Agent Memory",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Supermemory",
@@ -3687,9 +3024,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-memory",
               "subcategory_name": "Agent Memory",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Total Recall",
@@ -3713,9 +3048,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-memory",
               "subcategory_name": "Agent Memory",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Zep",
@@ -3737,9 +3070,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-memory",
               "subcategory_name": "Agent Memory",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -3767,9 +3098,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-payments",
               "subcategory_name": "Agent Payments",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Kite",
@@ -3791,9 +3120,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-payments",
               "subcategory_name": "Agent Payments",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Sponge",
@@ -3815,9 +3142,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-payments",
               "subcategory_name": "Agent Payments",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -3849,9 +3174,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-platforms",
               "subcategory_name": "Agent Platforms",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Nimbalyst",
@@ -3873,9 +3196,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-platforms",
               "subcategory_name": "Agent Platforms",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Overcut",
@@ -3899,9 +3220,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-platforms",
               "subcategory_name": "Agent Platforms",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "xpander.ai",
@@ -3927,9 +3246,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-platforms",
               "subcategory_name": "Agent Platforms",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -3961,9 +3278,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-search",
               "subcategory_name": "Agent Search",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Tavily",
@@ -3989,9 +3304,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-search",
               "subcategory_name": "Agent Search",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -4023,9 +3336,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "browser-agents",
               "subcategory_name": "Browser & Web Agents",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Browserbase",
@@ -4049,9 +3360,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "browser-agents",
               "subcategory_name": "Browser & Web Agents",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Crawl4AI",
@@ -4073,9 +3382,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "browser-agents",
               "subcategory_name": "Browser & Web Agents",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Firecrawl",
@@ -4097,9 +3404,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "browser-agents",
               "subcategory_name": "Browser & Web Agents",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Playwright MCP",
@@ -4123,9 +3428,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "browser-agents",
               "subcategory_name": "Browser & Web Agents",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Skyvern",
@@ -4149,9 +3452,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "browser-agents",
               "subcategory_name": "Browser & Web Agents",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Stagehand",
@@ -4175,9 +3476,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "browser-agents",
               "subcategory_name": "Browser & Web Agents",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Steel",
@@ -4199,9 +3498,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "browser-agents",
               "subcategory_name": "Browser & Web Agents",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -4233,9 +3530,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Anthropic Agent SDK",
@@ -4247,19 +3542,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "AutoGen",
@@ -4285,9 +3574,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "AutoGPT",
@@ -4311,9 +3598,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "CrewAI",
@@ -4339,9 +3624,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Darwin Gödel Machine",
@@ -4353,19 +3636,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "DSPy",
@@ -4387,9 +3664,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Flue",
@@ -4413,9 +3688,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Google ADK",
@@ -4439,9 +3712,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Haystack",
@@ -4465,9 +3736,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Hermes Agent",
@@ -4479,19 +3748,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "LangChain",
@@ -4517,9 +3780,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "LangGraph",
@@ -4546,9 +3807,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Letta (MemGPT)",
@@ -4560,19 +3819,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "LlamaIndex",
@@ -4599,9 +3852,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Mastra",
@@ -4623,9 +3874,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "NanoClaw",
@@ -4649,9 +3898,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "NemoClaw",
@@ -4663,19 +3910,13 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "OpenAI Agents SDK",
@@ -4702,9 +3943,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "OpenClaw",
@@ -4716,19 +3955,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Paperclip",
@@ -4750,9 +3983,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Pydantic AI",
@@ -4776,9 +4007,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Semantic Kernel",
@@ -4800,9 +4029,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Smolagents",
@@ -4824,9 +4051,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -4854,9 +4079,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "durable-execution",
               "subcategory_name": "Durable Execution",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Inngest",
@@ -4878,9 +4101,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "durable-execution",
               "subcategory_name": "Durable Execution",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Restate",
@@ -4902,33 +4123,34 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "durable-execution",
               "subcategory_name": "Durable Execution",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Temporal",
               "slug": "temporal",
               "url": "https://temporal.io/",
-              "desc": "Open source durable execution platform building invincible apps. Eliminate complexity and ship features faster with battle-tested workflow orchestration.",
+              "desc": "Open source durable execution platform for building reliable AI agents and workflows. Handles retries, state, and failure recovery so teams can ship AI features faster.",
               "type": "oss",
               "github_stars": 21107,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-
+                "agents",
+                "api-available",
+                "workflow-automation"
               ],
               "all_tags": [
-
+                "agents",
+                "api-available",
+                "workflow-automation",
+                "self-hosted"
               ],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "durable-execution",
               "subcategory_name": "Durable Execution",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -4946,19 +4168,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "protocols",
               "subcategory_name": "Agent Protocols & Standards",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Agent-to-Agent (A2A)",
@@ -4982,9 +4198,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "protocols",
               "subcategory_name": "Agent Protocols & Standards",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Model Context Protocol (MCP)",
@@ -5006,9 +4220,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "protocols",
               "subcategory_name": "Agent Protocols & Standards",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -5036,9 +4248,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "tool-integrations",
               "subcategory_name": "Tool Integrations & Connectors",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Composio",
@@ -5060,9 +4270,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "tool-integrations",
               "subcategory_name": "Tool Integrations & Connectors",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Merge",
@@ -5074,19 +4282,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "tool-integrations",
               "subcategory_name": "Tool Integrations & Connectors",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Nango",
@@ -5098,19 +4300,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "tool-integrations",
               "subcategory_name": "Tool Integrations & Connectors",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Paragon",
@@ -5132,9 +4328,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "tool-integrations",
               "subcategory_name": "Tool Integrations & Connectors",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Pipedream Connect",
@@ -5160,9 +4354,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "tool-integrations",
               "subcategory_name": "Tool Integrations & Connectors",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "StackOne",
@@ -5184,9 +4376,7 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "tool-integrations",
               "subcategory_name": "Tool Integrations & Connectors",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         }
@@ -5221,9 +4411,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "ai-ides",
               "subcategory_name": "AI IDEs & Editors",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "JetBrains AI Assistant",
@@ -5235,19 +4423,13 @@ const landscapeData = {
               "pricing_model": "paid",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "ai-ides",
               "subcategory_name": "AI IDEs & Editors",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Replit",
@@ -5269,9 +4451,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "ai-ides",
               "subcategory_name": "AI IDEs & Editors",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Windsurf",
@@ -5293,9 +4473,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "ai-ides",
               "subcategory_name": "AI IDEs & Editors",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Zed",
@@ -5307,19 +4485,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "ai-ides",
               "subcategory_name": "AI IDEs & Editors",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -5337,19 +4509,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "app-builders",
               "subcategory_name": "App / UI Builders",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Lovable",
@@ -5371,9 +4537,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "app-builders",
               "subcategory_name": "App / UI Builders",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Replit Agent",
@@ -5395,9 +4559,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "app-builders",
               "subcategory_name": "App / UI Builders",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Tempo",
@@ -5409,19 +4571,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "app-builders",
               "subcategory_name": "App / UI Builders",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "v0",
@@ -5433,19 +4589,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "app-builders",
               "subcategory_name": "App / UI Builders",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -5475,9 +4625,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "code-intelligence",
               "subcategory_name": "Code Intelligence & Refactoring",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Context7",
@@ -5505,9 +4653,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "code-intelligence",
               "subcategory_name": "Code Intelligence & Refactoring",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "GrepAI",
@@ -5531,9 +4677,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "code-intelligence",
               "subcategory_name": "Code Intelligence & Refactoring",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "OpenRewrite",
@@ -5545,19 +4689,39 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
+              "tags": [],
+              "all_tags": [],
+              "category_id": "ai-coding",
+              "category_name": "AI Coding & Developer Tools",
+              "subcategory_id": "code-intelligence",
+              "subcategory_name": "Code Intelligence & Refactoring",
+              "additional_categories": []
+            },
+            {
+              "name": "RepoSwarm",
+              "slug": "reposwarm",
+              "url": "https://github.com/reposwarm/reposwarm",
+              "desc": "AI-powered multi-repo architecture discovery platform that analyzes entire codebase portfolios and generates standardized .arch.md documentation for coding agents and developers",
+              "type": "open-source",
+              "github_stars": 249,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
               "tags": [
-
+                "agents",
+                "python",
+                "self-hosted"
               ],
               "all_tags": [
-
+                "agents",
+                "python",
+                "self-hosted"
               ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "code-intelligence",
               "subcategory_name": "Code Intelligence & Refactoring",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Serena MCP",
@@ -5581,9 +4745,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "code-intelligence",
               "subcategory_name": "Code Intelligence & Refactoring",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Sourcegraph",
@@ -5609,9 +4771,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "code-intelligence",
               "subcategory_name": "Code Intelligence & Refactoring",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -5629,19 +4789,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "code-review",
               "subcategory_name": "Code Review & Quality",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "CodeScene",
@@ -5653,19 +4807,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "code-review",
               "subcategory_name": "Code Review & Quality",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Greptile",
@@ -5677,19 +4825,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "code-review",
               "subcategory_name": "Code Review & Quality",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Snyk DeepCode",
@@ -5701,19 +4843,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "code-review",
               "subcategory_name": "Code Review & Quality",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Sourcery",
@@ -5725,19 +4861,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "code-review",
               "subcategory_name": "Code Review & Quality",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -5765,9 +4895,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Amazon Q Developer",
@@ -5779,19 +4907,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Claude Code",
@@ -5817,9 +4939,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Cline",
@@ -5843,9 +4963,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Codegen",
@@ -5857,19 +4975,13 @@ const landscapeData = {
               "pricing_model": "custom",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Continue",
@@ -5891,9 +5003,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Devin (Cognition)",
@@ -5915,9 +5025,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Factory AI",
@@ -5939,9 +5047,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "GitHub Copilot",
@@ -5963,9 +5069,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Google Antigravity",
@@ -5987,9 +5091,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "MiMo-Code",
@@ -6013,9 +5115,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "OpenAI Codex CLI",
@@ -6027,19 +5127,13 @@ const landscapeData = {
               "pricing_model": "api",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "OpenHands",
@@ -6065,9 +5159,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Pi",
@@ -6093,9 +5185,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Roo Code",
@@ -6107,19 +5197,13 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Superset",
@@ -6145,9 +5229,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -6159,25 +5241,23 @@ const landscapeData = {
               "name": "Claude Dashboard",
               "slug": "claude-dashboard",
               "url": "https://github.com/iftahs/claude-dashboard",
-              "desc": "Beautiful local dashboard for Claude Code usage — 5h blocks, weekly trends, model & tool breakdown, activity heatmap",
-              "type": "oss",
+              "desc": "Beautiful local analytics dashboard for Claude Code usage — reads ~/.claude logs with no API key required. Six interactive tabs covering live burn rate, agent activity, trends, model breakdown, insights, and session history.",
+              "type": "open-source",
               "github_stars": 9,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-
+                "observability"
               ],
               "all_tags": [
-
+                "observability"
               ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "cost-reduction",
               "subcategory_name": "Cost Reduction",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Context Mode",
@@ -6201,9 +5281,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "cost-reduction",
               "subcategory_name": "Cost Reduction",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Headroom",
@@ -6227,9 +5305,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "cost-reduction",
               "subcategory_name": "Cost Reduction",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Kickbacks.ai",
@@ -6253,9 +5329,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "cost-reduction",
               "subcategory_name": "Cost Reduction",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "RTK (Rust Token Killer)",
@@ -6277,9 +5351,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "cost-reduction",
               "subcategory_name": "Cost Reduction",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Token Optimizer",
@@ -6301,9 +5373,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "cost-reduction",
               "subcategory_name": "Cost Reduction",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -6321,19 +5391,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "dev-environment",
               "subcategory_name": "Dev Environment",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Dev Containers",
@@ -6345,19 +5409,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "dev-environment",
               "subcategory_name": "Dev Environment",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "mise",
@@ -6369,19 +5427,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "dev-environment",
               "subcategory_name": "Dev Environment",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Sprites",
@@ -6393,19 +5445,13 @@ const landscapeData = {
               "pricing_model": "usage-based",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "dev-environment",
               "subcategory_name": "Dev Environment",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -6439,9 +5485,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "llm-skills",
               "subcategory_name": "LLM Skills",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Frontend Design Skill",
@@ -6453,19 +5497,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "llm-skills",
               "subcategory_name": "LLM Skills",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Impeccable",
@@ -6477,19 +5515,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "llm-skills",
               "subcategory_name": "LLM Skills",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Ponytail",
@@ -6516,9 +5548,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "llm-skills",
               "subcategory_name": "LLM Skills",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "skills.sh",
@@ -6546,9 +5576,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "llm-skills",
               "subcategory_name": "LLM Skills",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -6576,9 +5604,7 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "spec-driven",
               "subcategory_name": "Spec-Driven Development Tools",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "GitHub Spec-Kit",
@@ -6590,19 +5616,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "spec-driven",
               "subcategory_name": "Spec-Driven Development Tools",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "OpenSpec",
@@ -6614,19 +5634,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "spec-driven",
               "subcategory_name": "Spec-Driven Development Tools",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Superpowers",
@@ -6638,19 +5652,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "spec-driven",
               "subcategory_name": "Spec-Driven Development Tools",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -6668,19 +5676,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "testing-sensors",
               "subcategory_name": "Testing & Quality Sensors",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "cargo-mutants",
@@ -6692,19 +5694,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "testing-sensors",
               "subcategory_name": "Testing & Quality Sensors",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Pitest",
@@ -6716,19 +5712,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "testing-sensors",
               "subcategory_name": "Testing & Quality Sensors",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Playwright",
@@ -6740,19 +5730,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "testing-sensors",
               "subcategory_name": "Testing & Quality Sensors",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Stryker",
@@ -6764,19 +5748,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "testing-sensors",
               "subcategory_name": "Testing & Quality Sensors",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "WuppieFuzz",
@@ -6788,19 +5766,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "testing-sensors",
               "subcategory_name": "Testing & Quality Sensors",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         }
@@ -6825,19 +5797,13 @@ const landscapeData = {
               "pricing_model": "pay-as-you-go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "gpu-providers",
               "subcategory_name": "AI Clouds / GPU Providers",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Crusoe",
@@ -6849,19 +5815,13 @@ const landscapeData = {
               "pricing_model": "pay-as-you-go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "gpu-providers",
               "subcategory_name": "AI Clouds / GPU Providers",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Lambda Labs",
@@ -6873,19 +5833,13 @@ const landscapeData = {
               "pricing_model": "pay-as-you-go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "gpu-providers",
               "subcategory_name": "AI Clouds / GPU Providers",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Nebius",
@@ -6897,19 +5851,13 @@ const landscapeData = {
               "pricing_model": "pay-as-you-go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "gpu-providers",
               "subcategory_name": "AI Clouds / GPU Providers",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "RunPod",
@@ -6921,19 +5869,13 @@ const landscapeData = {
               "pricing_model": "pay-as-you-go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "gpu-providers",
               "subcategory_name": "AI Clouds / GPU Providers",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Vast.ai",
@@ -6945,19 +5887,13 @@ const landscapeData = {
               "pricing_model": "pay-as-you-go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "gpu-providers",
               "subcategory_name": "AI Clouds / GPU Providers",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -6985,9 +5921,7 @@ const landscapeData = {
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Anyscale",
@@ -6999,19 +5933,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Azure AI Foundry",
@@ -7023,19 +5951,13 @@ const landscapeData = {
               "pricing_model": "usage-based",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Baseten",
@@ -7047,19 +5969,13 @@ const landscapeData = {
               "pricing_model": "usage-based",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "BentoML",
@@ -7071,19 +5987,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Cerebras",
@@ -7095,19 +6005,13 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "DeepInfra",
@@ -7119,19 +6023,13 @@ const landscapeData = {
               "pricing_model": "pay_as_you_go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Fal",
@@ -7143,19 +6041,13 @@ const landscapeData = {
               "pricing_model": "pay_as_you_go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Fireworks AI",
@@ -7177,9 +6069,34 @@ const landscapeData = {
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
+            },
+            {
+              "name": "Google Cloud Vision API",
+              "slug": "google-cloud-vision",
+              "url": "https://cloud.google.com/vision",
+              "desc": "Managed machine learning API for image analysis, OCR, object detection, and document understanding at scale.",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "pay-per-use",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "multimodal",
+                "api-available",
+                "python"
+              ],
+              "all_tags": [
+                "multimodal",
+                "api-available",
+                "python",
+                "typescript"
+              ],
+              "category_id": "ai-infrastructure",
+              "category_name": "AI Infrastructure (Inference, Compute, Routing)",
+              "subcategory_id": "inference-apis",
+              "subcategory_name": "Inference APIs / Serverless LLMs",
+              "additional_categories": []
             },
             {
               "name": "Groq",
@@ -7191,19 +6108,13 @@ const landscapeData = {
               "pricing_model": "pay-per-use",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Inference.net",
@@ -7231,9 +6142,7 @@ const landscapeData = {
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Lepton AI",
@@ -7245,19 +6154,13 @@ const landscapeData = {
               "pricing_model": "pay_as_you_go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "llama.cpp",
@@ -7269,19 +6172,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Modal",
@@ -7307,9 +6204,7 @@ const landscapeData = {
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "SambaNova",
@@ -7321,19 +6216,13 @@ const landscapeData = {
               "pricing_model": "custom",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "SGLang",
@@ -7345,19 +6234,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Together AI",
@@ -7381,9 +6264,7 @@ const landscapeData = {
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Vertex AI",
@@ -7405,9 +6286,7 @@ const landscapeData = {
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "vLLM",
@@ -7419,19 +6298,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -7464,9 +6337,7 @@ const landscapeData = {
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "model-routers",
               "subcategory_name": "Model Routers & Gateways",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Cloudflare AI Gateway",
@@ -7478,19 +6349,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "model-routers",
               "subcategory_name": "Model Routers & Gateways",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Helicone",
@@ -7502,19 +6367,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "model-routers",
               "subcategory_name": "Model Routers & Gateways",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "LiteLLM Proxy",
@@ -7526,19 +6385,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "model-routers",
               "subcategory_name": "Model Routers & Gateways",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Not Diamond",
@@ -7560,9 +6413,7 @@ const landscapeData = {
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "model-routers",
               "subcategory_name": "Model Routers & Gateways",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "OpenRouter",
@@ -7574,19 +6425,13 @@ const landscapeData = {
               "pricing_model": "pay-per-use",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "model-routers",
               "subcategory_name": "Model Routers & Gateways",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Portkey",
@@ -7598,19 +6443,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "model-routers",
               "subcategory_name": "Model Routers & Gateways",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         }
@@ -7650,9 +6489,7 @@ const landscapeData = {
               "category_name": "Data & Training",
               "subcategory_id": "data-ingestion",
               "subcategory_name": "Data Ingestion & Document Processing",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "LandingAI",
@@ -7680,9 +6517,7 @@ const landscapeData = {
               "category_name": "Data & Training",
               "subcategory_id": "data-ingestion",
               "subcategory_name": "Data Ingestion & Document Processing",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "LangExtract",
@@ -7709,9 +6544,7 @@ const landscapeData = {
               "category_name": "Data & Training",
               "subcategory_id": "data-ingestion",
               "subcategory_name": "Data Ingestion & Document Processing",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "LlamaParse",
@@ -7739,9 +6572,7 @@ const landscapeData = {
               "category_name": "Data & Training",
               "subcategory_id": "data-ingestion",
               "subcategory_name": "Data Ingestion & Document Processing",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "PageIndex",
@@ -7768,9 +6599,7 @@ const landscapeData = {
               "category_name": "Data & Training",
               "subcategory_id": "data-ingestion",
               "subcategory_name": "Data Ingestion & Document Processing",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Unstructured",
@@ -7798,9 +6627,7 @@ const landscapeData = {
               "category_name": "Data & Training",
               "subcategory_id": "data-ingestion",
               "subcategory_name": "Data Ingestion & Document Processing",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -7818,19 +6645,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "data-labeling",
               "subcategory_name": "Data Labeling",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Encord",
@@ -7842,19 +6663,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "data-labeling",
               "subcategory_name": "Data Labeling",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Label Studio",
@@ -7866,19 +6681,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "data-labeling",
               "subcategory_name": "Data Labeling",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Labelbox",
@@ -7890,19 +6699,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "data-labeling",
               "subcategory_name": "Data Labeling",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Roboflow",
@@ -7914,19 +6717,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "data-labeling",
               "subcategory_name": "Data Labeling",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Scale AI",
@@ -7938,19 +6735,13 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "data-labeling",
               "subcategory_name": "Data Labeling",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Snorkel AI",
@@ -7962,19 +6753,13 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "data-labeling",
               "subcategory_name": "Data Labeling",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -7992,19 +6777,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "embeddings",
               "subcategory_name": "Embedding Models & Rerankers",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Cohere Embed",
@@ -8016,19 +6795,13 @@ const landscapeData = {
               "pricing_model": "pay-as-you-go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "embeddings",
               "subcategory_name": "Embedding Models & Rerankers",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Jina AI",
@@ -8040,19 +6813,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "embeddings",
               "subcategory_name": "Embedding Models & Rerankers",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Nomic Embed",
@@ -8064,19 +6831,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "embeddings",
               "subcategory_name": "Embedding Models & Rerankers",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "OpenAI text-embedding-3",
@@ -8088,19 +6849,13 @@ const landscapeData = {
               "pricing_model": "pay-as-you-go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "embeddings",
               "subcategory_name": "Embedding Models & Rerankers",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Voyage AI",
@@ -8112,19 +6867,13 @@ const landscapeData = {
               "pricing_model": "pay-as-you-go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "embeddings",
               "subcategory_name": "Embedding Models & Rerankers",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -8142,19 +6891,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "experiment-tracking",
               "subcategory_name": "Experiment Tracking",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Comet",
@@ -8166,19 +6909,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "experiment-tracking",
               "subcategory_name": "Experiment Tracking",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Neptune",
@@ -8190,19 +6927,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "experiment-tracking",
               "subcategory_name": "Experiment Tracking",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Weights & Biases",
@@ -8214,19 +6945,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "experiment-tracking",
               "subcategory_name": "Experiment Tracking",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -8244,19 +6969,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "fine-tuning",
               "subcategory_name": "Fine-Tuning Platforms & Libraries",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Hugging Face TRL",
@@ -8268,19 +6987,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "fine-tuning",
               "subcategory_name": "Fine-Tuning Platforms & Libraries",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "LLaMA-Factory",
@@ -8292,19 +7005,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "fine-tuning",
               "subcategory_name": "Fine-Tuning Platforms & Libraries",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Predibase",
@@ -8316,19 +7023,13 @@ const landscapeData = {
               "pricing_model": "pay-as-you-go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "fine-tuning",
               "subcategory_name": "Fine-Tuning Platforms & Libraries",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Together Fine-Tuning",
@@ -8340,19 +7041,13 @@ const landscapeData = {
               "pricing_model": "pay-as-you-go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "fine-tuning",
               "subcategory_name": "Fine-Tuning Platforms & Libraries",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Torchtune",
@@ -8364,19 +7059,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "fine-tuning",
               "subcategory_name": "Fine-Tuning Platforms & Libraries",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Unsloth",
@@ -8388,19 +7077,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "fine-tuning",
               "subcategory_name": "Fine-Tuning Platforms & Libraries",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -8418,19 +7101,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "lakehouse-semantic",
               "subcategory_name": "Lakehouse & Semantic Layer",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Cube",
@@ -8442,19 +7119,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "lakehouse-semantic",
               "subcategory_name": "Lakehouse & Semantic Layer",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Dagster",
@@ -8466,19 +7137,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "lakehouse-semantic",
               "subcategory_name": "Lakehouse & Semantic Layer",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "dbt",
@@ -8490,19 +7155,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "lakehouse-semantic",
               "subcategory_name": "Lakehouse & Semantic Layer",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -8520,19 +7179,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "ml-frameworks",
               "subcategory_name": "ML Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "JAX",
@@ -8544,19 +7197,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "ml-frameworks",
               "subcategory_name": "ML Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Keras",
@@ -8568,19 +7215,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "ml-frameworks",
               "subcategory_name": "ML Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "MLX (Apple)",
@@ -8592,19 +7233,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "ml-frameworks",
               "subcategory_name": "ML Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "PyTorch",
@@ -8616,19 +7251,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "ml-frameworks",
               "subcategory_name": "ML Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "TensorFlow",
@@ -8640,19 +7269,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "ml-frameworks",
               "subcategory_name": "ML Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -8670,19 +7293,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "mlops",
               "subcategory_name": "Training Orchestration / MLOps",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Kubeflow",
@@ -8694,19 +7311,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "mlops",
               "subcategory_name": "Training Orchestration / MLOps",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Metaflow",
@@ -8718,19 +7329,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "mlops",
               "subcategory_name": "Training Orchestration / MLOps",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "MLflow",
@@ -8742,19 +7347,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "mlops",
               "subcategory_name": "Training Orchestration / MLOps",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Ray",
@@ -8766,19 +7365,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "mlops",
               "subcategory_name": "Training Orchestration / MLOps",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "SkyPilot",
@@ -8790,19 +7383,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "mlops",
               "subcategory_name": "Training Orchestration / MLOps",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "ZenML",
@@ -8814,19 +7401,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "mlops",
               "subcategory_name": "Training Orchestration / MLOps",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         }
@@ -8861,9 +7442,7 @@ const landscapeData = {
               "category_name": "Engineering Intelligence",
               "subcategory_id": "developer-portals",
               "subcategory_name": "Developer Portals",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -8881,19 +7460,13 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "engineering-intelligence",
               "category_name": "Engineering Intelligence",
               "subcategory_id": "engineering-analytics",
               "subcategory_name": "Engineering Analytics",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         }
@@ -8918,19 +7491,13 @@ const landscapeData = {
               "pricing_model": "pay-as-you-go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "closed-frontier",
               "subcategory_name": "Closed/Frontier LLM Providers",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Anthropic",
@@ -8954,9 +7521,7 @@ const landscapeData = {
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "closed-frontier",
               "subcategory_name": "Closed/Frontier LLM Providers",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Cohere",
@@ -8980,9 +7545,7 @@ const landscapeData = {
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "closed-frontier",
               "subcategory_name": "Closed/Frontier LLM Providers",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Google DeepMind",
@@ -8994,19 +7557,13 @@ const landscapeData = {
               "pricing_model": "pay-as-you-go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "closed-frontier",
               "subcategory_name": "Closed/Frontier LLM Providers",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "MiniMax",
@@ -9018,19 +7575,13 @@ const landscapeData = {
               "pricing_model": "pay-as-you-go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "closed-frontier",
               "subcategory_name": "Closed/Frontier LLM Providers",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Mistral AI",
@@ -9054,9 +7605,7 @@ const landscapeData = {
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "closed-frontier",
               "subcategory_name": "Closed/Frontier LLM Providers",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "OpenAI",
@@ -9082,9 +7631,7 @@ const landscapeData = {
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "closed-frontier",
               "subcategory_name": "Closed/Frontier LLM Providers",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Reka AI",
@@ -9096,19 +7643,13 @@ const landscapeData = {
               "pricing_model": "pay-as-you-go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "closed-frontier",
               "subcategory_name": "Closed/Frontier LLM Providers",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "xAI (Grok)",
@@ -9134,9 +7675,7 @@ const landscapeData = {
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "closed-frontier",
               "subcategory_name": "Closed/Frontier LLM Providers",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -9154,19 +7693,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "model-hubs",
               "subcategory_name": "Model Hubs & Registries",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Hugging Face",
@@ -9178,19 +7711,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "model-hubs",
               "subcategory_name": "Model Hubs & Registries",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "LM Studio",
@@ -9202,19 +7729,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "model-hubs",
               "subcategory_name": "Model Hubs & Registries",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "ModelScope",
@@ -9226,19 +7747,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "model-hubs",
               "subcategory_name": "Model Hubs & Registries",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Ollama",
@@ -9260,9 +7775,7 @@ const landscapeData = {
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "model-hubs",
               "subcategory_name": "Model Hubs & Registries",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Replicate",
@@ -9284,9 +7797,7 @@ const landscapeData = {
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "model-hubs",
               "subcategory_name": "Model Hubs & Registries",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -9304,19 +7815,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "open-source",
               "subcategory_name": "Open-Source / Open-Weight Models",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Alibaba Qwen",
@@ -9328,19 +7833,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "open-source",
               "subcategory_name": "Open-Source / Open-Weight Models",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "DeepSeek",
@@ -9364,9 +7863,7 @@ const landscapeData = {
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "open-source",
               "subcategory_name": "Open-Source / Open-Weight Models",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Falcon (TII)",
@@ -9378,19 +7875,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "open-source",
               "subcategory_name": "Open-Source / Open-Weight Models",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Google Gemma",
@@ -9402,19 +7893,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "open-source",
               "subcategory_name": "Open-Source / Open-Weight Models",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Meta Llama",
@@ -9438,9 +7923,7 @@ const landscapeData = {
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "open-source",
               "subcategory_name": "Open-Source / Open-Weight Models",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Microsoft Phi",
@@ -9452,19 +7935,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "open-source",
               "subcategory_name": "Open-Source / Open-Weight Models",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Mistral (open)",
@@ -9476,19 +7953,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "open-source",
               "subcategory_name": "Open-Source / Open-Weight Models",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "NVIDIA Nemotron",
@@ -9500,19 +7971,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "open-source",
               "subcategory_name": "Open-Source / Open-Weight Models",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "StabilityAI Stable LM",
@@ -9524,19 +7989,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "open-source",
               "subcategory_name": "Open-Source / Open-Weight Models",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         }
@@ -9561,19 +8020,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "llm-frameworks",
               "category_name": "LLM Application Frameworks",
               "subcategory_id": "app-frameworks",
               "subcategory_name": "Application Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Instructor",
@@ -9585,19 +8038,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "llm-frameworks",
               "category_name": "LLM Application Frameworks",
               "subcategory_id": "app-frameworks",
               "subcategory_name": "Application Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "LiteLLM",
@@ -9609,19 +8056,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "llm-frameworks",
               "category_name": "LLM Application Frameworks",
               "subcategory_id": "app-frameworks",
               "subcategory_name": "Application Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Marvin",
@@ -9633,19 +8074,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "llm-frameworks",
               "category_name": "LLM Application Frameworks",
               "subcategory_id": "app-frameworks",
               "subcategory_name": "Application Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Outlines",
@@ -9657,19 +8092,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "llm-frameworks",
               "category_name": "LLM Application Frameworks",
               "subcategory_id": "app-frameworks",
               "subcategory_name": "Application Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Spring AI",
@@ -9695,9 +8124,7 @@ const landscapeData = {
               "category_name": "LLM Application Frameworks",
               "subcategory_id": "app-frameworks",
               "subcategory_name": "Application Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Vercel AI SDK",
@@ -9719,9 +8146,7 @@ const landscapeData = {
               "category_name": "LLM Application Frameworks",
               "subcategory_id": "app-frameworks",
               "subcategory_name": "Application Frameworks",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -9753,9 +8178,7 @@ const landscapeData = {
               "category_name": "LLM Application Frameworks",
               "subcategory_id": "prompt-engineering",
               "subcategory_name": "Prompt Engineering & Management",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Latitude",
@@ -9767,19 +8190,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "llm-frameworks",
               "category_name": "LLM Application Frameworks",
               "subcategory_id": "prompt-engineering",
               "subcategory_name": "Prompt Engineering & Management",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Orq.ai",
@@ -9803,9 +8220,7 @@ const landscapeData = {
               "category_name": "LLM Application Frameworks",
               "subcategory_id": "prompt-engineering",
               "subcategory_name": "Prompt Engineering & Management",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "PromptLayer",
@@ -9832,9 +8247,7 @@ const landscapeData = {
               "category_name": "LLM Application Frameworks",
               "subcategory_id": "prompt-engineering",
               "subcategory_name": "Prompt Engineering & Management",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         }
@@ -9876,9 +8289,7 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "app-observability",
               "subcategory_name": "Application Observability & FinOps",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "ClickStack",
@@ -9904,9 +8315,7 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "app-observability",
               "subcategory_name": "Application Observability & FinOps",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "OptScale",
@@ -9932,9 +8341,7 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "app-observability",
               "subcategory_name": "Application Observability & FinOps",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "SigNoz",
@@ -9958,9 +8365,7 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "app-observability",
               "subcategory_name": "Application Observability & FinOps",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -9978,19 +8383,13 @@ const landscapeData = {
               "pricing_model": "open-source",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Inspect AI",
@@ -10002,19 +8401,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "OpenAI Evals",
@@ -10036,9 +8429,7 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Patronus AI",
@@ -10050,19 +8441,13 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Promptfoo",
@@ -10074,19 +8459,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Ragas",
@@ -10108,9 +8487,7 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Traigent",
@@ -10132,9 +8509,7 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "TruLens",
@@ -10156,9 +8531,7 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -10190,9 +8563,7 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Guardrails AI",
@@ -10214,9 +8585,7 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Lakera Guard",
@@ -10228,19 +8597,13 @@ const landscapeData = {
               "pricing_model": "usage-based",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "LLM Guard",
@@ -10262,9 +8625,7 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "NeMo Guardrails",
@@ -10276,19 +8637,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "NVIDIA OpenShell",
@@ -10300,19 +8655,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Prompt Security",
@@ -10324,19 +8673,13 @@ const landscapeData = {
               "pricing_model": "custom",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Protect AI",
@@ -10348,19 +8691,13 @@ const landscapeData = {
               "pricing_model": "custom",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -10378,19 +8715,13 @@ const landscapeData = {
               "pricing_model": "usage-based",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Arize Phoenix",
@@ -10402,19 +8733,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Arize AI",
@@ -10436,9 +8761,7 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Avon AI",
@@ -10450,19 +8773,13 @@ const landscapeData = {
               "pricing_model": "tiered",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Braintrust",
@@ -10474,19 +8791,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Datadog LLM Observability",
@@ -10498,19 +8809,13 @@ const landscapeData = {
               "pricing_model": "usage-based",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Honeyhive",
@@ -10522,19 +8827,13 @@ const landscapeData = {
               "pricing_model": "usage-based",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Laminar",
@@ -10546,19 +8845,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Langfuse",
@@ -10582,9 +8875,7 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "LangSmith",
@@ -10606,9 +8897,7 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Pydantic Logfire",
@@ -10630,9 +8919,7 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Traceloop / OpenLLMetry",
@@ -10644,19 +8931,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "W&B Weave",
@@ -10682,9 +8963,7 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Weights & Biases",
@@ -10696,19 +8975,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         }
@@ -10745,9 +9018,7 @@ const landscapeData = {
               "category_name": "Security",
               "subcategory_id": "security-scanning",
               "subcategory_name": "Security Scanning",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "RAPTOR",
@@ -10773,9 +9044,7 @@ const landscapeData = {
               "category_name": "Security",
               "subcategory_id": "security-scanning",
               "subcategory_name": "Security Scanning",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         }
@@ -10814,9 +9083,7 @@ const landscapeData = {
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "dedicated",
               "subcategory_name": "Dedicated Vector DBs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "LanceDB",
@@ -10828,19 +9095,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "dedicated",
               "subcategory_name": "Dedicated Vector DBs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Milvus",
@@ -10852,19 +9113,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "dedicated",
               "subcategory_name": "Dedicated Vector DBs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Pinecone",
@@ -10890,9 +9145,7 @@ const landscapeData = {
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "dedicated",
               "subcategory_name": "Dedicated Vector DBs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Qdrant",
@@ -10914,9 +9167,7 @@ const landscapeData = {
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "dedicated",
               "subcategory_name": "Dedicated Vector DBs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Turbopuffer",
@@ -10928,19 +9179,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "dedicated",
               "subcategory_name": "Dedicated Vector DBs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Vespa",
@@ -10952,19 +9197,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "dedicated",
               "subcategory_name": "Dedicated Vector DBs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Weaviate",
@@ -10988,9 +9227,7 @@ const landscapeData = {
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "dedicated",
               "subcategory_name": "Dedicated Vector DBs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -11008,19 +9245,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "extensions",
               "subcategory_name": "Vector Extensions to Existing DBs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Elasticsearch",
@@ -11032,19 +9263,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "extensions",
               "subcategory_name": "Vector Extensions to Existing DBs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "MongoDB Atlas Vector",
@@ -11056,19 +9281,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "extensions",
               "subcategory_name": "Vector Extensions to Existing DBs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "pgvector",
@@ -11080,19 +9299,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "extensions",
               "subcategory_name": "Vector Extensions to Existing DBs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Redis Vector",
@@ -11104,19 +9317,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "extensions",
               "subcategory_name": "Vector Extensions to Existing DBs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Supabase Vector",
@@ -11128,19 +9335,13 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "extensions",
               "subcategory_name": "Vector Extensions to Existing DBs",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         },
@@ -11158,19 +9359,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "rag-kg",
               "subcategory_name": "RAG-Specific / Knowledge Graph",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "FalkorDB",
@@ -11182,19 +9377,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "rag-kg",
               "subcategory_name": "RAG-Specific / Knowledge Graph",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Graphify",
@@ -11218,9 +9407,7 @@ const landscapeData = {
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "rag-kg",
               "subcategory_name": "RAG-Specific / Knowledge Graph",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Graphiti",
@@ -11232,19 +9419,13 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "rag-kg",
               "subcategory_name": "RAG-Specific / Knowledge Graph",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Memgraph",
@@ -11256,19 +9437,13 @@ const landscapeData = {
               "pricing_model": "open-core",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [
-
-              ],
-              "all_tags": [
-
-              ],
+              "tags": [],
+              "all_tags": [],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "rag-kg",
               "subcategory_name": "RAG-Specific / Knowledge Graph",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Microsoft GraphRAG",
@@ -11295,9 +9470,7 @@ const landscapeData = {
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "rag-kg",
               "subcategory_name": "RAG-Specific / Knowledge Graph",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Neo4j",
@@ -11319,9 +9492,7 @@ const landscapeData = {
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "rag-kg",
               "subcategory_name": "RAG-Specific / Knowledge Graph",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             },
             {
               "name": "Vectara",
@@ -11345,9 +9516,7 @@ const landscapeData = {
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "rag-kg",
               "subcategory_name": "RAG-Specific / Knowledge Graph",
-              "additional_categories": [
-
-              ]
+              "additional_categories": []
             }
           ]
         }
@@ -11974,8 +10143,6 @@ const landscapeData = {
       ]
     }
   },
-  "changelog": [
-
-  ]
+  "changelog": []
 };
 if (typeof window !== 'undefined') window.landscapeData = landscapeData;

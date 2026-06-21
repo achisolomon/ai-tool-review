@@ -1,20 +1,21 @@
 ---
----
 name: Claude Dashboard
 slug: claude-dashboard
 website: https://github.com/iftahs/claude-dashboard
-type: oss
+type: open-source
 track: developers
 category: ai-coding
 subcategory: cost-reduction
 status: active
-description: Beautiful local dashboard for Claude Code usage — 5h blocks, weekly trends,
-  model & tool breakdown, activity heatmap
+description: Beautiful local analytics dashboard for Claude Code usage — reads ~/.claude logs with no API key required. Six interactive tabs covering live burn rate, agent activity, trends, model breakdown, insights, and session history.
 github_url: https://github.com/iftahs/claude-dashboard
 github_stars: 9
 pricing_model: free
 founded_year: 2026
-last_verified: '2026-06-10'
+headquarters: Open Source
+tags:
+  - observability
+last_verified: '2026-06-18'
 confidence_score: 0.95
 source_urls:
 - https://github.com/iftahs/claude-dashboard
@@ -22,11 +23,11 @@ source_urls:
 
 <div class="key-stats">
   <div class="key-stat">
-    <span class="number">7</span>
+    <span class="number">9</span>
     <span class="label">GitHub Stars</span>
   </div>
   <div class="key-stat">
-    <span class="number">4</span>
+    <span class="number">6</span>
     <span class="label">Dashboard Tabs</span>
   </div>
   <div class="key-stat">
@@ -38,7 +39,7 @@ source_urls:
 ## Overview
 
 <div class="overview">
-<p>Claude Dashboard is a local, offline dashboard that visualizes your Claude Code usage by reading JSON logs from ~/.claude. No API key or account login required—it works entirely with your local activity logs. The dashboard provides comprehensive visualizations across four specialized tabs: Live (burn rate, plan usage), Trends (daily charts, cache efficiency, activity heatmaps), Models (cost-efficiency comparisons, tool usage), and Sessions (workspace analytics, drill-downs).</p>
+<p>Claude Dashboard is a locally-hosted analytics dashboard that visualizes your Claude Code usage by reading JSON logs from <code>~/.claude</code>. No API key or internet connection required — it works entirely with your local activity logs. Six interactive tabs cover everything from real-time token burn rate and active subagent sessions to 18-week activity grids, model cost comparisons, error analysis, and searchable session transcripts with CSV/JSON export.</p>
 </div>
 
 ## The Verdict
@@ -49,18 +50,18 @@ source_urls:
     <div class="verdict-section">
       <h4>Best For</h4>
       <ul>
-        <li>Claude Code power users tracking usage patterns</li>
-        <li>Developers monitoring spending limits</li>
-        <li>Teams analyzing model cost-efficiency</li>
-        <li>Anyone wanting visibility into token consumption</li>
+        <li>Claude Code power users tracking burn rate against 5-hour session limits</li>
+        <li>Developers comparing cost-efficiency across Opus, Sonnet, and Haiku</li>
+        <li>Anyone wanting session transcripts and tool error analysis locally</li>
+        <li>Teams wanting a self-hosted, always-on usage monitor via Docker</li>
       </ul>
     </div>
     <div class="verdict-section not-for">
       <h4>Not Ideal For</h4>
       <ul>
-        <li>Non-Claude Code users</li>
-        <li>Those without Node.js/Docker setup</li>
-        <li>Light/occasional Claude Code users</li>
+        <li>Non-Claude Code users (claude.ai web usage is not captured)</li>
+        <li>Those without Node.js 18+ or Docker</li>
+        <li>Users needing exact rate-limit reset times (not available in local logs)</li>
       </ul>
     </div>
   </div>
@@ -70,13 +71,13 @@ source_urls:
   <div class="pros-list">
     <h3>What's Great</h3>
     <ul>
-      <li>Completely offline—reads local logs only</li>
-      <li>No API key or login required</li>
-      <li>Real-time burn rate indicators</li>
-      <li>Activity heatmaps show coding patterns</li>
-      <li>CSV/JSON export for further analysis</li>
-      <li>Docker support for always-on deployment</li>
-      <li>Cross-platform (macOS, Linux, Windows)</li>
+      <li>Fully offline — reads local logs only, no API key needed</li>
+      <li>Six tabs covering live burn rate, agents, trends, models, insights, and sessions</li>
+      <li>Real-time subagent monitoring with token counts and git branch details</li>
+      <li>Interactive pricing calculator with cache efficiency modeling</li>
+      <li>18-week GitHub-style activity heatmap</li>
+      <li>Searchable session history with full transcript drill-downs</li>
+      <li>CSV/JSON export; Docker support for always-on deployment</li>
     </ul>
     <div class="source"><a href="https://github.com/iftahs/claude-dashboard" target="_blank">GitHub README</a></div>
   </div>
@@ -85,9 +86,10 @@ source_urls:
     <ul>
       <li>New project (May 2026), still maturing</li>
       <li>Requires Node.js 18+ or Docker</li>
-      <li>Only works with Claude Code logs</li>
-      <li>Limited community adoption so far</li>
+      <li>Only works with Claude Code logs — claude.ai web usage not included</li>
+      <li>Cannot display exact rate-limit reset times (not in local logs)</li>
     </ul>
+    <div class="source"><a href="https://github.com/iftahs/claude-dashboard" target="_blank">GitHub README — Limitations</a></div>
   </div>
 </div>
 
@@ -108,33 +110,38 @@ source_urls:
   <div class="detail-section">
     <h4>Dashboard Tabs</h4>
     <ul>
-      <li>Live: Burn rate, plan usage tracking, spending limits</li>
-      <li>Trends: Daily token/cost charts, cache efficiency, heatmaps</li>
-      <li>Models: Cost-efficiency comparisons, tool usage breakdown</li>
-      <li>Sessions: Workspace analytics, session drill-downs</li>
+      <li><strong>Live Usage</strong> — Real-time token burn rate, 5-hour session limits, weekly quotas, spending caps</li>
+      <li><strong>Agents & Live Activity</strong> — Active sessions and subagents with token counts and git branch details</li>
+      <li><strong>Trends</strong> — Daily token/cost charts, cache efficiency tracking, 24×7 heatmap, 18-week activity grid</li>
+      <li><strong>Models</strong> — Token distribution across Opus/Sonnet/Haiku, cost-per-token comparison, tool usage breakdown</li>
+      <li><strong>Insights</strong> — Error rates, tool failure analysis, language distribution, delegation metrics, edit accuracy</li>
+      <li><strong>Sessions</strong> — Config overview, workspace cost ranking, searchable session history with full transcripts</li>
     </ul>
   </div>
   <div class="detail-section">
     <h4>Installation Options</h4>
     <ul>
-      <li>Direct: npm install && npm run dev</li>
-      <li>Docker: docker compose up -d --build</li>
+      <li>Direct: <code>npm install &amp;&amp; npm run dev</code> (port 5180)</li>
+      <li>Docker: <code>docker compose up -d --build</code> (port 8787)</li>
       <li>Requires Node.js 18+</li>
     </ul>
   </div>
   <div class="detail-section">
-    <h4>Export Options</h4>
+    <h4>Export &amp; Visualization</h4>
     <ul>
       <li>CSV export for spreadsheets</li>
       <li>JSON export for programmatic access</li>
+      <li>Toggle between token counts and USD cost views</li>
+      <li>Interactive pricing calculator with cache efficiency modeling</li>
     </ul>
   </div>
   <div class="detail-section">
     <h4>Technical Details</h4>
     <ul>
-      <li>TypeScript (97.2%)</li>
-      <li>Reads ~/.claude logs</li>
-      <li>MIT License</li>
+      <li>TypeScript (98.6%)</li>
+      <li>Express backend + React/Vite frontend</li>
+      <li>Reads <code>~/.claude</code> logs (read-only mount in Docker)</li>
+      <li>MIT License · 62 commits</li>
     </ul>
   </div>
 </div>
@@ -152,6 +159,8 @@ source_urls:
 | **Requires API Key** | No | No | Yes |
 | **Offline Capable** | <span class="highlight">Yes, fully offline</span> | Yes | No |
 | **Cost Reduction** | Awareness only | <span class="highlight">Active optimization</span> | Awareness only |
+| **Agent Monitoring** | <span class="highlight">Live subagent view</span> | No | Yes |
+| **Session Transcripts** | <span class="highlight">Full local transcripts</span> | No | Partial |
 | **Setup** | npm/Docker | MCP server | Cloud service |
 | **Price** | Free | Free | Free tier + paid |
 
