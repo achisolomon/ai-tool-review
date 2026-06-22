@@ -2,7 +2,7 @@
 category: ai-infrastructure
 confidence_score: 0.92
 description: High-performance open-source LLM gateway from Maxim AI providing a unified OpenAI-compatible API for 1000+ models across 23+ providers, with automatic fallbacks, load balancing, MCP support, and sub-100µs overhead at 5,000 RPS.
-github_stars: 5928
+github_stars: 5953
 github_url: https://github.com/maximhq/bifrost
 last_verified: '2026-06-14'
 name: Bifrost
