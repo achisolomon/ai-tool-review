@@ -9,7 +9,7 @@ subcategory: "app-builders"
 status: "active"
 description: "AI-powered full-stack app builder that runs entirely in your browser using WebContainers technology"
 github_url: "https://github.com/stackblitz/bolt.new"
-github_stars: 16423
+github_stars: 16427
 pricing_model: "freemium"
 founded_year: 2024
 headquarters: "San Francisco, CA"
