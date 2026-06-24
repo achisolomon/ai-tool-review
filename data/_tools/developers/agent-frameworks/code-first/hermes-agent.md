@@ -12,7 +12,7 @@ pricing_model: free
 founded_year: 2024
 headquarters: "Remote"
 github_url: "https://github.com/NousResearch/hermes-agent"
-github_stars: 200232
+github_stars: 201319
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

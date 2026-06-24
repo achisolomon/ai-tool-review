@@ -9,7 +9,7 @@ subcategory: "code-intelligence"
 status: "active"
 description: "MCP server and documentation platform that injects up-to-date, version-specific library docs directly into AI coding assistant prompts to eliminate hallucinated APIs and outdated code examples"
 github_url: "https://github.com/upstash/context7"
-github_stars: 57890
+github_stars: 57949
 pricing_model: "freemium"
 founded_year: 2025
 headquarters: "San Francisco, CA"
