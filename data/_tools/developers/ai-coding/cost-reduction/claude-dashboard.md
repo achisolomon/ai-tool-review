@@ -9,7 +9,7 @@ subcategory: cost-reduction
 status: active
 description: Beautiful local analytics dashboard for Claude Code usage — reads ~/.claude logs with no API key required. Six interactive tabs covering live burn rate, agent activity, trends, model breakdown, insights, and session history.
 github_url: https://github.com/iftahs/claude-dashboard
-github_stars: 9
+github_stars: 10
 pricing_model: free
 founded_year: 2026
 headquarters: Open Source

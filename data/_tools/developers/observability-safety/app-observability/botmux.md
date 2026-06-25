@@ -3,7 +3,7 @@ name: "BotMux"
 slug: "botmux"
 website: "https://docs.botmux.dev"
 github_url: "https://github.com/skrashevich/botmux"
-github_stars: 16
+github_stars: 17
 type: "open-source"
 track: "developers"
 category: "observability-safety"
