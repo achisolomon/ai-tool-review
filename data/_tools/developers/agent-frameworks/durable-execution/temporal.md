@@ -12,7 +12,7 @@ pricing_model: freemium
 founded_year: 2019
 headquarters: "Seattle, WA"
 github_url: "https://github.com/temporalio/temporal"
-github_stars: 21241
+github_stars: 21268
 last_verified: "2026-06-21"
 confidence_score: 0.95
 tags:
