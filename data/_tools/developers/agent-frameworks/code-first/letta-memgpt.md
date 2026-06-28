@@ -12,7 +12,7 @@ pricing_model: free
 founded_year: 2023
 headquarters: "Berkeley, CA"
 github_url: "https://github.com/letta-ai/letta"
-github_stars: 23542
+github_stars: 23550
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---
