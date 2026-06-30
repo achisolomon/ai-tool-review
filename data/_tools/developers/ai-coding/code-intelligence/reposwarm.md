@@ -9,7 +9,7 @@ subcategory: "code-intelligence"
 status: "active"
 description: "AI-powered multi-repo architecture discovery platform that analyzes entire codebase portfolios and generates standardized .arch.md documentation for coding agents and developers"
 github_url: "https://github.com/reposwarm/reposwarm"
-github_stars: 254
+github_stars: 255
 pricing_model: "free"
 founded_year: 2025
 tags:
