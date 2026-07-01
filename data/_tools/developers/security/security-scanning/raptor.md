@@ -11,7 +11,7 @@ description: Autonomous security research framework built on Claude Code that ch
   static analysis, binary analysis, LLM-powered vulnerability validation, exploit
   generation, and patch writing into a single workflow
 github_url: https://github.com/gadievron/raptor
-github_stars: 3209
+github_stars: 3223
 pricing_model: open-source
 founded_year: 2025
 tags:

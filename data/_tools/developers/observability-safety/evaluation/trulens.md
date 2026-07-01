@@ -9,7 +9,7 @@ subcategory: "evaluation"
 status: "active"
 description: "Open-source library for evaluating and tracking LLM applications using feedback functions for groundedness, relevance, and safety"
 github_url: "https://github.com/truera/trulens"
-github_stars: 3408
+github_stars: 3411
 pricing_model: "open-source"
 founded_year: 2023
 headquarters: "Redwood City, CA"
