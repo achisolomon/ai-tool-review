@@ -81,14 +81,18 @@ test.describe('Tool Page Review Modal', () => {
     await page.addInitScript(() => {
       localStorage.setItem('cookie_consent', 'accepted');
     });
+    // Block all external requests — these tests only check modal state (not DB
+    // content), so Supabase CDN and stars.json are not needed. Without this,
+    // page.goto() waits for the 'load' event which hangs when CDN requests are
+    // slow in CI, causing the whole test to time out after 30 s.
+    await page.route(/^https?:\/\/(?!localhost)/, route => route.abort());
   });
 
   test('review modal is hidden by default on page load', async ({ page }) => {
-    // Navigate to a tool page
-    await page.goto('/tools/cursor/');
-
-    // Wait for reviews section to load
-    await page.waitForSelector('#reviews');
+    await page.goto('/tools/cursor/', { waitUntil: 'domcontentloaded' });
+    // #reviews is in static HTML but may be hidden when external requests are
+    // blocked — use 'attached' so we don't wait for visibility.
+    await page.waitForSelector('#reviews', { state: 'attached' });
 
     // Review modal should exist but be hidden (no 'active' class)
     const reviewModal = page.locator('#review-modal');
@@ -109,15 +113,15 @@ test.describe('Tool Page Review Modal', () => {
     // This tests the fix for the bug where the modal opened on back navigation
 
     // Go to tool page
-    await page.goto('/tools/cursor/');
-    await page.waitForSelector('#reviews');
+    await page.goto('/tools/cursor/', { waitUntil: 'domcontentloaded' });
+    await page.waitForSelector('#reviews', { state: 'attached' });
 
     // Navigate away (simulate clicking external link by going to another page)
-    await page.goto('/');
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
 
     // Navigate back
-    await page.goBack();
-    await page.waitForSelector('#reviews');
+    await page.goBack({ waitUntil: 'domcontentloaded' });
+    await page.waitForSelector('#reviews', { state: 'attached' });
 
     // Review modal should NOT be open
     const reviewModal = page.locator('#review-modal');
@@ -132,8 +136,8 @@ test.describe('Tool Page Review Modal', () => {
   });
 
   test('auth modal does not open automatically on page load', async ({ page }) => {
-    await page.goto('/tools/cursor/');
-    await page.waitForSelector('#reviews');
+    await page.goto('/tools/cursor/', { waitUntil: 'domcontentloaded' });
+    await page.waitForSelector('#reviews', { state: 'attached' });
 
     // Auth modal should not be open by default
     const authModal = page.locator('#auth-modal');

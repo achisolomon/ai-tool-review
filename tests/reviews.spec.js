@@ -1309,33 +1309,56 @@ test.describe('Review Components', () => {
   // =============================================
   test.describe('Tool Not In Database', () => {
 
-    test('shows Leave a Review button for tool not in database', async ({ page }) => {
-      // nano-banana is a tool that exists in Jekyll but may not be in the database
-      await page.goto('/tools/nano-banana/');
+    // Stub Supabase so these tests don't depend on real DB connectivity.
+    // The health probe must succeed (so tool-page.js proceeds past the health
+    // gate), and the tools REST query must return null (tool not in DB), which
+    // is the exact scenario these tests exercise.
+    async function stubSupabaseNotFound(page) {
+      // Health probe — intercept the fetch() call so isDatabaseHealthy() → true
+      await page.route('**/auth/v1/health**', route => route.fulfill({ status: 200, body: '{}' }));
+      // Pre-seed window.supabase via initScript so ensureSupabase() short-circuits
+      // (line 60: `if (window.supabase) return Promise.resolve(window.supabase)`)
+      // and never tries to inject the CDN script tag.
+      await page.addInitScript(() => {
+        const mockClient = {
+          from: () => ({
+            select: () => ({
+              eq: () => ({
+                maybeSingle: async () => ({ data: null, error: null }),
+              }),
+            }),
+          }),
+          auth: {
+            getUser: async () => ({ data: { user: null }, error: null }),
+            onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } }),
+          },
+        };
+        window.supabase = { createClient: () => mockClient };
+      });
+    }
 
-      // Wait for page to load
-      await page.waitForTimeout(2000);
+    test('shows Leave a Review button for tool not in database', async ({ page }) => {
+      await stubSupabaseNotFound(page);
+      // nano-banana is a tool that exists in Jekyll but not in the database
+      await page.goto('/tools/nano-banana/', { waitUntil: 'domcontentloaded' });
 
       // Should show the empty review state with Leave a Review button
       const leaveReviewBtn = page.locator('#leave-review-btn');
 
       // The button should exist whether tool is in DB or not
-      await expect(leaveReviewBtn).toBeVisible();
+      await expect(leaveReviewBtn).toBeVisible({ timeout: 8000 });
     });
 
     test('shows empty state message for tool without reviews', async ({ page }) => {
-      await page.goto('/tools/nano-banana/');
-      await page.waitForTimeout(2000);
+      await stubSupabaseNotFound(page);
+      await page.goto('/tools/nano-banana/', { waitUntil: 'domcontentloaded' });
 
       // Should show either the empty state or the summary (if tool was just created)
       const emptyState = page.locator('.review-summary-empty');
       const reviewSummary = page.locator('.review-summary');
 
       // One of these should be visible
-      const hasEmptyState = await emptyState.count() > 0;
-      const hasSummary = await reviewSummary.count() > 0;
-
-      expect(hasEmptyState || hasSummary).toBe(true);
+      await expect(emptyState.or(reviewSummary).first()).toBeVisible({ timeout: 8000 });
     });
 
     test('review form stores tool slug for new tools', async ({ page }) => {

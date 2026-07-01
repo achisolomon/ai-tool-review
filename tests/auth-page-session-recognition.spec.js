@@ -18,11 +18,25 @@ test.describe('getCurrentUser() lazy-loads the library itself (does not require 
   });
 
   test('window.supabase is not preloaded, yet getCurrentUser() still loads the library and queries auth', async ({ page }) => {
+    // Block the Supabase CDN until we are ready, so the page's own async init
+    // cannot resolve ensureSupabase() before our evaluate() captures `before`.
+    // Without this guard, my-reviews.html's unconditional checkAuth() call races
+    // against our snapshot and non-deterministically sets window.supabase first.
+    let unblock;
+    const cdnHeld = new Promise(resolve => { unblock = resolve; });
+    await page.route('**/supabase-js@2**', async route => {
+      await cdnHeld;
+      await route.continue();
+    });
+
     await page.goto('/my-reviews.html', { waitUntil: 'domcontentloaded' });
 
     // Confirm the static tag is really gone — the bug only reproduces when
     // the library is NOT already present at call time.
     expect(await page.evaluate(() => typeof window.supabase)).toBe('undefined');
+
+    // Unblock the CDN so our explicit getCurrentUser() call can resolve.
+    unblock();
 
     const result = await page.evaluate(async () => {
       // Before the fix, this returned null immediately (getSupabase() === null)
