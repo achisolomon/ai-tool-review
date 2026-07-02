@@ -12,7 +12,7 @@ pricing_model: free
 founded_year: 2024
 headquarters: "—"
 github_url: "https://github.com/ag-ui-protocol/ag-ui"
-github_stars: 14492
+github_stars: 14511
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---
