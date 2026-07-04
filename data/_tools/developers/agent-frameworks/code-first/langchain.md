@@ -9,7 +9,7 @@ subcategory: "code-first"
 status: "active"
 description: "Open-source framework for building applications powered by large language models through composable components and chains"
 github_url: "https://github.com/langchain-ai/langchain"
-github_stars: 140796
+github_stars: 140881
 pricing_model: "open-source"
 founded_year: 2022
 headquarters: "San Francisco, CA"
