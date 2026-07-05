@@ -9,7 +9,7 @@ subcategory: "code-first"
 status: "active"
 description: "Low-level orchestration framework for building stateful, long-running agents with human-in-the-loop controls"
 github_url: "https://github.com/langchain-ai/langgraph"
-github_stars: 36434
+github_stars: 36500
 pricing_model: "open-core"
 founded_year: 2023
 headquarters: "San Francisco, CA"

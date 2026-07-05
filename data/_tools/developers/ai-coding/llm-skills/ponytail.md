@@ -9,7 +9,7 @@ subcategory: "llm-skills"
 status: "active"
 description: "YAGNI-enforcement skill for AI coding agents that cuts code output 80–94% by making the agent reach for built-ins and native platform features before writing new code"
 github_url: "https://github.com/DietrichGebert/ponytail"
-github_stars: 73239
+github_stars: 74121
 pricing_model: "free"
 founded_year: 2026
 tags:

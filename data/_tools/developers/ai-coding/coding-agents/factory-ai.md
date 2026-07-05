@@ -10,7 +10,7 @@ status: active
 description: Agent-native software development platform powered by autonomous AI coding
   agents called Droids
 github_url: https://github.com/Factory-AI/factory
-github_stars: 1006
+github_stars: 1007
 pricing_model: freemium
 founded_year: 2023
 headquarters: San Francisco, CA
