@@ -9,7 +9,7 @@ subcategory: "rag-kg"
 status: "active"
 description: "Enterprise graph database with native vector search, hybrid querying, and GraphRAG integration for knowledge graph applications, built on OpenTelemetry-native architecture"
 github_url: "https://github.com/neo4j/neo4j"
-github_stars: 16827
+github_stars: 16830
 pricing_model: "freemium"
 founded_year: 2007
 headquarters: "San Mateo, CA"

@@ -9,7 +9,7 @@ subcategory: "agent-memory"
 status: "active"
 description: "The brain layer your AI agent has been missing - synthesis, graph traversal, and gap analysis for intelligent agents"
 github_url: "https://github.com/garrytan/gbrain"
-github_stars: 25032
+github_stars: 25129
 pricing_model: "free"
 tags:
   - agents
