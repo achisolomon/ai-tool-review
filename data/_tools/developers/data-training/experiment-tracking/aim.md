@@ -2,7 +2,7 @@
 category: data-training
 confidence_score: 0.9
 description: "Open-source experiment tracking tool for ML teams with powerful visualization and metadata management"
-github_stars: 6180
+github_stars: 6184
 last_verified: '2026-06-03'
 name: Aim
 pricing_model: "free"

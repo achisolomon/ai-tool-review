@@ -9,7 +9,7 @@ subcategory: "code-first"
 status: "active"
 description: "Lightweight, open-source SDK that lets you easily build AI agents and integrate the latest AI models into your C#, Python, or Java codebase"
 github_url: "https://github.com/microsoft/semantic-kernel"
-github_stars: 28266
+github_stars: 28276
 pricing_model: "free"
 founded_year: 2023
 headquarters: "Redmond, WA"
