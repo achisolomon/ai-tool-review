@@ -10504,6 +10504,30 @@ const landscapeData = {
               "additional_categories": [
 
               ]
+            },
+            {
+              "name": "Base44",
+              "slug": "base44",
+              "url": "https://base44.com",
+              "desc": "AI no-code app builder that turns natural language prompts into full-stack apps with built-in database, auth, hosting, and deployment. Acquired by Wix.",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "no-code"
+              ],
+              "all_tags": [
+                "no-code"
+              ],
+              "category_id": "ai-coding",
+              "category_name": "AI Coding & Developer Tools",
+              "subcategory_id": "app-builders",
+              "subcategory_name": "App / UI Builders",
+              "additional_categories": [
+
+              ]
             }
           ]
         },
