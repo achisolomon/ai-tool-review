@@ -9,7 +9,7 @@ subcategory: "guardrails"
 status: "active"
 description: "Python framework for building reliable AI applications with input/output guards that detect, quantify, and mitigate risks in LLM outputs"
 github_url: "https://github.com/guardrails-ai/guardrails"
-github_stars: 7108
+github_stars: 7116
 pricing_model: "open-source"
 founded_year: 2023
 headquarters: "San Francisco, CA"

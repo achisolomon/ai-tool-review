@@ -11,7 +11,7 @@ type: oss
 website: https://www.kubeflow.org/
 description: "Kubernetes-native ML platform for deploying, managing, and scaling machine learning workflows on container orchestration"
 pricing_model: free
-github_stars: 15769
+github_stars: 15768
 github_url: "https://github.com/kubeflow/kubeflow"
 ---
 
