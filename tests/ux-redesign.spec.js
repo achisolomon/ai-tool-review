@@ -347,7 +347,7 @@ test.describe('Reduced-motion contract', () => {
   });
 
   test('both eyebrow lines are fully shown (no clipped typing state)', async ({ page }) => {
-    await expect(page.locator('.hero-eyebrow .line1')).toHaveText('// For developers by developers (and claude)');
+    await expect(page.locator('.hero-eyebrow .line1')).toHaveText('// Created by AI, reviewed by humans.');
     await expect(page.locator('.hero-eyebrow .line2')).toHaveText('// Community-curated, honestly ranked');
   });
 });
