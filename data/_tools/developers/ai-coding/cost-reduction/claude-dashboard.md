@@ -15,6 +15,7 @@ founded_year: 2026
 headquarters: Open Source
 tags:
   - observability
+  - cost-reduction
 last_verified: '2026-06-18'
 confidence_score: 0.95
 source_urls:

@@ -17,6 +17,7 @@ tags:
   - typescript
   - api-available
   - self-hosted
+  - cost-reduction
 last_verified: "2026-07-08"
 confidence_score: 0.92
 ---

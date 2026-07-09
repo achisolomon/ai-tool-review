@@ -15,6 +15,7 @@ last_verified: "2026-06-03"
 confidence_score: 0.95
 tags:
   - skill
+  - cost-reduction
 ---
 
 <div class="key-stats">

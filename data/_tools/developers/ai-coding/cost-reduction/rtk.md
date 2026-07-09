@@ -16,6 +16,7 @@ last_verified: "2026-06-08"
 confidence_score: 0.95
 tags:
   - skill
+  - cost-reduction
 source_urls:
   - "https://github.com/rtk-ai/rtk"
 ---

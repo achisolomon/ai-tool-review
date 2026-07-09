@@ -9,6 +9,7 @@ VALID_TAGS = %w[
   api-available mcp-server python typescript vscode-extension
   enterprise open-source self-hosted serverless
   no-code workflow-automation browser-automation evaluation observability
+  cost-reduction
 ].freeze
 
 # Category/subcategory names that should NOT be used as tags
@@ -19,7 +20,7 @@ CATEGORY_NAMES = %w[
   finance education recruiting design enterprise voice-agents contact-center
   closed-frontier open-source model-hubs ai-ides coding-agents app-builders
   code-review spec-driven testing-sensors code-intelligence dev-environment
-  cost-reduction agent-platforms code-first browser-agents protocols
+  agent-platforms code-first browser-agents protocols
   tool-integrations agent-memory durable-execution agent-identity
   app-frameworks prompt-engineering inference-apis gpu-providers model-routers
   ml-frameworks fine-tuning mlops experiment-tracking data-labeling
@@ -40,6 +41,9 @@ TAG_MAPPINGS = {
 
   # Consolidate evaluation variants
   'evaluations' => 'evaluation',
+
+  # Rename old reduces-costs tag
+  'reduces-costs' => 'cost-reduction',
 
   # SDK consolidation
   'sdk-python' => 'python',

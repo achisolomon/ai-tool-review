@@ -91,7 +91,9 @@ def validate_tags(tools_dir, tags_file, categories_file)
       end
 
       # Check if tag matches a category name
-      if category_names.include?(tag)
+      # Exception: 'cost-reduction' intentionally matches the subcategory for dual searchability
+      allowed_category_overlaps = Set.new(%w[cost-reduction])
+      if category_names.include?(tag) && !allowed_category_overlaps.include?(tag)
         errors << "#{tool_name}: Tag '#{tag}' matches a category/subcategory name - use categories for navigation, not tags"
       end
     end

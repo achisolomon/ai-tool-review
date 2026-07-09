@@ -187,6 +187,6 @@ test('star badge keeps build-time fallback when stars.json fails', async ({ page
   await page.addInitScript(() => localStorage.setItem('cookie_consent', 'accepted'));
   await page.route('**/data/stars.json*', route => route.fulfill({ status: 500, body: '' }));
   await page.goto('/tools/aider/', { waitUntil: 'domcontentloaded' });
-  // Fallback is the build-time rendered value (floor(46119/1000) = 46k).
-  await expect(page.locator('.tool-stars .star-count')).toHaveText('46k');
+  // Fallback is the build-time rendered value (floor(47197/1000) = 47k).
+  await expect(page.locator('.tool-stars .star-count')).toHaveText('47k');
 });

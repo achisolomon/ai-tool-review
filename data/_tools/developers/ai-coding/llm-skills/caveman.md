@@ -18,6 +18,7 @@ tags:
   - mcp-server
   - multi-model
   - memory
+  - cost-reduction
 last_verified: "2026-06-15"
 confidence_score: 0.95
 source_urls:

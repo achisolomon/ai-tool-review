@@ -16,7 +16,7 @@ tags:
   - skill
   - coding
   - cli
-  - reduces-costs
+  - cost-reduction
 last_verified: "2026-06-15"
 confidence_score: 0.97
 source_urls:

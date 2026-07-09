@@ -10874,7 +10874,7 @@ const landscapeData = {
                 "skill",
                 "coding",
                 "cli",
-                "reduces-costs"
+                "cost-reduction"
               ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
@@ -10980,7 +10980,8 @@ const landscapeData = {
                 "coding",
                 "mcp-server",
                 "multi-model",
-                "memory"
+                "memory",
+                "cost-reduction"
               ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
@@ -11037,10 +11038,12 @@ const landscapeData = {
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-                "skill"
+                "skill",
+                "cost-reduction"
               ],
               "all_tags": [
-                "skill"
+                "skill",
+                "cost-reduction"
               ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
@@ -11061,10 +11064,12 @@ const landscapeData = {
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-                "observability"
+                "observability",
+                "cost-reduction"
               ],
               "all_tags": [
-                "observability"
+                "observability",
+                "cost-reduction"
               ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
@@ -11092,7 +11097,8 @@ const landscapeData = {
               "all_tags": [
                 "typescript",
                 "api-available",
-                "self-hosted"
+                "self-hosted",
+                "cost-reduction"
               ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
@@ -11114,11 +11120,13 @@ const landscapeData = {
               "user_count": null,
               "tags": [
                 "mcp-server",
-                "skill"
+                "skill",
+                "cost-reduction"
               ],
               "all_tags": [
                 "mcp-server",
-                "skill"
+                "skill",
+                "cost-reduction"
               ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
@@ -11140,11 +11148,13 @@ const landscapeData = {
               "user_count": null,
               "tags": [
                 "api-available",
-                "agents"
+                "agents",
+                "cost-reduction"
               ],
               "all_tags": [
                 "api-available",
-                "agents"
+                "agents",
+                "cost-reduction"
               ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
@@ -11166,11 +11176,13 @@ const landscapeData = {
               "user_count": null,
               "tags": [
                 "mcp-server",
-                "skill"
+                "skill",
+                "cost-reduction"
               ],
               "all_tags": [
                 "mcp-server",
-                "skill"
+                "skill",
+                "cost-reduction"
               ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
@@ -11191,10 +11203,12 @@ const landscapeData = {
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-                "skill"
+                "skill",
+                "cost-reduction"
               ],
               "all_tags": [
-                "skill"
+                "skill",
+                "cost-reduction"
               ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
@@ -12220,8 +12234,8 @@ const landscapeData = {
           "description": "Completely free to use with no paid tiers"
         },
         {
-          "slug": "reduces-costs",
-          "name": "Reduces Costs",
+          "slug": "cost-reduction",
+          "name": "Cost Reduction",
           "description": "Measurably reduces AI token/compute costs"
         }
       ],
