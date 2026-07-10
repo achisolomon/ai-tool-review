@@ -9,7 +9,7 @@ subcategory: "llm-skills"
 status: "active"
 description: "Token-efficient stack for agent-native builders that compresses prompts and outputs by ~75%, treating tokens as a precious resource across compression, workflow, and memory layers"
 github_url: "https://github.com/JuliusBrussee/caveman"
-github_stars: 86966
+github_stars: 87430
 pricing_model: "free"
 founded_year: 2026
 tags:

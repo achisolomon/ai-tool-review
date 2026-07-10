@@ -9,7 +9,7 @@ subcategory: "llm-skills"
 status: "active"
 description: "CLI that writes and maintains agent documentation for your codebase"
 github_url: "https://github.com/langchain-ai/openwiki"
-github_stars: 9894
+github_stars: 10173
 pricing_model: "free"
 founded_year: 2026
 tags:
