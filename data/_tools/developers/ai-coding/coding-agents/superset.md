@@ -9,7 +9,7 @@ subcategory: "coding-agents"
 status: "active"
 description: "Desktop app that orchestrates 100+ AI coding agents in parallel using isolated Git worktrees"
 github_url: "https://github.com/superset-sh/superset"
-github_stars: 12374
+github_stars: 12381
 pricing_model: "freemium"
 founded_year: 2024
 headquarters: "San Francisco, CA"
