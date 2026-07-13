@@ -12,7 +12,7 @@ pricing_model: free
 founded_year: 2024
 headquarters: "San Francisco, CA"
 github_url: "https://github.com/browserbase/stagehand"
-github_stars: 23462
+github_stars: 23478
 tags:
   - agents
   - browser-automation

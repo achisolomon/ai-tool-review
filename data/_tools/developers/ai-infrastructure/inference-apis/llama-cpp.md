@@ -2,7 +2,7 @@
 category: ai-infrastructure
 confidence_score: 0.9
 description: Pure C/C++ LLM inference engine enabling local model execution on CPU and GPU with minimal dependencies and maximum portability.
-github_stars: 120092
+github_stars: 120196
 last_verified: '2026-06-03'
 name: llama.cpp
 pricing_model: free

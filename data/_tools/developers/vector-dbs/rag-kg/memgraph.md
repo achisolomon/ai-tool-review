@@ -10,7 +10,7 @@ status: "active"
 description: "High-performance in-memory graph database with vector search and streaming integrations, designed for real-time GraphRAG, AI memory systems, and low-latency knowledge graph applications"
 pricing_model: "open-core"
 github_url: "https://github.com/memgraph/memgraph"
-github_stars: 4233
+github_stars: 4234
 founded_year: 2016
 headquarters: "London, UK"
 
