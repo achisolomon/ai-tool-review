@@ -2136,6 +2136,32 @@ const landscapeData = {
               ]
             },
             {
+              "name": "Typeless",
+              "slug": "typeless",
+              "url": "https://www.typeless.com/",
+              "desc": "AI voice dictation app that turns speech into polished text—removing filler words, self-correcting, and adapting tone across 100+ languages.",
+              "type": "saas",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "multilingual",
+                "real-time"
+              ],
+              "all_tags": [
+                "multilingual",
+                "real-time"
+              ],
+              "category_id": "transcription",
+              "category_name": "Transcription",
+              "subcategory_id": "transcription-tools",
+              "subcategory_name": "Transcription Tools",
+              "additional_categories": [
+
+              ]
+            },
+            {
               "name": "Wispr Flow",
               "slug": "wispr-flow",
               "url": "https://wisprflow.ai/",
