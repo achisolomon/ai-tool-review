@@ -9,7 +9,7 @@ subcategory: "coding-agents"
 status: "active"
 description: "Open-source autonomous AI software engineer capable of executing complex engineering tasks and collaborating with users on software development"
 github_url: "https://github.com/All-Hands-AI/OpenHands"
-github_stars: 80604
+github_stars: 80700
 pricing_model: "open-source"
 founded_year: 2024
 headquarters: "Open Source Community"

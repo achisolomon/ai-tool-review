@@ -11,7 +11,7 @@ type: oss
 website: https://github.com/jax-ml/jax
 description: "NumPy-like framework for composable function transformations with automatic differentiation, JIT compilation, and GPU/TPU acceleration"
 pricing_model: free
-github_stars: 36000
+github_stars: 36006
 github_url: "https://github.com/jax-ml/jax"
 ---
 
