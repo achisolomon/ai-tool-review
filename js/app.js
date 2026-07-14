@@ -1095,6 +1095,20 @@ window.appInit = function appInit() {
 
         // Autocomplete item click
         autocompleteDropdown.addEventListener('click', (e) => {
+            const reviewBtn = e.target.closest('.review-quick-btn');
+            if (reviewBtn) {
+                e.stopPropagation();
+                const index = parseInt(reviewBtn.dataset.index, 10);
+                const item = autocompleteItems[index];
+                if (item && item.type === 'tool') {
+                    autocompleteDropdown.classList.add('hidden');
+                    const url = `/tools/${item.slug}/?review=1`;
+                    if (window.SpaRouter) { window.SpaRouter.navigate(url); }
+                    else { window.location.href = url; }
+                }
+                return;
+            }
+
             const item = e.target.closest('.autocomplete-item');
             if (item) {
                 const index = parseInt(item.dataset.index, 10);

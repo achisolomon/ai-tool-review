@@ -209,6 +209,20 @@ test.describe('Search Autocomplete', () => {
                 await expect(nonToolItem.locator('.review-quick-btn')).toHaveCount(0);
             }
         });
+
+        test('clicking the review button navigates to the tool page with ?review=1', async ({ page }) => {
+            const searchInput = page.locator('#action-input');
+            const dropdown = page.locator('#autocomplete-dropdown');
+
+            await searchInput.fill('cursor');
+            await expect(dropdown).not.toHaveClass(/hidden/, { timeout: 10000 });
+
+            const reviewBtn = dropdown.locator('.review-quick-btn').first();
+            if (await reviewBtn.count() > 0) {
+                await reviewBtn.click();
+                await expect(page).toHaveURL(/\/tools\/.*\/\?review=1/);
+            }
+        });
     });
 
     test.describe('Keyboard Navigation', () => {
