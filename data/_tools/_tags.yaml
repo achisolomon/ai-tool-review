@@ -37,6 +37,21 @@ capabilities:
   - slug: multi-model
     name: "Multi-Model"
     description: "Supports multiple AI models"
+  - slug: prompt-injection
+    name: "Prompt Injection Detection"
+    description: "Detects or blocks prompt-injection attacks against LLMs/agents"
+  - slug: agent-security
+    name: "Agent Security"
+    description: "Secures autonomous AI agent behavior and tool use"
+  - slug: mcp-security
+    name: "MCP Security"
+    description: "Secures Model Context Protocol servers/tool calls"
+  - slug: tool-call-guardrails
+    name: "Tool-Call Guardrails"
+    description: "Validates or blocks LLM tool/function calls before or after execution"
+  - slug: classifier-model
+    name: "Classifier Model"
+    description: "Ships as a fine-tuned classifier model rather than a rules engine"
 
 integrations:
   - slug: api-available

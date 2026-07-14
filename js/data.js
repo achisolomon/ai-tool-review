@@ -11075,6 +11075,179 @@ const landscapeData = {
       "track": "developers",
       "subcategories": [
         {
+          "id": "preventing-prompt-injection",
+          "name": "Preventing Prompt Injection",
+          "tools": [
+            {
+              "name": "IBM Granite Guardian",
+              "slug": "granite-guardian",
+              "url": "https://www.ibm.com/granite/docs/models/guardian",
+              "desc": "IBM's open-source guardrail model family that scores prompts and responses for jailbreaks, prompt injection, and harm",
+              "type": "oss",
+              "github_stars": 162,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "prompt-injection",
+                "classifier-model",
+                "self-hosted"
+              ],
+              "all_tags": [
+                "prompt-injection",
+                "classifier-model",
+                "self-hosted"
+              ],
+              "category_id": "security",
+              "category_name": "Security",
+              "subcategory_id": "preventing-prompt-injection",
+              "subcategory_name": "Preventing Prompt Injection",
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "Invariant Guardrails",
+              "slug": "invariant-guardrails",
+              "url": "https://invariantlabs.ai/guardrails",
+              "desc": "Rule-based security layer for LLM and MCP agents that intercepts traffic to catch prompt injection, PII, secrets, and tool poisoning",
+              "type": "oss",
+              "github_stars": 432,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "prompt-injection",
+                "mcp-security",
+                "agent-security"
+              ],
+              "all_tags": [
+                "prompt-injection",
+                "mcp-security",
+                "agent-security",
+                "self-hosted"
+              ],
+              "category_id": "security",
+              "category_name": "Security",
+              "subcategory_id": "preventing-prompt-injection",
+              "subcategory_name": "Preventing Prompt Injection",
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "WhyLabs LangKit",
+              "slug": "langkit",
+              "url": "https://docs.whylabs.ai/docs/category/langkit/",
+              "desc": "Open-source Python toolkit for LLM prompt/response security signals, including similarity-based prompt-injection detection. Community-maintained since 2025.",
+              "type": "oss",
+              "github_stars": 991,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "prompt-injection",
+                "observability",
+                "self-hosted"
+              ],
+              "all_tags": [
+                "prompt-injection",
+                "observability",
+                "self-hosted"
+              ],
+              "category_id": "security",
+              "category_name": "Security",
+              "subcategory_id": "preventing-prompt-injection",
+              "subcategory_name": "Preventing Prompt Injection",
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "LlamaFirewall",
+              "slug": "llamafirewall",
+              "url": "https://meta-llama.github.io/PurpleLlama/LlamaFirewall/",
+              "desc": "Meta's open-source guardrail framework combining PromptGuard 2, AlignmentCheck, and CodeShield to stop prompt injection in AI agents",
+              "type": "oss",
+              "github_stars": 4300,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "prompt-injection",
+                "agent-security",
+                "self-hosted"
+              ],
+              "all_tags": [
+                "prompt-injection",
+                "agent-security",
+                "self-hosted"
+              ],
+              "category_id": "security",
+              "category_name": "Security",
+              "subcategory_id": "preventing-prompt-injection",
+              "subcategory_name": "Preventing Prompt Injection",
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "OpenAI Guardrails (Python)",
+              "slug": "openai-guardrails-python",
+              "url": "https://openai.github.io/openai-guardrails-python/",
+              "desc": "OpenAI's open-source Python guardrails package that detects prompt injection and validates tool calls against user intent",
+              "type": "oss",
+              "github_stars": 218,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "prompt-injection",
+                "tool-call-guardrails",
+                "agent-security"
+              ],
+              "all_tags": [
+                "prompt-injection",
+                "tool-call-guardrails",
+                "agent-security"
+              ],
+              "category_id": "security",
+              "category_name": "Security",
+              "subcategory_id": "preventing-prompt-injection",
+              "subcategory_name": "Preventing Prompt Injection",
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "PIGuard",
+              "slug": "piguard",
+              "url": "https://injecguard.github.io/",
+              "desc": "Academic ACL 2025 prompt-injection classifier that reduces false positives on benign trigger-word prompts",
+              "type": "oss",
+              "github_stars": 77,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "prompt-injection",
+                "classifier-model"
+              ],
+              "all_tags": [
+                "prompt-injection",
+                "classifier-model"
+              ],
+              "category_id": "security",
+              "category_name": "Security",
+              "subcategory_id": "preventing-prompt-injection",
+              "subcategory_name": "Preventing Prompt Injection",
+              "additional_categories": [
+
+              ]
+            }
+          ]
+        },
+        {
           "id": "security-scanning",
           "name": "Security Scanning",
           "tools": [
@@ -12107,6 +12280,10 @@ const landscapeData = {
             "security-scanning": {
               "name": "Security Scanning",
               "description": "LLM-based vulnerability discovery and code security scanning"
+            },
+            "preventing-prompt-injection": {
+              "name": "Preventing Prompt Injection",
+              "description": "Gateways, filters, and detection libraries that block or flag prompt-injection attacks against LLMs and AI agents"
             }
           }
         },
@@ -12182,6 +12359,31 @@ const landscapeData = {
           "slug": "multi-model",
           "name": "Multi-Model",
           "description": "Supports multiple AI models"
+        },
+        {
+          "slug": "prompt-injection",
+          "name": "Prompt Injection Detection",
+          "description": "Detects or blocks prompt-injection attacks against LLMs/agents"
+        },
+        {
+          "slug": "agent-security",
+          "name": "Agent Security",
+          "description": "Secures autonomous AI agent behavior and tool use"
+        },
+        {
+          "slug": "mcp-security",
+          "name": "MCP Security",
+          "description": "Secures Model Context Protocol servers/tool calls"
+        },
+        {
+          "slug": "tool-call-guardrails",
+          "name": "Tool-Call Guardrails",
+          "description": "Validates or blocks LLM tool/function calls before or after execution"
+        },
+        {
+          "slug": "classifier-model",
+          "name": "Classifier Model",
+          "description": "Ships as a fine-tuned classifier model rather than a rules engine"
         }
       ],
       "integrations": [

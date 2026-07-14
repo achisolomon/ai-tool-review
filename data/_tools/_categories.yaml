@@ -309,6 +309,9 @@ developers:
       security-scanning:
         name: "Security Scanning"
         description: "LLM-based vulnerability discovery and code security scanning"
+      preventing-prompt-injection:
+        name: "Preventing Prompt Injection"
+        description: "Gateways, filters, and detection libraries that block or flag prompt-injection attacks against LLMs and AI agents"
 
   engineering-intelligence:
     name: "Engineering Intelligence"
