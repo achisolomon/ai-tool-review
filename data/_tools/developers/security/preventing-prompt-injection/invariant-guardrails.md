@@ -62,7 +62,7 @@ confidence_score: 0.85
       <ul>
         <li>Teams wanting a fully independent vendor unaffected by post-acquisition roadmap or pricing changes under Snyk</li>
         <li>Non-MCP, single-turn chatbot use cases where a lighter input classifier would suffice</li>
-        <li>Projects that need a very high-star, battle-tested community project—Guardrails and Gateway are still relatively small (low hundreds of stars) compared to some alternatives</li>
+        <li>Projects that need a very large, battle-tested community project—Guardrails and Gateway are still relatively small compared to some alternatives</li>
       </ul>
     </div>
   </div>
@@ -85,7 +85,7 @@ confidence_score: 0.85
     <ul>
       <li>Now owned by Snyk following the June 2025 acquisition; long-term product direction, pricing, and open-source commitment could shift as it's folded into Snyk's AI Trust Platform</li>
       <li>MCP-Scan has already been renamed/relocated to "agent-scan" under the Snyk GitHub org, signaling active restructuring of the project family</li>
-      <li>Smaller community than some competing guardrail frameworks—Guardrails (~430 stars) and Gateway (~75 stars) are modest relative to adjacent security tooling</li>
+      <li>Smaller community than some competing guardrail frameworks—both Guardrails and Gateway are modest in size relative to adjacent security tooling</li>
       <li>Hosted/managed features (Explorer, dashboards) sit alongside the OSS core, so getting full value may require the commercial platform</li>
     </ul>
     <div class="source"><a href="https://invariantlabs.ai/guardrails" target="_blank">Product Site</a></div>

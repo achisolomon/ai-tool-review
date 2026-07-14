@@ -82,7 +82,7 @@ confidence_score: 0.6
   <div class="cons-list">
     <h3>Watch Out For</h3>
     <ul>
-      <li>Single-author academic repo (77 stars) with no company behind it—not a commercially supported product</li>
+      <li>Single-author academic repo with no company behind it—not a commercially supported product</li>
       <li>Renamed mid-life from InjecGuard to PIGuard for licensing reasons, which creates some confusing/inconsistent naming across the paper site, Hugging Face, and GitHub</li>
       <li>Performance and over-defense-reduction numbers come from the authors' own paper and README; independent third-party validation is limited</li>
       <li>No dedicated product website—the "website" is a GitHub Pages paper landing page, not a maintained docs/marketing site</li>
