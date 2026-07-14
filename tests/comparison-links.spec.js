@@ -192,33 +192,39 @@ test.describe('comparison-links: browser E2E', () => {
     for (const row of rows) expect(row.actual).toBe(row.expected);
   });
 
-  // C: click-through — router navigates to the linked tool page.
-  test('clicking a linked competitor navigates to its tool page', async ({ page }) => {
+  // C: click-through — the SPA router navigates in-place to the linked tool page
+  // (no full reload). A marker set before the click must survive the swap.
+  test('clicking a linked competitor SPA-navigates to its tool page', async ({ page }) => {
     await page.goto('/tools/orq-ai/');
     await page.waitForFunction(() => window.ComparisonLinks && window.landscapeData);
+    await page.evaluate(() => { window.__navMarker = 'orq-ai'; });
     const link = page.locator('div.comparison a.comparison-competitor-link[href="/tools/humanloop/"]').first();
     await expect(link).toBeVisible();
     await link.click();
     await expect(page).toHaveURL(/\/tools\/humanloop\/?$/);
     await expect(page.locator('h1')).toContainText('Humanloop');
+    // Survives => in-place SPA nav. undefined => a full page reload happened.
+    expect(await page.evaluate(() => window.__navMarker)).toBe('orq-ai');
   });
 
-  // D: idempotency — re-init does not double-wrap.
+  // D: idempotency — re-init does not double-wrap ANY linked cell.
   test('re-running toolPageInit does not double-wrap links', async ({ page }) => {
     await page.goto('/tools/orq-ai/');
     await page.waitForFunction(() => window.ComparisonLinks && window.landscapeData);
     const counts = await page.evaluate(() => {
       window.toolPageInit();
       window.toolPageInit();
-      const cell = [...document.querySelectorAll('div.comparison thead th')]
-        .find((c) => c.querySelector('a.comparison-competitor-link'));
+      const linkedCells = [...document.querySelectorAll('div.comparison thead th')]
+        .filter((c) => c.querySelector('a.comparison-competitor-link'));
       return {
-        anchors: cell ? cell.querySelectorAll('a').length : -1,
-        nested: cell ? cell.querySelectorAll('a a').length : -1,
+        linkedCells: linkedCells.length,
+        links: document.querySelectorAll('div.comparison thead th a.comparison-competitor-link').length,
+        nested: document.querySelectorAll('div.comparison thead th a a').length,
       };
     });
-    expect(counts.anchors).toBe(1);
-    expect(counts.nested).toBe(0);
+    expect(counts.linkedCells).toBeGreaterThan(0);   // Orq.ai page links Humanloop/PromptLayer/LangSmith
+    expect(counts.links).toBe(counts.linkedCells);   // exactly one link per linked cell (no double-wrap)
+    expect(counts.nested).toBe(0);                   // no nested anchors
   });
 
   // E: graceful degradation — missing landscapeData is a silent no-op.
