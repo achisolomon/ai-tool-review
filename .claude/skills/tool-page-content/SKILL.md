@@ -1,6 +1,6 @@
 ---
 name: tool-page-content
-description: Use when creating or editing AI tool review pages in the ai-tool-review Jekyll site. Handles frontmatter, content structure, styling conventions, and URL validation.
+description: Use when creating or editing AI tool review pages in the ai-tool-review Jekyll site. Handles frontmatter, content structure, styling conventions, URL validation, and keeping the generated js/data.js in sync (required or CI fails).
 ---
 
 # Tool Page Content Skill
@@ -230,6 +230,80 @@ When adding a new tool:
 8. [ ] **Write content sections** - Use HTML templates above
 9. [ ] **Verify sources** - All claims should have verifiable sources
 10. [ ] **Set last_verified date** - Today's date
+11. [ ] **Sync `js/data.js`** - Add the tool to the generated data (see below). **This step is not optional — CI fails without it.**
+12. [ ] **Commit BOTH files** - The new/edited `.md` AND `js/data.js` in the same change
+
+## Sync `js/data.js` (MANDATORY)
+
+The search UI reads a **generated** file, `js/data.js`, built from the tool
+`.md` files. Creating or editing a `.md` file is **not enough** — if `js/data.js`
+is not updated to match, the CI test
+`tests/data-integrity.spec.js › every tool .md file appears in data.js` **fails**
+the PR. Every add/edit/remove of a tool MUST update `js/data.js` in the same commit.
+
+There are two ways to update it. **Prefer the surgical edit** — see the warning below.
+
+### Option A (preferred): Surgical edit
+
+Insert/update just your tool's object in `js/data.js`, keeping the exact
+existing format (2-space indentation, key order). Place it in the array for its
+`{track} → {category} → {subcategory}`, next to sibling tools. The object shape:
+
+```json
+{
+  "name": "Tool Name",
+  "slug": "tool-slug",
+  "url": "https://tool.com",
+  "desc": "The frontmatter description, verbatim",
+  "type": "commercial",
+  "github_stars": null,
+  "pricing_model": "freemium",
+  "pricing_starting": null,
+  "user_count": null,
+  "tags": [ "tag1" ],
+  "all_tags": [ "tag1" ],
+  "category_id": "category-slug",
+  "category_name": "Category Display Name",
+  "subcategory_id": "subcategory-slug",
+  "subcategory_name": "Subcategory Display Name",
+  "additional_categories": [
+
+  ]
+}
+```
+
+- `tags` is `all_tags` capped at the first 3. `category_name`/`subcategory_name`
+  come from `_categories.yaml`.
+- Find the sibling tools first (e.g. `grep -n '"id": "app-builders"' js/data.js`)
+  and copy their formatting exactly.
+
+### Option B: Full regenerate — ⚠️ USE WITH CARE
+
+```bash
+# The Ruby generator crashes on non-ASCII (em-dashes —, middot ·) unless the
+# locale is UTF-8. LANG/LC_ALL are often unset in this environment.
+LANG=C.UTF-8 LC_ALL=C.UTF-8 npm run generate
+```
+
+**⚠️ Regeneration reorders the ENTIRE file.** Category/tool order comes from
+`Dir.glob`, whose enumeration order is filesystem-dependent, so re-running the
+generator here produces a ~11k-line reshuffle diff even though only one tool
+changed. **Do not commit that churn.** After regenerating, check the diff:
+
+```bash
+git diff --stat js/data.js   # should be a small insertion, NOT thousands of lines
+```
+
+If the diff is huge, `git checkout js/data.js` and use Option A (surgical edit) instead.
+
+### Verify before committing
+
+```bash
+node scripts/validate-data-js.js        # must report "format is valid"
+grep -c '"slug": "your-slug"' js/data.js  # must be >= 1
+```
+
+Confirm the total tool count increased by exactly one (for an add).
 
 ## Red Flags - DO NOT ADD
 
@@ -247,3 +321,8 @@ When updating, always:
 2. Update `last_verified` to today
 3. Update `github_stars` with fresh count
 4. Check for any status changes (deprecated, renamed, etc.)
+5. **Sync `js/data.js`** — if you changed any field mirrored in `js/data.js`
+   (`name`, `slug`, `website`, `description`, `type`, `github_stars`,
+   `pricing_model`, `tags`, category/subcategory), update the matching object
+   there too, and commit both files. Removing a tool's `.md` means removing its
+   `js/data.js` object as well. See "Sync `js/data.js`" above.
