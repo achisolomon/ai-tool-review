@@ -2,8 +2,9 @@
 
 **Date:** 2026-07-14
 **Status:** Approved (design)
-**Scope:** Display-only. Surface the submitting account's email on the admin
-review-moderation cards. No email *sending* — that is a separate, later feature.
+**Scope:** Display-only, **admin pages only**. Surface the submitting account's email 
+on the admin review-moderation cards. No email *sending* — that is a separate, 
+later feature. Non-admins will not see emails.
 
 ## Problem
 
@@ -106,12 +107,16 @@ loadReviews()
 - Duplicate `user_id`s across reviews → de-duplicated before the `.in(...)`
   lookup.
 
-## Privacy
+## Privacy & Access Control
 
-Emails are PII, but this surface is admin/moderator-only and `user_profiles`
-RLS already restricts reads to staff. No new exposure: the same staff can
-already open the users view (`admin.html`) which lists emails. This only brings
-the association to the point of triage.
+**This feature is admin-only.** Emails are PII and will only appear on the 
+`admin.html` review-moderation view, which requires `admin` or `moderator` role 
+to access. Non-admins cannot view `admin.html` and will not see any emails.
+
+The `user_profiles` table has RLS enforced: `"Admins can read all profiles"` 
+restricts reads to staff. No new exposure: the same staff can already open the 
+users view which lists emails. This change only brings the email association to 
+the point of review triage.
 
 ## Testing
 
