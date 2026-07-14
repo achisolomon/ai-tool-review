@@ -42,6 +42,24 @@
       });
   }
 
+  // If the page was reached via a "?review=1" deep link (e.g. the search
+  // dropdown's quick-review button), auto-click the Leave a Review button
+  // once it exists, then strip the param so refresh/back doesn't re-fire it.
+  // Reuses #leave-review-btn's own click handler for auth-gating / existing-
+  // review detection — no separate open-modal code path.
+  function maybeAutoOpenReview() {
+    var params = new URLSearchParams(location.search);
+    if (params.get('review') !== '1') return;
+
+    params.delete('review');
+    var qs = params.toString();
+    var newUrl = location.pathname + (qs ? '?' + qs : '') + location.hash;
+    history.replaceState(history.state, '', newUrl);
+
+    var btn = document.getElementById('leave-review-btn');
+    if (btn) btn.click();
+  }
+
   // ---------------------------------------------------------------------------
   // initReviews — idempotent review initialiser. Called by toolPageInit on
   // every tool-page render (direct load or SPA navigation).
@@ -145,6 +163,7 @@
         // Setup all handlers
         setupReviewFormHandlers();
         setupAuthHandlers();
+        maybeAutoOpenReview();
         return;
       }
 
@@ -223,6 +242,7 @@
         // Setup all handlers
         setupReviewFormHandlers();
         setupAuthHandlers();
+        maybeAutoOpenReview();
       } else {
         // Tool exists but has no reviews yet
         summaryContainer.innerHTML = `
@@ -246,6 +266,7 @@
         // Setup all handlers
         setupReviewFormHandlers();
         setupAuthHandlers();
+        maybeAutoOpenReview();
       }
     } catch (err) {
       console.error('Failed to load reviews:', err);
