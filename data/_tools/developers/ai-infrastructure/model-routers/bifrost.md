@@ -13,6 +13,9 @@ subcategory: model-routers
 track: developers
 type: oss
 website: https://www.getmaxim.ai/bifrost
+additional_categories:
+  - category: security
+    subcategory: preventing-prompt-injection
 tags:
   - api-available
   - self-hosted

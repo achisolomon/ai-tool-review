@@ -15,10 +15,8 @@ github_url: "https://github.com/ibm-granite/granite-guardian"
 github_stars: 162
 tags:
   - prompt-injection
-  - guardrails
   - classifier-model
-  - open-source
-  - ibm
+  - self-hosted
 last_verified: "2026-07-14"
 confidence_score: 0.85
 ---

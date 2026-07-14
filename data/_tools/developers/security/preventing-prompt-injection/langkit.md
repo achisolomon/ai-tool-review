@@ -15,9 +15,8 @@ github_url: "https://github.com/whylabs/langkit"
 github_stars: 991
 tags:
   - prompt-injection
-  - llm-observability
-  - open-source
-  - python
+  - observability
+  - self-hosted
 last_verified: "2026-07-14"
 confidence_score: 0.65
 ---

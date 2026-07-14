@@ -17,8 +17,6 @@ tags:
   - prompt-injection
   - tool-call-guardrails
   - agent-security
-  - open-source
-  - openai
 last_verified: "2026-07-14"
 confidence_score: 0.85
 ---

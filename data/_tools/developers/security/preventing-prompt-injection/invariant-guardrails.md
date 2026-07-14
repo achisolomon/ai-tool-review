@@ -17,7 +17,7 @@ tags:
   - prompt-injection
   - mcp-security
   - agent-security
-  - guardrails
+  - self-hosted
 last_verified: "2026-07-14"
 confidence_score: 0.85
 ---

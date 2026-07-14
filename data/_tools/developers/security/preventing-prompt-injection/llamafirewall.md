@@ -16,9 +16,7 @@ github_stars: 4300
 tags:
   - prompt-injection
   - agent-security
-  - guardrails
-  - meta
-  - open-source
+  - self-hosted
 last_verified: "2026-07-14"
 confidence_score: 0.88
 ---

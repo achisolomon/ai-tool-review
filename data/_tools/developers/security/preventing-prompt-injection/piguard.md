@@ -16,8 +16,6 @@ github_stars: 77
 tags:
   - prompt-injection
   - classifier-model
-  - open-source
-  - research
 last_verified: "2026-07-14"
 confidence_score: 0.6
 ---
