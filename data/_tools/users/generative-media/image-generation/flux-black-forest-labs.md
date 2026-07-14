@@ -18,7 +18,7 @@ tags:
 # AI-Managed Metadata
 last_verified: "2026-06-02"
 confidence_score: 0.92
-github_stars: 25701
+github_stars: 25722
 ---
 
 <div class="key-stats">
