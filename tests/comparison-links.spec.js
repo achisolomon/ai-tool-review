@@ -65,7 +65,7 @@ test.describe('comparison-links: buildIndex()', () => {
     expect(idx.has(norm('foobar'))).toBe(false);
   });
 
-  test('ignores tools missing name or slug; placeholder names are absent', () => {
+  test('indexes only tools that have both a name and a slug', () => {
     const { buildIndex, norm } = loadComparisonLinks();
     const data = {
       users: [],
@@ -76,8 +76,11 @@ test.describe('comparison-links: buildIndex()', () => {
       ] }] }],
     };
     const idx = buildIndex(data);
+    // Only the fully-formed tool is indexed — the name-only and slug-only
+    // entries are excluded. (A placeholder like "Competitor 1" therefore has
+    // no key simply because it is never a catalog tool; that "stays plain"
+    // behavior is exercised end-to-end in the browser E2E suite.)
+    expect([...idx.keys()]).toEqual([norm('Real')]);
     expect(idx.get(norm('Real'))).toBe('real');
-    expect(idx.get(norm('Competitor 1'))).toBeUndefined();
-    expect(idx.size).toBe(1);
   });
 });
