@@ -490,6 +490,15 @@
     color: var(--vscode-text);
 }
 
+.review-author-email {
+    color: var(--vscode-text-muted);
+    font-size: 12px;
+}
+
+.review-author-email.is-anonymous {
+    font-style: italic;
+}
+
 .review-date {
     color: var(--vscode-text-muted);
 }
