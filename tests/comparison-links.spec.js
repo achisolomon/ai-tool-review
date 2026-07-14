@@ -3,7 +3,7 @@
 //   2. Never-broken invariant (browser-less) — added in Task 2.
 //   3. Browser E2E (Playwright page) — added in Task 4.
 import { test, expect } from '@playwright/test';
-import { readFileSync } from 'fs';
+import fs, { readFileSync } from 'fs';
 import path from 'path';
 import vm from 'vm';
 
@@ -85,8 +85,6 @@ test.describe('comparison-links: buildIndex()', () => {
   });
 });
 
-import fs from 'fs';
-
 // Load landscapeData from js/data.js (same technique as data-integrity.spec.js).
 function loadLandscapeData() {
   const src = readFileSync(path.join(process.cwd(), 'js', 'data.js'), 'utf8');
@@ -123,5 +121,123 @@ test.describe('comparison-links: never-broken invariant', () => {
   test('tool permalink format still matches the linker URL template (/tools/:slug/)', () => {
     const cfg = readFileSync(path.join(process.cwd(), '_config.yml'), 'utf8');
     expect(cfg).toMatch(/permalink:\s*\/tools\/:slug\//);
+  });
+});
+
+test.describe('comparison-links: browser E2E', () => {
+  // A: controlled synthetic table — deterministic coverage of every branch.
+  test('links catalog competitors only; leaves Feature/self/placeholder/non-catalog/nested plain', async ({ page }) => {
+    await page.goto('/tools/orq-ai/');
+    await page.waitForFunction(() => window.ComparisonLinks && window.landscapeData);
+    const r = await page.evaluate(() => {
+      const wrap = document.createElement('div');
+      wrap.className = 'comparison';
+      wrap.innerHTML =
+        '<table><thead><tr>' +
+          '<th>Feature</th>' +
+          '<th>Orq.ai</th>' +
+          '<th>Humanloop</th>' +
+          '<th>TotallyNotARealTool</th>' +
+          '<th>Competitor 1</th>' +
+          '<th><span class="x">Humanloop</span></th>' +
+        '</tr></thead><tbody><tr>' +
+          '<td>Open Source</td><td>No</td><td>Humanloop</td><td>x</td><td>y</td><td>z</td>' +
+        '</tr></tbody></table>';
+      document.querySelector('.tool-content').appendChild(wrap);
+      window.ComparisonLinks.linkComparisonCompetitors();
+      const th = wrap.querySelectorAll('thead th');
+      const href = (c) => { const a = c.querySelector('a'); return a ? a.getAttribute('href') : null; };
+      return {
+        feature: href(th[0]),
+        self: href(th[1]),
+        humanloop: href(th[2]),
+        fake: href(th[3]),
+        placeholder: href(th[4]),
+        nested: href(th[5]),
+        bodyLinks: wrap.querySelectorAll('tbody a').length,
+      };
+    });
+    expect(r.feature).toBeNull();
+    expect(r.self).toBeNull();
+    expect(r.humanloop).toBe('/tools/humanloop/');
+    expect(r.fake).toBeNull();
+    expect(r.placeholder).toBeNull();
+    expect(r.nested).toBeNull();
+    expect(r.bodyLinks).toBe(0);
+  });
+
+  // B: real rendered table matches expected computed independently from data.js.
+  test('real Orq.ai table matches expected links derived from data.js', async ({ page }) => {
+    await page.goto('/tools/orq-ai/');
+    await page.waitForFunction(() => window.ComparisonLinks && window.landscapeData);
+    const rows = await page.evaluate(() => {
+      const { norm, buildIndex } = window.ComparisonLinks;
+      const index = buildIndex(window.landscapeData);
+      const self = 'orq-ai';
+      const out = [];
+      document.querySelectorAll('div.comparison table').forEach((table) => {
+        table.querySelectorAll('thead th').forEach((cell, i) => {
+          if (i === 0) return;
+          if (cell.children.length) return;
+          const text = cell.textContent;
+          const slug = index.get(norm(text));
+          const expected = (slug && slug !== self) ? '/tools/' + slug + '/' : null;
+          const a = cell.querySelector('a.comparison-competitor-link');
+          out.push({ text: text, expected: expected, actual: a ? a.getAttribute('href') : null });
+        });
+      });
+      return out;
+    });
+    expect(rows.length).toBeGreaterThan(0);
+    for (const row of rows) expect(row.actual).toBe(row.expected);
+  });
+
+  // C: click-through — router navigates to the linked tool page.
+  test('clicking a linked competitor navigates to its tool page', async ({ page }) => {
+    await page.goto('/tools/orq-ai/');
+    await page.waitForFunction(() => window.ComparisonLinks && window.landscapeData);
+    const link = page.locator('div.comparison a.comparison-competitor-link[href="/tools/humanloop/"]').first();
+    await expect(link).toBeVisible();
+    await link.click();
+    await expect(page).toHaveURL(/\/tools\/humanloop\/?$/);
+    await expect(page.locator('h1')).toContainText('Humanloop');
+  });
+
+  // D: idempotency — re-init does not double-wrap.
+  test('re-running toolPageInit does not double-wrap links', async ({ page }) => {
+    await page.goto('/tools/orq-ai/');
+    await page.waitForFunction(() => window.ComparisonLinks && window.landscapeData);
+    const counts = await page.evaluate(() => {
+      window.toolPageInit();
+      window.toolPageInit();
+      const cell = [...document.querySelectorAll('div.comparison thead th')]
+        .find((c) => c.querySelector('a.comparison-competitor-link'));
+      return {
+        anchors: cell ? cell.querySelectorAll('a').length : -1,
+        nested: cell ? cell.querySelectorAll('a a').length : -1,
+      };
+    });
+    expect(counts.anchors).toBe(1);
+    expect(counts.nested).toBe(0);
+  });
+
+  // E: graceful degradation — missing landscapeData is a silent no-op.
+  test('missing landscapeData is a no-op and does not throw', async ({ page }) => {
+    await page.goto('/tools/orq-ai/');
+    await page.waitForFunction(() => window.ComparisonLinks);
+    const outcome = await page.evaluate(() => {
+      const wrap = document.createElement('div');
+      wrap.className = 'comparison';
+      wrap.innerHTML = '<table><thead><tr><th>Feature</th><th>Humanloop</th></tr></thead></table>';
+      document.querySelector('.tool-content').appendChild(wrap);
+      window.landscapeData = undefined;
+      window.__comparisonIndex = undefined;
+      let threw = false;
+      try { window.ComparisonLinks.linkComparisonCompetitors(); }
+      catch (_) { threw = true; }
+      return { threw: threw, linked: wrap.querySelectorAll('a').length };
+    });
+    expect(outcome.threw).toBe(false);
+    expect(outcome.linked).toBe(0);
   });
 });
