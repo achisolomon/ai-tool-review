@@ -1898,21 +1898,24 @@ a:hover {
 
 .review-quick-btn {
     flex-shrink: 0;
-    border: none;
-    background: transparent;
+    border: 1px solid var(--vscode-border, #45475a);
+    background: var(--vscode-input-bg, #2a2a3e);
+    color: var(--vscode-link, #89b4fa);
     cursor: pointer;
-    font-size: 13px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
     line-height: 1;
-    padding: 2px 4px;
+    padding: 2px 7px;
     border-radius: 3px;
-    opacity: 0.7;
-    transition: opacity 0.15s ease, background 0.15s ease;
+    transition: background 0.15s ease, border-color 0.15s ease;
 }
 
 .review-quick-btn:hover,
 .review-quick-btn:focus-visible {
-    opacity: 1;
-    background: var(--vscode-list-hover);
+    background: var(--vscode-list-hover, #313244);
+    border-color: var(--vscode-link, #89b4fa);
 }
 
 .autocomplete-item-meta {
@@ -2764,10 +2767,39 @@ main:focus-visible,
 
 /* Small, unobtrusive "Suggest an edit" pinned to the header's top-right —
    out of the centered content flow so it costs no vertical space. */
-.tool-page .tool-suggest-corner {
+.tool-page .tool-action-btns {
     position: absolute;
     top: 0;
-    right: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+}
+
+.tool-page .tool-action-btn {
+    background: transparent;
+    border: 1px solid var(--vscode-border, #333);
+    color: var(--vscode-text-muted, #8b8b8b);
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    line-height: 1.2;
+    transition: color .12s ease, border-color .12s ease;
+}
+.tool-page .tool-action-btn:hover,
+.tool-page .tool-action-btn:focus-visible {
+    color: var(--vscode-text-link, #3794ff);
+    border-color: var(--vscode-text-link, #3794ff);
+}
+.tool-page .tool-action-btn--review:hover,
+.tool-page .tool-action-btn--review:focus-visible {
+    color: var(--vscode-link, #89b4fa);
+    border-color: var(--vscode-link, #89b4fa);
+}
+
+.tool-page .tool-suggest-corner {
     background: transparent;
     border: 1px solid var(--vscode-border, #333);
     color: var(--vscode-text-muted, #8b8b8b);
@@ -2784,10 +2816,11 @@ main:focus-visible,
     border-color: var(--vscode-text-link, #3794ff);
 }
 @media (max-width: 600px) {
-    /* On narrow screens, drop back into the flow so it never overlaps the title */
-    .tool-page .tool-suggest-corner {
+    .tool-page .tool-action-btns {
         position: static;
-        display: inline-block;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 6px;
         margin-top: 12px;
     }
 }

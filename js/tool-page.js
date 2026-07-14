@@ -42,20 +42,24 @@
       });
   }
 
+  // Strip ?review=1 from the URL without triggering a reload.
+  function stripReviewParam() {
+    var params = new URLSearchParams(location.search);
+    params.delete('review');
+    var qs = params.toString();
+    history.replaceState(history.state, '', location.pathname + (qs ? '?' + qs : '') + location.hash);
+  }
+
   // If the page was reached via a "?review=1" deep link (e.g. the search
-  // dropdown's quick-review button), auto-click the Leave a Review button
-  // once it exists, then strip the param so refresh/back doesn't re-fire it.
-  // Reuses #leave-review-btn's own click handler for auth-gating / existing-
-  // review detection — no separate open-modal code path.
+  // dropdown's quick-review button), auto-click the Leave a Review button.
+  // We intentionally do NOT strip ?review=1 here — the leave-review-btn
+  // handler strips it only after confirming the user is signed in. Leaving it
+  // in the URL means signInWithProvider's redirectTo carries it back after
+  // OAuth, so unauthenticated users land back here with the param intact and
+  // the review dialog opens automatically post-login.
   function maybeAutoOpenReview() {
     var params = new URLSearchParams(location.search);
     if (params.get('review') !== '1') return;
-
-    params.delete('review');
-    var qs = params.toString();
-    var newUrl = location.pathname + (qs ? '?' + qs : '') + location.hash;
-    history.replaceState(history.state, '', newUrl);
-
     var btn = document.getElementById('leave-review-btn');
     if (btn) btn.click();
   }
@@ -372,6 +376,13 @@
       var ratingValue = document.getElementById('rating-value');
       var ratingError = document.getElementById('rating-error');
       var leaveReviewBtn = document.getElementById('leave-review-btn');
+      var headerReviewBtn = document.getElementById('tool-header-leave-review');
+      if (headerReviewBtn) {
+        headerReviewBtn.addEventListener('click', function () {
+          if (leaveReviewBtn) leaveReviewBtn.click();
+          else document.getElementById('reviews')?.scrollIntoView({ behavior: 'smooth' });
+        });
+      }
       var closeBtn    = document.getElementById('review-modal-close');
       var cancelBtn   = document.getElementById('review-cancel');
       var submitBtn   = document.getElementById('review-submit');
@@ -382,7 +393,9 @@
           await checkAuthState();
 
           if (currentUser) {
-            // User is logged in - check if they have an existing review
+            // Signed in — safe to strip ?review=1 so refresh/back won't re-fire it
+            stripReviewParam();
+            // Check if they have an existing review
             var toolId = form.dataset.toolId;
             if (toolId) {
               var existingResult = await window.ReviewsAPI.getUserReviewForTool(toolId);
@@ -396,7 +409,8 @@
             prefillUserInfo(currentUser);
             modal.classList.add('active');
           } else {
-            // User not logged in - show auth modal and set pending flag
+            // Not signed in — keep ?review=1 in the URL so OAuth redirectTo
+            // carries it back and the dialog opens automatically after login
             pendingReviewOpen = true;
             authModal.classList.add('active');
           }

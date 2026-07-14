@@ -232,7 +232,7 @@ test.describe('Review Components', () => {
       }
     });
 
-    test('?review=1 auto-opens the auth modal when not logged in, and cleans up the URL', async ({ page }) => {
+    test('?review=1 auto-opens the auth modal when not logged in, and preserves the URL for post-login redirect', async ({ page }) => {
       await page.goto('/tools/claude-code/?review=1');
       await page.waitForSelector('#leave-review-btn', { timeout: 10000 }).catch(() => null);
 
@@ -243,8 +243,9 @@ test.describe('Review Components', () => {
         // Auth modal should auto-open without any click from the test
         await expect(authModal).toHaveClass(/active/, { timeout: 10000 });
 
-        // The ?review=1 param should be stripped so refresh/back doesn't retrigger it
-        await expect(page).not.toHaveURL(/review=1/);
+        // ?review=1 must be kept in the URL so OAuth redirectTo carries it back
+        // after login — stripping it here would break the post-login auto-open flow
+        await expect(page).toHaveURL(/review=1/);
       }
     });
 

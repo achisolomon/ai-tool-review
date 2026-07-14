@@ -527,7 +527,7 @@ window.appInit = function appInit() {
                         : `${item.toolCount} tools`;
 
             const reviewButton = item.type === 'tool'
-                ? `<button type="button" class="review-quick-btn" data-index="${index}" aria-label="Write a review for ${item.name}" title="Write a review">✍️</button>`
+                ? `<button type="button" class="review-quick-btn" data-index="${index}" aria-label="Leave a review for ${item.name}" title="Leave a review">Leave a review</button>`
                 : '';
 
             html += `
