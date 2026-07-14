@@ -191,6 +191,24 @@ test.describe('Search Autocomplete', () => {
                 await expect(page).toHaveURL(/\/tools\/.*\//);
             }
         });
+
+        test('shows a review button on tool rows but not category/subcategory rows', async ({ page }) => {
+            const searchInput = page.locator('#action-input');
+            const dropdown = page.locator('#autocomplete-dropdown');
+
+            await searchInput.fill('cursor');
+            await expect(dropdown).not.toHaveClass(/hidden/, { timeout: 10000 });
+
+            const toolItem = dropdown.locator('.autocomplete-item[data-type="tool"]').first();
+            if (await toolItem.count() > 0) {
+                await expect(toolItem.locator('.review-quick-btn')).toBeVisible();
+            }
+
+            const nonToolItem = dropdown.locator('.autocomplete-item:not([data-type="tool"])').first();
+            if (await nonToolItem.count() > 0) {
+                await expect(nonToolItem.locator('.review-quick-btn')).toHaveCount(0);
+            }
+        });
     });
 
     test.describe('Keyboard Navigation', () => {

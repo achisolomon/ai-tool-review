@@ -1879,6 +1879,12 @@ a:hover {
     min-width: 0;
 }
 
+.autocomplete-item-name-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
 .autocomplete-item-name {
     font-size: 14px;
     font-weight: 500;
@@ -1886,6 +1892,27 @@ a:hover {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    min-width: 0;
+    flex: 1;
+}
+
+.review-quick-btn {
+    flex-shrink: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 1;
+    padding: 2px 4px;
+    border-radius: 3px;
+    opacity: 0.7;
+    transition: opacity 0.15s ease, background 0.15s ease;
+}
+
+.review-quick-btn:hover,
+.review-quick-btn:focus-visible {
+    opacity: 1;
+    background: var(--vscode-list-hover);
 }
 
 .autocomplete-item-meta {

@@ -526,11 +526,18 @@ window.appInit = function appInit() {
                         ? `${item.toolCount} tools with this tag`
                         : `${item.toolCount} tools`;
 
+            const reviewButton = item.type === 'tool'
+                ? `<button type="button" class="review-quick-btn" data-index="${index}" aria-label="Write a review for ${item.name}" title="Write a review">✍️</button>`
+                : '';
+
             html += `
                 <div class="autocomplete-item" data-index="${index}" data-type="${item.type}">
                     <span class="autocomplete-item-icon">${icon}</span>
                     <div class="autocomplete-item-content">
-                        <div class="autocomplete-item-name">${item.name}</div>
+                        <div class="autocomplete-item-name-row">
+                            <div class="autocomplete-item-name">${item.name}</div>
+                            ${reviewButton}
+                        </div>
                         <div class="autocomplete-item-meta">${meta}</div>
                     </div>
                     <span class="autocomplete-item-type ${item.type}">${item.type}</span>
