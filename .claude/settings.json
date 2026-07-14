@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh -c 'p=\"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/auto-commit-push.sh\"; [ -x \"$p\" ] && exec \"$p\"'",
+            "timeout": 60,
+            "statusMessage": "Auto-committing & pushing changes..."
+          }
+        ]
+      }
+    ]
+  }
+}
