@@ -526,11 +526,18 @@ window.appInit = function appInit() {
                         ? `${item.toolCount} tools with this tag`
                         : `${item.toolCount} tools`;
 
+            const reviewButton = item.type === 'tool'
+                ? `<button type="button" class="review-quick-btn" data-index="${index}" aria-label="Leave a review for ${item.name}" title="Leave a review">Leave a review</button>`
+                : '';
+
             html += `
                 <div class="autocomplete-item" data-index="${index}" data-type="${item.type}">
                     <span class="autocomplete-item-icon">${icon}</span>
                     <div class="autocomplete-item-content">
-                        <div class="autocomplete-item-name">${item.name}</div>
+                        <div class="autocomplete-item-name-row">
+                            <div class="autocomplete-item-name">${item.name}</div>
+                            ${reviewButton}
+                        </div>
                         <div class="autocomplete-item-meta">${meta}</div>
                     </div>
                     <span class="autocomplete-item-type ${item.type}">${item.type}</span>
@@ -1088,6 +1095,20 @@ window.appInit = function appInit() {
 
         // Autocomplete item click
         autocompleteDropdown.addEventListener('click', (e) => {
+            const reviewBtn = e.target.closest('.review-quick-btn');
+            if (reviewBtn) {
+                e.stopPropagation();
+                const index = parseInt(reviewBtn.dataset.index, 10);
+                const item = autocompleteItems[index];
+                if (item && item.type === 'tool') {
+                    autocompleteDropdown.classList.add('hidden');
+                    const url = `/tools/${item.slug}/?review=1`;
+                    if (window.SpaRouter) { window.SpaRouter.navigate(url); }
+                    else { window.location.href = url; }
+                }
+                return;
+            }
+
             const item = e.target.closest('.autocomplete-item');
             if (item) {
                 const index = parseInt(item.dataset.index, 10);

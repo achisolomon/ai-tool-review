@@ -44,7 +44,10 @@
           {% endif %}
         </p>
         <p class="tool-description">{{ page.description }}</p>
-        <button class="tool-suggest-corner" id="tool-suggest-open" type="button" title="Suggest an edit to this tool">&#9998; Suggest an edit</button>
+        <div class="tool-action-btns">
+          <button class="tool-action-btn tool-action-btn--review" id="tool-header-leave-review" type="button">&#9998; Leave a review</button>
+          <button class="tool-suggest-corner" id="tool-suggest-open" type="button" title="Suggest an edit to this tool">&#9998; Suggest an edit</button>
+        </div>
         {% if page.suggested_by %}
         <p class="tool-credit">🧭 on the map thanks to {{ page.suggested_by }}</p>
         {% endif %}

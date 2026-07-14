@@ -125,19 +125,6 @@ confidence_score: 0.9
 
 </details>
 
-## User Reviews
-
-<div class="user-reviews">
-  <div class="review">
-    <div class="review-header">
-      <span class="reviewer">Achi Solomon</span>
-      <span class="review-verdict try-it">Worth Trying</span>
-    </div>
-    <p>הייתרון הבולט של הרמס הוא היכולת שלו ללמוד מתהליכים שרצו ולייצר skills ולעדכן בהתאם לתוצאות — זה מה שמבדיל אותו מסוכנים רגילים. הייתי בודק אותו.</p>
-    <p class="review-translation"><em>The standout advantage of Hermes is its ability to learn from past runs, generate skills, and update based on results — that's what sets it apart from regular agents. I'd give it a try.</em></p>
-  </div>
-</div>
-
 ## How It Compares
 
 <div class="comparison" markdown="1">

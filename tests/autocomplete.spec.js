@@ -191,6 +191,56 @@ test.describe('Search Autocomplete', () => {
                 await expect(page).toHaveURL(/\/tools\/.*\//);
             }
         });
+
+        test('shows a review button on tool rows but not category/subcategory rows', async ({ page }) => {
+            const searchInput = page.locator('#action-input');
+            const dropdown = page.locator('#autocomplete-dropdown');
+
+            await searchInput.fill('cursor');
+            await expect(dropdown).not.toHaveClass(/hidden/, { timeout: 10000 });
+
+            const toolItem = dropdown.locator('.autocomplete-item[data-type="tool"]').first();
+            if (await toolItem.count() > 0) {
+                await expect(toolItem.locator('.review-quick-btn')).toBeVisible();
+            }
+
+            const nonToolItem = dropdown.locator('.autocomplete-item:not([data-type="tool"])').first();
+            if (await nonToolItem.count() > 0) {
+                await expect(nonToolItem.locator('.review-quick-btn')).toHaveCount(0);
+            }
+        });
+
+        test('clicking the review button navigates to the tool page with ?review=1', async ({ page }) => {
+            const searchInput = page.locator('#action-input');
+            const dropdown = page.locator('#autocomplete-dropdown');
+
+            await searchInput.fill('cursor');
+            await expect(dropdown).not.toHaveClass(/hidden/, { timeout: 10000 });
+
+            const reviewBtn = dropdown.locator('.review-quick-btn').first();
+            if (await reviewBtn.count() > 0) {
+                await reviewBtn.click();
+                await expect(page).toHaveURL(/\/tools\/.*\/\?review=1/);
+            }
+        });
+
+        test('full flow: search, click review button, lands on tool page with review flow open', async ({ page }) => {
+            const searchInput = page.locator('#action-input');
+            const dropdown = page.locator('#autocomplete-dropdown');
+
+            await searchInput.fill('claude code');
+            await expect(dropdown).not.toHaveClass(/hidden/, { timeout: 10000 });
+
+            const toolItem = dropdown.locator('.autocomplete-item[data-type="tool"]').first();
+            if (await toolItem.count() > 0) {
+                await toolItem.locator('.review-quick-btn').click();
+
+                await expect(page).toHaveURL(/\/tools\/claude-code\//);
+
+                const authModal = page.locator('#auth-modal');
+                await expect(authModal).toHaveClass(/active/, { timeout: 10000 });
+            }
+        });
     });
 
     test.describe('Keyboard Navigation', () => {

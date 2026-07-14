@@ -232,6 +232,23 @@ test.describe('Review Components', () => {
       }
     });
 
+    test('?review=1 auto-opens the auth modal when not logged in, and preserves the URL for post-login redirect', async ({ page }) => {
+      await page.goto('/tools/claude-code/?review=1');
+      await page.waitForSelector('#leave-review-btn', { timeout: 10000 }).catch(() => null);
+
+      const leaveReviewBtn = page.locator('#leave-review-btn');
+      const authModal = page.locator('#auth-modal');
+
+      if (await leaveReviewBtn.count() > 0) {
+        // Auth modal should auto-open without any click from the test
+        await expect(authModal).toHaveClass(/active/, { timeout: 10000 });
+
+        // ?review=1 must be kept in the URL so OAuth redirectTo carries it back
+        // after login — stripping it here would break the post-login auto-open flow
+        await expect(page).toHaveURL(/review=1/);
+      }
+    });
+
     test('auth modal has GitHub and Google sign-in buttons', async ({ page }) => {
       await page.goto('/tools/claude-code/');
       await page.waitForSelector('#leave-review-btn', { timeout: 10000 }).catch(() => null);
