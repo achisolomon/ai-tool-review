@@ -109,10 +109,12 @@ window.ComparisonLinks = {
   4. For each header cell: skip if it already contains an `<a>` (idempotency);
      skip if it has any element child (pure-text only); look up `norm(textContent)`
      in the index; if found **and** matched slug ≠ current slug, replace the text
-     node with `<a href="/tools/{slug}/" class="comparison-competitor-link">{original text}</a>`.
+     node with `<a href="/tools/{slug}/" class="comparison-competitor-link" data-spa-link>{original text}</a>`.
 
-The link is a normal internal anchor; the existing SPA router intercepts
-`/tools/...` navigations.
+The link carries `data-spa-link` — **required** for the SPA router to intercept
+the click and navigate in-place. `js/router.js` only intercepts clicks on
+`[data-spa-link]` anchors (the convention every internal link on the site uses);
+a plain anchor would trigger a full page reload instead of an SPA content swap.
 
 ### Section 2 — `js/tool-page.js` hook
 
