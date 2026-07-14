@@ -534,6 +534,7 @@
                         <div class="review-meta">
                             <span class="review-stars">${stars}</span>
                             <span class="review-author">by ${escapeHtml(authorName)}</span>
+                            <span class="review-author-email${review.authorEmail ? '' : ' is-anonymous'}">${review.authorEmail ? escapeHtml(review.authorEmail) : 'no account (anonymous)'}</span>
                             <span class="review-date">${date}</span>
                         </div>
                     </div>
