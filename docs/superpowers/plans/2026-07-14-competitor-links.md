@@ -225,6 +225,7 @@ Create `js/comparison-links.js` with exactly this content:
         var a = document.createElement('a');
         a.href = toolUrl(slug);
         a.className = 'comparison-competitor-link';
+        a.setAttribute('data-spa-link', ''); // SPA router only intercepts [data-spa-link] anchors
         a.textContent = text;
         cell.textContent = '';
         cell.appendChild(a);
