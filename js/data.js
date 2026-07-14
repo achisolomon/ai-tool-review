@@ -2160,6 +2160,32 @@ const landscapeData = {
               "additional_categories": [
 
               ]
+            },
+            {
+              "name": "Wispr Flow",
+              "slug": "wispr-flow",
+              "url": "https://wisprflow.ai/",
+              "desc": "AI voice dictation app that turns speech into clean, formatted text in any app across Mac, Windows, iPhone, and Android.",
+              "type": "saas",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "real-time",
+                "multilingual"
+              ],
+              "all_tags": [
+                "real-time",
+                "multilingual"
+              ],
+              "category_id": "transcription",
+              "category_name": "Transcription",
+              "subcategory_id": "transcription-tools",
+              "subcategory_name": "Transcription Tools",
+              "additional_categories": [
+
+              ]
             }
           ]
         }
