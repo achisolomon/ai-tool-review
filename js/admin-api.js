@@ -87,6 +87,7 @@ async function getReviewsForModeration(status, { limit = 50, offset = 0 } = {}) 
         .select(`
             id,
             tool_id,
+            user_id,
             author_name,
             author_initial,
             company_size,
@@ -113,7 +114,35 @@ async function getReviewsForModeration(status, { limit = 50, offset = 0 } = {}) 
         return { reviews: [], total: 0 };
     }
 
-    return { reviews: data || [], total: count || 0 };
+    const reviews = data || [];
+
+    // reviews.user_id and user_profiles.id both reference auth.users, but there
+    // is no direct FK between reviews and user_profiles, so PostgREST can't
+    // embed the email — fetch it in one batched second query and merge here.
+    const userIds = [...new Set(reviews.map(r => r.user_id).filter(Boolean))];
+    const emailByUserId = {};
+
+    if (userIds.length > 0) {
+        const { data: profiles, error: profilesError } = await supabase
+            .from('user_profiles')
+            .select('id, email')
+            .in('id', userIds);
+
+        if (profilesError) {
+            console.error('Error fetching reviewer profiles:', profilesError);
+        } else {
+            for (const profile of profiles || []) {
+                emailByUserId[profile.id] = profile.email || null;
+            }
+        }
+    }
+
+    const reviewsWithEmail = reviews.map(review => ({
+        ...review,
+        authorEmail: review.user_id ? (emailByUserId[review.user_id] ?? null) : null,
+    }));
+
+    return { reviews: reviewsWithEmail, total: count || 0 };
 }
 
 /**
