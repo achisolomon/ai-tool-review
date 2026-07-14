@@ -84,3 +84,44 @@ test.describe('comparison-links: buildIndex()', () => {
     expect(idx.get(norm('Real'))).toBe('real');
   });
 });
+
+import fs from 'fs';
+
+// Load landscapeData from js/data.js (same technique as data-integrity.spec.js).
+function loadLandscapeData() {
+  const src = readFileSync(path.join(process.cwd(), 'js', 'data.js'), 'utf8');
+  const ctx = {};
+  vm.createContext(ctx);
+  vm.runInContext(src + '\n;this.__data = landscapeData;', ctx);
+  return ctx.__data;
+}
+
+function forEachTool(data, cb) {
+  ['users', 'developers'].forEach((track) =>
+    (data[track] || []).forEach((category) =>
+      (category.subcategories || []).forEach((sub) =>
+        (sub.tools || []).forEach((tool) => cb(tool))
+      )
+    )
+  );
+}
+
+test.describe('comparison-links: never-broken invariant', () => {
+  test('every catalog slug resolves to a built /tools/{slug}/ page', () => {
+    const siteDir = path.join(process.cwd(), '_site');
+    test.skip(!fs.existsSync(siteDir), '_site not built — run: bundle exec jekyll build');
+    const data = loadLandscapeData();
+    const missing = [];
+    forEachTool(data, (tool) => {
+      if (!tool.slug) return;
+      const page = path.join(siteDir, 'tools', tool.slug, 'index.html');
+      if (!fs.existsSync(page)) missing.push(tool.slug);
+    });
+    expect(missing).toEqual([]);
+  });
+
+  test('tool permalink format still matches the linker URL template (/tools/:slug/)', () => {
+    const cfg = readFileSync(path.join(process.cwd(), '_config.yml'), 'utf8');
+    expect(cfg).toMatch(/permalink:\s*\/tools\/:slug\//);
+  });
+});
