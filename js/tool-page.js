@@ -711,6 +711,7 @@
     var tool = readToolData();
     if (!tool) return;
     wireSuggestEdit(tool);
+    if (window.ComparisonLinks) window.ComparisonLinks.linkComparisonCompetitors();
     initReviews(tool);
   }
 

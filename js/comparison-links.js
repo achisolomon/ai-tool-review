@@ -84,6 +84,7 @@
         var a = document.createElement('a');
         a.href = toolUrl(slug);
         a.className = 'comparison-competitor-link';
+        a.setAttribute('data-spa-link', '');
         a.textContent = text;
         cell.textContent = '';
         cell.appendChild(a);
