@@ -237,7 +237,7 @@ test.describe('comparison-links: browser E2E', () => {
       wrap.innerHTML = '<table><thead><tr><th>Feature</th><th>Humanloop</th></tr></thead></table>';
       document.querySelector('.tool-content').appendChild(wrap);
       window.landscapeData = undefined;
-      window.__comparisonIndex = undefined;
+      window.ComparisonLinks._resetIndex();
       let threw = false;
       try { window.ComparisonLinks.linkComparisonCompetitors(); }
       catch (_) { threw = true; }

@@ -51,22 +51,19 @@
   }
 
   // Header cells hold the tool names (kramdown renders them as <thead><th>).
-  // Fall back to the first row's cells if there is no <thead>.
   function headerCells(table) {
-    var cells = table.querySelectorAll('thead th');
-    if (cells.length) return cells;
-    var firstRow = table.querySelector('tr');
-    return firstRow ? firstRow.children : [];
+    return table.querySelectorAll('thead th');
   }
 
+  // Module-level cache: built once from landscapeData, reused across SPA navigations.
+  var _index = null;
+
   function linkComparisonCompetitors() {
-    // Reuse a cached index; build it from landscapeData if absent. If neither
-    // is available, no-op gracefully (never throw).
-    var index = window.__comparisonIndex ||
-      (window.landscapeData
-        ? (window.__comparisonIndex = buildIndex(window.landscapeData))
-        : null);
-    if (!index) return;
+    // Build the index once; if landscapeData is unavailable, no-op gracefully.
+    if (!_index) {
+      if (!window.landscapeData) return;
+      _index = buildIndex(window.landscapeData);
+    }
 
     var self = currentSlug();
     var tables = document.querySelectorAll('div.comparison table');
@@ -75,11 +72,11 @@
       for (var i = 0; i < cells.length; i++) {
         var cell = cells[i];
         // Idempotent: skip cells already linked.
-        if (cell.querySelector && cell.querySelector('a')) continue;
+        if (cell.querySelector('a')) continue;
         // Only transform pure-text cells — never corrupt nested markup.
-        if (cell.children && cell.children.length) continue;
+        if (cell.children.length) continue;
         var text = cell.textContent;
-        var slug = index.get(norm(text));
+        var slug = _index.get(norm(text));
         if (!slug || slug === self) continue; // no match, or the page's own tool
         var a = document.createElement('a');
         a.href = toolUrl(slug);
@@ -95,6 +92,7 @@
   window.ComparisonLinks = {
     norm: norm,
     buildIndex: buildIndex,
-    linkComparisonCompetitors: linkComparisonCompetitors
+    linkComparisonCompetitors: linkComparisonCompetitors,
+    _resetIndex: function () { _index = null; }, // test hook only
   };
 })();

@@ -30,6 +30,16 @@ esac
 author_name="Claude"
 author_email="noreply@anthropic.com"
 
+# Stage only project source files; never stage secrets or build artifacts.
+# Patterns mirroring .gitignore exclusions plus common sensitive file names.
+secret_patterns='^\.env\|\.env\.\|secret\|credential\|\.pem$\|\.key$\|config-local\|supabase.*config\.js'
+untracked_secrets="$(git ls-files --others --exclude-standard | grep -i "$secret_patterns" || true)"
+if [ -n "$untracked_secrets" ]; then
+  printf '{"systemMessage":"Auto-commit skipped: untracked file(s) match secret patterns — stage manually: %s"}\n' \
+    "$(printf '%s' "$untracked_secrets" | tr '\n' ' ')"
+  exit 0
+fi
+
 git add -A || exit 0
 # Re-check after staging (e.g. everything was gitignored).
 git diff --cached --quiet && exit 0

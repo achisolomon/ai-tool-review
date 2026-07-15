@@ -140,12 +140,10 @@ details.more-details summary::-webkit-details-marker { display: none; }
 .tool-taxonomy .tag-badge:hover { background: #505050; color: #fff; }
 .tool-taxonomy .taxonomy-empty { color: #6e6e6e; }
 
-/* Auto-linked competitor names in "How It Compares" tables. Subtle: signals
-   clickability without turning the header row into a wall of blue. */
+/* Auto-linked competitor names in "How It Compares" tables. */
 .comparison-competitor-link {
-  color: inherit;
+  color: #007acc;
   text-decoration: none;
-  border-bottom: 1px dotted currentColor;
 }
 .comparison-competitor-link:hover {
   text-decoration: underline;
