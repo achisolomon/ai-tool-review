@@ -11,7 +11,7 @@ description: Open source LLM-based vulnerability discovery product from Knostic 
   helps defenders find verified security flaws while minimizing false positives and
   false negatives
 github_url: https://github.com/knostic/OpenAnt
-github_stars: 677
+github_stars: 678
 pricing_model: open-source
 founded_year: 2026
 tags:
