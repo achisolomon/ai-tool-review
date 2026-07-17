@@ -12,7 +12,7 @@ pricing_model: "free"
 founded_year: 2025
 headquarters: "—"
 github_url: "https://github.com/leolee99/PIGuard"
-github_stars: 77
+github_stars: 78
 tags:
   - prompt-injection
   - classifier-model
