@@ -11,7 +11,7 @@ type: oss
 website: https://keras.io/
 description: "High-level deep learning API emphasizing user-friendliness with readable, concise code for rapid experimentation"
 pricing_model: free
-github_stars: 64169
+github_stars: 64167
 github_url: "https://github.com/keras-team/keras"
 ---
 

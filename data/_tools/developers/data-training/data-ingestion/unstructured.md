@@ -4,7 +4,7 @@ confidence_score: 0.96
 description: "Unstructured is an open-source and commercial ETL platform that converts 64+ file types into structured, AI-ready data for LLM and RAG pipelines, trusted by 87% of Fortune 1000 companies with SOC 2 Type II, HIPAA, and FedRAMP High compliance."
 founded_year: 2022
 github_url: "https://github.com/Unstructured-IO/unstructured"
-github_stars: 15147
+github_stars: 15153
 headquarters: "Rocklin, CA"
 last_verified: '2026-06-17'
 name: Unstructured

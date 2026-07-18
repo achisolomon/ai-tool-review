@@ -12,7 +12,7 @@ pricing_model: freemium
 founded_year: 2023
 headquarters: "San Francisco, CA"
 github_url: "https://github.com/composiohq/composio"
-github_stars: 29258
+github_stars: 29270
 last_verified: "2026-06-03"
 confidence_score: 0.9
 tags:
