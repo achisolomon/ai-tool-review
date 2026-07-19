@@ -9,7 +9,7 @@ subcategory: "browser-agents"
 status: "active"
 description: "Make websites accessible for AI agents. Automate tasks online with ease."
 github_url: "https://github.com/browser-use/browser-use"
-github_stars: 105307
+github_stars: 105468
 pricing_model: "open-source"
 founded_year: 2024
 headquarters: "Zurich, Switzerland"
