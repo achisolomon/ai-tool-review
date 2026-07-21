@@ -13,7 +13,7 @@ pricing_model: free
 founded_year: 2026
 headquarters: "—"
 github_url: https://github.com/hilash/cabinet
-github_stars: 2406
+github_stars: 2407
 tags:
 - agents
 - self-hosted

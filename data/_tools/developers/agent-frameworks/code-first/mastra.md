@@ -12,7 +12,7 @@ pricing_model: free
 founded_year: 2024
 headquarters: "San Francisco, CA"
 github_url: "https://github.com/mastra-ai/mastra"
-github_stars: 26349
+github_stars: 26383
 tags:
   - typescript
 last_verified: "2026-06-03"
