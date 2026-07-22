@@ -9,7 +9,7 @@ subcategory: "code-first"
 status: "active"
 description: "Agent framework with type-safe, model-agnostic design built by the creators of Pydantic"
 github_url: "https://github.com/pydantic/pydantic-ai"
-github_stars: 18684
+github_stars: 18726
 pricing_model: "free"
 founded_year: 2024
 headquarters: "Remote"
