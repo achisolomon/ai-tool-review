@@ -2,7 +2,7 @@
 category: ai-infrastructure
 confidence_score: 0.95
 description: NVIDIA's SDK for high-performance deep learning inference on NVIDIA GPUs, delivering up to 36x speedup over CPU-only platforms via mixed-precision optimization and model compilation.
-github_stars: 13171
+github_stars: 13177
 github_url: "https://github.com/NVIDIA/TensorRT"
 last_verified: '2026-07-01'
 name: TensorRT

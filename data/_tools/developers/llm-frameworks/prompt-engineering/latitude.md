@@ -9,7 +9,7 @@ subcategory: "prompt-engineering"
 status: "active"
 description: "Open-source agent engineering platform for AI observability, issue detection, and evaluation - described as Sentry for AI agents and LLMs"
 github_url: "https://github.com/latitude-dev/latitude-llm"
-github_stars: 4465
+github_stars: 4470
 pricing_model: "freemium"
 founded_year: 2024
 headquarters: "Remote"

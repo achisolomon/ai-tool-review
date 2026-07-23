@@ -9,7 +9,7 @@ subcategory: "coding-agents"
 status: "active"
 description: "Open-source AI code assistant for VS Code and JetBrains that connects to any LLM"
 github_url: "https://github.com/continuedev/continue"
-github_stars: 35023
+github_stars: 35041
 pricing_model: "free"
 founded_year: 2023
 headquarters: "San Francisco, CA"

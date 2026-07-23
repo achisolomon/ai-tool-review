@@ -12,7 +12,7 @@ pricing_model: "free"
 founded_year: 2025
 headquarters: "Menlo Park, CA"
 github_url: "https://github.com/meta-llama/PurpleLlama"
-github_stars: 4304
+github_stars: 4308
 tags:
   - prompt-injection
   - agent-security
