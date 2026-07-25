@@ -2,7 +2,7 @@
 category: ai-infrastructure
 confidence_score: 0.9
 description: High-throughput memory-efficient LLM inference engine with PagedAttention, supporting production deployments at massive scale.
-github_stars: 87019
+github_stars: 87104
 last_verified: '2026-06-03'
 name: vLLM
 pricing_model: free

@@ -9,7 +9,7 @@ subcategory: "llm-observability"
 status: "active"
 description: "AI observability platform for production LLM and agent systems, built on OpenTelemetry with end-to-end application tracing"
 github_url: "https://github.com/pydantic/logfire"
-github_stars: 4387
+github_stars: 4391
 pricing_model: "freemium"
 founded_year: 2024
 headquarters: "San Francisco, CA"
