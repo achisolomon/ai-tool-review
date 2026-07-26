@@ -8,7 +8,7 @@ category: "observability-safety"
 subcategory: "guardrails"
 status: "active"
 github_url: "https://github.com/NVIDIA/OpenShell"
-github_stars: 7788
+github_stars: 7804
 description: "Secure sandbox runtime environment for AI agents with policy-based access controls. Isolates agent execution with fine-grained permission management and auditability for safe autonomous systems."
 pricing_model: "free"
 
