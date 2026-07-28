@@ -12,7 +12,7 @@ pricing_model: freemium
 founded_year: 2022
 headquarters: "San Francisco, CA"
 github_url: "https://github.com/inngest/inngest"
-github_stars: 5653
+github_stars: 5656
 tags:
   - serverless
 last_verified: "2026-06-03"
