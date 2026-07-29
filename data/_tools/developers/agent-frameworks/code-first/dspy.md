@@ -9,7 +9,7 @@ subcategory: "code-first"
 status: "active"
 description: "Framework for programming—not prompting—language models through declarative, self-improving Python code"
 github_url: "https://github.com/stanfordnlp/dspy"
-github_stars: 36422
+github_stars: 36446
 pricing_model: "open-source"
 founded_year: 2023
 headquarters: "Stanford, CA"
