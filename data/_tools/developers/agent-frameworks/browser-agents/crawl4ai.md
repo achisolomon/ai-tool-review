@@ -12,7 +12,7 @@ pricing_model: free
 founded_year: 2024
 headquarters: "Open Source Community"
 github_url: "https://github.com/unclecode/crawl4ai"
-github_stars: 75452
+github_stars: 75571
 tags:
   - python
 last_verified: "2026-06-03"

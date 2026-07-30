@@ -11,7 +11,7 @@ description: "Code indexing library and MCP server that uses tree-sitter for sem
 pricing_model: free
 founded_year: 2026
 github_url: "https://github.com/glommer/codemogger"
-github_stars: 331
+github_stars: 332
 tags:
   - mcp-server
   - self-hosted
