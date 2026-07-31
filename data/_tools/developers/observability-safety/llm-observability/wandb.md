@@ -9,7 +9,7 @@ subcategory: "llm-observability"
 status: "active"
 description: "AI developer platform for experiment tracking, model management, and LLM observability used by OpenAI, NVIDIA, and thousands of ML teams"
 github_url: "https://github.com/wandb/wandb"
-github_stars: 11214
+github_stars: 11215
 pricing_model: "freemium"
 founded_year: 2017
 headquarters: "San Francisco, CA"

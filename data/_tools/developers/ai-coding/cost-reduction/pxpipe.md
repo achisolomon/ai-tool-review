@@ -9,7 +9,7 @@ subcategory: "cost-reduction"
 status: "active"
 description: "Local proxy that cuts Claude Code token bills 59–70% by re-rendering bulky context — system prompts, tool docs, and collapsed history — as compact PNGs, exploiting the fixed image-token cost of Fable 5's vision channel."
 github_url: "https://github.com/teamchong/pxpipe"
-github_stars: 6846
+github_stars: 6865
 pricing_model: "free"
 founded_year: 2026
 headquarters: "Open Source"

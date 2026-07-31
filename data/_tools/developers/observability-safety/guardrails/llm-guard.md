@@ -9,7 +9,7 @@ subcategory: "guardrails"
 status: "active"
 description: "Open-source framework for securing LLM inputs and outputs. Detects prompt injections, jailbreaks, banned topics, and harmful content with customizable scanners for comprehensive protection."
 github_url: "https://github.com/protectai/llm-guard"
-github_stars: 3199
+github_stars: 3200
 pricing_model: "free"
 founded_year: 2023
 headquarters: "Seattle, WA"
