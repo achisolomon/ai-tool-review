@@ -12,7 +12,7 @@ pricing_model: "freemium"
 founded_year: 2024
 headquarters: "Zurich, Switzerland"
 github_url: "https://github.com/invariantlabs-ai/invariant"
-github_stars: 436
+github_stars: 437
 tags:
   - prompt-injection
   - mcp-security

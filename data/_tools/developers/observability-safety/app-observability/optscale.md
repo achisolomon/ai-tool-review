@@ -9,7 +9,7 @@ subcategory: "app-observability"
 status: "active"
 description: "Open-source FinOps and MLOps platform for cloud cost optimization and ML/AI experiment tracking"
 github_url: "https://github.com/hystax/optscale"
-github_stars: 2149
+github_stars: 2150
 pricing_model: "freemium"
 founded_year: 2020
 headquarters: "Mountain View, CA"

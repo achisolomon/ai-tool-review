@@ -12,7 +12,7 @@ pricing_model: free
 founded_year: 2024
 headquarters: "New York, NY"
 github_url: "https://github.com/huggingface/smolagents"
-github_stars: 28606
+github_stars: 28616
 tags:
   - python
 last_verified: "2026-06-03"

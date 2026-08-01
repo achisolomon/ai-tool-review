@@ -2,7 +2,7 @@
 category: data-training
 confidence_score: 0.9
 description: "PyTorch-native LLM fine-tuning library with memory-efficient training, LoRA support, and easy recipes"
-github_stars: 5794
+github_stars: 5795
 last_verified: '2026-06-03'
 name: Torchtune
 pricing_model: "free"
