@@ -2,7 +2,7 @@
 category: ai-coding
 confidence_score: 0.9
 description: 'State-of-the-art mutation testing for Java/JVM: provides gold standard test coverage, fast execution, and integrates with Maven, Gradle, and Ant.'
-github_stars: 1836
+github_stars: 1837
 last_verified: '2026-06-03'
 name: Pitest
 pricing_model: freemium

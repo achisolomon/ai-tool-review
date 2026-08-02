@@ -9,7 +9,7 @@ subcategory: "agent-memory"
 status: "active"
 description: "Universal memory layer for AI Agents that enables personalized, context-aware interactions"
 github_url: "https://github.com/mem0ai/mem0"
-github_stars: 62233
+github_stars: 62292
 pricing_model: "freemium"
 founded_year: 2023
 headquarters: "San Francisco, CA"
