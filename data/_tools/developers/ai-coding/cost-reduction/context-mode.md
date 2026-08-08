@@ -9,7 +9,7 @@ subcategory: "cost-reduction"
 status: "active"
 description: "Context window optimization for AI coding agents. Sandboxes tool output with 98% reduction across 15+ platforms"
 github_url: "https://github.com/mksglu/context-mode"
-github_stars: 19679
+github_stars: 19702
 pricing_model: "free"
 founded_year: 2026
 tags:

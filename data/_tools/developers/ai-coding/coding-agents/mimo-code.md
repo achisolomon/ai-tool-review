@@ -10,7 +10,7 @@ status: active
 description: Terminal-native AI coding assistant from Xiaomi with persistent memory
   system for long-horizon tasks
 github_url: https://github.com/XiaomiMiMo/MiMo-Code
-github_stars: 12670
+github_stars: 12682
 pricing_model: free
 founded_year: 2026
 headquarters: Beijing, China
