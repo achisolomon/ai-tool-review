@@ -12,7 +12,7 @@ pricing_model: freemium
 founded_year: 2023
 headquarters: "San Francisco, California"
 github_url: "https://github.com/getzep/zep"
-github_stars: 4819
+github_stars: 4820
 tags:
   - rag
 last_verified: "2026-06-03"

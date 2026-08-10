@@ -2,7 +2,7 @@
 category: llm-frameworks
 confidence_score: 0.9
 description: Python framework for controlling LLM output with constraints and guidance. Enables structured generation, guaranteed valid outputs, and complex reasoning patterns. Supports multiple model backends with efficient batching.
-github_stars: 21708
+github_stars: 21709
 last_verified: '2026-06-03'
 name: Guidance
 pricing_model: free
