@@ -9,7 +9,7 @@ subcategory: "llm-observability"
 status: "active"
 description: "Open source LLM engineering platform for observability, metrics, evaluations, prompt management, and datasets"
 github_url: "https://github.com/langfuse/langfuse"
-github_stars: 32854
+github_stars: 32917
 pricing_model: "freemium"
 founded_year: 2023
 headquarters: "Berlin, Germany"
