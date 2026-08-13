@@ -9,7 +9,7 @@ subcategory: "model-hubs"
 status: "active"
 description: "Get up and running with large language models locally"
 github_url: "https://github.com/ollama/ollama"
-github_stars: 178312
+github_stars: 178399
 pricing_model: "free"
 founded_year: 2023
 headquarters: "San Francisco, CA"

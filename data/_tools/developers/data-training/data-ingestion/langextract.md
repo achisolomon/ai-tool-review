@@ -4,7 +4,7 @@ confidence_score: 0.95
 description: "LangExtract is Google's open-source Python library that extracts structured information from unstructured text using LLMs, grounding every extraction to its exact character position in the source document for verifiable, hallucination-filtered output."
 founded_year: 2025
 github_url: "https://github.com/google/langextract"
-github_stars: 38293
+github_stars: 38319
 last_verified: '2026-06-17'
 name: LangExtract
 pricing_model: open-source
