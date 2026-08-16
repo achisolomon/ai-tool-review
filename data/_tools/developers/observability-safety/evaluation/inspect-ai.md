@@ -9,7 +9,7 @@ subcategory: "evaluation"
 status: "active"
 description: "Open-source framework for large language model evaluation developed by the UK AI Safety Institute"
 github_url: "https://github.com/UKGovernmentBEIS/inspect_ai"
-github_stars: 2553
+github_stars: 2557
 pricing_model: "free"
 founded_year: 2024
 headquarters: "London, UK"

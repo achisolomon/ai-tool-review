@@ -12,7 +12,7 @@ pricing_model: freemium
 founded_year: 2023
 headquarters: "San Francisco, CA"
 github_url: "https://github.com/Significant-Gravitas/AutoGPT"
-github_stars: 186607
+github_stars: 186628
 tags:
   - agents
   - workflow-automation
