@@ -2,7 +2,7 @@
 category: ai-infrastructure
 confidence_score: 0.9
 description: High-performance serving framework for LLMs and multimodal models with advanced optimizations and structured generation support.
-github_stars: 31879
+github_stars: 31932
 last_verified: '2026-06-03'
 name: SGLang
 pricing_model: free
