@@ -9,7 +9,7 @@ subcategory: "evaluation"
 status: "active"
 description: "Framework for evaluating LLMs and LLM systems with an open-source registry of benchmarks"
 github_url: "https://github.com/openai/evals"
-github_stars: 19183
+github_stars: 19189
 pricing_model: "free"
 founded_year: 2023
 headquarters: "San Francisco, CA"

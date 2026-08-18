@@ -12,7 +12,7 @@ pricing_model: freemium
 founded_year: 2022
 headquarters: "Paris, France"
 github_url: "https://github.com/NangoHQ/nango"
-github_stars: 11481
+github_stars: 11489
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---
