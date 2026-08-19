@@ -9,7 +9,7 @@ subcategory: rag-kg
 status: active
 description: AI coding assistant skill that transforms code, docs, and media into queryable knowledge graphs with 71x fewer tokens than raw file reading
 github_url: https://github.com/safishamsi/graphify
-github_stars: 107567
+github_stars: 107986
 pricing_model: free
 founded_year: 2026
 headquarters: Y Combinator S26
