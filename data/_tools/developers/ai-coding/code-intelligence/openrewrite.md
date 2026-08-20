@@ -12,7 +12,7 @@ pricing_model: free
 founded_year: 2018
 headquarters: "San Francisco, CA"
 github_url: "https://github.com/openrewrite/rewrite"
-github_stars: 3657
+github_stars: 3660
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

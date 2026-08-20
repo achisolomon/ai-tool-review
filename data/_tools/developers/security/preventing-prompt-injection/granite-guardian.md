@@ -12,7 +12,7 @@ pricing_model: "free"
 founded_year: 2024
 headquarters: "Armonk, NY"
 github_url: "https://github.com/ibm-granite/granite-guardian"
-github_stars: 168
+github_stars: 169
 tags:
   - prompt-injection
   - classifier-model

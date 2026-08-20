@@ -9,7 +9,7 @@ subcategory: "code-first"
 status: "active"
 description: "Agent meta-harness for Claude Code and Codex that deploys intelligent multi-agent swarms with adaptive memory, self-learning intelligence, RAG integration, and federated coordination across machines."
 github_url: "https://github.com/ruvnet/ruflo"
-github_stars: 68249
+github_stars: 68389
 pricing_model: "free"
 founded_year: 2025
 headquarters: "Open Source"
