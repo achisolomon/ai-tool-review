@@ -9,7 +9,7 @@ subcategory: "coding-agents"
 status: "active"
 description: "Autonomous AI coding agent for VS Code that can create and edit files, run terminal commands, and use any LLM API"
 github_url: "https://github.com/cline/cline"
-github_stars: 66504
+github_stars: 66566
 pricing_model: "free"
 founded_year: 2024
 headquarters: "Open Source"
