@@ -9,7 +9,7 @@ subcategory: "code-first"
 status: "active"
 description: "Framework for orchestrating role-playing, autonomous AI agents that work together seamlessly on complex tasks"
 github_url: "https://github.com/crewAIInc/crewAI"
-github_stars: 57402
+github_stars: 57443
 pricing_model: "open-core"
 founded_year: 2023
 headquarters: "San Francisco, CA"
