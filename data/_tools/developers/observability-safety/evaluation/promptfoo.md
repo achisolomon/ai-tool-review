@@ -9,7 +9,7 @@ subcategory: "evaluation"
 status: "active"
 description: "Open-source CLI and library for LLM evaluation and red teaming. Enables systematic prompt testing, model comparison, vulnerability scanning, and automated security assessments with CI/CD integration."
 github_url: "https://github.com/promptfoo/promptfoo"
-github_stars: 24472
+github_stars: 24504
 pricing_model: "free"
 founded_year: 2023
 headquarters: "San Francisco, CA"

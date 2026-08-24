@@ -9,7 +9,7 @@ subcategory: "evaluation"
 status: "active"
 description: "Open-source LLM evaluation framework with 14+ research-backed metrics for testing RAG pipelines, agents, and LLM applications"
 github_url: "https://github.com/confident-ai/deepeval"
-github_stars: 17793
+github_stars: 17812
 pricing_model: "open-source"
 founded_year: 2023
 headquarters: "San Francisco, CA"
