@@ -11,7 +11,7 @@ description: "Privacy-first semantic code search CLI that runs 100% locally with
 pricing_model: free
 founded_year: 2026
 github_url: "https://github.com/yoanbernabeu/grepai"
-github_stars: 1825
+github_stars: 1826
 tags:
   - mcp-server
   - self-hosted

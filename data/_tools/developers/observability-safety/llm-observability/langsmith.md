@@ -9,7 +9,7 @@ subcategory: "llm-observability"
 status: "active"
 description: "AI agent and LLM observability platform from LangChain with tracing, evaluation, and monitoring for production applications across any framework"
 github_url: "https://github.com/langchain-ai/langsmith-sdk"
-github_stars: 1031
+github_stars: 1034
 pricing_model: "usage-based"
 founded_year: 2023
 headquarters: "San Francisco, CA"
