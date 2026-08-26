@@ -9,7 +9,7 @@ subcategory: "coding-agents"
 status: "active"
 description: "Agentic coding tool that lives in your terminal and understands your codebase"
 github_url: "https://github.com/anthropics/claude-code"
-github_stars: 142904
+github_stars: 143025
 pricing_model: "freemium"
 founded_year: 2025
 headquarters: "San Francisco, CA"

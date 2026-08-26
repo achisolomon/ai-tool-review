@@ -12,7 +12,7 @@ pricing_model: freemium
 founded_year: 2024
 headquarters: "San Francisco, CA"
 github_url: "https://github.com/agno-agi/agno"
-github_stars: 41891
+github_stars: 41925
 tags:
   - agents
   - agent-to-agent
