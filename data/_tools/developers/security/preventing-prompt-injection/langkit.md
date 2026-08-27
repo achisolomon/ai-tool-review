@@ -12,7 +12,7 @@ pricing_model: "free"
 founded_year: 2023
 headquarters: "Seattle, WA"
 github_url: "https://github.com/whylabs/langkit"
-github_stars: 994
+github_stars: 995
 tags:
   - prompt-injection
   - observability
