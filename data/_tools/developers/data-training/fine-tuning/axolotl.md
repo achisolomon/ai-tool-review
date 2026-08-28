@@ -2,7 +2,7 @@
 category: data-training
 confidence_score: 0.9
 description: "Streamlined LLM fine-tuning toolkit with support for QLORA, FSDP, and various model architectures"
-github_stars: 12411
+github_stars: 12415
 last_verified: '2026-06-03'
 name: Axolotl
 pricing_model: "free"
