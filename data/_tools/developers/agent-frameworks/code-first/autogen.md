@@ -9,7 +9,7 @@ subcategory: "code-first"
 status: "active"
 description: "Open-source framework for building multi-agent AI applications with conversational patterns"
 github_url: "https://github.com/microsoft/autogen"
-github_stars: 60686
+github_stars: 60699
 pricing_model: "open-source"
 founded_year: 2023
 headquarters: "Redmond, WA"

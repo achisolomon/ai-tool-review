@@ -12,7 +12,7 @@ pricing_model: free
 founded_year: 2017
 headquarters: "San Francisco, California"
 github_url: "https://github.com/spiffe/spire"
-github_stars: 2503
+github_stars: 2504
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

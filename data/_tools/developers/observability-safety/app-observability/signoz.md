@@ -9,7 +9,7 @@ subcategory: "app-observability"
 status: "active"
 description: "Open source APM and observability platform with unified traces, metrics, and logs built on OpenTelemetry and ClickHouse"
 github_url: "https://github.com/SigNoz/signoz"
-github_stars: 31959
+github_stars: 31975
 pricing_model: "freemium"
 founded_year: 2021
 headquarters: "San Francisco, CA"
