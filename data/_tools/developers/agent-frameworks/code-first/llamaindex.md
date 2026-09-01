@@ -9,7 +9,7 @@ subcategory: "code-first"
 status: "active"
 description: "Data framework for LLM applications that provides tools for ingesting, structuring, and accessing private or domain-specific data"
 github_url: "https://github.com/run-llama/llama_index"
-github_stars: 51931
+github_stars: 51958
 pricing_model: "open-source"
 founded_year: 2022
 headquarters: "San Francisco, CA"

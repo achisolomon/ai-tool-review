@@ -9,7 +9,7 @@ subcategory: "workflow-builders"
 status: "active"
 description: "Open-source agentic AI development platform for building AI agents and LLM workflows visually with drag-and-drop interface, supporting 100+ LLMs and vector databases"
 github_url: "https://github.com/FlowiseAI/Flowise"
-github_stars: 55399
+github_stars: 55400
 pricing_model: "open-source"
 founded_year: 2023
 headquarters: "Acquired by Workday (Aug 2025)"

@@ -12,7 +12,7 @@ pricing_model: free
 founded_year: 2025
 headquarters: "San Francisco, CA"
 github_url: "https://github.com/openai/openai-agents-python"
-github_stars: 29091
+github_stars: 29111
 tags:
   - agents
   - agent-to-agent
