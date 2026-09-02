@@ -1,4 +1,6 @@
 import { test, expect } from '@playwright/test';
+import { readFileSync } from 'fs';
+import path from 'path';
 
 test.describe('Tool Page Title Links', () => {
 
@@ -170,6 +172,18 @@ async function blockExternal(page) {
   await page.route(/^https?:\/\/(?!localhost)/, route => route.abort());
 }
 
+// Reads aider's build-time github_stars from its source markdown and formats it the
+// way the page does, so the star-refresh cron can't invalidate the fallback assertion.
+function expectedAiderFallback() {
+  const md = readFileSync(
+    path.join(process.cwd(), 'data/_tools/developers/ai-coding/coding-agents/aider.md'),
+    'utf8'
+  );
+  const m = md.match(/^github_stars:\s*(\d+)/m);
+  if (!m) throw new Error('github_stars not found in aider.md');
+  return `${Math.floor(Number(m[1]) / 1000)}k`;
+}
+
 test('star badge renders count from stars.json (formatted k)', async ({ page }) => {
   await blockExternal(page);
   await page.addInitScript(() => localStorage.setItem('cookie_consent', 'accepted'));
@@ -187,6 +201,7 @@ test('star badge keeps build-time fallback when stars.json fails', async ({ page
   await page.addInitScript(() => localStorage.setItem('cookie_consent', 'accepted'));
   await page.route('**/data/stars.json*', route => route.fulfill({ status: 500, body: '' }));
   await page.goto('/tools/aider/', { waitUntil: 'domcontentloaded' });
-  // Fallback is the build-time rendered value (floor(47197/1000) = 47k).
-  await expect(page.locator('.tool-stars .star-count')).toHaveText('47k');
+  // Fallback is the build-time rendered value, derived from aider.md frontmatter so
+  // the daily `chore(stars)` refresh cannot break this test on a thousand boundary.
+  await expect(page.locator('.tool-stars .star-count')).toHaveText(expectedAiderFallback());
 });
