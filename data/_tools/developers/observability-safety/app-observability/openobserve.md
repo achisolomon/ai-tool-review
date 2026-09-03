@@ -9,7 +9,7 @@ subcategory: "app-observability"
 status: "active"
 description: "Open source observability platform for logs, metrics, traces, frontend monitoring, pipelines and LLM observability with 140x lower storage costs than Elasticsearch"
 github_url: "https://github.com/openobserve/openobserve"
-github_stars: 21609
+github_stars: 21620
 pricing_model: "freemium"
 founded_year: 2022
 headquarters: "Menlo Park, CA"
