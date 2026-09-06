@@ -4,7 +4,7 @@ confidence_score: 0.97
 description: "Docling is an open-source document parser by IBM Research that converts PDFs, Office files, and 20+ formats into structured, LLM-ready data using layout-aware AI models with best-in-class table extraction accuracy."
 founded_year: 2024
 github_url: "https://github.com/DS4SD/docling"
-github_stars: 66018
+github_stars: 66049
 headquarters: "IBM Research Zurich"
 last_verified: '2026-06-17'
 name: Docling

@@ -9,7 +9,7 @@ subcategory: "dedicated"
 status: "active"
 description: "High-performance, massive-scale vector database and vector search engine for the next generation of AI applications"
 github_url: "https://github.com/qdrant/qdrant"
-github_stars: 34393
+github_stars: 34404
 pricing_model: "freemium"
 founded_year: 2021
 headquarters: "Berlin, Germany"

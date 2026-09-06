@@ -12,7 +12,7 @@ pricing_model: "free"
 founded_year: 2025
 headquarters: "San Francisco, CA"
 github_url: "https://github.com/openai/openai-guardrails-python"
-github_stars: 241
+github_stars: 242
 tags:
   - prompt-injection
   - tool-call-guardrails

@@ -9,7 +9,7 @@ subcategory: "dedicated"
 status: "active"
 description: "The AI-native open-source embedding database with the simplest developer experience for building LLM applications"
 github_url: "https://github.com/chroma-core/chroma"
-github_stars: 29230
+github_stars: 29236
 pricing_model: "freemium"
 founded_year: 2022
 headquarters: "San Francisco, CA"
