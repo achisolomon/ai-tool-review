@@ -12,7 +12,7 @@ pricing_model: free
 founded_year: 2024
 headquarters: "Microsoft (Open Source)"
 github_url: "https://github.com/microsoft/playwright-mcp"
-github_stars: 37157
+github_stars: 37195
 tags:
   - browser-automation
   - skill
