@@ -12,7 +12,7 @@ pricing_model: freemium
 founded_year: 2023
 headquarters: "San Francisco, California"
 github_url: "https://github.com/skyvern-ai/skyvern"
-github_stars: 23018
+github_stars: 23022
 tags:
   - browser-automation
   - workflow-automation
