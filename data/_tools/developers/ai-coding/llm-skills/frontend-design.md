@@ -11,7 +11,7 @@ tags:
   - skill
 description: "AI skill for creating distinctive, production-grade frontend interfaces that avoid generic AI aesthetics"
 github_url: "https://github.com/anthropics/skills"
-github_stars: 177227
+github_stars: 177393
 pricing_model: "free"
 founded_year: 2026
 last_verified: "2026-06-08"
