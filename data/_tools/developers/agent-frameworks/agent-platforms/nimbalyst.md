@@ -12,7 +12,7 @@ pricing_model: free
 founded_year: 2025
 headquarters: "—"
 github_url: "https://github.com/Nimbalyst/nimbalyst"
-github_stars: 1757
+github_stars: 1768
 tags:
   - agents
 last_verified: "2026-06-09"
