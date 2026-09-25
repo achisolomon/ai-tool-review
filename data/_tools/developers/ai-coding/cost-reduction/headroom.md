@@ -9,7 +9,7 @@ subcategory: "cost-reduction"
 status: "active"
 description: "Context compression system that reduces AI agent token usage by 60-95% while maintaining accuracy"
 github_url: "https://github.com/chopratejas/headroom"
-github_stars: 73675
+github_stars: 73756
 pricing_model: "free"
 founded_year: 2026
 tags:

@@ -3,7 +3,7 @@ name: Supermemory
 slug: supermemory
 website: https://supermemory.ai
 github_url: https://github.com/supermemoryai/supermemory
-github_stars: 30856
+github_stars: 30885
 type: open-source
 track: developers
 category: agent-frameworks

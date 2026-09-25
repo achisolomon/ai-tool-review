@@ -9,7 +9,7 @@ subcategory: "rag-kg"
 status: "active"
 description: "A modular graph-based Retrieval-Augmented Generation (RAG) system by Microsoft Research that builds knowledge graphs from private datasets for superior synthesis and holistic reasoning"
 github_url: "https://github.com/microsoft/graphrag"
-github_stars: 36087
+github_stars: 36097
 pricing_model: "open-source"
 founded_year: 2024
 headquarters: "Redmond, WA"
