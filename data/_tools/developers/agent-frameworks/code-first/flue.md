@@ -3,7 +3,7 @@ name: Flue
 slug: flue
 website: https://flueframework.com
 github_url: https://github.com/withastro/flue
-github_stars: 8393
+github_stars: 8403
 type: open-source
 track: developers
 category: agent-frameworks
