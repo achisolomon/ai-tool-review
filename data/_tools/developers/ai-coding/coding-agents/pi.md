@@ -3,7 +3,7 @@ name: Pi
 slug: pi
 website: https://pi.dev
 github_url: https://github.com/earendil-works/pi
-github_stars: 110892
+github_stars: 111517
 type: open-source
 track: developers
 category: ai-coding
