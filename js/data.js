@@ -3644,6 +3644,37 @@ const landscapeData = {
           "name": "Agent Memory",
           "tools": [
             {
+              "name": "Claude-Mem",
+              "slug": "claude-mem",
+              "url": "https://claude-mem.ai",
+              "desc": "Open-source persistent memory for Claude Code and other coding agents that captures, compresses, and re-injects session context",
+              "type": "oss",
+              "github_stars": 97400,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "memory",
+                "coding",
+                "mcp-server"
+              ],
+              "all_tags": [
+                "memory",
+                "coding",
+                "mcp-server",
+                "agents",
+                "self-hosted",
+                "cli"
+              ],
+              "category_id": "agent-frameworks",
+              "category_name": "Agent Frameworks & Orchestration",
+              "subcategory_id": "agent-memory",
+              "subcategory_name": "Agent Memory",
+              "additional_categories": [
+
+              ]
+            },
+            {
               "name": "GBrain",
               "slug": "gbrain",
               "url": "https://github.com/garrytan/gbrain",
@@ -6701,6 +6732,35 @@ const landscapeData = {
                 "multi-model",
                 "memory",
                 "cost-reduction"
+              ],
+              "category_id": "ai-coding",
+              "category_name": "AI Coding & Developer Tools",
+              "subcategory_id": "llm-skills",
+              "subcategory_name": "LLM Skills",
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "CLAUDE.md Improver",
+              "slug": "claude-md-improver",
+              "url": "https://github.com/anthropics/claude-plugins-official/tree/main/plugins/claude-md-management",
+              "desc": "Official Anthropic skill that audits, grades, and updates CLAUDE.md files so Claude Code keeps accurate project context",
+              "type": "oss",
+              "github_stars": 37500,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "skill",
+                "coding",
+                "memory"
+              ],
+              "all_tags": [
+                "skill",
+                "coding",
+                "memory",
+                "free"
               ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
