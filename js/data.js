@@ -6711,6 +6711,35 @@ const landscapeData = {
               ]
             },
             {
+              "name": "CLAUDE.md Improver",
+              "slug": "claude-md-improver",
+              "url": "https://github.com/anthropics/claude-plugins-official/tree/main/plugins/claude-md-management",
+              "desc": "Official Anthropic skill that audits, grades, and updates CLAUDE.md files so Claude Code keeps accurate project context",
+              "type": "oss",
+              "github_stars": 37500,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "skill",
+                "coding",
+                "memory"
+              ],
+              "all_tags": [
+                "skill",
+                "coding",
+                "memory",
+                "free"
+              ],
+              "category_id": "ai-coding",
+              "category_name": "AI Coding & Developer Tools",
+              "subcategory_id": "llm-skills",
+              "subcategory_name": "LLM Skills",
+              "additional_categories": [
+
+              ]
+            },
+            {
               "name": "Frontend Design Skill",
               "slug": "frontend-design",
               "url": "https://www.skills.sh/anthropics/skills/frontend-design",
