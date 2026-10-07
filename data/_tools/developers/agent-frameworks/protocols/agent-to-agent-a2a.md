@@ -12,7 +12,7 @@ pricing_model: free
 founded_year: 2025
 headquarters: "Mountain View, CA"
 github_url: "https://github.com/google/a2a"
-github_stars: 26027
+github_stars: 26038
 tags:
   - agents
   - agent-to-agent
