@@ -3644,6 +3644,37 @@ const landscapeData = {
           "name": "Agent Memory",
           "tools": [
             {
+              "name": "Claude-Mem",
+              "slug": "claude-mem",
+              "url": "https://claude-mem.ai",
+              "desc": "Open-source persistent memory for Claude Code and other coding agents that captures, compresses, and re-injects session context",
+              "type": "oss",
+              "github_stars": 97400,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "memory",
+                "coding",
+                "mcp-server"
+              ],
+              "all_tags": [
+                "memory",
+                "coding",
+                "mcp-server",
+                "agents",
+                "self-hosted",
+                "cli"
+              ],
+              "category_id": "agent-frameworks",
+              "category_name": "Agent Frameworks & Orchestration",
+              "subcategory_id": "agent-memory",
+              "subcategory_name": "Agent Memory",
+              "additional_categories": [
+
+              ]
+            },
+            {
               "name": "GBrain",
               "slug": "gbrain",
               "url": "https://github.com/garrytan/gbrain",
