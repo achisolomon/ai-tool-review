@@ -12,7 +12,7 @@ pricing_model: free
 founded_year: 2024
 headquarters: "—"
 github_url: "https://github.com/oraios/serena"
-github_stars: 30071
+github_stars: 30095
 tags:
   - agents
   - skill
