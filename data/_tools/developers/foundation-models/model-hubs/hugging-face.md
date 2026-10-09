@@ -9,7 +9,7 @@ subcategory: "model-hubs"
 status: "active"
 description: "The AI community building the future - collaborative platform for sharing ML models, datasets, and applications"
 github_url: "https://github.com/huggingface/transformers"
-github_stars: 167055
+github_stars: 166887
 pricing_model: "freemium"
 founded_year: 2016
 headquarters: "New York, NY"
