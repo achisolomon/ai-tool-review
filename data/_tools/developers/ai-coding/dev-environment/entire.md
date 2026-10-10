@@ -9,7 +9,7 @@ subcategory: "dev-environment"
 status: "active"
 description: "Git-native CLI that captures AI agent sessions as searchable checkpoints linked to commits"
 github_url: "https://github.com/entireio/cli"
-github_stars: 5164
+github_stars: 5169
 pricing_model: "free"
 founded_year: 2026
 tags:
