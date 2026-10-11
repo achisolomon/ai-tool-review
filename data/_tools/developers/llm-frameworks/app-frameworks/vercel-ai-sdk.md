@@ -16,7 +16,7 @@ tags:
   - typescript
 last_verified: "2026-06-03"
 confidence_score: 0.92
-github_stars: 27229
+github_stars: 27238
 ---
 
 <div class="key-stats">
