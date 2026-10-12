@@ -30,18 +30,18 @@ Deno.serve(async (req) => {
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
     const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
 
-    // Caller-scoped client: used only to identify who is calling, via their JWT.
-    const callerClient = createClient(supabaseUrl, Deno.env.get('SUPABASE_ANON_KEY')!, {
-        global: { headers: { Authorization: authHeader } },
-    });
-    const { data: userData, error: userError } = await callerClient.auth.getUser();
+    // Service-role client: identifies the caller from their JWT, then does the
+    // staff check and all data reads (RLS would otherwise scope to the caller).
+    // Not using SUPABASE_ANON_KEY here: on prod the legacy anon key is not
+    // usable, so an anon-client getUser() failed and no email was ever sent.
+    const admin = createClient(supabaseUrl, serviceRoleKey);
+
+    const token = authHeader.replace(/^Bearer\s+/i, '');
+    const { data: userData, error: userError } = await admin.auth.getUser(token);
     if (userError || !userData?.user) {
+        console.error('[notify-suggestion-decision] caller auth failed', userError?.message);
         return jsonResponse({ error: 'Not authenticated' }, 401);
     }
-
-    // Service-role client: used for the actual staff check and all data reads,
-    // since RLS on user_roles/suggestions would otherwise scope to the caller.
-    const admin = createClient(supabaseUrl, serviceRoleKey);
 
     const { data: roleRow } = await admin
         .from('user_roles')
