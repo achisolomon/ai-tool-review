@@ -94,6 +94,7 @@ Deno.serve(async (req) => {
             to: profile.email,
             from: FROM_ADDRESS,
             replyTo: ownerEmail,
+            bcc: ownerEmail,
             subject,
             html,
         });
@@ -101,9 +102,13 @@ Deno.serve(async (req) => {
         console.error('[notify-suggestion-decision] no email on file for user', suggestion.user_id);
     }
 
+    // The owner already got an exact BCC copy; only send a summary when the
+    // submitter email didn't go out, so the owner still hears about it.
+    if (submitterSent) return jsonResponse({ submitter_sent: true, owner_sent: Boolean(ownerEmail) });
+
     const ownerSubject = `[AI Tool Review] Suggestion ${verb}: ${summary}`;
     const ownerHtml = `
-        <p>Suggestion ${suggestion.id} was <strong>${verb}</strong>.</p>
+        <p>Suggestion ${suggestion.id} was <strong>${verb}</strong>, but the email to the submitter was NOT sent.</p>
         <ul>
             <li><strong>Submitter:</strong> ${escapeHtml(profile?.email ?? '(no email on file)')}</li>
             <li><strong>Summary:</strong> ${escapeHtml(summary)}</li>

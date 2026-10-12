@@ -61,6 +61,7 @@ interface SendEmailArgs {
     html: string;
     from: string;
     replyTo?: string;
+    bcc?: string;
 }
 
 // Returns true on a 2xx from Resend, false otherwise. Never throws, callers
@@ -84,6 +85,7 @@ export async function sendEmail(args: SendEmailArgs): Promise<boolean> {
                 subject: args.subject,
                 html: args.html,
                 ...(args.replyTo ? { reply_to: args.replyTo } : {}),
+                ...(args.bcc ? { bcc: args.bcc } : {}),
             }),
         });
         if (!res.ok) {
