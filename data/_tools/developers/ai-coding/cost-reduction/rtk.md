@@ -9,10 +9,10 @@ subcategory: "cost-reduction"
 status: "active"
 description: "CLI proxy that reduces LLM token consumption by 60-90% on common dev commands with zero dependencies"
 github_url: "https://github.com/rtk-ai/rtk"
-github_stars: 78265
+github_stars: 83087
 pricing_model: "free"
 founded_year: 2026
-last_verified: "2026-06-08"
+last_verified: "2026-10-12"
 confidence_score: 0.95
 tags:
   - skill
@@ -23,7 +23,7 @@ source_urls:
 
 <div class="key-stats">
   <div class="key-stat">
-    <span class="number">60K</span>
+    <span class="number">80K+</span>
     <span class="label">GitHub Stars</span>
   </div>
   <div class="key-stat">
@@ -39,7 +39,7 @@ source_urls:
 ## Overview
 
 <div class="overview">
-<p>RTK (Rust Token Killer) is a CLI proxy that reduces LLM token consumption by 60-90% on common development commands. It filters and compresses command outputs before they reach an AI's context window using smart filtering, grouping, truncation, and deduplication. Single Rust binary with zero dependencies and sub-10ms overhead. Works with Claude Code, GitHub Copilot, Cursor, Windsurf, Cline, and 9+ other AI coding assistants.</p>
+<p>RTK (Rust Token Killer) is a CLI proxy that cuts up to 90% of the bash output an AI coding agent reads, for commands like git, test runners, linters, and package managers. It filters and compresses command outputs before they reach the agent's context window using smart filtering, grouping, truncation, and deduplication. Single Rust binary with zero dependencies and sub-10ms overhead. Works with Claude Code, GitHub Copilot, Cursor, Windsurf, Cline, Gemini CLI, Codex, and 15+ other AI coding agents, with native support on macOS, Linux, and Windows.</p>
 </div>
 
 ## The Verdict
@@ -61,9 +61,9 @@ source_urls:
       <h4>Not Ideal For</h4>
       <ul>
         <li>Non-CLI workflows</li>
-        <li>Native Windows (limited support)</li>
-        <li>Projects requiring exact command output</li>
+        <li>Projects requiring exact, unfiltered command output</li>
         <li>Workflows with custom command formats</li>
+        <li>Claude Code's built-in Read/Grep/Glob tools (hook only covers Bash calls)</li>
       </ul>
     </div>
   </div>
@@ -75,22 +75,25 @@ source_urls:
     <ul>
       <li>Widely adopted with strong community support</li>
       <li>Zero dependencies, single Rust binary</li>
-      <li>Sub-10ms overhead—virtually invisible</li>
-      <li>Auto-rewrite hook for 100% adoption</li>
+      <li>Sub-10ms overhead, virtually invisible</li>
+      <li>Auto-rewrite hook for 100% adoption, including native Windows support</li>
       <li>Built-in analytics (rtk gain command)</li>
-      <li>Supports 40+ common dev commands</li>
-      <li>Works with 10+ AI coding assistants</li>
+      <li>Supports 100+ common dev commands across git, tests, linters, and package managers</li>
+      <li>Works with 15+ AI coding assistants</li>
+      <li>Doesn't break Claude's prompt cache; smaller outputs mean cheaper cache writes</li>
     </ul>
     <div class="source"><a href="https://github.com/rtk-ai/rtk" target="_blank">GitHub README</a></div>
   </div>
   <div class="cons-list">
     <h3>Watch Out For</h3>
     <ul>
-      <li>Limited native Windows support (use WSL)</li>
-      <li>No auto-rewrite hook on Windows</li>
+      <li>Reductions are in bash output, not a direct 1:1 cut to your bill (input tokens are only part of total cost)</li>
+      <li>Reported token counts are estimated (bytes / 4), not from a real tokenizer</li>
+      <li>Hook only covers Bash tool calls, not Claude Code's built-in Read/Grep/Glob</li>
       <li>May filter out occasionally needed details</li>
       <li>Requires learning command mappings</li>
     </ul>
+    <div class="source"><a href="https://github.com/rtk-ai/rtk" target="_blank">GitHub README</a></div>
   </div>
 </div>
 
@@ -140,9 +143,10 @@ source_urls:
     <h4>Installation</h4>
     <ul>
       <li>Homebrew (macOS/Linux)</li>
+      <li>winget (Windows, no PATH setup needed)</li>
       <li>Pre-built binaries</li>
       <li>Cargo install</li>
-      <li>Works on macOS, Linux, Windows (WSL)</li>
+      <li>Native support on macOS, Linux, and Windows (plus WSL)</li>
     </ul>
   </div>
 </div>

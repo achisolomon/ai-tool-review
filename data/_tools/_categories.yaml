@@ -101,6 +101,9 @@ users:
       design:
         name: "Design / Creative"
         description: "AI for design and creative work"
+      lifestyle:
+        name: "Lifestyle / Wellness"
+        description: "AI for astrology, wellness, and personal lifestyle applications"
 
   enterprise-platforms:
     name: "Enterprise AI Platforms"

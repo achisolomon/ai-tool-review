@@ -493,6 +493,28 @@ const landscapeData = {
           "name": "3D / Other Modalities",
           "tools": [
             {
+              "name": "Fomrix",
+              "slug": "fomrix",
+              "url": "https://fomrix.com/",
+              "desc": "Web platform that converts images or text descriptions into 3D models, with image-to-3D, text-to-3D, image-to-STL for printing, and a 3D character maker",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "no-code"
+              ],
+              "all_tags": [
+                "no-code"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "3d-other",
+              "subcategory_name": "3D / Other Modalities",
+              "additional_categories": []
+            },
+            {
               "name": "Luma AI",
               "slug": "luma",
               "url": "https://lumalabs.ai/",
@@ -601,6 +623,92 @@ const landscapeData = {
               "additional_categories": []
             },
             {
+              "name": "AI Image Cleaner",
+              "slug": "ai-image-cleaner",
+              "url": "https://ai-image-cleaner.com",
+              "desc": "Web-based tool that removes unwanted people, objects, text, and watermarks from photos by painting over them, using AI inpainting techniques inspired by LaMa research",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "no-code"
+              ],
+              "all_tags": [
+                "no-code"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "image-generation",
+              "subcategory_name": "Image Generation",
+              "additional_categories": []
+            },
+            {
+              "name": "AI Photo Editor",
+              "slug": "ai-photo-editor",
+              "url": "https://ai-photo-editor.co/",
+              "desc": "Browser-based AI image editing platform powered by Google's Gemini 3 Pro model, offering background removal, object removal, upscaling, style transformation, batch processing, and in-image text editing",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "multimodal",
+                "no-code"
+              ],
+              "all_tags": [
+                "multimodal",
+                "no-code"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "image-generation",
+              "subcategory_name": "Image Generation",
+              "additional_categories": []
+            },
+            {
+              "name": "Blur Background (Vignra)",
+              "slug": "blur-background",
+              "url": "https://blurbackground.vip",
+              "desc": "Web-based photo editor, branded Vignra, that blurs photo backgrounds while keeping the subject in focus, processing images locally in-browser with an optional paid AI mode for enhanced bokeh",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "no-code"
+              ],
+              "all_tags": [
+                "no-code"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "image-generation",
+              "subcategory_name": "Image Generation",
+              "additional_categories": []
+            },
+            {
+              "name": "face rating",
+              "slug": "face-rating",
+              "url": "https://face-rating.app/",
+              "desc": "AI facial analysis tool using 478-point face mesh mapping to score features and symmetry, with improvement recommendations and style previews",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [],
+              "all_tags": [],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "image-generation",
+              "subcategory_name": "Image Generation",
+              "additional_categories": []
+            },
+            {
               "name": "FLUX (Black Forest Labs)",
               "slug": "flux-black-forest-labs",
               "url": "https://blackforestlabs.ai/",
@@ -623,6 +731,24 @@ const landscapeData = {
               "additional_categories": []
             },
             {
+              "name": "hairforge",
+              "slug": "hairforge",
+              "url": "https://beardstyles.co",
+              "desc": "AI tool that previews different beard styles on a user's own photo, with multi-angle views and recommendations based on face shape and beard density",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "paid",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [],
+              "all_tags": [],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "image-generation",
+              "subcategory_name": "Image Generation",
+              "additional_categories": []
+            },
+            {
               "name": "Ideogram",
               "slug": "ideogram",
               "url": "https://ideogram.ai/",
@@ -634,6 +760,28 @@ const landscapeData = {
               "user_count": null,
               "tags": [],
               "all_tags": [],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "image-generation",
+              "subcategory_name": "Image Generation",
+              "additional_categories": []
+            },
+            {
+              "name": "AI Image Cleanup Tool",
+              "slug": "image-cleanup-ai",
+              "url": "https://imagecleanupai.com/",
+              "desc": "AI tool that removes unwanted text from images using machine learning detection and inpainting to reconstruct the background underneath",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "no-code"
+              ],
+              "all_tags": [
+                "no-code"
+              ],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "image-generation",
@@ -763,6 +911,28 @@ const landscapeData = {
               "subcategory_id": "image-generation",
               "subcategory_name": "Image Generation",
               "additional_categories": []
+            },
+            {
+              "name": "Sharpniq",
+              "slug": "sharpniq",
+              "url": "https://unblurimage.me",
+              "desc": "Image deblurring tool that removes motion blur, soft focus, and compression artifacts using browser-based or cloud AI processing",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "no-code"
+              ],
+              "all_tags": [
+                "no-code"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "image-generation",
+              "subcategory_name": "Image Generation",
+              "additional_categories": []
             }
           ]
         },
@@ -770,6 +940,24 @@ const landscapeData = {
           "id": "music-generation",
           "name": "Music Generation",
           "tools": [
+            {
+              "name": "AISongsGenerator",
+              "slug": "aisongsgenerator",
+              "url": "https://aisongsgenerator.com/",
+              "desc": "Platform for generating full songs from text prompts or custom lyrics, with AI lyric writing, vocal remover, stem splitter, and music video export",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [],
+              "all_tags": [],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "music-generation",
+              "subcategory_name": "Music Generation",
+              "additional_categories": []
+            },
             {
               "name": "AIVA",
               "slug": "aiva",
@@ -841,6 +1029,24 @@ const landscapeData = {
               "subcategory_id": "music-generation",
               "subcategory_name": "Music Generation",
               "additional_categories": []
+            },
+            {
+              "name": "UEGMusic",
+              "slug": "uegmusic",
+              "url": "https://uegmusic.com/",
+              "desc": "AI platform for creating short audio identities such as spoken jingles, producer tags, DJ drops, radio IDs, and podcast intros from voice and music",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "paid",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [],
+              "all_tags": [],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "music-generation",
+              "subcategory_name": "Music Generation",
+              "additional_categories": []
             }
           ]
         },
@@ -848,6 +1054,50 @@ const landscapeData = {
           "id": "video-generation",
           "name": "Video Generation",
           "tools": [
+            {
+              "name": "BabyVideo.ai",
+              "slug": "babyvideo-ai",
+              "url": "https://babyvideo.ai/",
+              "desc": "Generates AI 'future baby' preview portraits and short videos by blending facial features from one or two parent photos, for entertainment purposes only",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [],
+              "all_tags": [],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "video-generation",
+              "subcategory_name": "Video Generation",
+              "additional_categories": []
+            },
+            {
+              "name": "creatview",
+              "slug": "creatview",
+              "url": "https://creatview.ai/",
+              "desc": "AI video workspace that turns scripts, images, or product URLs into finished multi-shot videos, auto-routing between models like Sora 2 and Veo 3.1",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "paid",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "multimodal",
+                "no-code",
+                "api-available"
+              ],
+              "all_tags": [
+                "multimodal",
+                "no-code",
+                "api-available"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "video-generation",
+              "subcategory_name": "Video Generation",
+              "additional_categories": []
+            },
             {
               "name": "Hailuo (MiniMax)",
               "slug": "hailuo-minimax",
@@ -903,6 +1153,30 @@ const landscapeData = {
               "additional_categories": []
             },
             {
+              "name": "Hotel Lobby AI",
+              "slug": "hotel-lobby-ai",
+              "url": "https://hotellobbyai.art/",
+              "desc": "Turns two photos into a COLORS-style orange booth rap clip with AI-generated audio, lip-sync, and animated motion for both performers",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "subscription",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "multimodal",
+                "no-code"
+              ],
+              "all_tags": [
+                "multimodal",
+                "no-code"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "video-generation",
+              "subcategory_name": "Video Generation",
+              "additional_categories": []
+            },
+            {
               "name": "Kling AI",
               "slug": "kling-ai",
               "url": "https://klingai.com",
@@ -932,6 +1206,28 @@ const landscapeData = {
               "user_count": null,
               "tags": [],
               "all_tags": [],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "video-generation",
+              "subcategory_name": "Video Generation",
+              "additional_categories": []
+            },
+            {
+              "name": "Lyric Video Maker",
+              "slug": "lyric-video-maker",
+              "url": "https://lyricvideomaker.app/",
+              "desc": "AI tool that transcribes song lyrics in 50+ languages, syncs them to the beat, and generates mood-driven visuals for lyric videos",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "no-code"
+              ],
+              "all_tags": [
+                "no-code"
+              ],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "video-generation",
@@ -975,6 +1271,28 @@ const landscapeData = {
               "additional_categories": []
             },
             {
+              "name": "PopUGC",
+              "slug": "popugc",
+              "url": "https://popugc.com/",
+              "desc": "AI studio for e-commerce sellers that generates product images and marketing videos from text or image prompts, with batch creation for high-volume output",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "subscription",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "multimodal"
+              ],
+              "all_tags": [
+                "multimodal"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "video-generation",
+              "subcategory_name": "Video Generation",
+              "additional_categories": []
+            },
+            {
               "name": "Runway",
               "slug": "runway",
               "url": "https://runwayml.com/",
@@ -1004,6 +1322,88 @@ const landscapeData = {
               "user_count": null,
               "tags": [],
               "all_tags": [],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "video-generation",
+              "subcategory_name": "Video Generation",
+              "additional_categories": []
+            },
+            {
+              "name": "Veevid AI",
+              "slug": "veevid-ai",
+              "url": "https://veevid.ai/",
+              "desc": "Video generation platform converting text prompts and images into videos with synchronized audio, drawing on multiple AI video models in one interface",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "subscription",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "multimodal"
+              ],
+              "all_tags": [
+                "multimodal"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "video-generation",
+              "subcategory_name": "Video Generation",
+              "additional_categories": []
+            },
+            {
+              "name": "Video Upscaler",
+              "slug": "video-upscaler",
+              "url": "https://videoupscaler.video",
+              "desc": "AI platform that enhances video quality through resolution upscaling (2x, 4x, HD, 2K, 4K) and reduces blur, noise, and compression artifacts",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "paid",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [],
+              "all_tags": [],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "video-generation",
+              "subcategory_name": "Video Generation",
+              "additional_categories": []
+            },
+            {
+              "name": "Video Watermark Remover",
+              "slug": "video-watermark-remover",
+              "url": "https://video-watermark-remover.com/",
+              "desc": "Browser-based tool that removes watermarks, logos, and text overlays from videos using CNN and GAN neural networks for frame-by-frame detection and removal",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "paid",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [],
+              "all_tags": [],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "video-generation",
+              "subcategory_name": "Video Generation",
+              "additional_categories": []
+            },
+            {
+              "name": "Visemix",
+              "slug": "visemix",
+              "url": "https://lipsync.vip",
+              "desc": "Lip-sync video generator that matches mouth movement to new audio on uploaded videos or photos, using the MiniMax H3 Max model",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "paid",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "multimodal",
+                "no-code"
+              ],
+              "all_tags": [
+                "multimodal",
+                "no-code"
+              ],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "video-generation",
@@ -1583,6 +1983,30 @@ const landscapeData = {
               "additional_categories": []
             },
             {
+              "name": "Instinct",
+              "slug": "instinct",
+              "url": "https://instinct.com/",
+              "desc": "Invite-only AI personal assistant that handles errands and tasks entirely through text messages and phone calls, no app required",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "multimodal"
+              ],
+              "all_tags": [
+                "agents",
+                "multimodal"
+              ],
+              "category_id": "personal-assistants",
+              "category_name": "Personal Assistants & Browsers",
+              "subcategory_id": "browsers",
+              "subcategory_name": "AI Browsers & Assistants",
+              "additional_categories": []
+            },
+            {
               "name": "Rabbit r1",
               "slug": "rabbit-r1",
               "url": "https://www.rabbit.tech/",
@@ -1788,6 +2212,24 @@ const landscapeData = {
               "additional_categories": []
             },
             {
+              "name": "ToText",
+              "slug": "totext",
+              "url": "https://totext.app/",
+              "desc": "AI transcription service that converts MP3, MP4, and other media formats into time-aligned, searchable transcripts with speaker identification",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [],
+              "all_tags": [],
+              "category_id": "transcription",
+              "category_name": "Transcription",
+              "subcategory_id": "transcription-tools",
+              "subcategory_name": "Transcription Tools",
+              "additional_categories": []
+            },
+            {
               "name": "Typeless",
               "slug": "typeless",
               "url": "https://www.typeless.com/",
@@ -1804,6 +2246,28 @@ const landscapeData = {
               "all_tags": [
                 "multilingual",
                 "real-time"
+              ],
+              "category_id": "transcription",
+              "category_name": "Transcription",
+              "subcategory_id": "transcription-tools",
+              "subcategory_name": "Transcription Tools",
+              "additional_categories": []
+            },
+            {
+              "name": "Video Transcriber",
+              "slug": "videotranscriber-pro",
+              "url": "https://videotranscriber.pro/",
+              "desc": "AI speech-to-text platform that converts video and audio into searchable, editable transcripts, with speaker identification and support for 200+ languages",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "multimodal"
+              ],
+              "all_tags": [
+                "multimodal"
               ],
               "category_id": "transcription",
               "category_name": "Transcription",
@@ -2045,6 +2509,28 @@ const landscapeData = {
           "name": "Design / Creative",
           "tools": [
             {
+              "name": "ExplainViz",
+              "slug": "explainviz",
+              "url": "https://explainviz.com/",
+              "desc": "AI tool that converts research descriptions into publication-ready scientific diagrams for academics, with editable SVG output for journal submissions",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "no-code"
+              ],
+              "all_tags": [
+                "no-code"
+              ],
+              "category_id": "vertical-ai",
+              "category_name": "Vertical AI (Industry-Specific)",
+              "subcategory_id": "design",
+              "subcategory_name": "Design / Creative",
+              "additional_categories": []
+            },
+            {
               "name": "Figma AI",
               "slug": "figma-ai",
               "url": "https://www.figma.com/ai/",
@@ -2179,6 +2665,28 @@ const landscapeData = {
               "user_count": null,
               "tags": [],
               "all_tags": [],
+              "category_id": "vertical-ai",
+              "category_name": "Vertical AI (Industry-Specific)",
+              "subcategory_id": "education",
+              "subcategory_name": "Education / Tutoring",
+              "additional_categories": []
+            },
+            {
+              "name": "TeachAny",
+              "slug": "teachany",
+              "url": "https://teachany.com",
+              "desc": "AI platform for educators that generates quizzes, worksheets, flashcards, lesson plans, and other teaching materials using current LLMs",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "no-code"
+              ],
+              "all_tags": [
+                "no-code"
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "education",
@@ -2440,6 +2948,34 @@ const landscapeData = {
           ]
         },
         {
+          "id": "lifestyle",
+          "name": "Lifestyle / Wellness",
+          "tools": [
+            {
+              "name": "Vedic Astrology Chart",
+              "slug": "vedic-astrology-chart",
+              "url": "https://vedicastrologychart.net",
+              "desc": "Free tool that generates sidereal Vedic birth charts with AI interpretation, covering divisional charts, dashas, yogas, and transits",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "no-code"
+              ],
+              "all_tags": [
+                "no-code"
+              ],
+              "category_id": "vertical-ai",
+              "category_name": "Vertical AI (Industry-Specific)",
+              "subcategory_id": "lifestyle",
+              "subcategory_name": "Lifestyle / Wellness",
+              "additional_categories": []
+            }
+          ]
+        },
+        {
           "id": "recruiting",
           "name": "Recruiting / HR",
           "tools": [
@@ -2625,6 +3161,24 @@ const landscapeData = {
           "name": "Voice Agents",
           "tools": [
             {
+              "name": "CallingYouNow",
+              "slug": "callingyounow",
+              "url": "https://callingyounow.com/",
+              "desc": "AI call management platform that answers incoming business calls 24/7 and schedules appointments automatically, operating in 30+ languages",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "custom",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [],
+              "all_tags": [],
+              "category_id": "voice-ai-agents",
+              "category_name": "Voice AI Agents",
+              "subcategory_id": "voice-agents",
+              "subcategory_name": "Voice Agents",
+              "additional_categories": []
+            },
+            {
               "name": "PolyAI",
               "slug": "polyai",
               "url": "https://poly.ai/",
@@ -2736,6 +3290,24 @@ const landscapeData = {
           "name": "Writing Tools",
           "tools": [
             {
+              "name": "AI Email Generator",
+              "slug": "ai-email-generator",
+              "url": "https://aigeneratoremail.com/",
+              "desc": "Drafts professional emails from brief input, turning it into a subject line and ready-to-edit message, with a reply mode and adjustable tone",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [],
+              "all_tags": [],
+              "category_id": "writing-productivity",
+              "category_name": "Writing & Productivity",
+              "subcategory_id": "writing-tools",
+              "subcategory_name": "Writing Tools",
+              "additional_categories": []
+            },
+            {
               "name": "Coda AI",
               "slug": "coda-ai",
               "url": "https://coda.io/product/ai",
@@ -2812,6 +3384,24 @@ const landscapeData = {
               "additional_categories": []
             },
             {
+              "name": "Manga Translator",
+              "slug": "manga-translator",
+              "url": "https://aimangatranslate.com/",
+              "desc": "AI manga translation platform that preserves original layout through OCR detection, text removal, background repair, and typesetting across 50+ languages",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [],
+              "all_tags": [],
+              "category_id": "writing-productivity",
+              "category_name": "Writing & Productivity",
+              "subcategory_id": "writing-tools",
+              "subcategory_name": "Writing Tools",
+              "additional_categories": []
+            },
+            {
               "name": "Notion AI",
               "slug": "notion-ai",
               "url": "https://www.notion.com/product/ai",
@@ -2849,6 +3439,24 @@ const landscapeData = {
               "all_tags": [
                 "self-hosted"
               ],
+              "category_id": "writing-productivity",
+              "category_name": "Writing & Productivity",
+              "subcategory_id": "writing-tools",
+              "subcategory_name": "Writing Tools",
+              "additional_categories": []
+            },
+            {
+              "name": "PDF Translator",
+              "slug": "pdf-translator",
+              "url": "https://pdf-translation.com/",
+              "desc": "Browser-based PDF translation tool that converts documents across 60+ languages while preserving fonts, tables, images, and multi-column layouts",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [],
+              "all_tags": [],
               "category_id": "writing-productivity",
               "category_name": "Writing & Productivity",
               "subcategory_id": "writing-tools",
@@ -5521,7 +6129,7 @@ const landscapeData = {
               "url": "https://github.com/rtk-ai/rtk",
               "desc": "CLI proxy that reduces LLM token consumption by 60-90% on common dev commands with zero dependencies",
               "type": "oss",
-              "github_stars": 78265,
+              "github_stars": 83087,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -6732,6 +7340,30 @@ const landscapeData = {
           "name": "Data Ingestion & Document Processing",
           "tools": [
             {
+              "name": "Describe Image",
+              "slug": "describe-image",
+              "url": "https://describeimage.io/",
+              "desc": "AI visual analysis platform built on Claude's vision capabilities that converts images and videos into text across 11+ output modes, from alt text to OCR to product listings",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "paid",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "api-available",
+                "multimodal"
+              ],
+              "all_tags": [
+                "api-available",
+                "multimodal"
+              ],
+              "category_id": "data-training",
+              "category_name": "Data & Training",
+              "subcategory_id": "data-ingestion",
+              "subcategory_name": "Data Ingestion & Document Processing",
+              "additional_categories": []
+            },
+            {
               "name": "Docling",
               "slug": "docling",
               "url": "https://github.com/DS4SD/docling",
@@ -6751,6 +7383,28 @@ const landscapeData = {
                 "python",
                 "self-hosted",
                 "mcp-server"
+              ],
+              "category_id": "data-training",
+              "category_name": "Data & Training",
+              "subcategory_id": "data-ingestion",
+              "subcategory_name": "Data Ingestion & Document Processing",
+              "additional_categories": []
+            },
+            {
+              "name": "Image Describer",
+              "slug": "image-describer",
+              "url": "https://imagedescriber.dev",
+              "desc": "AI tool that analyzes uploaded images and generates text descriptions for accessibility, SEO, and content use, with batch processing for multiple images",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "multimodal"
+              ],
+              "all_tags": [
+                "multimodal"
               ],
               "category_id": "data-training",
               "category_name": "Data & Training",
@@ -10132,6 +10786,10 @@ const landscapeData = {
             "design": {
               "name": "Design / Creative",
               "description": "AI for design and creative work"
+            },
+            "lifestyle": {
+              "name": "Lifestyle / Wellness",
+              "description": "AI for astrology, wellness, and personal lifestyle applications"
             }
           }
         },
