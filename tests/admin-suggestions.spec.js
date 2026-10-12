@@ -169,27 +169,79 @@ window.AdminAPI = {
         await expect(badges.nth(1)).toHaveText(/Taxonomy/i);
     });
 
-    test('Approve button disabled for new_tool with null placement', async ({ page }) => {
-        await gotoAdminMocked(page);
-        await injectMocks(page);
+    // new_tool slug + placement come from the tool page /tool-page-content
+    // created (js/data.js), never from admin input. Regression: an admin-typed
+    // slug (mp3-to-transcript) didn't match the real page (totext), so the
+    // approval email linked to a 404.
+    async function openNewTool(page, payload) {
+        await page.evaluate((p) => {
+            window.__approved = null;
+            window.AdminAPI.approveSuggestion = async (id, patch) => { window.__approved = patch; return { success: true }; };
+            window.AdminAPI.getSuggestions = async () => ({
+                suggestions: [{
+                    id: 'nt-1', kind: 'new_tool', tool_slug: null, payload: p, status: 'pending',
+                    created_at: '2026-10-12T12:00:00Z', credit_name: 'dani', rationale: null,
+                }],
+                error: null,
+            });
+        }, payload);
         await showSuggestionsView(page);
-
-        // Click the first suggestion row (new_tool, placement null)
         await page.locator('.suggestion-row').first().click();
-        await page.waitForTimeout(200);
-
-        // Decision view should be visible
         await expect(page.locator('#suggestion-decision')).not.toHaveClass(/hidden/);
+    }
 
-        // Approve button should be DISABLED — placement is null, gate must block
+    test('new_tool: slug and placement are taken from the existing tool page, not typed', async ({ page }) => {
+        await gotoAdminMocked(page);
+        await openNewTool(page, {
+            name: 'MP3 to Transcript', website: 'https://totext.app/', slug: 'mp3-to-transcript', placement: null,
+        });
+
+        // No free-text slug or placement inputs remain
+        await expect(page.locator('#edit-slug')).toHaveCount(0);
+        await expect(page.locator('#edit-track')).toHaveCount(0);
+
+        await expect(page.locator('#tool-page-link')).toHaveAttribute('href', '/tools/totext/');
+        const approveBtn = page.locator('#decision-approve');
+        await expect(approveBtn).toBeEnabled();
+
+        await approveBtn.click();
+        await page.waitForFunction(() => window.__approved !== null);
+        const patch = await page.evaluate(() => window.__approved);
+        expect(patch.slug).toBe('totext');
+        expect(patch.placement).toEqual({ track: 'users', category: 'transcription', subcategory: 'transcription-tools' });
+    });
+
+    test('new_tool: Approve stays disabled when no tool page exists yet', async ({ page }) => {
+        await gotoAdminMocked(page);
+        await openNewTool(page, {
+            name: 'No Such Tool', website: 'https://no-such-tool.example/', slug: 'no-such-tool', placement: null,
+        });
+
+        await expect(page.locator('#decision-approve')).toBeDisabled();
+        await expect(page.locator('#tool-page-missing')).toContainText('/tool-page-content');
+    });
+
+    test('new_tool: shared domain is resolved by the submitted slug', async ({ page }) => {
+        await gotoAdminMocked(page);
+        // letta.com hosts two tool pages (letta, letta-memgpt)
+        await openNewTool(page, { name: 'Letta', website: 'https://letta.com', slug: 'letta', placement: null });
+
+        await expect(page.locator('#tool-page-link')).toHaveAttribute('href', '/tools/letta/');
+        await expect(page.locator('#decision-approve')).toBeEnabled();
+    });
+
+    test('new_tool: ambiguous matches must be picked from existing pages', async ({ page }) => {
+        await gotoAdminMocked(page);
+        // openai.com hosts two tool pages (DALL-E, Sora) and the homepage URL matches neither exactly
+        await openNewTool(page, { name: 'OpenAI', website: 'https://openai.com/', slug: 'openai-thing', placement: null });
+
         const approveBtn = page.locator('#decision-approve');
         await expect(approveBtn).toBeDisabled();
-
-        // Placement selects must be present
-        await expect(page.locator('#edit-track')).toBeVisible();
-        await expect(page.locator('#edit-category')).toBeVisible();
-        await expect(page.locator('#edit-subcategory')).toBeVisible();
-        await expect(page.locator('#edit-slug')).toBeVisible();
+        const picker = page.locator('#tool-page-pick');
+        await expect(picker.locator('option')).toHaveCount(3); // placeholder + the 2 real pages
+        await picker.selectOption('openai-sora-2');
+        await expect(approveBtn).toBeEnabled();
+        await expect(page.locator('#tool-page-link')).toHaveAttribute('href', '/tools/openai-sora-2/');
     });
 
     test('"Mark as applied" button shows for approved taxonomy_change with op:other', async ({ page }) => {

@@ -109,35 +109,76 @@
         return window.landscapeData?.taxonomy?.categories || {};
     }
 
-    function buildTrackOptions(selectedTrack) {
-        const taxonomy = getTaxonomy();
-        const tracks = Object.keys(taxonomy);
-        if (!tracks.length) return '<option value="">-- no tracks --</option>';
-        return tracks
-            .map(t => `<option value="${escapeHtml(t)}"${t === selectedTrack ? ' selected' : ''}>${escapeHtml(t)}</option>`)
-            .join('');
+    // ------------------------------------------------------------------ //
+    // Tool page lookup for new_tool approvals
+    // ------------------------------------------------------------------ //
+    // A new_tool is approved only after /tool-page-content created its page,
+    // so slug and placement come from that page (js/data.js), never from admin
+    // input. A typed slug that didn't match the real page sent the submitter a
+    // 404 link in the approval email.
+
+    function allToolPages() {
+        const data = window.landscapeData || {};
+        const pages = [];
+        for (const track of Object.keys(getTaxonomy())) {
+            for (const cat of data[track] || []) {
+                for (const sub of cat.subcategories || []) {
+                    for (const tool of sub.tools || []) pages.push({ track, tool });
+                }
+            }
+        }
+        return pages;
     }
 
-    function buildCategoryOptions(track, selectedCategory) {
-        const taxonomy = getTaxonomy();
-        const cats = taxonomy[track] || {};
-        const entries = Object.entries(cats);
-        if (!entries.length) return '<option value="">-- choose track first --</option>';
-        return entries
-            .map(([id, cat]) =>
-                `<option value="${escapeHtml(id)}"${id === selectedCategory ? ' selected' : ''}>${escapeHtml(cat.name)}</option>`)
-            .join('');
+    function parseUrl(raw) {
+        try { return new URL(raw); } catch (_) { return null; }
     }
 
-    function buildSubcategoryOptions(track, category, selectedSub) {
-        const taxonomy = getTaxonomy();
-        const subs = taxonomy[track]?.[category]?.subcategories || {};
-        const entries = Object.entries(subs);
-        if (!entries.length) return '<option value="">-- choose category first --</option>';
-        return entries
-            .map(([id, sub]) =>
-                `<option value="${escapeHtml(id)}"${id === selectedSub ? ' selected' : ''}>${escapeHtml(sub.name)}</option>`)
-            .join('');
+    function hostOf(u) {
+        return u.hostname.toLowerCase().replace(/^www\./, '');
+    }
+
+    function normalizedUrl(u) {
+        return hostOf(u) + u.pathname.toLowerCase().replace(/\/+$/, '');
+    }
+
+    function slugify(text) {
+        return String(text || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    }
+
+    // Candidate pages for a new_tool suggestion: exact URL, then same domain
+    // (only for a homepage URL or a single-tool domain, since e.g. github.com
+    // hosts dozens of tools), then same name. Ties are broken by the submitted
+    // slug or name; anything still ambiguous is left for the admin to pick.
+    function findToolPages(s) {
+        const p = s.payload || {};
+        const pages = allToolPages();
+        const site = parseUrl(p.website);
+        let found = [];
+        if (site) {
+            const withUrl = pages.map(e => ({ e, u: parseUrl(e.tool.url) })).filter(x => x.u);
+            found = withUrl.filter(x => normalizedUrl(x.u) === normalizedUrl(site)).map(x => x.e);
+            if (!found.length) {
+                const sameHost = withUrl.filter(x => hostOf(x.u) === hostOf(site)).map(x => x.e);
+                const isHomepage = site.pathname.replace(/\/+$/, '') === '';
+                if (isHomepage || sameHost.length === 1) found = sameHost;
+            }
+        }
+        if (!found.length && p.name) {
+            const name = String(p.name).toLowerCase();
+            found = pages.filter(e => e.tool.slug === slugify(p.name) || e.tool.name.toLowerCase() === name);
+        }
+        if (found.length > 1) {
+            const wanted = [p.slug, slugify(p.name)].filter(Boolean);
+            const exact = found.filter(e => wanted.includes(e.tool.slug));
+            if (exact.length === 1) return exact;
+        }
+        return found;
+    }
+
+    function placementLabel(page) {
+        const t = page.tool;
+        return `${page.track} › ${t.category_name || t.category_id} › ${t.subcategory_name || t.subcategory_id}`;
     }
 
     // ------------------------------------------------------------------ //
@@ -206,9 +247,6 @@
         return placement && placement.track && placement.category && placement.subcategory;
     }
 
-    // Validate slug pattern
-    const SLUG_RE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
-
     function renderPayloadTable(s) {
         const p = s.payload || {};
         let rows = '';
@@ -252,48 +290,43 @@
         return `<table class="suggestion-payload-table"><tbody>${rows}</tbody></table>`;
     }
 
-    // Build the editable fields section for new_tool
-    function renderEditFields(s) {
+    // Tool page section for new_tool: shows the page approval will link to.
+    function renderToolPageFields(s, pages) {
         if (s.kind !== 'new_tool') return '';
 
-        const p = s.payload || {};
-        const placement = p.placement || {};
-        const track = placement.track || '';
-        const category = placement.category || '';
-        const subcategory = placement.subcategory || '';
-        const slug = p.slug || '';
+        if (!pages.length) {
+            return `
+            <div class="suggestion-edit-fields">
+                <h4>Tool page</h4>
+                <p class="suggestion-approve-hint" id="tool-page-missing">
+                    No tool page found for ${escapeHtml(s.payload?.website || s.payload?.name || 'this tool')}.
+                    Create it with /tool-page-content and deploy, then reload this page to approve.
+                </p>
+            </div>`;
+        }
+
+        const picker = pages.length > 1 ? `
+                <div class="suggestion-field-row">
+                    <label for="tool-page-pick">Page</label>
+                    <select id="tool-page-pick">
+                        <option value="">-- pick the page --</option>
+                        ${pages.map(e => `<option value="${escapeHtml(e.tool.slug)}">${escapeHtml(e.tool.name)} (${escapeHtml(e.tool.slug)})</option>`).join('')}
+                    </select>
+                </div>
+                <p class="suggestion-approve-hint">Several pages match this website. Pick the one for this suggestion.</p>` : '';
 
         return `
             <div class="suggestion-edit-fields">
-                <h4>Complete before approving</h4>
-                <div class="suggestion-field-row">
-                    <label for="edit-track">Track</label>
-                    <select id="edit-track">
-                        <option value="">-- select track --</option>
-                        ${buildTrackOptions(track)}
-                    </select>
+                <h4>Tool page</h4>
+                ${picker}
+                <div class="suggestion-field-row" id="tool-page-details"${pages.length > 1 ? ' hidden' : ''}>
+                    <label>Link</label>
+                    <a id="tool-page-link" href="${pages.length === 1 ? `/tools/${escapeHtml(pages[0].tool.slug)}/` : '#'}" target="_blank" rel="noopener">${pages.length === 1 ? `/tools/${escapeHtml(pages[0].tool.slug)}/` : ''}</a>
                 </div>
-                <div class="suggestion-field-row">
-                    <label for="edit-category">Category</label>
-                    <select id="edit-category">
-                        <option value="">-- select category --</option>
-                        ${track ? buildCategoryOptions(track, category) : ''}
-                    </select>
+                <div class="suggestion-field-row"${pages.length > 1 ? ' hidden' : ''} id="tool-page-placement-row">
+                    <label>Placement</label>
+                    <span id="tool-page-placement">${pages.length === 1 ? escapeHtml(placementLabel(pages[0])) : ''}</span>
                 </div>
-                <div class="suggestion-field-row">
-                    <label for="edit-subcategory">Subcategory</label>
-                    <select id="edit-subcategory">
-                        <option value="">-- select subcategory --</option>
-                        ${(track && category) ? buildSubcategoryOptions(track, category, subcategory) : ''}
-                    </select>
-                </div>
-                <div class="suggestion-field-row">
-                    <label for="edit-slug">Slug</label>
-                    <input type="text" id="edit-slug" value="${escapeHtml(slug)}" placeholder="e.g. letta-ai">
-                </div>
-                <p class="suggestion-approve-hint" id="approve-hint" style="display:none">
-                    Set placement and slug to approve — the apply script needs them.
-                </p>
             </div>`;
     }
 
@@ -384,6 +417,7 @@
         if (!panel) return;
 
         const isNewTool = s.kind === 'new_tool';
+        const toolPages = isNewTool ? findToolPages(s) : [];
         const showMarkApplied = s.status === 'approved' && s.kind === 'taxonomy_change' && s.payload?.op === 'other';
 
         panel.innerHTML = `
@@ -402,7 +436,7 @@
             <div class="suggestion-decision-body">
                 ${renderPayloadTable(s)}
                 ${s.rationale ? `<div class="suggestion-rationale"><strong>Rationale</strong>${escapeHtml(s.rationale)}</div>` : ''}
-                ${renderEditFields(s)}
+                ${renderToolPageFields(s, toolPages)}
                 <div class="suggestion-reject-area">
                     <label for="reject-note">Rejection note (required to reject)</label>
                     <select id="reject-template" class="suggestion-reject-template" aria-label="Rejection note template">
@@ -443,58 +477,35 @@
         });
 
         const approveBtn = panel.querySelector('#decision-approve');
-        const hintEl = panel.querySelector('#approve-hint');
 
-        // ---- For new_tool: cascade selects + approve gate ----
+        // ---- For new_tool: approve links the existing tool page ----
         if (isNewTool) {
-            const trackSel = panel.querySelector('#edit-track');
-            const catSel = panel.querySelector('#edit-category');
-            const subSel = panel.querySelector('#edit-subcategory');
-            const slugInput = panel.querySelector('#edit-slug');
+            const picker = panel.querySelector('#tool-page-pick');
+            let chosen = toolPages.length === 1 ? toolPages[0] : null;
+            approveBtn.disabled = !chosen;
 
-            function checkApproveGate() {
-                const track = trackSel.value;
-                const cat = catSel.value;
-                const sub = subSel.value;
-                const slug = slugInput.value.trim();
-                const placementOk = track && cat && sub;
-                const slugOk = SLUG_RE.test(slug);
-                const allOk = placementOk && slugOk;
-                approveBtn.disabled = !allOk;
-                if (hintEl) hintEl.style.display = allOk ? 'none' : '';
+            if (picker) {
+                picker.addEventListener('change', () => {
+                    chosen = toolPages.find(e => e.tool.slug === picker.value) || null;
+                    const link = panel.querySelector('#tool-page-link');
+                    link.href = chosen ? `/tools/${chosen.tool.slug}/` : '#';
+                    link.textContent = chosen ? `/tools/${chosen.tool.slug}/` : '';
+                    panel.querySelector('#tool-page-placement').textContent = chosen ? placementLabel(chosen) : '';
+                    panel.querySelector('#tool-page-details').hidden = !chosen;
+                    panel.querySelector('#tool-page-placement-row').hidden = !chosen;
+                    approveBtn.disabled = !chosen;
+                });
             }
 
-            // Track change → refresh category options
-            trackSel.addEventListener('change', () => {
-                const track = trackSel.value;
-                catSel.innerHTML = '<option value="">-- select category --</option>' + (track ? buildCategoryOptions(track, '') : '');
-                subSel.innerHTML = '<option value="">-- select subcategory --</option>';
-                checkApproveGate();
-            });
-
-            // Category change → refresh subcategory options
-            catSel.addEventListener('change', () => {
-                const track = trackSel.value;
-                const cat = catSel.value;
-                subSel.innerHTML = '<option value="">-- select subcategory --</option>' + ((track && cat) ? buildSubcategoryOptions(track, cat, '') : '');
-                checkApproveGate();
-            });
-
-            subSel.addEventListener('change', checkApproveGate);
-            slugInput.addEventListener('input', checkApproveGate);
-
-            // Run gate immediately (for pre-filled values)
-            checkApproveGate();
-
-            // Approve handler: collect edited payload
             approveBtn.addEventListener('click', async () => {
+                if (!chosen) return;
                 approveBtn.disabled = true;
                 const editedPayload = Object.assign({}, s.payload, {
-                    slug: panel.querySelector('#edit-slug').value.trim(),
+                    slug: chosen.tool.slug,
                     placement: {
-                        track: trackSel.value,
-                        category: catSel.value,
-                        subcategory: subSel.value,
+                        track: chosen.track,
+                        category: chosen.tool.category_id,
+                        subcategory: chosen.tool.subcategory_id,
                     },
                 });
                 const result = await window.AdminAPI.approveSuggestion(s.id, editedPayload);

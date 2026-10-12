@@ -17,7 +17,7 @@ import {
     CORS_HEADERS,
     type Suggestion,
 } from '../_shared/suggestion-email.ts';
-import { buildDecisionEmail } from '../_shared/decision-email.ts';
+import { buildDecisionEmail, toolPageUrl, toolSlugFor } from '../_shared/decision-email.ts';
 
 
 Deno.serve(async (req) => {
@@ -84,8 +84,20 @@ Deno.serve(async (req) => {
     const summary = oneLiner(suggestion);
     const verb = suggestion.status === 'approved' ? 'approved' : 'rejected';
 
+    // Backstop: never email a submitter a dead link. The admin UI only lets a
+    // new_tool be approved against an existing page, but check the live URL too.
+    let blockedReason: string | null = null;
+    const slug = toolSlugFor(suggestion);
+    if (suggestion.status === 'approved' && slug) {
+        const pageUrl = toolPageUrl(slug);
+        const res = await fetch(pageUrl, { method: 'HEAD', redirect: 'follow' }).catch(() => null);
+        if (!res?.ok) blockedReason = `tool page ${pageUrl} returned ${res?.status ?? 'no response'}`;
+    }
+
     let submitterSent = false;
-    if (profile?.email) {
+    if (blockedReason) {
+        console.error('[notify-suggestion-decision] submitter email blocked:', blockedReason);
+    } else if (profile?.email) {
         const { subject, html } = buildDecisionEmail({
             suggestion,
             displayName: profile.display_name ?? null,
@@ -109,6 +121,7 @@ Deno.serve(async (req) => {
     const ownerSubject = `[AI Tool Review] Suggestion ${verb}: ${summary}`;
     const ownerHtml = `
         <p>Suggestion ${suggestion.id} was <strong>${verb}</strong>, but the email to the submitter was NOT sent.</p>
+        ${blockedReason ? `<p><strong>Why:</strong> ${escapeHtml(blockedReason)}. Fix the page, then send the submitter the link yourself.</p>` : ''}
         <ul>
             <li><strong>Submitter:</strong> ${escapeHtml(profile?.email ?? '(no email on file)')}</li>
             <li><strong>Summary:</strong> ${escapeHtml(summary)}</li>
