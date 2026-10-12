@@ -297,6 +297,78 @@
             </div>`;
     }
 
+    // ------------------------------------------------------------------ //
+    // Rejection note templates
+    // ------------------------------------------------------------------ //
+
+    // The note is only the reason. The decision email (decision-email.ts) already
+    // adds the greeting, "Thank you for suggesting <tool>... not able to add it",
+    // the resubmit link, "just reply" and the sign-off, so templates must not repeat
+    // any of those (no "resubmit", no "not adding", no leading tool name for new tools).
+    //
+    // kinds: which suggestion kinds the template applies to (null = all).
+    // body: the reason plus the next step. invite (optional): one extra line asking for more.
+    // Placeholders: {tool} tool name/slug, {website} submitted URL.
+    const REJECT_TEMPLATES = [
+        {
+            id: 'site-down', label: 'Website not accessible', kinds: ['new_tool'],
+            body: 'We tried {website}, but the request timed out. Is the site still online?',
+        },
+        {
+            id: 'already-listed', label: 'Already listed', kinds: ['new_tool'],
+            body: 'It is already listed on AI Tool Review. If its page is missing anything, an edit suggestion there would help a lot.',
+        },
+        {
+            id: 'out-of-scope', label: 'Not an AI tool / out of scope', kinds: ['new_tool'],
+            body: 'It is outside our focus on AI tools for building and running software.',
+            invite: 'Know other AI dev tools we are missing? Send them our way.',
+        },
+        {
+            id: 'too-early', label: 'Too early / no public product', kinds: ['new_tool'],
+            body: 'We could not find a public product to try yet.',
+        },
+        {
+            id: 'placement-fits', label: 'Current placement fits better', kinds: ['tool_placement'],
+            body: 'We think {tool}\'s current category still fits how most people use it, so we are keeping it there for now.',
+        },
+        {
+            id: 'edit-unverified', label: 'Could not verify the change', kinds: ['tool_edit'],
+            body: 'We could not confirm this from {tool}\'s official site or docs. A source link would help.',
+        },
+        {
+            id: 'edit-already-correct', label: 'Info is already correct', kinds: ['tool_edit'],
+            body: '{tool}\'s official sources match what the page says, so we are leaving it as is.',
+            invite: 'Used {tool} yourself? A short review would help other people a lot.',
+        },
+        {
+            id: 'taxonomy-no-fit', label: 'Does not fit the taxonomy', kinds: ['taxonomy_change'],
+            body: 'This overlaps with existing categories, so we are keeping the structure as is for now.',
+            invite: 'Other ideas for organizing the landscape? We want to hear them.',
+        },
+        {
+            id: 'duplicate-suggestion', label: 'Duplicate suggestion', kinds: null,
+            body: 'Someone already sent this in, so we are tracking it there.',
+        },
+        {
+            id: 'need-info', label: 'Not enough information', kinds: null,
+            body: 'We need more details or a source link to act on this.',
+        },
+    ];
+
+    function templatesForKind(kind) {
+        return REJECT_TEMPLATES.filter(t => !t.kinds || t.kinds.includes(kind));
+    }
+
+    function fillTemplate(template, s) {
+        const p = s.payload || {};
+        const vars = {
+            tool: p.name || s.tool_slug || 'this tool',
+            website: p.website || 'the website',
+        };
+        const fill = text => text.replace(/\{(\w+)\}/g, (m, key) => vars[key] ?? m);
+        return [template.body, template.invite].filter(Boolean).map(fill).join(' ');
+    }
+
     function showToastExternal(message, type) {
         // Re-use the toast element if available
         const toast = document.getElementById('toast');
@@ -333,7 +405,11 @@
                 ${renderEditFields(s)}
                 <div class="suggestion-reject-area">
                     <label for="reject-note">Rejection note (required to reject)</label>
-                    <textarea id="reject-note" rows="3" placeholder="Explain why this suggestion is not accepted…">${escapeHtml(s.admin_note || '')}</textarea>
+                    <select id="reject-template" class="suggestion-reject-template" aria-label="Rejection note template">
+                        <option value="">Use a template…</option>
+                        ${templatesForKind(s.kind).map(t => `<option value="${escapeHtml(t.id)}">${escapeHtml(t.label)}</option>`).join('')}
+                    </select>
+                    <textarea id="reject-note" rows="6" placeholder="Explain why this suggestion is not accepted…">${escapeHtml(s.admin_note || '')}</textarea>
                 </div>
             </div>
             <div class="suggestion-decision-actions">
@@ -448,6 +524,20 @@
                 }
             });
         }
+
+        // ---- Rejection template picker ----
+        const templateSel = panel.querySelector('#reject-template');
+        const noteEl = panel.querySelector('#reject-note');
+        templateSel.addEventListener('change', () => {
+            const template = REJECT_TEMPLATES.find(t => t.id === templateSel.value);
+            if (!template) return;
+            if (noteEl.value.trim() && !confirm('Replace the current rejection note with this template?')) {
+                templateSel.value = '';
+                return;
+            }
+            noteEl.value = fillTemplate(template, s);
+            noteEl.focus();
+        });
 
         // ---- Reject handler ----
         panel.querySelector('#decision-reject').addEventListener('click', async () => {

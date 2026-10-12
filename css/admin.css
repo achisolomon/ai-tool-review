@@ -1065,6 +1065,24 @@
     margin-bottom: 6px;
 }
 
+.suggestion-reject-template {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    margin-bottom: 8px;
+    padding: 7px 10px;
+    background: var(--vscode-sidebar-bg);
+    border: 1px solid var(--vscode-border);
+    border-radius: 5px;
+    color: var(--vscode-text);
+    font-size: 13px;
+}
+
+.suggestion-reject-template:focus {
+    outline: none;
+    border-color: var(--vscode-button-bg);
+}
+
 .suggestion-reject-area textarea {
     width: 100%;
     padding: 10px 12px;
