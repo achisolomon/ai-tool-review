@@ -390,4 +390,17 @@ test.describe('Admin Suggestions — real-admin persistence (SKIPPED: needs real
         //   3. Click "Mark as applied"
         //   4. Verify DB: status='applied', applied_at set
     });
+
+    test.skip('approve/reject triggers notify-suggestion-decision and emails both parties', async ({ page }) => {
+        // Requires: signed-in admin session, deployed notify-suggestion-decision
+        // function, RESEND_API_KEY + OWNER_EMAIL secrets set, and a submitter
+        // account with a real inbox.
+        // Steps:
+        //   1. Insert a test suggestion as a non-admin user with a real email
+        //   2. Open decision view as admin, click Approve (or Reject with a note)
+        //   3. Verify the submitter's inbox received a decision email from
+        //      contact@aitoolreview.ai with reply_to achisolomon+contactaitool@gmail.com
+        //   4. Verify achisolomon+contactaitool@gmail.com received the owner copy
+        //   5. Clean up the test row
+    });
 });

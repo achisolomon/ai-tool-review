@@ -274,7 +274,16 @@ async function createSuggestion(row) {
     if (!supabase) return { data: null, error: { message: 'Supabase not initialized' } };
     const user = await getCurrentUser();
     if (!user) return { data: null, error: { message: 'Sign in required' } };
-    return await supabase.from('suggestions').insert({ ...row, user_id: user.id, status: 'pending' }).select().single();
+    const result = await supabase.from('suggestions').insert({ ...row, user_id: user.id, status: 'pending' }).select().single();
+    if (!result.error && result.data) notifyNewSuggestion(supabase, result.data.id);
+    return result;
+}
+
+// Fire-and-forget: tells the owner a new suggestion landed. Never blocks or
+// fails the insert above, this is a notification, not part of the write.
+function notifyNewSuggestion(supabase, id) {
+    supabase.functions.invoke('notify-new-suggestion', { body: { suggestion_id: id } })
+        .catch(err => console.error('[Supabase] new-suggestion email failed to send', err));
 }
 
 // List the current user's own suggestions, newest-updated first.

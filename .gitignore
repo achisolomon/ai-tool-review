@@ -36,3 +36,6 @@ js/config-local.js
 .env
 
 .superpowers/
+
+# Supabase CLI local state
+supabase/.temp/
