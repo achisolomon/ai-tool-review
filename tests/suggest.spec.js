@@ -737,6 +737,14 @@ test.skip('4: submit fix_details suggestion persists a row [requires signed-in s
   throw new Error('Not implemented — requires real signed-in session');
 });
 
+test.skip('4: submitting any suggestion kind triggers notify-new-suggestion [requires signed-in session + deployed function]', async ({ page }) => {
+  // Owner runs this after deploying notify-new-suggestion and setting the
+  // RESEND_API_KEY + OWNER_EMAIL secrets.
+  // Assert: after submitting any suggestion kind, achisolomon+contactaitool@gmail.com
+  // receives a "[AI Tool Review] New suggestion: ..." email with a link to admin.html.
+  throw new Error('Not implemented — requires real signed-in session and a real inbox');
+});
+
 // ---------------------------------------------------------------------------
 // Test 5 — Policy-layer RLS: user cannot self-approve (SKIPPED)
 // ---------------------------------------------------------------------------

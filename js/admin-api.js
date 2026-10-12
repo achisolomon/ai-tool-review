@@ -335,7 +335,16 @@ async function approveSuggestion(id, payloadPatch) {
     };
     if (payloadPatch) update.payload = payloadPatch; // admin-completed payload
     const { error } = await supabase.from('suggestions').update(update).eq('id', id);
+    if (!error) notifySuggestionDecision(supabase, id);
     return { success: !error, error: error?.message };
+}
+
+// Fire-and-forget: emails the submitter and the owner about the decision.
+// Never blocks or fails the update above, this is a notification, not part
+// of the write.
+function notifySuggestionDecision(supabase, id) {
+    supabase.functions.invoke('notify-suggestion-decision', { body: { suggestion_id: id } })
+        .catch(err => console.error('[AdminAPI] decision email failed to send', err));
 }
 
 /**
@@ -358,6 +367,7 @@ async function rejectSuggestion(id, note) {
             reviewed_at: new Date().toISOString(),
         })
         .eq('id', id);
+    if (!error) notifySuggestionDecision(supabase, id);
     return { success: !error, error: error?.message };
 }
 
