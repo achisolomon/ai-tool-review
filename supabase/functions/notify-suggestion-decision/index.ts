@@ -10,17 +10,21 @@ import { createClient } from 'npm:@supabase/supabase-js@2';
 import {
     ADMIN_URL,
     FROM_ADDRESS,
+    escapeHtml,
     jsonResponse,
     oneLiner,
     sendEmail,
     CORS_HEADERS,
     type Suggestion,
 } from '../_shared/suggestion-email.ts';
+import { buildDecisionEmail } from '../_shared/decision-email.ts';
 
-const OWNER_REPLY_TO = 'achisolomon+contactaitool@gmail.com';
 
 Deno.serve(async (req) => {
     if (req.method === 'OPTIONS') return new Response('ok', { headers: CORS_HEADERS });
+
+    const ownerEmail = Deno.env.get('OWNER_EMAIL');
+    if (!ownerEmail) console.error('[notify-suggestion-decision] OWNER_EMAIL is not set');
 
     const authHeader = req.headers.get('Authorization') ?? '';
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
@@ -73,29 +77,23 @@ Deno.serve(async (req) => {
 
     const { data: profile } = await admin
         .from('user_profiles')
-        .select('email')
+        .select('email, display_name')
         .eq('id', suggestion.user_id)
         .maybeSingle();
 
     const summary = oneLiner(suggestion);
-    const approved = suggestion.status === 'approved';
-    const verb = approved ? 'approved' : 'rejected';
+    const verb = suggestion.status === 'approved' ? 'approved' : 'rejected';
 
     let submitterSent = false;
     if (profile?.email) {
-        const subject = `[AI Tool Review] Your suggestion was ${verb}`;
-        const html = `
-            <p>Your suggestion has been <strong>${verb}</strong>.</p>
-            <ul>
-                <li><strong>Summary:</strong> ${summary}</li>
-                ${suggestion.admin_note ? `<li><strong>Note from the reviewer:</strong> ${suggestion.admin_note}</li>` : ''}
-            </ul>
-            <p>Reply to this email if you have questions.</p>
-        `;
+        const { subject, html } = buildDecisionEmail({
+            suggestion,
+            displayName: profile.display_name ?? null,
+        });
         submitterSent = await sendEmail({
             to: profile.email,
             from: FROM_ADDRESS,
-            replyTo: OWNER_REPLY_TO,
+            replyTo: ownerEmail,
             subject,
             html,
         });
@@ -107,18 +105,15 @@ Deno.serve(async (req) => {
     const ownerHtml = `
         <p>Suggestion ${suggestion.id} was <strong>${verb}</strong>.</p>
         <ul>
-            <li><strong>Submitter:</strong> ${profile?.email ?? '(no email on file)'}</li>
-            <li><strong>Summary:</strong> ${summary}</li>
-            ${suggestion.admin_note ? `<li><strong>Admin note:</strong> ${suggestion.admin_note}</li>` : ''}
+            <li><strong>Submitter:</strong> ${escapeHtml(profile?.email ?? '(no email on file)')}</li>
+            <li><strong>Summary:</strong> ${escapeHtml(summary)}</li>
+            ${suggestion.admin_note ? `<li><strong>Admin note:</strong> ${escapeHtml(suggestion.admin_note)}</li>` : ''}
         </ul>
         <p><a href="${ADMIN_URL}">View in the admin console</a></p>
     `;
-    const ownerSent = await sendEmail({
-        to: OWNER_REPLY_TO,
-        from: FROM_ADDRESS,
-        subject: ownerSubject,
-        html: ownerHtml,
-    });
+    const ownerSent = ownerEmail
+        ? await sendEmail({ to: ownerEmail, from: FROM_ADDRESS, subject: ownerSubject, html: ownerHtml })
+        : false;
 
     return jsonResponse({ submitter_sent: submitterSent, owner_sent: ownerSent });
 });

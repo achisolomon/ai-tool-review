@@ -6,6 +6,7 @@ import { createClient } from 'npm:@supabase/supabase-js@2';
 import {
     ADMIN_URL,
     FROM_ADDRESS,
+    escapeHtml,
     jsonResponse,
     oneLiner,
     sendEmail,
@@ -51,10 +52,10 @@ Deno.serve(async (req) => {
     const html = `
         <p>A new suggestion was submitted.</p>
         <ul>
-            <li><strong>Kind:</strong> ${suggestion.kind}</li>
-            ${suggestion.tool_slug ? `<li><strong>Tool:</strong> ${suggestion.tool_slug}</li>` : ''}
-            <li><strong>Summary:</strong> ${summary}</li>
-            ${suggestion.rationale ? `<li><strong>Rationale:</strong> ${suggestion.rationale}</li>` : ''}
+            <li><strong>Kind:</strong> ${escapeHtml(suggestion.kind)}</li>
+            ${suggestion.tool_slug ? `<li><strong>Tool:</strong> ${escapeHtml(suggestion.tool_slug)}</li>` : ''}
+            <li><strong>Summary:</strong> ${escapeHtml(summary)}</li>
+            ${suggestion.rationale ? `<li><strong>Rationale:</strong> ${escapeHtml(suggestion.rationale)}</li>` : ''}
         </ul>
         <p><a href="${ADMIN_URL}">Review it in the admin console</a></p>
     `;
