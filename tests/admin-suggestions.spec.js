@@ -25,6 +25,7 @@ const MOCK_SUGGESTIONS = [
         created_at: '2026-06-10T12:00:00Z',
         credit_name: 'dani',
         rationale: 'Great stateful agent runtime',
+        submitter: { firstName: 'Dani', lastName: 'Levi Cohen', email: 'dani@example.com' },
     },
     {
         id: '2',
@@ -242,6 +243,25 @@ window.AdminAPI = {
         await picker.selectOption('openai-sora-2');
         await expect(approveBtn).toBeEnabled();
         await expect(page.locator('#tool-page-link')).toHaveAttribute('href', '/tools/openai-sora-2/');
+    });
+
+    test('Decision view shows submitter first name, last name and email', async ({ page }) => {
+        await gotoAdminMocked(page);
+        await injectMocks(page);
+        await showSuggestionsView(page);
+
+        // Queue row surfaces the submitter email
+        await expect(page.locator('.suggestion-row').first()).toContainText('dani@example.com');
+
+        await page.locator('.suggestion-row').first().click();
+        const table = page.locator('#suggestion-decision .suggestion-payload-table');
+        await expect(table.locator('tr', { hasText: 'First name' })).toContainText('Dani');
+        await expect(table.locator('tr', { hasText: 'Last name' })).toContainText('Levi Cohen');
+        await expect(table.locator('tr', { hasText: 'Email' }).locator('a[href="mailto:dani@example.com"]')).toBeVisible();
+
+        // Suggestion with no profile says so instead of rendering blanks
+        await page.locator('.suggestion-row').nth(1).click();
+        await expect(page.locator('#suggestion-decision')).toContainText('No profile found');
     });
 
     test('"Mark as applied" button shows for approved taxonomy_change with op:other', async ({ page }) => {

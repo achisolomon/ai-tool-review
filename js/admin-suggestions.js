@@ -214,7 +214,7 @@
                         <span class="suggestion-kind-badge ${kindClass(s.kind)}">${kindLabel(s.kind)}</span>
                         <span class="suggestion-row-summary">${oneLiner(s)}</span>
                         <span class="suggestion-row-meta">
-                            <span>${escapeHtml(s.credit_name || 'anon')}</span>
+                            <span>${escapeHtml(s.submitter?.email || s.credit_name || 'anon')}</span>
                             <span>${formatRelativeDate(s.created_at)}</span>
                         </span>
                     </div>`;
@@ -286,6 +286,17 @@
 
         if (s.tool_slug) rows += `<tr><th>Tool slug</th><td>${escapeHtml(s.tool_slug)}</td></tr>`;
         rows += `<tr><th>Status</th><td>${escapeHtml(s.status)}</td></tr>`;
+
+        // Submitter identity (admin-only context, never shown publicly)
+        const sub = s.submitter;
+        if (sub) {
+            rows += `<tr><th>First name</th><td>${escapeHtml(sub.firstName || '-')}</td></tr>`;
+            rows += `<tr><th>Last name</th><td>${escapeHtml(sub.lastName || '-')}</td></tr>`;
+            rows += `<tr><th>Email</th><td>${sub.email ? `<a href="mailto:${escapeHtml(sub.email)}">${escapeHtml(sub.email)}</a>` : '-'}</td></tr>`;
+        } else {
+            rows += `<tr><th>Submitted by</th><td>No profile found</td></tr>`;
+        }
+        if (s.credit_name) rows += `<tr><th>Credit name</th><td>${escapeHtml(s.credit_name)}${s.public_credit === false ? ' (private)' : ''}</td></tr>`;
 
         return `<table class="suggestion-payload-table"><tbody>${rows}</tbody></table>`;
     }
