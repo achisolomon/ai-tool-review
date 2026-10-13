@@ -43,15 +43,16 @@ permalink: /
     </script>
 
     <!-- data-spa-head: swapped by the SPA router on navigation so meta stays accurate. -->
-    <meta name="description" content="Explore 330+ AI tools organized by category. Find foundation models, coding assistants, agents, and more. Your starting point for AI tool discovery." data-spa-head>
-    <meta property="og:title" content="AI Tool Review" data-spa-head>
-    <meta property="og:description" content="Find the right AI tool for the job. Explore 330+ tools across 15+ categories." data-spa-head>
+    <meta name="description" content="Explore {% include site-count.html what="tools" %} AI tools organized by category. Find foundation models, coding assistants, agents, and more. Your starting point for AI tool discovery." data-spa-head>
+    <meta property="og:title" content="AI Tool Review: AI tools, rated by the people who use them" data-spa-head>
+    <meta property="og:description" content="{% include site-count.html what="tools" %} AI tools, honestly ranked by the community. Used one? Leave a review. Know one we're missing? Add it." data-spa-head>
     <meta property="og:type" content="website" data-spa-head>
-    <meta property="og:image" content="/assets/og-card.png" data-spa-head>
+    <meta property="og:url" content="{{ site.url }}/" data-spa-head>
+    <meta property="og:image" content="{{ site.url }}/assets/og-card.png?v=2" data-spa-head>
     <meta property="og:image:width" content="1200" data-spa-head>
     <meta property="og:image:height" content="630" data-spa-head>
     <meta name="twitter:card" content="summary_large_image" data-spa-head>
-    <meta name="twitter:image" content="/assets/og-card.png" data-spa-head>
+    <meta name="twitter:image" content="{{ site.url }}/assets/og-card.png?v=2" data-spa-head>
     <meta name="theme-color" content="#1e1e1e">
     <link rel="stylesheet" href="css/style.css?t=1781400001">
     <link rel="stylesheet" href="css/tool.css">
@@ -103,7 +104,7 @@ permalink: /
                 <div class="autocomplete-dropdown hidden" id="autocomplete-dropdown"></div>
             </div>
             <a href="landscape.html" class="browse-toggle">Browse The AI Tools Landscape</a>
-            <p class="hero-stats"><span id="hero-tool-count">330+</span> tools across <span id="hero-cat-count">15+</span> categories</p>
+            <p class="hero-stats"><span id="hero-tool-count">{% include site-count.html what="tools" %}</span> tools across <span id="hero-cat-count">{% include site-count.html what="categories" %}</span> categories</p>
         </div>
     </section>
 

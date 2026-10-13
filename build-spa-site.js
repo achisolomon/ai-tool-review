@@ -41,10 +41,25 @@ function renderLearnArticles() {
   }).join('\n');
 }
 
+// Mirrors _includes/site-count.html: tools rounded down to tens, distinct categories
+function siteCounts() {
+  const files = fs.readdirSync('data/_tools', { recursive: true }).filter(f => f.endsWith('.md'));
+  const cats = new Set();
+  for (const f of files) {
+    const m = fs.readFileSync(path.join('data/_tools', f), 'utf-8').match(/^category:\s*"?([\w-]+)"?/m);
+    if (m) cats.add(m[1]);
+  }
+  return { tools: `${Math.floor(files.length / 10) * 10}+`, categories: `${cats.size}+` };
+}
+const counts = siteCounts();
+
 // Function to replace includes
 function processTemplate(content, active = '') {
   // Strip Jekyll front matter (--- ... ---)
   content = content.replace(/^---[\s\S]*?---\n/, '');
+
+  // Expand tool/category count includes before generic tag stripping removes them
+  content = content.replace(/\{%\s*include\s+site-count\.html\s+what="(\w+)"\s*%\}/g, (m, what) => counts[what] || '');
 
   // Process nav includes
   content = content.replace(/\{%\s*include\s+nav\.html(?:\s+active\s*=\s*"([^"]+)")?\s*%\}/g, (match, activeParam) => {
