@@ -4,15 +4,15 @@
 // translate between the two — it holds no business logic of its own.
 
 export interface WebhookPayload {
-  record: { id?: string; kind?: string; status?: string };
+  record?: { id?: string; kind?: string; status?: string };
   old_record?: { status?: string };
 }
 
 export function isApprovalTransition(payload: WebhookPayload): boolean {
   const { record, old_record } = payload;
   return (
-    record.kind === "new_tool" &&
-    record.status === "approved" &&
+    record?.kind === "new_tool" &&
+    record?.status === "approved" &&
     old_record?.status !== "approved"
   );
 }
@@ -20,7 +20,7 @@ export function isApprovalTransition(payload: WebhookPayload): boolean {
 export function buildDispatchPayload(payload: WebhookPayload) {
   return {
     event_type: "suggestion-approved",
-    client_payload: { suggestion_id: payload.record.id },
+    client_payload: { suggestion_id: payload.record?.id },
   };
 }
 
@@ -34,7 +34,16 @@ Deno.serve(async (req: Request) => {
     return new Response("unauthorized", { status: 401 });
   }
 
-  const payload: WebhookPayload = await req.json();
+  let payload: WebhookPayload;
+  try {
+    payload = await req.json();
+  } catch {
+    return new Response("invalid JSON body", { status: 400 });
+  }
+  if (!payload.record || typeof payload.record !== "object") {
+    return new Response("missing or invalid record field", { status: 400 });
+  }
+
   if (!isApprovalTransition(payload)) {
     return new Response("ignored: not an approval transition", { status: 200 });
   }

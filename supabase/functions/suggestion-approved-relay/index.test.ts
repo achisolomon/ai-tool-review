@@ -36,3 +36,10 @@ Deno.test("buildDispatchPayload: reshapes into GitHub repository_dispatch shape"
     client_payload: { suggestion_id: "abc-123" },
   });
 });
+
+Deno.test("isApprovalTransition: false when record is missing", () => {
+  assertEquals(isApprovalTransition({
+    record: undefined as any,
+    old_record: { status: "pending" },
+  }), false);
+});
