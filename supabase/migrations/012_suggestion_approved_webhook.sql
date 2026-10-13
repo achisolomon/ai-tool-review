@@ -1,10 +1,10 @@
 -- 012_suggestion_approved_webhook.sql
 -- Fires the suggestion-approved-relay Edge Function whenever a suggestion row's
--- status transitions to 'approved'. The Edge Function re-checks kind/old status
--- itself (see supabase/functions/suggestion-approved-relay/index.ts) — this
--- trigger fires on every UPDATE and lets the function decide relevance, matching
--- how Supabase Database Webhooks already behave (no column-level filtering on
--- the Postgres side).
+-- status transitions to 'approved'. This trigger gates only on the status
+-- transition (see the WHEN clause below); it does not filter on kind or any
+-- other column. The Edge Function (see
+-- supabase/functions/suggestion-approved-relay/index.ts) re-checks kind and the
+-- old status itself and decides all other relevance.
 -- IDEMPOTENT: safe to re-run.
 
 CREATE OR REPLACE FUNCTION public.notify_suggestion_approved()
