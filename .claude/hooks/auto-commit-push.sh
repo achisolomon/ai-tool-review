@@ -10,6 +10,11 @@
 set -uo pipefail
 cat >/dev/null 2>&1 || true   # drain stdin
 
+# Never auto-commit/push inside CI. Every GitHub Actions runner sets this.
+# Automated workflows (e.g. tool-page-generate.yml) own their own commit/PR
+# step; this hook pushing underneath them would bypass PR review entirely.
+[ "${GITHUB_ACTIONS:-}" = "true" ] && exit 0
+
 # Resolve repo root (prefer the harness-provided project dir).
 repo="${CLAUDE_PROJECT_DIR:-}"
 if [ -z "$repo" ] || [ ! -d "$repo/.git" ]; then
