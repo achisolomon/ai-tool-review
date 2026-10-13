@@ -590,3 +590,52 @@ are used identically in the test file and the implementation; the workflow's env
 var names (`SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`) match `.env.example`'s
 existing names exactly, so `apply-suggestions.mjs` needs no changes to run under
 Actions.
+
+---
+
+## Before going live (not required to merge this as phase-1/manual-testing code)
+
+Found by the final cross-cutting review after all four tasks were implemented and
+individually approved. Neither item blocks merging this branch, since the explicit
+scope is manual `workflow_dispatch` testing with a human watching for the PR — but
+both must be addressed before flipping this on for real, unattended admin
+approvals, or a failure becomes invisible.
+
+### 1. The chain has zero retry and zero failure notification
+
+`net.http_post` (pg_net) is fire-and-forget: if the Edge Function is down,
+misconfigured, or the GitHub dispatch call fails, the Postgres trigger still
+returns success and the admin's approval UPDATE commits normally. Nothing
+anywhere (Postgres, pg_net, the Edge Function, GitHub) retries a dropped
+`repository_dispatch`, and no error surfaces to anyone. Net effect: an admin
+approves a tool, sees success, and the page may simply never get generated with
+no indication why. Before production use, add at minimum a monitoring signal —
+e.g. a scheduled check for "any `approved` suggestion older than N minutes with
+no corresponding branch/PR" — so a silent failure doesn't go unnoticed
+indefinitely.
+
+### 2. Consolidated manual-setup checklist
+
+The steps below are scattered across this document by task, plus one
+prerequisite that was never written down anywhere until now.
+
+- [ ] **Enable the `pg_net` extension** on the target Supabase project (via the
+  Supabase dashboard, or `CREATE EXTENSION IF NOT EXISTS pg_net;`). No migration
+  in this repo does this — migration 012 assumes `net.http_post` already exists.
+  Hosted Supabase projects commonly have it enabled by default, but this is not
+  guaranteed and was never an explicit checklist item before this section existed.
+- [ ] **GitHub repo secrets** (Settings → Secrets and variables → Actions):
+  `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `ANTHROPIC_API_KEY` (Task 2, Step 2).
+- [ ] **Supabase Edge Function secrets**: `WEBHOOK_SHARED_SECRET` (generate a
+  random 32+ char string), `GITHUB_PAT` (fine-grained, scoped to this repo,
+  `contents:write` + `metadata:read` only) (Task 3, Step 5).
+- [ ] **Postgres GUCs** (via the Supabase SQL editor):
+  `app.settings.suggestion_relay_url`, `app.settings.suggestion_relay_secret` —
+  the latter must match the Edge Function's `WEBHOOK_SHARED_SECRET` value exactly
+  (Task 4, Step 2).
+- [ ] **Deploy the Edge Function**: `supabase functions deploy
+  suggestion-approved-relay --no-verify-jwt` (Task 3, Step 6).
+- [ ] **Apply the migration**: `supabase db push` (Task 4, Step 3).
+- [ ] Run one real end-to-end test (a clearly-fake test suggestion, per Task 4
+  Step 4) and confirm a PR actually opens before trusting this for real
+  approvals.
