@@ -89,14 +89,25 @@ jobs:
           GITHUB_ACTIONS: 'true'
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          set -o pipefail
           npm install -g @anthropic-ai/claude-code
+          failed=()
           for f in ${{ steps.files.outputs.files }}; do
-            claude -p "Use the tool-page-content skill to fill in the rich content sections (key stats, overview, verdict, pros/cons with sources, pricing, expandable details, comparison table if relevant) for the existing tool page at $f. Its frontmatter and description already exist and are correct, do not change website, slug, category, subcategory, or type. Research the tool's real website and GitHub repo (if any) per the skill's pre-flight checks before writing any claims. Then sync js/data.js per the skill's instructions. Only touch $f and js/data.js." \
+            if claude -p "Use the tool-page-content skill to fill in the rich content sections (key stats, overview, verdict, pros/cons with sources, pricing, expandable details, comparison table if relevant) for the existing tool page at $f. Its frontmatter and description already exist and are correct, do not change website, slug, category, subcategory, or type. Research the tool's real website and GitHub repo (if any) per the skill's pre-flight checks before writing any claims. Then sync js/data.js per the skill's instructions. Only touch $f and js/data.js." \
               --output-format json \
               --allowedTools "Read,Edit,Bash(curl:*),Bash(gh:*),Bash(node:*),WebFetch,WebSearch" \
               --permission-mode bypassPermissions \
-              | tee -a claude-output.jsonl
+              | tee -a claude-output.jsonl; then
+              :
+            else
+              echo "::error::claude -p failed for $f"
+              failed+=("$f")
+            fi
           done
+          if [ "${#failed[@]}" -gt 0 ]; then
+            echo "::error::Content generation failed for: ${failed[*]}"
+            exit 1
+          fi
 
       - name: Validate js/data.js sync
         if: steps.apply.outputs.applied == 'true'
