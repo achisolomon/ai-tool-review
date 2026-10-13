@@ -10,7 +10,7 @@ status: "active"
 description: "Open-source LLM app development platform combining AI workflow builder, RAG pipeline, agent capabilities, and model management in a visual interface for rapid prototyping to production"
 pricing_model: "freemium"
 github_url: "https://github.com/langgenius/dify"
-github_stars: 158229
+github_stars: 158349
 founded_year: 2023
 headquarters: "San Francisco, CA"
 tags:
