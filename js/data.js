@@ -5896,6 +5896,34 @@ const landscapeData = {
               ]
             },
             {
+              "name": "looot",
+              "slug": "looot",
+              "url": "https://looot.ai",
+              "desc": "Pay-per-call gateway that gives AI agents one token and one prepaid USD balance for 2,500+ paid data API endpoints from 90+ providers, over MCP, CLI or REST",
+              "type": "commercial",
+              "github_stars": 3,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "mcp-server",
+                "api-available"
+              ],
+              "all_tags": [
+                "agents",
+                "mcp-server",
+                "api-available",
+                "typescript",
+                "python"
+              ],
+              "category_id": "agent-frameworks",
+              "category_name": "Agent Frameworks & Orchestration",
+              "subcategory_id": "tool-integrations",
+              "subcategory_name": "Tool Integrations & Connectors",
+              "additional_categories": []
+            },
+            {
               "name": "Merge",
               "slug": "merge",
               "url": "https://www.merge.dev/",
