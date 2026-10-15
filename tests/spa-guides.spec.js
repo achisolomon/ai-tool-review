@@ -255,6 +255,9 @@ test.describe('SPA Phase 1: head metadata swap', () => {
     const homeDesc = await page.evaluate(() =>
       document.querySelector('meta[name="description"]')?.getAttribute('content'));
     expect(homeDesc).toBeTruthy();
+    const homeOgTitle = await page.evaluate(() =>
+      document.querySelector('meta[property="og:title"]')?.getAttribute('content'));
+    expect(homeOgTitle).toContain('AI Tool Review');
 
     // Home → Guides → first article (SPA), then back to home via the Search nav link.
     await page.locator('[data-spa-link][href="/guides/"]').click();
@@ -270,6 +273,6 @@ test.describe('SPA Phase 1: head metadata swap', () => {
     expect(restoredDesc).toBe(homeDesc);
     const ogTitle = await page.evaluate(() =>
       document.querySelector('meta[property="og:title"]')?.getAttribute('content'));
-    expect(ogTitle).toBe('AI Tool Review');
+    expect(ogTitle).toBe(homeOgTitle);
   });
 });

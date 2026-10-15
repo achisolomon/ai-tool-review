@@ -2762,19 +2762,18 @@ main:focus-visible,
     margin-bottom: 2rem !important;
     padding: 0 !important;
     border: none !important;
-    position: relative; /* anchor for the corner "Suggest an edit" affordance */
 }
 
-/* Small, unobtrusive "Suggest an edit" pinned to the header's top-right —
-   out of the centered content flow so it costs no vertical space. */
+/* "Leave a review" / "Suggest an edit" sit in normal flow, centered,
+   directly below the title — never overlaps the title at any viewport
+   width or title length (no absolute positioning, no magic numbers). */
 .tool-page .tool-action-btns {
-    position: absolute;
-    top: 0;
-    left: 0;
     display: flex;
-    flex-direction: column;
-    gap: 6px;
-    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin: 0.9rem 0 1.1rem 0;
 }
 
 .tool-page .tool-action-btn {
@@ -2815,16 +2814,6 @@ main:focus-visible,
     color: var(--vscode-text-link, #3794ff);
     border-color: var(--vscode-text-link, #3794ff);
 }
-@media (max-width: 600px) {
-    .tool-page .tool-action-btns {
-        position: static;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 6px;
-        margin-top: 12px;
-    }
-}
-
 .tool-page .tool-header h1 {
     font-size: 2.5rem !important;
     color: #ffffff !important;

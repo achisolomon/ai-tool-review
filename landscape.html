@@ -8,7 +8,7 @@ permalink: /landscape.html
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="icon" type="image/x-icon" href="/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Tools Landscape - Browse 330+ AI Tools by Category</title>
+    <title>AI Tools Landscape - Browse {% include site-count.html what="tools" %} AI Tools by Category</title>
     <!-- Google Consent Mode - Set defaults BEFORE loading any Google scripts -->
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -43,10 +43,16 @@ permalink: /landscape.html
     </script>
 
     <!-- data-spa-head: swapped by the SPA router on navigation so meta stays accurate. -->
-    <meta name="description" content="Browse the complete AI tools landscape. Explore 330+ tools organized by category - foundation models, coding assistants, agents, and more." data-spa-head>
-    <meta property="og:title" content="AI Tools Landscape" data-spa-head>
-    <meta property="og:description" content="Browse 330+ AI tools across 15+ categories. The complete landscape view." data-spa-head>
+    <meta name="description" content="Browse the complete AI tools landscape. Explore {% include site-count.html what="tools" %} tools organized by category - foundation models, coding assistants, agents, and more." data-spa-head>
+    <meta property="og:title" content="AI Tools Landscape: {% include site-count.html what="tools" %} tools on one map" data-spa-head>
+    <meta property="og:description" content="Every AI tool category, side by side. Find yours, then tell others what it's really like. Missing one? Add it." data-spa-head>
     <meta property="og:type" content="website" data-spa-head>
+    <meta property="og:url" content="{{ site.url }}/landscape.html" data-spa-head>
+    <meta property="og:image" content="{{ site.url }}/assets/og-card.png?v=2" data-spa-head>
+    <meta property="og:image:width" content="1200" data-spa-head>
+    <meta property="og:image:height" content="630" data-spa-head>
+    <meta name="twitter:card" content="summary_large_image" data-spa-head>
+    <meta name="twitter:image" content="{{ site.url }}/assets/og-card.png?v=2" data-spa-head>
     <meta name="theme-color" content="#1e1e1e">
     <link rel="stylesheet" href="css/style.css?t=1780517697">
     <link rel="stylesheet" href="css/tool.css">

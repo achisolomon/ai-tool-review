@@ -22,13 +22,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-chat-search",
               "category_name": "AI Chat Assistants & Search",
               "subcategory_id": "ai-search",
               "subcategory_name": "AI Search Engines",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Brave Search",
@@ -40,13 +46,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-chat-search",
               "category_name": "AI Chat Assistants & Search",
               "subcategory_id": "ai-search",
               "subcategory_name": "AI Search Engines",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "ChatGPT Search",
@@ -58,13 +70,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-chat-search",
               "category_name": "AI Chat Assistants & Search",
               "subcategory_id": "ai-search",
               "subcategory_name": "AI Search Engines",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Kagi Search",
@@ -76,13 +94,19 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-chat-search",
               "category_name": "AI Chat Assistants & Search",
               "subcategory_id": "ai-search",
               "subcategory_name": "AI Search Engines",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Perplexity",
@@ -94,13 +118,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-chat-search",
               "category_name": "AI Chat Assistants & Search",
               "subcategory_id": "ai-search",
               "subcategory_name": "AI Search Engines",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "You.com",
@@ -112,13 +142,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-chat-search",
               "category_name": "AI Chat Assistants & Search",
               "subcategory_id": "ai-search",
               "subcategory_name": "AI Search Engines",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -146,7 +182,9 @@ const landscapeData = {
               "category_name": "AI Chat Assistants & Search",
               "subcategory_id": "chat-assistants",
               "subcategory_name": "AI Chat Assistants",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Claude.ai",
@@ -158,13 +196,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-chat-search",
               "category_name": "AI Chat Assistants & Search",
               "subcategory_id": "chat-assistants",
               "subcategory_name": "AI Chat Assistants",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "DeepSeek Chat",
@@ -186,7 +230,9 @@ const landscapeData = {
               "category_name": "AI Chat Assistants & Search",
               "subcategory_id": "chat-assistants",
               "subcategory_name": "AI Chat Assistants",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Google Gemini",
@@ -208,7 +254,9 @@ const landscapeData = {
               "category_name": "AI Chat Assistants & Search",
               "subcategory_id": "chat-assistants",
               "subcategory_name": "AI Chat Assistants",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Meta AI",
@@ -230,7 +278,9 @@ const landscapeData = {
               "category_name": "AI Chat Assistants & Search",
               "subcategory_id": "chat-assistants",
               "subcategory_name": "AI Chat Assistants",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Microsoft Copilot",
@@ -242,13 +292,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-chat-search",
               "category_name": "AI Chat Assistants & Search",
               "subcategory_id": "chat-assistants",
               "subcategory_name": "AI Chat Assistants",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Mistral Le Chat",
@@ -260,13 +316,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-chat-search",
               "category_name": "AI Chat Assistants & Search",
               "subcategory_id": "chat-assistants",
               "subcategory_name": "AI Chat Assistants",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Qwen Chat",
@@ -288,7 +350,9 @@ const landscapeData = {
               "category_name": "AI Chat Assistants & Search",
               "subcategory_id": "chat-assistants",
               "subcategory_name": "AI Chat Assistants",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         }
@@ -323,7 +387,9 @@ const landscapeData = {
               "category_name": "Enterprise AI Platforms",
               "subcategory_id": "enterprise",
               "subcategory_name": "Enterprise Platforms",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Glean",
@@ -335,13 +401,19 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "enterprise-platforms",
               "category_name": "Enterprise AI Platforms",
               "subcategory_id": "enterprise",
               "subcategory_name": "Enterprise Platforms",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "IBM watsonx Orchestrate",
@@ -365,7 +437,9 @@ const landscapeData = {
               "category_name": "Enterprise AI Platforms",
               "subcategory_id": "enterprise",
               "subcategory_name": "Enterprise Platforms",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Microsoft Copilot Studio",
@@ -387,7 +461,9 @@ const landscapeData = {
               "category_name": "Enterprise AI Platforms",
               "subcategory_id": "enterprise",
               "subcategory_name": "Enterprise Platforms",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Salesforce Agentforce",
@@ -409,7 +485,9 @@ const landscapeData = {
               "category_name": "Enterprise AI Platforms",
               "subcategory_id": "enterprise",
               "subcategory_name": "Enterprise Platforms",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "SAP Joule",
@@ -431,7 +509,9 @@ const landscapeData = {
               "category_name": "Enterprise AI Platforms",
               "subcategory_id": "enterprise",
               "subcategory_name": "Enterprise Platforms",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "ServiceNow AI Agents",
@@ -455,7 +535,9 @@ const landscapeData = {
               "category_name": "Enterprise AI Platforms",
               "subcategory_id": "enterprise",
               "subcategory_name": "Enterprise Platforms",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Workday Illuminate",
@@ -477,7 +559,9 @@ const landscapeData = {
               "category_name": "Enterprise AI Platforms",
               "subcategory_id": "enterprise",
               "subcategory_name": "Enterprise Platforms",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         }
@@ -492,6 +576,30 @@ const landscapeData = {
           "id": "3d-other",
           "name": "3D / Other Modalities",
           "tools": [
+            {
+              "name": "Fomrix",
+              "slug": "fomrix",
+              "url": "https://fomrix.com/",
+              "desc": "Web platform that converts images or text descriptions into 3D models, with image-to-3D, text-to-3D, image-to-STL for printing, and a 3D character maker",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "no-code"
+              ],
+              "all_tags": [
+                "no-code"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "3d-other",
+              "subcategory_name": "3D / Other Modalities",
+              "additional_categories": [
+
+              ]
+            },
             {
               "name": "Luma AI",
               "slug": "luma",
@@ -512,7 +620,9 @@ const landscapeData = {
               "category_name": "Generative Media",
               "subcategory_id": "3d-other",
               "subcategory_name": "3D / Other Modalities",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Meshy",
@@ -524,13 +634,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "3d-other",
               "subcategory_name": "3D / Other Modalities",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Skybox (Blockade Labs)",
@@ -552,7 +668,9 @@ const landscapeData = {
               "category_name": "Generative Media",
               "subcategory_id": "3d-other",
               "subcategory_name": "3D / Other Modalities",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Tripo AI",
@@ -574,7 +692,9 @@ const landscapeData = {
               "category_name": "Generative Media",
               "subcategory_id": "3d-other",
               "subcategory_name": "3D / Other Modalities",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -592,13 +712,117 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "image-generation",
               "subcategory_name": "Image Generation",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "AI Image Cleaner",
+              "slug": "ai-image-cleaner",
+              "url": "https://ai-image-cleaner.com",
+              "desc": "Web-based tool that removes unwanted people, objects, text, and watermarks from photos by painting over them, using AI inpainting techniques inspired by LaMa research",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "no-code"
+              ],
+              "all_tags": [
+                "no-code"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "image-generation",
+              "subcategory_name": "Image Generation",
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "AI Photo Editor",
+              "slug": "ai-photo-editor",
+              "url": "https://ai-photo-editor.co/",
+              "desc": "Browser-based AI image editing platform powered by Google's Gemini 3 Pro model, offering background removal, object removal, upscaling, style transformation, batch processing, and in-image text editing",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "multimodal",
+                "no-code"
+              ],
+              "all_tags": [
+                "multimodal",
+                "no-code"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "image-generation",
+              "subcategory_name": "Image Generation",
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "Blur Background (Vignra)",
+              "slug": "blur-background",
+              "url": "https://blurbackground.vip",
+              "desc": "Web-based photo editor, branded Vignra, that blurs photo backgrounds while keeping the subject in focus, processing images locally in-browser with an optional paid AI mode for enhanced bokeh",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "no-code"
+              ],
+              "all_tags": [
+                "no-code"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "image-generation",
+              "subcategory_name": "Image Generation",
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "face rating",
+              "slug": "face-rating",
+              "url": "https://face-rating.app/",
+              "desc": "AI facial analysis tool using 478-point face mesh mapping to score features and symmetry, with improvement recommendations and style previews",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "image-generation",
+              "subcategory_name": "Image Generation",
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "FLUX (Black Forest Labs)",
@@ -606,7 +830,7 @@ const landscapeData = {
               "url": "https://blackforestlabs.ai/",
               "desc": "State-of-the-art text-to-image models from the creators of Stable Diffusion, offering the FLUX.1 family with Pro, Dev, and Schnell variants for photorealistic generation",
               "type": "commercial",
-              "github_stars": 25938,
+              "github_stars": 26013,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -620,7 +844,33 @@ const landscapeData = {
               "category_name": "Generative Media",
               "subcategory_id": "image-generation",
               "subcategory_name": "Image Generation",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "hairforge",
+              "slug": "hairforge",
+              "url": "https://beardstyles.co",
+              "desc": "AI tool that previews different beard styles on a user's own photo, with multi-angle views and recommendations based on face shape and beard density",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "paid",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "image-generation",
+              "subcategory_name": "Image Generation",
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Ideogram",
@@ -632,13 +882,43 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "image-generation",
               "subcategory_name": "Image Generation",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "AI Image Cleanup Tool",
+              "slug": "image-cleanup-ai",
+              "url": "https://imagecleanupai.com/",
+              "desc": "AI tool that removes unwanted text from images using machine learning detection and inpainting to reconstruct the background underneath",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "no-code"
+              ],
+              "all_tags": [
+                "no-code"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "image-generation",
+              "subcategory_name": "Image Generation",
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Krea AI",
@@ -660,7 +940,9 @@ const landscapeData = {
               "category_name": "Generative Media",
               "subcategory_id": "image-generation",
               "subcategory_name": "Image Generation",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Leonardo.AI",
@@ -682,7 +964,35 @@ const landscapeData = {
               "category_name": "Generative Media",
               "subcategory_id": "image-generation",
               "subcategory_name": "Image Generation",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "Melhorar Imagem",
+              "slug": "melhorar-imagem",
+              "url": "https://melhorar-imagem.com/",
+              "desc": "Browser-based AI photo enhancement tool for Portuguese-speaking users, offering unblurring, upscaling up to 8x, noise reduction, and automated color correction via a credit-based pricing system",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "no-code",
+                "real-time"
+              ],
+              "all_tags": [
+                "no-code",
+                "real-time"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "image-generation",
+              "subcategory_name": "Image Generation",
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Midjourney",
@@ -694,13 +1004,19 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "image-generation",
               "subcategory_name": "Image Generation",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Nano Banana",
@@ -712,13 +1028,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "image-generation",
               "subcategory_name": "Image Generation",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "OpenAI DALL-E",
@@ -740,7 +1062,9 @@ const landscapeData = {
               "category_name": "Generative Media",
               "subcategory_id": "image-generation",
               "subcategory_name": "Image Generation",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Recraft",
@@ -762,7 +1086,33 @@ const landscapeData = {
               "category_name": "Generative Media",
               "subcategory_id": "image-generation",
               "subcategory_name": "Image Generation",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "Sharpniq",
+              "slug": "sharpniq",
+              "url": "https://unblurimage.me",
+              "desc": "Image deblurring tool that removes motion blur, soft focus, and compression artifacts using browser-based or cloud AI processing",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "no-code"
+              ],
+              "all_tags": [
+                "no-code"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "image-generation",
+              "subcategory_name": "Image Generation",
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -770,6 +1120,30 @@ const landscapeData = {
           "id": "music-generation",
           "name": "Music Generation",
           "tools": [
+            {
+              "name": "AISongsGenerator",
+              "slug": "aisongsgenerator",
+              "url": "https://aisongsgenerator.com/",
+              "desc": "Platform for generating full songs from text prompts or custom lyrics, with AI lyric writing, vocal remover, stem splitter, and music video export",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "music-generation",
+              "subcategory_name": "Music Generation",
+              "additional_categories": [
+
+              ]
+            },
             {
               "name": "AIVA",
               "slug": "aiva",
@@ -780,13 +1154,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "music-generation",
               "subcategory_name": "Music Generation",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "ElevenLabs Music",
@@ -798,13 +1178,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "music-generation",
               "subcategory_name": "Music Generation",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Suno",
@@ -816,13 +1202,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "music-generation",
               "subcategory_name": "Music Generation",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Udio",
@@ -834,13 +1226,43 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "music-generation",
               "subcategory_name": "Music Generation",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "UEGMusic",
+              "slug": "uegmusic",
+              "url": "https://uegmusic.com/",
+              "desc": "AI platform for creating short audio identities such as spoken jingles, producer tags, DJ drops, radio IDs, and podcast intros from voice and music",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "paid",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "music-generation",
+              "subcategory_name": "Music Generation",
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -848,6 +1270,58 @@ const landscapeData = {
           "id": "video-generation",
           "name": "Video Generation",
           "tools": [
+            {
+              "name": "BabyVideo.ai",
+              "slug": "babyvideo-ai",
+              "url": "https://babyvideo.ai/",
+              "desc": "Generates AI 'future baby' preview portraits and short videos by blending facial features from one or two parent photos, for entertainment purposes only",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "video-generation",
+              "subcategory_name": "Video Generation",
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "creatview",
+              "slug": "creatview",
+              "url": "https://creatview.ai/",
+              "desc": "AI video workspace that turns scripts, images, or product URLs into finished multi-shot videos, auto-routing between models like Sora 2 and Veo 3.1",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "paid",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "multimodal",
+                "no-code",
+                "api-available"
+              ],
+              "all_tags": [
+                "multimodal",
+                "no-code",
+                "api-available"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "video-generation",
+              "subcategory_name": "Video Generation",
+              "additional_categories": [
+
+              ]
+            },
             {
               "name": "Hailuo (MiniMax)",
               "slug": "hailuo-minimax",
@@ -858,13 +1332,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "video-generation",
               "subcategory_name": "Video Generation",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Hedra",
@@ -876,13 +1356,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "video-generation",
               "subcategory_name": "Video Generation",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "HeyGen",
@@ -894,13 +1380,45 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "video-generation",
               "subcategory_name": "Video Generation",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "Hotel Lobby AI",
+              "slug": "hotel-lobby-ai",
+              "url": "https://hotellobbyai.art/",
+              "desc": "Turns two photos into a COLORS-style orange booth rap clip with AI-generated audio, lip-sync, and animated motion for both performers",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "subscription",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "multimodal",
+                "no-code"
+              ],
+              "all_tags": [
+                "multimodal",
+                "no-code"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "video-generation",
+              "subcategory_name": "Video Generation",
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Kling AI",
@@ -912,13 +1430,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "video-generation",
               "subcategory_name": "Video Generation",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Luma Dream Machine",
@@ -930,13 +1454,43 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "video-generation",
               "subcategory_name": "Video Generation",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "Lyric Video Maker",
+              "slug": "lyric-video-maker",
+              "url": "https://lyricvideomaker.app/",
+              "desc": "AI tool that transcribes song lyrics in 50+ languages, syncs them to the beat, and generates mood-driven visuals for lyric videos",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "no-code"
+              ],
+              "all_tags": [
+                "no-code"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "video-generation",
+              "subcategory_name": "Video Generation",
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "OpenAI Sora 2",
@@ -948,13 +1502,19 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "video-generation",
               "subcategory_name": "Video Generation",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Pika",
@@ -966,13 +1526,43 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "video-generation",
               "subcategory_name": "Video Generation",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "PopUGC",
+              "slug": "popugc",
+              "url": "https://popugc.com/",
+              "desc": "AI studio for e-commerce sellers that generates product images and marketing videos from text or image prompts, with batch creation for high-volume output",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "subscription",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "multimodal"
+              ],
+              "all_tags": [
+                "multimodal"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "video-generation",
+              "subcategory_name": "Video Generation",
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Runway",
@@ -984,13 +1574,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "video-generation",
               "subcategory_name": "Video Generation",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Synthesia",
@@ -1002,13 +1598,117 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "video-generation",
               "subcategory_name": "Video Generation",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "Veevid AI",
+              "slug": "veevid-ai",
+              "url": "https://veevid.ai/",
+              "desc": "Video generation platform converting text prompts and images into videos with synchronized audio, drawing on multiple AI video models in one interface",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "subscription",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "multimodal"
+              ],
+              "all_tags": [
+                "multimodal"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "video-generation",
+              "subcategory_name": "Video Generation",
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "Video Upscaler",
+              "slug": "video-upscaler",
+              "url": "https://videoupscaler.video",
+              "desc": "AI platform that enhances video quality through resolution upscaling (2x, 4x, HD, 2K, 4K) and reduces blur, noise, and compression artifacts",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "paid",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "video-generation",
+              "subcategory_name": "Video Generation",
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "Video Watermark Remover",
+              "slug": "video-watermark-remover",
+              "url": "https://video-watermark-remover.com/",
+              "desc": "Browser-based tool that removes watermarks, logos, and text overlays from videos using CNN and GAN neural networks for frame-by-frame detection and removal",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "paid",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "video-generation",
+              "subcategory_name": "Video Generation",
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "Visemix",
+              "slug": "visemix",
+              "url": "https://lipsync.vip",
+              "desc": "Lip-sync video generator that matches mouth movement to new audio on uploaded videos or photos, using the MiniMax H3 Max model",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "paid",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "multimodal",
+                "no-code"
+              ],
+              "all_tags": [
+                "multimodal",
+                "no-code"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "video-generation",
+              "subcategory_name": "Video Generation",
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -1026,13 +1726,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "voice-speech",
               "subcategory_name": "Voice / Speech",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "ElevenLabs",
@@ -1044,13 +1750,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "voice-speech",
               "subcategory_name": "Voice / Speech",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Hume AI",
@@ -1062,13 +1774,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "voice-speech",
               "subcategory_name": "Voice / Speech",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "PlayHT",
@@ -1080,13 +1798,19 @@ const landscapeData = {
               "pricing_model": "Pay-as-you-go & Subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "voice-speech",
               "subcategory_name": "Voice / Speech",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Resemble AI",
@@ -1098,13 +1822,19 @@ const landscapeData = {
               "pricing_model": "usage-based",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "voice-speech",
               "subcategory_name": "Voice / Speech",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Rime AI",
@@ -1116,13 +1846,19 @@ const landscapeData = {
               "pricing_model": "API-based pricing",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "voice-speech",
               "subcategory_name": "Voice / Speech",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         }
@@ -1147,13 +1883,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "meeting-notetakers",
               "category_name": "Meeting Notetakers & Voice",
               "subcategory_id": "notetakers",
               "subcategory_name": "Meeting Notetakers",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Fellow",
@@ -1165,13 +1907,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "meeting-notetakers",
               "category_name": "Meeting Notetakers & Voice",
               "subcategory_id": "notetakers",
               "subcategory_name": "Meeting Notetakers",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Fireflies.ai",
@@ -1183,13 +1931,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "meeting-notetakers",
               "category_name": "Meeting Notetakers & Voice",
               "subcategory_id": "notetakers",
               "subcategory_name": "Meeting Notetakers",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Granola",
@@ -1201,13 +1955,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "meeting-notetakers",
               "category_name": "Meeting Notetakers & Voice",
               "subcategory_id": "notetakers",
               "subcategory_name": "Meeting Notetakers",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Otter",
@@ -1219,13 +1979,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": "Free tier",
               "user_count": "35M+",
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "meeting-notetakers",
               "category_name": "Meeting Notetakers & Voice",
               "subcategory_id": "notetakers",
               "subcategory_name": "Meeting Notetakers",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Read.ai",
@@ -1237,13 +2003,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "meeting-notetakers",
               "category_name": "Meeting Notetakers & Voice",
               "subcategory_id": "notetakers",
               "subcategory_name": "Meeting Notetakers",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Spinach AI",
@@ -1255,13 +2027,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "meeting-notetakers",
               "category_name": "Meeting Notetakers & Voice",
               "subcategory_id": "notetakers",
               "subcategory_name": "Meeting Notetakers",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "tl;dv",
@@ -1273,13 +2051,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "meeting-notetakers",
               "category_name": "Meeting Notetakers & Voice",
               "subcategory_id": "notetakers",
               "subcategory_name": "Meeting Notetakers",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         }
@@ -1316,7 +2100,9 @@ const landscapeData = {
               "category_name": "No-Code AI Builders",
               "subcategory_id": "workflow-builders",
               "subcategory_name": "Workflow & App Builders",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Coze",
@@ -1342,7 +2128,9 @@ const landscapeData = {
               "category_name": "No-Code AI Builders",
               "subcategory_id": "workflow-builders",
               "subcategory_name": "Workflow & App Builders",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Dify",
@@ -1350,7 +2138,7 @@ const landscapeData = {
               "url": "https://dify.ai/",
               "desc": "Open-source LLM app development platform combining AI workflow builder, RAG pipeline, agent capabilities, and model management in a visual interface for rapid prototyping to production",
               "type": "open-source",
-              "github_stars": 154183,
+              "github_stars": 158521,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -1368,7 +2156,9 @@ const landscapeData = {
               "category_name": "No-Code AI Builders",
               "subcategory_id": "workflow-builders",
               "subcategory_name": "Workflow & App Builders",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Flowise",
@@ -1376,7 +2166,7 @@ const landscapeData = {
               "url": "https://flowiseai.com/",
               "desc": "Open-source agentic AI development platform for building AI agents and LLM workflows visually with drag-and-drop interface, supporting 100+ LLMs and vector databases",
               "type": "open-source",
-              "github_stars": 55398,
+              "github_stars": 55505,
               "pricing_model": "open-source",
               "pricing_starting": null,
               "user_count": null,
@@ -1395,7 +2185,9 @@ const landscapeData = {
               "category_name": "No-Code AI Builders",
               "subcategory_id": "workflow-builders",
               "subcategory_name": "Workflow & App Builders",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Gumloop",
@@ -1407,13 +2199,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "no-code-builders",
               "category_name": "No-Code AI Builders",
               "subcategory_id": "workflow-builders",
               "subcategory_name": "Workflow & App Builders",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Lindy",
@@ -1425,13 +2223,19 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "no-code-builders",
               "category_name": "No-Code AI Builders",
               "subcategory_id": "workflow-builders",
               "subcategory_name": "Workflow & App Builders",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Make",
@@ -1453,7 +2257,9 @@ const landscapeData = {
               "category_name": "No-Code AI Builders",
               "subcategory_id": "workflow-builders",
               "subcategory_name": "Workflow & App Builders",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "n8n",
@@ -1465,13 +2271,19 @@ const landscapeData = {
               "pricing_model": "open-source + cloud",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "no-code-builders",
               "category_name": "No-Code AI Builders",
               "subcategory_id": "workflow-builders",
               "subcategory_name": "Workflow & App Builders",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Wordware",
@@ -1483,13 +2295,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "no-code-builders",
               "category_name": "No-Code AI Builders",
               "subcategory_id": "workflow-builders",
               "subcategory_name": "Workflow & App Builders",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Zapier Agents",
@@ -1513,7 +2331,9 @@ const landscapeData = {
               "category_name": "No-Code AI Builders",
               "subcategory_id": "workflow-builders",
               "subcategory_name": "Workflow & App Builders",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         }
@@ -1538,13 +2358,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "personal-assistants",
               "category_name": "Personal Assistants & Browsers",
               "subcategory_id": "browsers",
               "subcategory_name": "AI Browsers & Assistants",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Comet (Perplexity)",
@@ -1556,13 +2382,19 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "personal-assistants",
               "category_name": "Personal Assistants & Browsers",
               "subcategory_id": "browsers",
               "subcategory_name": "AI Browsers & Assistants",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Dia",
@@ -1574,13 +2406,45 @@ const landscapeData = {
               "pricing_model": "beta",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "personal-assistants",
               "category_name": "Personal Assistants & Browsers",
               "subcategory_id": "browsers",
               "subcategory_name": "AI Browsers & Assistants",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "Instinct",
+              "slug": "instinct",
+              "url": "https://instinct.com/",
+              "desc": "Invite-only AI personal assistant that handles errands and tasks entirely through text messages and phone calls, no app required",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "multimodal"
+              ],
+              "all_tags": [
+                "agents",
+                "multimodal"
+              ],
+              "category_id": "personal-assistants",
+              "category_name": "Personal Assistants & Browsers",
+              "subcategory_id": "browsers",
+              "subcategory_name": "AI Browsers & Assistants",
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Rabbit r1",
@@ -1592,13 +2456,19 @@ const landscapeData = {
               "pricing_model": "hardware",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "personal-assistants",
               "category_name": "Personal Assistants & Browsers",
               "subcategory_id": "browsers",
               "subcategory_name": "AI Browsers & Assistants",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         }
@@ -1623,13 +2493,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "slide-creation",
               "category_name": "Slide Creation",
               "subcategory_id": "ai-presentations",
               "subcategory_name": "AI Presentations",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Gemini Canvas",
@@ -1641,13 +2517,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "slide-creation",
               "category_name": "Slide Creation",
               "subcategory_id": "ai-presentations",
               "subcategory_name": "AI Presentations",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Canva",
@@ -1674,7 +2556,9 @@ const landscapeData = {
               "category_name": "Slide Creation",
               "subcategory_id": "ai-presentations",
               "subcategory_name": "AI Presentations",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Claude Design",
@@ -1700,7 +2584,9 @@ const landscapeData = {
               "category_name": "Slide Creation",
               "subcategory_id": "ai-presentations",
               "subcategory_name": "AI Presentations",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Gamma",
@@ -1726,7 +2612,9 @@ const landscapeData = {
               "category_name": "Slide Creation",
               "subcategory_id": "ai-presentations",
               "subcategory_name": "AI Presentations",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         }
@@ -1761,7 +2649,9 @@ const landscapeData = {
               "category_name": "Transcription",
               "subcategory_id": "transcription-tools",
               "subcategory_name": "Transcription Tools",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Shetef",
@@ -1785,7 +2675,33 @@ const landscapeData = {
               "category_name": "Transcription",
               "subcategory_id": "transcription-tools",
               "subcategory_name": "Transcription Tools",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "ToText",
+              "slug": "totext",
+              "url": "https://totext.app/",
+              "desc": "AI transcription service that converts MP3, MP4, and other media formats into time-aligned, searchable transcripts with speaker identification",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
+              "category_id": "transcription",
+              "category_name": "Transcription",
+              "subcategory_id": "transcription-tools",
+              "subcategory_name": "Transcription Tools",
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Typeless",
@@ -1809,7 +2725,33 @@ const landscapeData = {
               "category_name": "Transcription",
               "subcategory_id": "transcription-tools",
               "subcategory_name": "Transcription Tools",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "Video Transcriber",
+              "slug": "videotranscriber-pro",
+              "url": "https://videotranscriber.pro/",
+              "desc": "AI speech-to-text platform that converts video and audio into searchable, editable transcripts, with speaker identification and support for 200+ languages",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "multimodal"
+              ],
+              "all_tags": [
+                "multimodal"
+              ],
+              "category_id": "transcription",
+              "category_name": "Transcription",
+              "subcategory_id": "transcription-tools",
+              "subcategory_name": "Transcription Tools",
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Wispr Flow",
@@ -1833,7 +2775,9 @@ const landscapeData = {
               "category_name": "Transcription",
               "subcategory_id": "transcription-tools",
               "subcategory_name": "Transcription Tools",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         }
@@ -1858,13 +2802,19 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "customer-support",
               "subcategory_name": "Customer Support",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "ChatBotKit",
@@ -1892,7 +2842,9 @@ const landscapeData = {
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "customer-support",
               "subcategory_name": "Customer Support",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Chatwoot",
@@ -1900,7 +2852,7 @@ const landscapeData = {
               "url": "https://www.chatwoot.com",
               "desc": "Open-source omnichannel customer support platform with AI agent (Captain) that unifies Telegram, WhatsApp, email, and 9+ channels in one inbox — self-hosted or cloud",
               "type": "open-source",
-              "github_stars": 36381,
+              "github_stars": 37802,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -1920,7 +2872,9 @@ const landscapeData = {
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "customer-support",
               "subcategory_name": "Customer Support",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Cresta",
@@ -1946,7 +2900,9 @@ const landscapeData = {
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "customer-support",
               "subcategory_name": "Customer Support",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Decagon",
@@ -1958,13 +2914,19 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "customer-support",
               "subcategory_name": "Customer Support",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Intercom Fin",
@@ -1976,13 +2938,19 @@ const landscapeData = {
               "pricing_model": "add-on",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "customer-support",
               "subcategory_name": "Customer Support",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Intercom",
@@ -1994,13 +2962,19 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "customer-support",
               "subcategory_name": "Customer Support",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Sierra",
@@ -2012,13 +2986,19 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "customer-support",
               "subcategory_name": "Customer Support",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Zendesk AI",
@@ -2030,13 +3010,19 @@ const landscapeData = {
               "pricing_model": "add-on",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "customer-support",
               "subcategory_name": "Customer Support",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -2044,6 +3030,30 @@ const landscapeData = {
           "id": "design",
           "name": "Design / Creative",
           "tools": [
+            {
+              "name": "ExplainViz",
+              "slug": "explainviz",
+              "url": "https://explainviz.com/",
+              "desc": "AI tool that converts research descriptions into publication-ready scientific diagrams for academics, with editable SVG output for journal submissions",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "no-code"
+              ],
+              "all_tags": [
+                "no-code"
+              ],
+              "category_id": "vertical-ai",
+              "category_name": "Vertical AI (Industry-Specific)",
+              "subcategory_id": "design",
+              "subcategory_name": "Design / Creative",
+              "additional_categories": [
+
+              ]
+            },
             {
               "name": "Figma AI",
               "slug": "figma-ai",
@@ -2069,7 +3079,9 @@ const landscapeData = {
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "design",
               "subcategory_name": "Design / Creative",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Google Stitch",
@@ -2081,13 +3093,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "design",
               "subcategory_name": "Design / Creative",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Uizard",
@@ -2099,13 +3117,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "design",
               "subcategory_name": "Design / Creative",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -2123,13 +3147,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "education",
               "subcategory_name": "Education / Tutoring",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Khanmigo",
@@ -2141,13 +3171,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "education",
               "subcategory_name": "Education / Tutoring",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "MagicSchool",
@@ -2159,13 +3195,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "education",
               "subcategory_name": "Education / Tutoring",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Speak",
@@ -2177,13 +3219,43 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "education",
               "subcategory_name": "Education / Tutoring",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "TeachAny",
+              "slug": "teachany",
+              "url": "https://teachany.com",
+              "desc": "AI platform for educators that generates quizzes, worksheets, flashcards, lesson plans, and other teaching materials using current LLMs",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "no-code"
+              ],
+              "all_tags": [
+                "no-code"
+              ],
+              "category_id": "vertical-ai",
+              "category_name": "Vertical AI (Industry-Specific)",
+              "subcategory_id": "education",
+              "subcategory_name": "Education / Tutoring",
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -2201,13 +3273,19 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "finance",
               "subcategory_name": "Finance / Accounting",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Hebbia",
@@ -2219,13 +3297,19 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "finance",
               "subcategory_name": "Finance / Accounting",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Klarity",
@@ -2237,13 +3321,19 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "finance",
               "subcategory_name": "Finance / Accounting",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Rogo",
@@ -2255,13 +3345,19 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "finance",
               "subcategory_name": "Finance / Accounting",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -2279,13 +3375,19 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "healthcare",
               "subcategory_name": "Healthcare / Medical",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Hippocratic AI",
@@ -2297,13 +3399,19 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "healthcare",
               "subcategory_name": "Healthcare / Medical",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Nabla",
@@ -2315,13 +3423,19 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "healthcare",
               "subcategory_name": "Healthcare / Medical",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "OpenEvidence",
@@ -2333,13 +3447,19 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "healthcare",
               "subcategory_name": "Healthcare / Medical",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Suki",
@@ -2351,13 +3471,19 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "healthcare",
               "subcategory_name": "Healthcare / Medical",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -2375,13 +3501,19 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "legal",
               "subcategory_name": "Legal",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Harvey",
@@ -2393,13 +3525,19 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "legal",
               "subcategory_name": "Legal",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Ironclad AI",
@@ -2411,13 +3549,19 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "legal",
               "subcategory_name": "Legal",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Spellbook",
@@ -2429,13 +3573,49 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "legal",
               "subcategory_name": "Legal",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
+            }
+          ]
+        },
+        {
+          "id": "lifestyle",
+          "name": "Lifestyle / Wellness",
+          "tools": [
+            {
+              "name": "Vedic Astrology Chart",
+              "slug": "vedic-astrology-chart",
+              "url": "https://vedicastrologychart.net",
+              "desc": "Free tool that generates sidereal Vedic birth charts with AI interpretation, covering divisional charts, dashas, yogas, and transits",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "no-code"
+              ],
+              "all_tags": [
+                "no-code"
+              ],
+              "category_id": "vertical-ai",
+              "category_name": "Vertical AI (Industry-Specific)",
+              "subcategory_id": "lifestyle",
+              "subcategory_name": "Lifestyle / Wellness",
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -2453,13 +3633,19 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "recruiting",
               "subcategory_name": "Recruiting / HR",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Mercor",
@@ -2471,13 +3657,19 @@ const landscapeData = {
               "pricing_model": "commission",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "recruiting",
               "subcategory_name": "Recruiting / HR",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Paradox Olivia",
@@ -2489,13 +3681,19 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "recruiting",
               "subcategory_name": "Recruiting / HR",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -2513,13 +3711,19 @@ const landscapeData = {
               "pricing_model": "commission",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "sales-marketing",
               "subcategory_name": "Sales / Marketing / GTM",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Apollo",
@@ -2531,13 +3735,48 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "sales-marketing",
               "subcategory_name": "Sales / Marketing / GTM",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "Bazak",
+              "slug": "bazak",
+              "url": "https://bazak.ai",
+              "desc": "AI commerce platform that deploys one branded agent across ChatGPT, Claude, and a brand's own website to sell from live catalogs, convert on-site, and handle post-purchase service.",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "enterprise",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "mcp-server",
+                "api-available"
+              ],
+              "all_tags": [
+                "agents",
+                "mcp-server",
+                "api-available",
+                "real-time"
+              ],
+              "category_id": "vertical-ai",
+              "category_name": "Vertical AI (Industry-Specific)",
+              "subcategory_id": "sales-marketing",
+              "subcategory_name": "Sales / Marketing / GTM",
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Clay",
@@ -2549,13 +3788,19 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "sales-marketing",
               "subcategory_name": "Sales / Marketing / GTM",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Gong",
@@ -2567,13 +3812,19 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "sales-marketing",
               "subcategory_name": "Sales / Marketing / GTM",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Regie.ai",
@@ -2585,13 +3836,19 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "sales-marketing",
               "subcategory_name": "Sales / Marketing / GTM",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Writer",
@@ -2603,13 +3860,19 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vertical-ai",
               "category_name": "Vertical AI (Industry-Specific)",
               "subcategory_id": "sales-marketing",
               "subcategory_name": "Sales / Marketing / GTM",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         }
@@ -2625,6 +3888,30 @@ const landscapeData = {
           "name": "Voice Agents",
           "tools": [
             {
+              "name": "CallingYouNow",
+              "slug": "callingyounow",
+              "url": "https://callingyounow.com/",
+              "desc": "AI call management platform that answers incoming business calls 24/7 and schedules appointments automatically, operating in 30+ languages",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "custom",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
+              "category_id": "voice-ai-agents",
+              "category_name": "Voice AI Agents",
+              "subcategory_id": "voice-agents",
+              "subcategory_name": "Voice Agents",
+              "additional_categories": [
+
+              ]
+            },
+            {
               "name": "PolyAI",
               "slug": "polyai",
               "url": "https://poly.ai/",
@@ -2634,13 +3921,19 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "voice-ai-agents",
               "category_name": "Voice AI Agents",
               "subcategory_id": "voice-agents",
               "subcategory_name": "Voice Agents",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Retell AI",
@@ -2652,13 +3945,19 @@ const landscapeData = {
               "pricing_model": "usage-based",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "voice-ai-agents",
               "category_name": "Voice AI Agents",
               "subcategory_id": "voice-agents",
               "subcategory_name": "Voice Agents",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "RingCentral",
@@ -2680,7 +3979,9 @@ const landscapeData = {
               "category_name": "Voice AI Agents",
               "subcategory_id": "voice-agents",
               "subcategory_name": "Voice Agents",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Synthflow",
@@ -2692,13 +3993,19 @@ const landscapeData = {
               "pricing_model": "usage-based",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "voice-ai-agents",
               "category_name": "Voice AI Agents",
               "subcategory_id": "voice-agents",
               "subcategory_name": "Voice Agents",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Voiceflow",
@@ -2720,7 +4027,9 @@ const landscapeData = {
               "category_name": "Voice AI Agents",
               "subcategory_id": "voice-agents",
               "subcategory_name": "Voice Agents",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         }
@@ -2736,6 +4045,30 @@ const landscapeData = {
           "name": "Writing Tools",
           "tools": [
             {
+              "name": "AI Email Generator",
+              "slug": "ai-email-generator",
+              "url": "https://aigeneratoremail.com/",
+              "desc": "Drafts professional emails from brief input, turning it into a subject line and ready-to-edit message, with a reply mode and adjustable tone",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
+              "category_id": "writing-productivity",
+              "category_name": "Writing & Productivity",
+              "subcategory_id": "writing-tools",
+              "subcategory_name": "Writing Tools",
+              "additional_categories": [
+
+              ]
+            },
+            {
               "name": "Coda AI",
               "slug": "coda-ai",
               "url": "https://coda.io/product/ai",
@@ -2745,13 +4078,19 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "writing-productivity",
               "category_name": "Writing & Productivity",
               "subcategory_id": "writing-tools",
               "subcategory_name": "Writing Tools",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Copy.ai",
@@ -2773,7 +4112,9 @@ const landscapeData = {
               "category_name": "Writing & Productivity",
               "subcategory_id": "writing-tools",
               "subcategory_name": "Writing Tools",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Grammarly",
@@ -2785,13 +4126,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "writing-productivity",
               "category_name": "Writing & Productivity",
               "subcategory_id": "writing-tools",
               "subcategory_name": "Writing Tools",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Jasper",
@@ -2803,13 +4150,43 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "writing-productivity",
               "category_name": "Writing & Productivity",
               "subcategory_id": "writing-tools",
               "subcategory_name": "Writing Tools",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "Manga Translator",
+              "slug": "manga-translator",
+              "url": "https://aimangatranslate.com/",
+              "desc": "AI manga translation platform that preserves original layout through OCR detection, text removal, background repair, and typesetting across 50+ languages",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
+              "category_id": "writing-productivity",
+              "category_name": "Writing & Productivity",
+              "subcategory_id": "writing-tools",
+              "subcategory_name": "Writing Tools",
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Notion AI",
@@ -2831,7 +4208,9 @@ const landscapeData = {
               "category_name": "Writing & Productivity",
               "subcategory_id": "writing-tools",
               "subcategory_name": "Writing Tools",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Obsidian",
@@ -2853,7 +4232,33 @@ const landscapeData = {
               "category_name": "Writing & Productivity",
               "subcategory_id": "writing-tools",
               "subcategory_name": "Writing Tools",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "PDF Translator",
+              "slug": "pdf-translator",
+              "url": "https://pdf-translation.com/",
+              "desc": "Browser-based PDF translation tool that converts documents across 60+ languages while preserving fonts, tables, images, and multi-column layouts",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
+              "category_id": "writing-productivity",
+              "category_name": "Writing & Productivity",
+              "subcategory_id": "writing-tools",
+              "subcategory_name": "Writing Tools",
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Sudowrite",
@@ -2865,13 +4270,19 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "writing-productivity",
               "category_name": "Writing & Productivity",
               "subcategory_id": "writing-tools",
               "subcategory_name": "Writing Tools",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         }
@@ -2913,7 +4324,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-communication",
               "subcategory_name": "Agent Communication",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -2931,13 +4344,19 @@ const landscapeData = {
               "pricing_model": "usage-based",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-identity",
               "subcategory_name": "Agent Identity & Auth",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "SPIFFE",
@@ -2945,17 +4364,23 @@ const landscapeData = {
               "url": "https://spiffe.io/",
               "desc": "CNCF graduated standard for workload identity in dynamic, heterogeneous environments enabling zero-trust security across platforms and clouds.",
               "type": "oss",
-              "github_stars": 1843,
+              "github_stars": 1881,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-identity",
               "subcategory_name": "Agent Identity & Auth",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "SPIRE",
@@ -2963,17 +4388,23 @@ const landscapeData = {
               "url": "https://spiffe.io/spire/",
               "desc": "Production-ready implementation of SPIFFE providing automated workload identity attestation, certificate issuance, and zero-trust authentication.",
               "type": "oss",
-              "github_stars": 2510,
+              "github_stars": 2581,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-identity",
               "subcategory_name": "Agent Identity & Auth",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -2987,7 +4418,7 @@ const landscapeData = {
               "url": "https://github.com/garrytan/gbrain",
               "desc": "The brain layer your AI agent has been missing - synthesis, graph traversal, and gap analysis for intelligent agents",
               "type": "open-source",
-              "github_stars": 29460,
+              "github_stars": 30886,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -3003,7 +4434,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-memory",
               "subcategory_name": "Agent Memory",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Letta",
@@ -3011,17 +4444,23 @@ const landscapeData = {
               "url": "https://www.letta.com/",
               "desc": "Open-source framework for building stateful AI agents with long-term memory, self-editing capabilities, and unlimited context windows.",
               "type": "oss",
-              "github_stars": 24559,
+              "github_stars": 25148,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-memory",
               "subcategory_name": "Agent Memory",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Mem0",
@@ -3029,7 +4468,7 @@ const landscapeData = {
               "url": "https://mem0.ai/",
               "desc": "Universal memory layer for AI Agents that enables personalized, context-aware interactions",
               "type": "oss",
-              "github_stars": 64560,
+              "github_stars": 67218,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -3048,7 +4487,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-memory",
               "subcategory_name": "Agent Memory",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "MemClaw",
@@ -3072,7 +4513,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-memory",
               "subcategory_name": "Agent Memory",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Supermemory",
@@ -3080,7 +4523,7 @@ const landscapeData = {
               "url": "https://supermemory.ai",
               "desc": "Memory and context engine for AI agents — #1 on LongMemEval, LoCoMo, and ConvoMem benchmarks with 99.4% context reduction",
               "type": "open-source",
-              "github_stars": 29190,
+              "github_stars": 31229,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -3096,7 +4539,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-memory",
               "subcategory_name": "Agent Memory",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Total Recall",
@@ -3120,7 +4565,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-memory",
               "subcategory_name": "Agent Memory",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Zep",
@@ -3128,7 +4575,7 @@ const landscapeData = {
               "url": "https://www.getzep.com/",
               "desc": "Enterprise-grade memory layer for AI agents using knowledge graphs, delivering sub-200ms retrieval with SOC 2 compliance and production reliability.",
               "type": "oss",
-              "github_stars": 4882,
+              "github_stars": 4960,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -3142,7 +4589,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-memory",
               "subcategory_name": "Agent Memory",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -3170,7 +4619,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-payments",
               "subcategory_name": "Agent Payments",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Kite",
@@ -3192,7 +4643,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-payments",
               "subcategory_name": "Agent Payments",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Sponge",
@@ -3214,7 +4667,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-payments",
               "subcategory_name": "Agent Payments",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -3228,7 +4683,7 @@ const landscapeData = {
               "url": "https://runcabinet.com",
               "desc": "AI-first knowledge base and startup OS where everything lives as markdown files on disk with autonomous AI agents",
               "type": "open-source",
-              "github_stars": 2863,
+              "github_stars": 2882,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -3246,7 +4701,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-platforms",
               "subcategory_name": "Agent Platforms",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Nimbalyst",
@@ -3254,7 +4711,7 @@ const landscapeData = {
               "url": "https://nimbalyst.com",
               "desc": "Open-source visual workspace for AI coding agents with session kanban, visual editors, and task management for Claude Code, Codex, and more",
               "type": "oss",
-              "github_stars": 1627,
+              "github_stars": 1903,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -3268,7 +4725,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-platforms",
               "subcategory_name": "Agent Platforms",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Overcut",
@@ -3292,7 +4751,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-platforms",
               "subcategory_name": "Agent Platforms",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "xpander.ai",
@@ -3318,7 +4779,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-platforms",
               "subcategory_name": "Agent Platforms",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -3350,7 +4813,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-search",
               "subcategory_name": "Agent Search",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Tavily",
@@ -3376,7 +4841,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "agent-search",
               "subcategory_name": "Agent Search",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -3390,7 +4857,7 @@ const landscapeData = {
               "url": "https://browser-use.com/",
               "desc": "Make websites accessible for AI agents. Automate tasks online with ease.",
               "type": "oss",
-              "github_stars": 112014,
+              "github_stars": 118026,
               "pricing_model": "open-source",
               "pricing_starting": null,
               "user_count": null,
@@ -3408,7 +4875,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "browser-agents",
               "subcategory_name": "Browser & Web Agents",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Browserbase",
@@ -3432,7 +4901,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "browser-agents",
               "subcategory_name": "Browser & Web Agents",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Crawl4AI",
@@ -3440,7 +4911,7 @@ const landscapeData = {
               "url": "https://crawl4ai.com/",
               "desc": "Open-source web extraction framework optimized for AI with intelligent crawling, cost-effective data collection, and LLM-ready output formatting.",
               "type": "oss",
-              "github_stars": 81001,
+              "github_stars": 85578,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -3454,7 +4925,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "browser-agents",
               "subcategory_name": "Browser & Web Agents",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Firecrawl",
@@ -3462,7 +4935,7 @@ const landscapeData = {
               "url": "https://www.firecrawl.dev/",
               "desc": "Turn any website into LLM-ready markdown or structured data with a single API call",
               "type": "oss",
-              "github_stars": 175419,
+              "github_stars": 191685,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -3476,7 +4949,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "browser-agents",
               "subcategory_name": "Browser & Web Agents",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Playwright MCP",
@@ -3484,7 +4959,7 @@ const landscapeData = {
               "url": "https://github.com/microsoft/playwright-mcp",
               "desc": "Model Context Protocol server enabling LLMs to control browsers via Playwright using accessibility trees instead of vision models or screenshots.",
               "type": "oss",
-              "github_stars": 36730,
+              "github_stars": 38167,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -3500,7 +4975,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "browser-agents",
               "subcategory_name": "Browser & Web Agents",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Skyvern",
@@ -3508,7 +4985,7 @@ const landscapeData = {
               "url": "https://www.skyvern.com/",
               "desc": "Open-source browser automation framework using computer vision and LLMs to navigate websites like humans, eliminating fragile selectors.",
               "type": "oss",
-              "github_stars": 22908,
+              "github_stars": 23203,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -3524,7 +5001,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "browser-agents",
               "subcategory_name": "Browser & Web Agents",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Stagehand",
@@ -3532,7 +5011,7 @@ const landscapeData = {
               "url": "https://www.stagehand.dev/",
               "desc": "Open-source SDK for building resilient AI-powered browser agents with production-ready automation and natural language control capabilities.",
               "type": "oss",
-              "github_stars": 24126,
+              "github_stars": 25680,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -3548,7 +5027,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "browser-agents",
               "subcategory_name": "Browser & Web Agents",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Steel",
@@ -3570,7 +5051,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "browser-agents",
               "subcategory_name": "Browser & Web Agents",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -3584,7 +5067,7 @@ const landscapeData = {
               "url": "https://www.agno.com/",
               "desc": "Enterprise-ready agentic framework combining high-performance agent building with AgentOS for secure multi-agent systems deployment in your cloud.",
               "type": "oss",
-              "github_stars": 42005,
+              "github_stars": 42739,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -3602,7 +5085,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Anthropic Agent SDK",
@@ -3610,17 +5095,23 @@ const landscapeData = {
               "url": "https://docs.claude.com/en/api/agent-sdk/overview",
               "desc": "Official SDK from Anthropic for building production-ready AI agents with Claude, featuring tool integration and multi-platform deployment.",
               "type": "oss",
-              "github_stars": 3876,
+              "github_stars": 3971,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "AutoGen",
@@ -3628,7 +5119,7 @@ const landscapeData = {
               "url": "https://microsoft.github.io/autogen/",
               "desc": "Open-source framework for building multi-agent AI applications with conversational patterns",
               "type": "oss",
-              "github_stars": 60754,
+              "github_stars": 61416,
               "pricing_model": "open-source",
               "pricing_starting": null,
               "user_count": null,
@@ -3646,7 +5137,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "AutoGPT",
@@ -3654,7 +5147,7 @@ const landscapeData = {
               "url": "https://agpt.co/",
               "desc": "Autonomous AI agent platform that learns your workflows, builds custom agents through conversation, and executes tasks on autopilot with minimal guidance.",
               "type": "oss",
-              "github_stars": 187071,
+              "github_stars": 187582,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -3670,7 +5163,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "CrewAI",
@@ -3678,7 +5173,7 @@ const landscapeData = {
               "url": "https://www.crewai.com/",
               "desc": "Framework for orchestrating role-playing, autonomous AI agents that work together seamlessly on complex tasks",
               "type": "oss",
-              "github_stars": 57984,
+              "github_stars": 59719,
               "pricing_model": "open-core",
               "pricing_starting": null,
               "user_count": null,
@@ -3696,7 +5191,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Darwin Gödel Machine",
@@ -3708,13 +5205,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "DSPy",
@@ -3722,7 +5225,7 @@ const landscapeData = {
               "url": "https://dspy.ai/",
               "desc": "Framework for programming—not prompting—language models through declarative, self-improving Python code",
               "type": "oss",
-              "github_stars": 37719,
+              "github_stars": 38645,
               "pricing_model": "open-source",
               "pricing_starting": null,
               "user_count": null,
@@ -3736,7 +5239,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Flue",
@@ -3744,7 +5249,7 @@ const landscapeData = {
               "url": "https://flueframework.com",
               "desc": "The agent harness framework — build autonomous agents with TypeScript, deploy anywhere from Node.js to Cloudflare Workers",
               "type": "open-source",
-              "github_stars": 8118,
+              "github_stars": 8471,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -3760,7 +5265,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Google ADK",
@@ -3784,7 +5291,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Haystack",
@@ -3792,7 +5301,7 @@ const landscapeData = {
               "url": "https://haystack.deepset.ai/",
               "desc": "Open-source framework for building production-ready RAG pipelines and AI agents with modular components",
               "type": "oss",
-              "github_stars": 26395,
+              "github_stars": 26745,
               "pricing_model": "open-source",
               "pricing_starting": null,
               "user_count": null,
@@ -3808,7 +5317,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Hermes Agent",
@@ -3816,17 +5327,23 @@ const landscapeData = {
               "url": "https://hermes-agent.nousresearch.com/",
               "desc": "Autonomous server-resident AI agent from Nous Research that builds persistent memory and capabilities through continuous learning and operation.",
               "type": "oss",
-              "github_stars": 239671,
+              "github_stars": 253898,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "LangChain",
@@ -3834,7 +5351,7 @@ const landscapeData = {
               "url": "https://www.langchain.com/",
               "desc": "Open-source framework for building applications powered by large language models through composable components and chains",
               "type": "oss",
-              "github_stars": 145482,
+              "github_stars": 147848,
               "pricing_model": "open-source",
               "pricing_starting": null,
               "user_count": null,
@@ -3852,7 +5369,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "LangGraph",
@@ -3860,7 +5379,7 @@ const landscapeData = {
               "url": "https://www.langchain.com/langgraph",
               "desc": "Low-level orchestration framework for building stateful, long-running agents with human-in-the-loop controls",
               "type": "open-source",
-              "github_stars": 40904,
+              "github_stars": 43300,
               "pricing_model": "open-core",
               "pricing_starting": null,
               "user_count": null,
@@ -3879,7 +5398,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Letta (MemGPT)",
@@ -3887,17 +5408,23 @@ const landscapeData = {
               "url": "https://www.letta.com/",
               "desc": "Framework for building stateful AI agents with persistent memory, enabling continuous learning and context retention across unlimited conversations.",
               "type": "oss",
-              "github_stars": 24559,
+              "github_stars": 25148,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "LlamaIndex",
@@ -3905,7 +5432,7 @@ const landscapeData = {
               "url": "https://www.llamaindex.ai/",
               "desc": "Data framework for LLM applications that provides tools for ingesting, structuring, and accessing private or domain-specific data",
               "type": "oss",
-              "github_stars": 51976,
+              "github_stars": 52502,
               "pricing_model": "open-source",
               "pricing_starting": null,
               "user_count": null,
@@ -3924,7 +5451,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Mastra",
@@ -3932,7 +5461,7 @@ const landscapeData = {
               "url": "https://mastra.ai/",
               "desc": "TypeScript and JavaScript framework for rapidly building, testing, and deploying production-ready AI agents and applications from prototype to scale.",
               "type": "oss",
-              "github_stars": 27627,
+              "github_stars": 28829,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -3946,7 +5475,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "NanoClaw",
@@ -3970,7 +5501,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "NemoClaw",
@@ -3982,13 +5515,19 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "OpenAI Agents SDK",
@@ -3996,7 +5535,7 @@ const landscapeData = {
               "url": "https://github.com/openai/openai-agents-python",
               "desc": "A lightweight yet powerful framework for building multi-agent workflows with built-in tracing, guardrails, and handoffs. Production-ready upgrade of the Swarm framework.",
               "type": "oss",
-              "github_stars": 29133,
+              "github_stars": 30047,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -4015,7 +5554,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "OpenClaw",
@@ -4027,13 +5568,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Paperclip",
@@ -4055,7 +5602,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Pydantic AI",
@@ -4063,7 +5612,7 @@ const landscapeData = {
               "url": "https://ai.pydantic.dev/",
               "desc": "Agent framework with type-safe, model-agnostic design built by the creators of Pydantic",
               "type": "oss",
-              "github_stars": 19657,
+              "github_stars": 20625,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -4079,7 +5628,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Ruflo",
@@ -4087,7 +5638,7 @@ const landscapeData = {
               "url": "https://cognitum.one",
               "desc": "Agent meta-harness for Claude Code and Codex that deploys intelligent multi-agent swarms with adaptive memory, self-learning intelligence, RAG integration, and federated coordination across machines.",
               "type": "open-source",
-              "github_stars": 70183,
+              "github_stars": 74728,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -4106,7 +5657,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Semantic Kernel",
@@ -4114,7 +5667,7 @@ const landscapeData = {
               "url": "https://learn.microsoft.com/en-us/semantic-kernel/",
               "desc": "Lightweight, open-source SDK that lets you easily build AI agents and integrate the latest AI models into your C#, Python, or Java codebase",
               "type": "oss",
-              "github_stars": 28522,
+              "github_stars": 28661,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -4128,7 +5681,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Smolagents",
@@ -4136,7 +5691,7 @@ const landscapeData = {
               "url": "https://github.com/huggingface/smolagents",
               "desc": "Lightweight Python agent library by Hugging Face. Run powerful agents in few lines with CodeAgent and ToolCallingAgent patterns for flexible LLM integration.",
               "type": "oss",
-              "github_stars": 29115,
+              "github_stars": 29852,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -4150,7 +5705,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "code-first",
               "subcategory_name": "Code-First Agent Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -4178,7 +5735,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "durable-execution",
               "subcategory_name": "Durable Execution",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Inngest",
@@ -4186,7 +5745,7 @@ const landscapeData = {
               "url": "https://www.inngest.com/",
               "desc": "Durable functions platform replacing queues, state management, and scheduling. Write reliable multi-step code faster without touching infrastructure.",
               "type": "saas",
-              "github_stars": 5801,
+              "github_stars": 5942,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -4200,7 +5759,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "durable-execution",
               "subcategory_name": "Durable Execution",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Restate",
@@ -4208,7 +5769,7 @@ const landscapeData = {
               "url": "https://restate.dev/",
               "desc": "Lightweight runtime turning AI agents, workflows, and backend services into durable processes. Focus on logic, not failure mechanics with built-in reliability.",
               "type": "oss",
-              "github_stars": 4366,
+              "github_stars": 4561,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -4222,7 +5783,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "durable-execution",
               "subcategory_name": "Durable Execution",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Temporal",
@@ -4230,7 +5793,7 @@ const landscapeData = {
               "url": "https://temporal.io/",
               "desc": "Open source durable execution platform for building reliable AI agents and workflows. Handles retries, state, and failure recovery so teams can ship AI features faster.",
               "type": "oss",
-              "github_stars": 22769,
+              "github_stars": 23721,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -4249,7 +5812,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "durable-execution",
               "subcategory_name": "Durable Execution",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -4263,17 +5828,23 @@ const landscapeData = {
               "url": "https://github.com/ag-ui-protocol/ag-ui",
               "desc": "Open-source event-based protocol for connecting AI agents to user-facing applications with real-time context and seamless UI integration",
               "type": "oss",
-              "github_stars": 15684,
+              "github_stars": 16571,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "protocols",
               "subcategory_name": "Agent Protocols & Standards",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Agent-to-Agent (A2A)",
@@ -4281,7 +5852,7 @@ const landscapeData = {
               "url": "https://a2a-protocol.org/",
               "desc": "Google's open protocol for enabling secure peer-to-peer communication and collaboration between autonomous AI agents across platforms",
               "type": "oss",
-              "github_stars": 25597,
+              "github_stars": 26156,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -4297,7 +5868,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "protocols",
               "subcategory_name": "Agent Protocols & Standards",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Model Context Protocol (MCP)",
@@ -4319,7 +5892,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "protocols",
               "subcategory_name": "Agent Protocols & Standards",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -4347,7 +5922,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "tool-integrations",
               "subcategory_name": "Tool Integrations & Connectors",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Composio",
@@ -4355,7 +5932,7 @@ const landscapeData = {
               "url": "https://composio.dev/",
               "desc": "Production-ready tool platform with 1,000+ app integrations, just-in-time tool calls, secure auth, and sandboxed parallel execution",
               "type": "saas",
-              "github_stars": 30010,
+              "github_stars": 30558,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -4369,7 +5946,39 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "tool-integrations",
               "subcategory_name": "Tool Integrations & Connectors",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "looot",
+              "slug": "looot",
+              "url": "https://looot.ai",
+              "desc": "Pay-per-call gateway that gives AI agents one token and one prepaid USD balance for 2,500+ paid data API endpoints from 90+ providers, over MCP, CLI or REST",
+              "type": "commercial",
+              "github_stars": 3,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "mcp-server",
+                "api-available"
+              ],
+              "all_tags": [
+                "agents",
+                "mcp-server",
+                "api-available",
+                "typescript",
+                "python"
+              ],
+              "category_id": "agent-frameworks",
+              "category_name": "Agent Frameworks & Orchestration",
+              "subcategory_id": "tool-integrations",
+              "subcategory_name": "Tool Integrations & Connectors",
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Merge",
@@ -4381,13 +5990,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "tool-integrations",
               "subcategory_name": "Tool Integrations & Connectors",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Nango",
@@ -4395,17 +6010,23 @@ const landscapeData = {
               "url": "https://www.nango.dev/",
               "desc": "Open-source platform connecting products and AI agents to 800+ APIs with native integration support, built-in auth, and scalable infrastructure",
               "type": "oss",
-              "github_stars": 11673,
+              "github_stars": 12674,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "agent-frameworks",
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "tool-integrations",
               "subcategory_name": "Tool Integrations & Connectors",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Paragon",
@@ -4427,7 +6048,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "tool-integrations",
               "subcategory_name": "Tool Integrations & Connectors",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Pipedream Connect",
@@ -4453,7 +6076,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "tool-integrations",
               "subcategory_name": "Tool Integrations & Connectors",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "StackOne",
@@ -4475,7 +6100,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "tool-integrations",
               "subcategory_name": "Tool Integrations & Connectors",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Unipile",
@@ -4503,7 +6130,9 @@ const landscapeData = {
               "category_name": "Agent Frameworks & Orchestration",
               "subcategory_id": "tool-integrations",
               "subcategory_name": "Tool Integrations & Connectors",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         }
@@ -4538,7 +6167,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "ai-ides",
               "subcategory_name": "AI IDEs & Editors",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "JetBrains AI Assistant",
@@ -4550,13 +6181,19 @@ const landscapeData = {
               "pricing_model": "paid",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "ai-ides",
               "subcategory_name": "AI IDEs & Editors",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Replit",
@@ -4578,7 +6215,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "ai-ides",
               "subcategory_name": "AI IDEs & Editors",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Windsurf",
@@ -4600,7 +6239,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "ai-ides",
               "subcategory_name": "AI IDEs & Editors",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Zed",
@@ -4608,17 +6249,23 @@ const landscapeData = {
               "url": "https://zed.dev/",
               "desc": "Lightning-fast, multiplayer code editor from Atom creators with built-in AI assistance, collaborative editing, and native performance",
               "type": "oss",
-              "github_stars": 89613,
+              "github_stars": 91746,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "ai-ides",
               "subcategory_name": "AI IDEs & Editors",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -4646,7 +6293,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "app-builders",
               "subcategory_name": "App / UI Builders",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Bolt.new",
@@ -4654,17 +6303,23 @@ const landscapeData = {
               "url": "https://bolt.new/",
               "desc": "AI-powered full-stack app builder that runs entirely in your browser using WebContainers technology",
               "type": "commercial",
-              "github_stars": 16534,
+              "github_stars": 16577,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "app-builders",
               "subcategory_name": "App / UI Builders",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Lovable",
@@ -4686,7 +6341,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "app-builders",
               "subcategory_name": "App / UI Builders",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Replit Agent",
@@ -4708,7 +6365,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "app-builders",
               "subcategory_name": "App / UI Builders",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Tempo",
@@ -4720,13 +6379,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "app-builders",
               "subcategory_name": "App / UI Builders",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "v0",
@@ -4738,13 +6403,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "app-builders",
               "subcategory_name": "App / UI Builders",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -4758,7 +6429,7 @@ const landscapeData = {
               "url": "https://github.com/glommer/codemogger",
               "desc": "Code indexing library and MCP server that uses tree-sitter for semantic chunking and local embeddings, storing everything in a single SQLite file",
               "type": "oss",
-              "github_stars": 340,
+              "github_stars": 347,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -4774,7 +6445,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "code-intelligence",
               "subcategory_name": "Code Intelligence & Refactoring",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Context7",
@@ -4782,7 +6455,7 @@ const landscapeData = {
               "url": "https://context7.com/",
               "desc": "MCP server and documentation platform that injects up-to-date, version-specific library docs directly into AI coding assistant prompts to eliminate hallucinated APIs and outdated code examples",
               "type": "commercial",
-              "github_stars": 61500,
+              "github_stars": 63059,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -4802,7 +6475,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "code-intelligence",
               "subcategory_name": "Code Intelligence & Refactoring",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "GrepAI",
@@ -4810,7 +6485,7 @@ const landscapeData = {
               "url": "https://yoanbernabeu.github.io/grepai/",
               "desc": "Privacy-first semantic code search CLI that runs 100% locally with Ollama, providing meaning-aware queries and call graphs for AI coding agents",
               "type": "oss",
-              "github_stars": 1833,
+              "github_stars": 1912,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -4826,7 +6501,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "code-intelligence",
               "subcategory_name": "Code Intelligence & Refactoring",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "OpenRewrite",
@@ -4834,17 +6511,23 @@ const landscapeData = {
               "url": "https://docs.openrewrite.org/",
               "desc": "Open-source automated refactoring ecosystem that eliminates technical debt through intelligent code transformations and migrations at scale",
               "type": "oss",
-              "github_stars": 3690,
+              "github_stars": 3790,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "code-intelligence",
               "subcategory_name": "Code Intelligence & Refactoring",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "RepoSwarm",
@@ -4852,7 +6535,7 @@ const landscapeData = {
               "url": "https://github.com/reposwarm/reposwarm",
               "desc": "AI-powered multi-repo architecture discovery platform that analyzes entire codebase portfolios and generates standardized .arch.md documentation for coding agents and developers",
               "type": "open-source",
-              "github_stars": 272,
+              "github_stars": 275,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -4870,7 +6553,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "code-intelligence",
               "subcategory_name": "Code Intelligence & Refactoring",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Serena MCP",
@@ -4878,7 +6563,7 @@ const landscapeData = {
               "url": "https://github.com/oraios/serena",
               "desc": "MCP (Model Context Protocol) server providing AI agents with intelligent access to codebase structure, context, and analysis capabilities",
               "type": "oss",
-              "github_stars": 28734,
+              "github_stars": 30276,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -4894,7 +6579,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "code-intelligence",
               "subcategory_name": "Code Intelligence & Refactoring",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Sourcegraph",
@@ -4920,7 +6607,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "code-intelligence",
               "subcategory_name": "Code Intelligence & Refactoring",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -4938,13 +6627,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "code-review",
               "subcategory_name": "Code Review & Quality",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "CodeScene",
@@ -4956,13 +6651,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "code-review",
               "subcategory_name": "Code Review & Quality",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Greptile",
@@ -4974,13 +6675,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "code-review",
               "subcategory_name": "Code Review & Quality",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Snyk DeepCode",
@@ -4992,13 +6699,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "code-review",
               "subcategory_name": "Code Review & Quality",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Sourcery",
@@ -5010,13 +6723,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "code-review",
               "subcategory_name": "Code Review & Quality",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -5030,7 +6749,7 @@ const landscapeData = {
               "url": "https://aider.chat/",
               "desc": "AI pair programming in your terminal - works with GPT-4, Claude, and local models",
               "type": "oss",
-              "github_stars": 48663,
+              "github_stars": 49561,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -5044,7 +6763,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Amazon Q Developer",
@@ -5056,13 +6777,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Claude Code",
@@ -5070,7 +6797,7 @@ const landscapeData = {
               "url": "https://claude.ai/code",
               "desc": "Agentic coding tool that lives in your terminal and understands your codebase",
               "type": "commercial",
-              "github_stars": 143736,
+              "github_stars": 150950,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -5088,7 +6815,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Cline",
@@ -5096,7 +6825,7 @@ const landscapeData = {
               "url": "https://cline.bot/",
               "desc": "Autonomous AI coding agent for VS Code that can create and edit files, run terminal commands, and use any LLM API",
               "type": "oss",
-              "github_stars": 67327,
+              "github_stars": 70345,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -5112,7 +6841,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Codegen",
@@ -5124,13 +6855,19 @@ const landscapeData = {
               "pricing_model": "custom",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Continue",
@@ -5138,7 +6875,7 @@ const landscapeData = {
               "url": "https://continue.dev/",
               "desc": "Open-source AI code assistant for VS Code and JetBrains that connects to any LLM",
               "type": "oss",
-              "github_stars": 35730,
+              "github_stars": 36225,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -5152,7 +6889,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Devin (Cognition)",
@@ -5174,7 +6913,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Factory AI",
@@ -5182,7 +6923,7 @@ const landscapeData = {
               "url": "https://factory.ai",
               "desc": "Agent-native software development platform powered by autonomous AI coding agents called Droids",
               "type": "commercial",
-              "github_stars": 14,
+              "github_stars": 56,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -5196,7 +6937,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "GitHub Copilot",
@@ -5218,7 +6961,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Google Antigravity",
@@ -5240,7 +6985,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "MiMo-Code",
@@ -5248,7 +6995,7 @@ const landscapeData = {
               "url": "https://mimo.xiaomi.com",
               "desc": "Terminal-native AI coding assistant from Xiaomi with persistent memory system for long-horizon tasks",
               "type": "open-source",
-              "github_stars": 12928,
+              "github_stars": 13658,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -5264,7 +7011,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "OpenAI Codex CLI",
@@ -5276,13 +7025,19 @@ const landscapeData = {
               "pricing_model": "api",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "OpenHands",
@@ -5290,7 +7045,7 @@ const landscapeData = {
               "url": "https://www.all-hands.dev/",
               "desc": "Open-source autonomous AI software engineer capable of executing complex engineering tasks and collaborating with users on software development",
               "type": "open-source",
-              "github_stars": 85924,
+              "github_stars": 90938,
               "pricing_model": "open-source",
               "pricing_starting": null,
               "user_count": null,
@@ -5308,7 +7063,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Pi",
@@ -5316,7 +7073,7 @@ const landscapeData = {
               "url": "https://pi.dev",
               "desc": "Minimal agent harness for AI coding — lightweight, extensible CLI with 15+ LLM providers and tree-structured sessions",
               "type": "open-source",
-              "github_stars": 100748,
+              "github_stars": 115297,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -5334,7 +7091,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Roo Code",
@@ -5346,13 +7105,19 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Superset",
@@ -5360,7 +7125,7 @@ const landscapeData = {
               "url": "https://superset.sh/",
               "desc": "Desktop app that orchestrates 100+ AI coding agents in parallel using isolated Git worktrees",
               "type": "commercial",
-              "github_stars": 13632,
+              "github_stars": 15207,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -5378,7 +7143,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "coding-agents",
               "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -5408,7 +7175,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "cost-reduction",
               "subcategory_name": "Cost Reduction",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Context Mode",
@@ -5416,7 +7185,7 @@ const landscapeData = {
               "url": "https://github.com/mksglu/context-mode",
               "desc": "Context window optimization for AI coding agents. Sandboxes tool output with 98% reduction across 15+ platforms",
               "type": "oss",
-              "github_stars": 20309,
+              "github_stars": 29458,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -5434,7 +7203,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "cost-reduction",
               "subcategory_name": "Cost Reduction",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Headroom",
@@ -5442,7 +7213,7 @@ const landscapeData = {
               "url": "https://github.com/chopratejas/headroom",
               "desc": "Context compression system that reduces AI agent token usage by 60-95% while maintaining accuracy",
               "type": "oss",
-              "github_stars": 68382,
+              "github_stars": 75390,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -5460,7 +7231,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "cost-reduction",
               "subcategory_name": "Cost Reduction",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Kickbacks.ai",
@@ -5486,7 +7259,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "cost-reduction",
               "subcategory_name": "Cost Reduction",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "pxpipe",
@@ -5494,7 +7269,7 @@ const landscapeData = {
               "url": "https://github.com/teamchong/pxpipe",
               "desc": "Local proxy that cuts Claude Code token bills 59–70% by re-rendering bulky context — system prompts, tool docs, and collapsed history — as compact PNGs, exploiting the fixed image-token cost of Fable 5's vision channel.",
               "type": "open-source",
-              "github_stars": 7315,
+              "github_stars": 7514,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -5513,7 +7288,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "cost-reduction",
               "subcategory_name": "Cost Reduction",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "RTK (Rust Token Killer)",
@@ -5521,7 +7298,7 @@ const landscapeData = {
               "url": "https://github.com/rtk-ai/rtk",
               "desc": "CLI proxy that reduces LLM token consumption by 60-90% on common dev commands with zero dependencies",
               "type": "oss",
-              "github_stars": 78265,
+              "github_stars": 83420,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -5537,7 +7314,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "cost-reduction",
               "subcategory_name": "Cost Reduction",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Token Optimizer",
@@ -5545,7 +7324,7 @@ const landscapeData = {
               "url": "https://github.com/alexgreensh/token-optimizer",
               "desc": "Context optimization plugin that identifies and eliminates wasted tokens across Claude Code, OpenCode, OpenClaw, and Codex environments while preserving work through compactions",
               "type": "open-source",
-              "github_stars": 2125,
+              "github_stars": 2565,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -5561,7 +7340,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "cost-reduction",
               "subcategory_name": "Cost Reduction",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -5579,13 +7360,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "dev-environment",
               "subcategory_name": "Dev Environment",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Dev Containers",
@@ -5597,13 +7384,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "dev-environment",
               "subcategory_name": "Dev Environment",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Entire",
@@ -5611,7 +7404,7 @@ const landscapeData = {
               "url": "https://entire.io",
               "desc": "Git-native CLI that captures AI agent sessions as searchable checkpoints linked to commits",
               "type": "open-source",
-              "github_stars": 5047,
+              "github_stars": 5182,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -5627,7 +7420,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "dev-environment",
               "subcategory_name": "Dev Environment",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "mise",
@@ -5639,13 +7434,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "dev-environment",
               "subcategory_name": "Dev Environment",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Sprites",
@@ -5657,13 +7458,19 @@ const landscapeData = {
               "pricing_model": "usage-based",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "dev-environment",
               "subcategory_name": "Dev Environment",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -5677,7 +7484,7 @@ const landscapeData = {
               "url": "https://getcaveman.dev/",
               "desc": "Token-efficient stack for agent-native builders that compresses prompts and outputs by ~75%, treating tokens as a precious resource across compression, workflow, and memory layers",
               "type": "open-source",
-              "github_stars": 102333,
+              "github_stars": 112006,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -5698,7 +7505,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "llm-skills",
               "subcategory_name": "LLM Skills",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Frontend Design Skill",
@@ -5706,17 +7515,23 @@ const landscapeData = {
               "url": "https://www.skills.sh/anthropics/skills/frontend-design",
               "desc": "AI skill for creating distinctive, production-grade frontend interfaces that avoid generic AI aesthetics",
               "type": "oss",
-              "github_stars": 173093,
+              "github_stars": 181250,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "llm-skills",
               "subcategory_name": "LLM Skills",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Impeccable",
@@ -5724,17 +7539,23 @@ const landscapeData = {
               "url": "https://impeccable.style/",
               "desc": "Design vocabulary and skill system for AI agents that addresses visual uniformity in AI-generated interfaces",
               "type": "oss",
-              "github_stars": 64788,
+              "github_stars": 81356,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "llm-skills",
               "subcategory_name": "LLM Skills",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "OpenWiki",
@@ -5742,7 +7563,7 @@ const landscapeData = {
               "url": "https://github.com/langchain-ai/openwiki",
               "desc": "CLI that writes and maintains agent documentation for your codebase",
               "type": "open-source",
-              "github_stars": 15981,
+              "github_stars": 17175,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -5760,7 +7581,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "llm-skills",
               "subcategory_name": "LLM Skills",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Ponytail",
@@ -5768,7 +7591,7 @@ const landscapeData = {
               "url": "https://github.com/DietrichGebert/ponytail",
               "desc": "YAGNI-enforcement skill for AI coding agents that cuts code output 80–94% by making the agent reach for built-ins and native platform features before writing new code",
               "type": "open-source",
-              "github_stars": 120407,
+              "github_stars": 163888,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -5787,7 +7610,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "llm-skills",
               "subcategory_name": "LLM Skills",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "skills.sh",
@@ -5795,7 +7620,7 @@ const landscapeData = {
               "url": "https://www.skills.sh/",
               "desc": "Open registry and CLI for discovering and installing reusable AI agent skills across Claude Code, Cursor, Copilot, Codex, and 67+ other coding agents",
               "type": "open-source",
-              "github_stars": 30213,
+              "github_stars": 35014,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -5815,7 +7640,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "llm-skills",
               "subcategory_name": "LLM Skills",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -5843,7 +7670,9 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "spec-driven",
               "subcategory_name": "Spec-Driven Development Tools",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "GitHub Spec-Kit",
@@ -5855,13 +7684,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "spec-driven",
               "subcategory_name": "Spec-Driven Development Tools",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "OpenSpec",
@@ -5873,13 +7708,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "spec-driven",
               "subcategory_name": "Spec-Driven Development Tools",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Superpowers",
@@ -5891,13 +7732,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "spec-driven",
               "subcategory_name": "Spec-Driven Development Tools",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -5915,13 +7762,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "testing-sensors",
               "subcategory_name": "Testing & Quality Sensors",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "cargo-mutants",
@@ -5933,13 +7786,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "testing-sensors",
               "subcategory_name": "Testing & Quality Sensors",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Pitest",
@@ -5947,17 +7806,23 @@ const landscapeData = {
               "url": "https://pitest.org/",
               "desc": "State-of-the-art mutation testing for Java/JVM: provides gold standard test coverage, fast execution, and integrates with Maven, Gradle, and Ant.",
               "type": "oss",
-              "github_stars": 1858,
+              "github_stars": 1875,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "testing-sensors",
               "subcategory_name": "Testing & Quality Sensors",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Playwright",
@@ -5969,13 +7834,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "testing-sensors",
               "subcategory_name": "Testing & Quality Sensors",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Stryker",
@@ -5987,13 +7858,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "testing-sensors",
               "subcategory_name": "Testing & Quality Sensors",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "WuppieFuzz",
@@ -6001,17 +7878,23 @@ const landscapeData = {
               "url": "https://github.com/TNO-S3/WuppieFuzz",
               "desc": "AI-powered web application fuzzing framework that intelligently discovers vulnerabilities using machine learning to optimize test case generation.",
               "type": "oss",
-              "github_stars": 223,
+              "github_stars": 228,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "testing-sensors",
               "subcategory_name": "Testing & Quality Sensors",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         }
@@ -6036,13 +7919,19 @@ const landscapeData = {
               "pricing_model": "pay-as-you-go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "gpu-providers",
               "subcategory_name": "AI Clouds / GPU Providers",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Crusoe",
@@ -6054,13 +7943,19 @@ const landscapeData = {
               "pricing_model": "pay-as-you-go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "gpu-providers",
               "subcategory_name": "AI Clouds / GPU Providers",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Lambda Labs",
@@ -6072,13 +7967,19 @@ const landscapeData = {
               "pricing_model": "pay-as-you-go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "gpu-providers",
               "subcategory_name": "AI Clouds / GPU Providers",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Nebius",
@@ -6090,13 +7991,19 @@ const landscapeData = {
               "pricing_model": "pay-as-you-go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "gpu-providers",
               "subcategory_name": "AI Clouds / GPU Providers",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "RunPod",
@@ -6108,13 +8015,19 @@ const landscapeData = {
               "pricing_model": "pay-as-you-go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "gpu-providers",
               "subcategory_name": "AI Clouds / GPU Providers",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Vast.ai",
@@ -6126,13 +8039,19 @@ const landscapeData = {
               "pricing_model": "pay-as-you-go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "gpu-providers",
               "subcategory_name": "AI Clouds / GPU Providers",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -6160,7 +8079,9 @@ const landscapeData = {
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Anyscale",
@@ -6172,13 +8093,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Azure AI Foundry",
@@ -6190,13 +8117,19 @@ const landscapeData = {
               "pricing_model": "usage-based",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Baseten",
@@ -6208,13 +8141,19 @@ const landscapeData = {
               "pricing_model": "usage-based",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "BentoML",
@@ -6226,13 +8165,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Cerebras",
@@ -6244,13 +8189,19 @@ const landscapeData = {
               "pricing_model": "subscription",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "DeepInfra",
@@ -6262,13 +8213,19 @@ const landscapeData = {
               "pricing_model": "pay_as_you_go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Fal",
@@ -6280,13 +8237,19 @@ const landscapeData = {
               "pricing_model": "pay_as_you_go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Fireworks AI",
@@ -6308,7 +8271,9 @@ const landscapeData = {
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Google Cloud Vision API",
@@ -6335,7 +8300,9 @@ const landscapeData = {
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Groq",
@@ -6347,13 +8314,19 @@ const landscapeData = {
               "pricing_model": "pay-per-use",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Inference.net",
@@ -6381,7 +8354,9 @@ const landscapeData = {
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Lepton AI",
@@ -6393,13 +8368,19 @@ const landscapeData = {
               "pricing_model": "pay_as_you_go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "llama.cpp",
@@ -6407,17 +8388,23 @@ const landscapeData = {
               "url": "https://github.com/ggml-org/llama.cpp",
               "desc": "Pure C/C++ LLM inference engine enabling local model execution on CPU and GPU with minimal dependencies and maximum portability.",
               "type": "oss",
-              "github_stars": 126732,
+              "github_stars": 131225,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Modal",
@@ -6443,7 +8430,9 @@ const landscapeData = {
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "SambaNova",
@@ -6455,13 +8444,19 @@ const landscapeData = {
               "pricing_model": "custom",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "SGLang",
@@ -6469,17 +8464,23 @@ const landscapeData = {
               "url": "https://github.com/sgl-project/sglang",
               "desc": "High-performance serving framework for LLMs and multimodal models with advanced optimizations and structured generation support.",
               "type": "oss",
-              "github_stars": 33102,
+              "github_stars": 37165,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "TensorRT",
@@ -6487,7 +8488,7 @@ const landscapeData = {
               "url": "https://developer.nvidia.com/tensorrt",
               "desc": "NVIDIA's SDK for high-performance deep learning inference on NVIDIA GPUs, delivering up to 36x speedup over CPU-only platforms via mixed-precision optimization and model compilation.",
               "type": "open-source",
-              "github_stars": 13313,
+              "github_stars": 13404,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -6507,7 +8508,9 @@ const landscapeData = {
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Together AI",
@@ -6531,7 +8534,9 @@ const landscapeData = {
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Vertex AI",
@@ -6553,7 +8558,9 @@ const landscapeData = {
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "vLLM",
@@ -6561,17 +8568,23 @@ const landscapeData = {
               "url": "https://github.com/vllm-project/vllm",
               "desc": "High-throughput memory-efficient LLM inference engine with PagedAttention, supporting production deployments at massive scale.",
               "type": "oss",
-              "github_stars": 90748,
+              "github_stars": 93828,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "inference-apis",
               "subcategory_name": "Inference APIs / Serverless LLMs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -6585,7 +8598,7 @@ const landscapeData = {
               "url": "https://www.getmaxim.ai/bifrost",
               "desc": "High-performance open-source LLM gateway from Maxim AI providing a unified OpenAI-compatible API for 1000+ models across 23+ providers, with automatic fallbacks, load balancing, MCP support, and sub-100µs overhead at 5,000 RPS.",
               "type": "oss",
-              "github_stars": 7748,
+              "github_stars": 8822,
               "pricing_model": "open-source",
               "pricing_starting": null,
               "user_count": null,
@@ -6604,7 +8617,9 @@ const landscapeData = {
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "model-routers",
               "subcategory_name": "Model Routers & Gateways",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Cloudflare AI Gateway",
@@ -6616,13 +8631,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "model-routers",
               "subcategory_name": "Model Routers & Gateways",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Helicone",
@@ -6634,13 +8655,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "model-routers",
               "subcategory_name": "Model Routers & Gateways",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "LiteLLM Proxy",
@@ -6652,13 +8679,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "model-routers",
               "subcategory_name": "Model Routers & Gateways",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Not Diamond",
@@ -6680,7 +8713,9 @@ const landscapeData = {
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "model-routers",
               "subcategory_name": "Model Routers & Gateways",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "OpenRouter",
@@ -6692,13 +8727,19 @@ const landscapeData = {
               "pricing_model": "pay-per-use",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "model-routers",
               "subcategory_name": "Model Routers & Gateways",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Portkey",
@@ -6710,13 +8751,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "model-routers",
               "subcategory_name": "Model Routers & Gateways",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         }
@@ -6732,12 +8779,38 @@ const landscapeData = {
           "name": "Data Ingestion & Document Processing",
           "tools": [
             {
+              "name": "Describe Image",
+              "slug": "describe-image",
+              "url": "https://describeimage.io/",
+              "desc": "AI visual analysis platform built on Claude's vision capabilities that converts images and videos into text across 11+ output modes, from alt text to OCR to product listings",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "paid",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "api-available",
+                "multimodal"
+              ],
+              "all_tags": [
+                "api-available",
+                "multimodal"
+              ],
+              "category_id": "data-training",
+              "category_name": "Data & Training",
+              "subcategory_id": "data-ingestion",
+              "subcategory_name": "Data Ingestion & Document Processing",
+              "additional_categories": [
+
+              ]
+            },
+            {
               "name": "Docling",
               "slug": "docling",
               "url": "https://github.com/DS4SD/docling",
               "desc": "Docling is an open-source document parser by IBM Research that converts PDFs, Office files, and 20+ formats into structured, LLM-ready data using layout-aware AI models with best-in-class table extraction accuracy.",
               "type": "open-source",
-              "github_stars": 65880,
+              "github_stars": 68908,
               "pricing_model": "open-source",
               "pricing_starting": null,
               "user_count": null,
@@ -6756,7 +8829,33 @@ const landscapeData = {
               "category_name": "Data & Training",
               "subcategory_id": "data-ingestion",
               "subcategory_name": "Data Ingestion & Document Processing",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
+            },
+            {
+              "name": "Image Describer",
+              "slug": "image-describer",
+              "url": "https://imagedescriber.dev",
+              "desc": "AI tool that analyzes uploaded images and generates text descriptions for accessibility, SEO, and content use, with batch processing for multiple images",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "multimodal"
+              ],
+              "all_tags": [
+                "multimodal"
+              ],
+              "category_id": "data-training",
+              "category_name": "Data & Training",
+              "subcategory_id": "data-ingestion",
+              "subcategory_name": "Data Ingestion & Document Processing",
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "LandingAI",
@@ -6784,7 +8883,9 @@ const landscapeData = {
               "category_name": "Data & Training",
               "subcategory_id": "data-ingestion",
               "subcategory_name": "Data Ingestion & Document Processing",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "LangExtract",
@@ -6792,7 +8893,7 @@ const landscapeData = {
               "url": "https://github.com/google/langextract",
               "desc": "LangExtract is Google's open-source Python library that extracts structured information from unstructured text using LLMs, grounding every extraction to its exact character position in the source document for verifiable, hallucination-filtered output.",
               "type": "open-source",
-              "github_stars": 38519,
+              "github_stars": 38954,
               "pricing_model": "open-source",
               "pricing_starting": null,
               "user_count": null,
@@ -6811,7 +8912,9 @@ const landscapeData = {
               "category_name": "Data & Training",
               "subcategory_id": "data-ingestion",
               "subcategory_name": "Data Ingestion & Document Processing",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "LlamaParse",
@@ -6839,7 +8942,9 @@ const landscapeData = {
               "category_name": "Data & Training",
               "subcategory_id": "data-ingestion",
               "subcategory_name": "Data Ingestion & Document Processing",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "PageIndex",
@@ -6847,7 +8952,7 @@ const landscapeData = {
               "url": "https://pageindex.ai",
               "desc": "PageIndex is a vectorless document retrieval and AI platform by VectifyAI that uses hierarchical tree indexing and LLM reasoning instead of embeddings, achieving 98.7% accuracy on FinanceBench — far surpassing standard vector RAG approaches.",
               "type": "open-source",
-              "github_stars": 35485,
+              "github_stars": 39130,
               "pricing_model": "open-source",
               "pricing_starting": null,
               "user_count": null,
@@ -6866,7 +8971,9 @@ const landscapeData = {
               "category_name": "Data & Training",
               "subcategory_id": "data-ingestion",
               "subcategory_name": "Data Ingestion & Document Processing",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Unstructured",
@@ -6874,7 +8981,7 @@ const landscapeData = {
               "url": "https://unstructured.io/",
               "desc": "Unstructured is an open-source and commercial ETL platform that converts 64+ file types into structured, AI-ready data for LLM and RAG pipelines, trusted by 87% of Fortune 1000 companies with SOC 2 Type II, HIPAA, and FedRAMP High compliance.",
               "type": "open-source",
-              "github_stars": 15377,
+              "github_stars": 15568,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -6894,7 +9001,9 @@ const landscapeData = {
               "category_name": "Data & Training",
               "subcategory_id": "data-ingestion",
               "subcategory_name": "Data Ingestion & Document Processing",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -6912,13 +9021,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "data-labeling",
               "subcategory_name": "Data Labeling",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Encord",
@@ -6930,13 +9045,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "data-labeling",
               "subcategory_name": "Data Labeling",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Label Studio",
@@ -6948,13 +9069,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "data-labeling",
               "subcategory_name": "Data Labeling",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Labelbox",
@@ -6966,13 +9093,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "data-labeling",
               "subcategory_name": "Data Labeling",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Roboflow",
@@ -6984,13 +9117,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "data-labeling",
               "subcategory_name": "Data Labeling",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Scale AI",
@@ -7002,13 +9141,19 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "data-labeling",
               "subcategory_name": "Data Labeling",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Snorkel AI",
@@ -7020,13 +9165,19 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "data-labeling",
               "subcategory_name": "Data Labeling",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -7044,13 +9195,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "embeddings",
               "subcategory_name": "Embedding Models & Rerankers",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Cohere Embed",
@@ -7062,13 +9219,19 @@ const landscapeData = {
               "pricing_model": "pay-as-you-go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "embeddings",
               "subcategory_name": "Embedding Models & Rerankers",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Jina AI",
@@ -7080,13 +9243,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "embeddings",
               "subcategory_name": "Embedding Models & Rerankers",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Nomic Embed",
@@ -7098,13 +9267,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "embeddings",
               "subcategory_name": "Embedding Models & Rerankers",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "OpenAI text-embedding-3",
@@ -7116,13 +9291,19 @@ const landscapeData = {
               "pricing_model": "pay-as-you-go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "embeddings",
               "subcategory_name": "Embedding Models & Rerankers",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Voyage AI",
@@ -7134,13 +9315,19 @@ const landscapeData = {
               "pricing_model": "pay-as-you-go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "embeddings",
               "subcategory_name": "Embedding Models & Rerankers",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -7154,17 +9341,23 @@ const landscapeData = {
               "url": "https://github.com/aimhubio/aim",
               "desc": "Open-source experiment tracking tool for ML teams with powerful visualization and metadata management",
               "type": "oss",
-              "github_stars": 6248,
+              "github_stars": 6284,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "experiment-tracking",
               "subcategory_name": "Experiment Tracking",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Comet",
@@ -7176,13 +9369,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "experiment-tracking",
               "subcategory_name": "Experiment Tracking",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Neptune",
@@ -7194,13 +9393,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "experiment-tracking",
               "subcategory_name": "Experiment Tracking",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Weights & Biases",
@@ -7212,13 +9417,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "experiment-tracking",
               "subcategory_name": "Experiment Tracking",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -7232,17 +9443,23 @@ const landscapeData = {
               "url": "https://github.com/axolotl-ai-cloud/axolotl",
               "desc": "Streamlined LLM fine-tuning toolkit with support for QLORA, FSDP, and various model architectures",
               "type": "oss",
-              "github_stars": 12434,
+              "github_stars": 12570,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "fine-tuning",
               "subcategory_name": "Fine-Tuning Platforms & Libraries",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Hugging Face TRL",
@@ -7254,13 +9471,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "fine-tuning",
               "subcategory_name": "Fine-Tuning Platforms & Libraries",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "LLaMA-Factory",
@@ -7272,13 +9495,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "fine-tuning",
               "subcategory_name": "Fine-Tuning Platforms & Libraries",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Predibase",
@@ -7290,13 +9519,19 @@ const landscapeData = {
               "pricing_model": "pay-as-you-go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "fine-tuning",
               "subcategory_name": "Fine-Tuning Platforms & Libraries",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Together Fine-Tuning",
@@ -7308,13 +9543,19 @@ const landscapeData = {
               "pricing_model": "pay-as-you-go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "fine-tuning",
               "subcategory_name": "Fine-Tuning Platforms & Libraries",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Torchtune",
@@ -7322,17 +9563,23 @@ const landscapeData = {
               "url": "https://pytorch.org/torchtune/",
               "desc": "PyTorch-native LLM fine-tuning library with memory-efficient training, LoRA support, and easy recipes",
               "type": "oss",
-              "github_stars": 5802,
+              "github_stars": 5817,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "fine-tuning",
               "subcategory_name": "Fine-Tuning Platforms & Libraries",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Unsloth",
@@ -7344,13 +9591,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "fine-tuning",
               "subcategory_name": "Fine-Tuning Platforms & Libraries",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -7368,13 +9621,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "lakehouse-semantic",
               "subcategory_name": "Lakehouse & Semantic Layer",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Cube",
@@ -7386,13 +9645,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "lakehouse-semantic",
               "subcategory_name": "Lakehouse & Semantic Layer",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Dagster",
@@ -7404,13 +9669,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "lakehouse-semantic",
               "subcategory_name": "Lakehouse & Semantic Layer",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "dbt",
@@ -7422,13 +9693,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "lakehouse-semantic",
               "subcategory_name": "Lakehouse & Semantic Layer",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -7446,13 +9723,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "ml-frameworks",
               "subcategory_name": "ML Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "JAX",
@@ -7460,17 +9743,23 @@ const landscapeData = {
               "url": "https://github.com/jax-ml/jax",
               "desc": "NumPy-like framework for composable function transformations with automatic differentiation, JIT compilation, and GPU/TPU acceleration",
               "type": "oss",
-              "github_stars": 36237,
+              "github_stars": 36431,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "ml-frameworks",
               "subcategory_name": "ML Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Keras",
@@ -7478,17 +9767,23 @@ const landscapeData = {
               "url": "https://keras.io/",
               "desc": "High-level deep learning API emphasizing user-friendliness with readable, concise code for rapid experimentation",
               "type": "oss",
-              "github_stars": 64272,
+              "github_stars": 64372,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "ml-frameworks",
               "subcategory_name": "ML Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "MLX (Apple)",
@@ -7500,13 +9795,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "ml-frameworks",
               "subcategory_name": "ML Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "PyTorch",
@@ -7518,13 +9819,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "ml-frameworks",
               "subcategory_name": "ML Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "TensorFlow",
@@ -7532,17 +9839,23 @@ const landscapeData = {
               "url": "https://www.tensorflow.org/",
               "desc": "End-to-end open source platform for machine learning with tools for training, optimization, and deployment",
               "type": "oss",
-              "github_stars": 198352,
+              "github_stars": 200975,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "ml-frameworks",
               "subcategory_name": "ML Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -7560,13 +9873,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "mlops",
               "subcategory_name": "Training Orchestration / MLOps",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Kubeflow",
@@ -7574,17 +9893,23 @@ const landscapeData = {
               "url": "https://www.kubeflow.org/",
               "desc": "Kubernetes-native ML platform for deploying, managing, and scaling machine learning workflows on container orchestration",
               "type": "oss",
-              "github_stars": 15842,
+              "github_stars": 15909,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "mlops",
               "subcategory_name": "Training Orchestration / MLOps",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Metaflow",
@@ -7596,13 +9921,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "mlops",
               "subcategory_name": "Training Orchestration / MLOps",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "MLflow",
@@ -7614,13 +9945,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "mlops",
               "subcategory_name": "Training Orchestration / MLOps",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Ray",
@@ -7632,13 +9969,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "mlops",
               "subcategory_name": "Training Orchestration / MLOps",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "SkyPilot",
@@ -7646,17 +9989,23 @@ const landscapeData = {
               "url": "https://skypilot.co/",
               "desc": "Framework for running ML workloads efficiently on any cloud with automatic cost optimization and multi-cloud scheduling",
               "type": "oss",
-              "github_stars": 10547,
+              "github_stars": 10711,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "mlops",
               "subcategory_name": "Training Orchestration / MLOps",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "ZenML",
@@ -7668,13 +10017,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "data-training",
               "category_name": "Data & Training",
               "subcategory_id": "mlops",
               "subcategory_name": "Training Orchestration / MLOps",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         }
@@ -7709,7 +10064,9 @@ const landscapeData = {
               "category_name": "Engineering Intelligence",
               "subcategory_id": "developer-portals",
               "subcategory_name": "Developer Portals",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -7727,13 +10084,19 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "engineering-intelligence",
               "category_name": "Engineering Intelligence",
               "subcategory_id": "engineering-analytics",
               "subcategory_name": "Engineering Analytics",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         }
@@ -7758,13 +10121,19 @@ const landscapeData = {
               "pricing_model": "pay-as-you-go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "closed-frontier",
               "subcategory_name": "Closed/Frontier LLM Providers",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Anthropic",
@@ -7788,7 +10157,9 @@ const landscapeData = {
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "closed-frontier",
               "subcategory_name": "Closed/Frontier LLM Providers",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Cohere",
@@ -7812,7 +10183,9 @@ const landscapeData = {
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "closed-frontier",
               "subcategory_name": "Closed/Frontier LLM Providers",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Google DeepMind",
@@ -7824,13 +10197,19 @@ const landscapeData = {
               "pricing_model": "pay-as-you-go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "closed-frontier",
               "subcategory_name": "Closed/Frontier LLM Providers",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "MiniMax",
@@ -7842,13 +10221,19 @@ const landscapeData = {
               "pricing_model": "pay-as-you-go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "closed-frontier",
               "subcategory_name": "Closed/Frontier LLM Providers",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Mistral AI",
@@ -7872,7 +10257,9 @@ const landscapeData = {
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "closed-frontier",
               "subcategory_name": "Closed/Frontier LLM Providers",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "OpenAI",
@@ -7898,7 +10285,9 @@ const landscapeData = {
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "closed-frontier",
               "subcategory_name": "Closed/Frontier LLM Providers",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Reka AI",
@@ -7910,13 +10299,19 @@ const landscapeData = {
               "pricing_model": "pay-as-you-go",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "closed-frontier",
               "subcategory_name": "Closed/Frontier LLM Providers",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "xAI (Grok)",
@@ -7942,7 +10337,9 @@ const landscapeData = {
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "closed-frontier",
               "subcategory_name": "Closed/Frontier LLM Providers",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -7960,13 +10357,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "model-hubs",
               "subcategory_name": "Model Hubs & Registries",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Hugging Face",
@@ -7974,17 +10377,23 @@ const landscapeData = {
               "url": "https://huggingface.co/",
               "desc": "The AI community building the future - collaborative platform for sharing ML models, datasets, and applications",
               "type": "commercial",
-              "github_stars": 164710,
+              "github_stars": 167707,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "model-hubs",
               "subcategory_name": "Model Hubs & Registries",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "LM Studio",
@@ -7996,13 +10405,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "model-hubs",
               "subcategory_name": "Model Hubs & Registries",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "ModelScope",
@@ -8014,13 +10429,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "model-hubs",
               "subcategory_name": "Model Hubs & Registries",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Ollama",
@@ -8028,7 +10449,7 @@ const landscapeData = {
               "url": "https://ollama.com/",
               "desc": "Get up and running with large language models locally",
               "type": "oss",
-              "github_stars": 179935,
+              "github_stars": 183209,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -8042,7 +10463,9 @@ const landscapeData = {
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "model-hubs",
               "subcategory_name": "Model Hubs & Registries",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Replicate",
@@ -8064,7 +10487,9 @@ const landscapeData = {
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "model-hubs",
               "subcategory_name": "Model Hubs & Registries",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -8082,13 +10507,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "open-source",
               "subcategory_name": "Open-Source / Open-Weight Models",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Alibaba Qwen",
@@ -8100,13 +10531,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "open-source",
               "subcategory_name": "Open-Source / Open-Weight Models",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "DeepSeek",
@@ -8130,7 +10567,9 @@ const landscapeData = {
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "open-source",
               "subcategory_name": "Open-Source / Open-Weight Models",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Falcon (TII)",
@@ -8142,13 +10581,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "open-source",
               "subcategory_name": "Open-Source / Open-Weight Models",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Google Gemma",
@@ -8160,13 +10605,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "open-source",
               "subcategory_name": "Open-Source / Open-Weight Models",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Meta Llama",
@@ -8174,7 +10625,7 @@ const landscapeData = {
               "url": "https://llama.meta.com/",
               "desc": "Open-access large language model family designed for developers, researchers, and businesses to build, experiment, and responsibly scale their generative AI ideas",
               "type": "oss",
-              "github_stars": 7687,
+              "github_stars": 7709,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -8190,7 +10641,9 @@ const landscapeData = {
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "open-source",
               "subcategory_name": "Open-Source / Open-Weight Models",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Microsoft Phi",
@@ -8202,13 +10655,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "open-source",
               "subcategory_name": "Open-Source / Open-Weight Models",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Mistral (open)",
@@ -8220,13 +10679,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "open-source",
               "subcategory_name": "Open-Source / Open-Weight Models",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "NVIDIA Nemotron",
@@ -8238,13 +10703,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "open-source",
               "subcategory_name": "Open-Source / Open-Weight Models",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "StabilityAI Stable LM",
@@ -8256,13 +10727,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "foundation-models",
               "category_name": "Foundation Models & Model Hubs",
               "subcategory_id": "open-source",
               "subcategory_name": "Open-Source / Open-Weight Models",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         }
@@ -8283,17 +10760,23 @@ const landscapeData = {
               "url": "https://github.com/guidance-ai/guidance",
               "desc": "Python framework for controlling LLM output with constraints and guidance. Enables structured generation, guaranteed valid outputs, and complex reasoning patterns. Supports multiple model backends with efficient batching.",
               "type": "oss",
-              "github_stars": 21731,
+              "github_stars": 21799,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "llm-frameworks",
               "category_name": "LLM Application Frameworks",
               "subcategory_id": "app-frameworks",
               "subcategory_name": "Application Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Instructor",
@@ -8305,13 +10788,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "llm-frameworks",
               "category_name": "LLM Application Frameworks",
               "subcategory_id": "app-frameworks",
               "subcategory_name": "Application Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "LiteLLM",
@@ -8323,13 +10812,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "llm-frameworks",
               "category_name": "LLM Application Frameworks",
               "subcategory_id": "app-frameworks",
               "subcategory_name": "Application Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Marvin",
@@ -8341,13 +10836,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "llm-frameworks",
               "category_name": "LLM Application Frameworks",
               "subcategory_id": "app-frameworks",
               "subcategory_name": "Application Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Outlines",
@@ -8355,17 +10856,23 @@ const landscapeData = {
               "url": "https://github.com/dottxt-ai/outlines",
               "desc": "Structured text generation library that guarantees LLM outputs conform to JSON schemas, regex patterns, or context-free grammars using finite-state machine guided generation",
               "type": "open-source",
-              "github_stars": 15737,
+              "github_stars": 15936,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "llm-frameworks",
               "category_name": "LLM Application Frameworks",
               "subcategory_id": "app-frameworks",
               "subcategory_name": "Application Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Spring AI",
@@ -8373,7 +10880,7 @@ const landscapeData = {
               "url": "https://spring.io/projects/spring-ai",
               "desc": "Spring Framework's official AI integration bringing familiar Spring idioms to GenAI with support for all major LLM providers",
               "type": "oss",
-              "github_stars": 9392,
+              "github_stars": 9544,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -8391,7 +10898,9 @@ const landscapeData = {
               "category_name": "LLM Application Frameworks",
               "subcategory_id": "app-frameworks",
               "subcategory_name": "Application Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Vercel AI SDK",
@@ -8399,7 +10908,7 @@ const landscapeData = {
               "url": "https://sdk.vercel.ai/",
               "desc": "The AI Toolkit for TypeScript - Build AI-powered applications with React, Next.js, Vue, Svelte, and Node.js",
               "type": "oss",
-              "github_stars": 26540,
+              "github_stars": 27325,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -8413,7 +10922,9 @@ const landscapeData = {
               "category_name": "LLM Application Frameworks",
               "subcategory_id": "app-frameworks",
               "subcategory_name": "Application Frameworks",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -8445,7 +10956,9 @@ const landscapeData = {
               "category_name": "LLM Application Frameworks",
               "subcategory_id": "prompt-engineering",
               "subcategory_name": "Prompt Engineering & Management",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Latitude",
@@ -8453,17 +10966,23 @@ const landscapeData = {
               "url": "https://latitude.so/",
               "desc": "Open-source agent engineering platform for AI observability, issue detection, and evaluation - described as Sentry for AI agents and LLMs",
               "type": "open-source",
-              "github_stars": 4613,
+              "github_stars": 4722,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "llm-frameworks",
               "category_name": "LLM Application Frameworks",
               "subcategory_id": "prompt-engineering",
               "subcategory_name": "Prompt Engineering & Management",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Orq.ai",
@@ -8487,7 +11006,9 @@ const landscapeData = {
               "category_name": "LLM Application Frameworks",
               "subcategory_id": "prompt-engineering",
               "subcategory_name": "Prompt Engineering & Management",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "PromptLayer",
@@ -8514,7 +11035,9 @@ const landscapeData = {
               "category_name": "LLM Application Frameworks",
               "subcategory_id": "prompt-engineering",
               "subcategory_name": "Prompt Engineering & Management",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         }
@@ -8535,7 +11058,7 @@ const landscapeData = {
               "url": "https://docs.botmux.dev",
               "desc": "Self-hosted Telegram bot management dashboard with real-time message logging to SQLite, inter-bot routing, and bridges to Slack, Discord, and webhooks",
               "type": "open-source",
-              "github_stars": 22,
+              "github_stars": 24,
               "pricing_model": "open-source",
               "pricing_starting": null,
               "user_count": null,
@@ -8556,7 +11079,9 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "app-observability",
               "subcategory_name": "Application Observability & FinOps",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "ClickStack",
@@ -8564,7 +11089,7 @@ const landscapeData = {
               "url": "https://clickhouse.com/clickstack",
               "desc": "Open-source observability platform built on ClickHouse for unified logs, metrics, and traces with OpenTelemetry-native ingestion.",
               "type": "oss",
-              "github_stars": 159,
+              "github_stars": 173,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -8582,7 +11107,9 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "app-observability",
               "subcategory_name": "Application Observability & FinOps",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "OpenObserve",
@@ -8590,7 +11117,7 @@ const landscapeData = {
               "url": "https://openobserve.ai/",
               "desc": "Open source observability platform for logs, metrics, traces, frontend monitoring, pipelines and LLM observability with 140x lower storage costs than Elasticsearch",
               "type": "open-source",
-              "github_stars": 21609,
+              "github_stars": 22377,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -8609,7 +11136,9 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "app-observability",
               "subcategory_name": "Application Observability & FinOps",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "OptScale",
@@ -8617,7 +11146,7 @@ const landscapeData = {
               "url": "https://optscale.ai/",
               "desc": "Open-source FinOps and MLOps platform for cloud cost optimization and ML/AI experiment tracking",
               "type": "oss",
-              "github_stars": 2179,
+              "github_stars": 2217,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -8635,7 +11164,9 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "app-observability",
               "subcategory_name": "Application Observability & FinOps",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "SigNoz",
@@ -8643,7 +11174,7 @@ const landscapeData = {
               "url": "https://signoz.io/",
               "desc": "Open source APM and observability platform with unified traces, metrics, and logs built on OpenTelemetry and ClickHouse",
               "type": "oss",
-              "github_stars": 31995,
+              "github_stars": 32360,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -8659,7 +11190,9 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "app-observability",
               "subcategory_name": "Application Observability & FinOps",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -8673,17 +11206,23 @@ const landscapeData = {
               "url": "https://www.confident-ai.com/",
               "desc": "Open-source LLM evaluation framework with 14+ research-backed metrics for testing RAG pipelines, agents, and LLM applications",
               "type": "open-source",
-              "github_stars": 18046,
+              "github_stars": 18881,
               "pricing_model": "open-source",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Inspect AI",
@@ -8691,17 +11230,23 @@ const landscapeData = {
               "url": "https://inspect.ai-safety-institute.org.uk/",
               "desc": "Open-source framework for large language model evaluation developed by the UK AI Safety Institute",
               "type": "oss",
-              "github_stars": 2684,
+              "github_stars": 3006,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "OpenAI Evals",
@@ -8709,7 +11254,7 @@ const landscapeData = {
               "url": "https://github.com/openai/evals",
               "desc": "Framework for evaluating LLMs and LLM systems with an open-source registry of benchmarks",
               "type": "open-source",
-              "github_stars": 19358,
+              "github_stars": 19607,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -8723,7 +11268,9 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Patronus AI",
@@ -8735,13 +11282,19 @@ const landscapeData = {
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Promptfoo",
@@ -8749,17 +11302,23 @@ const landscapeData = {
               "url": "https://www.promptfoo.dev/",
               "desc": "Open-source CLI and library for LLM evaluation and red teaming. Enables systematic prompt testing, model comparison, vulnerability scanning, and automated security assessments with CI/CD integration.",
               "type": "oss",
-              "github_stars": 24744,
+              "github_stars": 26007,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Ragas",
@@ -8767,7 +11326,7 @@ const landscapeData = {
               "url": "https://docs.ragas.io/",
               "desc": "Open-source framework for evaluating RAG pipelines with reference-free LLM-as-judge metrics",
               "type": "open-source",
-              "github_stars": 15580,
+              "github_stars": 16034,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -8781,7 +11340,9 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Traigent",
@@ -8803,7 +11364,9 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "TruLens",
@@ -8811,7 +11374,7 @@ const landscapeData = {
               "url": "https://www.trulens.org/",
               "desc": "Open-source library for evaluating and tracking LLM applications using feedback functions for groundedness, relevance, and safety",
               "type": "open-source",
-              "github_stars": 3530,
+              "github_stars": 3602,
               "pricing_model": "open-source",
               "pricing_starting": null,
               "user_count": null,
@@ -8825,7 +11388,9 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "evaluation",
               "subcategory_name": "Evaluation",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -8857,7 +11422,9 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Guardrails AI",
@@ -8865,7 +11432,7 @@ const landscapeData = {
               "url": "https://www.guardrailsai.com/",
               "desc": "Python framework for building reliable AI applications with input/output guards that detect, quantify, and mitigate risks in LLM outputs",
               "type": "open-source",
-              "github_stars": 7342,
+              "github_stars": 7524,
               "pricing_model": "open-source",
               "pricing_starting": null,
               "user_count": null,
@@ -8879,7 +11446,9 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Lakera Guard",
@@ -8891,13 +11460,19 @@ const landscapeData = {
               "pricing_model": "usage-based",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "LLM Guard",
@@ -8905,7 +11480,7 @@ const landscapeData = {
               "url": "https://github.com/protectai/llm-guard",
               "desc": "Open-source framework for securing LLM inputs and outputs. Detects prompt injections, jailbreaks, banned topics, and harmful content with customizable scanners for comprehensive protection.",
               "type": "oss",
-              "github_stars": 3204,
+              "github_stars": 3215,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -8919,7 +11494,9 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Lumia Security",
@@ -8945,7 +11522,9 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "NeMo Guardrails",
@@ -8953,17 +11532,23 @@ const landscapeData = {
               "url": "https://github.com/NVIDIA/NeMo-Guardrails",
               "desc": "NVIDIA's open-source toolkit for implementing guardrails on LLMs. Uses configuration-as-code for defining conversational rules, handling harmful content, and preventing undesired behaviors with rail specifications.",
               "type": "oss",
-              "github_stars": 7046,
+              "github_stars": 7299,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "NVIDIA OpenShell",
@@ -8971,17 +11556,23 @@ const landscapeData = {
               "url": "https://github.com/NVIDIA/OpenShell",
               "desc": "Secure sandbox runtime environment for AI agents with policy-based access controls. Isolates agent execution with fine-grained permission management and auditability for safe autonomous systems.",
               "type": "oss",
-              "github_stars": 8484,
+              "github_stars": 16281,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Prompt Security",
@@ -8993,13 +11584,19 @@ const landscapeData = {
               "pricing_model": "custom",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Protect AI",
@@ -9011,13 +11608,19 @@ const landscapeData = {
               "pricing_model": "custom",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "guardrails",
               "subcategory_name": "Guardrails / Safety",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -9035,13 +11638,19 @@ const landscapeData = {
               "pricing_model": "usage-based",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Arize Phoenix",
@@ -9053,13 +11662,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Arize AI",
@@ -9067,7 +11682,7 @@ const landscapeData = {
               "url": "https://arize.com/",
               "desc": "AI observability platform for LLM and ML monitoring with automatic drift detection, root cause analysis, and production debugging",
               "type": "commercial",
-              "github_stars": 11288,
+              "github_stars": 11842,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -9081,7 +11696,9 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Avon AI",
@@ -9093,13 +11710,19 @@ const landscapeData = {
               "pricing_model": "tiered",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Braintrust",
@@ -9111,13 +11734,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Datadog LLM Observability",
@@ -9129,13 +11758,19 @@ const landscapeData = {
               "pricing_model": "usage-based",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Honeyhive",
@@ -9147,13 +11782,19 @@ const landscapeData = {
               "pricing_model": "usage-based",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Laminar",
@@ -9165,13 +11806,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Langfuse",
@@ -9179,7 +11826,7 @@ const landscapeData = {
               "url": "https://langfuse.com/",
               "desc": "Open source LLM engineering platform for observability, metrics, evaluations, prompt management, and datasets",
               "type": "oss",
-              "github_stars": 34081,
+              "github_stars": 35850,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -9195,7 +11842,9 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "LangSmith",
@@ -9203,7 +11852,7 @@ const landscapeData = {
               "url": "https://www.langchain.com/langsmith",
               "desc": "AI agent and LLM observability platform from LangChain with tracing, evaluation, and monitoring for production applications across any framework",
               "type": "commercial",
-              "github_stars": 1043,
+              "github_stars": 1081,
               "pricing_model": "usage-based",
               "pricing_starting": null,
               "user_count": null,
@@ -9217,7 +11866,9 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Pydantic Logfire",
@@ -9225,7 +11876,7 @@ const landscapeData = {
               "url": "https://pydantic.dev/logfire",
               "desc": "AI observability platform for production LLM and agent systems, built on OpenTelemetry with end-to-end application tracing",
               "type": "commercial",
-              "github_stars": 4450,
+              "github_stars": 4512,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -9239,7 +11890,9 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Traceloop / OpenLLMetry",
@@ -9251,13 +11904,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "W&B Weave",
@@ -9265,7 +11924,7 @@ const landscapeData = {
               "url": "https://wandb.ai/site/weave",
               "desc": "Open source LLM observability and evaluation toolkit from Weights & Biases. Trace, evaluate, and monitor AI applications from experimentation to production with a single line of code.",
               "type": "open-source",
-              "github_stars": 1123,
+              "github_stars": 1141,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -9283,7 +11942,9 @@ const landscapeData = {
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Weights & Biases",
@@ -9291,17 +11952,23 @@ const landscapeData = {
               "url": "https://wandb.ai",
               "desc": "AI developer platform for experiment tracking, model management, and LLM observability used by OpenAI, NVIDIA, and thousands of ML teams",
               "type": "commercial",
-              "github_stars": 11248,
+              "github_stars": 11298,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
               "subcategory_name": "LLM Observability & Tracing",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         }
@@ -9322,7 +11989,7 @@ const landscapeData = {
               "url": "https://www.ibm.com/granite/docs/models/guardian",
               "desc": "IBM's open-source guardrail model family that scores prompts and responses for jailbreaks, prompt injection, and harm",
               "type": "oss",
-              "github_stars": 173,
+              "github_stars": 185,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -9340,7 +12007,9 @@ const landscapeData = {
               "category_name": "Security",
               "subcategory_id": "preventing-prompt-injection",
               "subcategory_name": "Preventing Prompt Injection",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Invariant Guardrails",
@@ -9348,7 +12017,7 @@ const landscapeData = {
               "url": "https://invariantlabs.ai/guardrails",
               "desc": "Rule-based security layer for LLM and MCP agents that intercepts traffic to catch prompt injection, PII, secrets, and tool poisoning",
               "type": "oss",
-              "github_stars": 453,
+              "github_stars": 472,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -9367,7 +12036,9 @@ const landscapeData = {
               "category_name": "Security",
               "subcategory_id": "preventing-prompt-injection",
               "subcategory_name": "Preventing Prompt Injection",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "WhyLabs LangKit",
@@ -9375,7 +12046,7 @@ const landscapeData = {
               "url": "https://docs.whylabs.ai/docs/category/langkit/",
               "desc": "Open-source Python toolkit for LLM prompt/response security signals, including similarity-based prompt-injection detection. Community-maintained since 2025.",
               "type": "oss",
-              "github_stars": 996,
+              "github_stars": 1000,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -9393,7 +12064,9 @@ const landscapeData = {
               "category_name": "Security",
               "subcategory_id": "preventing-prompt-injection",
               "subcategory_name": "Preventing Prompt Injection",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "LlamaFirewall",
@@ -9401,7 +12074,7 @@ const landscapeData = {
               "url": "https://meta-llama.github.io/PurpleLlama/LlamaFirewall/",
               "desc": "Meta's open-source guardrail framework combining PromptGuard 2, AlignmentCheck, and CodeShield to stop prompt injection in AI agents",
               "type": "oss",
-              "github_stars": 4376,
+              "github_stars": 4432,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -9419,7 +12092,9 @@ const landscapeData = {
               "category_name": "Security",
               "subcategory_id": "preventing-prompt-injection",
               "subcategory_name": "Preventing Prompt Injection",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "OpenAI Guardrails (Python)",
@@ -9427,7 +12102,7 @@ const landscapeData = {
               "url": "https://openai.github.io/openai-guardrails-python/",
               "desc": "OpenAI's open-source Python guardrails package that detects prompt injection and validates tool calls against user intent",
               "type": "oss",
-              "github_stars": 241,
+              "github_stars": 261,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -9445,7 +12120,9 @@ const landscapeData = {
               "category_name": "Security",
               "subcategory_id": "preventing-prompt-injection",
               "subcategory_name": "Preventing Prompt Injection",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "PIGuard",
@@ -9453,7 +12130,7 @@ const landscapeData = {
               "url": "https://injecguard.github.io/",
               "desc": "Academic ACL 2025 prompt-injection classifier that reduces false positives on benign trigger-word prompts",
               "type": "oss",
-              "github_stars": 81,
+              "github_stars": 88,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -9469,7 +12146,9 @@ const landscapeData = {
               "category_name": "Security",
               "subcategory_id": "preventing-prompt-injection",
               "subcategory_name": "Preventing Prompt Injection",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -9483,7 +12162,7 @@ const landscapeData = {
               "url": "https://www.knostic.ai/openant",
               "desc": "Open source LLM-based vulnerability discovery product from Knostic that helps defenders find verified security flaws while minimizing false positives and false negatives",
               "type": "open-source",
-              "github_stars": 745,
+              "github_stars": 771,
               "pricing_model": "open-source",
               "pricing_starting": null,
               "user_count": null,
@@ -9499,7 +12178,9 @@ const landscapeData = {
               "category_name": "Security",
               "subcategory_id": "security-scanning",
               "subcategory_name": "Security Scanning",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "RAPTOR",
@@ -9507,7 +12188,7 @@ const landscapeData = {
               "url": "https://github.com/gadievron/raptor",
               "desc": "Autonomous security research framework built on Claude Code that chains static analysis, binary analysis, LLM-powered vulnerability validation, exploit generation, and patch writing into a single workflow",
               "type": "open-source",
-              "github_stars": 3695,
+              "github_stars": 3908,
               "pricing_model": "open-source",
               "pricing_starting": null,
               "user_count": null,
@@ -9525,7 +12206,9 @@ const landscapeData = {
               "category_name": "Security",
               "subcategory_id": "security-scanning",
               "subcategory_name": "Security Scanning",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         }
@@ -9546,7 +12229,7 @@ const landscapeData = {
               "url": "https://www.trychroma.com/",
               "desc": "The AI-native open-source embedding database with the simplest developer experience for building LLM applications",
               "type": "oss",
-              "github_stars": 29204,
+              "github_stars": 29504,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -9564,7 +12247,9 @@ const landscapeData = {
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "dedicated",
               "subcategory_name": "Dedicated Vector DBs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "LanceDB",
@@ -9576,13 +12261,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "dedicated",
               "subcategory_name": "Dedicated Vector DBs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Milvus",
@@ -9594,13 +12285,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "dedicated",
               "subcategory_name": "Dedicated Vector DBs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Pinecone",
@@ -9626,7 +12323,9 @@ const landscapeData = {
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "dedicated",
               "subcategory_name": "Dedicated Vector DBs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Qdrant",
@@ -9634,7 +12333,7 @@ const landscapeData = {
               "url": "https://qdrant.tech/",
               "desc": "High-performance, massive-scale vector database and vector search engine for the next generation of AI applications",
               "type": "oss",
-              "github_stars": 34332,
+              "github_stars": 35081,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -9648,7 +12347,9 @@ const landscapeData = {
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "dedicated",
               "subcategory_name": "Dedicated Vector DBs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Turbopuffer",
@@ -9660,13 +12361,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "dedicated",
               "subcategory_name": "Dedicated Vector DBs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Vespa",
@@ -9678,13 +12385,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "dedicated",
               "subcategory_name": "Dedicated Vector DBs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Weaviate",
@@ -9692,7 +12405,7 @@ const landscapeData = {
               "url": "https://weaviate.io/",
               "desc": "Open-source vector database with native hybrid search combining BM25 and vector search",
               "type": "oss",
-              "github_stars": 16778,
+              "github_stars": 16884,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -9708,7 +12421,9 @@ const landscapeData = {
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "dedicated",
               "subcategory_name": "Dedicated Vector DBs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -9726,13 +12441,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "extensions",
               "subcategory_name": "Vector Extensions to Existing DBs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Elasticsearch",
@@ -9744,13 +12465,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "extensions",
               "subcategory_name": "Vector Extensions to Existing DBs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "MongoDB Atlas Vector",
@@ -9762,13 +12489,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "extensions",
               "subcategory_name": "Vector Extensions to Existing DBs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "pgvector",
@@ -9780,13 +12513,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "extensions",
               "subcategory_name": "Vector Extensions to Existing DBs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Redis Vector",
@@ -9798,13 +12537,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "extensions",
               "subcategory_name": "Vector Extensions to Existing DBs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Supabase Vector",
@@ -9816,13 +12561,19 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "extensions",
               "subcategory_name": "Vector Extensions to Existing DBs",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         },
@@ -9840,13 +12591,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "rag-kg",
               "subcategory_name": "RAG-Specific / Knowledge Graph",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "FalkorDB",
@@ -9858,13 +12615,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "rag-kg",
               "subcategory_name": "RAG-Specific / Knowledge Graph",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Graphify",
@@ -9872,7 +12635,7 @@ const landscapeData = {
               "url": "https://github.com/safishamsi/graphify",
               "desc": "AI coding assistant skill that transforms code, docs, and media into queryable knowledge graphs with 71x fewer tokens than raw file reading",
               "type": "oss",
-              "github_stars": 113693,
+              "github_stars": 126655,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -9888,7 +12651,9 @@ const landscapeData = {
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "rag-kg",
               "subcategory_name": "RAG-Specific / Knowledge Graph",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Graphiti",
@@ -9900,13 +12665,19 @@ const landscapeData = {
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "rag-kg",
               "subcategory_name": "RAG-Specific / Knowledge Graph",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Memgraph",
@@ -9914,17 +12685,23 @@ const landscapeData = {
               "url": "https://memgraph.com/",
               "desc": "High-performance in-memory graph database with vector search and streaming integrations, designed for real-time GraphRAG, AI memory systems, and low-latency knowledge graph applications",
               "type": "oss",
-              "github_stars": 4379,
+              "github_stars": 4617,
               "pricing_model": "open-core",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+
+              ],
+              "all_tags": [
+
+              ],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "rag-kg",
               "subcategory_name": "RAG-Specific / Knowledge Graph",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Microsoft GraphRAG",
@@ -9932,7 +12709,7 @@ const landscapeData = {
               "url": "https://microsoft.github.io/graphrag/",
               "desc": "A modular graph-based Retrieval-Augmented Generation (RAG) system by Microsoft Research that builds knowledge graphs from private datasets for superior synthesis and holistic reasoning",
               "type": "open-source",
-              "github_stars": 35783,
+              "github_stars": 36343,
               "pricing_model": "open-source",
               "pricing_starting": null,
               "user_count": null,
@@ -9951,7 +12728,9 @@ const landscapeData = {
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "rag-kg",
               "subcategory_name": "RAG-Specific / Knowledge Graph",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Neo4j",
@@ -9959,7 +12738,7 @@ const landscapeData = {
               "url": "https://neo4j.com/",
               "desc": "Enterprise graph database with native vector search, hybrid querying, and GraphRAG integration for knowledge graph applications, built on OpenTelemetry-native architecture",
               "type": "oss",
-              "github_stars": 17180,
+              "github_stars": 17319,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
@@ -9973,7 +12752,9 @@ const landscapeData = {
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "rag-kg",
               "subcategory_name": "RAG-Specific / Knowledge Graph",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             },
             {
               "name": "Vectara",
@@ -9997,7 +12778,9 @@ const landscapeData = {
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "rag-kg",
               "subcategory_name": "RAG-Specific / Knowledge Graph",
-              "additional_categories": []
+              "additional_categories": [
+
+              ]
             }
           ]
         }
@@ -10132,6 +12915,10 @@ const landscapeData = {
             "design": {
               "name": "Design / Creative",
               "description": "AI for design and creative work"
+            },
+            "lifestyle": {
+              "name": "Lifestyle / Wellness",
+              "description": "AI for astrology, wellness, and personal lifestyle applications"
             }
           }
         },
@@ -10653,6 +13440,8 @@ const landscapeData = {
       ]
     }
   },
-  "changelog": []
+  "changelog": [
+
+  ]
 };
 if (typeof window !== 'undefined') window.landscapeData = landscapeData;

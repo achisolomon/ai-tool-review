@@ -1,0 +1,13 @@
+{%- comment -%}
+  Build-time count for static copy (titles, meta descriptions, pre-JS hero).
+  Usage: {% include site-count.html what="tools" %}       -> e.g. "480+" (rounded down to tens)
+         {% include site-count.html what="categories" %}  -> e.g. "21+"
+  The hero spans are refined to the exact live count by updateHeroCounts() in js/app.js.
+  build-spa-site.js mirrors this logic; keep the two in sync.
+{%- endcomment -%}
+{%- if include.what == "categories" -%}
+{%- assign n = site.tools | map: "category" | compact | uniq | size -%}
+{%- else -%}
+{%- assign n = site.tools | size | divided_by: 10 | times: 10 -%}
+{%- endif -%}
+{{ n }}+

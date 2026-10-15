@@ -301,7 +301,42 @@ async function getSuggestions(status = 'pending', kind = 'all') {
     if (kind !== 'all') q = q.eq('kind', kind);
     q = q.limit(500);
     const { data, error } = await q;
-    return { suggestions: data || [], error: error?.message };
+    if (error) return { suggestions: [], error: error.message };
+
+    const suggestions = data || [];
+
+    // suggestions.user_id references auth.users, not user_profiles, so PostgREST
+    // can't embed the profile. Fetch submitters in one batched query and merge.
+    const userIds = [...new Set(suggestions.map(s => s.user_id).filter(Boolean))];
+    const profileById = {};
+    if (userIds.length > 0) {
+        const { data: profiles, error: profilesError } = await supabase
+            .from('user_profiles')
+            .select('id, email, display_name')
+            .in('id', userIds);
+        if (profilesError) {
+            console.error('Error fetching submitter profiles:', profilesError);
+        } else {
+            for (const profile of profiles || []) profileById[profile.id] = profile;
+        }
+    }
+
+    const withSubmitter = suggestions.map(s => {
+        const profile = profileById[s.user_id] || null;
+        // display_name holds the full name from the OAuth provider: first token is
+        // the first name, the rest is the last name.
+        const parts = (profile?.display_name || '').trim().split(/\s+/).filter(Boolean);
+        return {
+            ...s,
+            submitter: profile ? {
+                firstName: parts[0] || null,
+                lastName: parts.slice(1).join(' ') || null,
+                email: profile.email || null,
+            } : null,
+        };
+    });
+
+    return { suggestions: withSubmitter, error: undefined };
 }
 
 /**
@@ -335,7 +370,16 @@ async function approveSuggestion(id, payloadPatch) {
     };
     if (payloadPatch) update.payload = payloadPatch; // admin-completed payload
     const { error } = await supabase.from('suggestions').update(update).eq('id', id);
+    if (!error) notifySuggestionDecision(supabase, id);
     return { success: !error, error: error?.message };
+}
+
+// Fire-and-forget: emails the submitter and the owner about the decision.
+// Never blocks or fails the update above, this is a notification, not part
+// of the write.
+function notifySuggestionDecision(supabase, id) {
+    supabase.functions.invoke('notify-suggestion-decision', { body: { suggestion_id: id } })
+        .catch(err => console.error('[AdminAPI] decision email failed to send', err));
 }
 
 /**
@@ -358,6 +402,7 @@ async function rejectSuggestion(id, note) {
             reviewed_at: new Date().toISOString(),
         })
         .eq('id', id);
+    if (!error) notifySuggestionDecision(supabase, id);
     return { success: !error, error: error?.message };
 }
 
