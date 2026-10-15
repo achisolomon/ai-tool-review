@@ -1,0 +1,28 @@
+name: Generate Tool Page on Approval
+
+# Placeholder registration only. GitHub only recognizes workflow_dispatch and
+# repository_dispatch triggers from the copy of this file on the default
+# branch (see: https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows).
+# This stub exists purely so GitHub "knows about" this workflow by filename
+# and will accept dispatches for it. Once dispatched with a specific ref
+# (e.g. a feature branch), GitHub runs THAT branch's version of this file,
+# not this one, so the real implementation lives and is tested on a feature
+# branch without needing to merge it here first.
+#
+# This stub is superseded (this comment included) the moment the real
+# implementation merges to main.
+
+on:
+  repository_dispatch:
+    types: [suggestion-approved]
+  workflow_dispatch:
+    inputs:
+      note:
+        description: 'Manual test run'
+        required: false
+
+jobs:
+  placeholder:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Placeholder only. Dispatch with --ref <branch> to run that branch's real implementation."
