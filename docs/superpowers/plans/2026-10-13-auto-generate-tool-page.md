@@ -58,7 +58,7 @@ re-derive them.
 | `.github/workflows/tool-page-generate.yml` | Create: the new workflow (Task 2) |
 | `supabase/functions/suggestion-approved-relay/index.ts` | Create: the relay Edge Function (Task 3) |
 | `supabase/functions/suggestion-approved-relay/index.test.ts` | Create: unit tests for the relay's payload reshaping (Task 3) |
-| `supabase/migrations/012_suggestion_approved_webhook.sql` | Create: the Database Webhook definition (Task 4) |
+| `supabase/migrations/013_suggestion_approved_webhook.sql` | Create: the Database Webhook definition (Task 4) |
 | `docs/superpowers/specs/2026-10-12-auto-generate-tool-page-design.md` | Reference only, not modified |
 
 Task order is deliberately: **hook guard → workflow → relay → webhook**, inside-out.
@@ -483,7 +483,7 @@ git commit -m "feat: add Supabase Edge Function to relay suggestion approvals to
 ### Task 4: Supabase Database Webhook
 
 **Files:**
-- Create: `supabase/migrations/012_suggestion_approved_webhook.sql`
+- Create: `supabase/migrations/013_suggestion_approved_webhook.sql`
 
 - [ ] **Step 1: Write the migration**
 
@@ -492,7 +492,7 @@ SQL-expressible form, so this can live in a migration like the rest of the schem
 rather than only existing as unversioned dashboard config.
 
 ```sql
--- 012_suggestion_approved_webhook.sql
+-- 013_suggestion_approved_webhook.sql
 -- Fires the suggestion-approved-relay Edge Function whenever a suggestion row's
 -- status transitions to 'approved'. The Edge Function re-checks kind/old status
 -- itself (see supabase/functions/suggestion-approved-relay/index.ts) — this
@@ -560,7 +560,7 @@ the test suggestion row in Supabase.
 - [ ] **Step 5: Commit**
 
 ```bash
-git add supabase/migrations/012_suggestion_approved_webhook.sql
+git add supabase/migrations/013_suggestion_approved_webhook.sql
 git commit -m "feat: add Database Webhook firing on suggestion approval"
 ```
 

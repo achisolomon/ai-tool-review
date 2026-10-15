@@ -35,4 +35,7 @@ js/config-local.js
 # Apply script env (contains service role key)
 .env
 
+# Supabase CLI local link state (which project this checkout is linked to)
+supabase/.temp/
+
 .superpowers/
