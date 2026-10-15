@@ -16,7 +16,6 @@ pricing_model: "free"
 founded_year: 2026
 last_verified: "2026-06-08"
 confidence_score: 0.95
-tags: []
 source_urls:
   - "https://www.skills.sh/anthropics/skills/frontend-design"
   - "https://github.com/anthropics/skills"
