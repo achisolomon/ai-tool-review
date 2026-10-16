@@ -9,6 +9,7 @@ _site/
 # Dependencies
 node_modules/
 vendor/
+.bundle/
 
 # Test output
 playwright-report/
