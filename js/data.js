@@ -2099,6 +2099,38 @@ const landscapeData = {
               "additional_categories": []
             }
           ]
+        },
+        {
+          "id": "personal-assistants",
+          "name": "Personal Assistants & Browsers",
+          "tools": [
+            {
+              "name": "dots",
+              "slug": "dots",
+              "url": "https://openai.com/index/introducing-dots/",
+              "desc": "OpenAI's always-on personal agent in ChatGPT that works toward your goals in the background across 4,000+ connected apps",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "paid",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "workflow-automation",
+                "real-time"
+              ],
+              "all_tags": [
+                "agents",
+                "workflow-automation",
+                "real-time"
+              ],
+              "category_id": "personal-assistants",
+              "category_name": "Personal Assistants & Browsers",
+              "subcategory_id": "personal-assistants",
+              "subcategory_name": "Personal Assistants & Browsers",
+              "additional_categories": []
+            }
+          ]
         }
       ]
     },
