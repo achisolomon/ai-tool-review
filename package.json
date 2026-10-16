@@ -10,7 +10,7 @@
     "test:ui": "playwright test --ui",
     "test:headed": "playwright test --headed",
     "serve": "node server.js",
-    "serve:jekyll": "bundle exec jekyll serve --port 8080",
+    "serve:jekyll": "bundle exec jekyll serve --port ${PORT:-8080}",
     "serve:static": "python3 -m http.server 8080 --directory _site",
     "validate": "ruby scripts/validate-no-duplicates.rb data/_tools && ruby scripts/validate_tags.rb data/_tools",
     "validate:data": "node scripts/validate-data-js.js",
@@ -25,7 +25,8 @@
     "apply-suggestions": "node scripts/apply-suggestions.mjs",
     "test:apply": "node --test scripts/apply-suggestions.test.mjs",
     "test:port": "PORT=${PORT:-8081} playwright test",
-    "test:ci": "CI=1 playwright test --workers=4"
+    "test:ci": "CI=1 playwright test --workers=4",
+    "tool-page-check": "bash scripts/tool-page-check.sh"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.11.3",
