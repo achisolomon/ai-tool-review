@@ -3,6 +3,11 @@ slug: vendor-neutral-agent-factory
 article: https://aitoolreview.ai/guides/vendor-neutral-agent-factory/
 image: card.png
 video: video.mp4
+source_slides:
+  - ../../source-slides/01-factory-factory-java.jpg
+  - ../../source-slides/02-domain-factories.jpg
+  - ../../source-slides/03-robot-strike.jpg
+  - ../../source-slides/18-prompt-to-factory-journey.jpg
 status: draft   # draft | ready | posted
 ---
 

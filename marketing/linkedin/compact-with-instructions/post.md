@@ -3,6 +3,8 @@ slug: compact-with-instructions
 article: https://aitoolreview.ai/guides/compact-with-instructions/
 image: card.png
 video: video.mp4
+source_slides:
+  - ../../source-slides/15-context-control.jpg
 status: draft   # draft | ready | posted
 ---
 

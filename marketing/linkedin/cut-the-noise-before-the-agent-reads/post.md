@@ -3,6 +3,9 @@ slug: cut-the-noise-before-the-agent-reads
 article: https://aitoolreview.ai/guides/cut-the-noise-before-the-agent-reads/
 image: card.png
 video: video.mp4
+source_slides:
+  - ../../source-slides/20-cut-the-noise.jpg
+  - ../../source-slides/17-toolbox.jpg
 status: draft   # draft | ready | posted
 ---
 

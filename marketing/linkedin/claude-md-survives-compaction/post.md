@@ -3,6 +3,8 @@ slug: claude-md-survives-compaction
 article: https://aitoolreview.ai/guides/claude-md-survives-compaction/
 image: card.png
 video: video.mp4
+source_slides:
+  - ../../source-slides/19-compaction-forgets.jpg
 status: draft   # draft | ready | posted
 ---
 

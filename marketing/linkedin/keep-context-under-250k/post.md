@@ -3,6 +3,9 @@ slug: keep-context-under-250k
 article: https://aitoolreview.ai/guides/keep-context-under-250k/
 image: card.png
 video: video.mp4
+source_slides:
+  - ../../source-slides/15-context-control.jpg
+  - ../../source-slides/16-takeaways.jpg
 status: draft   # draft | ready | posted
 ---
 

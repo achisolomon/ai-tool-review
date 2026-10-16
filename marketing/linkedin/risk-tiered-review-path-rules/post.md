@@ -3,6 +3,10 @@ slug: risk-tiered-review-path-rules
 article: https://aitoolreview.ai/guides/risk-tiered-review-path-rules/
 image: card.png
 video: video.mp4
+source_slides:
+  - ../../source-slides/06-risk-foreman.jpg
+  - ../../source-slides/04-specialist-reviewers.jpg
+  - ../../source-slides/05-station-contract.jpg
 status: draft   # draft | ready | posted
 ---
 

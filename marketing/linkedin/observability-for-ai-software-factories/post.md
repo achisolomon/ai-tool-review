@@ -3,6 +3,8 @@ slug: observability-for-ai-software-factories
 article: https://aitoolreview.ai/guides/observability-for-ai-software-factories/
 image: card.png
 video: video.mp4
+source_slides:
+  - ../../source-slides/16-takeaways.jpg
 status: draft   # draft | ready | posted
 ---
 

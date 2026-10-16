@@ -12,7 +12,8 @@ marketing/
     post.md                 # 3-5 line LinkedIn post (status: draft | ready | posted)
     card.png                # 1200x1200 feed image
     video.mp4               # ~9.5s, 1080x1080, 3 scenes (hook → points → takeaway), silent
-  source-slides/NN.jpg      # conference slide photos the tips came from (compressed)
+  source-slides/NN-name.jpg # conference slide photos the tips came from (compressed, 1400px)
+  session-notes.md          # the original brainstorm: owner notes + questions, verbatim
 data/_learn/<slug>.md       # the matching website article
 assets/images/learn/<slug>.png  # 1200x630 hero / og:image for the article
 ```
@@ -34,18 +35,18 @@ Edit the copy in `tips.json`, then re-run. The script warns when text overflows 
 
 | # | Slug | Source slides | Origin |
 |---|---|---|---|
-| 1 | define-done-goal-in-five-lines | 14, 05 | Goal template; "contract first" + owner note "define success" |
-| 2 | compact-with-instructions | 15 | Owner note: tell /compact what to keep and how to prep the next iteration |
-| 3 | dont-switch-models-mid-session | n/a | Owner note |
-| 4 | keep-context-under-250k | 15, 16 | Owner note: work in ~250k, long context is expensive |
-| 5 | claude-md-survives-compaction | 19 | "Compaction forgets" |
-| 6 | cut-the-noise-before-the-agent-reads | 20, 17 | "Cut the noise" + the toolbox |
-| 7 | one-sensor-one-stop-one-budget | 10, 13 | Live loop + "agent is the feedback loop" |
-| 8 | fresh-context-verifier | 12, 11 | Creator/verifier + delegation |
-| 9 | risk-tiered-review-path-rules | 06, 04, 05 | Foreman/risk router + specialist reviewers |
-| 10 | failure-should-improve-the-next-run | 09, 08, 07 | Antifragile + "who says done" + handoffs |
-| 11 | vendor-neutral-agent-factory | 01, 02, 03, 18 | Owner note: agent factory decoupled from vendor |
-| 12 | observability-for-ai-software-factories | 16 | Owner question: observability for the agent "company" |
+| 1 | define-done-goal-in-five-lines | [14-goal-five-lines](source-slides/14-goal-five-lines.jpg), [05-station-contract](source-slides/05-station-contract.jpg) | Goal template; "contract first" + owner note "define success" |
+| 2 | compact-with-instructions | [15-context-control](source-slides/15-context-control.jpg) | Owner note: tell /compact what to keep and how to prep the next iteration |
+| 3 | dont-switch-models-mid-session | n/a (owner note) | Owner note |
+| 4 | keep-context-under-250k | [15-context-control](source-slides/15-context-control.jpg), [16-takeaways](source-slides/16-takeaways.jpg) | Owner note: work in ~250k, long context is expensive |
+| 5 | claude-md-survives-compaction | [19-compaction-forgets](source-slides/19-compaction-forgets.jpg) | "Compaction forgets" |
+| 6 | cut-the-noise-before-the-agent-reads | [20-cut-the-noise](source-slides/20-cut-the-noise.jpg), [17-toolbox](source-slides/17-toolbox.jpg) | "Cut the noise" + the toolbox |
+| 7 | one-sensor-one-stop-one-budget | [10-one-sensor-stop-budget](source-slides/10-one-sensor-stop-budget.jpg), [13-feedback-loop](source-slides/13-feedback-loop.jpg) | Live loop + "agent is the feedback loop" |
+| 8 | fresh-context-verifier | [12-creator-verifier](source-slides/12-creator-verifier.jpg), [11-delegation](source-slides/11-delegation.jpg) | Creator/verifier + delegation |
+| 9 | risk-tiered-review-path-rules | [06-risk-foreman](source-slides/06-risk-foreman.jpg), [04-specialist-reviewers](source-slides/04-specialist-reviewers.jpg), [05-station-contract](source-slides/05-station-contract.jpg) | Foreman/risk router + specialist reviewers |
+| 10 | failure-should-improve-the-next-run | [09-failure-improves-next-run](source-slides/09-failure-improves-next-run.jpg), [08-who-says-done](source-slides/08-who-says-done.jpg), [07-automate-handoffs](source-slides/07-automate-handoffs.jpg) | Antifragile + "who says done" + handoffs |
+| 11 | vendor-neutral-agent-factory | [01-factory-factory-java](source-slides/01-factory-factory-java.jpg), [02-domain-factories](source-slides/02-domain-factories.jpg), [03-robot-strike](source-slides/03-robot-strike.jpg), [18-prompt-to-factory-journey](source-slides/18-prompt-to-factory-journey.jpg) | Owner note: agent factory decoupled from vendor |
+| 12 | observability-for-ai-software-factories | [16-takeaways](source-slides/16-takeaways.jpg) | Owner question: observability for the agent "company" |
 
 Slide index: 01 factory-factory Java joke · 02 domain factories · 03 robot strike · 04 specialist reviewers · 05 station contract · 06 risk foreman · 07 automate handoffs · 08 who says done · 09 failure improves next run · 10 one sensor/stop/budget · 11 delegation · 12 creator + verifier · 13 feedback loop · 14 goal in five lines · 15 context control · 16 takeaways · 17 toolbox · 18 prompt → factory journey · 19 compaction forgets · 20 cut the noise
 

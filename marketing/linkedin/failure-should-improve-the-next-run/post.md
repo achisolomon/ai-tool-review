@@ -3,6 +3,10 @@ slug: failure-should-improve-the-next-run
 article: https://aitoolreview.ai/guides/failure-should-improve-the-next-run/
 image: card.png
 video: video.mp4
+source_slides:
+  - ../../source-slides/09-failure-improves-next-run.jpg
+  - ../../source-slides/08-who-says-done.jpg
+  - ../../source-slides/07-automate-handoffs.jpg
 status: draft   # draft | ready | posted
 ---
 

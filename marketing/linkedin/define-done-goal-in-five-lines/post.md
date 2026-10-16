@@ -3,6 +3,9 @@ slug: define-done-goal-in-five-lines
 article: https://aitoolreview.ai/guides/define-done-goal-in-five-lines/
 image: card.png
 video: video.mp4
+source_slides:
+  - ../../source-slides/14-goal-five-lines.jpg
+  - ../../source-slides/05-station-contract.jpg
 status: draft   # draft | ready | posted
 ---
 

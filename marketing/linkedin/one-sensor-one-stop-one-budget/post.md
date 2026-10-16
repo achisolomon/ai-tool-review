@@ -3,6 +3,9 @@ slug: one-sensor-one-stop-one-budget
 article: https://aitoolreview.ai/guides/one-sensor-one-stop-one-budget/
 image: card.png
 video: video.mp4
+source_slides:
+  - ../../source-slides/10-one-sensor-stop-budget.jpg
+  - ../../source-slides/13-feedback-loop.jpg
 status: draft   # draft | ready | posted
 ---
 

@@ -3,6 +3,9 @@ slug: fresh-context-verifier
 article: https://aitoolreview.ai/guides/fresh-context-verifier/
 image: card.png
 video: video.mp4
+source_slides:
+  - ../../source-slides/12-creator-verifier.jpg
+  - ../../source-slides/11-delegation.jpg
 status: draft   # draft | ready | posted
 ---
 

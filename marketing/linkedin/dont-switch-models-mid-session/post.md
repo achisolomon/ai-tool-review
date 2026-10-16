@@ -3,6 +3,7 @@ slug: dont-switch-models-mid-session
 article: https://aitoolreview.ai/guides/dont-switch-models-mid-session/
 image: card.png
 video: video.mp4
+source_slides: []  # from the owner's own notes, see marketing/session-notes.md
 status: draft   # draft | ready | posted
 ---
 
