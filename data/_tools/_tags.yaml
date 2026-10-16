@@ -16,6 +16,12 @@ capabilities:
   - slug: agent-to-agent
     name: "Agent-to-Agent"
     description: "Agents coordinate, communicate, or hand off work to other agents (multi-agent / A2A)"
+  - slug: agent-orchestration
+    name: "Agent Orchestration"
+    description: "Runs and coordinates many AI coding agents in parallel, often in isolated workspaces"
+  - slug: agent-management
+    name: "Agent Management"
+    description: "Monitors, controls, or manages running AI agents from a single interface, including remotely"
   - slug: multimodal
     name: "Multimodal"
     description: "Handles text + images/audio/video"
@@ -112,6 +118,9 @@ use-cases:
   - slug: browser-automation
     name: "Browser Automation"
     description: "Automates browser interactions"
+  - slug: doc-to-markdown
+    name: "Doc to Markdown"
+    description: "Converts documents (PDF, Office files, images, etc.) into Markdown"
   - slug: observability
     name: "Observability"
     description: "Tracing, monitoring, debugging"

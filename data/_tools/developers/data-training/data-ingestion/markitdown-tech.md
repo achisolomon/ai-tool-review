@@ -12,6 +12,7 @@ pricing_model: "freemium"
 tags:
   - rag
   - no-code
+  - doc-to-markdown
 last_verified: "2026-10-16"
 confidence_score: 0.85
 ---

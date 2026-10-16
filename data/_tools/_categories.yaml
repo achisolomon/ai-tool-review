@@ -241,6 +241,9 @@ developers:
       model-routers:
         name: "Model Routers & Gateways"
         description: "LLM routing and gateway services"
+      networking:
+        name: "Networking & Secure Connectivity"
+        description: "Secure networking for distributed AI agents, self-hosted model infra, and remote compute"
 
   data-training:
     name: "Data & Training"

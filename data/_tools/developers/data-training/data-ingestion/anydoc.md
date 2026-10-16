@@ -16,6 +16,7 @@ tags:
   - rag
   - self-hosted
   - api-available
+  - doc-to-markdown
 last_verified: "2026-10-16"
 confidence_score: 0.9
 ---

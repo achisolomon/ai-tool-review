@@ -15,9 +15,11 @@ founded_year: 2024
 headquarters: "San Francisco, CA"
 tags:
   - agents
+  - agent-orchestration
+  - agent-management
   - workflow-automation
   - api-available
-last_verified: "2026-06-15"
+last_verified: "2026-10-16"
 confidence_score: 0.92
 ---
 

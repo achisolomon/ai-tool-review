@@ -5870,6 +5870,34 @@ const landscapeData = {
               "additional_categories": []
             },
             {
+              "name": "Conductor",
+              "slug": "conductor",
+              "url": "https://www.conductor.build/",
+              "desc": "Mac app that runs parallel Claude Code, Codex, and Cursor agents in isolated git worktrees, so you can monitor, review, and merge their changes from one control surface.",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "agent-orchestration",
+                "agent-management"
+              ],
+              "all_tags": [
+                "agents",
+                "agent-orchestration",
+                "agent-management",
+                "workflow-automation",
+                "api-available"
+              ],
+              "category_id": "ai-coding",
+              "category_name": "AI Coding & Developer Tools",
+              "subcategory_id": "coding-agents",
+              "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
+              "additional_categories": []
+            },
+            {
               "name": "Continue",
               "slug": "continue",
               "url": "https://continue.dev/",
@@ -6048,6 +6076,34 @@ const landscapeData = {
               "additional_categories": []
             },
             {
+              "name": "Paseo",
+              "slug": "paseo",
+              "url": "https://paseo.sh/",
+              "desc": "Agentic development environment that orchestrates Claude Code, Codex, GitHub Copilot, OpenCode, and Pi from one unified interface across desktop, mobile, web, and CLI, with git worktree support and voice control.",
+              "type": "open-source",
+              "github_stars": 0,
+              "pricing_model": "open-source",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "agent-orchestration",
+                "agent-management"
+              ],
+              "all_tags": [
+                "agents",
+                "agent-orchestration",
+                "agent-management",
+                "workflow-automation",
+                "self-hosted"
+              ],
+              "category_id": "ai-coding",
+              "category_name": "AI Coding & Developer Tools",
+              "subcategory_id": "coding-agents",
+              "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
+              "additional_categories": []
+            },
+            {
               "name": "Pi",
               "slug": "pi",
               "url": "https://pi.dev",
@@ -6103,11 +6159,41 @@ const landscapeData = {
               "user_count": null,
               "tags": [
                 "agents",
-                "workflow-automation",
-                "api-available"
+                "agent-orchestration",
+                "agent-management"
               ],
               "all_tags": [
                 "agents",
+                "agent-orchestration",
+                "agent-management",
+                "workflow-automation",
+                "api-available"
+              ],
+              "category_id": "ai-coding",
+              "category_name": "AI Coding & Developer Tools",
+              "subcategory_id": "coding-agents",
+              "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
+              "additional_categories": []
+            },
+            {
+              "name": "T3 Code",
+              "slug": "t3-codes",
+              "url": "https://t3.codes/",
+              "desc": "Open-source control plane that consolidates Claude Code, Codex, Antigravity, OpenCode, Cursor, and Grok into one unified interface, with no token reselling, one-click PR generation, and cross-platform support.",
+              "type": "open-source",
+              "github_stars": 27880,
+              "pricing_model": "open-source",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "agent-orchestration",
+                "agent-management"
+              ],
+              "all_tags": [
+                "agents",
+                "agent-orchestration",
+                "agent-management",
                 "workflow-automation",
                 "api-available"
               ],
@@ -6367,6 +6453,34 @@ const landscapeData = {
               "additional_categories": []
             },
             {
+              "name": "Herdr",
+              "slug": "herdr",
+              "url": "https://herdr.dev/",
+              "desc": "Persistent terminal runtime for AI coding agents that keeps sessions alive across disconnects, unifies local and remote machines into one workspace, and shows at-a-glance status for every running agent.",
+              "type": "open-source",
+              "github_stars": 44301,
+              "pricing_model": "open-source",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "agent-orchestration",
+                "agent-management"
+              ],
+              "all_tags": [
+                "agents",
+                "agent-orchestration",
+                "agent-management",
+                "self-hosted",
+                "real-time"
+              ],
+              "category_id": "ai-coding",
+              "category_name": "AI Coding & Developer Tools",
+              "subcategory_id": "dev-environment",
+              "subcategory_name": "Dev Environment",
+              "additional_categories": []
+            },
+            {
               "name": "mise",
               "slug": "mise",
               "url": "https://mise.jdx.dev/",
@@ -6441,10 +6555,12 @@ const landscapeData = {
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-                "mcp-server"
+                "mcp-server",
+                "doc-to-markdown"
               ],
               "all_tags": [
-                "mcp-server"
+                "mcp-server",
+                "doc-to-markdown"
               ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
@@ -7508,6 +7624,36 @@ const landscapeData = {
               "additional_categories": []
             }
           ]
+        },
+        {
+          "id": "networking",
+          "name": "Networking & Secure Connectivity",
+          "tools": [
+            {
+              "name": "Tailscale",
+              "slug": "tailscale",
+              "url": "https://tailscale.com/",
+              "desc": "Zero Trust, identity-based mesh VPN built on WireGuard that connects remote teams, multi-cloud environments, CI/CD pipelines, edge devices, and AI workloads without exposing infrastructure to the public internet.",
+              "type": "commercial",
+              "github_stars": 37636,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "self-hosted",
+                "api-available"
+              ],
+              "all_tags": [
+                "self-hosted",
+                "api-available"
+              ],
+              "category_id": "ai-infrastructure",
+              "category_name": "AI Infrastructure (Inference, Compute, Routing)",
+              "subcategory_id": "networking",
+              "subcategory_name": "Networking & Secure Connectivity",
+              "additional_categories": []
+            }
+          ]
         }
       ]
     },
@@ -7538,7 +7684,8 @@ const landscapeData = {
               "all_tags": [
                 "rag",
                 "self-hosted",
-                "api-available"
+                "api-available",
+                "doc-to-markdown"
               ],
               "category_id": "data-training",
               "category_name": "Data & Training",
@@ -7589,7 +7736,8 @@ const landscapeData = {
                 "rag",
                 "python",
                 "self-hosted",
-                "mcp-server"
+                "mcp-server",
+                "doc-to-markdown"
               ],
               "category_id": "data-training",
               "category_name": "Data & Training",
@@ -7694,7 +7842,8 @@ const landscapeData = {
                 "rag",
                 "multimodal",
                 "python",
-                "typescript"
+                "typescript",
+                "doc-to-markdown"
               ],
               "category_id": "data-training",
               "category_name": "Data & Training",
@@ -7714,11 +7863,13 @@ const landscapeData = {
               "user_count": null,
               "tags": [
                 "rag",
-                "no-code"
+                "no-code",
+                "doc-to-markdown"
               ],
               "all_tags": [
                 "rag",
-                "no-code"
+                "no-code",
+                "doc-to-markdown"
               ],
               "category_id": "data-training",
               "category_name": "Data & Training",
@@ -11205,6 +11356,10 @@ const landscapeData = {
             "model-routers": {
               "name": "Model Routers & Gateways",
               "description": "LLM routing and gateway services"
+            },
+            "networking": {
+              "name": "Networking & Secure Connectivity",
+              "description": "Secure networking for distributed AI agents, self-hosted model infra, and remote compute"
             }
           }
         },
@@ -11341,6 +11496,16 @@ const landscapeData = {
           "slug": "agent-to-agent",
           "name": "Agent-to-Agent",
           "description": "Agents coordinate, communicate, or hand off work to other agents (multi-agent / A2A)"
+        },
+        {
+          "slug": "agent-orchestration",
+          "name": "Agent Orchestration",
+          "description": "Runs and coordinates many AI coding agents in parallel, often in isolated workspaces"
+        },
+        {
+          "slug": "agent-management",
+          "name": "Agent Management",
+          "description": "Monitors, controls, or manages running AI agents from a single interface, including remotely"
         },
         {
           "slug": "multimodal",
@@ -11497,6 +11662,11 @@ const landscapeData = {
           "slug": "browser-automation",
           "name": "Browser Automation",
           "description": "Automates browser interactions"
+        },
+        {
+          "slug": "doc-to-markdown",
+          "name": "Doc to Markdown",
+          "description": "Converts documents (PDF, Office files, images, etc.) into Markdown"
         },
         {
           "slug": "observability",

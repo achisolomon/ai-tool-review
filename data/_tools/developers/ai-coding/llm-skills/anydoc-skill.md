@@ -14,6 +14,7 @@ pricing_model: "open-source"
 founded_year: 2026
 tags:
   - mcp-server
+  - doc-to-markdown
 last_verified: "2026-10-16"
 confidence_score: 0.75
 ---

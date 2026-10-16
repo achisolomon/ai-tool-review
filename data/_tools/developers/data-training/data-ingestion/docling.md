@@ -17,6 +17,7 @@ tags:
   - python
   - self-hosted
   - mcp-server
+  - doc-to-markdown
 track: developers
 type: open-source
 website: https://github.com/DS4SD/docling
