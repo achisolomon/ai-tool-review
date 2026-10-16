@@ -127,6 +127,9 @@ use-cases:
   - slug: multilingual
     name: "Multilingual"
     description: "Supports multiple human languages"
+  - slug: hebrew
+    name: "Hebrew"
+    description: "Native Hebrew language support (UI, input, or output)"
   - slug: tracing
     name: "Tracing"
     description: "Request/call tracing"
@@ -142,11 +145,3 @@ use-cases:
   - slug: cost-reduction
     name: "Cost Reduction"
     description: "Measurably reduces AI token/compute costs"
-
-language-support:
-  - slug: hebrew
-    name: "Hebrew"
-    description: "Hebrew language support"
-  - slug: multilingual
-    name: "Multilingual"
-    description: "Supports multiple languages beyond English"

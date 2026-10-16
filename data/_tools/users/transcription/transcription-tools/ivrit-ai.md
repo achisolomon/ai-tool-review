@@ -13,8 +13,8 @@ pricing_model: "free"
 founded_year: 2023
 headquarters: "Israel"
 tags:
-  - multilingual
-last_verified: "2026-06-13"
+  - hebrew
+last_verified: "2026-10-16"
 confidence_score: 0.95
 ---
 

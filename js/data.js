@@ -2250,10 +2250,10 @@ const landscapeData = {
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-                "multilingual"
+                "hebrew"
               ],
               "all_tags": [
-                "multilingual"
+                "hebrew"
               ],
               "category_id": "transcription",
               "category_name": "Transcription",
@@ -2273,11 +2273,13 @@ const landscapeData = {
               "user_count": null,
               "tags": [
                 "real-time",
-                "self-hosted"
+                "self-hosted",
+                "hebrew"
               ],
               "all_tags": [
                 "real-time",
-                "self-hosted"
+                "self-hosted",
+                "hebrew"
               ],
               "category_id": "transcription",
               "category_name": "Transcription",
@@ -6556,11 +6558,13 @@ const landscapeData = {
               "user_count": null,
               "tags": [
                 "mcp-server",
-                "doc-to-markdown"
+                "doc-to-markdown",
+                "hebrew"
               ],
               "all_tags": [
                 "mcp-server",
-                "doc-to-markdown"
+                "doc-to-markdown",
+                "hebrew"
               ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
@@ -11679,6 +11683,11 @@ const landscapeData = {
           "description": "Supports multiple human languages"
         },
         {
+          "slug": "hebrew",
+          "name": "Hebrew",
+          "description": "Native Hebrew language support (UI, input, or output)"
+        },
+        {
           "slug": "tracing",
           "name": "Tracing",
           "description": "Request/call tracing"
@@ -11702,18 +11711,6 @@ const landscapeData = {
           "slug": "cost-reduction",
           "name": "Cost Reduction",
           "description": "Measurably reduces AI token/compute costs"
-        }
-      ],
-      "language-support": [
-        {
-          "slug": "hebrew",
-          "name": "Hebrew",
-          "description": "Hebrew language support"
-        },
-        {
-          "slug": "multilingual",
-          "name": "Multilingual",
-          "description": "Supports multiple languages beyond English"
         }
       ]
     }
