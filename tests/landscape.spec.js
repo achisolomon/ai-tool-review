@@ -153,15 +153,25 @@ test.describe('Landscape Page', () => {
       await expect(expandedBtn).toHaveText('Expanded');
     });
 
-    test('subcategories view is default (active on page load)', async ({ page }) => {
-      await page.waitForSelector('.view-toggle', { timeout: 5000 });
+    test('categories view is default: every category collapsed on page load', async ({ page }) => {
+      await page.waitForSelector('.category', { timeout: 5000 });
 
-      const subcategoriesBtn = page.locator('[data-view="subcategories"]');
-      await expect(subcategoriesBtn).toHaveClass(/active/);
+      await expect(page.locator('[data-view="categories"]')).toHaveClass(/active/);
+      await expect(page.locator('[data-view="subcategories"]')).not.toHaveClass(/active/);
+      await expect(page.locator('#landscape')).toHaveClass(/view-categories/);
 
-      // Landscape should have view-subcategories class
-      const landscape = page.locator('#landscape');
-      await expect(landscape).toHaveClass(/view-subcategories/);
+      const categories = page.locator('.category');
+      const count = await categories.count();
+      expect(count).toBeGreaterThan(0);
+      expect(await page.locator('.category:not(.collapsed)').count()).toBe(0);
+    });
+
+    test('arriving from the home page browse link opens collapsed', async ({ page }) => {
+      await page.goto('/');
+      await page.click('a.browse-toggle');
+      await page.waitForSelector('.category', { timeout: 5000 });
+      await expect(page.locator('#landscape')).toHaveClass(/view-categories/);
+      expect(await page.locator('.category:not(.collapsed)').count()).toBe(0);
     });
 
     test('categories view collapses everything', async ({ page }) => {
@@ -375,6 +385,9 @@ test.describe('Landscape Page', () => {
 
     test('manual collapse/expand works in subcategories view', async ({ page }) => {
       await page.waitForSelector('.category', { timeout: 5000 });
+
+      await page.click('[data-view="subcategories"]');
+      await page.waitForTimeout(100);
 
       // Click on a subcategory header to expand it
       const subcategoryHeader = page.locator('.subcategory-header').first();

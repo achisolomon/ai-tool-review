@@ -72,6 +72,8 @@ permalink: /landscape.html
             document.head.appendChild(s);
         }
     </script>
+    <!-- Mobile layer (< 768px only). Must stay the last stylesheet. -->
+    <link rel="stylesheet" href="/css/mobile.css">
 </head>
 <body>
     <!-- Header -->
@@ -85,8 +87,8 @@ permalink: /landscape.html
     <section class="controls" id="landscape-controls" data-nosnippet data-ad-layout-exclude="true">
         <div class="controls-toolbar">
             <div class="view-toggle">
-                <button class="view-btn" data-view="categories">Categories</button>
-                <button class="view-btn active" data-view="subcategories">Subcategories</button>
+                <button class="view-btn active" data-view="categories">Categories</button>
+                <button class="view-btn" data-view="subcategories">Subcategories</button>
                 <button class="view-btn" data-view="all">Expanded</button>
             </div>
             <div class="track-toggle">

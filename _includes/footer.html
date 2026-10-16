@@ -1,8 +1,10 @@
 <!-- Canonical site footer. Single source of truth — used by every page,
      like _includes/nav.html. Sits outside #page-content so it persists
-     across SPA navigation. Links are absolute so they resolve from any URL. -->
+     across SPA navigation. Links are absolute so they resolve from any URL.
+     The unstyled .footer-copy / .footer-sep spans render identically inline on
+     desktop; css/mobile.css uses them to stack the footer on phones. -->
 <footer class="footer">
   <div class="footer-bottom">
-    <p>&copy; {{ site.time | date: '%Y' }} AI Tool Review. | <a href="/about.html">About</a> | <a href="/contact.html">Contact</a> | <a href="/privacy.html">Privacy Policy</a></p>
+    <p><span class="footer-copy">&copy; {{ site.time | date: '%Y' }} AI Tool Review.</span><span class="footer-sep"> | </span><a href="/about.html">About</a><span class="footer-sep"> | </span><a href="/contact.html">Contact</a><span class="footer-sep"> | </span><a href="/privacy.html">Privacy Policy</a></p>
   </div>
 </footer>
