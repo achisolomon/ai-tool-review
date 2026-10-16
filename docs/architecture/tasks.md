@@ -13,7 +13,7 @@ per the user's instruction for this change.
 |---|---|---|---|---|
 | T-001 | One check script: rbenv init, validate, generate, build, star-figure lint, data-integrity test | - | yes | in-review |
 | T-002 | package.json: honor `$PORT` in `serve:jekyll`; expose check script as npm script | T-001 | yes | in-review |
-| T-003 | session_worktree.py: fix port-busy false positive, symlink vendor/, update start message | - | yes | todo |
+| T-003 | session_worktree.py: fix port-busy false positive, symlink vendor/, update start message | - | yes | in-review (parent-repo file, not tracked in this git history) |
 | T-004 | Merge the three SKILL.md copies into the repo copy as single source of truth, with fast path up front | T-001, T-002 | no (reads T-001/T-002 output to write exact commands) | todo |
 | T-005 | Permission allowlist for the check script and git/gh commands in ai-tool-review | T-001, T-002 | yes | todo |
 
