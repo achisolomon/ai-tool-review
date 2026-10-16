@@ -112,6 +112,9 @@ use-cases:
   - slug: browser-automation
     name: "Browser Automation"
     description: "Automates browser interactions"
+  - slug: doc-to-markdown
+    name: "Doc to Markdown"
+    description: "Converts documents (PDF, Office files, images, etc.) into Markdown"
   - slug: observability
     name: "Observability"
     description: "Tracing, monitoring, debugging"
