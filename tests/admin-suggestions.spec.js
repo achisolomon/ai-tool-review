@@ -233,13 +233,13 @@ window.AdminAPI = {
 
     test('new_tool: ambiguous matches must be picked from existing pages', async ({ page }) => {
         await gotoAdminMocked(page);
-        // openai.com hosts two tool pages (DALL-E, Sora) and the homepage URL matches neither exactly
+        // openai.com hosts three tool pages (DALL-E, Sora, dots) and the homepage URL matches none exactly
         await openNewTool(page, { name: 'OpenAI', website: 'https://openai.com/', slug: 'openai-thing', placement: null });
 
         const approveBtn = page.locator('#decision-approve');
         await expect(approveBtn).toBeDisabled();
         const picker = page.locator('#tool-page-pick');
-        await expect(picker.locator('option')).toHaveCount(3); // placeholder + the 2 real pages
+        await expect(picker.locator('option')).toHaveCount(4); // placeholder + the 3 real pages
         await picker.selectOption('openai-sora-2');
         await expect(approveBtn).toBeEnabled();
         await expect(page.locator('#tool-page-link')).toHaveAttribute('href', '/tools/openai-sora-2/');
