@@ -149,7 +149,7 @@ The file path determines category. Choose from existing folders.
 | `ai-coding` | `coding-agents`, `ai-ides`, `app-builders`, `code-review`, `code-intelligence`, `context-optimization`, `cost-reduction`, `dev-environment`, `llm-skills`, `spec-driven`, `testing-sensors` |
 | `agent-frameworks` | `agent-communication`, `agent-identity`, `agent-memory`, `agent-payments`, `agent-search`, `browser-agents`, `code-first`, `durable-execution`, `protocols`, `tool-integrations` |
 | `agent-platforms` | (direct, no subcategories) |
-| `ai-infrastructure` | `gpu-providers`, `inference-apis`, `model-routers` |
+| `ai-infrastructure` | `gpu-providers`, `inference-apis`, `llm-gateway` |
 | `data-training` | `data-ingestion`, `data-labeling`, `embeddings`, `experiment-tracking`, `fine-tuning`, `lakehouse-semantic`, `ml-frameworks`, `mlops` |
 | `engineering-intelligence` | (direct, no subcategories) |
 | `foundation-models` | `closed-frontier`, `model-hubs`, `open-source` |

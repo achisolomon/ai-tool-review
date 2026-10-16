@@ -7481,8 +7481,8 @@ const landscapeData = {
           ]
         },
         {
-          "id": "model-routers",
-          "name": "Model Routers & Gateways",
+          "id": "llm-gateway",
+          "name": "LLM Gateway",
           "tools": [
             {
               "name": "Bifrost",
@@ -7507,8 +7507,8 @@ const landscapeData = {
               ],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
-              "subcategory_id": "model-routers",
-              "subcategory_name": "Model Routers & Gateways",
+              "subcategory_id": "llm-gateway",
+              "subcategory_name": "LLM Gateway",
               "additional_categories": []
             },
             {
@@ -7525,8 +7525,8 @@ const landscapeData = {
               "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
-              "subcategory_id": "model-routers",
-              "subcategory_name": "Model Routers & Gateways",
+              "subcategory_id": "llm-gateway",
+              "subcategory_name": "LLM Gateway",
               "additional_categories": []
             },
             {
@@ -7543,8 +7543,8 @@ const landscapeData = {
               "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
-              "subcategory_id": "model-routers",
-              "subcategory_name": "Model Routers & Gateways",
+              "subcategory_id": "llm-gateway",
+              "subcategory_name": "LLM Gateway",
               "additional_categories": []
             },
             {
@@ -7561,8 +7561,8 @@ const landscapeData = {
               "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
-              "subcategory_id": "model-routers",
-              "subcategory_name": "Model Routers & Gateways",
+              "subcategory_id": "llm-gateway",
+              "subcategory_name": "LLM Gateway",
               "additional_categories": []
             },
             {
@@ -7583,8 +7583,8 @@ const landscapeData = {
               ],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
-              "subcategory_id": "model-routers",
-              "subcategory_name": "Model Routers & Gateways",
+              "subcategory_id": "llm-gateway",
+              "subcategory_name": "LLM Gateway",
               "additional_categories": []
             },
             {
@@ -7601,8 +7601,34 @@ const landscapeData = {
               "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
-              "subcategory_id": "model-routers",
-              "subcategory_name": "Model Routers & Gateways",
+              "subcategory_id": "llm-gateway",
+              "subcategory_name": "LLM Gateway",
+              "additional_categories": []
+            },
+            {
+              "name": "Outsourcerer",
+              "slug": "outsourcerer",
+              "url": "https://alexgreenshpun.com",
+              "desc": "Bash-based orchestrator that routes coding tasks across Claude, Codex, Cursor, Devin and local models while tracking spend in one ledger",
+              "type": "oss",
+              "github_stars": 177,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "self-hosted",
+                "workflow-automation"
+              ],
+              "all_tags": [
+                "agents",
+                "self-hosted",
+                "workflow-automation"
+              ],
+              "category_id": "ai-infrastructure",
+              "category_name": "AI Infrastructure (Inference, Compute, Routing)",
+              "subcategory_id": "llm-gateway",
+              "subcategory_name": "LLM Gateway",
               "additional_categories": []
             },
             {
@@ -7619,8 +7645,8 @@ const landscapeData = {
               "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
-              "subcategory_id": "model-routers",
-              "subcategory_name": "Model Routers & Gateways",
+              "subcategory_id": "llm-gateway",
+              "subcategory_name": "LLM Gateway",
               "additional_categories": []
             }
           ]
@@ -9338,24 +9364,6 @@ const landscapeData = {
               "desc": "Python library for structured LLM outputs using Pydantic models. Provides data extraction, validation, and retry logic with support for 15+ LLM providers. Enables type-safe, schema-driven AI integrations.",
               "type": "oss",
               "github_stars": 6800,
-              "pricing_model": "free",
-              "pricing_starting": null,
-              "user_count": null,
-              "tags": [],
-              "all_tags": [],
-              "category_id": "llm-frameworks",
-              "category_name": "LLM Application Frameworks",
-              "subcategory_id": "app-frameworks",
-              "subcategory_name": "Application Frameworks",
-              "additional_categories": []
-            },
-            {
-              "name": "LiteLLM",
-              "slug": "litellm",
-              "url": "https://www.litellm.ai/",
-              "desc": "Unified LLM API wrapper supporting 100+ models with consistent OpenAI-format interface. Includes load balancing, rate limiting, and spending tracking across providers (OpenAI, Claude, Gemini, Mistral, etc).",
-              "type": "oss",
-              "github_stars": 12400,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -11353,8 +11361,8 @@ const landscapeData = {
               "name": "AI Clouds / GPU Providers",
               "description": "GPU cloud providers"
             },
-            "model-routers": {
-              "name": "Model Routers & Gateways",
+            "llm-gateway": {
+              "name": "LLM Gateway",
               "description": "LLM routing and gateway services"
             },
             "networking": {

@@ -9,7 +9,7 @@ name: Bifrost
 pricing_model: open-source
 slug: bifrost
 status: active
-subcategory: model-routers
+subcategory: llm-gateway
 track: developers
 type: oss
 website: https://www.getmaxim.ai/bifrost

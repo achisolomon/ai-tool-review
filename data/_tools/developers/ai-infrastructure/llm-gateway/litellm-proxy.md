@@ -8,7 +8,7 @@ name: LiteLLM Proxy
 pricing_model: freemium
 slug: litellm-proxy
 status: active
-subcategory: model-routers
+subcategory: llm-gateway
 track: developers
 type: oss
 website: https://docs.litellm.ai/docs/simple_proxy
