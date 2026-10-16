@@ -92,7 +92,9 @@ window.appInit = function appInit() {
         }
 
         if (subcategoryId) {
-            const subcategory = findSubcategoryById(subcategoryId);
+            // Old links may point at a subcategory that was promoted to a category
+            // (e.g. ?subcategory=healthcare after "Vertical AI" was split up)
+            const subcategory = findSubcategoryById(subcategoryId) || findCategoryById(subcategoryId);
             if (subcategory) {
                 actionInput.value = subcategory.name;
                 selectAutocompleteItem(subcategory);

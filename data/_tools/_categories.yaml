@@ -1,9 +1,13 @@
 # AI Tools Landscape - Category Definitions
 # This file defines the category hierarchy for organizing tools.
+# rank: popularity order on the landscape grid (1 = first). Based on 2026 AI tool
+# traffic and usage data (chatbots, coding, image/design lead); cost pinned near the top.
+# Subcategories are listed most popular first; the generator keeps this order.
 
 users:
   generative-media:
     name: "Generative Media"
+    rank: 4
     description: "AI tools for creating images, video, audio, and 3D content"
     subcategories:
       image-generation:
@@ -24,6 +28,7 @@ users:
 
   ai-chat-search:
     name: "AI Chat Assistants & Search"
+    rank: 1
     description: "Conversational AI and AI-powered search engines"
     subcategories:
       chat-assistants:
@@ -35,6 +40,7 @@ users:
 
   writing-productivity:
     name: "Writing & Productivity"
+    rank: 5
     description: "AI writing assistants and productivity tools"
     subcategories:
       writing-tools:
@@ -43,6 +49,7 @@ users:
 
   meeting-notetakers:
     name: "Meeting Notetakers & Voice"
+    rank: 8
     description: "AI meeting transcription and note-taking"
     subcategories:
       notetakers:
@@ -51,6 +58,7 @@ users:
 
   transcription:
     name: "Transcription"
+    rank: 15
     description: "AI-powered audio and video transcription tools"
     subcategories:
       transcription-tools:
@@ -59,6 +67,7 @@ users:
 
   personal-assistants:
     name: "Personal Assistants & Browsers"
+    rank: 12
     description: "AI-native browsers and personal AI assistants"
     subcategories:
       browsers:
@@ -67,46 +76,136 @@ users:
 
   no-code-builders:
     name: "No-Code AI Builders"
+    rank: 16
     description: "Visual tools for building AI applications without code"
     subcategories:
       workflow-builders:
         name: "Workflow & App Builders"
         description: "Visual workflow automation and app builders"
 
-  vertical-ai:
-    name: "Vertical AI (Industry-Specific)"
-    description: "AI tools built for specific industries"
+  sales-marketing:
+    name: "Sales & Marketing"
+    rank: 13
+    description: "AI for sales, marketing, and go-to-market"
     subcategories:
-      legal:
-        name: "Legal"
-        description: "AI for law firms and legal work"
-      healthcare:
-        name: "Healthcare / Medical"
-        description: "AI for healthcare and medical applications"
-      sales-marketing:
-        name: "Sales / Marketing / GTM"
-        description: "AI for sales, marketing, and go-to-market"
-      customer-support:
-        name: "Customer Support"
-        description: "AI for customer service and support"
-      finance:
-        name: "Finance / Accounting"
-        description: "AI for finance and accounting"
-      education:
-        name: "Education / Tutoring"
-        description: "AI for education and tutoring"
-      recruiting:
-        name: "Recruiting / HR"
-        description: "AI for recruiting and human resources"
-      design:
-        name: "Design / Creative"
-        description: "AI for design and creative work"
-      lifestyle:
-        name: "Lifestyle / Wellness"
-        description: "AI for astrology, wellness, and personal lifestyle applications"
+      sales-prospecting:
+        name: "Prospecting & Outreach"
+        description: "Lead data, enrichment, and AI-driven outbound sequences"
+      marketing-content:
+        name: "Marketing & Brand Content"
+        description: "On-brand content generation for marketing teams"
+      revenue-intelligence:
+        name: "Revenue Intelligence"
+        description: "Conversation analytics and deal insights for sales teams"
+      ai-commerce:
+        name: "AI Commerce"
+        description: "AI agents that sell products across chat assistants and storefronts"
+
+  customer-support:
+    name: "Customer Support"
+    rank: 9
+    description: "AI for customer service and support"
+    subcategories:
+      ai-support-agents:
+        name: "AI Support Agents"
+        description: "Autonomous agents that resolve customer questions and tickets"
+      helpdesk-platforms:
+        name: "Helpdesk Platforms"
+        description: "Support desks and inboxes with built-in AI"
+      contact-center:
+        name: "Contact Center AI"
+        description: "AI for call centers and live agent guidance"
+
+  healthcare:
+    name: "Healthcare"
+    rank: 18
+    description: "AI for healthcare and medical applications"
+    subcategories:
+      clinical-documentation:
+        name: "Clinical Documentation & Scribes"
+        description: "Ambient scribes that write clinical notes from patient visits"
+      clinical-reference:
+        name: "Clinical Reference"
+        description: "Medical literature search and evidence-based answers for clinicians"
+      patient-facing-ai:
+        name: "Patient-Facing AI"
+        description: "AI agents that talk directly with patients"
+
+  legal:
+    name: "Legal"
+    rank: 19
+    description: "AI for law firms and legal work"
+    subcategories:
+      legal-research-drafting:
+        name: "Legal Research & Drafting"
+        description: "AI assistants for legal research, analysis, and document drafting"
+      contract-management:
+        name: "Contract Management"
+        description: "Contract lifecycle management and review"
+
+  finance:
+    name: "Finance"
+    rank: 20
+    description: "AI for finance, investing, and accounting"
+    subcategories:
+      financial-research:
+        name: "Investment & Financial Research"
+        description: "AI analysts for equity research, banking, and due diligence"
+      finance-automation:
+        name: "Finance Operations & Automation"
+        description: "Automating financial documents, accounting, and back-office work"
+
+  education:
+    name: "Education"
+    rank: 10
+    description: "AI for learning, tutoring, and teaching"
+    subcategories:
+      language-learning:
+        name: "Language Learning"
+        description: "AI conversation practice and language courses"
+      ai-tutors:
+        name: "AI Tutors"
+        description: "Personalized AI tutoring for students"
+      teacher-tools:
+        name: "Teacher Tools"
+        description: "Lesson plans, quizzes, and classroom materials for educators"
+
+  recruiting:
+    name: "Recruiting & HR"
+    rank: 21
+    description: "AI for recruiting and human resources"
+    subcategories:
+      ai-recruiters:
+        name: "AI Recruiters & Screening"
+        description: "AI that screens, interviews, and schedules candidates"
+      talent-intelligence:
+        name: "Talent Intelligence & Marketplaces"
+        description: "Candidate matching, talent marketplaces, and workforce planning"
+
+  design:
+    name: "Design & Creative"
+    rank: 6
+    description: "AI for design and creative work"
+    subcategories:
+      ui-product-design:
+        name: "UI & Product Design"
+        description: "Generate and edit app and web interface designs"
+      diagrams-illustrations:
+        name: "Diagrams & Illustrations"
+        description: "AI-generated diagrams, figures, and visual explanations"
+
+  lifestyle:
+    name: "Lifestyle & Wellness"
+    rank: 30
+    description: "AI for astrology, wellness, and personal lifestyle applications"
+    subcategories:
+      astrology:
+        name: "Astrology"
+        description: "Birth charts and astrological readings with AI interpretation"
 
   enterprise-platforms:
     name: "Enterprise AI Platforms"
+    rank: 28
     description: "Enterprise-grade AI platforms and copilots"
     subcategories:
       enterprise:
@@ -115,6 +214,7 @@ users:
 
   voice-ai-agents:
     name: "Voice AI Agents"
+    rank: 17
     description: "AI-powered voice agents, receptionists, and phone automation"
     subcategories:
       voice-agents:
@@ -123,6 +223,7 @@ users:
 
   slide-creation:
     name: "Slide Creation"
+    rank: 14
     description: "AI presentation and slide generation tools"
     subcategories:
       ai-presentations:
@@ -132,6 +233,7 @@ users:
 developers:
   foundation-models:
     name: "Foundation Models & Model Hubs"
+    rank: 11
     description: "LLM providers, open-source models, and model registries"
     subcategories:
       closed-frontier:
@@ -146,79 +248,94 @@ developers:
 
   ai-coding:
     name: "AI Coding & Developer Tools"
+    rank: 2
     description: "AI-powered coding assistants, IDEs, and developer tools"
     subcategories:
-      ai-ides:
-        name: "AI IDEs & Editors"
-        description: "AI-native code editors and IDEs"
       coding-agents:
         name: "Coding Agents (CLI / Terminal / Cloud)"
         description: "AI coding agents and assistants"
+      ai-ides:
+        name: "AI IDEs & Editors"
+        description: "AI-native code editors and IDEs"
       app-builders:
         name: "App / UI Builders"
         description: "AI-powered app and UI generators"
       code-review:
         name: "Code Review & Quality"
         description: "AI code review and quality tools"
-      spec-driven:
-        name: "Spec-Driven Development Tools"
-        description: "Tools for spec-first AI development"
+      llm-skills:
+        name: "LLM Skills"
+        description: "Reusable AI skills and methodologies for LLMs and coding agents"
       testing-sensors:
         name: "Testing & Quality Sensors"
         description: "Mutation testing, fuzzing, and quality tools"
       code-intelligence:
         name: "Code Intelligence & Refactoring"
         description: "LSP/AST tooling and automated refactoring"
+      spec-driven:
+        name: "Spec-Driven Development Tools"
+        description: "Tools for spec-first AI development"
       dev-environment:
         name: "Dev Environment"
         description: "Development environment tooling"
-      cost-reduction:
-        name: "Cost Reduction"
-        description: "Token optimization and cost reduction tools for AI coding"
-      llm-skills:
-        name: "LLM Skills"
-        description: "Reusable AI skills and methodologies for LLMs and coding agents"
+
+  ai-cost:
+    name: "AI Cost Reduction"
+    rank: 3
+    description: "Cut token spend and track what AI coding tools cost you"
+    subcategories:
+      token-optimization:
+        name: "Token & Context Optimization"
+        description: "Proxies and plugins that shrink context and cut token usage"
+      usage-analytics:
+        name: "Usage & Spend Analytics"
+        description: "Dashboards that show where your AI tokens and money go"
+      cost-offsets:
+        name: "Cost Offsets"
+        description: "Ways to earn back part of your AI tool spend"
 
   agent-frameworks:
     name: "Agent Frameworks & Orchestration"
+    rank: 7
     description: "Frameworks for building AI agents"
     subcategories:
-      agent-platforms:
-        name: "Agent Platforms"
-        description: "Managed platforms for deploying and orchestrating AI agents"
       code-first:
         name: "Code-First Agent Frameworks"
         description: "Programming frameworks for agents"
-      browser-agents:
-        name: "Browser & Web Agents"
-        description: "Web automation and browser agents"
       protocols:
         name: "Agent Protocols & Standards"
         description: "Standards for agent interoperability"
+      browser-agents:
+        name: "Browser & Web Agents"
+        description: "Web automation and browser agents"
       tool-integrations:
         name: "Tool Integrations & Connectors"
         description: "Connectors and integrations for agents"
+      agent-platforms:
+        name: "Agent Platforms"
+        description: "Managed platforms for deploying and orchestrating AI agents"
       agent-memory:
         name: "Agent Memory"
         description: "Memory and state management for agents"
+      agent-search:
+        name: "Agent Search"
+        description: "Search and retrieval built for agent workflows"
       durable-execution:
         name: "Durable Execution"
         description: "Reliable workflow execution for agents"
       agent-identity:
         name: "Agent Identity & Auth"
         description: "Identity and authentication for agents"
-      agent-communication:
-        name: "Agent Communication"
-        description: "Messaging and coordination between agents"
       agent-payments:
         name: "Agent Payments"
         description: "Payment rails and spend controls for autonomous agents"
-      agent-search:
-        name: "Agent Search"
-        description: "Search and retrieval built for agent workflows"
+      agent-communication:
+        name: "Agent Communication"
+        description: "Messaging and coordination between agents"
 
   llm-frameworks:
     name: "LLM Application Frameworks"
+    rank: 22
     description: "Frameworks for building LLM applications"
     subcategories:
       app-frameworks:
@@ -230,6 +347,7 @@ developers:
 
   ai-infrastructure:
     name: "AI Infrastructure (Inference, Compute, Routing)"
+    rank: 23
     description: "Infrastructure for running AI workloads"
     subcategories:
       inference-apis:
@@ -247,14 +365,21 @@ developers:
 
   data-training:
     name: "Data & Training"
+    rank: 26
     description: "Tools for data preparation and model training"
     subcategories:
-      ml-frameworks:
-        name: "ML Frameworks"
-        description: "Machine learning frameworks"
       fine-tuning:
         name: "Fine-Tuning Platforms & Libraries"
         description: "Model fine-tuning tools"
+      embeddings:
+        name: "Embedding Models & Rerankers"
+        description: "Embedding and reranking models"
+      data-ingestion:
+        name: "Data Ingestion & Document Processing"
+        description: "Document processing and ingestion"
+      ml-frameworks:
+        name: "ML Frameworks"
+        description: "Machine learning frameworks"
       mlops:
         name: "Training Orchestration / MLOps"
         description: "ML operations and training orchestration"
@@ -264,32 +389,28 @@ developers:
       data-labeling:
         name: "Data Labeling"
         description: "Data annotation and labeling tools"
-      embeddings:
-        name: "Embedding Models & Rerankers"
-        description: "Embedding and reranking models"
-      data-ingestion:
-        name: "Data Ingestion & Document Processing"
-        description: "Document processing and ingestion"
       lakehouse-semantic:
         name: "Lakehouse & Semantic Layer"
         description: "Data lakehouse and semantic layer tools"
 
   vector-dbs:
     name: "Vector Databases & Retrieval"
+    rank: 25
     description: "Vector databases and retrieval systems"
     subcategories:
       dedicated:
         name: "Dedicated Vector DBs"
         description: "Purpose-built vector databases"
-      extensions:
-        name: "Vector Extensions to Existing DBs"
-        description: "Vector capabilities added to existing databases"
       rag-kg:
         name: "RAG-Specific / Knowledge Graph"
         description: "RAG and knowledge graph systems"
+      extensions:
+        name: "Vector Extensions to Existing DBs"
+        description: "Vector capabilities added to existing databases"
 
   observability-safety:
     name: "Observability & Evaluation"
+    rank: 24
     description: "Tools for monitoring and evaluating AI systems"
     subcategories:
       llm-observability:
@@ -307,25 +428,27 @@ developers:
 
   security:
     name: "Security"
+    rank: 27
     description: "AI-powered security tools for vulnerability discovery, red teaming, and securing AI systems"
     subcategories:
-      red-teaming:
-        name: "Red Teaming & AI Security"
-        description: "AI security testing and red teaming"
-      security-scanning:
-        name: "Security Scanning"
-        description: "LLM-based vulnerability discovery and code security scanning"
       preventing-prompt-injection:
         name: "Preventing Prompt Injection"
         description: "Gateways, filters, and detection libraries that block or flag prompt-injection attacks against LLMs and AI agents"
+      security-scanning:
+        name: "Security Scanning"
+        description: "LLM-based vulnerability discovery and code security scanning"
+      red-teaming:
+        name: "Red Teaming & AI Security"
+        description: "AI security testing and red teaming"
 
   engineering-intelligence:
     name: "Engineering Intelligence"
+    rank: 29
     description: "Developer portals and engineering analytics platforms"
     subcategories:
-      developer-portals:
-        name: "Developer Portals"
-        description: "Internal developer platforms and service catalogs"
       engineering-analytics:
         name: "Engineering Analytics"
         description: "Metrics on engineering productivity and delivery"
+      developer-portals:
+        name: "Developer Portals"
+        description: "Internal developer platforms and service catalogs"

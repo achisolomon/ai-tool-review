@@ -28,6 +28,44 @@ def load_category_names(categories_file)
   names
 end
 
+# Load category display ranks (popularity order) from _categories.yaml
+def load_category_ranks(categories_file)
+  return {} unless File.exist?(categories_file)
+
+  categories = YAML.safe_load(File.read(categories_file))
+  return {} unless categories.is_a?(Hash)
+
+  ranks = {}
+  categories.each_value do |cats|
+    next unless cats.is_a?(Hash)
+    cats.each do |cat_id, cat_data|
+      ranks[cat_id] = cat_data['rank'] if cat_data.is_a?(Hash) && cat_data['rank']
+    end
+  end
+
+  ranks
+end
+
+# Subcategory display order: position within its category in _categories.yaml
+# (listed most popular first)
+def load_subcategory_order(categories_file)
+  return {} unless File.exist?(categories_file)
+
+  categories = YAML.safe_load(File.read(categories_file))
+  return {} unless categories.is_a?(Hash)
+
+  order = {}
+  categories.each_value do |cats|
+    next unless cats.is_a?(Hash)
+    cats.each_value do |cat_data|
+      next unless cat_data.is_a?(Hash)
+      (cat_data['subcategories'] || {}).keys.each_with_index { |subcat_id, i| order[subcat_id] = i }
+    end
+  end
+
+  order
+end
+
 # Parse frontmatter from MD file
 def parse_frontmatter(file_path)
   content = File.read(file_path)
@@ -54,7 +92,7 @@ def load_changelog(changelog_file)
 end
 
 # Build tools data structure
-def build_tools_json(tools_dir, category_names = {})
+def build_tools_json(tools_dir, category_names = {}, category_ranks = {}, subcategory_order = {})
   tools_by_track = { 'users' => {}, 'developers' => {} }
 
   Dir.glob(File.join(tools_dir, '**/*.md')).each do |file|
@@ -151,8 +189,12 @@ def build_tools_json(tools_dir, category_names = {})
         'track' => track,
         'subcategories' => []
       }
+      category_obj['rank'] = category_ranks[cat_id] if category_ranks[cat_id]
 
-      cat_data['subcategories'].each do |subcat_id, tools|
+      sorted_subcats = cat_data['subcategories'].each_with_index
+                                                .sort_by { |(subcat_id, _), i| [subcategory_order[subcat_id] || Float::INFINITY, i] }
+                                                .map(&:first)
+      sorted_subcats.each do |subcat_id, tools|
         category_obj['subcategories'] << {
           'id' => subcat_id,
           'name' => category_names[subcat_id] || subcat_id.split('-').map(&:capitalize).join(' '),
@@ -162,6 +204,11 @@ def build_tools_json(tools_dir, category_names = {})
 
       result[track] << category_obj
     end
+  end
+
+  # Most popular first; unranked categories keep discovery order at the end
+  result.each_value do |cats|
+    cats.replace(cats.each_with_index.sort_by { |c, i| [c['rank'] || Float::INFINITY, i] }.map(&:first))
   end
 
   result

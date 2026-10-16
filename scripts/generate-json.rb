@@ -8,7 +8,9 @@ output_file = ARGV[1] || 'js/data.js'
 categories_file = File.join(tools_dir, '_categories.yaml')
 
 category_names = load_category_names(categories_file)
-tools_data = build_tools_json(tools_dir, category_names)
+category_ranks = load_category_ranks(categories_file)
+subcategory_order = load_subcategory_order(categories_file)
+tools_data = build_tools_json(tools_dir, category_names, category_ranks, subcategory_order)
 
 taxonomy = load_taxonomy(categories_file, File.join(tools_dir, '_tags.yaml'))
 changelog = load_changelog(File.join(tools_dir, '..', '_landscape_changelog.yaml'))
