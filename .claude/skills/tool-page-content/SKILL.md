@@ -1,22 +1,94 @@
 ---
 name: tool-page-content
-description: Use when creating or editing AI tool review pages in the ai-tool-review Jekyll site. Handles frontmatter, content structure, styling conventions, URL validation, and keeping the generated js/data.js in sync (required or CI fails).
+description: Use when creating or editing AI tool review pages in the ai-tool-review Jekyll site. Covers the fast path for adding 1-2 tools (no worktree, one check script, single push confirmation) plus frontmatter, taxonomy, content structure, URL validation, and keeping the generated js/data.js in sync (required or CI fails).
 ---
 
 # Tool Page Content Skill
 
 Use this skill when creating or editing tool pages in the AI landscape site.
 
-## Pre-Flight Checks (MANDATORY)
+## Fast path (default for 1-2 tools)
 
-Before creating or updating any tool, you MUST verify all URLs are live:
+For the common case, 1-2 new or edited tool pages in one session, run this
+sequence. No worktree, no pause except the single push confirmation at the
+end.
+
+1. **Work in the main checkout.** Do not create a `session_worktree.py`
+   worktree for 1-2 tools; that flow is reserved for 3+ tools or an explicit
+   request (see "Multi-tool / batch path" below).
+2. **Fetch sources directly with WebFetch.** Skip the parallel research
+   subagent detour at this scale; it exists to parallelize 3+ tools, not to
+   add overhead to one or two. For 3+ tools, keep using the research
+   subagents as before, unaffected by this change.
+3. **Check if the tool already exists** (Step 0 below) before researching
+   further.
+4. **Write the page**, following the taxonomy, frontmatter template, and
+   content structure sections below. Keep the generated `js/data.js` in sync
+   (see "Sync `js/data.js`" below).
+5. **Run the check script:**
+   ```bash
+   npm run tool-page-check
+   ```
+   This runs, in order: `rbenv init`, `npm run validate`, `npm run generate`,
+   `npm run build`, a lint for any new/changed tool `.md` file against the
+   exact regex `tests/data-integrity.spec.js` uses for "no tool description
+   prose hardcodes a GitHub star figure" (a bare digit followed by "star(s)"
+   anywhere in the body, not just outside the key-stats badge), then
+   `npx playwright test tests/data-integrity.spec.js --workers=1`. It fails
+   fast with a one-line fix pointer at whichever step breaks. A clean run
+   here means CI will not bounce the push back on this class of bug.
+
+   This command and the git/gh steps below are listed in the parent repo's
+   `permissions.allow` (see `docs/architecture/tasks.md` T-005), so they run
+   without a separate approval prompt in the normal case.
+6. **If it exits 0**, stage and commit the new/edited `.md` plus `js/data.js`
+   in the same commit.
+7. **Ask the user once, immediately before pushing, for push confirmation.**
+   This is never pre-approved; ask every time, right before the push step,
+   not earlier and not later in the flow.
+8. **Push**, then run `gh run watch` (or poll `gh run list --branch main
+   --limit 1`) on the resulting CI run.
+9. **Report the live page URL** once the run is green, or the failure if it
+   is red.
+
+## Multi-tool / batch path (3+ tools, or on request)
+
+For 3+ tools in one session, a riskier change, or when the user explicitly
+wants isolation: use the worktree flow instead of the fast path above.
+Create a session worktree with `session_worktree.py create <name>
+<session_id>`, which also symlinks `node_modules` and `vendor` from the main
+checkout so the worktree has a usable toolchain immediately. Keep using the
+parallel research subagents for sourcing (haiku model, per the global
+agent-model-selection rule); they are not a bottleneck at this scale. This
+path is otherwise unchanged by this update.
+
+## Step 0: Check if Tool Already Exists (REQUIRED)
+
+Before ANY research, check if the tool page already exists:
+
+```bash
+# Search by tool name (case-insensitive)
+find data/_tools -iname "*toolname*" -type f
+
+# Search by slug in frontmatter
+grep -r "slug: \"tool-slug\"" data/_tools/
+
+# Search by name in frontmatter
+grep -ri "name: \"Tool Name\"" data/_tools/
+```
+
+**If tool exists:** Update the existing page instead of creating a duplicate.
+**If tool doesn't exist:** Proceed with research and creation.
+
+## Pre-Flight URL Checks (MANDATORY)
+
+Before creating or updating any tool, verify all URLs are live:
 
 ### 1. GitHub URL Validation
 
 For any tool with a `github_url`:
 
 ```bash
-# Check if GitHub repo exists (returns HTTP status)
 curl -s -o /dev/null -w "%{http_code}" https://github.com/{org}/{repo}
 ```
 
@@ -44,17 +116,89 @@ gh repo view {org}/{repo} --json name,description,stargazerCount,isArchived,upda
 ```
 
 Check for:
-- `isArchived: true` → Mark as `status: deprecated`
-- `updatedAt` older than 2 years → Lower `confidence_score`, note in description
+- `isArchived: true` -> Mark as `status: deprecated`
+- `updatedAt` older than 2 years -> Lower `confidence_score`, note in description
 
 ## File Location
 
-Tools go in: `/ai-tool-review/data/_tools/{track}/{category}/{subcategory}/{slug}.md`
+Tools go in: `data/_tools/{track}/{category}/{subcategory}/{slug}.md`
 
 - `track`: `users` or `developers`
 - `category`: Primary category (e.g., `ai-coding`, `ai-chat-search`)
 - `subcategory`: Subcategory (e.g., `coding-agents`, `code-intelligence`)
 - `slug`: URL-safe lowercase identifier
+
+## Category Taxonomy (MUST MATCH)
+
+The file path determines category. Choose from existing folders.
+
+### Developers Track (`track: "developers"`)
+
+| Category | Subcategories |
+|----------|---------------|
+| `ai-coding` | `coding-agents`, `ai-ides`, `app-builders`, `code-review`, `code-intelligence`, `context-optimization`, `cost-reduction`, `dev-environment`, `llm-skills`, `spec-driven`, `testing-sensors` |
+| `agent-frameworks` | `agent-communication`, `agent-identity`, `agent-memory`, `agent-payments`, `agent-search`, `browser-agents`, `code-first`, `durable-execution`, `protocols`, `tool-integrations` |
+| `agent-platforms` | (direct, no subcategories) |
+| `ai-infrastructure` | `gpu-providers`, `inference-apis`, `model-routers` |
+| `data-training` | `data-ingestion`, `data-labeling`, `embeddings`, `experiment-tracking`, `fine-tuning`, `lakehouse-semantic`, `ml-frameworks`, `mlops` |
+| `engineering-intelligence` | (direct, no subcategories) |
+| `foundation-models` | `closed-frontier`, `model-hubs`, `open-source` |
+| `llm-frameworks` | `app-frameworks`, `prompt-engineering` |
+| `observability-safety` | `app-observability`, `evaluation`, `guardrails`, `llm-observability` |
+| `security` | `red-teaming`, `security-scanning` |
+| `vector-dbs` | `dedicated`, `extensions`, `rag-kg` |
+
+### Users Track (`track: "users"`)
+
+| Category | Subcategories |
+|----------|---------------|
+| `ai-chat-search` | `ai-search`, `chat-assistants` |
+| `ai-contact-center` | `contact-center` |
+| `enterprise-platforms` | (direct, no subcategories) |
+| `generative-media` | `3d-other`, `image-generation`, `music-generation`, `video-generation`, `voice-speech` |
+| `meeting-notetakers` | (direct, no subcategories) |
+| `no-code-builders` | (direct, no subcategories) |
+| `personal-assistants` | (direct, no subcategories) |
+| `slide-creation` | (direct, no subcategories) |
+| `vertical-ai` | `customer-support`, `design`, `education`, `finance`, `healthcare`, `legal`, `recruiting`, `sales-marketing` |
+| `voice-ai-agents` | `voice-agents` |
+| `writing-productivity` | (direct, no subcategories) |
+
+**File path format:** `data/_tools/{track}/{category}/{subcategory}/{slug}.md`
+
+**Flat categories** (marked "direct, no subcategories" above) do NOT require
+a `subcategory` field in frontmatter; the generator defaults to the category
+id. For categories that DO have subcategories, the `subcategory` field is
+required and must match a folder name, or the tool is silently dropped from
+`js/data.js`.
+
+## Valid Tags (Use Only These)
+
+Common tags used across the site (pick 2-5 relevant ones):
+
+| Tag | Use When |
+|-----|----------|
+| `agents` | Autonomous AI agents, multi-step task handling |
+| `api-available` | Has public API for developers |
+| `python` | Python-based or Python SDK |
+| `typescript` | TypeScript/JavaScript based |
+| `rag` | RAG pipelines or retrieval-augmented |
+| `workflow-automation` | Automates workflows/processes |
+| `self-hosted` | Can run on own infrastructure |
+| `observability` | Monitoring, tracing, debugging |
+| `reasoning` | Advanced reasoning capabilities |
+| `no-code` | No-code/low-code interface |
+| `serverless` | Serverless deployment option |
+| `multimodal` | Handles multiple modalities (text, image, audio) |
+| `browser-automation` | Browser/web automation |
+| `open-source` | Open-source project |
+| `mcp-server` | MCP protocol support |
+| `enterprise` | Enterprise-focused features |
+| `real-time` | Real-time processing |
+| `sandboxes` | Sandboxed execution environment |
+
+Do not invent tags beyond this list; do not use a tag that matches a
+category/subcategory name (categories are for navigation, tags are not).
 
 ## Required Frontmatter
 
@@ -66,14 +210,14 @@ website: "https://tool.com"
 type: oss | saas | commercial
 track: users | developers
 category: "category-slug"
-subcategory: "subcategory-slug"
+subcategory: "subcategory-slug"  # omit for flat categories
 status: active | beta | deprecated | removed
-description: "50-160 char SEO description"
+description: "50-160 char SEO description, [VERIFIED from official source]"
 pricing_model: free | freemium | paid | enterprise
 founded_year: 2024
-headquarters: "Location or —"
+headquarters: "Location or omit"
 github_url: "https://github.com/org/repo"  # if applicable
-github_stars: 1500  # if applicable
+github_stars: 1500  # if applicable, verified via API
 tags:
   - relevant
   - tags
@@ -82,11 +226,9 @@ confidence_score: 0.95
 ---
 ```
 
-## Content Structure
+## Content Structure (in order)
 
-Use this exact HTML structure for rich tool pages:
-
-### Key Stats Block
+### 1. Key Stats Block
 
 ```html
 <div class="key-stats">
@@ -105,17 +247,22 @@ Use this exact HTML structure for rich tool pages:
 </div>
 ```
 
-### Overview Section
+The number and its label sit in separate `<span>` elements (a tag boundary
+between them) so this is the ONLY place a star figure is exempt from the
+star-figure prose lint below.
+
+### 2. Overview Section
 
 ```html
 ## Overview
 
 <div class="overview">
-<p>Tool description paragraph. 2-4 sentences covering what the tool does, who it's for, and key differentiators.</p>
+<p>[Verified description from official source]. 2-4 sentences covering what
+the tool does, who it's for, and key differentiators.</p>
 </div>
 ```
 
-### Verdict Section
+### 3. Verdict Section
 
 ```html
 ## The Verdict
@@ -141,7 +288,7 @@ Use this exact HTML structure for rich tool pages:
 </div>
 ```
 
-### Pros/Cons Section
+### 4. Pros/Cons Section (WITH sources)
 
 ```html
 <div class="pros-cons">
@@ -164,7 +311,7 @@ Use this exact HTML structure for rich tool pages:
 </div>
 ```
 
-### Pricing Section
+### 5. Pricing Section (linked cards, not a markdown table)
 
 ```html
 ## Pricing
@@ -178,7 +325,7 @@ Use this exact HTML structure for rich tool pages:
 </div>
 ```
 
-### Expandable Details
+### 6. Expandable Details
 
 ```html
 <details class="more-details">
@@ -202,7 +349,7 @@ Use this exact HTML structure for rich tool pages:
 </details>
 ```
 
-### Comparison Table
+### 7. Comparison Table
 
 ```html
 ## How It Compares
@@ -216,38 +363,60 @@ Use this exact HTML structure for rich tool pages:
 </div>
 ```
 
-## Workflow Checklist
+## Source Verification Checklist
 
-When adding a new tool:
+Before writing ANY content:
 
-1. [ ] **Validate GitHub URL** - Run curl check, confirm 200 status
-2. [ ] **Validate website URL** - Run curl check, confirm not 404/5xx
-3. [ ] **Check if archived** - Use `gh repo view` to check `isArchived`
-4. [ ] **Get accurate star count** - Use `gh repo view` for real stars
-5. [ ] **Determine correct category** - Check `_categories.yaml`
-6. [ ] **Create file in correct path** - `_tools/{track}/{category}/{subcategory}/`
-7. [ ] **Fill all frontmatter** - Include all required fields
-8. [ ] **Write content sections** - Use HTML templates above
-9. [ ] **Verify sources** - All claims should have verifiable sources
-10. [ ] **Set last_verified date** - Today's date
-11. [ ] **Sync `js/data.js`** - Add the tool to the generated data (see below). **This step is not optional — CI fails without it.**
-12. [ ] **Commit BOTH files** - The new/edited `.md` AND `js/data.js` in the same change
+1. **Description** -> Fetch from official website/GitHub README
+2. **Pricing** -> Fetch from official pricing page
+3. **Features** -> Fetch from official docs
+4. **Pros** -> Search G2, Capterra, official announcements
+5. **Cons** -> Search G2 cons, user reviews, Reddit
+6. **Stats** -> Press releases, official blog, funding announcements
+
+## GitHub Stars Verification
+
+For open-source tools, verify GitHub stars directly via the API, not web
+search and not cached figures:
+
+```bash
+curl -s https://api.github.com/repos/OWNER/REPO | jq '.stargazers_count'
+```
+
+### The star-figure prose rule (why the check script has this step)
+
+`tests/data-integrity.spec.js`'s "no tool description prose hardcodes a
+GitHub star figure" test bans any digit immediately followed by the word
+"star(s)" anywhere in a tool page's body, not just outside the key-stats
+badge, including inside `<span>` text and markdown tables. Only the
+key-stats badge is exempt (its number and label are in separate `<span>`
+elements with no adjacent text). Write star-count color commentary as
+"strong, fast-growing adoption, see badge for count" rather than spelling
+out the number a second time in a pros/cons bullet or comparison table.
+`npm run tool-page-check` (fast path step 5) runs this exact check locally
+before you ever push, so CI does not bounce the push back on it.
 
 ## Sync `js/data.js` (MANDATORY)
 
 The search UI reads a **generated** file, `js/data.js`, built from the tool
-`.md` files. Creating or editing a `.md` file is **not enough** — if `js/data.js`
-is not updated to match, the CI test
-`tests/data-integrity.spec.js › every tool .md file appears in data.js` **fails**
-the PR. Every add/edit/remove of a tool MUST update `js/data.js` in the same commit.
+`.md` files. `js/data.js` is generated only; never hand-edit or hand-merge
+it outside the two options below. Creating or editing a `.md` file is **not
+enough**: if `js/data.js` is not updated to match, the CI test
+`tests/data-integrity.spec.js › every tool .md file appears in data.js`
+**fails** the PR. Every add/edit/remove of a tool MUST update `js/data.js`
+in the same commit.
 
-There are two ways to update it. **Prefer the surgical edit** — see the warning below.
+`npm run tool-page-check` (fast path step 5) runs `npm run generate`
+(Option B below) as its canonical path. The surgical edit (Option A) stays
+documented for the case a full regenerate's reshuffle diff is the problem,
+not as routine practice.
 
-### Option A (preferred): Surgical edit
+### Option A: Surgical edit (when a full regenerate's diff is too noisy)
 
 Insert/update just your tool's object in `js/data.js`, keeping the exact
-existing format (2-space indentation, key order). Place it in the array for its
-`{track} → {category} → {subcategory}`, next to sibling tools. The object shape:
+existing format (2-space indentation, key order). Place it in the array for
+its `{track} -> {category} -> {subcategory}`, next to sibling tools. The
+object shape:
 
 ```json
 {
@@ -272,46 +441,83 @@ existing format (2-space indentation, key order). Place it in the array for its
 }
 ```
 
-- `tags` is `all_tags` capped at the first 3. `category_name`/`subcategory_name`
-  come from `_categories.yaml`.
-- Find the sibling tools first (e.g. `grep -n '"id": "app-builders"' js/data.js`)
-  and copy their formatting exactly.
+- `tags` is `all_tags` capped at the first 3. `category_name`/
+  `subcategory_name` come from `_categories.yaml`.
+- Find the sibling tools first (e.g. `grep -n '"id": "app-builders"'
+  js/data.js`) and copy their formatting exactly.
 
-### Option B: Full regenerate — ⚠️ USE WITH CARE
+### Option B: Full regenerate (the fast path's default) - use with care if run by hand
 
 ```bash
-# The Ruby generator crashes on non-ASCII (em-dashes —, middot ·) unless the
+# The Ruby generator crashes on non-ASCII (curly quotes, middot) unless the
 # locale is UTF-8. LANG/LC_ALL are often unset in this environment.
 LANG=C.UTF-8 LC_ALL=C.UTF-8 npm run generate
 ```
 
-**⚠️ Regeneration reorders the ENTIRE file.** Category/tool order comes from
-`Dir.glob`, whose enumeration order is filesystem-dependent, so re-running the
-generator here produces a ~11k-line reshuffle diff even though only one tool
-changed. **Do not commit that churn.** After regenerating, check the diff:
+**Regeneration reorders the ENTIRE file.** Category/tool order comes from
+`Dir.glob`, whose enumeration order is filesystem-dependent, so re-running
+the generator produces a large reshuffle diff even though only one tool
+changed. If you ran this by hand outside `npm run tool-page-check`, check
+the diff before committing:
 
 ```bash
 git diff --stat js/data.js   # should be a small insertion, NOT thousands of lines
 ```
 
-If the diff is huge, `git checkout js/data.js` and use Option A (surgical edit) instead.
+If the diff is huge, `git checkout js/data.js` and use Option A instead.
 
 ### Verify before committing
 
 ```bash
-node scripts/validate-data-js.js        # must report "format is valid"
+node scripts/validate-data-js.js          # must report "format is valid"
 grep -c '"slug": "your-slug"' js/data.js  # must be >= 1
 ```
 
 Confirm the total tool count increased by exactly one (for an add).
 
-## Red Flags - DO NOT ADD
+## DO NOT Include
 
-- GitHub repo returns 404 → Tool is dead
-- Website returns 404 for 3+ days → Tool may be abandoned
-- `isArchived: true` on GitHub → Mark as deprecated, not active
-- No commits in 2+ years → Lower confidence, note staleness
-- Stars < 50 and no website → May not be notable enough
+**NEVER add these sections:**
+- Quick Start / Getting Started code examples
+- Installation instructions
+- Code snippets showing how to use the tool
+- API examples
+
+Users will go to the tool's official site for usage instructions. Our pages
+are for **evaluation and comparison**, not tutorials.
+
+## Red Flags - DO NOT ADD / STOP
+
+- GitHub repo returns 404 -> Tool is dead, do not add
+- Website returns 404 for 3+ days -> Tool may be abandoned
+- `isArchived: true` on GitHub -> Mark as deprecated, not active
+- No commits in 2+ years -> Lower confidence, note staleness
+- Stars < 50 and no website -> May not be notable enough
+- Writing description without fetching the official site
+- Using `| table |` syntax for pricing (use HTML `.pricing-card` links)
+- Pros/cons without source citations
+- Stats without source URLs
+- Adding "Quick Start" or code examples
+- Using GitHub stars from web search instead of the API
+- Claiming "done" without running `npm run tool-page-check`
+
+## Common Mistakes
+
+| Mistake | Fix |
+|---------|-----|
+| Creating duplicate tool page | ALWAYS search first: `find data/_tools -iname "*toolname*"` |
+| Wrong category/subcategory | Use ONLY values from the taxonomy table above |
+| Adding subcategory to a flat category | Flat categories (slide-creation, meeting-notetakers, etc.) don't need subcategory, omit the field |
+| Omitting subcategory from a nested category | Categories with subcategories listed in the taxonomy DO require the field, or the tool is silently dropped from data.js |
+| Inventing new tags | Use ONLY tags from the valid tags table |
+| Category doesn't match folder | File path and frontmatter MUST align |
+| Using markdown tables for pricing | Use `<a class="pricing-card">` HTML |
+| Missing source citations | Add `<div class="source">` after pros/cons |
+| Inventing stats | Fetch and cite official sources |
+| Missing verdict section | Always include Best For / Not Ideal For |
+| Star figure in prose | Rephrase; only the key-stats badge may show the number (see star-figure prose rule above) |
+| Forgetting to sync js/data.js | Run `npm run tool-page-check`, which runs `npm run generate` for you |
+| Skipping the check script | Run `npm run tool-page-check` before every commit |
 
 ## Updating Existing Tools
 
@@ -319,10 +525,15 @@ When updating, always:
 
 1. Re-validate all URLs
 2. Update `last_verified` to today
-3. Update `github_stars` with fresh count
+3. Update `github_stars` with a fresh count
 4. Check for any status changes (deprecated, renamed, etc.)
-5. **Sync `js/data.js`** — if you changed any field mirrored in `js/data.js`
-   (`name`, `slug`, `website`, `description`, `type`, `github_stars`,
-   `pricing_model`, `tags`, category/subcategory), update the matching object
-   there too, and commit both files. Removing a tool's `.md` means removing its
-   `js/data.js` object as well. See "Sync `js/data.js`" above.
+5. **Sync `js/data.js`** if you changed any field mirrored there (`name`,
+   `slug`, `website`, `description`, `type`, `github_stars`,
+   `pricing_model`, `tags`, category/subcategory). Removing a tool's `.md`
+   means removing its `js/data.js` object too. See "Sync `js/data.js`" above.
+
+## Reference Examples
+
+When in doubt, read existing tool pages for patterns:
+- `data/_tools/developers/ai-coding/coding-agents/claude-code.md`
+- `data/_tools/users/writing-productivity/notion-ai.md`
