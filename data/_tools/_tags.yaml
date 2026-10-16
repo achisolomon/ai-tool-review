@@ -118,6 +118,9 @@ use-cases:
   - slug: browser-automation
     name: "Browser Automation"
     description: "Automates browser interactions"
+  - slug: reverse-engineering
+    name: "Reverse Engineering"
+    description: "Analyzes or decompiles compiled binaries"
   - slug: doc-to-markdown
     name: "Doc to Markdown"
     description: "Converts documents (PDF, Office files, images, etc.) into Markdown"

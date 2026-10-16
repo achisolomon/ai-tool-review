@@ -2099,6 +2099,38 @@ const landscapeData = {
               "additional_categories": []
             }
           ]
+        },
+        {
+          "id": "personal-assistants",
+          "name": "Personal Assistants & Browsers",
+          "tools": [
+            {
+              "name": "dots",
+              "slug": "dots",
+              "url": "https://openai.com/index/introducing-dots/",
+              "desc": "OpenAI's always-on personal agent in ChatGPT that works toward your goals in the background across 4,000+ connected apps",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "paid",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "workflow-automation",
+                "real-time"
+              ],
+              "all_tags": [
+                "agents",
+                "workflow-automation",
+                "real-time"
+              ],
+              "category_id": "personal-assistants",
+              "category_name": "Personal Assistants & Browsers",
+              "subcategory_id": "personal-assistants",
+              "subcategory_name": "Personal Assistants & Browsers",
+              "additional_categories": []
+            }
+          ]
         }
       ]
     },
@@ -5562,6 +5594,34 @@ const landscapeData = {
                 "typescript",
                 "coding",
                 "rag"
+              ],
+              "category_id": "ai-coding",
+              "category_name": "AI Coding & Developer Tools",
+              "subcategory_id": "code-intelligence",
+              "subcategory_name": "Code Intelligence & Refactoring",
+              "additional_categories": []
+            },
+            {
+              "name": "Ghidra MCP",
+              "slug": "ghidra-mcp",
+              "url": "https://github.com/bethington/ghidra-mcp",
+              "desc": "Open-source MCP server bridging Ghidra's reverse engineering engine with AI assistants for binary decompilation and analysis",
+              "type": "oss",
+              "github_stars": 5693,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "mcp-server",
+                "agents",
+                "self-hosted"
+              ],
+              "all_tags": [
+                "mcp-server",
+                "agents",
+                "self-hosted",
+                "api-available",
+                "reverse-engineering"
               ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
@@ -11727,6 +11787,11 @@ const landscapeData = {
           "slug": "browser-automation",
           "name": "Browser Automation",
           "description": "Automates browser interactions"
+        },
+        {
+          "slug": "reverse-engineering",
+          "name": "Reverse Engineering",
+          "description": "Analyzes or decompiles compiled binaries"
         },
         {
           "slug": "doc-to-markdown",
