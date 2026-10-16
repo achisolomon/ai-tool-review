@@ -11,12 +11,11 @@ tags:
   - skill
 description: "Design vocabulary and skill system for AI agents that addresses visual uniformity in AI-generated interfaces"
 github_url: "https://github.com/pbakaus/impeccable"
-github_stars: 80935
+github_stars: 81766
 pricing_model: "free"
 founded_year: 2025
 last_verified: "2026-06-08"
 confidence_score: 0.95
-tags: []
 source_urls:
   - "https://impeccable.style/"
   - "https://github.com/pbakaus/impeccable"
