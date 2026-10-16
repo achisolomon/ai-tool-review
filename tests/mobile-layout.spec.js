@@ -19,6 +19,7 @@ const ROUTES = [
   '/about',
   '/contact',
   '/privacy',
+  '/terms',
 ];
 
 const MOBILE_VIEWPORTS = [
@@ -550,7 +551,7 @@ test.describe('Mobile quick-action bar', () => {
     });
   }
 
-  for (const route of ['/guides/', '/guides/loop-engineering', '/about', '/contact', '/privacy']) {
+  for (const route of ['/guides/', '/guides/loop-engineering', '/about', '/contact', '/privacy', '/terms']) {
     test(`${route} has no bar`, async ({ page }) => {
       await page.goto(route, { waitUntil: 'domcontentloaded' });
       await page.waitForLoadState('networkidle').catch(() => {});
