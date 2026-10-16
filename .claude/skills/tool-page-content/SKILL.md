@@ -1,6 +1,6 @@
 ---
 name: tool-page-content
-description: Use when creating or editing AI tool review pages in the ai-tool-review Jekyll site. Covers the fast path for adding 1-2 tools (no worktree, one check script, single push confirmation) plus frontmatter, taxonomy, content structure, URL validation, and keeping the generated js/data.js in sync (required or CI fails).
+description: Use when creating or editing AI tool review pages in the ai-tool-review Jekyll site. Covers the fast path for adding tools (auto-named session worktree, one check script, single push confirmation) plus frontmatter, taxonomy, content structure, URL validation, and keeping the generated js/data.js in sync (required or CI fails).
 ---
 
 # Tool Page Content Skill
@@ -10,12 +10,20 @@ Use this skill when creating or editing tool pages in the AI landscape site.
 ## Fast path (default for 1-2 tools)
 
 For the common case, 1-2 new or edited tool pages in one session, run this
-sequence. No worktree, no pause except the single push confirmation at the
-end.
+sequence. No questions to the user except the single push confirmation at
+the end.
 
-1. **Work in the main checkout.** Do not create a `session_worktree.py`
-   worktree for 1-2 tools; that flow is reserved for 3+ tools or an explicit
-   request (see "Multi-tool / batch path" below).
+1. **Create the session worktree, named automatically. Never ask the user
+   for a name.** Name it `tool-<slug>` after the (first) tool and run, unsandboxed
+   (it probes ports, about 0.5s):
+   ```bash
+   python3 "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/session_worktree.py" create tool-<slug> <session_id>
+   ```
+   (`<session_id>` is in the SessionStart message.) A taken name gets a
+   `-2`, `-3` suffix automatically, so parallel sessions never collide. Do
+   ALL work in the printed worktree path, never in the main checkout;
+   `node_modules` and `vendor/` are already linked, so Jekyll works at once.
+   Serve with `eval "$(rbenv init -)" && PORT=<printed port> npm run serve:jekyll`.
 2. **Fetch sources directly with WebFetch.** Skip the parallel research
    subagent detour at this scale; it exists to parallelize 3+ tools, not to
    add overhead to one or two. For 3+ tools, keep using the research
@@ -42,25 +50,27 @@ end.
    `permissions.allow` (see `docs/architecture/tasks.md` T-005), so they run
    without a separate approval prompt in the normal case.
 6. **If it exits 0**, stage and commit the new/edited `.md` plus `js/data.js`
-   in the same commit.
-7. **Ask the user once, immediately before pushing, for push confirmation.**
-   This is never pre-approved; ask every time, right before the push step,
-   not earlier and not later in the flow.
-8. **Push**, then run `gh run watch` (or poll `gh run list --branch main
-   --limit 1`) on the resulting CI run.
+   in the same commit, on the worktree branch.
+7. **Ask the user once, immediately before pushing, for push confirmation**
+   (after they checked the page on localhost). "Ship it" counts. Never
+   pre-approved; ask every time, right before the push step.
+8. **Sync and push from the worktree:** `git fetch origin && git merge
+   --no-ff origin/main` (if `js/data.js` conflicts, never hand-merge it:
+   resolve the `.md` files, then `npm run generate`), re-run
+   `npm run tool-page-check` if main had moved, then
+   `git push origin HEAD:main`. Watch CI with `gh run watch` (or poll
+   `gh run list --branch main --limit 1`). The worktree is removed
+   automatically at session end once merged and clean.
 9. **Report the live page URL** once the run is green, or the failure if it
    is red.
 
 ## Multi-tool / batch path (3+ tools, or on request)
 
-For 3+ tools in one session, a riskier change, or when the user explicitly
-wants isolation: use the worktree flow instead of the fast path above.
-Create a session worktree with `session_worktree.py create <name>
-<session_id>`, which also symlinks `node_modules` and `vendor` from the main
-checkout so the worktree has a usable toolchain immediately. Keep using the
-parallel research subagents for sourcing (haiku model, per the global
-agent-model-selection rule); they are not a bottleneck at this scale. This
-path is otherwise unchanged by this update.
+Same worktree flow as above (one auto-named worktree, e.g.
+`tool-<first-slug>`), with one difference: for 3+ tools, research sources
+with parallel subagents (haiku model, per the global agent-model-selection
+rule) instead of fetching each one inline. One `npm run tool-page-check`
+covers all pages before the commit.
 
 ## Step 0: Check if Tool Already Exists (REQUIRED)
 

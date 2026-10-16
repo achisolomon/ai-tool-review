@@ -8,7 +8,8 @@
   hand-merge it; if a full regenerate's reshuffle diff is the problem, use
   the surgical-edit option in the tool-page-content skill instead.
 - Adding or editing a tool page: use the `tool-page-content` skill's fast
-  path (no worktree needed for 1-2 tools) and run
+  path (always in an auto-named session worktree, never ask the user for
+  a name) and run
   `npm run tool-page-check` before every commit.
 - Star-figure rule: no tool page body may hardcode a digit immediately
   followed by "star(s)" in prose; only the key-stats badge may show the
