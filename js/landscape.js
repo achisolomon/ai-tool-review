@@ -91,13 +91,15 @@ window.landscapeInit = function landscapeInit() {
             ? ['users', 'developers']
             : [currentTrack];
 
-        tracks.forEach(track => {
-            landscapeData[track].forEach(category => {
-                const categoryEl = createCategoryElement(category, track);
-                if (categoryEl) {
-                    landscape.appendChild(categoryEl);
-                }
-            });
+        // Interleave tracks by popularity rank (from _categories.yaml); unranked go last
+        const entries = tracks.flatMap(track => landscapeData[track].map(category => ({ category, track })));
+        entries.sort((a, b) => (a.category.rank ?? Infinity) - (b.category.rank ?? Infinity));
+
+        entries.forEach(({ category, track }) => {
+            const categoryEl = createCategoryElement(category, track);
+            if (categoryEl) {
+                landscape.appendChild(categoryEl);
+            }
         });
 
         updateStats();

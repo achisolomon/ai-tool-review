@@ -138,6 +138,53 @@ class TestBuildToolsJson < Minitest::Test
     # Fallback capitalizes each word
     assert_equal "Ai Coding", ai_coding['name']
   end
+
+  def test_build_tools_json_sorts_categories_by_rank
+    FileUtils.mkdir_p(File.join(@temp_dir, 'developers', 'ai-cost', 'token-optimization'))
+    File.write(File.join(@temp_dir, 'developers', 'ai-cost', 'token-optimization', 'squeeze.md'), <<~MD)
+      ---
+      name: "Squeeze"
+      slug: "squeeze"
+      track: "developers"
+      category: "ai-cost"
+      subcategory: "token-optimization"
+      ---
+    MD
+
+    result = build_tools_json(@temp_dir, {}, { 'ai-cost' => 1, 'ai-coding' => 2 })
+
+    assert_equal %w[ai-cost ai-coding], result['developers'].map { |c| c['id'] }
+    assert_equal 1, result['developers'].first['rank']
+  end
+
+  def test_build_tools_json_sorts_subcategories_by_yaml_order
+    FileUtils.mkdir_p(File.join(@temp_dir, 'developers', 'ai-coding', 'coding-agents'))
+    File.write(File.join(@temp_dir, 'developers', 'ai-coding', 'coding-agents', 'agent.md'), <<~MD)
+      ---
+      name: "Agent"
+      slug: "agent"
+      track: "developers"
+      category: "ai-coding"
+      subcategory: "coding-agents"
+      ---
+    MD
+
+    result = build_tools_json(@temp_dir, {}, {}, { 'coding-agents' => 0, 'ai-ides' => 1 })
+    ai_coding = result['developers'].find { |c| c['id'] == 'ai-coding' }
+
+    assert_equal %w[coding-agents ai-ides], ai_coding['subcategories'].map { |s| s['id'] }
+  end
+end
+
+class TestLoadCategoryRanks < Minitest::Test
+  def test_every_real_category_has_a_unique_rank
+    file = File.join(__dir__, '..', 'data', '_tools', '_categories.yaml')
+    ids = YAML.safe_load(File.read(file)).values.flat_map(&:keys)
+    ranks = load_category_ranks(file)
+
+    assert_equal ids.sort, ranks.keys.sort, 'every category needs a rank'
+    assert_equal ranks.values.uniq.size, ranks.size, 'ranks must be unique'
+  end
 end
 
 class TestRealCategoriesFile < Minitest::Test
