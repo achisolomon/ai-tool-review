@@ -6024,6 +6024,32 @@ const landscapeData = {
               "additional_categories": []
             },
             {
+              "name": "Paseo",
+              "slug": "paseo",
+              "url": "https://paseo.sh/",
+              "desc": "Agentic development environment that orchestrates Claude Code, Codex, GitHub Copilot, OpenCode, and Pi from one unified interface across desktop, mobile, web, and CLI, with git worktree support and voice control.",
+              "type": "open-source",
+              "github_stars": 0,
+              "pricing_model": "open-source",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "workflow-automation",
+                "self-hosted"
+              ],
+              "all_tags": [
+                "agents",
+                "workflow-automation",
+                "self-hosted"
+              ],
+              "category_id": "ai-coding",
+              "category_name": "AI Coding & Developer Tools",
+              "subcategory_id": "coding-agents",
+              "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
+              "additional_categories": []
+            },
+            {
               "name": "Pi",
               "slug": "pi",
               "url": "https://pi.dev",
@@ -6075,6 +6101,32 @@ const landscapeData = {
               "type": "commercial",
               "github_stars": 15255,
               "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "workflow-automation",
+                "api-available"
+              ],
+              "all_tags": [
+                "agents",
+                "workflow-automation",
+                "api-available"
+              ],
+              "category_id": "ai-coding",
+              "category_name": "AI Coding & Developer Tools",
+              "subcategory_id": "coding-agents",
+              "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
+              "additional_categories": []
+            },
+            {
+              "name": "T3 Code",
+              "slug": "t3-codes",
+              "url": "https://t3.codes/",
+              "desc": "Open-source control plane that consolidates Claude Code, Codex, Antigravity, OpenCode, Cursor, and Grok into one unified interface, with no token reselling, one-click PR generation, and cross-platform support.",
+              "type": "open-source",
+              "github_stars": 27880,
+              "pricing_model": "open-source",
               "pricing_starting": null,
               "user_count": null,
               "tags": [
@@ -6335,6 +6387,32 @@ const landscapeData = {
               "all_tags": [
                 "agents",
                 "api-available"
+              ],
+              "category_id": "ai-coding",
+              "category_name": "AI Coding & Developer Tools",
+              "subcategory_id": "dev-environment",
+              "subcategory_name": "Dev Environment",
+              "additional_categories": []
+            },
+            {
+              "name": "Herdr",
+              "slug": "herdr",
+              "url": "https://herdr.dev/",
+              "desc": "Persistent terminal runtime for AI coding agents that keeps sessions alive across disconnects, unifies local and remote machines into one workspace, and shows at-a-glance status for every running agent.",
+              "type": "open-source",
+              "github_stars": 44301,
+              "pricing_model": "open-source",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "self-hosted",
+                "real-time"
+              ],
+              "all_tags": [
+                "agents",
+                "self-hosted",
+                "real-time"
               ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
@@ -7481,6 +7559,36 @@ const landscapeData = {
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "model-routers",
               "subcategory_name": "Model Routers & Gateways",
+              "additional_categories": []
+            }
+          ]
+        },
+        {
+          "id": "networking",
+          "name": "Networking & Secure Connectivity",
+          "tools": [
+            {
+              "name": "Tailscale",
+              "slug": "tailscale",
+              "url": "https://tailscale.com/",
+              "desc": "Zero Trust, identity-based mesh VPN built on WireGuard that connects remote teams, multi-cloud environments, CI/CD pipelines, edge devices, and AI workloads without exposing infrastructure to the public internet.",
+              "type": "commercial",
+              "github_stars": 37636,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "self-hosted",
+                "api-available"
+              ],
+              "all_tags": [
+                "self-hosted",
+                "api-available"
+              ],
+              "category_id": "ai-infrastructure",
+              "category_name": "AI Infrastructure (Inference, Compute, Routing)",
+              "subcategory_id": "networking",
+              "subcategory_name": "Networking & Secure Connectivity",
               "additional_categories": []
             }
           ]
@@ -11181,6 +11289,10 @@ const landscapeData = {
             "model-routers": {
               "name": "Model Routers & Gateways",
               "description": "LLM routing and gateway services"
+            },
+            "networking": {
+              "name": "Networking & Secure Connectivity",
+              "description": "Secure networking for distributed AI agents, self-hosted model infra, and remote compute"
             }
           }
         },
