@@ -4,8 +4,18 @@
      Param: active = "search" | "landscape" | "guides" (optional).
      Variable items (Admin, + Suggest) sit left of a right-anchored fixed
      group (Search · Landscape · Guides · auth) so the fixed trio never
-     shifts position between pages. -->
+     shifts position between pages.
+     Below 768px the .nav-links element itself becomes the slide-down drawer
+     (css/mobile.css + js/nav-drawer.js); .nav-toggle is display:none on
+     desktop, so the desktop toolbar is unchanged. -->
 <div class="header-content">
+  <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-drawer" aria-label="Open menu">
+    <svg class="nav-toggle-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true">
+      <path class="nav-toggle-bar nav-toggle-bar-top" d="M4 7h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path class="nav-toggle-bar nav-toggle-bar-mid" d="M4 12h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path class="nav-toggle-bar nav-toggle-bar-bot" d="M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
   <a href="/" data-spa-link class="logo">
     <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -14,7 +24,7 @@
     </svg>
     <span class="logo-text">AI Tool Review</span>
   </a>
-  <nav class="nav-links">
+  <nav class="nav-links" id="nav-drawer" aria-label="Main">
     <div class="nav-variable">
       <!-- hidden until nav-init.js confirms the DB is reachable -->
       <button class="suggest-btn-toolbar" id="suggest-open" type="button" hidden>+ Suggest a tool</button>

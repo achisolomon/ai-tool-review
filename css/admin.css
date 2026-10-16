@@ -1219,3 +1219,9 @@
         to { opacity: 1; }
     }
 }
+
+/* Reviewer hints in the suggestion payload table (e.g. derived name, no description) */
+.payload-note {
+    color: var(--vscode-text-muted, #9d9d9d);
+    font-style: italic;
+}

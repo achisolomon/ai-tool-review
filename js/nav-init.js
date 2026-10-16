@@ -8,14 +8,19 @@
     if (window.AuthUI) window.AuthUI.init('auth-container');
   }
 
+  // Wires every "+ Suggest a tool" trigger: the toolbar/drawer button and the
+  // mobile quick-action bar button (_includes/mobile-cta-bar.html). Both are
+  // revealed together, only once Suggest has loaded, so neither is ever dead.
   function wireSuggest() {
-    var btn = document.getElementById('suggest-open');
-    if (btn && window.Suggest) {
+    if (!window.Suggest) return;
+    ['suggest-open', 'suggest-open-bar'].forEach(function (id) {
+      var btn = document.getElementById(id);
+      if (!btn) return;
       btn.hidden = false; // revealed only when the DB is healthy
       btn.addEventListener('click', function (e) {
         window.Suggest.open({ mode: 'add', trigger: e.currentTarget });
       });
-    }
+    });
   }
 
   async function initAdminBadge() {

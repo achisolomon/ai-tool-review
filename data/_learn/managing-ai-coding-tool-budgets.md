@@ -154,7 +154,7 @@ How each option stacks up *specifically for managing team AI coding budgets* —
 | Large org, complex team hierarchy | Bifrost |
 | Just need visibility first | [Helicone](/tools/helicone/) |
 
-<p style="margin-top:1.25rem;"><a href="/?subcategory=model-routers"><strong>→ Browse all AI gateways &amp; model routers on AI Tool Review</strong></a> — the full category of tools that can meter and govern AI spend.</p>
+<p style="margin-top:1.25rem;"><a href="/?subcategory=llm-gateway"><strong>→ Browse all AI gateways &amp; model routers on AI Tool Review</strong></a> — the full category of tools that can meter and govern AI spend.</p>
 
 <h2 id="manual">Doing It Manually (Without a Proxy)</h2>
 
