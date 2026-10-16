@@ -44,4 +44,5 @@ exclude:
   - scripts
   - vendor
   - .bundle
+  - marketing
 
