@@ -3054,6 +3054,32 @@ const landscapeData = {
           "name": "Recruiting / HR",
           "tools": [
             {
+              "name": "Alex",
+              "slug": "alex",
+              "url": "https://www.alex.com/",
+              "desc": "AI recruiter that runs end-to-end hiring: live interviews, resume screening, identity verification, and scheduling.",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "enterprise",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "real-time",
+                "multimodal"
+              ],
+              "all_tags": [
+                "agents",
+                "real-time",
+                "multimodal"
+              ],
+              "category_id": "vertical-ai",
+              "category_name": "Vertical AI (Industry-Specific)",
+              "subcategory_id": "recruiting",
+              "subcategory_name": "Recruiting / HR",
+              "additional_categories": []
+            },
+            {
               "name": "Eightfold",
               "slug": "eightfold",
               "url": "https://eightfold.ai/",
