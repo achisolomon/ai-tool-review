@@ -66,6 +66,7 @@ main,
 .about-container,
 .contact-container,
 .privacy-container,
+.terms-container,
 .changes-container {
     position: relative;
     z-index: var(--z-content);

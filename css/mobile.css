@@ -866,6 +866,7 @@
     .about-container,
     .contact-container,
     .privacy-container,
+    .terms-container,
     .changes-container {
         padding: 1.5rem var(--mobile-gutter) 2.5rem;
         font-size: 15px;
@@ -879,6 +880,7 @@
     .about-container table,
     .contact-container table,
     .privacy-container table,
+    .terms-container table,
     .changes-container table {
         display: block;
         max-width: 100%;
@@ -889,6 +891,7 @@
     .about-container h1,
     .contact-container h1,
     .privacy-container h1,
+    .terms-container h1,
     .changes-container h1 {
         font-size: 26px;
         line-height: 1.25;
@@ -897,6 +900,7 @@
     .about-container h2,
     .contact-container h2,
     .privacy-container h2,
+    .terms-container h2,
     .changes-container h2 {
         font-size: 20px;
         line-height: 1.3;
