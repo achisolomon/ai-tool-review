@@ -15,6 +15,8 @@ founded_year: 2026
 headquarters: "T3 Tools Inc."
 tags:
   - agents
+  - agent-orchestration
+  - agent-management
   - workflow-automation
   - api-available
 last_verified: "2026-10-16"
