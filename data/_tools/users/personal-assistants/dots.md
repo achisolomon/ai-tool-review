@@ -1,5 +1,5 @@
 ---
-name: "dots"
+name: "OpenAI dots"
 slug: "dots"
 website: "https://openai.com/index/introducing-dots/"
 type: "commercial"
@@ -35,13 +35,13 @@ confidence_score: 0.85
 ## Overview
 
 <div class="overview">
-<p>dots is OpenAI's always-on personal agent, announced at DevDay on September 29, 2026. Unlike a chat session, a dot runs continuously on its own cloud computer, pursuing goals a user sets with minimal ongoing supervision. Users can name and customize their primary dot, message it through ChatGPT, Slack, or Microsoft Teams, and connect it to more than 4,000 apps via ChatGPT's plugin ecosystem. OpenAI positions dots as a step from an "answering AI" toward a "working AI," with plans for teams of specialist dots collaborating on a user's behalf over time.</p>
+<p>OpenAI dots is OpenAI's always-on personal agent, announced at DevDay on September 29, 2026. Unlike a chat session, a dot runs continuously on its own cloud computer, pursuing goals a user sets with minimal ongoing supervision. Users can name and customize their primary dot, message it through ChatGPT, Slack, or Microsoft Teams, and connect it to more than 4,000 apps via ChatGPT's plugin ecosystem. OpenAI positions dots as a step from an "answering AI" toward a "working AI," with plans for teams of specialist dots collaborating on a user's behalf over time.</p>
 </div>
 
 ## The Verdict
 
 <div class="verdict">
-  <h3>Who Should Use dots?</h3>
+  <h3>Who Should Use OpenAI dots?</h3>
   <div class="verdict-grid">
     <div class="verdict-section">
       <h4>Best For</h4>
@@ -133,7 +133,7 @@ confidence_score: 0.85
 
 <div class="comparison" markdown="1">
 
-| Feature | dots | Meta Muse | ChatGPT (standard) |
+| Feature | OpenAI dots | Meta Muse | ChatGPT (standard) |
 |---------|------|-----------|---------------------|
 | Always-on background execution | Yes | Yes | No |
 | App integrations | 4,000+ via plugins | Limited | Limited (via plugins/GPTs) |

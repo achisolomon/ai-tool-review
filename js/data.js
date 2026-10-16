@@ -2105,7 +2105,7 @@ const landscapeData = {
           "name": "Personal Assistants & Browsers",
           "tools": [
             {
-              "name": "dots",
+              "name": "OpenAI dots",
               "slug": "dots",
               "url": "https://openai.com/index/introducing-dots/",
               "desc": "OpenAI's always-on personal agent in ChatGPT that works toward your goals in the background across 4,000+ connected apps",
