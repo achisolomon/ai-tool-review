@@ -14,6 +14,8 @@ pricing_model: "open-source"
 founded_year: 2026
 tags:
   - agents
+  - agent-orchestration
+  - agent-management
   - workflow-automation
   - self-hosted
 last_verified: "2026-10-16"

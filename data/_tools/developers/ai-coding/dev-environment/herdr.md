@@ -15,6 +15,8 @@ founded_year: 2026
 headquarters: "Herdr, Inc."
 tags:
   - agents
+  - agent-orchestration
+  - agent-management
   - self-hosted
   - real-time
 last_verified: "2026-10-16"

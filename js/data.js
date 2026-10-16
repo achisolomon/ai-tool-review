@@ -5846,6 +5846,34 @@ const landscapeData = {
               "additional_categories": []
             },
             {
+              "name": "Conductor",
+              "slug": "conductor",
+              "url": "https://www.conductor.build/",
+              "desc": "Mac app that runs parallel Claude Code, Codex, and Cursor agents in isolated git worktrees, so you can monitor, review, and merge their changes from one control surface.",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "agent-orchestration",
+                "agent-management"
+              ],
+              "all_tags": [
+                "agents",
+                "agent-orchestration",
+                "agent-management",
+                "workflow-automation",
+                "api-available"
+              ],
+              "category_id": "ai-coding",
+              "category_name": "AI Coding & Developer Tools",
+              "subcategory_id": "coding-agents",
+              "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
+              "additional_categories": []
+            },
+            {
               "name": "Continue",
               "slug": "continue",
               "url": "https://continue.dev/",
@@ -6035,11 +6063,13 @@ const landscapeData = {
               "user_count": null,
               "tags": [
                 "agents",
-                "workflow-automation",
-                "self-hosted"
+                "agent-orchestration",
+                "agent-management"
               ],
               "all_tags": [
                 "agents",
+                "agent-orchestration",
+                "agent-management",
                 "workflow-automation",
                 "self-hosted"
               ],
@@ -6105,11 +6135,13 @@ const landscapeData = {
               "user_count": null,
               "tags": [
                 "agents",
-                "workflow-automation",
-                "api-available"
+                "agent-orchestration",
+                "agent-management"
               ],
               "all_tags": [
                 "agents",
+                "agent-orchestration",
+                "agent-management",
                 "workflow-automation",
                 "api-available"
               ],
@@ -6131,11 +6163,13 @@ const landscapeData = {
               "user_count": null,
               "tags": [
                 "agents",
-                "workflow-automation",
-                "api-available"
+                "agent-orchestration",
+                "agent-management"
               ],
               "all_tags": [
                 "agents",
+                "agent-orchestration",
+                "agent-management",
                 "workflow-automation",
                 "api-available"
               ],
@@ -6406,11 +6440,13 @@ const landscapeData = {
               "user_count": null,
               "tags": [
                 "agents",
-                "self-hosted",
-                "real-time"
+                "agent-orchestration",
+                "agent-management"
               ],
               "all_tags": [
                 "agents",
+                "agent-orchestration",
+                "agent-management",
                 "self-hosted",
                 "real-time"
               ],
@@ -11429,6 +11465,16 @@ const landscapeData = {
           "slug": "agent-to-agent",
           "name": "Agent-to-Agent",
           "description": "Agents coordinate, communicate, or hand off work to other agents (multi-agent / A2A)"
+        },
+        {
+          "slug": "agent-orchestration",
+          "name": "Agent Orchestration",
+          "description": "Runs and coordinates many AI coding agents in parallel, often in isolated workspaces"
+        },
+        {
+          "slug": "agent-management",
+          "name": "Agent Management",
+          "description": "Monitors, controls, or manages running AI agents from a single interface, including remotely"
         },
         {
           "slug": "multimodal",
