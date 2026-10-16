@@ -32,6 +32,9 @@ Hard rules for this path:
 - Ask the user nothing except the single "ship it?" in step 6. Pick the
   worktree name, category, tags and wording yourself.
 - `<session_id>` is in the SessionStart message.
+- Never use AskUserQuestion, and never ask about category, tags or naming:
+  decide from the taxonomy below. Never spawn subagents to read code or
+  poll with wake-ups; for 1-2 tools do everything inline.
 
 1. **Start** (creates worktree `tool-<slug>`, auto-suffixed on collision):
    `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" start <slug> <session_id>`
@@ -54,6 +57,9 @@ Hard rules for this path:
    only the key-stats badge shows the number. Fix and re-run until green.
 5. **Serve** (background, prints the URL):
    `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" serve <session_id>`
+   It only prints `SERVING` after the page answered 200. Do not curl
+   localhost yourself: from the sandbox it always fails (exit 7) even though
+   the server is up.
 6. **Ask once:** give the user `http://localhost:<port>/tools/<slug>/`, a
    2-3 line summary (category, tags, anything surprising) and ask "ship it?".
 7. **Ship** (only after the user says yes): commits, merges origin/main,
@@ -61,12 +67,22 @@ Hard rules for this path:
    `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" ship <session_id> "feat: add <Tool> tool page"`
 8. **Wait for CI + deploy** with `run_in_background: true`, so the user is
    not blocked: `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" ci <session_id>`
-   then report `https://aitoolreview.ai/tools/<slug>/` (or the failure).
+   then report `https://aitoolreview.ai/tools/<slug>/`.
+   **If CI is red**, `ci` already prints the failing tests and assertions
+   (or run `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" cilog <session_id>`). Never run raw `gh`/`git` to
+   investigate. A failing test is often brittle test data broken by the new
+   page (e.g. a hardcoded count of tools on a domain): fix the test or page
+   in the worktree, run `check`, then `ship` again (it commits every change
+   in the worktree, tests included). Don't ask the user again for this
+   follow-up push: it is part of the shipment they approved.
 9. **Clean up:** `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" end <session_id>`
    (stops the server, removes the merged worktree).
 
-If `ship` reports a merge conflict in a `.md` file, resolve it in the
-worktree with Edit and run `ship` again.
+If `ship` reports a merge conflict, run
+`bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" maindiff <session_id> <file>`
+for each file it names, edit the file in the worktree so it keeps main's
+changes plus yours (if main already has an equivalent fix, take main's),
+then run `ship` again.
 
 ## Step 0: Check if Tool Already Exists (REQUIRED)
 
