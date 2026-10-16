@@ -15,7 +15,7 @@ per the user's instruction for this change.
 | T-002 | package.json: honor `$PORT` in `serve:jekyll`; expose check script as npm script | T-001 | yes | in-review |
 | T-003 | session_worktree.py: fix port-busy false positive, symlink vendor/, update start message | - | yes | in-review (parent-repo file, not tracked in this git history) |
 | T-004 | Merge the three SKILL.md copies into the repo copy as single source of truth, with fast path up front | T-001, T-002 | no (reads T-001/T-002 output to write exact commands) | in-review |
-| T-005 | Permission allowlist for the check script and git/gh commands in ai-tool-review | T-001, T-002 | yes | todo |
+| T-005 | Permission allowlist for the check script and git/gh commands in ai-tool-review | T-001, T-002 | yes | blocked (see note below the table) |
 
 Manual follow-ups that are NOT Developer tasks (listed here so nothing is
 lost, owners noted):
@@ -26,6 +26,46 @@ lost, owners noted):
   it touches paths outside this repo.
 - Team Lead: add `eval "$(rbenv init -)"` to `~/.zshrc`. Outside repo scope,
   touches the user's shell profile.
+- **Team Lead or user: apply T-005's settings.json edit by hand.** The
+  Developer's attempt to write these entries to
+  `"ai landscape/.claude/settings.json"` with the Edit tool was refused by
+  the harness's own self-modification guardrail (editing a live permissions
+  file is blocked regardless of delegation), so the file is unchanged. The
+  exact entries needed, additive only, no removal:
+  - `permissions.allow` (new entries, same array style as the existing
+    ones): `"Bash(bash scripts/tool-page-check.sh *)"`,
+    `"Bash(npm run tool-page-check)"`, `"Bash(git -C ai-tool-review add *)"`,
+    `"Bash(git -C ai-tool-review commit *)"`,
+    `"Bash(git -C ai-tool-review push *)"`, `"Bash(gh run list *)"`,
+    `"Bash(gh run watch *)"`, `"Bash(gh run view *)"`.
+  - `sandbox.excludedCommands` (confirmed to exist in this Claude Code
+    version via `/docs/en/sandboxing`; array of command patterns, matched
+    against the whole call text, `cd`/redirects/`$(...)` keep the call
+    sandboxed regardless so this only helps commands run without a `cd`
+    prefix): `"npm run tool-page-check"`,
+    `"bash scripts/tool-page-check.sh *"`. Do not add a `git push` entry
+    here: excluding it from the sandbox would not remove the skill's
+    separate in-conversation push question (that question is unaffected by
+    either setting), but it does mean the push runs with full
+    unsandboxed access, which is a bigger exception than this task asked
+    for; `permissions.allow`'s `git -C ai-tool-review push *` entry already
+    covers the tool-approval-prompt problem without that.
+  - The push allowlist entry (`permissions.allow`'s `git -C ai-tool-review
+    push *`) removes only the tool-approval PROMPT; it is not the user's
+    standing approval to push unattended. The skill (T-004's SKILL.md, fast
+    path step 7) still asks the user in-conversation before every push,
+    every time. These are two independent gates and this allowlist change
+    does not touch the second one.
+
+Team Lead item C (playwright.config.js / port-in-use): no change needed.
+`playwright.config.js` already reads `PORT` (defaulting to 8080) and sets
+`reuseExistingServer: !process.env.CI && !process.env.PREPUSH`, so outside
+CI/pre-push it reuses an already-running server rather than failing when the
+port is occupied. Verified: started `node server.js` on 8080 by hand, then
+ran `npx playwright test tests/data-integrity.spec.js --workers=1` against
+that occupied port; Playwright reused it and all 14 tests passed in 550ms.
+`tests/data-integrity.spec.js` itself needs no browser at all (its own
+header comment says so); this is purely a config-already-correct finding.
 
 ## Rules these tasks must respect
 
