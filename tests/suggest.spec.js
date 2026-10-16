@@ -286,7 +286,12 @@ test.describe('Test 3: Mocked-auth form tests', () => {
   test('3b: an exact URL already on the map shows one notice line and disables submit', async ({ page }) => {
     await openNewToolForm(page);
     const existing = await page.evaluate(() => {
-      const tool = window.SuggestLogic.allTools(window.landscapeData).find((t) => /^https?:\/\/[^/]+\/?$/.test(t.url || ''));
+      // Pick a root-URL tool whose host no other tool shares, so the notice has exactly one link
+      // regardless of category order (e.g. chatgpt.com hosts both ChatGPT and ChatGPT Search).
+      const all = window.SuggestLogic.allTools(window.landscapeData);
+      const host = (t) => { try { return new URL(t.url).hostname.replace(/^www\./, ''); } catch { return ''; } };
+      const tool = all.find((t) => /^https?:\/\/[^/]+\/?$/.test(t.url || '')
+        && all.filter((o) => o.slug !== t.slug && host(o) === host(t)).length === 0);
       return { name: tool.name, host: new URL(tool.url).hostname.replace(/^www\./, '') };
     });
 
