@@ -1,20 +1,9 @@
 ---
 ---
 <!--
-    TODO: UPDATE THIS PRIVACY POLICY WHEN ADDING USER DATABASE/REVIEWS
-
-    When you add user accounts and reviews, update these sections:
-    - Section 2.1: Add account info, profile data, reviews, ratings
-    - Section 3: Add account management, displaying reviews publicly
-    - Section 5: Add "reviews shown publicly" disclosure
-    - Section 6: REMOVE the "we don't store data" box - you WILL have user data
-    - Section 7: Add retention periods for accounts and reviews
-    - NEW: Add "Account Security" section (password encryption, etc.)
-
-    Also implement:
-    - Data export feature (GDPR requirement)
-    - Account deletion flow
-    - Review anonymization policy
+    Keep in sync with what the site stores (supabase/migrations) and the
+    Google OAuth consent screen. Still to build: self-serve data export and
+    account deletion (today both are handled by email).
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +13,7 @@
     <link rel="icon" type="image/x-icon" href="/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - AI Tool Review</title>
-    <meta name="description" content="Privacy Policy for AI Tool Review. Learn how we handle your data, cookies, and advertising.">
+    <meta name="description" content="Privacy Policy for AI Tool Review. Learn how we handle your account data, reviews, cookies, and advertising.">
     <meta name="robots" content="noindex">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/auth.css">
@@ -116,22 +105,25 @@
         <a href="index.html" class="back-link">&larr; Back to AI Tool Review</a>
 
         <h1>Privacy Policy</h1>
-        <p class="last-updated">Last updated: May 17, 2026</p>
+        <p class="last-updated">Last updated: October 16, 2026</p>
 
         <div class="highlight-box">
-            <strong>Summary:</strong> We use Google Analytics for site statistics and Google AdSense for personalized advertising. You can opt out of personalized ads at any time. We do not sell your personal information to third parties.
+            <strong>Summary:</strong> If you sign in with Google, we store your name, email address, and profile picture so you can post reviews and suggest tools. Reviews you post are public. We use Google Analytics for site statistics and Google AdSense for personalized advertising, and you can opt out of personalized ads at any time. We do not sell your personal information.
         </div>
 
         <h2>1. Who We Are</h2>
-        <p>AI Tool Review ("we", "us", "our") operates the website at <strong>aitoolreview.com</strong>. We provide a directory of AI tools to help users discover and compare AI solutions.</p>
+        <p>AI Tool Review ("we", "us", "our") operates the website at <strong>aitoolreview.ai</strong>. We provide a directory of AI tools to help users discover and compare AI solutions.</p>
 
         <h2>2. Information We Collect</h2>
 
         <h3>2.1 Information You Provide</h3>
-        <p>We may collect information you voluntarily provide, such as:</p>
+        <p>Browsing the site does not require an account. If you choose to sign in, we collect:</p>
         <ul>
-            <li>Email address (if you subscribe to updates)</li>
-            <li>Feedback or messages you send us</li>
+            <li><strong>Google account basics:</strong> When you sign in with Google, we receive your name, email address, and profile picture. We do not receive your Google password or access to anything else in your Google account.</li>
+            <li><strong>Reviews:</strong> The display name you post under, your ratings, review title and text, and the company size you select.</li>
+            <li><strong>Tool suggestions:</strong> The tool or change you suggest, your reasoning, and an optional credit name (you choose whether it is shown publicly).</li>
+            <li><strong>Account activity:</strong> When your account was created and when you last signed in.</li>
+            <li><strong>Messages:</strong> Feedback or emails you send us.</li>
         </ul>
 
         <h3>2.2 Information Collected Automatically</h3>
@@ -146,6 +138,9 @@
         <h2>3. How We Use Your Information</h2>
         <p>We use collected information to:</p>
         <ul>
+            <li>Sign you in and keep your account working</li>
+            <li>Publish your reviews and ratings on tool pages</li>
+            <li>Review your tool suggestions and email you when one is approved or declined</li>
             <li>Improve our website and user experience</li>
             <li>Understand which tools and categories are most popular</li>
             <li>Display personalized advertisements based on your interests</li>
@@ -153,6 +148,9 @@
             <li>Respond to your inquiries</li>
             <li>Protect against fraud and abuse</li>
         </ul>
+
+        <h3>3.1 Google User Data</h3>
+        <p>We use the information we receive from Google Sign-In (name, email address, profile picture) only to create and run your AI Tool Review account, show your name and picture next to content you post, and contact you about your suggestions. We do not sell this data, use it for advertising, or share it with third parties except the service providers listed in section 5 that help us run the site. Our use of information received from Google APIs follows the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API Services User Data Policy</a>, including its Limited Use requirements.</p>
 
         <h2>4. Cookies and Tracking Technologies</h2>
 
@@ -237,6 +235,8 @@
 
         <p>We may share information with:</p>
         <ul>
+            <li><strong>Other users:</strong> Reviews you post, with your display name, are public. Your email address is never shown publicly.</li>
+            <li><strong>Service providers:</strong> Supabase (sign-in and database hosting), Google (sign-in), Resend (sending suggestion emails), GitHub Pages and Cloudflare (website hosting and delivery). They process data only to provide these services to us.</li>
             <li><strong>Advertising partners:</strong> Google AdSense and its partners to display relevant ads. This may include your browsing activity, device information, and ad interactions.</li>
             <li><strong>Analytics providers:</strong> Google Analytics to understand site usage</li>
             <li><strong>Legal requirements:</strong> If required by law or to protect our rights</li>
@@ -259,7 +259,7 @@
         <p>To exercise these rights, contact us at <strong>contact@aitoolreview.ai</strong>.</p>
 
         <div class="highlight-box">
-            <strong>Important:</strong> AI Tool Review does not maintain user accounts or databases. Data collected through Google Analytics and AdSense is managed by Google. To access, download, or delete this data, visit your <a href="https://myaccount.google.com/dashboard" target="_blank" rel="noopener">Google Account Dashboard</a>.
+            <strong>Your account data:</strong> To get a copy of your account data, or to delete your account, email <strong>contact@aitoolreview.ai</strong> from the address you sign in with. You can also edit or delete your own reviews from <a href="/my-reviews.html">My Reviews</a>. Data collected through Google Analytics and AdSense is managed by Google; to access or delete it, visit your <a href="https://myaccount.google.com/dashboard" target="_blank" rel="noopener">Google Account Dashboard</a>. You can remove AI Tool Review's access to your Google account at any time from your <a href="https://myaccount.google.com/connections" target="_blank" rel="noopener">Google third-party connections</a>.
         </div>
 
         <h3>6.1 For California Residents (CCPA)</h3>
@@ -285,6 +285,9 @@
         <ul>
             <li><strong>Analytics data:</strong> 26 months (Google Analytics default)</li>
             <li><strong>Advertising data:</strong> Managed by Google according to their <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">privacy policy</a></li>
+            <li><strong>Account and profile:</strong> Until you delete your account</li>
+            <li><strong>Tool suggestions:</strong> Until you delete your account</li>
+            <li><strong>Reviews:</strong> Until you delete them. If you delete your account, your reviews are unlinked from it but may stay on the site under the display name you chose, unless you ask us to remove them too</li>
             <li><strong>Contact information:</strong> Until you request deletion</li>
         </ul>
 
@@ -293,6 +296,7 @@
         <ul>
             <li>HTTPS encryption for all connections</li>
             <li>Regular security updates</li>
+            <li>Database access rules that let each user read and change only their own private data</li>
             <li>Limited access to personal data</li>
         </ul>
         <p>However, no method of transmission over the Internet is 100% secure.</p>
