@@ -33,8 +33,15 @@ Hard rules for this path:
   worktree name, category, tags and wording yourself.
 - `<session_id>` is in the SessionStart message.
 - Never use AskUserQuestion, and never ask about category, tags or naming:
-  decide from the taxonomy below. Never spawn subagents to read code or
-  poll with wake-ups; for 1-2 tools do everything inline.
+  decide from the taxonomy below.
+- Subagents are READ-ONLY helpers for speed: use `subagent_type: "Explore"`
+  (it cannot edit files) with `model: "haiku"`, launched in parallel in ONE
+  message, each with one research question (e.g. official site + pricing,
+  reviews/G2 via WebSearch, GitHub README). They return facts and source
+  URLs; only the main session writes the page, runs `tool-page.sh` and
+  ships. Never poll them (no ScheduleWakeup/ListAgents/ReadNotifications
+  loops): their results arrive automatically. Skip them for a lookup you
+  can do in 1-2 tool calls yourself.
 
 1. **Start** (creates worktree `tool-<slug>`, auto-suffixed on collision):
    `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" start <slug> <session_id>`
@@ -47,7 +54,8 @@ Hard rules for this path:
    `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" urls <url> <url> ...`
    `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" stars <owner/repo>`
    Watch for official vs. third-party sites (e.g. a site linking a fork).
-   For 3+ tools, research in parallel with haiku subagents instead.
+   To go faster, run the research as 2-3 parallel read-only Explore
+   subagents (see rules above) while you run `exists`/`urls`/`stars`.
 3. **Write the page** with the Write tool into the worktree path printed by
    `start`, following the taxonomy, tags (`data/_tools/_tags.yaml` is the
    source of truth) and content structure below. Never edit `js/data.js`.
