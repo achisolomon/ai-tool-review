@@ -174,7 +174,10 @@ required and must match a folder name, or the tool is silently dropped from
 
 ## Valid Tags (Use Only These)
 
-Common tags used across the site (pick 2-5 relevant ones):
+Common tags used across the site (pick 2-5 relevant ones). The source of
+truth is `data/_tools/_tags.yaml`; `npm run validate` rejects anything not in
+it, and also rejects a tag that matches a category/subcategory name (so
+`open-source` is NOT a tag: use `type: "open-source"` instead).
 
 | Tag | Use When |
 |-----|----------|
@@ -191,9 +194,7 @@ Common tags used across the site (pick 2-5 relevant ones):
 | `serverless` | Serverless deployment option |
 | `multimodal` | Handles multiple modalities (text, image, audio) |
 | `browser-automation` | Browser/web automation |
-| `open-source` | Open-source project |
 | `mcp-server` | MCP protocol support |
-| `enterprise` | Enterprise-focused features |
 | `real-time` | Real-time processing |
 | `sandboxes` | Sandboxed execution environment |
 

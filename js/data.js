@@ -1495,6 +1495,30 @@ const landscapeData = {
               "additional_categories": []
             },
             {
+              "name": "OmniVoice",
+              "slug": "omnivoice",
+              "url": "https://omnivoice.app/",
+              "desc": "Open-source zero-shot text-to-speech and voice cloning model covering 600+ languages, from the k2-fsa (Kaldi) team, with a paid hosted web app at omnivoice.app",
+              "type": "open-source",
+              "github_stars": 14631,
+              "pricing_model": "open-source",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "self-hosted",
+                "python"
+              ],
+              "all_tags": [
+                "self-hosted",
+                "python"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "voice-speech",
+              "subcategory_name": "Voice / Speech",
+              "additional_categories": []
+            },
+            {
               "name": "PlayHT",
               "slug": "playht",
               "url": "https://playhtai.com/",
