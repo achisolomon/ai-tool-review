@@ -2250,10 +2250,10 @@ const landscapeData = {
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-                "multilingual"
+                "hebrew"
               ],
               "all_tags": [
-                "multilingual"
+                "hebrew"
               ],
               "category_id": "transcription",
               "category_name": "Transcription",
@@ -2273,11 +2273,13 @@ const landscapeData = {
               "user_count": null,
               "tags": [
                 "real-time",
-                "self-hosted"
+                "self-hosted",
+                "hebrew"
               ],
               "all_tags": [
                 "real-time",
-                "self-hosted"
+                "self-hosted",
+                "hebrew"
               ],
               "category_id": "transcription",
               "category_name": "Transcription",
@@ -6556,11 +6558,13 @@ const landscapeData = {
               "user_count": null,
               "tags": [
                 "mcp-server",
-                "doc-to-markdown"
+                "doc-to-markdown",
+                "hebrew"
               ],
               "all_tags": [
                 "mcp-server",
-                "doc-to-markdown"
+                "doc-to-markdown",
+                "hebrew"
               ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
@@ -6687,6 +6691,33 @@ const landscapeData = {
                 "coding",
                 "cli",
                 "cost-reduction"
+              ],
+              "category_id": "ai-coding",
+              "category_name": "AI Coding & Developer Tools",
+              "subcategory_id": "llm-skills",
+              "subcategory_name": "LLM Skills",
+              "additional_categories": []
+            },
+            {
+              "name": "Skills-IL",
+              "slug": "skills-il",
+              "url": "https://agentskills.co.il/",
+              "desc": "Free, open-source library of security-reviewed AI agent skills and MCP servers built for Israeli use cases, from Hebrew document generation to Israeli tax and government-services automation.",
+              "type": "oss",
+              "github_stars": null,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "skill",
+                "mcp-server",
+                "no-code"
+              ],
+              "all_tags": [
+                "skill",
+                "mcp-server",
+                "no-code",
+                "hebrew"
               ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
@@ -11687,6 +11718,11 @@ const landscapeData = {
           "description": "Supports multiple human languages"
         },
         {
+          "slug": "hebrew",
+          "name": "Hebrew",
+          "description": "Native Hebrew language support (UI, input, or output)"
+        },
+        {
           "slug": "tracing",
           "name": "Tracing",
           "description": "Request/call tracing"
@@ -11710,18 +11746,6 @@ const landscapeData = {
           "slug": "cost-reduction",
           "name": "Cost Reduction",
           "description": "Measurably reduces AI token/compute costs"
-        }
-      ],
-      "language-support": [
-        {
-          "slug": "hebrew",
-          "name": "Hebrew",
-          "description": "Hebrew language support"
-        },
-        {
-          "slug": "multilingual",
-          "name": "Multilingual",
-          "description": "Supports multiple languages beyond English"
         }
       ]
     }

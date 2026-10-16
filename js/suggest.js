@@ -435,50 +435,56 @@
     `;
   }
 
+  // Only the tool link is required; everything else lives in one collapsed
+  // "Add details (optional)" section so adding a tool is a one-field task.
+  // The link uses aria-required (validated in readToolUrl) rather than
+  // `required`, so the field isn't painted red by :invalid before any input.
   function renderNewToolForm(user, taxonomy) {
     return `
       <form class="suggest-form" id="suggest-new-tool-form" novalidate>
         <div id="suggest-form-error" class="suggest-error" hidden></div>
 
         <div class="suggest-form-group">
-          <label for="suggest-name">Tool name <span class="required">*</span></label>
-          <input class="suggest-input" type="text" id="suggest-name" name="name"
-                 required maxlength="100" placeholder="e.g. Letta AI" autocomplete="off">
-          <div id="suggest-dup-warning" class="suggest-dup-warning" hidden></div>
+          <label for="suggest-website">Tool link</label>
+          <input class="suggest-input" type="text" inputmode="url" id="suggest-website" name="website"
+                 aria-required="true" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="off"
+                 placeholder="e.g. example.com or a GitHub repo"
+                 aria-describedby="suggest-website-error suggest-dup-warning">
+          <div id="suggest-website-error" class="suggest-field-error" role="alert" hidden></div>
+          <div id="suggest-dup-warning" class="suggest-dup-warning" aria-live="polite" hidden></div>
         </div>
 
-        <div class="suggest-form-group">
-          <label for="suggest-website">Website <span class="required">*</span></label>
-          <input class="suggest-input" type="url" id="suggest-website" name="website"
-                 required placeholder="https://example.com" autocomplete="off">
-        </div>
-
-        <div class="suggest-form-group">
-          <label for="suggest-description">One-line description <span class="required">*</span></label>
-          <textarea class="suggest-textarea" id="suggest-description" name="description"
-                    required minlength="10" maxlength="300"
-                    placeholder="What does this tool do? Be specific and concise."></textarea>
-          <div class="suggest-hint">10–300 characters</div>
-        </div>
-
-        <div class="suggest-form-group">
-          <label for="suggest-rationale">Why should it be added? (optional)</label>
-          <textarea class="suggest-textarea" id="suggest-rationale" name="rationale"
-                    maxlength="500"
-                    placeholder="Any context, use-cases, or why it's a good fit for the landscape…"></textarea>
-        </div>
-
-        <div class="suggest-collapsible" id="suggest-placement-collapsible">
+        <div class="suggest-collapsible" id="suggest-details-collapsible">
           <button class="suggest-collapsible-trigger"
                   type="button"
                   aria-expanded="false"
-                  aria-controls="suggest-placement-body">
-            Help us place it (optional)
+                  aria-controls="suggest-details-body">
+            Add details (optional)
             <span class="chevron" aria-hidden="true">▼</span>
           </button>
-          <div class="suggest-collapsible-body" id="suggest-placement-body">
+          <div class="suggest-collapsible-body" id="suggest-details-body">
+            <div class="suggest-form-group">
+              <label for="suggest-name">Tool name</label>
+              <input class="suggest-input" type="text" id="suggest-name" name="name"
+                     maxlength="100" placeholder="Leave blank and we'll use the link" autocomplete="off">
+            </div>
+
+            <div class="suggest-form-group">
+              <label for="suggest-description">One-line description</label>
+              <textarea class="suggest-textarea" id="suggest-description" name="description"
+                        maxlength="300"
+                        placeholder="What does this tool do?"></textarea>
+              <div class="suggest-hint">Optional, up to 300 characters</div>
+            </div>
+
+            <div class="suggest-form-group">
+              <label for="suggest-rationale">Why should it be added?</label>
+              <textarea class="suggest-textarea" id="suggest-rationale" name="rationale"
+                        maxlength="500"
+                        placeholder="Any context, use-cases, or why it's a good fit for the landscape…"></textarea>
+            </div>
+
             ${renderPlacementSection(taxonomy)}
-            ${renderTagGroups(taxonomy)}
           </div>
         </div>
 
@@ -486,7 +492,7 @@
 
         <div class="suggest-form-actions">
           <button class="suggest-btn" type="button" id="suggest-form-cancel">Cancel</button>
-          <button class="suggest-btn suggest-btn-primary" type="submit" id="suggest-form-submit">Submit suggestion</button>
+          <button class="suggest-btn suggest-btn-primary" type="submit" id="suggest-form-submit">${SUBMIT_LABEL}</button>
         </div>
       </form>
     `;
@@ -549,40 +555,75 @@
     });
   }
 
-  function wireDuplicateCheck(modal, taxonomy) {
-    const nameInput = modal.querySelector('#suggest-name');
-    const websiteInput = modal.querySelector('#suggest-website');
-    const dupWarning = modal.querySelector('#suggest-dup-warning');
+  const SUBMIT_LABEL = 'Submit suggestion';
+  const ALREADY_LISTED_LABEL = 'Already listed';
+  const MAX_DUP_LINKS = 3;
 
-    if (!nameInput) return;
+  function exactUrlMatches(website) {
+    if (!window.SuggestLogic || !window.landscapeData || !website) return [];
+    return window.SuggestLogic.findDuplicates({ website }, window.landscapeData);
+  }
+
+  // Shows "This tool is already listed: <link>" only when the exact URL is
+  // already on the map, and swaps the submit button for a disabled
+  // "Already listed" so the duplicate can't be submitted. Returns whether a
+  // match is showing.
+  function renderDuplicateNotice(modal, matches) {
+    const notice = modal.querySelector('#suggest-dup-warning');
+    const submitBtn = modal.querySelector('#suggest-form-submit');
+    const hasMatch = matches.length > 0;
+    if (submitBtn && !submitBtn.dataset.busy) {
+      submitBtn.disabled = hasMatch;
+      submitBtn.textContent = hasMatch ? ALREADY_LISTED_LABEL : SUBMIT_LABEL;
+    }
+    if (!notice) return hasMatch;
+    if (!hasMatch) {
+      notice.hidden = true;
+      notice.innerHTML = '';
+      return false;
+    }
+    const links = matches.slice(0, MAX_DUP_LINKS).map(t =>
+      `<a href="/tools/${encodeURIComponent(t.slug)}/">${escapeHtml(t.name)}</a>`
+    ).join(', ');
+    const more = matches.length > MAX_DUP_LINKS ? ` and ${matches.length - MAX_DUP_LINKS} more` : '';
+    notice.innerHTML = `This tool is already listed: ${links}${more}`;
+    notice.hidden = false;
+    return true;
+  }
+
+  function wireDuplicateCheck(modal) {
+    const websiteInput = modal.querySelector('#suggest-website');
+    if (!websiteInput) return;
 
     let dupTimer = null;
+    const check = () => renderDuplicateNotice(modal, exactUrlMatches(websiteInput.value.trim()));
 
-    function checkDuplicates() {
+    websiteInput.addEventListener('input', () => {
       clearTimeout(dupTimer);
-      dupTimer = setTimeout(() => {
-        if (!window.SuggestLogic || !window.landscapeData) return;
-        const name = nameInput.value.trim();
-        const website = websiteInput ? websiteInput.value.trim() : '';
-        if (!name && !website) { dupWarning.hidden = true; return; }
-        const dups = window.SuggestLogic.findDuplicates({ name, website }, window.landscapeData);
-        if (dups.length === 0) {
-          dupWarning.hidden = true;
-        } else {
-          const links = dups.map(t =>
-            `<a href="/tools/${escapeHtml(t.slug)}/" target="_blank" rel="noopener">${escapeHtml(t.name)}</a>`
-          ).join(', ');
-          dupWarning.innerHTML = `<strong>Possible match found:</strong> ${links} — please check if this tool is already listed before submitting.`;
-          dupWarning.hidden = false;
-        }
-      }, 400);
-    }
-
-    nameInput.addEventListener('input', () => {
-      checkDuplicates();
+      // Editing the link re-enables submit right away; re-check after a pause.
+      renderDuplicateNotice(modal, []);
+      dupTimer = setTimeout(check, 400);
     });
+    check(); // edit mode opens with a prefilled link
+  }
 
-    if (websiteInput) websiteInput.addEventListener('input', checkDuplicates);
+  // Validates and normalizes the tool link; shows a friendly inline error and
+  // returns null when it isn't a usable web address.
+  function readToolUrl(modal) {
+    const input = modal.querySelector('#suggest-website');
+    const errorEl = modal.querySelector('#suggest-website-error');
+    const raw = input ? input.value.trim() : '';
+    const url = raw ? window.SuggestLogic.normalizeToolUrl(raw) : null;
+    const message = !raw
+      ? 'Paste a link to the tool, like github.com/owner/repo or example.com.'
+      : (url ? '' : "That doesn't look like a web link. Try something like example.com.");
+    if (errorEl) {
+      errorEl.textContent = message;
+      errorEl.hidden = !message;
+    }
+    if (input) input.setAttribute('aria-invalid', String(!!message));
+    if (message && input) input.focus();
+    return url;
   }
 
   function wireCreditConsent(modal) {
@@ -611,24 +652,20 @@
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      // HTML5 validity check
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
+      const website = readToolUrl(modal);
+      if (!website) return;
+      if (renderDuplicateNotice(modal, exactUrlMatches(website))) return;
 
-      // Read fields
+      // Read fields (all optional apart from the link)
       const name = form.querySelector('#suggest-name')?.value.trim() || '';
-      const website = form.querySelector('#suggest-website')?.value.trim() || '';
       const description = form.querySelector('#suggest-description')?.value.trim() || '';
       const rationale = form.querySelector('#suggest-rationale')?.value.trim() || '';
 
-      // Placement
-      const placementOpen = form.querySelector('.suggest-collapsible-trigger')?.getAttribute('aria-expanded') === 'true';
+      // Placement counts once a subcategory is picked in the details section
       const track = form.querySelector('#suggest-track')?.value || null;
       const category = form.querySelector('#suggest-category')?.value || null;
       const subcategory = form.querySelector('#suggest-subcategory')?.value || null;
-      const placementProvided = placementOpen && !!subcategory;
+      const placementProvided = !!subcategory;
 
       // Tags
       const tags = Array.from(form.querySelectorAll('input[name="tag"]:checked')).map(i => i.value);
@@ -671,6 +708,7 @@
       }
 
       submitBtn.disabled = true;
+      submitBtn.dataset.busy = '1';
       submitBtn.textContent = 'Submitting…';
 
       try {
@@ -684,8 +722,7 @@
 
         if (error) {
           showError(modal, "Couldn't save your suggestion — please try again later.");
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Submit suggestion';
+          resetSubmit(submitBtn);
           return;
         }
 
@@ -698,17 +735,22 @@
             <div class="suggest-success">
               <div class="suggest-success-icon">✓</div>
               <h3>Thank you!</h3>
-              <p>Your suggestion for <strong>${escapeHtml(name)}</strong> has been submitted and is pending review.</p>
+              <p>Your suggestion for <strong>${escapeHtml(payload.name)}</strong> has been submitted and is pending review.</p>
               <a href="/my-suggestions.html">Track it under My Suggestions</a>
             </div>
           `;
         }
       } catch (err) {
         showError(modal, "Couldn't save your suggestion — please try again later.");
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Submit suggestion';
+        resetSubmit(submitBtn);
       }
     });
+  }
+
+  function resetSubmit(submitBtn) {
+    delete submitBtn.dataset.busy;
+    submitBtn.disabled = false;
+    submitBtn.textContent = SUBMIT_LABEL;
   }
 
   function showError(modal, msg) {
@@ -1797,12 +1839,12 @@
       const titleEl = modal.querySelector('#suggest-modal-title');
       if (titleEl) titleEl.textContent = 'Suggest a new tool';
       showInModal(modal, renderNewToolForm(user, taxonomy));
-      wireDuplicateCheck(modal, taxonomy);
+      wireDuplicateCheck(modal);
       wirePlacementCascade(modal, taxonomy);
       wireCreditConsent(modal);
       await wireNewToolSubmit(modal, taxonomy);
-      // Set focus to first input
-      const firstInput = modal.querySelector('#suggest-name');
+      // The link is the only required field: focus it
+      const firstInput = modal.querySelector('#suggest-website');
       if (firstInput) firstInput.focus();
     } else if (subMode === 'taxonomy') {
       const titleEl = modal.querySelector('#suggest-modal-title');
@@ -1872,7 +1914,13 @@
       if (creditNameInput) creditNameInput.value = row.credit_name || '';
       if (publicCreditBox) publicCreditBox.checked = row.public_credit !== false;
 
-      wireDuplicateCheck(modal, taxonomy);
+      wireCollapsible(modal);
+      // Show the optional details the suggester already filled in.
+      const hasDetails = !!(payload.description || row.rationale || (payload.name && !payload.name_derived));
+      if (hasDetails) modal.querySelector('#suggest-details-collapsible .suggest-collapsible-trigger')?.click();
+      if (nameInput && payload.name_derived) nameInput.value = '';
+
+      wireDuplicateCheck(modal);
       wirePlacementCascade(modal, taxonomy);
       wireCreditConsent(modal);
 
@@ -1882,7 +1930,7 @@
       const cancelBtn = modal.querySelector('#suggest-form-cancel');
       if (cancelBtn) cancelBtn.addEventListener('click', close);
 
-      if (nameInput) nameInput.focus();
+      if (websiteInput) websiteInput.focus();
 
     } else if (kind === 'taxonomy_change') {
       // Go straight to the taxonomy op form using the stored op
@@ -2042,8 +2090,9 @@
       };
 
       if (formKind === 'new_tool') {
+        const website = readToolUrl(modal);
+        if (!website) return;
         const name = form.querySelector('#suggest-name')?.value.trim() || '';
-        const website = form.querySelector('#suggest-website')?.value.trim() || '';
         const description = form.querySelector('#suggest-description')?.value.trim() || '';
         const rationale = form.querySelector('#suggest-rationale')?.value.trim() || '';
         const track = form.querySelector('#suggest-track')?.value || null;
@@ -2052,11 +2101,6 @@
         const tags = Array.from(form.querySelectorAll('input[name="tag"]:checked')).map(i => i.value);
         const type = form.querySelector('#suggest-type')?.value || null;
         const pricing_model = form.querySelector('#suggest-pricing-model')?.value || null;
-
-        if (!name || !website || !description) {
-          showError(modal, 'Name, website, and description are required.');
-          return;
-        }
 
         let payload;
         try {

@@ -246,7 +246,8 @@ html.suggestions-disabled a[href="/my-suggestions.html"] {
     border-color: var(--color-primary, #007acc);
 }
 
-.suggest-input:invalid {
+.suggest-input:invalid,
+.suggest-input[aria-invalid="true"] {
     border-color: #d16969;
 }
 
@@ -261,19 +262,21 @@ html.suggestions-disabled a[href="/my-suggestions.html"] {
     margin-top: 4px;
 }
 
-/* --- Duplicate warning ---------------------- */
+/* --- Duplicate notice (exact URL already listed) --- */
+/* One compact line under the link field; submit is disabled while shown. */
 .suggest-dup-warning {
-    padding: 10px 14px;
-    background: rgba(220, 180, 0, 0.12);
-    border: 1px solid rgba(220, 180, 0, 0.35);
-    border-radius: 6px;
     font-size: 13px;
-    color: var(--vscode-text-muted, #858585);
+    line-height: 1.45;
+    color: var(--vscode-text, #cccccc);
     margin-top: 6px;
 }
 
-.suggest-dup-warning strong {
-    color: #d7ba7d;
+/* Inline validation message for the tool link */
+.suggest-field-error {
+    font-size: 13px;
+    line-height: 1.45;
+    color: #f48771;
+    margin-top: 6px;
 }
 
 .suggest-dup-warning a {

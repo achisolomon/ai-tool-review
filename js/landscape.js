@@ -4,7 +4,7 @@ window.landscapeInit = function landscapeInit() {
     // State
     let currentTrack = 'all';
     let currentType = 'all';
-    let currentView = 'subcategories'; // 'categories', 'subcategories', 'all'
+    let currentView = 'categories'; // 'categories', 'subcategories', 'all'
 
     // Generate URL-friendly slug from tool name
     function generateSlug(name) {
@@ -113,9 +113,8 @@ window.landscapeInit = function landscapeInit() {
         if (filteredSubcategories.length === 0) return null;
 
         const categoryEl = document.createElement('div');
-        // Auto-expand when search is active
-        // Always expanded by default (no collapsed class)
-        categoryEl.className = 'category';
+        // Created already collapsed in the default view so the first paint doesn't flash open.
+        categoryEl.className = currentView === 'categories' ? 'category collapsed' : 'category';
         categoryEl.dataset.track = track;
 
         const toolCount = filteredSubcategories.reduce((sum, sub) => sum + sub.tools.length, 0);
