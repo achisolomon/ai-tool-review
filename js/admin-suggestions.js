@@ -253,9 +253,12 @@
 
         switch (s.kind) {
             case 'new_tool':
-                rows += `<tr><th>Name</th><td>${escapeHtml(p.name)}</td></tr>`;
+                // Only the website is required from suggesters; a blank name is
+                // derived from the URL (payload.name_derived) and the
+                // description may be empty, so flag both for the reviewer.
+                rows += `<tr><th>Name</th><td>${escapeHtml(p.name)}${p.name_derived ? ' <em class="payload-note">(derived from link)</em>' : ''}</td></tr>`;
                 rows += `<tr><th>Website</th><td><a href="${escapeHtml(safeUrl(p.website))}" target="_blank" rel="noreferrer noopener">${escapeHtml(p.website)}</a></td></tr>`;
-                if (p.description) rows += `<tr><th>Description</th><td>${escapeHtml(p.description)}</td></tr>`;
+                rows += `<tr><th>Description</th><td>${p.description ? escapeHtml(p.description) : '<em class="payload-note">No description provided</em>'}</td></tr>`;
                 break;
 
             case 'taxonomy_change':

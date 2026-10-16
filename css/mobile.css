@@ -282,9 +282,9 @@
         bottom: var(--cookie-banner-h, 0px);
         z-index: 9990;
         padding: 12px var(--mobile-gutter) calc(12px + env(safe-area-inset-bottom, 0px));
-        background: rgba(30, 30, 30, 0.92);
-        -webkit-backdrop-filter: blur(14px);
-        backdrop-filter: blur(14px);
+        /* Opaque, no backdrop-filter: blurring the 60fps canvas behind a fixed
+           bar forces a re-blur every frame and flickers on phone GPUs. */
+        background: #1e1e1e;
         border-top: 1px solid var(--mobile-hairline);
         transition: bottom 0.15s ease;
     }

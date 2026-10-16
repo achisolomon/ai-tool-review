@@ -43,15 +43,30 @@
 
     function nodeCount() { return width < 640 ? 45 : 95; }
 
+    // Phones fire `resize` whenever the address bar shows/hides during a scroll.
+    // Reseeding there made the whole field jump, so: height-only changes keep
+    // every node and the canvas keeps the tallest height seen for this width;
+    // a width change (rotation, window resize) rescales positions instead.
     function resize() {
-        dpr = Math.min(window.devicePixelRatio || 1, 2);
-        width = window.innerWidth; height = window.innerHeight;
+        var w = window.innerWidth, h = window.innerHeight;
+        var newDpr = Math.min(window.devicePixelRatio || 1, 2);
+        if (nodes.length && w === width && newDpr === dpr && h <= height) return;
+        var nextH = (w === width && newDpr === dpr) ? Math.max(h, height) : h;
+        if (nodes.length) {
+            var sx = w / width, sy = nextH / height;
+            if (w === width) sy = 1;
+            for (var i = 0; i < nodes.length; i++) {
+                var p = nodes[i];
+                p.x *= sx; p.hx *= sx; p.y *= sy; p.hy *= sy;
+            }
+        }
+        dpr = newDpr; width = w; height = nextH;
         canvas.width = Math.round(width * dpr);
         canvas.height = Math.round(height * dpr);
         canvas.style.width = width + 'px';
         canvas.style.height = height + 'px';
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        seed();
+        if (!nodes.length) seed();
     }
     function seed() {
         var n = nodeCount(); nodes = [];
@@ -156,7 +171,10 @@
     var cs = getComputedStyle(root);
     var AURA_REST = (cs.getPropertyValue('--aura-strength') || '0.10').trim();
     var AURA_HOVER = (cs.getPropertyValue('--aura-strength-hover') || '0.04').trim();
+    // Touch has no hover and never fires pointerleave, so a scroll gesture would
+    // drag the field toward the finger and leave it stuck there.
     document.addEventListener('pointermove', function (e) {
+        if (e.pointerType && e.pointerType !== 'mouse') return;
         mouse.x = e.clientX; mouse.y = e.clientY; mouse.active = true;
         root.style.setProperty('--mouse-x', e.clientX + 'px');
         root.style.setProperty('--mouse-y', e.clientY + 'px');

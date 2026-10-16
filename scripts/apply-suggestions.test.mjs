@@ -142,6 +142,23 @@ test('slugWithSuffix appends -2 on collision', () => {
   rmSync(root, { recursive: true, force: true });
 });
 
+test('URL-only new_tool (derived name, empty description) validates and applies', () => {
+  const root = fixtureTree();
+  const tax = loadTaxonomy(root);
+  const row = { kind: 'new_tool', credit_name: null, public_credit: false,
+    payload: { name: 'Ecc', slug: 'ecc', name_derived: true, website: 'https://github.com/affaan-m/ecc',
+      description: '', type: null, tags: [],
+      placement: { track: 'developers', category: 'agent-frameworks', subcategory: 'agent-memory' } } };
+  assert.equal(validateRow(row, root, tax).ok, true);
+  applyNewTool(row, root, tax);
+  const f = join(root, 'data/_tools/developers/agent-frameworks/agent-memory/ecc.md');
+  const fm = matter(readFileSync(f, 'utf8')).data;
+  assert.equal(fm.name, 'Ecc');
+  assert.equal(fm.description, '');
+  assert.equal('name_derived' in fm, false);
+  rmSync(root, { recursive: true, force: true });
+});
+
 test('applyNewTool writes a schema-shaped file with credit', () => {
   const root = fixtureTree();
   const tax = loadTaxonomy(root);

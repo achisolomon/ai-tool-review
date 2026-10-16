@@ -677,3 +677,81 @@ test.describe('Mobile quick-action bar on desktop (1280x900)', () => {
     });
   }
 });
+
+// --- Ambient background stability on phones ------------------------------
+// Phones fire `resize` when the address bar shows/hides during a scroll; the
+// field used to reseed there, so every star jumped. Touch also used to drive
+// the mouse "gather" and leave the cursor aura stuck at the last finger spot.
+
+test.describe('Ambient background on mobile', () => {
+  test.use({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, reducedMotion: 'reduce' });
+
+  test.beforeEach(async ({ page }) => {
+    await acceptCookies(page);
+    await blockAdHosts(page);
+    // Freeze the field (static single draw) so only resize could move pixels;
+    // test.use({ reducedMotion }) is not applied under this config.
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.addInitScript(() => {
+      const r = Math.random; window.__rand = 0;
+      Math.random = function () { window.__rand++; return r(); };
+    });
+  });
+
+  test('address-bar height changes do not reseed or move the star field', async ({ page }) => {
+    await page.goto('/tools/11x', { waitUntil: 'domcontentloaded' });
+    await page.waitForLoadState('networkidle').catch(() => {});
+    const visiblePixels = () => page.evaluate(() => {
+      const c = document.getElementById('ambient-bg');
+      const s = c.width / innerWidth;
+      return Array.from(c.getContext('2d').getImageData(0, 0, c.width, Math.round(800 * s)).data);
+    });
+    const before = await visiblePixels();
+    const r0 = await page.evaluate(() => window.__rand);
+    for (const h of [914, 844, 900, 844]) {
+      await page.setViewportSize({ width: 390, height: h });
+      await page.waitForTimeout(250);
+    }
+    expect(await page.evaluate(() => window.__rand) - r0, 'resize must not reseed').toBe(0);
+    const after = await visiblePixels();
+    let moved = 0;
+    for (let i = 0; i < before.length; i += 4) {
+      const d = Math.abs(before[i] - after[i]) + Math.abs(before[i + 1] - after[i + 1]) + Math.abs(before[i + 2] - after[i + 2]);
+      if (d > 30) moved++;
+    }
+    expect(moved, 'visible pixels that changed across address-bar toggles').toBe(0);
+  });
+
+  test('canvas never ends short of the viewport after the address bar hides', async ({ page }) => {
+    await page.goto('/tools/11x', { waitUntil: 'domcontentloaded' });
+    await page.setViewportSize({ width: 390, height: 914 });
+    await page.waitForTimeout(250);
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.waitForTimeout(250);
+    const h = await page.evaluate(() => document.getElementById('ambient-bg').getBoundingClientRect().height);
+    expect(h).toBeGreaterThanOrEqual(914);
+  });
+
+  test('touch input does not drive the cursor aura', async ({ page }) => {
+    await page.goto('/tools/11x', { waitUntil: 'domcontentloaded' });
+    await page.evaluate(() => {
+      document.body.dispatchEvent(new PointerEvent('pointermove', { pointerType: 'touch', clientX: 200, clientY: 400, bubbles: true }));
+    });
+    const x = await page.evaluate(() => document.documentElement.style.getPropertyValue('--mouse-x'));
+    expect(x === '' || x === '-9999px').toBe(true);
+  });
+});
+
+test.describe('Ambient background on desktop (1280x900)', () => {
+  test.use({ viewport: DESKTOP_VIEWPORT });
+
+  test('a real mouse still drives the cursor aura', async ({ page }) => {
+    await acceptCookies(page);
+    await blockAdHosts(page);
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await page.waitForLoadState('networkidle').catch(() => {});
+    await page.mouse.move(300, 300);
+    await page.mouse.move(320, 310);
+    await expect.poll(() => page.evaluate(() => document.documentElement.style.getPropertyValue('--mouse-x'))).toBe('320px');
+  });
+});

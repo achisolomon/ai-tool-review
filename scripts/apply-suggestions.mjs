@@ -56,7 +56,8 @@ export function buildFrontmatter({ payload, credit_name, public_credit }) {
     category: p.category,
     subcategory: p.subcategory,
     status: 'active',
-    description: payload.description,
+    // Suggesters may leave the description blank (only the URL is required).
+    description: payload.description || '',
     // Prevent Jekyll from processing Liquid tags in user-supplied content.
     render_with_liquid: false,
   };
@@ -212,7 +213,7 @@ export function applyNewTool(row, root, tax) {
   const rel = toolPath({ track: fm.track, category: fm.category, subcategory: fm.subcategory, slug: finalSlug });
   const abs = _join(root, rel);
   mkdirSync(dirname(abs), { recursive: true });
-  writeFileSync(abs, matter.stringify(`\n${row.payload.description}\n`, fm));
+  writeFileSync(abs, matter.stringify(`\n${row.payload.description || ''}\n`, fm));
   return `created ${rel}${renamed ? ` (slug renamed from ${baseSlug})` : ''}`;
 }
 
