@@ -70,7 +70,7 @@ confidence_score: 0.85
       <li>Enables iOS app building, signing, and installation without macOS — a real gap for Linux/Windows Swift developers</li>
       <li>MIT licensed, fully open-source</li>
       <li>XKit lets developers integrate the same capabilities programmatically as a SwiftPM dependency</li>
-      <li>Strong and fast-growing community adoption: 11,697 stars, 557 forks, and +5,639 stars in a single week (Oct 8–14, 2026) per star-history.com, ranking #14 globally that week</li>
+      <li>Strong and fast-growing community adoption: 557 forks, and rapid recent growth (Oct 8–14, 2026) per star-history.com, ranking #14 globally that week</li>
     </ul>
     <div class="source"><a href="https://github.com/xtool-org/xtool" target="_blank" rel="noopener">GitHub (official)</a> · <a href="https://www.star-history.com/" target="_blank" rel="noopener">star-history.com</a></div>
   </div>

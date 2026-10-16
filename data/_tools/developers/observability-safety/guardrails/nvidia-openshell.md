@@ -76,7 +76,7 @@ confidence_score: 0.9
       <li>Credential injection only for approved endpoints — agents never see raw secrets</li>
       <li>Multi-language SDK support (Python, TypeScript, Go, Rust)</li>
       <li>Apache 2.0 license, free and permissive</li>
-      <li>Explosive adoption: #1 on GitHub Trending within a day, 16,382 stars</li>
+      <li>Explosive adoption: #1 on GitHub Trending within a day of launch (see badge for current star count)</li>
     </ul>
     <div class="source"><a href="https://github.com/NVIDIA/OpenShell" target="_blank" rel="noopener">GitHub (official)</a> · <a href="https://www.kucoin.com/news/flash/nvidia-launches-openshell-an-open-source-runtime-for-securing-autonomous-ai-agents" target="_blank" rel="noopener">Launch coverage</a></div>
   </div>

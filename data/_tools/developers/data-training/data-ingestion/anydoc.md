@@ -73,7 +73,7 @@ confidence_score: 0.9
       <li>Unified document model gives consistent Markdown structure across all supported formats</li>
       <li>Broad format coverage: Word, PowerPoint, Excel, OpenDocument, RTF, EPUB, CSV, PDF</li>
       <li>Multiple language bindings: Node.js, Python, WebAssembly, plus a Claude Agent Skill interface</li>
-      <li>Strong adoption signal: 22,878 stars and 1,471 forks</li>
+      <li>Strong adoption signal: 1,471 forks and active community engagement (see badge for current star count)</li>
     </ul>
     <div class="source"><a href="https://github.com/firecrawl/anydoc" target="_blank" rel="noopener">GitHub (official)</a></div>
   </div>

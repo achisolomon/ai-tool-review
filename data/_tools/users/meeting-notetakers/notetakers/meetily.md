@@ -74,7 +74,7 @@ confidence_score: 0.9
       <li>Free, open-source Community tier (MIT license) with no per-minute caps, unlike cloud competitors' capped free tiers</li>
       <li>Works across Google Meet, Zoom, Teams, Discord, Slack Huddles, and Webex via system audio capture, no visible bot</li>
       <li>Export to Markdown, PDF, DOCX; integrates via MCP, webhooks, and CLI</li>
-      <li>Strong open-source adoption: 31,791 stars, 3,511 forks</li>
+      <li>Strong open-source adoption: 3,511 forks and an active contributor community (see badge for current star count)</li>
     </ul>
     <div class="source"><a href="https://meetily.ai/" target="_blank" rel="noopener">Official site</a> · <a href="https://github.com/Zackriya-Solutions/meetily" target="_blank" rel="noopener">GitHub</a></div>
   </div>

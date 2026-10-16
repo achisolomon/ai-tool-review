@@ -124,7 +124,7 @@ confidence_score: 0.85
   <div class="detail-section">
     <h4>Underlying Technology</h4>
     <ul>
-      <li>Built on Microsoft's open-source MarkItDown library (MIT licensed, 180K+ GitHub stars)</li>
+      <li>Built on Microsoft's open-source MarkItDown library (MIT licensed, one of the most-starred document-conversion projects on GitHub)</li>
       <li>Not operated or maintained by Microsoft</li>
     </ul>
   </div>

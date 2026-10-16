@@ -76,7 +76,7 @@ confidence_score: 0.75
   <div class="cons-list">
     <h3>Watch Out For</h3>
     <ul>
-      <li>Very early-stage: created September 2026, 2 stars, 0 forks, built and maintained by a single developer</li>
+      <li>Very early-stage: created September 2026, 0 forks, built and maintained by a single developer</li>
       <li>No public adoption signal, third-party reviews, or community discussion found</li>
       <li>One open issue flags missing test fixtures for malformed packages and mixed-script RTL content</li>
       <li>Tied to the Claude Code skill ecosystem rather than usable as a general-purpose tool</li>
@@ -134,7 +134,7 @@ confidence_score: 0.75
 |---------|-------------|---------------------|------------------|
 | RTL/Hebrew Handling | <span class="highlight">Purpose-built refusal logic</span> | Known to scramble (per author) | Not verified |
 | Interface | Claude Code skill | Library/CLI/API | Browser app |
-| Maturity | 1 month, 2 stars | 22.9K stars, active | Commercial, established |
+| Maturity | 1 month old | <span class="highlight">Established, active</span> | Commercial, established |
 | Output Verification | <span class="highlight">Built-in --verify flag</span> | No | No |
 | License | MIT | MIT | Commercial (freemium) |
 
