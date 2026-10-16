@@ -7,127 +7,87 @@ description: Use when creating or editing AI tool review pages in the ai-tool-re
 
 Use this skill when creating or editing tool pages in the AI landscape site.
 
-## Fast path (default for 1-2 tools)
+## Fast path (every tool add)
 
-For the common case, 1-2 new or edited tool pages in one session, run this
-sequence. No questions to the user except the single push confirmation at
-the end.
+Goal: zero permission prompts, about 15s of scripted work, and exactly ONE
+question to the user ("ship it?") with a localhost link. Every shell step
+goes through ONE script, which the project settings pre-approve and exclude
+from the sandbox:
 
-1. **Create the session worktree, named automatically. Never ask the user
-   for a name.** Name it `tool-<slug>` after the (first) tool and run, unsandboxed
-   (it probes ports, about 0.5s):
-   ```bash
-   python3 "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/session_worktree.py" create tool-<slug> <session_id>
-   ```
-   (`<session_id>` is in the SessionStart message.) A taken name gets a
-   `-2`, `-3` suffix automatically, so parallel sessions never collide. Do
-   ALL work in the printed worktree path, never in the main checkout;
-   `node_modules` and `vendor/` are already linked, so Jekyll works at once.
-   Serve with `eval "$(rbenv init -)" && PORT=<printed port> npm run serve:jekyll`.
-2. **Fetch sources directly with WebFetch.** Skip the parallel research
-   subagent detour at this scale; it exists to parallelize 3+ tools, not to
-   add overhead to one or two. For 3+ tools, keep using the research
-   subagents as before, unaffected by this change.
-3. **Check if the tool already exists** (Step 0 below) before researching
-   further.
-4. **Write the page**, following the taxonomy, frontmatter template, and
-   content structure sections below. Keep the generated `js/data.js` in sync
-   (see "Sync `js/data.js`" below).
-5. **Run the check script:**
-   ```bash
-   npm run tool-page-check
-   ```
-   This runs, in order: `rbenv init`, `npm run validate`, `npm run generate`,
-   `npm run build`, a lint for any new/changed tool `.md` file against the
-   exact regex `tests/data-integrity.spec.js` uses for "no tool description
-   prose hardcodes a GitHub star figure" (a bare digit followed by "star(s)"
-   anywhere in the body, not just outside the key-stats badge), then
-   `npx playwright test tests/data-integrity.spec.js --workers=1`. It fails
-   fast with a one-line fix pointer at whichever step breaks. A clean run
-   here means CI will not bounce the push back on this class of bug.
+```bash
+bash .claude/scripts/tool-page.sh <subcommand> ...   # run from "ai landscape/"
+```
 
-   This command and the git/gh steps below are listed in the parent repo's
-   `permissions.allow` (see `docs/architecture/tasks.md` T-005), so they run
-   without a separate approval prompt in the normal case.
-6. **If it exits 0**, stage and commit the new/edited `.md` plus `js/data.js`
-   in the same commit, on the worktree branch.
-7. **Ask the user once, immediately before pushing, for push confirmation**
-   (after they checked the page on localhost). "Ship it" counts. Never
-   pre-approved; ask every time, right before the push step.
-8. **Sync and push from the worktree:** `git fetch origin && git merge
-   --no-ff origin/main` (if `js/data.js` conflicts, never hand-merge it:
-   resolve the `.md` files, then `npm run generate`), re-run
-   `npm run tool-page-check` if main had moved, then
-   `git push origin HEAD:main`. Watch CI with `gh run watch` (or poll
-   `gh run list --branch main --limit 1`). The worktree is removed
-   automatically at session end once merged and clean.
-9. **Report the live page URL** once the run is green, or the failure if it
-   is red.
+Hard rules for this path:
+- Run every step below ONLY via `tool-page.sh`. Do not run raw `git`,
+  `npm`, `curl`, `jekyll`, `find`/`grep` chains or `session_worktree.py`
+  yourself: each raw command is a separate approval prompt. If you need
+  something the script lacks, add a subcommand rather than improvising.
+- Call it exactly as `bash .claude/scripts/tool-page.sh ...` (no `cd ... &&`
+  prefix, no env-var prefix): that exact prefix is what is pre-approved.
+- Never use `dangerouslyDisableSandbox`; the script is already excluded
+  from the sandbox.
+- Ask the user nothing except the single "ship it?" in step 6. Pick the
+  worktree name, category, tags and wording yourself.
+- `<session_id>` is in the SessionStart message.
 
-## Multi-tool / batch path (3+ tools, or on request)
+1. **Start** (creates worktree `tool-<slug>`, auto-suffixed on collision):
+   `bash .claude/scripts/tool-page.sh start <slug> <session_id>`
+   Then check for an existing page:
+   `bash .claude/scripts/tool-page.sh exists <slug-or-name>`
+   If it exists, edit that file instead of creating a new one.
+2. **Research** with WebFetch (official site, pricing, docs, GitHub README)
+   and WebSearch (reviews; G2 pages return 403 to WebFetch, so use
+   WebSearch "<tool> G2 reviews pros cons" instead). Verify links and stars:
+   `bash .claude/scripts/tool-page.sh urls <url> <url> ...`
+   `bash .claude/scripts/tool-page.sh stars <owner/repo>`
+   Watch for official vs. third-party sites (e.g. a site linking a fork).
+   For 3+ tools, research in parallel with haiku subagents instead.
+3. **Write the page** with the Write tool into the worktree path printed by
+   `start`, following the taxonomy, tags (`data/_tools/_tags.yaml` is the
+   source of truth) and content structure below. Never edit `js/data.js`.
+4. **Check** (validate, generate, build, star-figure lint, 14 data tests):
+   `bash .claude/scripts/tool-page.sh check <session_id>`
+   Star-figure rule: no digit followed by "star(s)" anywhere in the body;
+   only the key-stats badge shows the number. Fix and re-run until green.
+5. **Serve** (background, prints the URL):
+   `bash .claude/scripts/tool-page.sh serve <session_id>`
+6. **Ask once:** give the user `http://localhost:<port>/tools/<slug>/`, a
+   2-3 line summary (category, tags, anything surprising) and ask "ship it?".
+7. **Ship** (only after the user says yes): commits, merges origin/main,
+   always regenerates `js/data.js` and re-checks, pushes to main:
+   `bash .claude/scripts/tool-page.sh ship <session_id> "feat: add <Tool> tool page"`
+8. **Wait for CI + deploy** with `run_in_background: true`, so the user is
+   not blocked: `bash .claude/scripts/tool-page.sh ci <session_id>`
+   then report `https://aitoolreview.ai/tools/<slug>/` (or the failure).
+9. **Clean up:** `bash .claude/scripts/tool-page.sh end <session_id>`
+   (stops the server, removes the merged worktree).
 
-Same worktree flow as above (one auto-named worktree, e.g.
-`tool-<first-slug>`), with one difference: for 3+ tools, research sources
-with parallel subagents (haiku model, per the global agent-model-selection
-rule) instead of fetching each one inline. One `npm run tool-page-check`
-covers all pages before the commit.
+If `ship` reports a merge conflict in a `.md` file, resolve it in the
+worktree with Edit and run `ship` again.
 
 ## Step 0: Check if Tool Already Exists (REQUIRED)
 
-Before ANY research, check if the tool page already exists:
-
-```bash
-# Search by tool name (case-insensitive)
-find data/_tools -iname "*toolname*" -type f
-
-# Search by slug in frontmatter
-grep -r "slug: \"tool-slug\"" data/_tools/
-
-# Search by name in frontmatter
-grep -ri "name: \"Tool Name\"" data/_tools/
-```
+Before ANY research: `bash .claude/scripts/tool-page.sh exists <name-or-slug>`
+(matches file names plus `name:`/`slug:` frontmatter, case-insensitive).
 
 **If tool exists:** Update the existing page instead of creating a duplicate.
 **If tool doesn't exist:** Proceed with research and creation.
 
 ## Pre-Flight URL Checks (MANDATORY)
 
-Before creating or updating any tool, verify all URLs are live:
+Verify every URL you will cite or put in frontmatter, in one call:
+`bash .claude/scripts/tool-page.sh urls <website> <github_url> <source urls...>`
 
-### 1. GitHub URL Validation
+- **200**: live, proceed
+- **404 on the GitHub repo**: repo is dead, do NOT add the tool; tell the user
+- **404/5xx on the website**: warn the user, consider `status: deprecated`
 
-For any tool with a `github_url`:
-
-```bash
-curl -s -o /dev/null -w "%{http_code}" https://github.com/{org}/{repo}
-```
-
-- **200**: Repo is live - proceed
-- **404**: Repo is DEAD - DO NOT add this tool. Inform the user.
-- **301/302**: Repo was renamed/moved - follow redirect, use the new URL
-
-### 2. Website URL Validation
-
-For the primary `website` URL:
-
-```bash
-curl -s -o /dev/null -w "%{http_code}" -L {website_url}
-```
-
-- **200**: Site is live - proceed
-- **404/5xx**: Site is down - warn the user, consider marking as `status: deprecated`
-
-### 3. For GitHub-based Tools
-
-If `website` points to GitHub, use `gh` CLI to get accurate data:
-
-```bash
-gh repo view {org}/{repo} --json name,description,stargazerCount,isArchived,updatedAt
-```
-
-Check for:
-- `isArchived: true` -> Mark as `status: deprecated`
-- `updatedAt` older than 2 years -> Lower `confidence_score`, note in description
+For any GitHub repo: `bash .claude/scripts/tool-page.sh stars <org/repo>`
+(prints stars, archived, fork, last push, license, homepage).
+- `archived=True`: mark `status: deprecated`
+- `fork=True`: find and cite the upstream repo instead
+- last push older than 2 years: lower `confidence_score`, mention it
 
 ## File Location
 
@@ -336,6 +296,19 @@ the tool does, who it's for, and key differentiators.</p>
 </div>
 ```
 
+**No public pricing (demo / contact-sales only):** use one featured card
+linking to the demo or contact page; do not invent tiers or prices.
+
+```html
+<div class="pricing-grid">
+  <a href="{demo-or-contact-url}" class="pricing-card featured" target="_blank" rel="noopener">
+    <div class="plan-name">Enterprise</div>
+    <div class="price">Custom</div>
+    <div class="desc">No public pricing; book a demo for a quote</div>
+  </a>
+</div>
+```
+
 ### 6. Expandable Details
 
 ```html
@@ -381,110 +354,34 @@ Before writing ANY content:
 1. **Description** -> Fetch from official website/GitHub README
 2. **Pricing** -> Fetch from official pricing page
 3. **Features** -> Fetch from official docs
-4. **Pros** -> Search G2, Capterra, official announcements
-5. **Cons** -> Search G2 cons, user reviews, Reddit
+4. **Pros** -> G2, Capterra, official announcements
+5. **Cons** -> G2 cons, user reviews, Reddit
+
+G2 (and often Capterra) return HTTP 403 to WebFetch. Don't fetch them
+directly; use WebSearch ("<tool> G2 reviews pros cons") and cite the G2 URL
+it returns (product slugs vary, e.g. `apriora-alex` vs `apriora-alex-ai`,
+so never guess the URL).
 6. **Stats** -> Press releases, official blog, funding announcements
 
 ## GitHub Stars Verification
 
-For open-source tools, verify GitHub stars directly via the API, not web
-search and not cached figures:
+Use `bash .claude/scripts/tool-page.sh stars <owner/repo>` (GitHub API), never
+web search or cached figures.
 
-```bash
-curl -s https://api.github.com/repos/OWNER/REPO | jq '.stargazers_count'
-```
+### The star-figure prose rule (why `check` has a lint step)
 
-### The star-figure prose rule (why the check script has this step)
+`tests/data-integrity.spec.js` bans any digit immediately followed by
+"star(s)" anywhere in a tool page body, including `<span>` text and tables.
+Only the key-stats badge is exempt (number and label sit in separate
+`<span>`s). Write "strong, fast-growing adoption (see badge for count)"
+instead of repeating the number. `check` lints this before you ship.
 
-`tests/data-integrity.spec.js`'s "no tool description prose hardcodes a
-GitHub star figure" test bans any digit immediately followed by the word
-"star(s)" anywhere in a tool page's body, not just outside the key-stats
-badge, including inside `<span>` text and markdown tables. Only the
-key-stats badge is exempt (its number and label are in separate `<span>`
-elements with no adjacent text). Write star-count color commentary as
-"strong, fast-growing adoption, see badge for count" rather than spelling
-out the number a second time in a pros/cons bullet or comparison table.
-`npm run tool-page-check` (fast path step 5) runs this exact check locally
-before you ever push, so CI does not bounce the push back on it.
+## `js/data.js` (generated, never edit)
 
-## Sync `js/data.js` (MANDATORY)
-
-The search UI reads a **generated** file, `js/data.js`, built from the tool
-`.md` files. `js/data.js` is generated only; never hand-edit or hand-merge
-it outside the two options below. Creating or editing a `.md` file is **not
-enough**: if `js/data.js` is not updated to match, the CI test
-`tests/data-integrity.spec.js › every tool .md file appears in data.js`
-**fails** the PR. Every add/edit/remove of a tool MUST update `js/data.js`
-in the same commit.
-
-`npm run tool-page-check` (fast path step 5) runs `npm run generate`
-(Option B below) as its canonical path. The surgical edit (Option A) stays
-documented for the case a full regenerate's reshuffle diff is the problem,
-not as routine practice.
-
-### Option A: Surgical edit (when a full regenerate's diff is too noisy)
-
-Insert/update just your tool's object in `js/data.js`, keeping the exact
-existing format (2-space indentation, key order). Place it in the array for
-its `{track} -> {category} -> {subcategory}`, next to sibling tools. The
-object shape:
-
-```json
-{
-  "name": "Tool Name",
-  "slug": "tool-slug",
-  "url": "https://tool.com",
-  "desc": "The frontmatter description, verbatim",
-  "type": "commercial",
-  "github_stars": null,
-  "pricing_model": "freemium",
-  "pricing_starting": null,
-  "user_count": null,
-  "tags": [ "tag1" ],
-  "all_tags": [ "tag1" ],
-  "category_id": "category-slug",
-  "category_name": "Category Display Name",
-  "subcategory_id": "subcategory-slug",
-  "subcategory_name": "Subcategory Display Name",
-  "additional_categories": [
-
-  ]
-}
-```
-
-- `tags` is `all_tags` capped at the first 3. `category_name`/
-  `subcategory_name` come from `_categories.yaml`.
-- Find the sibling tools first (e.g. `grep -n '"id": "app-builders"'
-  js/data.js`) and copy their formatting exactly.
-
-### Option B: Full regenerate (the fast path's default) - use with care if run by hand
-
-```bash
-# The Ruby generator crashes on non-ASCII (curly quotes, middot) unless the
-# locale is UTF-8. LANG/LC_ALL are often unset in this environment.
-LANG=C.UTF-8 LC_ALL=C.UTF-8 npm run generate
-```
-
-**Regeneration reorders the ENTIRE file.** Category/tool order comes from
-`Dir.glob`, whose enumeration order is filesystem-dependent, so re-running
-the generator produces a large reshuffle diff even though only one tool
-changed. If you ran this by hand outside `npm run tool-page-check`, check
-the diff before committing:
-
-```bash
-git diff --stat js/data.js   # should be a small insertion, NOT thousands of lines
-```
-
-If the diff is huge, `git checkout js/data.js` and use Option A instead.
-
-### Verify before committing
-
-```bash
-node scripts/validate-data-js.js          # must report "format is valid"
-grep -c '"slug": "your-slug"' js/data.js  # must be >= 1
-```
-
-Confirm the total tool count increased by exactly one (for an add).
+The search UI reads `js/data.js`, generated from the tool `.md` files; CI
+fails if a page is missing from it. `check` and `ship` always regenerate it
+(with a UTF-8 locale) and `ship` commits it with the page. Never hand-edit or
+hand-merge it; on a merge conflict `ship` takes main's copy and regenerates.
 
 ## DO NOT Include
 

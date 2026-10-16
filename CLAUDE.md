@@ -5,14 +5,14 @@
   Never reinstall Ruby or bundler; if `ruby -v`/`bundle` look wrong, it is
   almost always just an uninitialized shim, not a missing toolchain.
 - `js/data.js` is generated only (`npm run generate`). Never hand-edit or
-  hand-merge it; if a full regenerate's reshuffle diff is the problem, use
-  the surgical-edit option in the tool-page-content skill instead.
-- Adding or editing a tool page: use the `tool-page-content` skill's fast
-  path (always in an auto-named session worktree, never ask the user for
-  a name) and run
-  `npm run tool-page-check` before every commit.
+  hand-merge it.
+- Adding or editing a tool page: follow the `tool-page-content` skill's fast
+  path. Every step runs through `bash .claude/scripts/tool-page.sh <cmd>`
+  (from the parent "ai landscape" folder), which is pre-approved and
+  sandbox-excluded, so there are no permission prompts. It always uses an
+  auto-named session worktree; never ask the user for a name.
 - Star-figure rule: no tool page body may hardcode a digit immediately
   followed by "star(s)" in prose; only the key-stats badge may show the
-  number. `npm run tool-page-check` lints this locally before you push.
-- Never push to `main` without asking the user, every time, right before
-  the push.
+  number. The `check` step lints this locally.
+- Ask the user exactly once ("ship it?", with the localhost link) before
+  pushing to `main`; ask nothing else.
