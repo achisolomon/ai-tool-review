@@ -30,8 +30,17 @@ fi
 
 echo "==> [2/6] Checking Ruby toolchain (vendor/bundle)"
 if ! bundle exec jekyll --version >/dev/null 2>&1; then
-    MAIN_CHECKOUT="$(cd "$REPO_ROOT/../.." && pwd)"
-    if [ -d "$MAIN_CHECKOUT/vendor/bundle" ] && [ "$MAIN_CHECKOUT" != "$REPO_ROOT" ]; then
+    # Only treat "$REPO_ROOT/../.." as the main checkout when REPO_ROOT is
+    # actually a session worktree (ai-tool-review/.worktrees/<name>); for any
+    # other layout that path is unrelated and must not be symlinked from.
+    MAIN_CHECKOUT=""
+    case "$REPO_ROOT" in
+        */.worktrees/*)
+            CANDIDATE="$(cd "$REPO_ROOT/../.." && pwd)"
+            [ -d "$CANDIDATE/vendor/bundle" ] && MAIN_CHECKOUT="$CANDIDATE"
+            ;;
+    esac
+    if [ -n "$MAIN_CHECKOUT" ]; then
         echo "    vendor/ missing here; reusing the main checkout's vendor/bundle via symlink."
         ln -s "$MAIN_CHECKOUT/vendor" "$REPO_ROOT/vendor"
     else
@@ -59,8 +68,14 @@ else
     while IFS= read -r f; do
         [ -n "$f" ] && target_files+=("$f")
     done < <(
-        { git diff --name-only -- data/_tools; git diff --cached --name-only -- data/_tools; } \
-            | sort -u | grep '\.md$' || true
+        {
+            git diff --name-only -- data/_tools
+            git diff --cached --name-only -- data/_tools
+            # A brand-new tool page is untracked, not a diff against HEAD,
+            # until it is staged -- without this, adding a new tool (the
+            # main fast-path use case) would skip the star-figure lint.
+            git ls-files --others --exclude-standard -- data/_tools
+        } | sort -u | grep '\.md$' || true
     )
 fi
 

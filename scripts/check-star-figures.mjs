@@ -10,6 +10,7 @@
 // Usage: node check-star-figures.mjs <file.md> [file.md ...]
 
 import { readFileSync } from 'node:fs';
+import { pathToFileURL } from 'node:url';
 
 // Exact regex from tests/data-integrity.spec.js:198. Must match verbatim;
 // do not re-derive an approximation here.
@@ -52,7 +53,11 @@ function main(files) {
   process.exit(0);
 }
 
-// Only run as a CLI when invoked directly (not when imported by the test file).
-if (import.meta.url === `file://${process.argv[1]}`) {
+// Only run as a CLI when invoked directly (not when imported by the test
+// file). Compare resolved file:// URLs, not a hand-built string -- argv[1]
+// can be a relative path (e.g. "scripts/check-star-figures.mjs") while
+// import.meta.url is always absolute, so a naive string match never equals
+// and silently skips main() every time it is invoked with a relative path.
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   main(process.argv.slice(2));
 }
