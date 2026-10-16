@@ -115,7 +115,9 @@ test.describe('Shareable Links', () => {
 
       const searchInput = page.locator('#action-input');
       await searchInput.fill('Model Hubs');
-      await page.waitForTimeout(150);
+      // Let the debounced ?q= update land first; on slow CI it could otherwise
+      // fire after the click and overwrite ?subcategory= (flaked 2026-10-17).
+      await expect(page).toHaveURL(/\?q=Model/);
 
       const subcategoryItem = page.locator('.autocomplete-item[data-type="subcategory"]').first();
       await subcategoryItem.click();
