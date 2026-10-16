@@ -5602,6 +5602,34 @@ const landscapeData = {
               "additional_categories": []
             },
             {
+              "name": "Ghidra MCP",
+              "slug": "ghidra-mcp",
+              "url": "https://github.com/bethington/ghidra-mcp",
+              "desc": "Open-source MCP server bridging Ghidra's reverse engineering engine with AI assistants for binary decompilation and analysis",
+              "type": "oss",
+              "github_stars": 5693,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "mcp-server",
+                "agents",
+                "self-hosted"
+              ],
+              "all_tags": [
+                "mcp-server",
+                "agents",
+                "self-hosted",
+                "api-available",
+                "reverse-engineering"
+              ],
+              "category_id": "ai-coding",
+              "category_name": "AI Coding & Developer Tools",
+              "subcategory_id": "code-intelligence",
+              "subcategory_name": "Code Intelligence & Refactoring",
+              "additional_categories": []
+            },
+            {
               "name": "GrepAI",
               "slug": "grepai",
               "url": "https://yoanbernabeu.github.io/grepai/",
@@ -11759,6 +11787,11 @@ const landscapeData = {
           "slug": "browser-automation",
           "name": "Browser Automation",
           "description": "Automates browser interactions"
+        },
+        {
+          "slug": "reverse-engineering",
+          "name": "Reverse Engineering",
+          "description": "Analyzes or decompiles compiled binaries"
         },
         {
           "slug": "doc-to-markdown",
