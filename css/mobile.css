@@ -1,0 +1,1042 @@
+/* ==========================================================================
+   MOBILE LAYER (< 768px)
+   Linked LAST on every page so it wins ties against style.css / tool.css /
+   learn.css / auth.css. Desktop (>= 768px) must render exactly as before, so:
+     - every rule lives inside @media (max-width: 767px), EXCEPT
+     - the one block below that hides the new mobile-only markup on desktop.
+   Some selectors are deliberately one notch more specific than the rule they
+   override, because suggest.css / ambient.css load later (from nav-scripts.html
+   in <body>) and would otherwise win ties.
+   ========================================================================== */
+
+/* Mobile-only markup: invisible and zero-size on desktop. */
+.nav-toggle,
+.learn-toc-mobile,
+.mobile-cta-bar {
+    display: none;
+}
+
+@media (max-width: 767px) {
+
+    :root {
+        --mobile-header-h: 48px;
+        --mobile-tap-min: 44px;
+        --mobile-gutter: 16px;
+        --mobile-drawer-bg: rgba(30, 30, 30, 0.97);
+        --mobile-hairline: rgba(255, 255, 255, 0.08);
+    }
+
+    /* Safety net only: the real fixes are the width overrides below. `clip`
+       (not `hidden`) so body never becomes a scroll container, which would
+       break the sticky header. */
+    body {
+        overflow-x: clip;
+    }
+
+    /* ------------------------------------------------------------------
+       1. HEADER BAR + DRAWER
+       The toolbar's own .nav-links becomes the drawer; nothing is duplicated.
+       ------------------------------------------------------------------ */
+
+    .header-content {
+        height: var(--mobile-header-h);
+        padding: 0 8px 0 4px;
+        gap: 4px;
+        justify-content: flex-start;
+    }
+
+    .nav-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 var(--mobile-tap-min);
+        width: var(--mobile-tap-min);
+        height: var(--mobile-tap-min);
+        padding: 0;
+        border: 0;
+        border-radius: 8px;
+        background: transparent;
+        color: var(--vscode-text);
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .nav-toggle:active,
+    html.nav-open .nav-toggle {
+        background: var(--vscode-list-hover);
+        color: #fff;
+    }
+
+    .nav-toggle-bar {
+        transform-box: fill-box;
+        transform-origin: center;
+        transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+
+    html.nav-open .nav-toggle-bar-top { transform: translateY(5px) rotate(45deg); }
+    html.nav-open .nav-toggle-bar-mid { opacity: 0; }
+    html.nav-open .nav-toggle-bar-bot { transform: translateY(-5px) rotate(-45deg); }
+
+    .logo {
+        min-height: var(--mobile-tap-min);
+        padding: 0 4px;
+        font-size: 15px;
+        white-space: nowrap;
+    }
+
+    .logo-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Drawer panel: anchored to the bottom edge of the sticky .header.
+       No opacity/transform on the panel itself: the auth control is its
+       child and must stay visible in the bar, so the panel only toggles
+       visibility + fades its surface, and the rows animate individually. */
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 2;
+        flex: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 6px 0 10px;
+        background: transparent;
+        border-bottom: 1px solid transparent;
+        box-shadow: none;
+        visibility: hidden;
+        transition: background-color 0.15s ease, box-shadow 0.15s ease,
+            border-color 0.15s ease, visibility 0s linear 0.15s;
+    }
+
+    html.nav-open .nav-links {
+        visibility: visible;
+        background: var(--mobile-drawer-bg);
+        border-bottom-color: rgba(255, 255, 255, 0.06);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.45);
+        transition: background-color 0.15s ease, box-shadow 0.15s ease,
+            border-color 0.15s ease, visibility 0s;
+    }
+
+    .nav-fixed > .nav-link,
+    .nav-variable {
+        opacity: 0;
+        transform: translateY(-8px);
+        transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+
+    html.nav-open .nav-fixed > .nav-link,
+    html.nav-open .nav-variable {
+        opacity: 1;
+        transform: none;
+    }
+
+    /* Primary links first, then the + Suggest / Admin group under a divider. */
+    .nav-fixed {
+        order: 1;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        margin-left: 0;
+    }
+
+    .nav-variable {
+        order: 2;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        margin-top: 6px;
+        padding-top: 6px;
+        border-top: 1px solid var(--mobile-hairline);
+    }
+
+    .nav-links .nav-link,
+    .nav-links .nav-link-text,
+    .nav-links .suggest-btn-toolbar:not([hidden]) {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        min-height: 48px;
+        padding: 12px var(--mobile-gutter);
+        border: 0;
+        border-left: 3px solid transparent;
+        border-radius: 0;
+        background: transparent;
+        font-size: 16px;
+        font-weight: 450;
+        text-align: left;
+        color: var(--vscode-text);
+    }
+
+    .nav-links .suggest-btn-toolbar:not([hidden]) {
+        color: var(--vscode-text-link);
+    }
+
+    .nav-links .nav-link:active,
+    .nav-links .suggest-btn-toolbar:active {
+        background: var(--vscode-list-hover);
+    }
+
+    .nav-links .nav-active {
+        background: var(--vscode-list-active);
+        border-left-color: var(--vscode-focus-border);
+        color: #fff;
+    }
+
+    .nav-links .nav-active::after {
+        display: none;
+    }
+
+    .nav-links .nav-link.hidden {
+        display: none;
+    }
+
+    /* The auth control stays in the header bar. It is a child of the drawer,
+       so pin it back up into the bar (top = -header height, relative to the
+       drawer) and keep it visible while the drawer is hidden. */
+    .nav-fixed #auth-container {
+        position: absolute;
+        top: calc(-1 * var(--mobile-header-h));
+        right: 8px;
+        height: var(--mobile-header-h);
+        min-width: 0;
+        visibility: visible;
+    }
+
+    .auth-signin-btn {
+        min-height: 36px;
+        padding: 6px 14px;
+        font-size: 14px;
+        position: relative;
+    }
+
+    /* Extend the hit area to 44px without growing the visible pill. */
+    .auth-signin-btn::before,
+    .auth-avatar-btn::before {
+        content: '';
+        position: absolute;
+        inset: -4px -2px;
+    }
+
+    .auth-avatar-btn {
+        position: relative;
+    }
+
+    /* Open drawer is a modal layer: the header (bar + drawer) and the scrim
+       sit above everything fixed on the page, including the cookie banner
+       (z-index 10000), so stacking is deterministic. The scrim is a fixed
+       body::after so its backdrop blur sees the page (a pseudo inside the
+       blurred .header could not). Taps on it land on <body>, which
+       js/nav-drawer.js treats as an outside tap and closes. */
+    html.nav-open .header {
+        z-index: 10002;
+    }
+
+    html.nav-open body::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: 10001;
+        background: rgba(0, 0, 0, 0.6);
+        -webkit-backdrop-filter: blur(3px);
+        backdrop-filter: blur(3px);
+        animation: nav-scrim-in 0.15s ease;
+    }
+
+    @keyframes nav-scrim-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    /* Full-screen mobile modals also cover the cookie banner. */
+    body .suggest-modal-overlay,
+    body .review-modal-overlay {
+        z-index: 10003;
+    }
+
+    html.nav-open,
+    html.nav-open body {
+        overflow: hidden;
+    }
+
+    /* ------------------------------------------------------------------
+       1b. QUICK-ACTION BAR (_includes/mobile-cta-bar.html)
+       Fixed to the bottom on home / landscape / tool pages. Stacks directly
+       above the cookie banner (js/mobile-cta-bar.js publishes the banner's
+       live height as --cookie-banner-h) and below the drawer scrim/modals.
+       ------------------------------------------------------------------ */
+
+    :root {
+        --mobile-cta-bar-h: calc(72px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .mobile-cta-bar:not([hidden]) {
+        display: flex;
+        gap: 8px;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: var(--cookie-banner-h, 0px);
+        z-index: 9990;
+        padding: 12px var(--mobile-gutter) calc(12px + env(safe-area-inset-bottom, 0px));
+        /* Opaque, no backdrop-filter: blurring the 60fps canvas behind a fixed
+           bar forces a re-blur every frame and flickers on phone GPUs. */
+        background: #1e1e1e;
+        border-top: 1px solid var(--mobile-hairline);
+        transition: bottom 0.15s ease;
+    }
+
+    .mobile-cta-btn {
+        flex: 1 1 0;
+        min-width: 0;
+        min-height: 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 0 12px;
+        border-radius: var(--radius-md);
+        font: inherit;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 1.2;
+        text-align: center;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .mobile-cta-btn.is-off,
+    .mobile-cta-btn[hidden] {
+        display: none;
+    }
+
+    .mobile-cta-primary {
+        background: var(--vscode-button-bg);
+        border: 1px solid transparent;
+        color: #fff;
+    }
+
+    .mobile-cta-primary:active {
+        background: var(--vscode-button-hover);
+    }
+
+    .mobile-cta-secondary {
+        background: transparent;
+        border: 1px solid var(--vscode-border);
+        color: var(--vscode-text);
+    }
+
+    .mobile-cta-secondary:active {
+        background: var(--vscode-list-hover);
+    }
+
+    /* Reserve room so the footer / last section never hides behind the bar
+       (or behind the bar + cookie banner while consent is pending). */
+    html.has-cta-bar body {
+        padding-bottom: calc(var(--mobile-cta-bar-h) + var(--cookie-banner-h, 0px));
+    }
+
+    /* Out of sight and out of the tab order while a modal owns the screen.
+       (The open drawer already inerts it and covers it with the scrim.) */
+    body:has(.suggest-modal-overlay.is-open) .mobile-cta-bar,
+    body:has(.review-modal-overlay.active) .mobile-cta-bar {
+        visibility: hidden;
+    }
+
+    /* Step aside while typing: the on-screen keyboard plus the bar would
+       leave little room for search suggestions. */
+    body:has(input[type="text"]:focus, input[type="search"]:focus, textarea:focus) .mobile-cta-bar {
+        visibility: hidden;
+    }
+
+    /* ------------------------------------------------------------------
+       2. FOOTER + COOKIE BANNER
+       ------------------------------------------------------------------ */
+
+    .footer-bottom {
+        padding: 10px var(--mobile-gutter) 14px;
+    }
+
+    .footer-bottom p {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        column-gap: 4px;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .footer-copy {
+        flex-basis: 100%;
+        padding-top: 4px;
+    }
+
+    .footer-sep {
+        display: none;
+    }
+
+    .footer-bottom a {
+        display: inline-flex;
+        align-items: center;
+        min-height: var(--mobile-tap-min);
+        padding: 0 10px;
+    }
+
+    .cookie-banner {
+        padding: 12px var(--mobile-gutter) calc(12px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .cookie-content {
+        gap: 10px;
+        text-align: left;
+        align-items: stretch;
+    }
+
+    .cookie-content p {
+        min-width: 0;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .cookie-buttons {
+        gap: 8px;
+    }
+
+    .cookie-btn {
+        flex: 1;
+        min-height: var(--mobile-tap-min);
+        font-size: 14px;
+    }
+
+    /* ------------------------------------------------------------------
+       3. HOME: hero + search results
+       ------------------------------------------------------------------ */
+
+    .hero.hero-action {
+        padding: 2.25rem var(--mobile-gutter) 1.5rem;
+    }
+
+    .hero-content {
+        width: 100%;
+    }
+
+    .hero-eyebrow {
+        font-size: 11px;
+        width: 100%;
+    }
+
+    .hero-action .hero-title {
+        font-size: 26px;
+        line-height: 1.25;
+        margin-bottom: 8px;
+    }
+
+    .hero-action .hero-subtitle {
+        font-size: 15px;
+        margin-bottom: 1.25rem;
+    }
+
+    .action-search {
+        max-width: none;
+        margin-bottom: 1rem;
+    }
+
+    .action-input {
+        min-height: 48px;
+        font-size: 16px; /* >= 16px stops iOS zooming the page on focus */
+    }
+
+    .browse-toggle {
+        display: inline-flex;
+        align-items: center;
+        min-height: var(--mobile-tap-min);
+        font-size: 15px;
+    }
+
+    .hero-stats {
+        font-size: 13px;
+    }
+
+    .browse-link {
+        min-height: var(--mobile-tap-min);
+        padding: 0 12px;
+    }
+
+    .search-results {
+        padding-left: var(--mobile-gutter);
+        padding-right: var(--mobile-gutter);
+    }
+
+    .editor-tabs {
+        margin-left: calc(-1 * var(--mobile-gutter));
+        margin-right: calc(-1 * var(--mobile-gutter));
+        padding: 0 var(--mobile-gutter);
+        overflow-x: auto;
+    }
+
+    .result-card {
+        min-width: 0;
+    }
+
+    .result-desc {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    /* ------------------------------------------------------------------
+       4. LANDSCAPE
+       ------------------------------------------------------------------ */
+
+    .controls-toolbar {
+        align-items: stretch;
+        padding: 12px var(--mobile-gutter);
+    }
+
+    .view-toggle,
+    .track-toggle {
+        display: flex;
+        width: 100%;
+    }
+
+    .view-toggle .view-btn,
+    .track-toggle .track-btn {
+        flex: 1 1 0;
+        min-width: 0;
+        min-height: var(--mobile-tap-min);
+        padding: 8px 6px;
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+    .filters {
+        justify-content: center;
+    }
+
+    .filter-group {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .filter-btn {
+        min-height: var(--mobile-tap-min);
+        min-width: var(--mobile-tap-min);
+        justify-content: center;
+    }
+
+    .stats-bar {
+        padding: 10px var(--mobile-gutter);
+    }
+
+    .stat-label {
+        font-size: 11px;
+    }
+
+    /* One clean column. Scoped by #landscape so these beat the desktop
+       view-/compact-filter rules (several of which use !important) without
+       an arms race of chained classes. */
+    #landscape {
+        padding: 12px var(--mobile-gutter) 24px;
+    }
+
+    #landscape.view-categories,
+    #landscape.view-subcategories {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 10px;
+    }
+
+    #landscape.view-all {
+        column-count: 1;
+    }
+
+    #landscape .category {
+        flex: 1 1 100% !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        border-radius: 8px;
+    }
+
+    /* Expanded view: header flush with the card edge, like the other views. */
+    #landscape.view-all .category {
+        padding: 0;
+        margin-bottom: 10px;
+    }
+
+    #landscape.view-all .category-content {
+        padding: 8px;
+    }
+
+    #landscape .category-header {
+        min-height: var(--mobile-tap-min) !important;
+        padding: 10px 14px !important;
+        margin-bottom: 0;
+        align-items: center;
+        background: #37373d;
+    }
+
+    #landscape .category-title {
+        font-size: 15px;
+        align-items: center;
+        line-height: 1.3;
+    }
+
+    #landscape .category-count {
+        font-size: 11px;
+        padding: 2px 7px;
+    }
+
+    #landscape .category-toggle {
+        width: 18px;
+        height: 18px;
+        margin-left: 8px;
+        flex-shrink: 0;
+    }
+
+    #landscape .category-content {
+        padding: 4px 6px 6px;
+    }
+
+    #landscape .category.collapsed .category-content {
+        padding: 0 6px;
+    }
+
+    #landscape .subcategory {
+        margin-bottom: 0;
+    }
+
+    #landscape.view-all .subcategory {
+        margin-bottom: 8px;
+    }
+
+    #landscape:not(.view-all) .subcategory + .subcategory {
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    #landscape .subcategory-header {
+        min-height: var(--mobile-tap-min);
+        padding: 8px !important;
+        margin-bottom: 0;
+        border-bottom: 0;
+        border-radius: 4px;
+    }
+
+    #landscape .subcategory:not(.collapsed) .subcategory-header {
+        margin-bottom: 6px;
+    }
+
+    #landscape .subcategory-title {
+        font-size: 12px;
+        line-height: 1.35;
+    }
+
+    #landscape .subcategory-count {
+        font-size: 11px;
+        padding: 2px 7px;
+        margin-right: 8px;
+    }
+
+    #landscape .subcategory-toggle {
+        width: 14px;
+        height: 14px;
+    }
+
+    #landscape .subcategory-content {
+        padding: 0 2px;
+    }
+
+    #landscape .subcategory:not(.collapsed) .subcategory-content {
+        padding-bottom: 10px;
+    }
+
+    #landscape .tools-grid {
+        grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+        gap: 8px;
+    }
+
+    #landscape .tool-card {
+        min-height: 84px;
+    }
+
+    /* Hover-reveal "suggest an edit" pencil is a desktop affordance; on touch
+       it is an invisible 21px target. The action stays reachable from the
+       tool page's "Suggest an edit" button. */
+    #landscape .card-suggest {
+        display: none;
+    }
+
+    #landscape .tool-name {
+        font-size: 12px;
+    }
+
+    /* ------------------------------------------------------------------
+       5. TOOL PAGE
+       ------------------------------------------------------------------ */
+
+    /* .tool-page is a flex item of body with auto side margins, so it would
+       shrink-to-fit its min-content (wide comparison tables) and widen the
+       page. Pin it to the viewport; the tables then scroll inside .comparison. */
+    .tool-page {
+        width: 100%;
+        min-width: 0;
+        padding: 1.5rem var(--mobile-gutter) 2.5rem !important;
+    }
+
+    .tool-page .comparison {
+        max-width: 100%;
+    }
+
+    /* Scroll affordance for wide tables: edge shadows appear only on the
+       side that still has hidden content (covers stay attached to the
+       content via background-attachment: local). */
+    .tool-page .comparison,
+    .learn-content table,
+    .privacy-container table {
+        background:
+            linear-gradient(to right, var(--vscode-editor-bg) 30%, rgba(30, 30, 30, 0)) left center / 32px 100% no-repeat local,
+            linear-gradient(to left, var(--vscode-editor-bg) 30%, rgba(30, 30, 30, 0)) right center / 32px 100% no-repeat local,
+            radial-gradient(farthest-side at 0 50%, rgba(255, 255, 255, 0.16), transparent) left center / 12px 100% no-repeat scroll,
+            radial-gradient(farthest-side at 100% 50%, rgba(255, 255, 255, 0.16), transparent) right center / 12px 100% no-repeat scroll;
+    }
+
+    /* Compact chips keep their look; an invisible ::after grows the hit
+       area to >= 44px tall. */
+    .tool-page .tool-action-btn,
+    .tool-page .tool-suggest-corner,
+    .tool-page .tool-stars,
+    .tool-taxonomy .taxonomy-path a,
+    .tool-taxonomy .tag-badge {
+        position: relative;
+    }
+
+    .tool-page .tool-action-btn::after,
+    .tool-page .tool-suggest-corner::after,
+    .tool-page .tool-stars::after,
+    .tool-taxonomy .taxonomy-path a::after,
+    .tool-taxonomy .tag-badge::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
+        height: var(--mobile-tap-min);
+        transform: translateY(-50%);
+    }
+
+    .tool-page .tool-action-btn,
+    .tool-page .tool-suggest-corner {
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+
+    /* Plain markdown lists only (styled lists like the verdict use their own
+       markers): bring the outside bullets back inside the gutter. */
+    .tool-page .tool-content > ul,
+    .tool-page .tool-content > ol {
+        padding-left: 1.25rem;
+    }
+
+    .tool-page details.more-details summary,
+    .tool-page details summary {
+        min-height: var(--mobile-tap-min);
+        display: flex;
+        align-items: center;
+    }
+
+
+    /* ------------------------------------------------------------------
+       6. GUIDES / ARTICLES
+       ------------------------------------------------------------------ */
+
+    .learn-layout {
+        padding: 1.5rem var(--mobile-gutter) 3rem;
+    }
+
+    .learn-header h1 {
+        font-size: 26px;
+        line-height: 1.25;
+    }
+
+    .learn-content h2 {
+        font-size: 20px;
+        line-height: 1.3;
+    }
+
+    .learn-content h3 {
+        font-size: 17px;
+        line-height: 1.4;
+    }
+
+    .learn-breadcrumb a {
+        display: inline-flex;
+        align-items: center;
+        min-height: var(--mobile-tap-min);
+    }
+
+    .learn-content .article-outline a {
+        display: inline-block;
+        padding: 6px 0;
+    }
+
+    /* Wide tables scroll inside themselves instead of widening the page. */
+    .learn-content table {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .learn-content pre {
+        max-width: 100%;
+        white-space: pre;
+    }
+
+    /* "Jump to section" disclosure built by js/learn-page.js. */
+    .learn-toc-mobile {
+        display: block;
+        margin: 0 0 1.75rem;
+        border: 1px solid var(--vscode-border);
+        border-radius: 8px;
+        background: rgba(37, 37, 38, 0.7);
+    }
+
+    .learn-toc-mobile > summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 48px;
+        padding: 0 14px;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--vscode-text);
+        cursor: pointer;
+        list-style: none;
+    }
+
+    .learn-toc-mobile > summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .learn-toc-mobile > summary::after {
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-right: 2px solid var(--vscode-text-muted);
+        border-bottom: 2px solid var(--vscode-text-muted);
+        transform: translateY(-2px) rotate(45deg);
+        transition: transform 0.15s ease;
+    }
+
+    .learn-toc-mobile[open] > summary::after {
+        transform: translateY(2px) rotate(-135deg);
+    }
+
+    .learn-toc-mobile ol {
+        list-style: none;
+        margin: 0;
+        padding: 4px 0 8px;
+        border-top: 1px solid var(--vscode-border);
+    }
+
+    .learn-toc-mobile li a {
+        display: flex;
+        align-items: center;
+        min-height: var(--mobile-tap-min);
+        padding: 6px 14px;
+        font-size: 14px;
+        line-height: 1.35;
+        color: var(--vscode-text);
+        text-decoration: none;
+    }
+
+    .learn-toc-mobile li.toc-h3 a {
+        padding-left: 28px;
+        font-size: 13px;
+        color: var(--vscode-text-muted);
+    }
+
+    /* ------------------------------------------------------------------
+       7. CONTENT PAGES (about / contact / privacy / changes / guides index)
+       ------------------------------------------------------------------ */
+
+    .about-container,
+    .contact-container,
+    .privacy-container,
+    .terms-container,
+    .changes-container {
+        padding: 1.5rem var(--mobile-gutter) 2.5rem;
+        font-size: 15px;
+        width: 100%;
+        min-width: 0;
+        overflow-wrap: break-word;
+    }
+
+    /* Data tables (e.g. the privacy page's cookie table) scroll inside
+       themselves rather than widening the page. */
+    .about-container table,
+    .contact-container table,
+    .privacy-container table,
+    .terms-container table,
+    .changes-container table {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .about-container h1,
+    .contact-container h1,
+    .privacy-container h1,
+    .terms-container h1,
+    .changes-container h1 {
+        font-size: 26px;
+        line-height: 1.25;
+    }
+
+    .about-container h2,
+    .contact-container h2,
+    .privacy-container h2,
+    .terms-container h2,
+    .changes-container h2 {
+        font-size: 20px;
+        line-height: 1.3;
+    }
+
+    .learn-index {
+        padding: 1.5rem var(--mobile-gutter) 3rem;
+    }
+
+    .learn-index h1 {
+        font-size: 26px;
+        line-height: 1.25;
+    }
+
+    .learn-index .subtitle {
+        font-size: 15px;
+        line-height: 1.55;
+        margin-bottom: 1.5rem;
+    }
+
+    .article-card,
+    .external-link-card {
+        padding: 1rem 1.1rem;
+    }
+
+    .article-card h2 {
+        font-size: 17px;
+        line-height: 1.35;
+    }
+
+    .external-link-card h3 {
+        font-size: 16px;
+        line-height: 1.35;
+    }
+
+    .external-link-card h3 .external-badge {
+        display: block;
+        margin: 2px 0 0;
+    }
+
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        min-height: var(--mobile-tap-min);
+    }
+
+    /* ------------------------------------------------------------------
+       8. MODALS: edge-to-edge sheets on phones
+       ------------------------------------------------------------------ */
+
+    .suggest-modal-overlay .suggest-modal,
+    .review-modal-overlay .review-modal {
+        width: 100%;
+        max-width: none;
+        height: 100%;
+        max-height: none;
+        border-radius: 0;
+        border: 0;
+    }
+
+    .suggest-modal-overlay .suggest-modal-header,
+    .review-modal-overlay .review-modal-header {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        padding: 8px 8px 8px var(--mobile-gutter);
+        background: var(--color-surface, #252526);
+    }
+
+    .suggest-modal-overlay .suggest-modal-close,
+    .review-modal-overlay .review-modal-close {
+        min-width: var(--mobile-tap-min);
+        min-height: var(--mobile-tap-min);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .suggest-modal-overlay input,
+    .suggest-modal-overlay select,
+    .suggest-modal-overlay textarea,
+    .review-modal-overlay input,
+    .review-modal-overlay select,
+    .review-modal-overlay textarea {
+        font-size: 16px; /* prevents iOS focus zoom */
+    }
+
+    .suggest-modal-overlay button,
+    .review-modal-overlay button {
+        min-height: var(--mobile-tap-min);
+    }
+}
+
+/* Smallest phones (320-359px): keep the segmented controls on one line. */
+@media (max-width: 359px) {
+    .mobile-cta-btn {
+        gap: 4px;
+        padding: 0 6px;
+        font-size: 14px;
+    }
+
+    .view-toggle .view-btn,
+    .track-toggle .track-btn {
+        padding: 8px 2px;
+        font-size: 12px;
+    }
+}
+
+/* Narrow phones: tool-page grids drop to a single column. */
+@media (max-width: 479px) {
+    .tool-page .pricing-grid,
+    .tool-page details.more-details .detail-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+@media (max-width: 767px) and (prefers-reduced-motion: reduce) {
+    .nav-links,
+    html.nav-open .nav-links,
+    .nav-fixed > .nav-link,
+    .nav-variable,
+    .nav-toggle-bar,
+    .learn-toc-mobile > summary::after {
+        transition: none;
+    }
+
+    .nav-fixed > .nav-link,
+    .nav-variable {
+        transform: none;
+    }
+
+    html.nav-open body::after {
+        animation: none;
+    }
+
+    .mobile-cta-bar:not([hidden]) {
+        transition: none;
+    }
+}

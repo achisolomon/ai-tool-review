@@ -13,7 +13,8 @@ headquarters: "Israel"
 tags:
   - real-time
   - self-hosted
-last_verified: "2026-07-15"
+  - hebrew
+last_verified: "2026-10-16"
 confidence_score: 0.9
 source_urls:
   - "https://shetef.agentsela.com/"

@@ -7,7 +7,7 @@ name: Cloudflare AI Gateway
 pricing_model: freemium
 slug: cloudflare-ai-gateway
 status: active
-subcategory: model-routers
+subcategory: llm-gateway
 track: developers
 type: commercial
 website: https://developers.cloudflare.com/ai-gateway/

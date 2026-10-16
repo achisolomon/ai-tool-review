@@ -2250,10 +2250,10 @@ const landscapeData = {
               "pricing_starting": null,
               "user_count": null,
               "tags": [
-                "multilingual"
+                "hebrew"
               ],
               "all_tags": [
-                "multilingual"
+                "hebrew"
               ],
               "category_id": "transcription",
               "category_name": "Transcription",
@@ -2273,11 +2273,13 @@ const landscapeData = {
               "user_count": null,
               "tags": [
                 "real-time",
-                "self-hosted"
+                "self-hosted",
+                "hebrew"
               ],
               "all_tags": [
                 "real-time",
-                "self-hosted"
+                "self-hosted",
+                "hebrew"
               ],
               "category_id": "transcription",
               "category_name": "Transcription",
@@ -6582,11 +6584,13 @@ const landscapeData = {
               "user_count": null,
               "tags": [
                 "mcp-server",
-                "doc-to-markdown"
+                "doc-to-markdown",
+                "hebrew"
               ],
               "all_tags": [
                 "mcp-server",
-                "doc-to-markdown"
+                "doc-to-markdown",
+                "hebrew"
               ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
@@ -6713,6 +6717,33 @@ const landscapeData = {
                 "coding",
                 "cli",
                 "cost-reduction"
+              ],
+              "category_id": "ai-coding",
+              "category_name": "AI Coding & Developer Tools",
+              "subcategory_id": "llm-skills",
+              "subcategory_name": "LLM Skills",
+              "additional_categories": []
+            },
+            {
+              "name": "Skills-IL",
+              "slug": "skills-il",
+              "url": "https://agentskills.co.il/",
+              "desc": "Free, open-source library of security-reviewed AI agent skills and MCP servers built for Israeli use cases, from Hebrew document generation to Israeli tax and government-services automation.",
+              "type": "oss",
+              "github_stars": null,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "skill",
+                "mcp-server",
+                "no-code"
+              ],
+              "all_tags": [
+                "skill",
+                "mcp-server",
+                "no-code",
+                "hebrew"
               ],
               "category_id": "ai-coding",
               "category_name": "AI Coding & Developer Tools",
@@ -7507,8 +7538,8 @@ const landscapeData = {
           ]
         },
         {
-          "id": "model-routers",
-          "name": "Model Routers & Gateways",
+          "id": "llm-gateway",
+          "name": "LLM Gateway",
           "tools": [
             {
               "name": "Bifrost",
@@ -7533,8 +7564,8 @@ const landscapeData = {
               ],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
-              "subcategory_id": "model-routers",
-              "subcategory_name": "Model Routers & Gateways",
+              "subcategory_id": "llm-gateway",
+              "subcategory_name": "LLM Gateway",
               "additional_categories": []
             },
             {
@@ -7551,8 +7582,8 @@ const landscapeData = {
               "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
-              "subcategory_id": "model-routers",
-              "subcategory_name": "Model Routers & Gateways",
+              "subcategory_id": "llm-gateway",
+              "subcategory_name": "LLM Gateway",
               "additional_categories": []
             },
             {
@@ -7569,8 +7600,8 @@ const landscapeData = {
               "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
-              "subcategory_id": "model-routers",
-              "subcategory_name": "Model Routers & Gateways",
+              "subcategory_id": "llm-gateway",
+              "subcategory_name": "LLM Gateway",
               "additional_categories": []
             },
             {
@@ -7587,8 +7618,8 @@ const landscapeData = {
               "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
-              "subcategory_id": "model-routers",
-              "subcategory_name": "Model Routers & Gateways",
+              "subcategory_id": "llm-gateway",
+              "subcategory_name": "LLM Gateway",
               "additional_categories": []
             },
             {
@@ -7609,8 +7640,8 @@ const landscapeData = {
               ],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
-              "subcategory_id": "model-routers",
-              "subcategory_name": "Model Routers & Gateways",
+              "subcategory_id": "llm-gateway",
+              "subcategory_name": "LLM Gateway",
               "additional_categories": []
             },
             {
@@ -7627,8 +7658,34 @@ const landscapeData = {
               "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
-              "subcategory_id": "model-routers",
-              "subcategory_name": "Model Routers & Gateways",
+              "subcategory_id": "llm-gateway",
+              "subcategory_name": "LLM Gateway",
+              "additional_categories": []
+            },
+            {
+              "name": "Outsourcerer",
+              "slug": "outsourcerer",
+              "url": "https://alexgreenshpun.com",
+              "desc": "Bash-based orchestrator that routes coding tasks across Claude, Codex, Cursor, Devin and local models while tracking spend in one ledger",
+              "type": "oss",
+              "github_stars": 177,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "self-hosted",
+                "workflow-automation"
+              ],
+              "all_tags": [
+                "agents",
+                "self-hosted",
+                "workflow-automation"
+              ],
+              "category_id": "ai-infrastructure",
+              "category_name": "AI Infrastructure (Inference, Compute, Routing)",
+              "subcategory_id": "llm-gateway",
+              "subcategory_name": "LLM Gateway",
               "additional_categories": []
             },
             {
@@ -7645,8 +7702,8 @@ const landscapeData = {
               "all_tags": [],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
-              "subcategory_id": "model-routers",
-              "subcategory_name": "Model Routers & Gateways",
+              "subcategory_id": "llm-gateway",
+              "subcategory_name": "LLM Gateway",
               "additional_categories": []
             }
           ]
@@ -9364,24 +9421,6 @@ const landscapeData = {
               "desc": "Python library for structured LLM outputs using Pydantic models. Provides data extraction, validation, and retry logic with support for 15+ LLM providers. Enables type-safe, schema-driven AI integrations.",
               "type": "oss",
               "github_stars": 6800,
-              "pricing_model": "free",
-              "pricing_starting": null,
-              "user_count": null,
-              "tags": [],
-              "all_tags": [],
-              "category_id": "llm-frameworks",
-              "category_name": "LLM Application Frameworks",
-              "subcategory_id": "app-frameworks",
-              "subcategory_name": "Application Frameworks",
-              "additional_categories": []
-            },
-            {
-              "name": "LiteLLM",
-              "slug": "litellm",
-              "url": "https://www.litellm.ai/",
-              "desc": "Unified LLM API wrapper supporting 100+ models with consistent OpenAI-format interface. Includes load balancing, rate limiting, and spending tracking across providers (OpenAI, Claude, Gemini, Mistral, etc).",
-              "type": "oss",
-              "github_stars": 12400,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
@@ -11379,8 +11418,8 @@ const landscapeData = {
               "name": "AI Clouds / GPU Providers",
               "description": "GPU cloud providers"
             },
-            "model-routers": {
-              "name": "Model Routers & Gateways",
+            "llm-gateway": {
+              "name": "LLM Gateway",
               "description": "LLM routing and gateway services"
             },
             "networking": {
@@ -11705,6 +11744,11 @@ const landscapeData = {
           "description": "Supports multiple human languages"
         },
         {
+          "slug": "hebrew",
+          "name": "Hebrew",
+          "description": "Native Hebrew language support (UI, input, or output)"
+        },
+        {
           "slug": "tracing",
           "name": "Tracing",
           "description": "Request/call tracing"
@@ -11728,18 +11772,6 @@ const landscapeData = {
           "slug": "cost-reduction",
           "name": "Cost Reduction",
           "description": "Measurably reduces AI token/compute costs"
-        }
-      ],
-      "language-support": [
-        {
-          "slug": "hebrew",
-          "name": "Hebrew",
-          "description": "Hebrew language support"
-        },
-        {
-          "slug": "multilingual",
-          "name": "Multilingual",
-          "description": "Supports multiple languages beyond English"
         }
       ]
     }

@@ -125,9 +125,9 @@ async function openNewToolForm(page) {
 
   // Wait for Form A to be fully in the DOM and stable.
   // showInModal() replaces the modal body, then wireNewToolSubmit is awaited
-  // and focus is moved — wait for the first form input to be stable.
-  const nameInput = modal.locator('#suggest-name');
-  await expect(nameInput).toBeVisible({ timeout: 8000 });
+  // and focus is moved to the tool link (the only required field).
+  const websiteInput = modal.locator('#suggest-website');
+  await expect(websiteInput).toBeVisible({ timeout: 8000 });
 
   // Also wait for the credit consent block to be rendered (it's at the bottom
   // of the form — ensures the full form HTML has been inserted before returning).
@@ -244,57 +244,115 @@ test.describe('Test 3: Mocked-auth form tests', () => {
   // 3a — Slug derivation
   // -----------------------------------------------------------------------
 
-  test('3a: typing a tool name triggers duplicate check; name field is present and required', async ({ page }) => {
-    // Note: slug field was removed in Task 2. This test now covers name field presence
-    // and that typing a name triggers the duplicate-check flow (no slug derivation to verify).
+  test('3a: the tool link is the only required field; it comes first and has focus', async ({ page }) => {
     const modal = await openNewToolForm(page);
 
-    const nameInput = modal.locator('#suggest-name');
+    const websiteInput = modal.locator('#suggest-website');
+    await expect(websiteInput).toBeFocused();
+    await expect(websiteInput).toHaveAttribute('inputmode', 'url');
+    await expect(websiteInput).toHaveAttribute('autocapitalize', 'off');
 
-    // Name field must be present and required
-    await expect(nameInput).toBeVisible();
-    await expect(nameInput).toHaveAttribute('required', '');
+    // Exactly one required control in the form: the link (aria-required so
+    // it isn't styled as :invalid before the user types).
+    const requiredIds = await page.evaluate(() =>
+      Array.from(document.querySelectorAll('#suggest-new-tool-form [required], #suggest-new-tool-form [aria-required="true"]')).map((el) => el.id));
+    expect(requiredIds).toEqual(['suggest-website']);
+
+    // Name / description / why live in the collapsed optional section.
+    await expect(modal.locator('#suggest-name')).toBeHidden();
+    await expect(modal.locator('#suggest-description')).not.toHaveAttribute('minlength', /.*/);
+    const trigger = modal.locator('#suggest-details-collapsible .suggest-collapsible-trigger');
+    await expect(trigger).toHaveText(/Add details \(optional\)/);
+    await expect(trigger).toHaveAttribute('aria-expanded', 'false');
 
     // Slug field must NOT be present
     await expect(modal.locator('#suggest-slug')).toHaveCount(0);
-
-    // Typing a name dispatches an input event — duplicate-check wiring must not throw
-    await nameInput.fill('Letta AI');
-    await nameInput.dispatchEvent('input');
-
-    // The name value is stable (no crash, no redirect)
-    await expect(nameInput).toHaveValue('Letta AI');
   });
 
   // -----------------------------------------------------------------------
-  // 3b — Duplicate warning
+  // 3b — Duplicate notice: exact URL only, blocks submit
   // -----------------------------------------------------------------------
 
-  test('3b: typing an existing tool name shows the non-blocking duplicate warning', async ({ page }) => {
-    const modal = await openNewToolForm(page);
+  async function typeLink(page, value) {
+    // Set the value + dispatch input without a mouse click (fill() clicks to
+    // focus, which can bubble to the backdrop handler and close the modal).
+    await page.evaluate((v) => {
+      const input = document.querySelector('#suggest-website');
+      input.value = v;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    }, value);
+  }
 
-    // Use page-level locator to avoid stale reference after modal DOM mutation
-    const dupWarning = page.locator('#suggest-dup-warning');
-
-    // "ChatGPT" is in landscapeData (it's a well-known tool on the landscape).
-    // Use page.evaluate to set the value and dispatch the input event without
-    // triggering a Playwright mouse click (fill() internally clicks to focus,
-    // which can bubble to the backdrop handler and close the modal).
-    await page.evaluate(() => {
-      const nameInput = document.querySelector('#suggest-name');
-      if (nameInput) {
-        nameInput.value = 'ChatGPT';
-        // Dispatch with bubbles:true so wireDuplicateCheck's 'input' listener fires
-        nameInput.dispatchEvent(new Event('input', { bubbles: true }));
-      }
+  test('3b: an exact URL already on the map shows one notice line and disables submit', async ({ page }) => {
+    await openNewToolForm(page);
+    const existing = await page.evaluate(() => {
+      const tool = window.SuggestLogic.allTools(window.landscapeData).find((t) => /^https?:\/\/[^/]+\/?$/.test(t.url || ''));
+      return { name: tool.name, host: new URL(tool.url).hostname.replace(/^www\./, '') };
     });
 
-    // Duplicate check has a 400 ms debounce; give it plenty of time to fire
-    await expect(dupWarning).toBeVisible({ timeout: 4000 });
+    // Same URL, different scheme/case/www/trailing slash still counts as exact.
+    await typeLink(page, `HTTP://WWW.${existing.host.toUpperCase()}/`);
+    const notice = page.locator('#suggest-dup-warning');
+    await expect(notice).toBeVisible({ timeout: 4000 });
+    await expect(notice).toContainText('This tool is already listed:');
+    await expect(notice.locator('a')).toContainText(existing.name);
+    const submit = page.locator('#suggest-form-submit');
+    await expect(submit).toBeDisabled();
+    await expect(submit).toHaveText('Already listed');
 
-    // Warning should contain a link to the existing tool page
-    const link = dupWarning.locator('a');
-    await expect(link).toHaveCount(1, { timeout: 1000 });
+    // Editing the link re-enables submit and clears the notice.
+    await typeLink(page, `${existing.host}/some-other-page`);
+    await expect(submit).toBeEnabled();
+    await expect(submit).toHaveText('Submit suggestion');
+    await page.waitForTimeout(600);
+    await expect(notice).toBeHidden();
+  });
+
+  test('3b2: a different repo on the same code host shows no notice', async ({ page }) => {
+    await openNewToolForm(page);
+    await typeLink(page, 'github.com/affaan-m/ecc');
+    await page.waitForTimeout(700);
+    await expect(page.locator('#suggest-dup-warning')).toBeHidden();
+    await expect(page.locator('#suggest-form-submit')).toBeEnabled();
+  });
+
+  test('3b3: the notice never lists more than 3 tools', async ({ page }) => {
+    await openNewToolForm(page);
+    await page.evaluate(() => {
+      const tools = Array.from({ length: 6 }, (_, i) => ({ name: `Dup ${i}`, slug: `dup-${i}`, url: 'https://dup.example.com' }));
+      window.landscapeData = { developers: [{ subcategories: [{ tools }] }], users: [] };
+    });
+    await typeLink(page, 'dup.example.com');
+    const notice = page.locator('#suggest-dup-warning');
+    await expect(notice).toBeVisible({ timeout: 4000 });
+    await expect(notice.locator('a')).toHaveCount(3);
+    await expect(notice).toContainText('and 3 more');
+  });
+
+  test('3b4: an unusable link shows a friendly inline error and does not submit', async ({ page }) => {
+    await openNewToolForm(page);
+    await page.evaluate(() => {
+      window.__suggestCalls = 0;
+      const orig = window.SupabaseClient.createSuggestion;
+      window.SupabaseClient.createSuggestion = async (row) => { window.__suggestCalls++; return orig(row); };
+    });
+    await typeLink(page, 'not a link');
+    await page.evaluate(() => document.querySelector('#suggest-new-tool-form').requestSubmit());
+    const err = page.locator('#suggest-website-error');
+    await expect(err).toBeVisible();
+    await expect(err).toContainText("doesn't look like a web link");
+    expect(await page.evaluate(() => window.__suggestCalls)).toBe(0);
+  });
+
+  test('3b5: submit stays visible without scrolling on a 390x844 phone', async ({ page }) => {
+    // Open via the desktop toolbar (the phone toolbar button lives in the
+    // drawer), then shrink to a phone so the modal reflows full-screen.
+    await openNewToolForm(page);
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.waitForTimeout(200);
+    const box = await page.locator('#suggest-form-submit').boundingBox();
+    expect(box).not.toBeNull();
+    expect(box.y + box.height).toBeLessThanOrEqual(844);
   });
 
   // -----------------------------------------------------------------------
@@ -371,29 +429,48 @@ test.describe('Test 3: Mocked-auth form tests', () => {
   // 3d — Successful mocked submit shows confirmation
   // -----------------------------------------------------------------------
 
-  test('3d: mocked submit shows success confirmation microcopy', async ({ page }) => {
+  test('3d: submitting only a link succeeds; name is derived from the URL', async ({ page }) => {
     const modal = await openNewToolForm(page);
-
-    // Fill required fields to pass HTML5 validation
-    const nameInput = modal.locator('#suggest-name');
-    await nameInput.fill('Test Tool XYZ');
-    await nameInput.dispatchEvent('input');
-
-    await modal.locator('#suggest-website').fill('https://testtool.example.com');
-
-    // Description (required, min 10 chars)
-    await modal.locator('#suggest-description').fill('A test tool for playwright e2e spec.');
-
-    // Submit via evaluate to avoid click-on-unstable-element issues
     await page.evaluate(() => {
-      const form = document.querySelector('#suggest-new-tool-form');
-      if (form) form.requestSubmit();
+      const orig = window.SupabaseClient.createSuggestion;
+      window.SupabaseClient.createSuggestion = async (row) => { window.__lastSuggestion = row; return orig(row); };
     });
 
-    // Success state — mocked createSuggestion returns no error
+    await typeLink(page, 'github.com/affaan-m/ecc');
+    await page.evaluate(() => document.querySelector('#suggest-new-tool-form').requestSubmit());
+
     const successBlock = modal.locator('.suggest-success');
     await expect(successBlock).toBeVisible({ timeout: 5000 });
     await expect(successBlock).toContainText('Thank you');
+    await expect(successBlock).toContainText('Ecc');
+
+    const row = await page.evaluate(() => window.__lastSuggestion);
+    expect(row.kind).toBe('new_tool');
+    expect(row.payload).toMatchObject({
+      name: 'Ecc', slug: 'ecc', name_derived: true,
+      website: 'https://github.com/affaan-m/ecc', description: '', placement: null,
+    });
+  });
+
+  test('3d2: a typed name and description are kept as entered', async ({ page }) => {
+    const modal = await openNewToolForm(page);
+    await page.evaluate(() => {
+      const orig = window.SupabaseClient.createSuggestion;
+      window.SupabaseClient.createSuggestion = async (row) => { window.__lastSuggestion = row; return orig(row); };
+    });
+    await typeLink(page, 'https://testtool.example.com');
+    await page.evaluate(() => {
+      document.querySelector('#suggest-details-collapsible .suggest-collapsible-trigger').click();
+      document.querySelector('#suggest-name').value = 'Everything Claude Code';
+      document.querySelector('#suggest-description').value = 'Short.';
+      document.querySelector('#suggest-new-tool-form').requestSubmit();
+    });
+    await expect(modal.locator('.suggest-success')).toBeVisible({ timeout: 5000 });
+    const payload = await page.evaluate(() => window.__lastSuggestion.payload);
+    expect(payload.name).toBe('Everything Claude Code');
+    expect(payload.slug).toBe('everything-claude-code');
+    expect(payload.description).toBe('Short.');
+    expect(payload).not.toHaveProperty('name_derived');
   });
 
   // -----------------------------------------------------------------------
@@ -431,9 +508,10 @@ test.describe('Test 3: Mocked-auth form tests', () => {
     const modal = page.locator('[role="dialog"][aria-modal="true"]');
     await expect(modal).toBeVisible({ timeout: 5000 });
 
-    // The edit form should be pre-filled with the new_tool form
-    const nameInput = modal.locator('#suggest-name');
-    await expect(nameInput).toBeVisible({ timeout: 8000 });
+    // The edit form should be pre-filled with the new_tool form; prefilled
+    // optional details open the details section so they stay visible.
+    await expect(modal.locator('#suggest-website')).toHaveValue('https://prefilled.example.com', { timeout: 8000 });
+    await expect(modal.locator('#suggest-name')).toBeVisible();
 
     // No slug field should exist
     await expect(modal.locator('#suggest-slug')).toHaveCount(0);
@@ -460,6 +538,25 @@ test.describe('Test 3: Mocked-auth form tests', () => {
     const successBlock = modal.locator('.suggest-success');
     await expect(successBlock).toBeVisible({ timeout: 5000 });
     await expect(successBlock).toContainText('Saved!');
+  });
+
+  test('3g2: edit-mode new_tool resubmits with only a website (name derived)', async ({ page }) => {
+    await gotoLandscape(page);
+    await mockAuthSignedIn(page);
+    await page.evaluate(() => {
+      window.SupabaseClient.updateMySuggestion = async (_id, patch) => { window.__lastPatch = patch; return { error: null }; };
+      window.Suggest.open({
+        mode: 'edit',
+        suggestion: { id: 'fake-id', kind: 'new_tool', rationale: null, credit_name: null, public_credit: true,
+          payload: { name: '', website: 'https://github.com/affaan-m/ecc', description: '' } },
+      });
+    });
+    const modal = page.locator('[role="dialog"][aria-modal="true"]');
+    await expect(modal.locator('#suggest-website')).toHaveValue('https://github.com/affaan-m/ecc', { timeout: 8000 });
+    await page.evaluate(() => document.querySelector('#suggest-new-tool-form').requestSubmit());
+    await expect(modal.locator('.suggest-success')).toBeVisible({ timeout: 5000 });
+    const payload = await page.evaluate(() => window.__lastPatch.payload);
+    expect(payload).toMatchObject({ name: 'Ecc', slug: 'ecc', name_derived: true, description: '' });
   });
 
   // -----------------------------------------------------------------------

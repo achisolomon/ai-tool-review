@@ -238,8 +238,8 @@ developers:
       gpu-providers:
         name: "AI Clouds / GPU Providers"
         description: "GPU cloud providers"
-      model-routers:
-        name: "Model Routers & Gateways"
+      llm-gateway:
+        name: "LLM Gateway"
         description: "LLM routing and gateway services"
       networking:
         name: "Networking & Secure Connectivity"

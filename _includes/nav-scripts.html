@@ -2,10 +2,13 @@
      supabase-client.js + auth-ui.js are loaded. Wires the + Suggest button,
      the Admin badge, and auth UI. Single source of truth — no per-page copies. -->
 <link rel="stylesheet" href="/css/suggest.css">
+{% include mobile-cta-bar.html %}
 <script src="/js/admin-api.js"></script>
 <script src="/js/auth-signin.js"></script>
 <script src="/js/suggest-logic.js"></script>
 <script src="/js/suggest.js"></script>
 <script src="/js/nav-init.js"></script>
+<script src="/js/nav-drawer.js"></script>
+<script src="/js/mobile-cta-bar.js"></script>
 <!-- Site-wide ambient background + cursor aura + hover/focus light-up -->
 {% include ambient.html %}

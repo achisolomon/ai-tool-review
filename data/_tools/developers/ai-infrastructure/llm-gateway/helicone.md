@@ -8,7 +8,7 @@ name: Helicone
 pricing_model: freemium
 slug: helicone
 status: active
-subcategory: model-routers
+subcategory: llm-gateway
 track: developers
 type: oss
 website: https://www.helicone.ai/

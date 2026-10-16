@@ -1,0 +1,15 @@
+<!-- Mobile quick-action bar (< 768px only; display:none on desktop via
+     css/mobile.css). Sits outside #page-content so it persists across SPA
+     navigation; js/mobile-cta-bar.js picks the button set per route:
+       suggest -> home, search results, landscape
+       tool    -> tool detail pages
+     Buttons only re-trigger existing openers (no new flows):
+       #suggest-open-bar is wired + revealed by nav-init.js together with the
+       drawer's #suggest-open; the tool buttons proxy to the header chips.
+     data-cta-requires names a section that must be present and not [hidden]
+     (tool-page.js hides #reviews when the reviews backend is unreachable). -->
+<div class="mobile-cta-bar" id="mobile-cta-bar" role="region" aria-label="Quick actions" hidden>
+  <button class="mobile-cta-btn mobile-cta-primary" id="suggest-open-bar" type="button" data-cta-mode="suggest" hidden><span aria-hidden="true">+</span> Suggest a tool</button>
+  <button class="mobile-cta-btn mobile-cta-primary" id="review-open-bar" type="button" data-cta-mode="tool" data-cta-proxy="tool-header-leave-review" data-cta-requires="reviews"><span aria-hidden="true">&#9998;</span> Write a review</button>
+  <button class="mobile-cta-btn mobile-cta-secondary" id="suggest-edit-bar" type="button" data-cta-mode="tool" data-cta-proxy="tool-suggest-open"><span aria-hidden="true">&#9998;</span> Suggest an edit</button>
+</div>

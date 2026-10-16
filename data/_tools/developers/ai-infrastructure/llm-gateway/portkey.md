@@ -8,7 +8,7 @@ name: Portkey
 pricing_model: freemium
 slug: portkey
 status: active
-subcategory: model-routers
+subcategory: llm-gateway
 track: developers
 type: commercial
 website: https://portkey.ai/

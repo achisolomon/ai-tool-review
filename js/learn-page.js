@@ -5,6 +5,54 @@
   'use strict';
 
   let observer = null;
+  const MIN_MOBILE_TOC_HEADINGS = 2;
+
+  // Smooth-scrolls to the heading, clearing the sticky header.
+  function scrollToHeading(id) {
+    const target = document.getElementById(id);
+    if (!target) return;
+    const y = target.getBoundingClientRect().top + window.pageYOffset - 80;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+    history.replaceState(null, '', '#' + id);
+  }
+
+  function buildTocItem(h, onPick) {
+    const li = document.createElement('li');
+    if (h.tagName === 'H3') li.classList.add('toc-h3');
+    const a = document.createElement('a');
+    a.href = '#' + h.id;
+    a.textContent = h.textContent;
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (onPick) onPick();
+      scrollToHeading(h.id);
+    });
+    li.appendChild(a);
+    return li;
+  }
+
+  // Phones hide the sidebar TOC, so give them a collapsed "Jump to section"
+  // disclosure under the article header instead. Only css/mobile.css displays
+  // it (display:none at >= 768px). Skipped when the article ships its own
+  // inline outline, which learn.css already reveals on narrow screens.
+  function buildMobileToc(headings) {
+    const existing = document.querySelector('.learn-toc-mobile');
+    if (existing) existing.remove();
+    const header = document.querySelector('.learn-header');
+    if (!header || headings.length < MIN_MOBILE_TOC_HEADINGS) return;
+    if (document.querySelector('.learn-content .article-outline')) return;
+
+    const details = document.createElement('details');
+    details.className = 'learn-toc-mobile';
+    const summary = document.createElement('summary');
+    summary.textContent = 'Jump to section';
+    const list = document.createElement('ol');
+    const close = function () { details.open = false; };
+    headings.forEach(function (h) { list.appendChild(buildTocItem(h, close)); });
+    details.appendChild(summary);
+    details.appendChild(list);
+    header.insertAdjacentElement('afterend', details);
+  }
 
   function articlePageInit() {
     const tocList = document.getElementById('toc-list');
@@ -19,23 +67,9 @@
       if (!h.id) {
         h.id = h.textContent.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
       }
-      const li = document.createElement('li');
-      if (h.tagName === 'H3') li.classList.add('toc-h3');
-      const a = document.createElement('a');
-      a.href = '#' + h.id;
-      a.textContent = h.textContent;
-      a.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.getElementById(h.id);
-        if (target) {
-          const y = target.getBoundingClientRect().top + window.pageYOffset - 80;
-          window.scrollTo({ top: y, behavior: 'smooth' });
-          history.replaceState(null, '', '#' + h.id);
-        }
-      });
-      li.appendChild(a);
-      tocList.appendChild(li);
+      tocList.appendChild(buildTocItem(h));
     });
+    buildMobileToc(headings);
 
     const tocLinks = tocList.querySelectorAll('a');
     observer = new IntersectionObserver(function (entries) {

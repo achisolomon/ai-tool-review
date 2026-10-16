@@ -15,6 +15,7 @@ founded_year: 2026
 tags:
   - mcp-server
   - doc-to-markdown
+  - hebrew
 last_verified: "2026-10-16"
 confidence_score: 0.75
 ---

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-const PAGES = ['/', '/landscape', '/guides/', '/admin', '/about', '/contact', '/privacy', '/changes', '/my-reviews', '/my-suggestions', '/tools/llamaparse/', '/guides/managing-ai-coding-tool-budgets/'];
+const PAGES = ['/', '/landscape', '/guides/', '/admin', '/about', '/contact', '/privacy', '/terms', '/changes', '/my-reviews', '/my-suggestions', '/tools/llamaparse/', '/guides/managing-ai-coding-tool-budgets/'];
 
 test.describe('Shared footer on every page', () => {
   test.beforeEach(async ({ page }) => {
@@ -19,6 +19,7 @@ test.describe('Shared footer on every page', () => {
       await expect(footer.locator('a[href="/about.html"]')).toHaveCount(1);
       await expect(footer.locator('a[href="/contact.html"]')).toHaveCount(1);
       await expect(footer.locator('a[href="/privacy.html"]')).toHaveCount(1);
+      await expect(footer.locator('a[href="/terms.html"]')).toHaveCount(1);
     });
   }
 });
