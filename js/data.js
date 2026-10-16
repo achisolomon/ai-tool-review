@@ -6699,6 +6699,33 @@ const landscapeData = {
               "additional_categories": []
             },
             {
+              "name": "Skills-IL",
+              "slug": "skills-il",
+              "url": "https://agentskills.co.il/",
+              "desc": "Free, open-source library of security-reviewed AI agent skills and MCP servers built for Israeli use cases, from Hebrew document generation to Israeli tax and government-services automation.",
+              "type": "oss",
+              "github_stars": null,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "skill",
+                "mcp-server",
+                "no-code"
+              ],
+              "all_tags": [
+                "skill",
+                "mcp-server",
+                "no-code",
+                "hebrew"
+              ],
+              "category_id": "ai-coding",
+              "category_name": "AI Coding & Developer Tools",
+              "subcategory_id": "llm-skills",
+              "subcategory_name": "LLM Skills",
+              "additional_categories": []
+            },
+            {
               "name": "skills.sh",
               "slug": "skills-sh",
               "url": "https://www.skills.sh/",
