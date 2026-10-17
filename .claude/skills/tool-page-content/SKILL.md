@@ -70,6 +70,10 @@ Hard rules for this path:
    the server is up.
 6. **Ask once:** give the user `http://localhost:<port>/tools/<slug>/`, a
    2-3 line summary (category, tags, anything surprising) and ask "ship it?".
+   Also take a phone-width screenshot (about 8s) and send it, because the user
+   may be on their phone via Remote Control, where localhost does not open:
+   `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" shot <session_id> <slug>`
+   then `SendUserFile` with the printed `SHOT` path (`display: "render"`).
 7. **Ship** (only after the user says yes): commits, merges origin/main,
    always regenerates `js/data.js` and re-checks, pushes to main:
    `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" ship <session_id> "feat: add <Tool> tool page"`
