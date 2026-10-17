@@ -27,10 +27,19 @@ test.describe('AdSense placement policy', () => {
     expect(html).toContain('name="google-adsense-account"');
   });
 
-  test('a stub tool review has no ad and is noindex', async ({ page }) => {
-    const html = await (await page.request.get('/tools/agentops/')).text();
+  // 01-ai-yi is a short review (100-299 words): below the 300-word ad
+  // threshold but long enough to stay indexed. If it is ever expanded past
+  // 300 words, point this test at another short review.
+  test('a short tool review has no ad but stays indexed', async ({ page }) => {
+    const html = await (await page.request.get('/tools/01-ai-yi/')).text();
     expect(html).not.toContain('class="adsbygoogle"');
-    expect(html).toContain('content="noindex, follow"');
+    expect(html).not.toContain('content="noindex, follow"');
+  });
+
+  test('a full tool review has an ad and is indexed', async ({ page }) => {
+    const html = await (await page.request.get('/tools/agentops/')).text();
+    expect(html).toContain('class="adsbygoogle"');
+    expect(html).not.toContain('content="noindex, follow"');
   });
 
   test('a substantial tool review shows a visible ad slot', async ({ page }) => {

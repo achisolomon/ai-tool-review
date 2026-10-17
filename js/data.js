@@ -1635,14 +1635,23 @@ const landscapeData = {
               "name": "Google Stitch",
               "slug": "google-stitch",
               "url": "https://stitch.withgoogle.com/",
-              "desc": "Google's AI tool for generating and editing designs from text and image inputs for web and branding",
+              "desc": "Free Google Labs tool that turns prompts, sketches or screenshots into multi-screen UI designs and front-end code, powered by Gemini",
               "type": "commercial",
               "github_stars": null,
-              "pricing_model": "freemium",
+              "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "multimodal",
+                "no-code",
+                "coding"
+              ],
+              "all_tags": [
+                "multimodal",
+                "no-code",
+                "coding",
+                "free"
+              ],
               "category_id": "design",
               "category_name": "Design & Creative",
               "subcategory_id": "ui-product-design",
@@ -1653,14 +1662,20 @@ const landscapeData = {
               "name": "Uizard",
               "slug": "uizard",
               "url": "https://uizard.io/",
-              "desc": "AI-powered UI mockup and design generation from sketches, screenshots, and text descriptions",
+              "desc": "AI UI design tool, owned by Miro since 2024, that turns text prompts, sketches and screenshots into editable mockups and prototypes",
               "type": "commercial",
               "github_stars": null,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "no-code",
+                "multimodal"
+              ],
+              "all_tags": [
+                "no-code",
+                "multimodal"
+              ],
               "category_id": "design",
               "category_name": "Design & Creative",
               "subcategory_id": "ui-product-design",
@@ -1897,14 +1912,20 @@ const landscapeData = {
               "name": "Ada",
               "slug": "ada",
               "url": "https://www.ada.cx/",
-              "desc": "AI-powered customer service automation platform for automating support tickets and customer interactions",
+              "desc": "Enterprise AI customer service agents across chat, email, voice and messaging that resolve tickets alongside your helpdesk",
               "type": "commercial",
               "github_stars": null,
-              "pricing_model": "subscription",
+              "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "agents",
+                "multilingual"
+              ],
+              "all_tags": [
+                "agents",
+                "multilingual"
+              ],
               "category_id": "customer-support",
               "category_name": "Customer Support",
               "subcategory_id": "ai-support-agents",
@@ -1943,14 +1964,20 @@ const landscapeData = {
               "name": "Decagon",
               "slug": "decagon",
               "url": "https://www.decagon.ai/",
-              "desc": "Enterprise AI support agents for automating customer service with knowledge base integration and multi-channel support",
+              "desc": "Enterprise AI agents for customer support across chat, email and voice, configured in plain language with Agent Operating Procedures",
               "type": "commercial",
               "github_stars": null,
-              "pricing_model": "subscription",
+              "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "agents",
+                "workflow-automation"
+              ],
+              "all_tags": [
+                "agents",
+                "workflow-automation"
+              ],
               "category_id": "customer-support",
               "category_name": "Customer Support",
               "subcategory_id": "ai-support-agents",
@@ -1961,14 +1988,20 @@ const landscapeData = {
               "name": "Intercom Fin",
               "slug": "intercom-fin",
               "url": "https://www.intercom.com/fin",
-              "desc": "AI agent built into Intercom platform for autonomous customer support and ticket resolution",
+              "desc": "Intercom's AI support agent, priced at $0.99 per resolved outcome and usable on Intercom or alongside helpdesks like Salesforce",
               "type": "commercial",
               "github_stars": null,
-              "pricing_model": "add-on",
+              "pricing_model": "paid",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "agents",
+                "multilingual"
+              ],
+              "all_tags": [
+                "agents",
+                "multilingual"
+              ],
               "category_id": "customer-support",
               "category_name": "Customer Support",
               "subcategory_id": "ai-support-agents",
@@ -1979,14 +2012,20 @@ const landscapeData = {
               "name": "Sierra",
               "slug": "sierra",
               "url": "https://sierra.ai/",
-              "desc": "Conversational AI platform for customer support with personalization, tone control, and integration capabilities",
+              "desc": "Bret Taylor's conversational AI platform for branded customer experience agents on chat and voice, priced on resolved outcomes",
               "type": "commercial",
               "github_stars": null,
-              "pricing_model": "subscription",
+              "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "agents",
+                "real-time"
+              ],
+              "all_tags": [
+                "agents",
+                "real-time"
+              ],
               "category_id": "customer-support",
               "category_name": "Customer Support",
               "subcategory_id": "ai-support-agents",
@@ -2049,14 +2088,20 @@ const landscapeData = {
               "name": "Zendesk AI",
               "slug": "zendesk-ai",
               "url": "https://www.zendesk.com/service/ai/",
-              "desc": "Native AI capabilities embedded in Zendesk for ticket routing, summarization, and response generation",
+              "desc": "AI agents, Copilot and intelligent triage built into Zendesk, with AI agents billed per automated resolution",
               "type": "commercial",
               "github_stars": null,
-              "pricing_model": "add-on",
+              "pricing_model": "paid",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "agents",
+                "multilingual"
+              ],
+              "all_tags": [
+                "agents",
+                "multilingual"
+              ],
               "category_id": "customer-support",
               "category_name": "Customer Support",
               "subcategory_id": "helpdesk-platforms",
@@ -2112,15 +2157,21 @@ const landscapeData = {
             {
               "name": "Duolingo Max",
               "slug": "duolingo-max",
-              "url": "https://www.duolingo.com/",
-              "desc": "Premium language learning with AI conversation, essay feedback, and personalized lessons on Duolingo",
+              "url": "https://www.duolingo.com/max",
+              "desc": "Duolingo's top subscription tier, adding AI Video Call conversations with Lily and Roleplay speaking practice to Super Duolingo",
               "type": "commercial",
               "github_stars": null,
-              "pricing_model": "freemium",
+              "pricing_model": "paid",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "multimodal",
+                "real-time"
+              ],
+              "all_tags": [
+                "multimodal",
+                "real-time"
+              ],
               "category_id": "education",
               "category_name": "Education",
               "subcategory_id": "language-learning",
@@ -2131,14 +2182,20 @@ const landscapeData = {
               "name": "Speak",
               "slug": "speak",
               "url": "https://www.speak.com/",
-              "desc": "AI conversation tutor for learning English through realistic dialogue, feedback, and pronunciation coaching",
+              "desc": "OpenAI-backed language app built around speaking out loud, with AI tutor conversations and instant pronunciation feedback",
               "type": "commercial",
               "github_stars": null,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "multimodal",
+                "real-time"
+              ],
+              "all_tags": [
+                "multimodal",
+                "real-time"
+              ],
               "category_id": "education",
               "category_name": "Education",
               "subcategory_id": "language-learning",
@@ -2155,14 +2212,18 @@ const landscapeData = {
               "name": "Khanmigo",
               "slug": "khanmigo",
               "url": "https://www.khanmigo.ai/",
-              "desc": "AI tutor from Khan Academy providing personalized math, science, and reading instruction for K-12 students",
+              "desc": "Khan Academy's AI tutor and teaching assistant that guides students with questions instead of giving answers; free for teachers",
               "type": "commercial",
               "github_stars": null,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "reasoning"
+              ],
+              "all_tags": [
+                "reasoning"
+              ],
               "category_id": "education",
               "category_name": "Education",
               "subcategory_id": "ai-tutors",
@@ -2179,14 +2240,18 @@ const landscapeData = {
               "name": "MagicSchool",
               "slug": "magicschool",
               "url": "https://www.magicschool.ai/",
-              "desc": "AI platform for K-12 teachers to create lesson plans, assessments, and customize learning for diverse students",
+              "desc": "AI platform for K-12 teachers with 80+ tools for lesson plans, rubrics, IEPs and feedback, plus safe AI rooms for students",
               "type": "commercial",
               "github_stars": null,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "no-code"
+              ],
+              "all_tags": [
+                "no-code"
+              ],
               "category_id": "education",
               "category_name": "Education",
               "subcategory_id": "teacher-tools",
@@ -2233,14 +2298,20 @@ const landscapeData = {
               "name": "Arc Search",
               "slug": "arc-search",
               "url": "https://arc.net/",
-              "desc": "AI-native browser from The Browser Company with built-in search, AI summary, and contextual assistance",
+              "desc": "Mobile AI search browser from The Browser Company whose Browse for Me agent reads several pages and builds one cited answer page",
               "type": "commercial",
               "github_stars": null,
-              "pricing_model": "freemium",
+              "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "agents",
+                "browser-automation"
+              ],
+              "all_tags": [
+                "agents",
+                "browser-automation"
+              ],
               "category_id": "personal-assistants",
               "category_name": "Personal Assistants & Browsers",
               "subcategory_id": "browsers",
@@ -2251,14 +2322,20 @@ const landscapeData = {
               "name": "Comet (Perplexity)",
               "slug": "comet-perplexity",
               "url": "https://www.perplexity.ai/comet",
-              "desc": "Agentic browser from Perplexity for autonomous web browsing, research, and task completion",
+              "desc": "Perplexity's free AI browser with a built-in assistant that researches, summarizes and completes multi-step web tasks for you",
               "type": "commercial",
               "github_stars": null,
-              "pricing_model": "subscription",
+              "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "agents",
+                "browser-automation"
+              ],
+              "all_tags": [
+                "agents",
+                "browser-automation"
+              ],
               "category_id": "personal-assistants",
               "category_name": "Personal Assistants & Browsers",
               "subcategory_id": "browsers",
@@ -2269,14 +2346,20 @@ const landscapeData = {
               "name": "Dia",
               "slug": "dia",
               "url": "https://www.diabrowser.com/",
-              "desc": "Browser Company's AI agent browser for autonomous web navigation, research, and task automation",
+              "desc": "AI-first Chromium browser from The Browser Company (now Atlassian) with a tab-aware chat assistant, reusable Skills and memory",
               "type": "commercial",
               "github_stars": null,
-              "pricing_model": "beta",
+              "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "agents",
+                "memory"
+              ],
+              "all_tags": [
+                "agents",
+                "memory"
+              ],
               "category_id": "personal-assistants",
               "category_name": "Personal Assistants & Browsers",
               "subcategory_id": "browsers",
@@ -2308,17 +2391,23 @@ const landscapeData = {
               "additional_categories": []
             },
             {
-              "name": "Rabbit r1",
+              "name": "Rabbit R1",
               "slug": "rabbit-r1",
               "url": "https://www.rabbit.tech/",
-              "desc": "AI hardware device with autonomous agent for app interaction, web browsing, and task automation",
+              "desc": "$199 pocket AI device with a rotating camera and scroll wheel, rebuilt in 2025 around rabbitOS 2 and on-device agent features",
               "type": "commercial",
               "github_stars": null,
-              "pricing_model": "hardware",
+              "pricing_model": "paid",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "agents",
+                "multimodal"
+              ],
+              "all_tags": [
+                "agents",
+                "multimodal"
+              ],
               "category_id": "personal-assistants",
               "category_name": "Personal Assistants & Browsers",
               "subcategory_id": "browsers",
@@ -2375,14 +2464,22 @@ const landscapeData = {
               "name": "11x",
               "slug": "11x",
               "url": "https://www.11x.ai/",
-              "desc": "AI-powered digital sales development representatives (Alice and Mike) that automate outbound prospecting and lead generation.",
+              "desc": "AI digital workers for sales: Alice runs multichannel outbound prospecting and Julian handles inbound and outbound phone calls",
               "type": "commercial",
               "github_stars": null,
-              "pricing_model": "commission",
+              "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "agents",
+                "email",
+                "workflow-automation"
+              ],
+              "all_tags": [
+                "agents",
+                "email",
+                "workflow-automation"
+              ],
               "category_id": "sales-marketing",
               "category_name": "Sales & Marketing",
               "subcategory_id": "sales-prospecting",
@@ -2942,14 +3039,23 @@ const landscapeData = {
               "name": "Lindy",
               "slug": "lindy",
               "url": "https://www.lindy.ai/",
-              "desc": "AI-powered personal assistant platform for automating business operations without coding",
+              "desc": "No-code AI agent platform for building assistants that handle email, meetings, CRM updates and support across 1,500+ apps",
               "type": "commercial",
               "github_stars": null,
-              "pricing_model": "subscription",
+              "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "agents",
+                "no-code",
+                "workflow-automation"
+              ],
+              "all_tags": [
+                "agents",
+                "no-code",
+                "workflow-automation",
+                "email"
+              ],
               "category_id": "no-code-builders",
               "category_name": "No-Code AI Builders",
               "subcategory_id": "workflow-builders",
@@ -2982,14 +3088,24 @@ const landscapeData = {
               "name": "n8n",
               "slug": "n8n",
               "url": "https://n8n.io/",
-              "desc": "Open-source workflow automation platform with 50K+ GitHub stars, enabling low-code integrations",
+              "desc": "Fair-code workflow automation platform with a visual editor, code steps, AI agents and 500+ integrations; self-host or cloud",
               "type": "oss",
-              "github_stars": 50000,
-              "pricing_model": "open-source + cloud",
+              "github_stars": 207708,
+              "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "workflow-automation",
+                "agents",
+                "no-code"
+              ],
+              "all_tags": [
+                "workflow-automation",
+                "agents",
+                "no-code",
+                "self-hosted",
+                "mcp-server"
+              ],
               "category_id": "no-code-builders",
               "category_name": "No-Code AI Builders",
               "subcategory_id": "workflow-builders",
@@ -2997,17 +3113,25 @@ const landscapeData = {
               "additional_categories": []
             },
             {
-              "name": "Wordware",
+              "name": "Wordware (now Sauna)",
               "slug": "wordware",
               "url": "https://www.wordware.ai/",
-              "desc": "No-code LLM application builder with Notion-like interface for creating AI workflows and agents",
+              "desc": "Natural-language AI agent builder that pivoted in 2025 to Sauna, an AI workspace that learns your work and automates it",
               "type": "commercial",
               "github_stars": null,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "agents",
+                "no-code",
+                "yc"
+              ],
+              "all_tags": [
+                "agents",
+                "no-code",
+                "yc"
+              ],
               "category_id": "no-code-builders",
               "category_name": "No-Code AI Builders",
               "subcategory_id": "workflow-builders",
@@ -3186,14 +3310,20 @@ const landscapeData = {
               "name": "Abridge",
               "slug": "abridge",
               "url": "https://www.abridge.com/",
-              "desc": "AI for clinical documentation, automating note-taking and documentation for physicians in real-time",
+              "desc": "Ambient AI scribe for health systems that turns patient conversations into clinical notes inside Epic, linking each line to the audio",
               "type": "commercial",
               "github_stars": null,
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "real-time",
+                "multilingual"
+              ],
+              "all_tags": [
+                "real-time",
+                "multilingual"
+              ],
               "category_id": "healthcare",
               "category_name": "Healthcare",
               "subcategory_id": "clinical-documentation",
@@ -3204,14 +3334,20 @@ const landscapeData = {
               "name": "Nabla",
               "slug": "nabla",
               "url": "https://www.nabla.com/",
-              "desc": "Ambient AI medical scribe for automatic clinical documentation during patient consultations",
+              "desc": "Ambient AI assistant that drafts clinical notes from patient visits, with broad EHR integrations, 35+ specialties and multilingual support",
               "type": "commercial",
               "github_stars": null,
-              "pricing_model": "enterprise",
+              "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "real-time",
+                "multilingual"
+              ],
+              "all_tags": [
+                "real-time",
+                "multilingual"
+              ],
               "category_id": "healthcare",
               "category_name": "Healthcare",
               "subcategory_id": "clinical-documentation",
@@ -3222,14 +3358,22 @@ const landscapeData = {
               "name": "Suki",
               "slug": "suki",
               "url": "https://www.suki.ai/",
-              "desc": "Voice-based AI clinical assistant for healthcare providers that transcribes patient conversations and automates EHR documentation tasks.",
+              "desc": "AI assistant for clinicians that writes ambient notes, takes voice commands, suggests codes and answers questions inside the EHR",
               "type": "commercial",
               "github_stars": null,
-              "pricing_model": "subscription",
+              "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "real-time",
+                "agents",
+                "multilingual"
+              ],
+              "all_tags": [
+                "real-time",
+                "agents",
+                "multilingual"
+              ],
               "category_id": "healthcare",
               "category_name": "Healthcare",
               "subcategory_id": "clinical-documentation",
@@ -3246,14 +3390,22 @@ const landscapeData = {
               "name": "OpenEvidence",
               "slug": "openevidence",
               "url": "https://www.openevidence.com/",
-              "desc": "Clinical reference AI for searching and summarizing medical literature and evidence-based guidelines",
+              "desc": "Free AI medical search engine for verified US clinicians that answers clinical questions with citations to peer-reviewed literature",
               "type": "commercial",
               "github_stars": null,
-              "pricing_model": "enterprise",
+              "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "rag",
+                "reasoning",
+                "free"
+              ],
+              "all_tags": [
+                "rag",
+                "reasoning",
+                "free"
+              ],
               "category_id": "healthcare",
               "category_name": "Healthcare",
               "subcategory_id": "clinical-reference",
@@ -3270,14 +3422,22 @@ const landscapeData = {
               "name": "Hippocratic AI",
               "slug": "hippocratic-ai",
               "url": "https://www.hippocraticai.com/",
-              "desc": "Patient-facing healthcare AI for triage, symptom assessment, and health advice with clinical validation",
+              "desc": "Safety-focused AI voice agents that call patients for intake, follow-ups, chronic care check-ins and scheduling on behalf of health systems",
               "type": "commercial",
               "github_stars": null,
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "agents",
+                "real-time",
+                "multilingual"
+              ],
+              "all_tags": [
+                "agents",
+                "real-time",
+                "multilingual"
+              ],
               "category_id": "healthcare",
               "category_name": "Healthcare",
               "subcategory_id": "patient-facing-ai",
@@ -3302,14 +3462,20 @@ const landscapeData = {
               "name": "EvenUp",
               "slug": "evenup",
               "url": "https://www.evenuplaw.com/",
-              "desc": "AI-powered platform that automates personal injury demand letter drafting and valuation for plaintiff attorneys.",
+              "desc": "AI platform for personal injury law firms that drafts demand letters, organizes medical records and supports cases through trial",
               "type": "commercial",
               "github_stars": null,
-              "pricing_model": "subscription",
+              "pricing_model": "paid",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "agents",
+                "workflow-automation"
+              ],
+              "all_tags": [
+                "agents",
+                "workflow-automation"
+              ],
               "category_id": "legal",
               "category_name": "Legal",
               "subcategory_id": "legal-research-drafting",
@@ -3338,14 +3504,18 @@ const landscapeData = {
               "name": "Spellbook",
               "slug": "spellbook",
               "url": "https://www.spellbook.legal/",
-              "desc": "AI-powered legal drafting assistant that helps attorneys quickly generate and review contracts with intelligent suggestions.",
+              "desc": "AI contract drafting and review add-in for Microsoft Word that flags risks, suggests redlines and drafts clauses for lawyers",
               "type": "commercial",
               "github_stars": null,
-              "pricing_model": "subscription",
+              "pricing_model": "paid",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "agents"
+              ],
+              "all_tags": [
+                "agents"
+              ],
               "category_id": "legal",
               "category_name": "Legal",
               "subcategory_id": "legal-research-drafting",
@@ -3362,14 +3532,20 @@ const landscapeData = {
               "name": "Ironclad AI",
               "slug": "ironclad-ai",
               "url": "https://ironcladapp.com/",
-              "desc": "AI-powered contract lifecycle management platform for managing, negotiating, and analyzing contracts at enterprise scale.",
+              "desc": "AI-powered contract lifecycle management platform for drafting, negotiating, approving, signing and analyzing contracts at scale",
               "type": "commercial",
               "github_stars": null,
-              "pricing_model": "subscription",
+              "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "agents",
+                "workflow-automation"
+              ],
+              "all_tags": [
+                "agents",
+                "workflow-automation"
+              ],
               "category_id": "legal",
               "category_name": "Legal",
               "subcategory_id": "contract-management",
@@ -3391,17 +3567,23 @@ const landscapeData = {
           "name": "Investment & Financial Research",
           "tools": [
             {
-              "name": "FinChat",
+              "name": "Fiscal.ai (formerly FinChat)",
               "slug": "finchat",
-              "url": "https://finchat.io/",
-              "desc": "AI-powered equity research and financial analysis for investors with real-time company data and insights",
+              "url": "https://fiscal.ai/",
+              "desc": "AI equity research terminal (formerly FinChat) with fundamentals, KPIs and earnings transcripts for 100,000+ public companies",
               "type": "commercial",
               "github_stars": null,
-              "pricing_model": "subscription",
+              "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "api-available",
+                "mcp-server"
+              ],
+              "all_tags": [
+                "api-available",
+                "mcp-server"
+              ],
               "category_id": "finance",
               "category_name": "Finance",
               "subcategory_id": "financial-research",
@@ -3412,14 +3594,20 @@ const landscapeData = {
               "name": "Hebbia",
               "slug": "hebbia",
               "url": "https://www.hebbia.com/",
-              "desc": "AI research platform for financial analysts enabling rapid document analysis and insight discovery from large datasets",
+              "desc": "AI research platform for finance whose Matrix agents analyze thousands of documents at once with cited, spreadsheet-style answers",
               "type": "commercial",
               "github_stars": null,
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "agents",
+                "rag"
+              ],
+              "all_tags": [
+                "agents",
+                "rag"
+              ],
               "category_id": "finance",
               "category_name": "Finance",
               "subcategory_id": "financial-research",
@@ -3429,43 +3617,25 @@ const landscapeData = {
             {
               "name": "Rogo",
               "slug": "rogo",
-              "url": "https://rogo.ai/",
-              "desc": "AI investment banking analyst automating financial modeling, deal analysis, and M&A due diligence workflows",
+              "url": "https://rogo.com/",
+              "desc": "AI analyst platform for investment banks, private equity and investors that automates research, diligence and deal materials",
               "type": "commercial",
               "github_stars": null,
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "agents",
+                "workflow-automation"
+              ],
+              "all_tags": [
+                "agents",
+                "workflow-automation"
+              ],
               "category_id": "finance",
               "category_name": "Finance",
               "subcategory_id": "financial-research",
               "subcategory_name": "Investment & Financial Research",
-              "additional_categories": []
-            }
-          ]
-        },
-        {
-          "id": "finance-automation",
-          "name": "Finance Operations & Automation",
-          "tools": [
-            {
-              "name": "Klarity",
-              "slug": "klarity",
-              "url": "https://www.tryklarity.com/",
-              "desc": "AI document automation platform for financial services to extract, verify, and process financial documents",
-              "type": "commercial",
-              "github_stars": null,
-              "pricing_model": "subscription",
-              "pricing_starting": null,
-              "user_count": null,
-              "tags": [],
-              "all_tags": [],
-              "category_id": "finance",
-              "category_name": "Finance",
-              "subcategory_id": "finance-automation",
-              "subcategory_name": "Finance Operations & Automation",
               "additional_categories": []
             }
           ]
@@ -3533,17 +3703,21 @@ const landscapeData = {
           "name": "Talent Intelligence & Marketplaces",
           "tools": [
             {
-              "name": "Eightfold",
+              "name": "Eightfold AI",
               "slug": "eightfold",
               "url": "https://eightfold.ai/",
-              "desc": "Enterprise AI talent intelligence platform that matches candidates to roles and optimizes workforce planning.",
+              "desc": "Enterprise talent intelligence platform using AI skills matching and hiring agents for recruiting, internal mobility and workforce planning",
               "type": "commercial",
               "github_stars": null,
               "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "agents"
+              ],
+              "all_tags": [
+                "agents"
+              ],
               "category_id": "recruiting",
               "category_name": "Recruiting & HR",
               "subcategory_id": "talent-intelligence",
@@ -3554,14 +3728,18 @@ const landscapeData = {
               "name": "Mercor",
               "slug": "mercor",
               "url": "https://mercor.com/",
-              "desc": "AI-native recruiting marketplace connecting remote tech professionals with companies using skill-based matching and assessment.",
+              "desc": "AI-run expert network that recruits doctors, lawyers, engineers and other professionals to train and evaluate frontier AI models",
               "type": "commercial",
               "github_stars": null,
-              "pricing_model": "commission",
+              "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "agents"
+              ],
+              "all_tags": [
+                "agents"
+              ],
               "category_id": "recruiting",
               "category_name": "Recruiting & HR",
               "subcategory_id": "talent-intelligence",
@@ -3627,6 +3805,30 @@ const landscapeData = {
               "slug": "ibm-watsonx-orchestrate",
               "url": "https://www.ibm.com/products/watsonx-orchestrate",
               "desc": "Enterprise AI platform that automates work through conversational AI, pre-built skills, and multi-agent orchestration across business applications",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "enterprise",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "workflow-automation"
+              ],
+              "all_tags": [
+                "agents",
+                "workflow-automation"
+              ],
+              "category_id": "enterprise-platforms",
+              "category_name": "Enterprise AI Platforms",
+              "subcategory_id": "enterprise",
+              "subcategory_name": "Enterprise Platforms",
+              "additional_categories": []
+            },
+            {
+              "name": "Within (formerly Klarity)",
+              "slug": "klarity",
+              "url": "https://www.within.ai/",
+              "desc": "Within (formerly Klarity) maps how work happens across a company into a Company Brain, then decides which tasks move to AI agents",
               "type": "commercial",
               "github_stars": null,
               "pricing_model": "enterprise",
@@ -8754,14 +8956,23 @@ const landscapeData = {
               "name": "AgentOps",
               "slug": "agentops",
               "url": "https://www.agentops.ai/",
-              "desc": "Observability platform specialized for AI agents. Provides session replay, debugging tools, and performance monitoring for autonomous AI systems with session-level insights.",
+              "desc": "Observability for AI agents with session replays, cost tracking and failure analysis, via an MIT-licensed SDK for CrewAI and more",
               "type": "commercial",
-              "github_stars": null,
-              "pricing_model": "usage-based",
+              "github_stars": 5890,
+              "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "observability",
+                "tracing",
+                "agents"
+              ],
+              "all_tags": [
+                "observability",
+                "tracing",
+                "agents",
+                "python"
+              ],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
@@ -8772,14 +8983,24 @@ const landscapeData = {
               "name": "Arize Phoenix",
               "slug": "arize-phoenix",
               "url": "https://phoenix.arize.com/",
-              "desc": "Open-source observability platform for LLMs with Arize AX SaaS option. Provides tracing, evaluation, and monitoring for LLM and RAG applications with production-grade instrumentation.",
+              "desc": "Open-source LLM tracing and evaluation built on OpenTelemetry, with Arize AX as the managed enterprise option",
               "type": "oss",
-              "github_stars": 2800,
+              "github_stars": 11874,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "observability",
+                "tracing",
+                "self-hosted"
+              ],
+              "all_tags": [
+                "observability",
+                "tracing",
+                "self-hosted",
+                "python",
+                "rag"
+              ],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
@@ -8812,14 +9033,23 @@ const landscapeData = {
               "name": "Avon AI",
               "slug": "avon-ai",
               "url": "https://www.avon-ai.com/",
-              "desc": "Enterprise management platform for AI agents. Provides conversation analysis, agent analytics, built-in guardrails, testing frameworks, and human-in-the-loop controls for production AI systems.",
+              "desc": "Management layer for production AI agents that flags policy violations and drift, lets business teams fix behavior and tests continuously",
               "type": "commercial",
               "github_stars": null,
-              "pricing_model": "tiered",
+              "pricing_model": "enterprise",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "agents",
+                "observability",
+                "agent-management"
+              ],
+              "all_tags": [
+                "agents",
+                "observability",
+                "agent-management",
+                "tool-call-guardrails"
+              ],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
@@ -8830,14 +9060,23 @@ const landscapeData = {
               "name": "Braintrust",
               "slug": "braintrust",
               "url": "https://www.braintrust.dev/",
-              "desc": "Evaluation-driven observability platform for LLM applications. Integrates tracing with custom evaluations, automated regression testing, and feedback loops for continuous improvement.",
+              "desc": "Evaluation-first AI observability platform used by Notion, Stripe and Vercel to trace, test and improve LLM apps and agents",
               "type": "commercial",
               "github_stars": null,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "observability",
+                "tracing",
+                "python"
+              ],
+              "all_tags": [
+                "observability",
+                "tracing",
+                "python",
+                "typescript"
+              ],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
@@ -8845,17 +9084,26 @@ const landscapeData = {
               "additional_categories": []
             },
             {
-              "name": "Datadog LLM Observability",
+              "name": "Datadog Agent Observability (formerly LLM Observability)",
               "slug": "datadog-llm-observability",
               "url": "https://www.datadoghq.com/product/llm-observability/",
-              "desc": "Enterprise observability for LLMs integrated into Datadog platform. Monitors LLM costs, latency, and quality with full-stack observability and existing infrastructure integration.",
+              "desc": "Datadog's AI agent and LLM monitoring with tracing, evals, experiments and datasets, linked to your full Datadog stack",
               "type": "commercial",
               "github_stars": null,
-              "pricing_model": "usage-based",
+              "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "observability",
+                "tracing",
+                "agents"
+              ],
+              "all_tags": [
+                "observability",
+                "tracing",
+                "agents",
+                "python"
+              ],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
@@ -8863,17 +9111,27 @@ const landscapeData = {
               "additional_categories": []
             },
             {
-              "name": "Honeyhive",
+              "name": "HoneyHive",
               "slug": "honeyhive",
               "url": "https://www.honeyhive.ai/",
-              "desc": "Combined evaluation and observability platform for LLMs. Enables prompt management, A/B testing, production monitoring, and quality assurance for LLM applications.",
+              "desc": "Evaluation and observability platform for AI agents: tracing, automated and human evals, prompt versioning and CI testing",
               "type": "commercial",
               "github_stars": null,
-              "pricing_model": "usage-based",
+              "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "observability",
+                "tracing",
+                "agents"
+              ],
+              "all_tags": [
+                "observability",
+                "tracing",
+                "agents",
+                "python",
+                "typescript"
+              ],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
@@ -8883,15 +9141,25 @@ const landscapeData = {
             {
               "name": "Laminar",
               "slug": "laminar",
-              "url": "https://www.lmnr.ai/",
-              "desc": "Open-source observability framework specifically designed for agent applications. Provides tracing, logging, and debugging tools for autonomous AI agent systems with event-driven architecture.",
+              "url": "https://laminar.sh/",
+              "desc": "Open-source observability for AI agents: automatic tracing, browser session replay and clustering of failure patterns",
               "type": "oss",
-              "github_stars": 1600,
-              "pricing_model": "free",
+              "github_stars": 3397,
+              "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "observability",
+                "tracing",
+                "agents"
+              ],
+              "all_tags": [
+                "observability",
+                "tracing",
+                "agents",
+                "self-hosted",
+                "yc"
+              ],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
@@ -8967,17 +9235,27 @@ const landscapeData = {
               "additional_categories": []
             },
             {
-              "name": "Traceloop / OpenLLMetry",
+              "name": "Traceloop OpenLLMetry",
               "slug": "traceloop-openllmetry",
               "url": "https://www.traceloop.com/",
-              "desc": "OpenTelemetry-based standard for LLM observability. Provides open instrumentation for LLM applications with vendor-agnostic tracing that works with any observability backend.",
+              "desc": "Open-source OpenTelemetry instrumentation for LLM apps (OpenLLMetry) plus Traceloop's evaluation platform, now part of ServiceNow",
               "type": "oss",
-              "github_stars": 2100,
-              "pricing_model": "free",
+              "github_stars": 7501,
+              "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "observability",
+                "tracing",
+                "python"
+              ],
+              "all_tags": [
+                "observability",
+                "tracing",
+                "python",
+                "typescript",
+                "yc"
+              ],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
               "subcategory_id": "llm-observability",
@@ -9574,14 +9852,24 @@ const landscapeData = {
               "name": "LanceDB",
               "slug": "lancedb",
               "url": "https://lancedb.com/",
-              "desc": "Open-source vector database optimized for AI workloads with high performance, low latency, and efficient similarity search",
+              "desc": "Open-source multimodal database on the Lance columnar format for vector, full-text and SQL search plus AI training data",
               "type": "oss",
-              "github_stars": 3200,
+              "github_stars": 11685,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "multimodal",
+                "rag",
+                "self-hosted"
+              ],
+              "all_tags": [
+                "multimodal",
+                "rag",
+                "self-hosted",
+                "serverless",
+                "yc"
+              ],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "dedicated",
@@ -9592,14 +9880,22 @@ const landscapeData = {
               "name": "Milvus",
               "slug": "milvus",
               "url": "https://milvus.io/",
-              "desc": "Open-source distributed vector database supporting large-scale AI applications with high availability and fault tolerance",
+              "desc": "Open-source distributed vector database for billion-scale search, from embedded Milvus Lite to Zilliz Cloud",
               "type": "oss",
-              "github_stars": 27000,
-              "pricing_model": "free",
+              "github_stars": 46400,
+              "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "rag",
+                "self-hosted",
+                "multimodal"
+              ],
+              "all_tags": [
+                "rag",
+                "self-hosted",
+                "multimodal"
+              ],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "dedicated",
@@ -9655,17 +9951,23 @@ const landscapeData = {
               "additional_categories": []
             },
             {
-              "name": "Turbopuffer",
+              "name": "turbopuffer",
               "slug": "turbopuffer",
               "url": "https://turbopuffer.com/",
-              "desc": "Vector database designed for sub-millisecond latency and production-scale workloads with efficient indexing and filtering",
+              "desc": "Serverless vector and full-text search database built on object storage, used by Anthropic, Cursor, Notion and Linear",
               "type": "commercial",
               "github_stars": null,
-              "pricing_model": "freemium",
+              "pricing_model": "paid",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "rag",
+                "serverless"
+              ],
+              "all_tags": [
+                "rag",
+                "serverless"
+              ],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "dedicated",
@@ -9676,14 +9978,23 @@ const landscapeData = {
               "name": "Vespa",
               "slug": "vespa",
               "url": "https://vespa.ai/",
-              "desc": "Open-source big data serving engine combining search, ranking, and recommendation with vector and text search capabilities",
+              "desc": "Open-source AI search engine from Yahoo combining vector, text and structured search with machine-learned ranking at scale",
               "type": "oss",
-              "github_stars": 5200,
-              "pricing_model": "free",
+              "github_stars": 7129,
+              "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "rag",
+                "self-hosted",
+                "real-time"
+              ],
+              "all_tags": [
+                "rag",
+                "self-hosted",
+                "real-time",
+                "multimodal"
+              ],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "dedicated",
@@ -9724,14 +10035,25 @@ const landscapeData = {
               "name": "Cognee",
               "slug": "cognee",
               "url": "https://www.cognee.ai/",
-              "desc": "Knowledge extraction and graph-building framework for RAG systems, enabling structured knowledge organization from unstructured text",
+              "desc": "Open-source AI memory engine that turns documents and app data into a knowledge graph plus vectors for agents",
               "type": "oss",
-              "github_stars": 2100,
-              "pricing_model": "free",
+              "github_stars": 32406,
+              "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "memory",
+                "rag",
+                "agents"
+              ],
+              "all_tags": [
+                "memory",
+                "rag",
+                "agents",
+                "mcp-server",
+                "self-hosted",
+                "python"
+              ],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "rag-kg",
@@ -9742,14 +10064,22 @@ const landscapeData = {
               "name": "FalkorDB",
               "slug": "falkordb",
               "url": "https://www.falkordb.com/",
-              "desc": "Redis-based graph database optimized for knowledge graphs and semantic search with vector capabilities",
+              "desc": "Low-latency open-source graph database with vector search, built for GraphRAG and multi-tenant agent memory",
               "type": "oss",
-              "github_stars": 3100,
-              "pricing_model": "free",
+              "github_stars": 10302,
+              "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "rag",
+                "memory",
+                "self-hosted"
+              ],
+              "all_tags": [
+                "rag",
+                "memory",
+                "self-hosted"
+              ],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "rag-kg",
@@ -9784,14 +10114,25 @@ const landscapeData = {
               "name": "Graphiti",
               "slug": "graphiti",
               "url": "https://github.com/getzep/graphiti",
-              "desc": "Graph-based knowledge representation framework for building knowledge graphs with LLMs for enhanced RAG systems",
+              "desc": "Open-source temporal knowledge graph framework from Zep that tracks how facts change over time for agent memory",
               "type": "oss",
-              "github_stars": 1800,
+              "github_stars": 31824,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "memory",
+                "rag",
+                "agents"
+              ],
+              "all_tags": [
+                "memory",
+                "rag",
+                "agents",
+                "mcp-server",
+                "python",
+                "yc"
+              ],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "rag-kg",
@@ -9899,14 +10240,20 @@ const landscapeData = {
               "name": "Cloudflare Vectorize",
               "slug": "cloudflare-vectorize",
               "url": "https://developers.cloudflare.com/vectorize/",
-              "desc": "Cloudflare's managed vector database service integrated with Workers, enabling edge-deployed AI applications",
+              "desc": "Cloudflare's serverless vector database for Workers, billed only on queried and stored vector dimensions",
               "type": "commercial",
               "github_stars": null,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "serverless",
+                "rag"
+              ],
+              "all_tags": [
+                "serverless",
+                "rag"
+              ],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "extensions",
@@ -9917,14 +10264,22 @@ const landscapeData = {
               "name": "Elasticsearch",
               "slug": "elasticsearch",
               "url": "https://www.elastic.co/elasticsearch/vector-database",
-              "desc": "Elasticsearch with vector search capabilities, enabling hybrid search combining dense and sparse retrieval methods",
+              "desc": "Distributed search engine with native vector search, combining dense, sparse and BM25 keyword retrieval in one hybrid query",
               "type": "oss",
-              "github_stars": 67000,
+              "github_stars": 78293,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "rag",
+                "self-hosted",
+                "api-available"
+              ],
+              "all_tags": [
+                "rag",
+                "self-hosted",
+                "api-available"
+              ],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "extensions",
@@ -9932,17 +10287,23 @@ const landscapeData = {
               "additional_categories": []
             },
             {
-              "name": "MongoDB Atlas Vector",
+              "name": "MongoDB Atlas Vector Search",
               "slug": "mongodb-atlas-vector",
               "url": "https://www.mongodb.com/products/platform/atlas-vector-search",
-              "desc": "MongoDB Atlas Vector Search for storing and querying vector embeddings alongside document data in MongoDB",
+              "desc": "Vector search built into MongoDB Atlas, storing embeddings next to your documents with hybrid search and Voyage AI reranking",
               "type": "commercial",
               "github_stars": null,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "rag",
+                "api-available"
+              ],
+              "all_tags": [
+                "rag",
+                "api-available"
+              ],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "extensions",
@@ -9953,14 +10314,20 @@ const landscapeData = {
               "name": "pgvector",
               "slug": "pgvector",
               "url": "https://github.com/pgvector/pgvector",
-              "desc": "PostgreSQL extension enabling vector storage and similarity search, bringing vector capabilities to relational databases",
+              "desc": "Open-source Postgres extension for vector similarity search with HNSW and IVFFlat indexes, joins and ACID guarantees",
               "type": "oss",
-              "github_stars": 11500,
+              "github_stars": 23389,
               "pricing_model": "free",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "rag",
+                "self-hosted"
+              ],
+              "all_tags": [
+                "rag",
+                "self-hosted"
+              ],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "extensions",
@@ -9968,17 +10335,25 @@ const landscapeData = {
               "additional_categories": []
             },
             {
-              "name": "Redis Vector",
+              "name": "Redis Vector Search",
               "slug": "redis-vector",
               "url": "https://redis.io/solutions/vector-search/",
-              "desc": "Redis Stack with vector search capabilities for in-memory vector database with caching and real-time search",
+              "desc": "In-memory vector search in Redis with HNSW, hybrid filtering, vector sets and semantic caching for low-latency AI apps",
               "type": "oss",
               "github_stars": null,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "rag",
+                "real-time",
+                "self-hosted"
+              ],
+              "all_tags": [
+                "rag",
+                "real-time",
+                "self-hosted"
+              ],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "extensions",
@@ -9989,14 +10364,22 @@ const landscapeData = {
               "name": "Supabase Vector",
               "slug": "supabase-vector",
               "url": "https://supabase.com/modules/vector",
-              "desc": "Supabase Vector with pgvector integration, managed PostgreSQL with vector search for serverless AI applications",
+              "desc": "Managed Postgres with pgvector built in, plus auth, storage, Edge Functions and row-level security for AI apps",
               "type": "commercial",
-              "github_stars": 13000,
+              "github_stars": 111658,
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "rag",
+                "serverless",
+                "self-hosted"
+              ],
+              "all_tags": [
+                "rag",
+                "serverless",
+                "self-hosted"
+              ],
               "category_id": "vector-dbs",
               "category_name": "Vector Databases & Retrieval",
               "subcategory_id": "extensions",
