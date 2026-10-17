@@ -222,6 +222,41 @@ window.AdminAPI = {
         await expect(page.locator('#tool-page-missing')).toContainText('/tool-page-content');
     });
 
+    // Regression: "Everything claude code" + github.com/affaan-m/ecc was approved
+    // as the Ghidra MCP page. With no automatic match the admin links the page by
+    // hand, and the approval email must name the page's tool, not the typed one.
+    test('new_tool: admin can link a page by hand; email uses the page name', async ({ page }) => {
+        await gotoAdminMocked(page);
+        await openNewTool(page, {
+            name: 'Everything claude code', website: 'https://github.com/affaan-m/ecc', slug: 'ecc', placement: null,
+        });
+
+        const approveBtn = page.locator('#decision-approve');
+        await expect(approveBtn).toBeDisabled();
+        await page.locator('#tool-page-manual').fill('ghidra-mcp');
+        await expect(page.locator('#tool-page-link')).toHaveAttribute('href', '/tools/ghidra-mcp/');
+        await expect(page.locator('#tool-page-manual-warning')).toContainText('"Ghidra MCP"');
+        await expect(approveBtn).toBeEnabled();
+
+        await approveBtn.click();
+        await page.waitForFunction(() => window.__approved !== null);
+        const patch = await page.evaluate(() => window.__approved);
+        expect(patch.slug).toBe('ghidra-mcp');
+        expect(patch.name).toBe('Ghidra MCP');
+        expect(patch.website).toBe('https://github.com/bethington/ghidra-mcp');
+        expect(patch.submitted_name).toBe('Everything claude code');
+        expect(patch.submitted_website).toBe('https://github.com/affaan-m/ecc');
+    });
+
+    test('new_tool: an unknown slug typed by hand keeps Approve disabled', async ({ page }) => {
+        await gotoAdminMocked(page);
+        await openNewTool(page, {
+            name: 'No Such Tool', website: 'https://no-such-tool.example/', slug: 'no-such-tool', placement: null,
+        });
+        await page.locator('#tool-page-manual').fill('not-a-real-slug');
+        await expect(page.locator('#decision-approve')).toBeDisabled();
+    });
+
     test('new_tool: shared domain is resolved by the submitted slug', async ({ page }) => {
         await gotoAdminMocked(page);
         // letta.com hosts two tool pages (letta, letta-memgpt)
