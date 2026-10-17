@@ -1157,6 +1157,34 @@ const landscapeData = {
               "subcategory_id": "voice-speech",
               "subcategory_name": "Voice / Speech",
               "additional_categories": []
+            },
+            {
+              "name": "VoiceStudio",
+              "slug": "voicestudio",
+              "url": "https://voicestudio.sh/",
+              "desc": "Open-source, local-first desktop studio for voice cloning, voice design, video dubbing, dictation and audiobooks in 646 languages",
+              "type": "oss",
+              "github_stars": 72000,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "self-hosted",
+                "multilingual",
+                "mcp-server"
+              ],
+              "all_tags": [
+                "self-hosted",
+                "multilingual",
+                "mcp-server",
+                "api-available",
+                "python"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "voice-speech",
+              "subcategory_name": "Voice / Speech",
+              "additional_categories": []
             }
           ]
         },
@@ -8580,6 +8608,33 @@ const landscapeData = {
               "user_count": null,
               "tags": [],
               "all_tags": [],
+              "category_id": "ai-infrastructure",
+              "category_name": "AI Infrastructure (Inference, Compute, Routing)",
+              "subcategory_id": "llm-gateway",
+              "subcategory_name": "LLM Gateway",
+              "additional_categories": []
+            },
+            {
+              "name": "dsh-our-free-model",
+              "slug": "dsh-our-free-model",
+              "url": "https://github.com/Ebony-Vinyl/dsh-our-free-model",
+              "desc": "Free model-provider plugin for DeepSeek Harness (dsh) that exposes keyless frontier models like DeepSeek and Kimi with no login or API key",
+              "type": "oss",
+              "github_stars": 20300,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "free",
+                "multi-model",
+                "cost-reduction"
+              ],
+              "all_tags": [
+                "free",
+                "multi-model",
+                "cost-reduction",
+                "cli"
+              ],
               "category_id": "ai-infrastructure",
               "category_name": "AI Infrastructure (Inference, Compute, Routing)",
               "subcategory_id": "llm-gateway",
