@@ -226,7 +226,9 @@
                     this.disabled = false;
                     return;
                 }
-                const { error } = await window.SupabaseClient.signInWithProvider('github');
+                // Google is the default: most visitors have a Google account,
+                // and the consent screen shows our verified "AI Tool Review" brand.
+                const { error } = await window.SupabaseClient.signInWithProvider('google');
                 if (error) {
                     // Log the real error for developers; never leak internal
                     // messages (e.g. "Supabase not initialized") to the user.
