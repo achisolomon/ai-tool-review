@@ -6,6 +6,17 @@ window.landscapeInit = function landscapeInit() {
     let currentType = 'all';
     let currentView = 'categories'; // 'categories', 'subcategories', 'all'
 
+    // Set the instant a card click starts navigating away, so nothing can
+    // show the tooltip again after that point. On touch, tapping a card
+    // fires click -> navigate() -> mouseout -> a trailing synthetic
+    // mouseover on the still-attached card, in that order, all before the
+    // SPA's async fetchPage() swaps the DOM out from under it (js/router.js).
+    // Without this guard that late mouseover re-shows the tooltip, and it
+    // survives onto the tool page. Reset on every landscapeInit() call (SPA
+    // return to /landscape, or a bfcache restore that re-runs this script)
+    // so hover still works once the landscape is live again.
+    let leavingLandscape = false;
+
     // Generate URL-friendly slug from tool name
     function generateSlug(name) {
         return name.toLowerCase()
@@ -307,6 +318,11 @@ window.landscapeInit = function landscapeInit() {
 
             const card = e.target.closest('.tool-card');
             if (card) {
+                // Set before navigate() so no mouseover this click triggers
+                // (including a touch-tap's trailing synthetic one) can show
+                // the tooltip again while the SPA swap is in flight.
+                leavingLandscape = true;
+                hideTooltip();
                 const slug = card.dataset.slug;
                 if (window.SpaRouter) { window.SpaRouter.navigate(`/tools/${slug}/`); }
                 else { window.location.href = `/tools/${slug}/`; }
@@ -318,6 +334,7 @@ window.landscapeInit = function landscapeInit() {
         // same card doesn't flicker/hide the tooltip (mouseout fires on every
         // child transition, not just true card-boundary crossings).
         landscape.addEventListener('mouseover', (e) => {
+            if (leavingLandscape) return;
             const card = e.target.closest('.tool-card');
             if (!card) return;
             // Only show when entering the card from outside it
@@ -417,6 +434,21 @@ window.landscapeInit = function landscapeInit() {
 
         section.hidden = false;
     }
+};
+
+// Teardown for SPA navigation away from the landscape page.
+// #tooltip lives outside #page-content (it is a sibling of the footer in
+// landscape.html), so the router's innerHTML swap never removes it. Without
+// this, a tooltip left 'visible' by a card click persists, unchanged, on
+// whatever page the SPA router navigates to next (e.g. the clicked tool's
+// page) since mouseout/mouseleave never fires: the click replaces the DOM
+// before the pointer leaves the card. The router calls this explicitly
+// (see router.js teardown()), mirroring articlePageTeardown.
+window.landscapeTeardown = function landscapeTeardown() {
+    const tooltip = document.getElementById('tooltip');
+    if (!tooltip) return;
+    tooltip.classList.remove('visible');
+    tooltip.innerHTML = '';
 };
 
 // Auto-init only when landing directly on the landscape page (not via SPA nav).

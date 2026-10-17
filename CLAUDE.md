@@ -14,5 +14,6 @@
 - Star-figure rule: no tool page body may hardcode a digit immediately
   followed by "star(s)" in prose; only the key-stats badge may show the
   number. The `check` step lints this locally.
-- Ask the user exactly once ("ship it?", with the localhost link) before
-  pushing to `main`; ask nothing else.
+- Ask the user exactly once ("ship it?", with the localhost link and the
+  `shot` screenshot sent via SendUserFile, for phone/Remote Control use)
+  before pushing to `main`; ask nothing else.
