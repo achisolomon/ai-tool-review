@@ -74,8 +74,18 @@ test.describe('getCurrentUser() lazy-loads the library itself (does not require 
   });
 
   test('admin.html: checkIsAdmin() lazy-loads the library too (was the same null-client gap)', async ({ page }) => {
+    // admin.html preloads supabase-js and its init calls getCurrentUser() on
+    // load, so hold the CDN (as above) or the page loads the library first.
+    let unblock;
+    const cdnHeld = new Promise(resolve => { unblock = resolve; });
+    await page.route('**/supabase-js@2**', async route => {
+      await cdnHeld;
+      await route.continue();
+    });
+
     await page.goto('/admin.html', { waitUntil: 'domcontentloaded' });
     expect(await page.evaluate(() => typeof window.supabase)).toBe('undefined');
+    unblock();
     const result = await page.evaluate(async () => {
       const r = await window.AdminAPI.checkIsAdmin();
       return { hasSupa: typeof window.supabase, result: r };
