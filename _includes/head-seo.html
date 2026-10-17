@@ -19,4 +19,11 @@
 <meta name="twitter:description" content="{{ seo_description | strip_newlines }}" data-spa-head>
 
 <!-- Robots -->
+{%- comment -%} Stub reviews (a sentence or two) stay out of the index until
+     they are written up: indexing them reads as thin content to Google/AdSense.
+     review_words is computed by _layouts/tool.html. {%- endcomment -%}
+{% if review_words and review_words < 100 %}
+<meta name="robots" content="noindex, follow" data-spa-head>
+{% else %}
 <meta name="robots" content="index, follow" data-spa-head>
+{% endif %}

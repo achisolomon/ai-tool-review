@@ -16,11 +16,13 @@ A comprehensive directory of 380+ AI tools, organized by category and use case.
 - Personal Assistants
 - No-Code AI Builders
 - Enterprise Platforms
-- Vertical AI (Legal, Healthcare, Sales, etc.)
+- Industry categories: Sales & Marketing, Customer Support, Healthcare, Legal,
+  Finance, Education, Recruiting & HR, Design & Creative, Lifestyle & Wellness
 
 ### For Developers
 - Foundation Models & Model Hubs
 - AI Coding & Developer Tools
+- AI Cost Reduction
 - Agent Frameworks & Orchestration
 - LLM Application Frameworks
 - AI Infrastructure

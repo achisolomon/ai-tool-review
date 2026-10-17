@@ -130,22 +130,25 @@ Tools go in: `data/_tools/{track}/{category}/{subcategory}/{slug}.md`
 
 ## Category Taxonomy (MUST MATCH)
 
-The file path determines category. Choose from existing folders.
+The file path determines category. `data/_tools/_categories.yaml` is the
+source of truth; this table mirrors it. If they ever disagree, trust the yaml.
+There is no `vertical-ai` category any more: industry tools go straight into
+their industry category (e.g. `healthcare`, `legal`, `finance`).
 
 ### Developers Track (`track: "developers"`)
 
 | Category | Subcategories |
 |----------|---------------|
-| `ai-coding` | `coding-agents`, `ai-ides`, `app-builders`, `code-review`, `code-intelligence`, `context-optimization`, `cost-reduction`, `dev-environment`, `llm-skills`, `spec-driven`, `testing-sensors` |
-| `agent-frameworks` | `agent-communication`, `agent-identity`, `agent-memory`, `agent-payments`, `agent-search`, `browser-agents`, `code-first`, `durable-execution`, `protocols`, `tool-integrations` |
-| `agent-platforms` | (direct, no subcategories) |
-| `ai-infrastructure` | `gpu-providers`, `inference-apis`, `llm-gateway` |
+| `agent-frameworks` | `agent-communication`, `agent-identity`, `agent-memory`, `agent-payments`, `agent-platforms`, `agent-search`, `browser-agents`, `code-first`, `durable-execution`, `protocols`, `tool-integrations` |
+| `ai-coding` | `ai-ides`, `app-builders`, `code-intelligence`, `code-review`, `coding-agents`, `dev-environment`, `llm-skills`, `spec-driven`, `testing-sensors` |
+| `ai-cost` | `cost-offsets`, `token-optimization`, `usage-analytics` |
+| `ai-infrastructure` | `gpu-providers`, `inference-apis`, `llm-gateway`, `networking` |
 | `data-training` | `data-ingestion`, `data-labeling`, `embeddings`, `experiment-tracking`, `fine-tuning`, `lakehouse-semantic`, `ml-frameworks`, `mlops` |
-| `engineering-intelligence` | (direct, no subcategories) |
+| `engineering-intelligence` | `developer-portals`, `engineering-analytics` |
 | `foundation-models` | `closed-frontier`, `model-hubs`, `open-source` |
 | `llm-frameworks` | `app-frameworks`, `prompt-engineering` |
 | `observability-safety` | `app-observability`, `evaluation`, `guardrails`, `llm-observability` |
-| `security` | `red-teaming`, `security-scanning` |
+| `security` | `preventing-prompt-injection`, `red-teaming`, `security-scanning` |
 | `vector-dbs` | `dedicated`, `extensions`, `rag-kg` |
 
 ### Users Track (`track: "users"`)
@@ -153,24 +156,37 @@ The file path determines category. Choose from existing folders.
 | Category | Subcategories |
 |----------|---------------|
 | `ai-chat-search` | `ai-search`, `chat-assistants` |
-| `ai-contact-center` | `contact-center` |
-| `enterprise-platforms` | (direct, no subcategories) |
+| `customer-support` | `ai-support-agents`, `contact-center`, `helpdesk-platforms` |
+| `design` | `diagrams-illustrations`, `ui-product-design` |
+| `education` | `ai-tutors`, `language-learning`, `teacher-tools` |
+| `enterprise-platforms` | `enterprise` |
+| `finance` | `finance-automation`, `financial-research` |
 | `generative-media` | `3d-other`, `image-generation`, `music-generation`, `video-generation`, `voice-speech` |
-| `meeting-notetakers` | (direct, no subcategories) |
-| `no-code-builders` | (direct, no subcategories) |
-| `personal-assistants` | (direct, no subcategories) |
-| `slide-creation` | (direct, no subcategories) |
-| `vertical-ai` | `customer-support`, `design`, `education`, `finance`, `healthcare`, `legal`, `recruiting`, `sales-marketing` |
+| `healthcare` | `clinical-documentation`, `clinical-reference`, `patient-facing-ai` |
+| `legal` | `contract-management`, `legal-research-drafting` |
+| `lifestyle` | `astrology` |
+| `meeting-notetakers` | `notetakers` |
+| `no-code-builders` | `workflow-builders` |
+| `personal-assistants` | `browsers` |
+| `recruiting` | `ai-recruiters`, `talent-intelligence` |
+| `sales-marketing` | `ai-commerce`, `marketing-content`, `revenue-intelligence`, `sales-prospecting` |
+| `slide-creation` | `ai-presentations` |
+| `transcription` | `transcription-tools` |
 | `voice-ai-agents` | `voice-agents` |
-| `writing-productivity` | (direct, no subcategories) |
+| `writing-productivity` | `writing-tools` |
 
 **File path format:** `data/_tools/{track}/{category}/{subcategory}/{slug}.md`
 
-**Flat categories** (marked "direct, no subcategories" above) do NOT require
-a `subcategory` field in frontmatter; the generator defaults to the category
-id. For categories that DO have subcategories, the `subcategory` field is
-required and must match a folder name, or the tool is silently dropped from
-`js/data.js`.
+Always put a new tool in a subcategory folder and set the `subcategory` field
+to that folder name; a mismatch silently drops the tool from `js/data.js`. (A
+few legacy files sit directly in a category folder with no `subcategory`, e.g.
+`personal-assistants/dots.md`; the generator then uses the category id. Don't
+copy that pattern.)
+
+**New category or subcategory:** add it to `_categories.yaml` (with a unique
+id). A new category also needs a unique `rank:` (popularity order on the
+landscape grid; a test enforces this). Subcategories display in the order they
+are listed in the yaml, most popular first.
 
 ## Valid Tags (Use Only These)
 
