@@ -9,7 +9,7 @@ subcategory: "coding-agents"
 status: "active"
 description: "Agentic development environment that orchestrates Claude Code, Codex, GitHub Copilot, OpenCode, and Pi from one unified interface across desktop, mobile, web, and CLI, with git worktree support and voice control."
 github_url: "https://github.com/getpaseo/paseo"
-github_stars: 21175
+github_stars: 21240
 pricing_model: "open-source"
 founded_year: 2026
 tags:
