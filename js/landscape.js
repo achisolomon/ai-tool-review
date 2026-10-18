@@ -46,7 +46,19 @@ window.landscapeInit = function landscapeInit() {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const visibleCountEl = document.getElementById('visible-count');
     const categoryCountEl = document.getElementById('category-count');
-    const tooltip = document.getElementById('tooltip');
+    // #tooltip sits outside #page-content in landscape.html, so it only exists
+    // on a direct load. Reached by SPA navigation (e.g. home -> Landscape) the
+    // router swaps in #page-content alone and there is no #tooltip; without
+    // creating one here, a tap's synthetic mouseover makes showTooltip() throw
+    // and the click's hideTooltip() throws before navigating, so tapping a
+    // card on mobile does nothing (tests/landscape-mobile-tap.spec.js).
+    let tooltip = document.getElementById('tooltip');
+    if (!tooltip) {
+        tooltip = document.createElement('div');
+        tooltip.id = 'tooltip';
+        tooltip.className = 'tooltip';
+        document.body.appendChild(tooltip);
+    }
 
     // Initialize.
     // Set ALL structural layout classes on #landscape BEFORE rendering the grid,
