@@ -233,7 +233,11 @@ window.AdminAPI = {
 
         const approveBtn = page.locator('#decision-approve');
         await expect(approveBtn).toBeDisabled();
+        // Empty Link/Placement rows stay hidden until a page is chosen
+        await expect(page.locator('#tool-page-details')).toBeHidden();
+        await expect(page.locator('#tool-page-placement-row')).toBeHidden();
         await page.locator('#tool-page-manual').fill('ghidra-mcp');
+        await expect(page.locator('#tool-page-details')).toBeVisible();
         await expect(page.locator('#tool-page-link')).toHaveAttribute('href', '/tools/ghidra-mcp/');
         await expect(page.locator('#tool-page-manual-warning')).toContainText('"Ghidra MCP"');
         await expect(approveBtn).toBeEnabled();

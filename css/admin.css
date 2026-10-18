@@ -1020,6 +1020,11 @@
     flex-wrap: wrap;
 }
 
+/* display:flex above would otherwise override the hidden attribute */
+.suggestion-field-row[hidden] {
+    display: none;
+}
+
 .suggestion-field-row label {
     width: 120px;
     font-size: 12px;
