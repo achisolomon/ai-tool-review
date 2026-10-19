@@ -259,6 +259,17 @@
                 rows += `<tr><th>Name</th><td>${escapeHtml(p.name)}${p.name_derived ? ' <em class="payload-note">(derived from link)</em>' : ''}</td></tr>`;
                 rows += `<tr><th>Website</th><td><a href="${escapeHtml(safeUrl(p.website))}" target="_blank" rel="noreferrer noopener">${escapeHtml(p.website)}</a></td></tr>`;
                 rows += `<tr><th>Description</th><td>${p.description ? escapeHtml(p.description) : '<em class="payload-note">No description provided</em>'}</td></tr>`;
+                if (p.placement && p.placement.category) {
+                    const where = [p.placement.track, p.placement.category, p.placement.subcategory].filter(Boolean).join(' › ');
+                    rows += `<tr><th>Suggested placement</th><td>${escapeHtml(where)}${p.placement.subcategory ? '' : ' <em class="payload-note">(no subcategory)</em>'}</td></tr>`;
+                }
+                if (Array.isArray(p.tags) && p.tags.length) {
+                    rows += `<tr><th>Suggested tags</th><td>${p.tags.map(escapeHtml).join(', ')}</td></tr>`;
+                }
+                if (p.affiliate_url) {
+                    rows += `<tr><th>Affiliate program</th><td><a href="${escapeHtml(safeUrl(p.affiliate_url))}" target="_blank" rel="noreferrer noopener">${escapeHtml(p.affiliate_url)}</a></td></tr>`;
+                }
+                if (p.notes) rows += `<tr><th>Notes</th><td>${escapeHtml(p.notes)}</td></tr>`;
                 break;
 
             case 'taxonomy_change':
