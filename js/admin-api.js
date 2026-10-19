@@ -14,6 +14,10 @@ async function getSupabaseOrNull() {
     return window.SupabaseClient.getSupabase();
 }
 
+// The nav admin badge and the admin page both ask on load; share one role
+// lookup per signed-in user. A failed or non-admin answer is not kept.
+let _adminCheck = null;
+
 /**
  * Check if current user has admin or moderator role
  * @returns {Promise<{isAdmin: boolean, role: string|null}>}
@@ -22,16 +26,21 @@ async function checkIsAdmin() {
     if (!window.SupabaseClient) {
         return { isAdmin: false, role: null };
     }
-    // getCurrentUser() lazy-loads the library itself, but getSupabaseOrNull()
-    // checked it FIRST (synchronously) and bailed before getCurrentUser() ever
-    // ran — so the library never loaded and a real admin was always reported
-    // as non-admin. Call getCurrentUser() first so the lazy-load happens.
+    // getCurrentUser() lazy-loads the library itself, so call it before
+    // getSupabaseOrNull() (which bails if the library isn't loaded yet).
     const user = await window.SupabaseClient.getCurrentUser();
+    if (!user) return { isAdmin: false, role: null };
+    if (_adminCheck?.userId !== user.id) {
+        const promise = lookupAdminRole(user);
+        _adminCheck = { userId: user.id, promise };
+        promise.then(r => { if (!r.isAdmin && _adminCheck?.promise === promise) _adminCheck = null; });
+    }
+    return _adminCheck.promise;
+}
+
+async function lookupAdminRole(user) {
     const supabase = await getSupabaseOrNull();
     if (!supabase) {
-        return { isAdmin: false, role: null };
-    }
-    if (!user) {
         return { isAdmin: false, role: null };
     }
 
@@ -50,24 +59,33 @@ async function checkIsAdmin() {
 }
 
 /**
- * Get count of pending reviews
+ * Get count of reviews with a status (head-only, no rows fetched)
+ * @param {string} status - 'pending', 'approved', or 'rejected'
  * @returns {Promise<number>}
  */
-async function getPendingCount() {
+async function getReviewCount(status) {
     const supabase = await getSupabaseOrNull();
     if (!supabase) return 0;
 
     const { count, error } = await supabase
         .from('reviews')
         .select('*', { count: 'exact', head: true })
-        .eq('status', 'pending');
+        .eq('status', status);
 
     if (error) {
-        console.error('Error fetching pending count:', error);
+        console.error(`Error fetching ${status} count:`, error);
         return 0;
     }
 
     return count || 0;
+}
+
+/**
+ * Get count of pending reviews
+ * @returns {Promise<number>}
+ */
+function getPendingCount() {
+    return getReviewCount('pending');
 }
 
 /**
@@ -424,6 +442,7 @@ async function markSuggestionApplied(id) {
 // Export for use in admin page
 window.AdminAPI = {
     checkIsAdmin,
+    getReviewCount,
     getPendingCount,
     getReviewsForModeration,
     approveReview,

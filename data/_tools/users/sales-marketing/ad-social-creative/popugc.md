@@ -4,12 +4,13 @@ slug: "popugc"
 website: "https://popugc.com/"
 type: "commercial"
 track: "users"
-category: "generative-media"
-subcategory: "video-generation"
+category: "sales-marketing"
+subcategory: "ad-social-creative"
 status: "active"
 description: "AI studio for e-commerce sellers that generates product images and marketing videos from text or image prompts, with batch creation for high-volume output"
 pricing_model: "subscription"
 tags:
+  - gtm
   - multimodal
 last_verified: "2026-10-12"
 confidence_score: 0.75

@@ -84,11 +84,19 @@ body > ins.adsbygoogle,
 body > div[id^="google_ads"],
 body > div[class*="adsbygoogle"],
 body > aside,
-body > div:not(.cookie-banner):not(#tooltip) > ins.adsbygoogle {
+body > div:not(.cookie-banner):not(#tooltip):not(.footer-ad) > ins.adsbygoogle {
     position: fixed !important;
     z-index: -1 !important;
     opacity: 0 !important;
     pointer-events: none !important;
+}
+
+/* The designated ad unit only renders on content pages (#page-content.ad-eligible,
+   set by the tool/learn layouts). If the SPA router swaps in a navigation screen
+   (home search, landscape, account pages), hide the unit: AdSense policy forbids
+   ads on screens used for navigation or without publisher content. */
+body:has(#page-content:not(.ad-eligible)) .footer-ad {
+    display: none !important;
 }
 
 /* Only show ads in designated footer area */

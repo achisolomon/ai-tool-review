@@ -94,6 +94,9 @@ users:
       marketing-content:
         name: "Marketing & Brand Content"
         description: "On-brand content generation for marketing teams"
+      ad-social-creative:
+        name: "Ad & Social Creative"
+        description: "AI-generated ad creative, UGC-style product videos, and social content for sellers and marketers"
       revenue-intelligence:
         name: "Revenue Intelligence"
         description: "Conversation analytics and deal insights for sales teams"

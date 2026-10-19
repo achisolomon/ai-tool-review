@@ -13,6 +13,8 @@ pricing_model: "enterprise"
 # AI-Managed Metadata
 last_verified: "2026-06-03"
 confidence_score: 0.92
+tags:
+  - gtm
 ---
 
 Enterprise AI platform for marketing and communications
