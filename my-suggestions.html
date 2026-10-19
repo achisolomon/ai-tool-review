@@ -117,7 +117,7 @@ sitemap: false
     <script src="js/supabase-client.js"></script>
     <script src="js/auth-ui.js"></script>
     {% include nav-scripts.html %}
-    <script src="js/data.js"></script>
+    <script src="js/data.js?v={{ site.time | date: '%s' }}"></script>
     <script>
         // Render sign-in card using the shared AuthSignIn component
         // (Required by validate:auth-pages — must call AuthSignIn.renderCard)
