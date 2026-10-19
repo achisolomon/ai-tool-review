@@ -2450,6 +2450,33 @@ const landscapeData = {
           "name": "Marketing & Brand Content",
           "tools": [
             {
+              "name": "Balloon",
+              "slug": "balloon",
+              "url": "https://balloon.marketing/",
+              "desc": "Balloon automates small-business marketing: it reads your website, finds your audience, generates ads and videos, and publishes them across social channels.",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "paid",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "workflow-automation",
+                "no-code"
+              ],
+              "all_tags": [
+                "agents",
+                "workflow-automation",
+                "no-code",
+                "multimodal"
+              ],
+              "category_id": "sales-marketing",
+              "category_name": "Sales & Marketing",
+              "subcategory_id": "marketing-content",
+              "subcategory_name": "Marketing & Brand Content",
+              "additional_categories": []
+            },
+            {
               "name": "Writer",
               "slug": "writer",
               "url": "https://writer.com/",
