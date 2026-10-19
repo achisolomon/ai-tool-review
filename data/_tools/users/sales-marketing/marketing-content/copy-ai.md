@@ -16,9 +16,6 @@ tags:
   - workflow-automation
 last_verified: "2026-06-02"
 confidence_score: 0.9
-additional_categories:
-  - category: "writing-productivity"
-    subcategory: "writing-tools"
 ---
 
 <div class="key-stats">

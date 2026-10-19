@@ -881,37 +881,6 @@ const landscapeData = {
               "additional_categories": []
             },
             {
-              "name": "PopUGC",
-              "slug": "popugc",
-              "url": "https://popugc.com/",
-              "desc": "AI studio for e-commerce sellers that generates product images and marketing videos from text or image prompts, with batch creation for high-volume output",
-              "type": "commercial",
-              "github_stars": null,
-              "pricing_model": "subscription",
-              "pricing_starting": null,
-              "user_count": null,
-              "tags": [
-                "gtm",
-                "multimodal"
-              ],
-              "all_tags": [
-                "gtm",
-                "multimodal"
-              ],
-              "category_id": "generative-media",
-              "category_name": "Generative Media",
-              "subcategory_id": "video-generation",
-              "subcategory_name": "Video Generation",
-              "additional_categories": [
-                {
-                  "category_id": "sales-marketing",
-                  "category_name": "Sales & Marketing",
-                  "subcategory_id": "ad-social-creative",
-                  "subcategory_name": "Ad & Social Creative"
-                }
-              ]
-            },
-            {
               "name": "Runway",
               "slug": "runway",
               "url": "https://runwayml.com/",
@@ -1407,66 +1376,6 @@ const landscapeData = {
           "id": "writing-tools",
           "name": "Writing Tools",
           "tools": [
-            {
-              "name": "Copy.ai",
-              "slug": "copy-ai",
-              "url": "https://www.copy.ai/",
-              "desc": "AI-powered GTM platform that automates sales and marketing workflows with 90+ templates, AI chatbots, and enterprise-grade content generation",
-              "type": "commercial",
-              "github_stars": null,
-              "pricing_model": "freemium",
-              "pricing_starting": null,
-              "user_count": null,
-              "tags": [
-                "gtm",
-                "workflow-automation"
-              ],
-              "all_tags": [
-                "gtm",
-                "workflow-automation"
-              ],
-              "category_id": "sales-marketing",
-              "category_name": "Sales & Marketing",
-              "subcategory_id": "marketing-content",
-              "subcategory_name": "Marketing & Brand Content",
-              "additional_categories": [
-                {
-                  "category_id": "writing-productivity",
-                  "category_name": "Writing & Productivity",
-                  "subcategory_id": "writing-tools",
-                  "subcategory_name": "Writing Tools"
-                }
-              ]
-            },
-            {
-              "name": "Jasper",
-              "slug": "jasper",
-              "url": "https://www.jasper.ai/",
-              "desc": "Enterprise AI marketing platform with brand voice training, 50+ templates, and team collaboration for creating on-brand content at scale",
-              "type": "commercial",
-              "github_stars": null,
-              "pricing_model": "subscription",
-              "pricing_starting": null,
-              "user_count": null,
-              "tags": [
-                "gtm"
-              ],
-              "all_tags": [
-                "gtm"
-              ],
-              "category_id": "sales-marketing",
-              "category_name": "Sales & Marketing",
-              "subcategory_id": "marketing-content",
-              "subcategory_name": "Marketing & Brand Content",
-              "additional_categories": [
-                {
-                  "category_id": "writing-productivity",
-                  "category_name": "Writing & Productivity",
-                  "subcategory_id": "writing-tools",
-                  "subcategory_name": "Writing Tools"
-                }
-              ]
-            },
             {
               "name": "AI Email Generator",
               "slug": "ai-email-generator",
@@ -2622,14 +2531,7 @@ const landscapeData = {
               "category_name": "Sales & Marketing",
               "subcategory_id": "marketing-content",
               "subcategory_name": "Marketing & Brand Content",
-              "additional_categories": [
-                {
-                  "category_id": "writing-productivity",
-                  "category_name": "Writing & Productivity",
-                  "subcategory_id": "writing-tools",
-                  "subcategory_name": "Writing Tools"
-                }
-              ]
+              "additional_categories": []
             },
             {
               "name": "Jasper",
@@ -2651,14 +2553,7 @@ const landscapeData = {
               "category_name": "Sales & Marketing",
               "subcategory_id": "marketing-content",
               "subcategory_name": "Marketing & Brand Content",
-              "additional_categories": [
-                {
-                  "category_id": "writing-productivity",
-                  "category_name": "Writing & Productivity",
-                  "subcategory_id": "writing-tools",
-                  "subcategory_name": "Writing Tools"
-                }
-              ]
+              "additional_categories": []
             },
             {
               "name": "Writer",
@@ -2706,18 +2601,11 @@ const landscapeData = {
                 "gtm",
                 "multimodal"
               ],
-              "category_id": "generative-media",
-              "category_name": "Generative Media",
-              "subcategory_id": "video-generation",
-              "subcategory_name": "Video Generation",
-              "additional_categories": [
-                {
-                  "category_id": "sales-marketing",
-                  "category_name": "Sales & Marketing",
-                  "subcategory_id": "ad-social-creative",
-                  "subcategory_name": "Ad & Social Creative"
-                }
-              ]
+              "category_id": "sales-marketing",
+              "category_name": "Sales & Marketing",
+              "subcategory_id": "ad-social-creative",
+              "subcategory_name": "Ad & Social Creative",
+              "additional_categories": []
             }
           ]
         },
