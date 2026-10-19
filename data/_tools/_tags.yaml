@@ -84,12 +84,6 @@ integrations:
   - slug: cli
     name: "CLI"
     description: "Command-line interface available"
-  - slug: api
-    name: "API"
-    description: "General API integration"
-  - slug: email
-    name: "Email"
-    description: "Email integration"
 
 deployment:
   - slug: self-hosted
@@ -98,9 +92,6 @@ deployment:
   - slug: serverless
     name: "Serverless"
     description: "Serverless deployment option"
-  - slug: cli
-    name: "CLI"
-    description: "Command-line interface"
   - slug: sandboxes
     name: "Sandboxes"
     description: "Sandboxed execution environment"
@@ -115,6 +106,9 @@ use-cases:
   - slug: workflow-automation
     name: "Workflow Automation"
     description: "Automates workflows"
+  - slug: gtm
+    name: "GTM"
+    description: "Go-to-market: prospecting, outbound, sales calls, revenue intelligence, marketing content, or selling"
   - slug: browser-automation
     name: "Browser Automation"
     description: "Automates browser interactions"

@@ -4,17 +4,21 @@ slug: "copy-ai"
 website: "https://www.copy.ai/"
 type: "commercial"
 track: "users"
-category: "writing-productivity"
-subcategory: "writing-tools"
+category: "sales-marketing"
+subcategory: "marketing-content"
 status: "active"
 description: "AI-powered GTM platform that automates sales and marketing workflows with 90+ templates, AI chatbots, and enterprise-grade content generation"
 pricing_model: "freemium"
 founded_year: 2020
 headquarters: "Memphis, TN"
 tags:
+  - gtm
   - workflow-automation
 last_verified: "2026-06-02"
 confidence_score: 0.9
+additional_categories:
+  - category: "writing-productivity"
+    subcategory: "writing-tools"
 ---
 
 <div class="key-stats">

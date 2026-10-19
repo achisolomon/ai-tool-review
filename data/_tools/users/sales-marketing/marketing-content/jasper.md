@@ -4,8 +4,8 @@ slug: "jasper"
 website: "https://www.jasper.ai/"
 type: "commercial"
 track: "users"
-category: "writing-productivity"
-subcategory: "writing-tools"
+category: "sales-marketing"
+subcategory: "marketing-content"
 status: "active"
 description: "Enterprise AI marketing platform with brand voice training, 50+ templates, and team collaboration for creating on-brand content at scale"
 pricing_model: "subscription"
@@ -13,6 +13,11 @@ founded_year: 2021
 headquarters: "Austin, TX"
 last_verified: "2026-06-02"
 confidence_score: 0.9
+tags:
+  - gtm
+additional_categories:
+  - category: "writing-productivity"
+    subcategory: "writing-tools"
 ---
 
 <div class="key-stats">
