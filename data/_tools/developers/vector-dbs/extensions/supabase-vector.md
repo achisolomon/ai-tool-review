@@ -9,7 +9,7 @@ subcategory: "extensions"
 status: "active"
 description: "Managed Postgres with pgvector built in, plus auth, storage, Edge Functions and row-level security for AI apps"
 github_url: "https://github.com/supabase/supabase"
-github_stars: 111707
+github_stars: 111760
 pricing_model: "freemium"
 founded_year: 2020
 headquarters: "San Francisco, CA"
