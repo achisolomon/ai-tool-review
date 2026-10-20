@@ -9,7 +9,7 @@ subcategory: "llm-observability"
 status: "active"
 description: "Open-source LLM tracing and evaluation built on OpenTelemetry, with Arize AX as the managed enterprise option"
 github_url: "https://github.com/Arize-ai/phoenix"
-github_stars: 11907
+github_stars: 11914
 pricing_model: "freemium"
 founded_year: 2020
 headquarters: "Berkeley, CA"

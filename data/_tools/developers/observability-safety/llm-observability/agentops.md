@@ -9,7 +9,7 @@ subcategory: "llm-observability"
 status: "active"
 description: "Observability for AI agents with session replays, cost tracking and failure analysis, via an MIT-licensed SDK for CrewAI and more"
 github_url: "https://github.com/AgentOps-AI/agentops"
-github_stars: 5896
+github_stars: 5897
 pricing_model: "freemium"
 founded_year: 2023
 headquarters: "San Francisco, CA"
