@@ -9,7 +9,7 @@ subcategory: "rag-kg"
 status: "active"
 description: "Open-source AI memory engine that turns documents and app data into a knowledge graph plus vectors for agents"
 github_url: "https://github.com/topoteretes/cognee"
-github_stars: 32571
+github_stars: 32614
 pricing_model: "freemium"
 headquarters: "Berlin, Germany"
 tags:

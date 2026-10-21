@@ -3,7 +3,7 @@ name: "Chatwoot"
 slug: "chatwoot"
 website: "https://www.chatwoot.com"
 github_url: "https://github.com/chatwoot/chatwoot"
-github_stars: 37990
+github_stars: 38043
 type: "open-source"
 track: "users"
 category: "customer-support"

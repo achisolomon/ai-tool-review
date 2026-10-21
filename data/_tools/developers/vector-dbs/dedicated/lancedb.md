@@ -9,7 +9,7 @@ subcategory: "dedicated"
 status: "active"
 description: "Open-source multimodal database on the Lance columnar format for vector, full-text and SQL search plus AI training data"
 github_url: "https://github.com/lancedb/lancedb"
-github_stars: 11711
+github_stars: 11721
 pricing_model: "freemium"
 founded_year: 2022
 headquarters: "San Francisco, CA"

@@ -9,7 +9,7 @@ subcategory: "extensions"
 status: "active"
 description: "Open-source Postgres extension for vector similarity search with HNSW and IVFFlat indexes, joins and ACID guarantees"
 github_url: "https://github.com/pgvector/pgvector"
-github_stars: 23419
+github_stars: 23425
 pricing_model: "free"
 founded_year: 2021
 tags:

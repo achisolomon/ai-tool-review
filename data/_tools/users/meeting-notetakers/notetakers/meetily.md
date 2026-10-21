@@ -9,7 +9,7 @@ subcategory: "notetakers"
 status: "active"
 description: "Meetily records, transcribes, and summarizes meetings 100% on your device. Audio and data never leave. Private, secure, in your control."
 github_url: "https://github.com/Zackriya-Solutions/meetily"
-github_stars: 31964
+github_stars: 31996
 pricing_model: "freemium"
 headquarters: "Zackriya Solutions"
 tags:

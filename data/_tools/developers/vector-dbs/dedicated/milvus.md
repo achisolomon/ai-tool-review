@@ -9,7 +9,7 @@ subcategory: "dedicated"
 status: "active"
 description: "Open-source distributed vector database for billion-scale search, from embedded Milvus Lite to Zilliz Cloud"
 github_url: "https://github.com/milvus-io/milvus"
-github_stars: 46442
+github_stars: 46454
 pricing_model: "freemium"
 founded_year: 2019
 headquarters: "Redwood City, CA"
