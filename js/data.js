@@ -3795,6 +3795,34 @@ const landscapeData = {
               "additional_categories": []
             }
           ]
+        },
+        {
+          "id": "wellness",
+          "name": "Wellness",
+          "tools": [
+            {
+              "name": "Get HumanMode",
+              "slug": "humanmode",
+              "url": "https://gethumanmode.com/",
+              "desc": "Free 14-day program with daily exercises to rebuild focus and independent thinking, and to rely less on AI and screens",
+              "type": "saas",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "no-code"
+              ],
+              "all_tags": [
+                "no-code"
+              ],
+              "category_id": "lifestyle",
+              "category_name": "Lifestyle & Wellness",
+              "subcategory_id": "wellness",
+              "subcategory_name": "Wellness",
+              "additional_categories": []
+            }
+          ]
         }
       ],
       "rank": 30
@@ -11602,6 +11630,10 @@ const landscapeData = {
             "astrology": {
               "name": "Astrology",
               "description": "Birth charts and astrological readings with AI interpretation"
+            },
+            "wellness": {
+              "name": "Wellness",
+              "description": "Digital wellbeing, focus, and mental fitness programs"
             }
           }
         },

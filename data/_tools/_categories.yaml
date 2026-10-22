@@ -202,6 +202,9 @@ users:
       astrology:
         name: "Astrology"
         description: "Birth charts and astrological readings with AI interpretation"
+      wellness:
+        name: "Wellness"
+        description: "Digital wellbeing, focus, and mental fitness programs"
 
   enterprise-platforms:
     name: "Enterprise AI Platforms"
