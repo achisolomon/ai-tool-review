@@ -17,3 +17,16 @@
 - Ask the user exactly once ("ship it?", with the localhost link and the
   `shot` screenshot sent via SendUserFile, for phone/Remote Control use)
   before pushing to `main`; ask nothing else.
+
+## Web research: deep mode ON
+
+This project overrides the global lean default. Tool reviews need thorough, verified web research.
+
+- Research runs in a subagent, not the main session. Use model `haiku` to gather and `sonnet` to synthesize. Always pass `model` explicitly.
+- Per tool, check these sources: official site and pricing page, docs or changelog, G2 or Capterra, Reddit or Hacker News threads, one or two independent reviews, and the company's LinkedIn or press page.
+- Fetch full pages for pricing, features and limits. Snippets are not enough for those.
+- Every claim in a review needs a source URL. Follow the source-verification skill. If a claim has no official source, mark it "unverified" or leave it out.
+- Prefer sources from the last 12 months. Note the date of each source.
+- Stop when two independent sources agree on each key fact, or after about 15 fetches per tool, whichever comes first. Say what is still unconfirmed.
+- The subagent returns a compact summary: fact, source URL, date, confidence. It does not return raw page text.
+- Do not repeat a search or fetch already in the session notes. Write findings to a short notes file in the worktree, so a later session does not redo them.
