@@ -12,6 +12,7 @@ pricing_model: "usage-based"
 founded_year: 2024
 headquarters: "San Francisco, CA"
 tags:
+  - gtm
   - agents
 
 # AI-Managed Metadata

@@ -259,6 +259,17 @@
                 rows += `<tr><th>Name</th><td>${escapeHtml(p.name)}${p.name_derived ? ' <em class="payload-note">(derived from link)</em>' : ''}</td></tr>`;
                 rows += `<tr><th>Website</th><td><a href="${escapeHtml(safeUrl(p.website))}" target="_blank" rel="noreferrer noopener">${escapeHtml(p.website)}</a></td></tr>`;
                 rows += `<tr><th>Description</th><td>${p.description ? escapeHtml(p.description) : '<em class="payload-note">No description provided</em>'}</td></tr>`;
+                if (p.placement && p.placement.category) {
+                    const where = [p.placement.track, p.placement.category, p.placement.subcategory].filter(Boolean).join(' › ');
+                    rows += `<tr><th>Suggested placement</th><td>${escapeHtml(where)}${p.placement.subcategory ? '' : ' <em class="payload-note">(no subcategory)</em>'}</td></tr>`;
+                }
+                if (Array.isArray(p.tags) && p.tags.length) {
+                    rows += `<tr><th>Suggested tags</th><td>${p.tags.map(escapeHtml).join(', ')}</td></tr>`;
+                }
+                if (p.affiliate_url) {
+                    rows += `<tr><th>Affiliate program</th><td><a href="${escapeHtml(safeUrl(p.affiliate_url))}" target="_blank" rel="noreferrer noopener">${escapeHtml(p.affiliate_url)}</a></td></tr>`;
+                }
+                if (p.notes) rows += `<tr><th>Notes</th><td>${escapeHtml(p.notes)}</td></tr>`;
                 break;
 
             case 'taxonomy_change':
@@ -308,14 +319,34 @@
     function renderToolPageFields(s, pages) {
         if (s.kind !== 'new_tool') return '';
 
+        // No automatic match: the admin can still link a page by hand, e.g.
+        // when the submitter typed the wrong name or link for a tool we listed.
         if (!pages.length) {
+            const options = allToolPages()
+                .map(e => `<option value="${escapeHtml(e.tool.slug)}">${escapeHtml(e.tool.name)}</option>`)
+                .join('');
             return `
             <div class="suggestion-edit-fields">
                 <h4>Tool page</h4>
                 <p class="suggestion-approve-hint" id="tool-page-missing">
                     No tool page found for ${escapeHtml(s.payload?.website || s.payload?.name || 'this tool')}.
-                    Create it with /tool-page-content and deploy, then reload this page to approve.
+                    Create it with /tool-page-content and deploy, then reload this page to approve,
+                    or link an existing page below.
                 </p>
+                <div class="suggestion-field-row">
+                    <label for="tool-page-manual">Link page</label>
+                    <input id="tool-page-manual" list="tool-page-options" placeholder="Type a tool slug…" autocomplete="off">
+                    <datalist id="tool-page-options">${options}</datalist>
+                </div>
+                <div class="suggestion-field-row" id="tool-page-details" hidden>
+                    <label>Link</label>
+                    <a id="tool-page-link" href="#" target="_blank" rel="noopener"></a>
+                </div>
+                <div class="suggestion-field-row" id="tool-page-placement-row" hidden>
+                    <label>Placement</label>
+                    <span id="tool-page-placement"></span>
+                </div>
+                <p class="suggestion-approve-hint" id="tool-page-manual-warning" hidden></p>
             </div>`;
         }
 
@@ -503,26 +534,51 @@
         // ---- For new_tool: approve links the existing tool page ----
         if (isNewTool) {
             const picker = panel.querySelector('#tool-page-pick');
+            const manual = panel.querySelector('#tool-page-manual');
             let chosen = toolPages.length === 1 ? toolPages[0] : null;
             approveBtn.disabled = !chosen;
+
+            function showChosen() {
+                const link = panel.querySelector('#tool-page-link');
+                link.href = chosen ? `/tools/${chosen.tool.slug}/` : '#';
+                link.textContent = chosen ? `/tools/${chosen.tool.slug}/` : '';
+                panel.querySelector('#tool-page-placement').textContent = chosen ? placementLabel(chosen) : '';
+                panel.querySelector('#tool-page-details').hidden = !chosen;
+                panel.querySelector('#tool-page-placement-row').hidden = !chosen;
+                approveBtn.disabled = !chosen;
+            }
 
             if (picker) {
                 picker.addEventListener('change', () => {
                     chosen = toolPages.find(e => e.tool.slug === picker.value) || null;
-                    const link = panel.querySelector('#tool-page-link');
-                    link.href = chosen ? `/tools/${chosen.tool.slug}/` : '#';
-                    link.textContent = chosen ? `/tools/${chosen.tool.slug}/` : '';
-                    panel.querySelector('#tool-page-placement').textContent = chosen ? placementLabel(chosen) : '';
-                    panel.querySelector('#tool-page-details').hidden = !chosen;
-                    panel.querySelector('#tool-page-placement-row').hidden = !chosen;
-                    approveBtn.disabled = !chosen;
+                    showChosen();
+                });
+            }
+
+            if (manual) {
+                manual.addEventListener('input', () => {
+                    chosen = allToolPages().find(e => e.tool.slug === manual.value.trim()) || null;
+                    showChosen();
+                    // A hand-linked page doesn't match what was submitted: say so,
+                    // and what the approval email will call the tool.
+                    const warning = panel.querySelector('#tool-page-manual-warning');
+                    warning.hidden = !chosen;
+                    warning.textContent = chosen
+                        ? `This page's website (${chosen.tool.url}) differs from the suggested one (${s.payload?.website || 'none'}). ` +
+                          `The approval email will call the tool "${chosen.tool.name}".`
+                        : '';
                 });
             }
 
             approveBtn.addEventListener('click', async () => {
                 if (!chosen) return;
                 approveBtn.disabled = true;
-                const editedPayload = Object.assign({}, s.payload, {
+                // The approval email names the tool from payload.name, so use the
+                // page's own name and website. Keep what was typed when they differ.
+                const p = s.payload || {};
+                const editedPayload = Object.assign({}, p, {
+                    name: chosen.tool.name,
+                    website: chosen.tool.url,
                     slug: chosen.tool.slug,
                     placement: {
                         track: chosen.track,
@@ -530,6 +586,8 @@
                         subcategory: chosen.tool.subcategory_id,
                     },
                 });
+                if (p.name && p.name !== chosen.tool.name) editedPayload.submitted_name = p.name;
+                if (p.website && p.website !== chosen.tool.url) editedPayload.submitted_website = p.website;
                 const result = await window.AdminAPI.approveSuggestion(s.id, editedPayload);
                 if (result.success) {
                     showToastExternal('Suggestion approved');

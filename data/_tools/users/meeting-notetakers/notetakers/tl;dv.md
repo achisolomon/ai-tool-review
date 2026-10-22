@@ -13,6 +13,8 @@ founded_year: 2020
 headquarters: "Aachen, Germany"
 last_verified: "2026-06-07"
 confidence_score: 0.95
+tags:
+  - gtm
 ---
 
 <div class="key-stats">

@@ -45,6 +45,12 @@ function getSupabase() {
     if (!supabaseClient && window.supabase) {
         try {
             supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            // A sign-in/out or user change invalidates the memoized user below.
+            supabaseClient.auth.onAuthStateChange((event) => {
+                if (event === 'SIGNED_IN' || event === 'SIGNED_OUT' || event === 'USER_UPDATED') {
+                    _userPromise = null;
+                }
+            });
         } catch (e) {
             logSupabaseError('createClient failed', e);
         }
@@ -159,22 +165,33 @@ function isDatabaseHealthy(forceFresh = false) {
 }
 
 // Helper to get current user. Times out so a dead DB can't hang callers.
-async function getCurrentUser() {
-    // Auth-gated full pages (my-reviews, my-suggestions, admin) call this
-    // directly without ever calling ensureSupabase() themselves. Without this,
-    // getSupabase() returns null (library never loaded) and a SIGNED-IN user
-    // is reported as signed out. Ensure the library first; on CDN failure,
-    // fall through to "no user" rather than throwing.
-    try { await ensureSupabase(); } catch (_) { return null; }
-    const supabase = getSupabase();
-    if (!supabase) return null;
+// Memoized per page load: auth-ui, the nav admin badge and the admin page each
+// asked for the user (6 /auth/v1/user round trips on /admin, queued behind
+// supabase-js's auth lock). Now they share one request. Only a signed-in
+// result is kept, so a timeout or signed-out answer is retried next call.
+let _userPromise = null;
+function getCurrentUser() {
+    if (_userPromise) return _userPromise;
+    const pending = (async () => {
+        // Auth-gated full pages (my-reviews, my-suggestions, admin) call this
+        // directly without ever calling ensureSupabase() themselves. Without this,
+        // getSupabase() returns null (library never loaded) and a SIGNED-IN user
+        // is reported as signed out. Ensure the library first; on CDN failure,
+        // fall through to "no user" rather than throwing.
+        try { await ensureSupabase(); } catch (_) { return null; }
+        const supabase = getSupabase();
+        if (!supabase) return null;
 
-    try {
-        const { data: { user } } = await withTimeout(supabase.auth.getUser());
-        return user;
-    } catch (_) {
-        return null;
-    }
+        try {
+            const { data: { user } } = await withTimeout(supabase.auth.getUser());
+            return user;
+        } catch (_) {
+            return null;
+        }
+    })();
+    _userPromise = pending;
+    pending.then(user => { if (!user && _userPromise === pending) _userPromise = null; });
+    return pending;
 }
 
 // Helper to check if logged in
@@ -217,6 +234,7 @@ async function signOut() {
     if (!supabase) return { error: { message: 'Supabase not initialized' } };
 
     const { error } = await supabase.auth.signOut();
+    _userPromise = null;
     return { error };
 }
 

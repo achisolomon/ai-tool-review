@@ -1,3 +1,9 @@
+{%- comment -%}
+  AdSense: only tool pages with a substantial written review get ads. Thin
+  stubs (a sentence or two) count as low-value content under AdSense policy.
+{%- endcomment -%}
+{%- assign review_words = content | strip_html | number_of_words -%}
+{%- if review_words >= 300 -%}{%- assign ad_eligible = true -%}{%- else -%}{%- assign ad_eligible = false -%}{%- endif -%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,13 +19,14 @@
   <link rel="stylesheet" href="{{ '/css/auth.css' | relative_url }}?v={{ site.time | date: '%s' }}">
   <!-- Mobile layer (< 768px only). Must stay the last stylesheet. -->
   <link rel="stylesheet" href="{{ '/css/mobile.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+  {% if ad_eligible %}{% include adsense-loader.html %}{% endif %}
 </head>
 <body>
   <header class="header">
     {% include nav.html active="search" %}
   </header>
 
-  <main class="tool-page" id="page-content">
+  <main class="tool-page{% if ad_eligible %} ad-eligible{% endif %}" id="page-content">
     <script type="application/json" id="tool-data">
       {
         "slug": {{ page.slug | jsonify }},
@@ -98,6 +105,8 @@
       </section>
     </article>
   </main>
+
+  {% if ad_eligible %}{% include ad-unit.html %}{% endif %}
 
   {% include footer.html %}
 

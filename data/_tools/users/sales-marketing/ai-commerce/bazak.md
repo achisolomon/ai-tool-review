@@ -11,6 +11,7 @@ description: "AI commerce platform that deploys one branded agent across ChatGPT
 pricing_model: "enterprise"
 headquarters: "Tel Aviv-Jaffa, Israel"
 tags:
+  - gtm
   - agents
   - mcp-server
   - api-available
