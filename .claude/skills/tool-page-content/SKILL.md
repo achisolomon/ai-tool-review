@@ -123,7 +123,7 @@ these hard reasons (first match wins, in this order):
 | Already has a page (`tool-page.sh exists <name>`) | `already-listed` |
 | No usable AI tool on the site: only a directory, blog, newsletter, course, agency service or affiliate list | `not-a-product` |
 | A shopping site, marketplace or product-recommendation / comparison site (selling or ranking physical products), even with an AI matcher or chat on top | `not-a-product` |
-| No AI in the product at all (e.g. a plain SaaS, map converter, e-commerce store) | `out-of-scope` |
+| Clearly not a generative or AI product (e.g. a plain CRM, web host, e-commerce store, crypto token) | `out-of-scope` |
 | Waitlist only, nothing anyone can use yet | `too-early` |
 
 These are NOT reasons to reject:
@@ -131,6 +131,10 @@ These are NOT reasons to reject:
   hassle). If it borrows a model's brand (e.g. "Flux3"), the page states it
   is independent of the model maker.
 - An anonymous operator, a keyword domain, heavy SEO copy, or a small tool.
+- A tool that automatically generates content for the user (worlds, 3D
+  scenes, images, maps, text) even if its site never says "AI" (e.g.
+  ArnisWeb: real places to Minecraft worlds). Accept it, but describe how it
+  works honestly and never claim a model the site does not name.
 - No perfect category: pick the closest one in the taxonomy below.
 
 When in doubt, ACCEPT.

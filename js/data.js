@@ -1281,6 +1281,28 @@ const landscapeData = {
           "name": "3D / Other Modalities",
           "tools": [
             {
+              "name": "ArnisWeb",
+              "slug": "arnisweb",
+              "url": "https://arnisweb.com/",
+              "desc": "Browser tool that generates playable Minecraft worlds of real cities and places from map and elevation data, no install needed",
+              "type": "commercial",
+              "github_stars": 18344,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "no-code"
+              ],
+              "all_tags": [
+                "no-code"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "3d-other",
+              "subcategory_name": "3D / Other Modalities",
+              "additional_categories": []
+            },
+            {
               "name": "Fomrix",
               "slug": "fomrix",
               "url": "https://fomrix.com/",
