@@ -9,7 +9,7 @@ subcategory: "rag-kg"
 status: "active"
 description: "Open-source temporal knowledge graph framework from Zep that tracks how facts change over time for agent memory"
 github_url: "https://github.com/getzep/graphiti"
-github_stars: 32096
+github_stars: 32126
 pricing_model: "free"
 founded_year: 2024
 headquarters: "San Francisco, CA"
