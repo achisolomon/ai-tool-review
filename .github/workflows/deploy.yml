@@ -1,4 +1,8 @@
-name: Deploy to Cloudflare Pages
+name: Promote to production
+
+# Cloudflare Pages builds and deploys the `production` branch through its
+# GitHub app. This workflow moves `production` to main only after Tests pass,
+# so the test gate holds without any Cloudflare credentials in GitHub.
 
 on:
   workflow_run:
@@ -7,20 +11,15 @@ on:
     branches: [main]
   workflow_dispatch:
 
-# Opt into Node.js 24 to avoid deprecation warnings
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 permissions:
-  contents: read
+  contents: write
 
-# Allow only one concurrent deployment
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  promote:
     runs-on: ubuntu-latest
     if: >
       github.event.workflow_run.conclusion == 'success' ||
@@ -28,21 +27,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2'
-          bundler-cache: true
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          fetch-depth: 0
 
-      - name: Build with Jekyll
-        run: bundle exec jekyll build
-        env:
-          JEKYLL_ENV: production
-
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy _site --project-name=aitoolreview --branch=main
+      - name: Fast-forward production to the tested commit
+        run: git push origin HEAD:refs/heads/production
