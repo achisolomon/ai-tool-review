@@ -1,0 +1,55 @@
+---
+permalink: /404.html
+sitemap: false
+---
+<!-- Cloudflare Pages serves this with a 404 status; without it, unknown URLs return index.html with 200.
+     Served at any URL depth, so every asset/link below is root-absolute. Shell mirrors contact.html. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - AI Tool Review</title>
+    <meta name="robots" content="noindex">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/auth.css">
+    <style>
+        .nf { max-width: 640px; margin: 0 auto; padding: 4rem 1.5rem; text-align: center; }
+        .nf-code { font-size: 4rem; font-weight: 700; line-height: 1; color: var(--vscode-keyword); }
+        .nf h1 { font-size: 2rem; margin: 0.75rem 0; }
+        .nf p { color: var(--vscode-text-muted); line-height: 1.6; margin-bottom: 1.5rem; }
+        .nf-home { display: inline-block; padding: 0.75rem 1.5rem; min-height: 44px; box-sizing: border-box; border-radius: var(--radius-sm); background: var(--vscode-button-bg); color: #fff; font-weight: 600; text-decoration: none; }
+        .nf-home:hover { background: var(--vscode-button-hover); }
+        .nf-links { list-style: none; padding: 0; margin: 2rem 0 0; display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
+        .nf-links a { display: inline-block; padding: 0.6rem 1rem; min-height: 44px; box-sizing: border-box; border: 1px solid var(--vscode-border); border-radius: var(--radius-sm); color: var(--vscode-text-link); text-decoration: none; }
+        .nf-links a:hover { background: var(--vscode-list-hover); }
+        .nf a:focus-visible { outline: 2px solid var(--vscode-focus-border); outline-offset: 2px; }
+    </style>
+    <!-- Mobile layer (< 768px only). Must stay the last stylesheet. -->
+    <link rel="stylesheet" href="/css/mobile.css">
+</head>
+<body>
+  <header class="header">
+    {% include nav.html %}
+  </header>
+  <main class="nf" id="main">
+    <div class="nf-code" aria-hidden="true">404</div>
+    <h1>Page not found</h1>
+    <p>We could not find that page. It may have moved, or the link may be mistyped.</p>
+    <a class="nf-home" href="/">Back to home</a>
+    <ul class="nf-links" aria-label="Popular sections">
+      <li><a href="/">Search tools</a></li>
+      <li><a href="/landscape.html">Landscape</a></li>
+      <li><a href="/guides/">Guides</a></li>
+      <li><a href="/about.html">About</a></li>
+    </ul>
+  </main>
+
+  {% include footer.html %}
+
+  <script src="/js/supabase-client.js"></script>
+  <script src="/js/auth-ui.js"></script>
+  {% include nav-scripts.html %}
+</body>
+</html>
