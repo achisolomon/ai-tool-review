@@ -219,6 +219,38 @@ test('no HTML page loads supabase-client.js more than once', () => {
   expect(offenders, `supabase-client.js must be loaded exactly once per page:\n${offenders.join('\n')}`).toEqual([]);
 });
 
+// Regression: Cloudflare edge-caches /js/*.js for 4 hours, so after a deploy
+// admin.html kept loading the pre-deploy data.js and could not find a new
+// tool's page to approve (Balloon, 2026-10-19). Every page that loads
+// data.js must add a per-build ?v= stamp so each deploy gets a fresh URL.
+test('every page loads js/data.js with a per-build cache-busting stamp', () => {
+  const skip = new Set(['node_modules', '_site', 'vendor', 'docs', 'prototypes', 'tests', 'test-results', 'playwright-report', '.git', '.worktrees']);
+  const htmlFiles = [];
+  const walk = dir => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (skip.has(entry.name)) continue;
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) walk(full);
+      else if (entry.name.endsWith('.html')) htmlFiles.push(full);
+    }
+  };
+  walk(process.cwd());
+  const offenders = [];
+  let tags = 0;
+  for (const file of htmlFiles) {
+    const content = fs.readFileSync(file, 'utf8');
+    const rel = path.relative(process.cwd(), file);
+    for (const tag of content.match(/<script[^>]*data\.js[^>]*>/g) || []) {
+      tags++;
+      if (!tag.includes("?v={{ site.time | date: '%s' }}")) offenders.push(`${rel}: ${tag}`);
+      // Liquid only renders in files with front matter (includes are rendered by their page).
+      else if (!rel.startsWith('_includes') && !content.startsWith('---')) offenders.push(`${rel}: no front matter, ?v= stamp would not render`);
+    }
+  }
+  expect(tags, 'expected at least one page to load data.js').toBeGreaterThan(0);
+  expect(offenders, `data.js must be loaded as js/data.js?v={{ site.time | date: '%s' }}:\n${offenders.join('\n')}`).toEqual([]);
+});
+
 // Regression: #suggest-open button was last child of controls-toolbar (flex-wrap:wrap)
 // and wrapped off-screen at typical viewport widths. Fix: moved into nav-links.
 // The toolbar is now a shared include (_includes/nav.html) used by every page,

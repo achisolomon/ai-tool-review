@@ -331,44 +331,59 @@
   // Form A — New Tool
   // ---------------------------------------------------------------------------
 
+  // Category (grouped by track, so no separate track step), then subcategory,
+  // then tags: each step appears once the previous one is chosen. Sits first
+  // inside the optional details section.
   function renderPlacementSection(taxonomy) {
     if (!taxonomy || !taxonomy.categories) {
       return `<p class="suggest-hint">Taxonomy data not available — you can still submit without placement.</p>`;
     }
 
-    // Track select
-    let trackOpts = '<option value="">Select a track…</option>';
-    trackOpts += '<option value="users">For Users</option>';
-    trackOpts += '<option value="developers">For Developers</option>';
+    let catOpts = '<option value="">Select a category…</option>';
+    for (const [track, cats] of Object.entries(taxonomy.categories)) {
+      const trackLabel = track === 'users' ? 'For Users' : 'For Developers';
+      catOpts += `<optgroup label="${escapeHtml(trackLabel)}">`;
+      for (const [id, cat] of Object.entries(cats || {})) {
+        catOpts += `<option value="${escapeHtml(id)}" data-track="${escapeHtml(track)}">${escapeHtml(cat.name)}</option>`;
+      }
+      catOpts += '</optgroup>';
+    }
 
     return `
-      <div class="suggest-hint">Optional — leave blank and a reviewer will place it.</div>
-      <div class="suggest-form-group">
-        <label for="suggest-track">Track</label>
-        <select class="suggest-select" id="suggest-track" name="track">
-          ${trackOpts}
-        </select>
-      </div>
-      <div class="suggest-form-group" id="suggest-category-group" hidden>
-        <label for="suggest-category">Category</label>
-        <select class="suggest-select" id="suggest-category" name="category">
-          <option value="">Select a category…</option>
-        </select>
-      </div>
-      <div class="suggest-form-group" id="suggest-subcategory-group" hidden>
-        <label for="suggest-subcategory">Subcategory</label>
-        <select class="suggest-select" id="suggest-subcategory" name="subcategory">
-          <option value="">Select a subcategory…</option>
-        </select>
-      </div>
+      <fieldset class="suggest-placement" id="suggest-placement">
+        <legend class="suggest-placement-legend">Category, subcategory &amp; tags</legend>
+        <div class="suggest-hint">Leave blank and a reviewer will place it.</div>
+        <div class="suggest-form-group">
+          <label for="suggest-category">Category</label>
+          <select class="suggest-select" id="suggest-category" name="category">
+            ${catOpts}
+          </select>
+        </div>
+        <div class="suggest-form-group" id="suggest-subcategory-group" hidden>
+          <label for="suggest-subcategory">Subcategory</label>
+          <select class="suggest-select" id="suggest-subcategory" name="subcategory">
+            <option value="">Select a subcategory…</option>
+          </select>
+        </div>
+        <div class="suggest-form-group" id="suggest-tags-group" hidden>
+          <label for="suggest-tag-search">Tags</label>
+          <div id="suggest-tag-chips" class="suggest-tag-chips-row"></div>
+          <div class="suggest-typeahead" style="position:relative">
+            <input class="suggest-input" type="text" id="suggest-tag-search"
+                   autocomplete="off"
+                   placeholder="Type to add a tag… e.g. agents, mcp, self-hosted"
+                   aria-label="Search tags"
+                   aria-autocomplete="list"
+                   aria-controls="suggest-tag-menu">
+            <div id="suggest-tag-menu" class="suggest-typeahead-menu" role="listbox" hidden></div>
+          </div>
+        </div>
+      </fieldset>
+    `;
+  }
 
-      <p class="suggest-placement-helper">
-        <strong>Subcategory</strong> = where the tool lives (one home).<br>
-        <strong>Tags</strong> = cross-cutting traits — add as many as apply.
-      </p>
-
-      <div id="suggest-tag-groups"></div>
-
+  function renderToolDetailsSection() {
+    return `
       <div class="suggest-form-group">
         <label for="suggest-type">Type</label>
         <select class="suggest-select" id="suggest-type" name="type">
@@ -389,35 +404,20 @@
         </select>
       </div>
       <div class="suggest-form-group">
+        <label for="suggest-affiliate">Affiliate program or link</label>
+        <input class="suggest-input" type="text" inputmode="url" id="suggest-affiliate" name="affiliate_url"
+               maxlength="500" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="off"
+               placeholder="e.g. example.com/affiliates"
+               aria-describedby="suggest-affiliate-hint suggest-affiliate-error">
+        <div class="suggest-hint" id="suggest-affiliate-hint">If the tool has an affiliate or partner program, link to it.</div>
+        <div id="suggest-affiliate-error" class="suggest-field-error" role="alert" hidden></div>
+      </div>
+      <div class="suggest-form-group">
         <label for="suggest-notes">Additional notes</label>
         <textarea class="suggest-textarea" id="suggest-notes" name="notes"
                   placeholder="Anything else the reviewers should know…" maxlength="1000"></textarea>
       </div>
     `;
-  }
-
-  function renderTagGroups(taxonomy) {
-    if (!taxonomy || !taxonomy.tags) return '';
-    const families = { capabilities: 'Capabilities', integrations: 'Integrations', deployment: 'Deployment', 'use-cases': 'Use Cases' };
-    let html = '';
-    for (const [family, label] of Object.entries(families)) {
-      const tags = taxonomy.tags[family];
-      if (!tags || !tags.length) continue;
-      html += `
-        <div class="suggest-tag-group">
-          <div class="suggest-tag-family-label">${escapeHtml(label)}</div>
-          <div class="suggest-tag-grid">
-            ${tags.map(t => `
-              <label class="suggest-tag-chip">
-                <input type="checkbox" name="tag" value="${escapeHtml(t.slug)}" title="${escapeHtml(t.description || t.name)}">
-                ${escapeHtml(t.name)}
-              </label>
-            `).join('')}
-          </div>
-        </div>
-      `;
-    }
-    return html;
   }
 
   function renderCreditConsent(user) {
@@ -463,6 +463,8 @@
             <span class="chevron" aria-hidden="true">▼</span>
           </button>
           <div class="suggest-collapsible-body" id="suggest-details-body">
+            ${renderPlacementSection(taxonomy)}
+
             <div class="suggest-form-group">
               <label for="suggest-name">Tool name</label>
               <input class="suggest-input" type="text" id="suggest-name" name="name"
@@ -480,11 +482,12 @@
             <div class="suggest-form-group">
               <label for="suggest-rationale">Why should it be added?</label>
               <textarea class="suggest-textarea" id="suggest-rationale" name="rationale"
-                        maxlength="500"
+                        maxlength="${RATIONALE_MAX}" aria-describedby="suggest-rationale-count"
                         placeholder="Any context, use-cases, or why it's a good fit for the landscape…"></textarea>
+              <div class="suggest-hint suggest-char-count" id="suggest-rationale-count" aria-live="polite">0 / ${RATIONALE_MAX}</div>
             </div>
 
-            ${renderPlacementSection(taxonomy)}
+            ${renderToolDetailsSection()}
           </div>
         </div>
 
@@ -502,60 +505,79 @@
   // Wire Form A interactions
   // ---------------------------------------------------------------------------
 
-  function wirePlacementCascade(modal, taxonomy) {
-    const trackSel = modal.querySelector('#suggest-track');
-    const catGroup = modal.querySelector('#suggest-category-group');
+  // `initial` ({ category, subcategory, tags }) prefills edit mode.
+  function wirePlacementCascade(modal, taxonomy, initial = {}) {
     const catSel = modal.querySelector('#suggest-category');
     const subGroup = modal.querySelector('#suggest-subcategory-group');
     const subSel = modal.querySelector('#suggest-subcategory');
-    const tagGroupsEl = modal.querySelector('#suggest-tag-groups');
+    const tagsGroup = modal.querySelector('#suggest-tags-group');
 
-    if (!trackSel || !taxonomy || !taxonomy.categories) return;
+    if (!catSel || !taxonomy || !taxonomy.categories) return;
 
-    // Populate tag groups once (they don't depend on track)
-    if (tagGroupsEl) tagGroupsEl.innerHTML = renderTagGroups(taxonomy);
+    const syncTags = () => { tagsGroup.hidden = !subSel.value; };
 
-    trackSel.addEventListener('change', () => {
-      const track = trackSel.value;
-      catSel.innerHTML = '<option value="">Select a category…</option>';
+    function fillSubcategories() {
+      const opt = catSel.selectedOptions[0];
+      const track = opt ? opt.dataset.track : '';
+      const cat = track && taxonomy.categories[track] && taxonomy.categories[track][catSel.value];
       subSel.innerHTML = '<option value="">Select a subcategory…</option>';
-      subGroup.hidden = true;
-
-      if (!track || !taxonomy.categories[track]) {
-        catGroup.hidden = true;
-        return;
-      }
-      const cats = taxonomy.categories[track];
-      Object.entries(cats).forEach(([id, cat]) => {
-        const opt = document.createElement('option');
-        opt.value = id;
-        opt.textContent = cat.name + (cat.description ? ` — ${cat.description}` : '');
-        catSel.appendChild(opt);
-      });
-      catGroup.hidden = false;
-    });
-
-    catSel.addEventListener('change', () => {
-      const track = trackSel.value;
-      const catId = catSel.value;
-      subSel.innerHTML = '<option value="">Select a subcategory…</option>';
-
-      if (!catId || !taxonomy.categories[track] || !taxonomy.categories[track][catId]) {
-        subGroup.hidden = true;
-        return;
-      }
-      const subs = taxonomy.categories[track][catId].subcategories || {};
-      Object.entries(subs).forEach(([id, sub]) => {
-        const opt = document.createElement('option');
-        opt.value = id;
-        opt.textContent = sub.name + (sub.description ? ` — ${sub.description}` : '');
-        subSel.appendChild(opt);
+      syncTags();
+      if (!cat) { subGroup.hidden = true; return; }
+      Object.entries(cat.subcategories || {}).forEach(([id, sub]) => {
+        const o = document.createElement('option');
+        o.value = id;
+        o.textContent = sub.name;
+        subSel.appendChild(o);
       });
       subGroup.hidden = false;
+    }
+
+    catSel.addEventListener('change', fillSubcategories);
+    subSel.addEventListener('change', syncTags);
+
+    if (initial.category) {
+      catSel.value = initial.category;
+      fillSubcategories();
+      if (initial.subcategory) subSel.value = initial.subcategory;
+      syncTags();
+    }
+
+    wireTagTypeahead(modal, taxonomy, null, {
+      formSelector: '#suggest-new-tool-form',
+      initialTags: initial.tags || [],
+      allowNew: false,
     });
   }
 
+  // Reads category/subcategory/tags from the new-tool form. Track comes from
+  // the chosen category's optgroup, so the user never picks it separately.
+  function readNewToolPlacement(form) {
+    const catSel = form.querySelector('#suggest-category');
+    const category = catSel?.value || null;
+    const track = (category && catSel.selectedOptions[0]?.dataset.track) || null;
+    const subcategory = form.querySelector('#suggest-subcategory')?.value || null;
+    // Tags are only shown (and only count) once a subcategory is chosen.
+    const tags = subcategory
+      ? Array.from(form.querySelectorAll('input[name="selected_tag"]')).map(i => i.value)
+      : [];
+    return { track, category, subcategory, tags, placementProvided: !!category };
+  }
+
+  function wireCharCounter(modal, inputSel, countSel) {
+    const input = modal.querySelector(inputSel);
+    const count = modal.querySelector(countSel);
+    if (!input || !count) return;
+    const max = input.maxLength;
+    const update = () => {
+      count.textContent = `${input.value.length} / ${max}`;
+      count.classList.toggle('is-at-limit', input.value.length >= max);
+    };
+    input.addEventListener('input', update);
+    update();
+  }
+
   const SUBMIT_LABEL = 'Submit suggestion';
+  const RATIONALE_MAX = 300;
   const ALREADY_LISTED_LABEL = 'Already listed';
   const MAX_DUP_LINKS = 3;
 
@@ -626,6 +648,29 @@
     return url;
   }
 
+  // Optional affiliate link: blank → null; a usable link → normalized URL;
+  // anything else shows an inline error, opens the details section and
+  // returns undefined so the caller stops.
+  function readAffiliateUrl(modal) {
+    const input = modal.querySelector('#suggest-affiliate');
+    const errorEl = modal.querySelector('#suggest-affiliate-error');
+    const raw = input ? input.value.trim() : '';
+    const url = raw ? window.SuggestLogic.normalizeToolUrl(raw) : null;
+    const bad = !!raw && !url;
+    if (errorEl) {
+      errorEl.textContent = bad ? "That doesn't look like a web link. Try something like example.com/affiliates." : '';
+      errorEl.hidden = !bad;
+    }
+    if (input) input.setAttribute('aria-invalid', String(bad));
+    if (bad) {
+      const trigger = modal.querySelector('#suggest-details-collapsible .suggest-collapsible-trigger');
+      if (trigger && trigger.getAttribute('aria-expanded') !== 'true') trigger.click();
+      input.focus();
+      return undefined;
+    }
+    return url;
+  }
+
   function wireCreditConsent(modal) {
     const checkbox = modal.querySelector('#suggest-public-credit');
     const nameWrapper = modal.querySelector('#suggest-credit-name-wrapper');
@@ -655,20 +700,15 @@
       const website = readToolUrl(modal);
       if (!website) return;
       if (renderDuplicateNotice(modal, exactUrlMatches(website))) return;
+      const affiliate_url = readAffiliateUrl(modal);
+      if (affiliate_url === undefined) return;
 
       // Read fields (all optional apart from the link)
       const name = form.querySelector('#suggest-name')?.value.trim() || '';
       const description = form.querySelector('#suggest-description')?.value.trim() || '';
       const rationale = form.querySelector('#suggest-rationale')?.value.trim() || '';
 
-      // Placement counts once a subcategory is picked in the details section
-      const track = form.querySelector('#suggest-track')?.value || null;
-      const category = form.querySelector('#suggest-category')?.value || null;
-      const subcategory = form.querySelector('#suggest-subcategory')?.value || null;
-      const placementProvided = !!subcategory;
-
-      // Tags
-      const tags = Array.from(form.querySelectorAll('input[name="tag"]:checked')).map(i => i.value);
+      const { track, category, subcategory, tags, placementProvided } = readNewToolPlacement(form);
 
       // Type + pricing
       const type = form.querySelector('#suggest-type')?.value || null;
@@ -700,7 +740,7 @@
         payload = window.SuggestLogic.buildPayload('new_tool', {
           name, website, description,
           placementProvided, track, category, subcategory,
-          tags, type, pricing_model, notes
+          tags, type, pricing_model, affiliate_url, notes
         });
       } catch (err) {
         showError(modal, "Couldn't prepare your suggestion — please check your inputs and try again.");
@@ -1362,13 +1402,19 @@
    * @param {Element} modal
    * @param {object} taxonomy
    * @param {object} tool  — used to determine current (pre-selected) tags
+   * @param {object} [opts]
+   * @param {string} [opts.formSelector] — form the hidden inputs are appended to
+   * @param {string[]} [opts.initialTags] — pre-selected tags not marked "current"
+   * @param {boolean} [opts.allowNew] — offer "+ Suggest new tag" (default true)
    */
-  function wireTagTypeahead(modal, taxonomy, tool) {
+  function wireTagTypeahead(modal, taxonomy, tool, opts = {}) {
+    const formSelector = opts.formSelector || '#suggest-move-retag-form';
+    const allowNew = opts.allowNew !== false;
     const chipsContainer = modal.querySelector('#suggest-tag-chips');
     const searchInput = modal.querySelector('#suggest-tag-search');
     const menu = modal.querySelector('#suggest-tag-menu');
-    const suggRow = modal.querySelector('#suggest-tag-sugg');
-    if (!chipsContainer || !searchInput || !menu || !suggRow) return;
+    const suggRow = modal.querySelector('#suggest-tag-sugg'); // optional
+    if (!chipsContainer || !searchInput || !menu) return;
 
     const currentTags = (tool && Array.isArray(tool.tags)) ? tool.tags : [];
 
@@ -1385,7 +1431,7 @@
     }
 
     // State: selected slugs (Set) and new tag names (Set)
-    const selectedSlugs = new Set(currentTags);
+    const selectedSlugs = new Set([...currentTags, ...(opts.initialTags || [])]);
     const newTagNames = new Set();
 
     function nameOf(slug) {
@@ -1396,7 +1442,7 @@
     function rebuildHiddenInputs() {
       // Remove old hidden inputs
       modal.querySelectorAll('input[name="selected_tag"], input[name="new_tag"]').forEach(el => el.remove());
-      const form = modal.querySelector('#suggest-move-retag-form');
+      const form = modal.querySelector(formSelector);
       if (!form) return;
       selectedSlugs.forEach(slug => {
         const inp = document.createElement('input');
@@ -1455,6 +1501,7 @@
     }
 
     function renderSuggested() {
+      if (!suggRow) return;
       const suggested = allTags.filter(t => !selectedSlugs.has(t.slug)).slice(0, 6);
       if (!suggested.length) { suggRow.innerHTML = ''; return; }
       suggRow.innerHTML = suggested.map(t =>
@@ -1475,23 +1522,24 @@
       menu.innerHTML = '';
     }
 
-    searchInput.addEventListener('input', () => {
+    // An empty query lists every unselected tag (the menu scrolls), so people
+    // can browse tags without guessing names first.
+    function showMatches() {
       const q = searchInput.value.toLowerCase().trim();
-      if (!q) { closeMenu(); return; }
 
       const matches = allTags
-        .filter(t => !selectedSlugs.has(t.slug) && (t.name.toLowerCase().includes(q) || t.slug.includes(q)))
-        .slice(0, 8);
+        .filter(t => !selectedSlugs.has(t.slug) && (!q || t.name.toLowerCase().includes(q) || t.slug.includes(q)))
+        .slice(0, q ? 8 : allTags.length);
 
       let html = matches.map(t =>
         `<div class="suggest-typeahead-item" role="option" tabindex="-1"
-              data-slug="${escapeHtml(t.slug)}">${escapeHtml(t.name)} <span class="suggest-typeahead-meta">— ${escapeHtml(t.fam)}</span></div>`
+              data-slug="${escapeHtml(t.slug)}">${escapeHtml(t.name)}</div>`
       ).join('');
 
       // Inline new-tag option: show if typed text doesn't exactly match any tag
       const rawInput = searchInput.value.trim();
       const exactMatch = allTags.some(t => t.name.toLowerCase() === q || t.slug === q);
-      if (rawInput && !exactMatch) {
+      if (allowNew && rawInput && !exactMatch) {
         html += `<div class="suggest-typeahead-item suggest-typeahead-item--new" role="option" tabindex="-1"
                       data-new-tag="${escapeHtml(rawInput)}">+ Suggest new tag "${escapeHtml(rawInput)}"</div>`;
       }
@@ -1527,7 +1575,13 @@
         });
       }
       menu.hidden = false;
-    });
+    }
+
+    searchInput.addEventListener('input', showMatches);
+    searchInput.addEventListener('focus', showMatches);
+    searchInput.addEventListener('click', showMatches);
+    // Menu items cancel mousedown, so a selection lands before this blur.
+    searchInput.addEventListener('blur', closeMenu);
 
     // Close menu when clicking outside
     function onDocClick(e) {
@@ -1841,6 +1895,7 @@
       showInModal(modal, renderNewToolForm(user, taxonomy));
       wireDuplicateCheck(modal);
       wirePlacementCascade(modal, taxonomy);
+      wireCharCounter(modal, '#suggest-rationale', '#suggest-rationale-count');
       wireCreditConsent(modal);
       await wireNewToolSubmit(modal, taxonomy);
       // The link is the only required field: focus it
@@ -1916,12 +1971,28 @@
 
       wireCollapsible(modal);
       // Show the optional details the suggester already filled in.
-      const hasDetails = !!(payload.description || row.rationale || (payload.name && !payload.name_derived));
+      const hasDetails = !!(payload.description || row.rationale || (payload.name && !payload.name_derived)
+        || payload.type || payload.pricing_model || payload.notes || payload.affiliate_url
+        || payload.placement || (Array.isArray(payload.tags) && payload.tags.length));
       if (hasDetails) modal.querySelector('#suggest-details-collapsible .suggest-collapsible-trigger')?.click();
       if (nameInput && payload.name_derived) nameInput.value = '';
 
+      const typeSel = modal.querySelector('#suggest-type');
+      const pricingSel = modal.querySelector('#suggest-pricing-model');
+      const notesInput = modal.querySelector('#suggest-notes');
+      if (typeSel) typeSel.value = payload.type || '';
+      if (pricingSel) pricingSel.value = payload.pricing_model || '';
+      if (notesInput) notesInput.value = payload.notes || '';
+      const affiliateInput = modal.querySelector('#suggest-affiliate');
+      if (affiliateInput) affiliateInput.value = payload.affiliate_url || '';
+
       wireDuplicateCheck(modal);
-      wirePlacementCascade(modal, taxonomy);
+      wirePlacementCascade(modal, taxonomy, {
+        category: payload.placement && payload.placement.category,
+        subcategory: payload.placement && payload.placement.subcategory,
+        tags: payload.tags,
+      });
+      wireCharCounter(modal, '#suggest-rationale', '#suggest-rationale-count');
       wireCreditConsent(modal);
 
       // Wire submit as UPDATE
@@ -2092,23 +2163,23 @@
       if (formKind === 'new_tool') {
         const website = readToolUrl(modal);
         if (!website) return;
+        const affiliate_url = readAffiliateUrl(modal);
+        if (affiliate_url === undefined) return;
         const name = form.querySelector('#suggest-name')?.value.trim() || '';
         const description = form.querySelector('#suggest-description')?.value.trim() || '';
         const rationale = form.querySelector('#suggest-rationale')?.value.trim() || '';
-        const track = form.querySelector('#suggest-track')?.value || null;
-        const category = form.querySelector('#suggest-category')?.value || null;
-        const subcategory = form.querySelector('#suggest-subcategory')?.value || null;
-        const tags = Array.from(form.querySelectorAll('input[name="tag"]:checked')).map(i => i.value);
+        const { track, category, subcategory, tags, placementProvided } = readNewToolPlacement(form);
         const type = form.querySelector('#suggest-type')?.value || null;
         const pricing_model = form.querySelector('#suggest-pricing-model')?.value || null;
+        const notes = form.querySelector('#suggest-notes')?.value.trim() || null;
 
         let payload;
         try {
           payload = window.SuggestLogic.buildPayload('new_tool', {
             name, website, description,
-            placementProvided: !!(track && subcategory),
+            placementProvided,
             track, category, subcategory,
-            tags, type, pricing_model, notes: null
+            tags, type, pricing_model, affiliate_url, notes
           });
         } catch (err) {
           showError(modal, "Couldn't prepare your suggestion — please check your inputs and try again.");
@@ -2313,7 +2384,7 @@
   // ---------------------------------------------------------------------------
   // Export
   // ---------------------------------------------------------------------------
-  // renderCreditConsent, renderPlacementSection, renderTagGroups are exposed so
+  // renderCreditConsent and renderPlacementSection are exposed so
   // Forms B/C/D (Phase 3.6) can reuse the shared credit-consent component
   // and placement helpers without reimplementing them.
 
@@ -2323,7 +2394,6 @@
     // Reusable components for Phase 3.6 forms:
     renderCreditConsent,
     renderPlacementSection,
-    renderTagGroups,
   };
 
   // ---------------------------------------------------------------------------

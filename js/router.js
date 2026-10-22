@@ -11,6 +11,8 @@
             if (window.CardGlow) window.CardGlow.init();
         } },
         { pattern: '/landscape.html', init: () => { if (window.landscapeInit) window.landscapeInit(); } },
+        // Clean URL: what Back pops to after a direct load of /landscape.
+        { pattern: '/landscape',      init: () => { if (window.landscapeInit) window.landscapeInit(); } },
         { pattern: '/guides/',        init: () => { /* guides index — static */ } },
         { pattern: '/guides/:slug/',  init: () => { if (window.articlePageInit) window.articlePageInit(); } },
         { pattern: '/tools/:slug/',   init: (p) => { if (window.toolPageInit) window.toolPageInit(p.slug); } },
@@ -77,6 +79,15 @@
         // Leaving an article: disconnect its scroll-spy observer.
         if (/^\/guides\/.+\//.test(fromPathname) && window.articlePageTeardown) {
             window.articlePageTeardown();
+        }
+        // Leaving the landscape: hide its tooltip. #tooltip lives outside
+        // #page-content, so the innerHTML swap below never clears it, and a
+        // card click navigates before mouseout/mouseleave can fire.
+        // Matches both the clean URL ('/landscape', the public link and what
+        // location.href normalizes to on direct load) and the Jekyll
+        // permalink ('/landscape.html', used by data-spa-link hrefs).
+        if (/^\/landscape(\.html)?\/?$/.test(fromPathname) && window.landscapeTeardown) {
+            window.landscapeTeardown();
         }
     }
 

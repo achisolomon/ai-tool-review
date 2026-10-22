@@ -94,6 +94,9 @@ users:
       marketing-content:
         name: "Marketing & Brand Content"
         description: "On-brand content generation for marketing teams"
+      ad-social-creative:
+        name: "Ad & Social Creative"
+        description: "AI-generated ad creative, UGC-style product videos, and social content for sellers and marketers"
       revenue-intelligence:
         name: "Revenue Intelligence"
         description: "Conversation analytics and deal insights for sales teams"
@@ -205,6 +208,18 @@ users:
       astrology:
         name: "Astrology"
         description: "Birth charts and astrological readings with AI interpretation"
+      fun-novelty:
+        name: "Fun & Novelty"
+        description: "Recreational AI tools such as name generators and personal novelty apps"
+
+  real-estate:
+    name: "Real Estate & Home"
+    rank: 22
+    description: "AI for real estate, property, and home improvement"
+    subcategories:
+      home-design:
+        name: "Home & Interior Design"
+        description: "Redesign rooms, exteriors, and gardens from a photo with AI"
 
   enterprise-platforms:
     name: "Enterprise AI Platforms"

@@ -105,6 +105,7 @@
         placement: f.placementProvided
           ? { track: f.track, category: f.category, subcategory: f.subcategory } : null,
         tags: f.tags || [], type: f.type || null, pricing_model: f.pricing_model || null, notes: f.notes || null,
+        ...(f.affiliate_url ? { affiliate_url: f.affiliate_url } : {}),
       };
     }
     if (kind === 'tool_placement') {

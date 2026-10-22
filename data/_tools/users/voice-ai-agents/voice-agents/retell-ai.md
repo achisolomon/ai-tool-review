@@ -15,6 +15,8 @@ founded_year: 2023
 headquarters: San Francisco, CA
 last_verified: '2026-06-09'
 confidence_score: 0.95
+tags:
+  - gtm
 ---
 
 <div class="key-stats">

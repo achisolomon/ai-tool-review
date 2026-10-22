@@ -1,6 +1,6 @@
 ---
 name: tool-page-content
-description: Use when creating or editing AI tool review pages in the ai-tool-review Jekyll site. Covers the fast path for adding tools (auto-named session worktree, one check script, single push confirmation) plus frontmatter, taxonomy, content structure, URL validation, and keeping the generated js/data.js in sync (required or CI fails).
+description: Use when creating or editing AI tool review pages in the ai-tool-review Jekyll site. Covers the relevance gate that rejects off-topic or adult submissions with a rejection note, the fast path for adding tools (auto-named session worktree, one check script, single push confirmation) plus frontmatter, taxonomy, content structure, URL validation, and keeping the generated js/data.js in sync (required or CI fails).
 ---
 
 # Tool Page Content Skill
@@ -27,8 +27,11 @@ Hard rules for this path:
   no env-var prefix): that exact prefix is pre-approved and runs outside the
   sandbox. If it ever prints "running inside the sandbox", re-run it exactly
   as it says; do not debug node_modules or Playwright.
-- Never use `dangerouslyDisableSandbox`; the script is already excluded
-  from the sandbox.
+- Never use `dangerouslyDisableSandbox` for anything except `tool-page.sh`.
+  Exception: if `check`, `serve` or `ship` exits 1 with NO output, it ran
+  sandboxed (it dies on `rbenv rehash`, which cannot write
+  `~/.rbenv/shims` there). Re-run the same command once with
+  `dangerouslyDisableSandbox: true`.
 - Ask the user nothing except the single "ship it?" in step 6. Pick the
   worktree name, category, tags and wording yourself.
 - `<session_id>` is in the SessionStart message.
@@ -43,6 +46,10 @@ Hard rules for this path:
   loops): their results arrive automatically. Skip them for a lookup you
   can do in 1-2 tool calls yourself.
 
+0. **Relevance gate** (before `start`, no worktree yet): run the
+   "Relevance gate" section below. If the verdict is REJECT, stop here:
+   no worktree, no page, no research subagents. Reply with the verdict and
+   the rejection note, as that section describes.
 1. **Start** (creates worktree `tool-<slug>`, auto-suffixed on collision):
    `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" start <slug> <session_id>`
    Then check for an existing page:
@@ -59,7 +66,7 @@ Hard rules for this path:
 3. **Write the page** with the Write tool into the worktree path printed by
    `start`, following the taxonomy, tags (`data/_tools/_tags.yaml` is the
    source of truth) and content structure below. Never edit `js/data.js`.
-4. **Check** (validate, generate, build, star-figure lint, 14 data tests):
+4. **Check** (validate, generate, build, star-figure lint, data-integrity tests):
    `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" check <session_id>`
    Star-figure rule: no digit followed by "star(s)" anywhere in the body;
    only the key-stats badge shows the number. Fix and re-run until green.
@@ -70,12 +77,20 @@ Hard rules for this path:
    the server is up.
 6. **Ask once:** give the user `http://localhost:<port>/tools/<slug>/`, a
    2-3 line summary (category, tags, anything surprising) and ask "ship it?".
+   Also take a phone-width screenshot (about 8s) and send it, because the user
+   may be on their phone via Remote Control, where localhost does not open:
+   `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" shot <session_id> <slug>`
+   then `SendUserFile` with the printed `SHOT` path (`display: "render"`).
 7. **Ship** (only after the user says yes): commits, merges origin/main,
    always regenerates `js/data.js` and re-checks, pushes to main:
    `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" ship <session_id> "feat: add <Tool> tool page"`
 8. **Wait for CI + deploy** with `run_in_background: true`, so the user is
-   not blocked: `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" ci <session_id>`
-   then report `https://aitoolreview.ai/tools/<slug>/`.
+   not blocked: `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" ci <session_id> <slug> [<slug>...]`
+   then report `https://aitoolreview.ai/tools/<slug>/`. Always pass the
+   slugs: `ci` then waits until each page AND its live `js/data.js` entry
+   are served and prints `ADMIN-READY <slug>`. Only after that tell the user
+   the suggestion can be approved in admin (admin finds the page through live
+   `js/data.js`; approving earlier shows "No tool page found").
    **If CI is red**, `ci` already prints the failing tests and assertions
    (or run `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" cilog <session_id>`). Never run raw `gh`/`git` to
    investigate. A failing test is often brittle test data broken by the new
@@ -91,6 +106,72 @@ If `ship` reports a merge conflict, run
 for each file it names, edit the file in the worktree so it keeps main's
 changes plus yours (if main already has an equivalent fix, take main's),
 then run `ship` again.
+
+## Relevance gate (REQUIRED for every suggested tool)
+
+Some submissions are not AI tools, or contain adult content. Decide this
+before creating anything. Fetch the submitted homepage once with WebFetch
+(plus nav pages and the terms page if anything looks adult). If the fetch
+fails, run `tool-page.sh urls <website>`; a dead site is the `site-down`
+template.
+
+**Default is ACCEPT.** Every page brings traffic, so reject only for one of
+these hard reasons (first match wins, in this order):
+
+| Hard reason | Template id |
+|-------------|-------------|
+| Adult, sexual, NSFW or explicit content (homepage, nav pages or terms allow it), or gambling | `adult-content` |
+| AI girlfriend / boyfriend / companion / romantic or "virtual partner" chat, even if the site says it is SFW | `adult-content` |
+| Site is down or times out | `site-down` |
+| Already has a page (`tool-page.sh exists <name>`) | `already-listed` |
+| No usable AI tool on the site: only a directory, blog, newsletter, course, agency service or affiliate list | `not-a-product` |
+| A shopping site, marketplace or product-recommendation / comparison site (selling or ranking physical products), even with an AI matcher or chat on top | `not-a-product` |
+| Clearly not a generative or AI product (e.g. a plain CRM, web host, e-commerce store, crypto token) | `out-of-scope` |
+| Waitlist only, nothing anyone can use yet | `too-early` |
+
+These are NOT reasons to reject:
+- A wrapper around an existing model (it gives people the model without the
+  hassle). If it borrows a model's brand (e.g. "Flux3"), the page states it
+  is independent of the model maker.
+- An anonymous operator, a keyword domain, heavy SEO copy, or a small tool.
+- A tool that automatically generates content for the user (worlds, 3D
+  scenes, images, maps, text) even if its site never says "AI" (e.g.
+  ArnisWeb: real places to Minecraft worlds). Accept it, but describe how it
+  works honestly and never claim a model the site does not name.
+- No perfect category: see "Placement decisions" under the taxonomy.
+
+When in doubt, ACCEPT.
+
+Owner rulings to calibrate against (2026-10-22):
+
+| Site | Verdict | Why |
+|------|---------|-----|
+| flux-3-ai.net | ACCEPT | Wrapper image/video generator; page says it is independent of BFL |
+| img2threejs.org | ACCEPT | Anonymous but working image-to-3D service |
+| airoomredesign.net | ACCEPT | SEO-heavy but working room redesign generator |
+| chinese-name-generator.com | ACCEPT | Small free novelty AI tool |
+| arnisweb.com | ACCEPT | Automated world generator; site never says "AI" |
+| bestrobotvacuum.io | REJECT `not-a-product` | Robot-vacuum shopping/ranking site with an AI matcher on top |
+| heyaibuddy.net | REJECT `adult-content` | AI boyfriend/girlfriend companion app, despite its SFW claim |
+
+When the verdict is REJECT, do not run `start`, do not write a page, and ask
+the user nothing. Reply with exactly this block:
+
+```text
+REJECT: <Tool name> (<website>)
+Why: <one sentence with the specific evidence, e.g. "homepage sells NSFW AI girlfriend chats">
+Admin template: <template id> (label as shown in the admin "Rejection note template" dropdown)
+Rejection note:
+<the template body from js/admin-suggestions.js REJECT_TEMPLATES, with {tool}/{website} filled in;
+ add one specific sentence only if it helps the submitter, never repeat the greeting,
+ "thank you", "resubmit" or sign-off: the decision email adds those>
+```
+
+The user rejects it in the admin Suggestions panel by picking that template.
+Keep the note polite and factual; for adult content never describe the
+content in detail. If the case is genuinely unclear (e.g. a general tool with
+an optional NSFW mode), say so in one line and treat it as the single
+question for this run instead of "ship it?".
 
 ## Step 0: Check if Tool Already Exists (REQUIRED)
 
@@ -126,47 +207,64 @@ Tools go in: `data/_tools/{track}/{category}/{subcategory}/{slug}.md`
 
 ## Category Taxonomy (MUST MATCH)
 
-The file path determines category. Choose from existing folders.
+Source of truth: `data/_tools/_categories.yaml` (this table mirrors it as of 2026-10-22;
+if they differ, the yaml wins). The file path determines category. Every category has
+subcategories, so `subcategory` is always required and must match a folder, or the tool
+is silently dropped from `js/data.js`.
 
 ### Developers Track (`track: "developers"`)
 
 | Category | Subcategories |
 |----------|---------------|
-| `ai-coding` | `coding-agents`, `ai-ides`, `app-builders`, `code-review`, `code-intelligence`, `context-optimization`, `cost-reduction`, `dev-environment`, `llm-skills`, `spec-driven`, `testing-sensors` |
-| `agent-frameworks` | `agent-communication`, `agent-identity`, `agent-memory`, `agent-payments`, `agent-search`, `browser-agents`, `code-first`, `durable-execution`, `protocols`, `tool-integrations` |
-| `agent-platforms` | (direct, no subcategories) |
-| `ai-infrastructure` | `gpu-providers`, `inference-apis`, `llm-gateway` |
-| `data-training` | `data-ingestion`, `data-labeling`, `embeddings`, `experiment-tracking`, `fine-tuning`, `lakehouse-semantic`, `ml-frameworks`, `mlops` |
-| `engineering-intelligence` | (direct, no subcategories) |
-| `foundation-models` | `closed-frontier`, `model-hubs`, `open-source` |
+| `ai-coding` | `coding-agents`, `ai-ides`, `app-builders`, `code-review`, `llm-skills`, `testing-sensors`, `code-intelligence`, `spec-driven`, `dev-environment` |
+| `ai-cost` | `token-optimization`, `usage-analytics`, `cost-offsets` |
+| `agent-frameworks` | `code-first`, `protocols`, `browser-agents`, `tool-integrations`, `agent-platforms`, `agent-memory`, `agent-search`, `durable-execution`, `agent-identity`, `agent-payments`, `agent-communication` |
+| `foundation-models` | `closed-frontier`, `open-source`, `model-hubs` |
 | `llm-frameworks` | `app-frameworks`, `prompt-engineering` |
-| `observability-safety` | `app-observability`, `evaluation`, `guardrails`, `llm-observability` |
-| `security` | `red-teaming`, `security-scanning` |
-| `vector-dbs` | `dedicated`, `extensions`, `rag-kg` |
+| `ai-infrastructure` | `inference-apis`, `gpu-providers`, `llm-gateway`, `networking` |
+| `observability-safety` | `llm-observability`, `evaluation`, `guardrails`, `app-observability` |
+| `vector-dbs` | `dedicated`, `rag-kg`, `extensions` |
+| `data-training` | `fine-tuning`, `embeddings`, `data-ingestion`, `ml-frameworks`, `mlops`, `experiment-tracking`, `data-labeling`, `lakehouse-semantic` |
+| `security` | `preventing-prompt-injection`, `security-scanning`, `red-teaming` |
+| `engineering-intelligence` | `engineering-analytics`, `developer-portals` |
 
 ### Users Track (`track: "users"`)
 
 | Category | Subcategories |
 |----------|---------------|
-| `ai-chat-search` | `ai-search`, `chat-assistants` |
-| `ai-contact-center` | `contact-center` |
-| `enterprise-platforms` | (direct, no subcategories) |
-| `generative-media` | `3d-other`, `image-generation`, `music-generation`, `video-generation`, `voice-speech` |
-| `meeting-notetakers` | (direct, no subcategories) |
-| `no-code-builders` | (direct, no subcategories) |
-| `personal-assistants` | (direct, no subcategories) |
-| `slide-creation` | (direct, no subcategories) |
-| `vertical-ai` | `customer-support`, `design`, `education`, `finance`, `healthcare`, `legal`, `recruiting`, `sales-marketing` |
+| `ai-chat-search` | `chat-assistants`, `ai-search` |
+| `generative-media` | `image-generation`, `video-generation`, `voice-speech`, `music-generation`, `3d-other` |
+| `writing-productivity` | `writing-tools` |
+| `design` | `ui-product-design`, `diagrams-illustrations` |
+| `meeting-notetakers` | `notetakers` |
+| `customer-support` | `ai-support-agents`, `helpdesk-platforms`, `contact-center` |
+| `education` | `language-learning`, `ai-tutors`, `teacher-tools` |
+| `personal-assistants` | `browsers` |
+| `sales-marketing` | `sales-prospecting`, `marketing-content`, `ad-social-creative`, `revenue-intelligence`, `ai-commerce` |
+| `slide-creation` | `ai-presentations` |
+| `transcription` | `transcription-tools` |
+| `no-code-builders` | `workflow-builders` |
 | `voice-ai-agents` | `voice-agents` |
-| `writing-productivity` | (direct, no subcategories) |
+| `healthcare` | `clinical-documentation`, `clinical-reference`, `patient-facing-ai` |
+| `legal` | `legal-research-drafting`, `contract-management` |
+| `finance` | `financial-research`, `finance-automation` |
+| `recruiting` | `ai-recruiters`, `talent-intelligence` |
+| `real-estate` | `home-design` |
+| `enterprise-platforms` | `enterprise` |
+| `lifestyle` | `astrology`, `fun-novelty` |
 
 **File path format:** `data/_tools/{track}/{category}/{subcategory}/{slug}.md`
 
-**Flat categories** (marked "direct, no subcategories" above) do NOT require
-a `subcategory` field in frontmatter; the generator defaults to the category
-id. For categories that DO have subcategories, the `subcategory` field is
-required and must match a folder name, or the tool is silently dropped from
-`js/data.js`.
+### Placement decisions (owner rulings)
+
+- Pick the category by what the tool is FOR, not the tech it uses: AI Room Redesign is
+  `real-estate/home-design`, not `generative-media/image-generation`.
+- Recreational or novelty tools (name generators, fun personal apps) go in
+  `lifestyle/fun-novelty`, not `writing-productivity`.
+- Output type decides inside generative media: text output is never `image-generation`.
+- No good fit? Add a category or subcategory to `_categories.yaml` (name, rank,
+  description; folder name = subcategory id) instead of forcing a poor fit. Mention it
+  in the ship summary so the owner can rename it.
 
 ## Valid Tags (Use Only These)
 
@@ -203,11 +301,11 @@ category/subcategory name (categories are for navigation, tags are not).
 ---
 name: "Tool Name"
 slug: "tool-name"
-website: "https://tool.com"
+website: "https://tool.com"  # same host as the submitted URL (admin approve matches on it)
 type: oss | saas | commercial
 track: users | developers
 category: "category-slug"
-subcategory: "subcategory-slug"  # omit for flat categories
+subcategory: "subcategory-slug"  # always required
 status: active | beta | deprecated | removed
 description: "50-160 char SEO description, [VERIFIED from official source]"
 pricing_model: free | freemium | paid | enterprise
@@ -441,8 +539,7 @@ are for **evaluation and comparison**, not tutorials.
 |---------|-----|
 | Creating duplicate tool page | ALWAYS search first: `find data/_tools -iname "*toolname*"` |
 | Wrong category/subcategory | Use ONLY values from the taxonomy table above |
-| Adding subcategory to a flat category | Flat categories (slide-creation, meeting-notetakers, etc.) don't need subcategory, omit the field |
-| Omitting subcategory from a nested category | Categories with subcategories listed in the taxonomy DO require the field, or the tool is silently dropped from data.js |
+| Omitting subcategory | Every category has subcategories; the field is required, or the tool is silently dropped from data.js |
 | Inventing new tags | Use ONLY tags from the valid tags table |
 | Category doesn't match folder | File path and frontmatter MUST align |
 | Using markdown tables for pricing | Use `<a class="pricing-card">` HTML |
