@@ -7,9 +7,9 @@
 // Get credentials from: Supabase Dashboard > Project Settings > API
 // Only use the "anon" / "public" key here, NEVER the "service_role" key
 
-// Environment detection: localhost and Cloudflare branch previews
-// (<branch>.aitoolreview-7pc.pages.dev) use dev; everything else uses prod.
-const IS_LOCAL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+// Environment detection: localhost, dev.aitoolreview.ai and Cloudflare branch
+// previews (<branch>.aitoolreview-7pc.pages.dev) use dev; everything else uses prod.
+const IS_LOCAL = ['localhost', '127.0.0.1', 'dev.aitoolreview.ai'].includes(window.location.hostname)
     || window.location.hostname.endsWith('.aitoolreview-7pc.pages.dev');
 
 const SUPABASE_CONFIG = {
