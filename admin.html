@@ -261,8 +261,9 @@
     <script src="js/supabase-client.js"></script>
     <script src="js/auth-ui.js"></script>
     {% include nav-scripts.html %}
-    <script src="js/data.js"></script>
-    <script src="js/admin-suggestions.js"></script>
+    <!-- ?v= busts the browser/CDN cache so a just-deployed tool page is found on approve -->
+    <script src="js/data.js?v={{ site.time | date: '%s' }}"></script>
+    <script src="js/admin-suggestions.js?v={{ site.time | date: '%s' }}"></script>
     <script>
         // Admin page initialization
         (async function() {

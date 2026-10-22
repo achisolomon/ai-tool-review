@@ -1,6 +1,6 @@
 ---
 name: tool-page-content
-description: Use when creating or editing AI tool review pages in the ai-tool-review Jekyll site. Covers the fast path for adding tools (auto-named session worktree, one check script, single push confirmation) plus frontmatter, taxonomy, content structure, URL validation, and keeping the generated js/data.js in sync (required or CI fails).
+description: Use when creating or editing AI tool review pages in the ai-tool-review Jekyll site. Covers the relevance gate that rejects off-topic or adult submissions with a rejection note, the fast path for adding tools (auto-named session worktree, one check script, single push confirmation) plus frontmatter, taxonomy, content structure, URL validation, and keeping the generated js/data.js in sync (required or CI fails).
 ---
 
 # Tool Page Content Skill
@@ -43,6 +43,10 @@ Hard rules for this path:
   loops): their results arrive automatically. Skip them for a lookup you
   can do in 1-2 tool calls yourself.
 
+0. **Relevance gate** (before `start`, no worktree yet): run the
+   "Relevance gate" section below. If the verdict is REJECT, stop here:
+   no worktree, no page, no research subagents. Reply with the verdict and
+   the rejection note, as that section describes.
 1. **Start** (creates worktree `tool-<slug>`, auto-suffixed on collision):
    `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" start <slug> <session_id>`
    Then check for an existing page:
@@ -74,8 +78,12 @@ Hard rules for this path:
    always regenerates `js/data.js` and re-checks, pushes to main:
    `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" ship <session_id> "feat: add <Tool> tool page"`
 8. **Wait for CI + deploy** with `run_in_background: true`, so the user is
-   not blocked: `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" ci <session_id>`
-   then report `https://aitoolreview.ai/tools/<slug>/`.
+   not blocked: `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" ci <session_id> <slug> [<slug>...]`
+   then report `https://aitoolreview.ai/tools/<slug>/`. Always pass the
+   slugs: `ci` then waits until each page AND its live `js/data.js` entry
+   are served and prints `ADMIN-READY <slug>`. Only after that tell the user
+   the suggestion can be approved in admin (admin finds the page through live
+   `js/data.js`; approving earlier shows "No tool page found").
    **If CI is red**, `ci` already prints the failing tests and assertions
    (or run `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" cilog <session_id>`). Never run raw `gh`/`git` to
    investigate. A failing test is often brittle test data broken by the new
@@ -91,6 +99,56 @@ If `ship` reports a merge conflict, run
 for each file it names, edit the file in the worktree so it keeps main's
 changes plus yours (if main already has an equivalent fix, take main's),
 then run `ship` again.
+
+## Relevance gate (REQUIRED for every suggested tool)
+
+Some submissions are not AI tools, or contain adult content. Decide this
+before creating anything. Fetch the submitted homepage once with WebFetch
+(plus nav pages and the terms page if anything looks adult). If the fetch
+fails, run `tool-page.sh urls <website>`; a dead site is the `site-down`
+template.
+
+**Default is ACCEPT.** Every page brings traffic, so reject only for one of
+these hard reasons (first match wins, in this order):
+
+| Hard reason | Template id |
+|-------------|-------------|
+| Adult, sexual, NSFW or explicit content (homepage, nav pages or terms allow it), or gambling | `adult-content` |
+| AI girlfriend / boyfriend / companion / romantic or "virtual partner" chat, even if the site says it is SFW | `adult-content` |
+| Site is down or times out | `site-down` |
+| Already has a page (`tool-page.sh exists <name>`) | `already-listed` |
+| No usable AI tool on the site: only a directory, blog, newsletter, course, agency service or affiliate list | `not-a-product` |
+| A shopping site, marketplace or product-recommendation / comparison site (selling or ranking physical products), even with an AI matcher or chat on top | `not-a-product` |
+| No AI in the product at all (e.g. a plain SaaS, map converter, e-commerce store) | `out-of-scope` |
+| Waitlist only, nothing anyone can use yet | `too-early` |
+
+These are NOT reasons to reject:
+- A wrapper around an existing model (it gives people the model without the
+  hassle). If it borrows a model's brand (e.g. "Flux3"), the page states it
+  is independent of the model maker.
+- An anonymous operator, a keyword domain, heavy SEO copy, or a small tool.
+- No perfect category: pick the closest one in the taxonomy below.
+
+When in doubt, ACCEPT.
+
+When the verdict is REJECT, do not run `start`, do not write a page, and ask
+the user nothing. Reply with exactly this block:
+
+```text
+REJECT: <Tool name> (<website>)
+Why: <one sentence with the specific evidence, e.g. "homepage sells NSFW AI girlfriend chats">
+Admin template: <template id> (label as shown in the admin "Rejection note template" dropdown)
+Rejection note:
+<the template body from js/admin-suggestions.js REJECT_TEMPLATES, with {tool}/{website} filled in;
+ add one specific sentence only if it helps the submitter, never repeat the greeting,
+ "thank you", "resubmit" or sign-off: the decision email adds those>
+```
+
+The user rejects it in the admin Suggestions panel by picking that template.
+Keep the note polite and factual; for adult content never describe the
+content in detail. If the case is genuinely unclear (e.g. a general tool with
+an optional NSFW mode), say so in one line and treat it as the single
+question for this run instead of "ship it?".
 
 ## Step 0: Check if Tool Already Exists (REQUIRED)
 
@@ -203,7 +261,7 @@ category/subcategory name (categories are for navigation, tags are not).
 ---
 name: "Tool Name"
 slug: "tool-name"
-website: "https://tool.com"
+website: "https://tool.com"  # same host as the submitted URL (admin approve matches on it)
 type: oss | saas | commercial
 track: users | developers
 category: "category-slug"

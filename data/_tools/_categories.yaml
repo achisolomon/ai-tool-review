@@ -202,6 +202,18 @@ users:
       astrology:
         name: "Astrology"
         description: "Birth charts and astrological readings with AI interpretation"
+      fun-novelty:
+        name: "Fun & Novelty"
+        description: "Recreational AI tools such as name generators and personal novelty apps"
+
+  real-estate:
+    name: "Real Estate & Home"
+    rank: 22
+    description: "AI for real estate, property, and home improvement"
+    subcategories:
+      home-design:
+        name: "Home & Interior Design"
+        description: "Redesign rooms, exteriors, and gardens from a photo with AI"
 
   enterprise-platforms:
     name: "Enterprise AI Platforms"

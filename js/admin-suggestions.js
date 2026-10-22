@@ -367,8 +367,16 @@
         },
         {
             id: 'out-of-scope', label: 'Not an AI tool / out of scope', kinds: ['new_tool'],
-            body: 'It is outside our focus on AI tools for building and running software.',
-            invite: 'Know other AI dev tools we are missing? Send them our way.',
+            body: 'It does not appear to be an AI tool. AI Tool Review only lists products where AI does the core work.',
+            invite: 'Know other AI tools we are missing? Send them our way.',
+        },
+        {
+            id: 'not-a-product', label: 'Shopping, directory or content site, not a tool', kinds: ['new_tool'],
+            body: 'It looks like a shopping, directory or content site rather than an AI tool people use directly, so it is outside what we review.',
+        },
+        {
+            id: 'adult-content', label: 'Adult, companion or unsafe content', kinds: ['new_tool'],
+            body: 'Adult content, AI companion and romantic chat apps are outside what we list on AI Tool Review.',
         },
         {
             id: 'too-early', label: 'Too early / no public product', kinds: ['new_tool'],

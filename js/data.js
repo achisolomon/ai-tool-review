@@ -431,6 +431,30 @@ const landscapeData = {
               "additional_categories": []
             },
             {
+              "name": "Flux3",
+              "slug": "flux3",
+              "url": "https://www.flux-3-ai.net/",
+              "desc": "Independent AI image and video generator with text-to-image, reference remix, text-to-video and image-to-video in one browser studio",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "multimodal",
+                "no-code"
+              ],
+              "all_tags": [
+                "multimodal",
+                "no-code"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "image-generation",
+              "subcategory_name": "Image Generation",
+              "additional_categories": []
+            },
+            {
               "name": "hairforge",
               "slug": "hairforge",
               "url": "https://beardstyles.co",
@@ -1292,6 +1316,30 @@ const landscapeData = {
                 "no-code"
               ],
               "all_tags": [
+                "no-code"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "3d-other",
+              "subcategory_name": "3D / Other Modalities",
+              "additional_categories": []
+            },
+            {
+              "name": "img2threejs",
+              "slug": "img2threejs",
+              "url": "https://img2threejs.org/",
+              "desc": "AI image-to-3D service that turns one reference image into a textured GLB model plus ready-to-use React Three Fiber and Three.js loaders",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "typescript",
+                "no-code"
+              ],
+              "all_tags": [
+                "typescript",
                 "no-code"
               ],
               "category_id": "generative-media",
@@ -3574,6 +3622,42 @@ const landscapeData = {
       "rank": 21
     },
     {
+      "id": "real-estate",
+      "name": "Real Estate & Home",
+      "track": "users",
+      "subcategories": [
+        {
+          "id": "home-design",
+          "name": "Home & Interior Design",
+          "tools": [
+            {
+              "name": "AI Room Redesign",
+              "slug": "ai-room-redesign",
+              "url": "https://airoomredesign.net/",
+              "desc": "AI room redesign tool that turns one photo of a room, house exterior or garden into new design concepts in different styles",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "no-code"
+              ],
+              "all_tags": [
+                "no-code"
+              ],
+              "category_id": "real-estate",
+              "category_name": "Real Estate & Home",
+              "subcategory_id": "home-design",
+              "subcategory_name": "Home & Interior Design",
+              "additional_categories": []
+            }
+          ]
+        }
+      ],
+      "rank": 22
+    },
+    {
       "id": "enterprise-platforms",
       "name": "Enterprise AI Platforms",
       "track": "users",
@@ -3792,6 +3876,36 @@ const landscapeData = {
               "category_name": "Lifestyle & Wellness",
               "subcategory_id": "astrology",
               "subcategory_name": "Astrology",
+              "additional_categories": []
+            }
+          ]
+        },
+        {
+          "id": "fun-novelty",
+          "name": "Fun & Novelty",
+          "tools": [
+            {
+              "name": "Chinese Name Generator",
+              "slug": "chinese-name-generator",
+              "url": "https://chinese-name-generator.com/",
+              "desc": "Free AI tool that composes a meaningful Chinese name from your English name, traits and style, with pinyin and character meanings",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "multilingual",
+                "free"
+              ],
+              "all_tags": [
+                "multilingual",
+                "free"
+              ],
+              "category_id": "lifestyle",
+              "category_name": "Lifestyle & Wellness",
+              "subcategory_id": "fun-novelty",
+              "subcategory_name": "Fun & Novelty",
               "additional_categories": []
             }
           ]
@@ -11602,6 +11716,21 @@ const landscapeData = {
             "astrology": {
               "name": "Astrology",
               "description": "Birth charts and astrological readings with AI interpretation"
+            },
+            "fun-novelty": {
+              "name": "Fun & Novelty",
+              "description": "Recreational AI tools such as name generators and personal novelty apps"
+            }
+          }
+        },
+        "real-estate": {
+          "name": "Real Estate & Home",
+          "rank": 22,
+          "description": "AI for real estate, property, and home improvement",
+          "subcategories": {
+            "home-design": {
+              "name": "Home & Interior Design",
+              "description": "Redesign rooms, exteriors, and gardens from a photo with AI"
             }
           }
         },
