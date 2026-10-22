@@ -27,8 +27,11 @@ Hard rules for this path:
   no env-var prefix): that exact prefix is pre-approved and runs outside the
   sandbox. If it ever prints "running inside the sandbox", re-run it exactly
   as it says; do not debug node_modules or Playwright.
-- Never use `dangerouslyDisableSandbox`; the script is already excluded
-  from the sandbox.
+- Never use `dangerouslyDisableSandbox` for anything except `tool-page.sh`.
+  Exception: if `check`, `serve` or `ship` exits 1 with NO output, it ran
+  sandboxed (it dies on `rbenv rehash`, which cannot write
+  `~/.rbenv/shims` there). Re-run the same command once with
+  `dangerouslyDisableSandbox: true`.
 - Ask the user nothing except the single "ship it?" in step 6. Pick the
   worktree name, category, tags and wording yourself.
 - `<session_id>` is in the SessionStart message.
@@ -63,7 +66,7 @@ Hard rules for this path:
 3. **Write the page** with the Write tool into the worktree path printed by
    `start`, following the taxonomy, tags (`data/_tools/_tags.yaml` is the
    source of truth) and content structure below. Never edit `js/data.js`.
-4. **Check** (validate, generate, build, star-figure lint, 14 data tests):
+4. **Check** (validate, generate, build, star-figure lint, data-integrity tests):
    `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" check <session_id>`
    Star-figure rule: no digit followed by "star(s)" anywhere in the body;
    only the key-stats badge shows the number. Fix and re-run until green.
@@ -135,9 +138,21 @@ These are NOT reasons to reject:
   scenes, images, maps, text) even if its site never says "AI" (e.g.
   ArnisWeb: real places to Minecraft worlds). Accept it, but describe how it
   works honestly and never claim a model the site does not name.
-- No perfect category: pick the closest one in the taxonomy below.
+- No perfect category: see "Placement decisions" under the taxonomy.
 
 When in doubt, ACCEPT.
+
+Owner rulings to calibrate against (2026-10-22):
+
+| Site | Verdict | Why |
+|------|---------|-----|
+| flux-3-ai.net | ACCEPT | Wrapper image/video generator; page says it is independent of BFL |
+| img2threejs.org | ACCEPT | Anonymous but working image-to-3D service |
+| airoomredesign.net | ACCEPT | SEO-heavy but working room redesign generator |
+| chinese-name-generator.com | ACCEPT | Small free novelty AI tool |
+| arnisweb.com | ACCEPT | Automated world generator; site never says "AI" |
+| bestrobotvacuum.io | REJECT `not-a-product` | Robot-vacuum shopping/ranking site with an AI matcher on top |
+| heyaibuddy.net | REJECT `adult-content` | AI boyfriend/girlfriend companion app, despite its SFW claim |
 
 When the verdict is REJECT, do not run `start`, do not write a page, and ask
 the user nothing. Reply with exactly this block:
@@ -192,63 +207,64 @@ Tools go in: `data/_tools/{track}/{category}/{subcategory}/{slug}.md`
 
 ## Category Taxonomy (MUST MATCH)
 
-The file path determines category. `data/_tools/_categories.yaml` is the
-source of truth; this table mirrors it. If they ever disagree, trust the yaml.
-There is no `vertical-ai` category any more: industry tools go straight into
-their industry category (e.g. `healthcare`, `legal`, `finance`).
+Source of truth: `data/_tools/_categories.yaml` (this table mirrors it as of 2026-10-22;
+if they differ, the yaml wins). The file path determines category. Every category has
+subcategories, so `subcategory` is always required and must match a folder, or the tool
+is silently dropped from `js/data.js`.
 
 ### Developers Track (`track: "developers"`)
 
 | Category | Subcategories |
 |----------|---------------|
-| `agent-frameworks` | `agent-communication`, `agent-identity`, `agent-memory`, `agent-payments`, `agent-platforms`, `agent-search`, `browser-agents`, `code-first`, `durable-execution`, `protocols`, `tool-integrations` |
-| `ai-coding` | `ai-ides`, `app-builders`, `code-intelligence`, `code-review`, `coding-agents`, `dev-environment`, `llm-skills`, `spec-driven`, `testing-sensors` |
-| `ai-cost` | `cost-offsets`, `token-optimization`, `usage-analytics` |
-| `ai-infrastructure` | `gpu-providers`, `inference-apis`, `llm-gateway`, `networking` |
-| `data-training` | `data-ingestion`, `data-labeling`, `embeddings`, `experiment-tracking`, `fine-tuning`, `lakehouse-semantic`, `ml-frameworks`, `mlops` |
-| `engineering-intelligence` | `developer-portals`, `engineering-analytics` |
-| `foundation-models` | `closed-frontier`, `model-hubs`, `open-source` |
+| `ai-coding` | `coding-agents`, `ai-ides`, `app-builders`, `code-review`, `llm-skills`, `testing-sensors`, `code-intelligence`, `spec-driven`, `dev-environment` |
+| `ai-cost` | `token-optimization`, `usage-analytics`, `cost-offsets` |
+| `agent-frameworks` | `code-first`, `protocols`, `browser-agents`, `tool-integrations`, `agent-platforms`, `agent-memory`, `agent-search`, `durable-execution`, `agent-identity`, `agent-payments`, `agent-communication` |
+| `foundation-models` | `closed-frontier`, `open-source`, `model-hubs` |
 | `llm-frameworks` | `app-frameworks`, `prompt-engineering` |
-| `observability-safety` | `app-observability`, `evaluation`, `guardrails`, `llm-observability` |
-| `security` | `preventing-prompt-injection`, `red-teaming`, `security-scanning` |
-| `vector-dbs` | `dedicated`, `extensions`, `rag-kg` |
+| `ai-infrastructure` | `inference-apis`, `gpu-providers`, `llm-gateway`, `networking` |
+| `observability-safety` | `llm-observability`, `evaluation`, `guardrails`, `app-observability` |
+| `vector-dbs` | `dedicated`, `rag-kg`, `extensions` |
+| `data-training` | `fine-tuning`, `embeddings`, `data-ingestion`, `ml-frameworks`, `mlops`, `experiment-tracking`, `data-labeling`, `lakehouse-semantic` |
+| `security` | `preventing-prompt-injection`, `security-scanning`, `red-teaming` |
+| `engineering-intelligence` | `engineering-analytics`, `developer-portals` |
 
 ### Users Track (`track: "users"`)
 
 | Category | Subcategories |
 |----------|---------------|
-| `ai-chat-search` | `ai-search`, `chat-assistants` |
-| `customer-support` | `ai-support-agents`, `contact-center`, `helpdesk-platforms` |
-| `design` | `diagrams-illustrations`, `ui-product-design` |
-| `education` | `ai-tutors`, `language-learning`, `teacher-tools` |
-| `enterprise-platforms` | `enterprise` |
-| `finance` | `finance-automation`, `financial-research` |
-| `generative-media` | `3d-other`, `image-generation`, `music-generation`, `video-generation`, `voice-speech` |
-| `healthcare` | `clinical-documentation`, `clinical-reference`, `patient-facing-ai` |
-| `legal` | `contract-management`, `legal-research-drafting` |
-| `lifestyle` | `astrology` |
+| `ai-chat-search` | `chat-assistants`, `ai-search` |
+| `generative-media` | `image-generation`, `video-generation`, `voice-speech`, `music-generation`, `3d-other` |
+| `writing-productivity` | `writing-tools` |
+| `design` | `ui-product-design`, `diagrams-illustrations` |
 | `meeting-notetakers` | `notetakers` |
-| `no-code-builders` | `workflow-builders` |
+| `customer-support` | `ai-support-agents`, `helpdesk-platforms`, `contact-center` |
+| `education` | `language-learning`, `ai-tutors`, `teacher-tools` |
 | `personal-assistants` | `browsers` |
-| `recruiting` | `ai-recruiters`, `talent-intelligence` |
-| `sales-marketing` | `ai-commerce`, `marketing-content`, `revenue-intelligence`, `sales-prospecting` |
+| `sales-marketing` | `sales-prospecting`, `marketing-content`, `ad-social-creative`, `revenue-intelligence`, `ai-commerce` |
 | `slide-creation` | `ai-presentations` |
 | `transcription` | `transcription-tools` |
+| `no-code-builders` | `workflow-builders` |
 | `voice-ai-agents` | `voice-agents` |
-| `writing-productivity` | `writing-tools` |
+| `healthcare` | `clinical-documentation`, `clinical-reference`, `patient-facing-ai` |
+| `legal` | `legal-research-drafting`, `contract-management` |
+| `finance` | `financial-research`, `finance-automation` |
+| `recruiting` | `ai-recruiters`, `talent-intelligence` |
+| `real-estate` | `home-design` |
+| `enterprise-platforms` | `enterprise` |
+| `lifestyle` | `astrology`, `fun-novelty` |
 
 **File path format:** `data/_tools/{track}/{category}/{subcategory}/{slug}.md`
 
-Always put a new tool in a subcategory folder and set the `subcategory` field
-to that folder name; a mismatch silently drops the tool from `js/data.js`. (A
-few legacy files sit directly in a category folder with no `subcategory`, e.g.
-`personal-assistants/dots.md`; the generator then uses the category id. Don't
-copy that pattern.)
+### Placement decisions (owner rulings)
 
-**New category or subcategory:** add it to `_categories.yaml` (with a unique
-id). A new category also needs a unique `rank:` (popularity order on the
-landscape grid; a test enforces this). Subcategories display in the order they
-are listed in the yaml, most popular first.
+- Pick the category by what the tool is FOR, not the tech it uses: AI Room Redesign is
+  `real-estate/home-design`, not `generative-media/image-generation`.
+- Recreational or novelty tools (name generators, fun personal apps) go in
+  `lifestyle/fun-novelty`, not `writing-productivity`.
+- Output type decides inside generative media: text output is never `image-generation`.
+- No good fit? Add a category or subcategory to `_categories.yaml` (name, rank,
+  description; folder name = subcategory id) instead of forcing a poor fit. Mention it
+  in the ship summary so the owner can rename it.
 
 ## Valid Tags (Use Only These)
 
@@ -289,7 +305,7 @@ website: "https://tool.com"  # same host as the submitted URL (admin approve mat
 type: oss | saas | commercial
 track: users | developers
 category: "category-slug"
-subcategory: "subcategory-slug"  # omit for flat categories
+subcategory: "subcategory-slug"  # always required
 status: active | beta | deprecated | removed
 description: "50-160 char SEO description, [VERIFIED from official source]"
 pricing_model: free | freemium | paid | enterprise
@@ -523,8 +539,7 @@ are for **evaluation and comparison**, not tutorials.
 |---------|-----|
 | Creating duplicate tool page | ALWAYS search first: `find data/_tools -iname "*toolname*"` |
 | Wrong category/subcategory | Use ONLY values from the taxonomy table above |
-| Adding subcategory to a flat category | Flat categories (slide-creation, meeting-notetakers, etc.) don't need subcategory, omit the field |
-| Omitting subcategory from a nested category | Categories with subcategories listed in the taxonomy DO require the field, or the tool is silently dropped from data.js |
+| Omitting subcategory | Every category has subcategories; the field is required, or the tool is silently dropped from data.js |
 | Inventing new tags | Use ONLY tags from the valid tags table |
 | Category doesn't match folder | File path and frontmatter MUST align |
 | Using markdown tables for pricing | Use `<a class="pricing-card">` HTML |
