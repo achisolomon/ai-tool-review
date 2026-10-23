@@ -65,8 +65,10 @@ const server = http.createServer((req, res) => {
   const filePath = resolveFilePath(req.url);
 
   if (!filePath) {
+    // Serve the site's 404.html like Cloudflare Pages does, so local matches production.
+    const notFound = path.join(SITE_DIR, '404.html');
     res.writeHead(404, { 'Content-Type': 'text/html' });
-    res.end('<h1>404 - Not Found</h1>');
+    res.end(fs.existsSync(notFound) ? fs.readFileSync(notFound) : '<h1>404 - Not Found</h1>');
     return;
   }
 
