@@ -9,7 +9,7 @@ subcategory: "llm-observability"
 status: "active"
 description: "AI observability platform for LLM and ML monitoring with automatic drift detection, root cause analysis, and production debugging"
 github_url: "https://github.com/Arize-ai/phoenix"
-github_stars: 11947
+github_stars: 11961
 pricing_model: "freemium"
 founded_year: 2020
 headquarters: "Berkeley, CA"

@@ -9,7 +9,7 @@ subcategory: "code-first"
 status: "active"
 description: "Open-source framework for building production-ready RAG pipelines and AI agents with modular components"
 github_url: "https://github.com/deepset-ai/haystack"
-github_stars: 26808
+github_stars: 26816
 pricing_model: "open-source"
 founded_year: 2019
 headquarters: "Berlin, Germany"

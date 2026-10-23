@@ -9,7 +9,7 @@ subcategory: "extensions"
 status: "active"
 description: "Distributed search engine with native vector search, combining dense, sparse and BM25 keyword retrieval in one hybrid query"
 github_url: "https://github.com/elastic/elasticsearch"
-github_stars: 78338
+github_stars: 78349
 pricing_model: "freemium"
 founded_year: 2010
 tags:
