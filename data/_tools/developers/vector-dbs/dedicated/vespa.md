@@ -9,7 +9,7 @@ subcategory: "dedicated"
 status: "active"
 description: "Open-source AI search engine from Yahoo combining vector, text and structured search with machine-learned ranking at scale"
 github_url: "https://github.com/vespa-engine/vespa"
-github_stars: 7143
+github_stars: 7144
 pricing_model: "freemium"
 founded_year: 2023
 headquarters: "Trondheim, Norway"

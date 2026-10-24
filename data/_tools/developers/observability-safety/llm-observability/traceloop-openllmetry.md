@@ -9,7 +9,7 @@ subcategory: "llm-observability"
 status: "active"
 description: "Open-source OpenTelemetry instrumentation for LLM apps (OpenLLMetry) plus Traceloop's evaluation platform, now part of ServiceNow"
 github_url: "https://github.com/traceloop/openllmetry"
-github_stars: 7501
+github_stars: 7503
 pricing_model: "freemium"
 headquarters: "Tel Aviv, Israel"
 tags:
