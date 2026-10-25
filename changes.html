@@ -48,16 +48,6 @@
 
     <link rel="stylesheet" href="css/auth.css">
 
-    <!-- Google AdSense (skipped on localhost to keep the dev console clean) -->
-    <script>
-        if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
-            var s = document.createElement('script');
-            s.async = true;
-            s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7272761067250869';
-            s.crossOrigin = 'anonymous';
-            document.head.appendChild(s);
-        }
-    </script>
 
     <style>
         .changes-container {
@@ -179,7 +169,7 @@
         </div>
     </div>
 
-    <script src="js/data.js"></script>
+    <script src="js/data.js?v={{ site.time | date: '%s' }}"></script>
     <script>
         (function() {
             'use strict';

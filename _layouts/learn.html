@@ -23,13 +23,14 @@
   <link rel="stylesheet" href="{{ '/css/learn.css' | relative_url }}?v={{ site.time | date: '%s' }}">
   <!-- Mobile layer (< 768px only). Must stay the last stylesheet. -->
   <link rel="stylesheet" href="{{ '/css/mobile.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+  {% include adsense-loader.html %}
 </head>
 <body>
   <header class="header">
     {% include nav.html active="guides" %}
   </header>
 
-  <main class="learn-layout" id="page-content">
+  <main class="learn-layout ad-eligible" id="page-content">
     <aside class="learn-toc">
       <div class="learn-toc-inner">
         <h4>In this article</h4>
@@ -99,6 +100,8 @@
     </article>
     </div>
   </main>
+
+  {% include ad-unit.html %}
 
   {% include footer.html %}
 

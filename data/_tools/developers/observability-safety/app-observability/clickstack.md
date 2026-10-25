@@ -25,7 +25,7 @@ source_urls:
   - "https://clickhouse.com/clickstack"
   - "https://github.com/ClickHouse/clickstack"
   - "https://clickhouse.com/docs/observability"
-github_stars: 174
+github_stars: 177
 ---
 
 <div class="key-stats">

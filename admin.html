@@ -1,4 +1,5 @@
 ---
+sitemap: false
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +8,12 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="icon" type="image/x-icon" href="/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
     <title>Review Moderation - AI Tool Review</title>
+    <!-- Every admin view needs supabase-js. Fetch it now, in parallel with the
+         page's other scripts; ensureSupabase() then injects it from cache. -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/reviews.css">
     <link rel="stylesheet" href="css/auth.css">
@@ -261,8 +267,8 @@
     <script src="js/supabase-client.js"></script>
     <script src="js/auth-ui.js"></script>
     {% include nav-scripts.html %}
-    <script src="js/data.js"></script>
-    <script src="js/admin-suggestions.js"></script>
+    <script src="js/data.js?v={{ site.time | date: '%s' }}"></script>
+    <script src="js/admin-suggestions.js?v={{ site.time | date: '%s' }}"></script>
     <script>
         // Admin page initialization
         (async function() {
@@ -631,14 +637,12 @@
 
             // Update tab counts
             async function updateCounts() {
-                const pending = await window.AdminAPI.getPendingCount();
+                const [pending, approved, rejected] = await Promise.all(
+                    ['pending', 'approved', 'rejected'].map(s => window.AdminAPI.getReviewCount(s))
+                );
                 document.getElementById('stat-pending').textContent = pending;
-
-                const approved = await window.AdminAPI.getReviewsForModeration('approved', { limit: 1 });
-                document.getElementById('stat-approved').textContent = approved.total;
-
-                const rejected = await window.AdminAPI.getReviewsForModeration('rejected', { limit: 1 });
-                document.getElementById('stat-rejected').textContent = rejected.total;
+                document.getElementById('stat-approved').textContent = approved;
+                document.getElementById('stat-rejected').textContent = rejected;
             }
 
             // Switch to a status (updates tabs, stats, and loads reviews)
@@ -766,12 +770,15 @@
             // Initialize
             const hasAccess = await checkAccess();
             if (hasAccess) {
-                await updateCounts();
-                await loadReviews();
-                // Gate the Suggestions tab on table availability (graceful degradation)
-                const suggestionsAvailable = window.SupabaseClient && typeof window.SupabaseClient.isSuggestionsAvailable === 'function'
-                    ? await window.SupabaseClient.isSuggestionsAvailable().catch(() => false)
-                    : false;
+                // Independent queries: run them together, not one after another.
+                const [, , suggestionsAvailable] = await Promise.all([
+                    updateCounts(),
+                    loadReviews(),
+                    // Gate the Suggestions tab on table availability (graceful degradation)
+                    window.SupabaseClient && typeof window.SupabaseClient.isSuggestionsAvailable === 'function'
+                        ? window.SupabaseClient.isSuggestionsAvailable().catch(() => false)
+                        : false,
+                ]);
                 const suggestionsTab = document.querySelector('[data-view="suggestions"]');
                 if (!suggestionsAvailable) {
                     // Hide the Suggestions tab entirely — table not ready yet

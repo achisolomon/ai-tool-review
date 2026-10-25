@@ -423,11 +423,97 @@ test.describe('Test 3: Mocked-auth form tests', () => {
     // No slug field in the form
     await expect(page.locator('#suggest-slug')).toHaveCount(0);
 
-    // Category and subcategory selects are in the DOM (inside the collapsible) but NOT required
-    await expect(page.locator('#suggest-category')).toBeAttached();
+    // Category lives inside the optional details section and is NOT required
+    await expect(page.locator('#suggest-category')).toBeHidden();
+    await modal.locator('#suggest-details-collapsible .suggest-collapsible-trigger').click();
+    await expect(page.locator('#suggest-category')).toBeVisible();
     await expect(page.locator('#suggest-category')).not.toHaveAttribute('required', /.*/);
-    await expect(page.locator('#suggest-subcategory')).toBeAttached();
     await expect(page.locator('#suggest-subcategory')).not.toHaveAttribute('required', /.*/);
+    // Subcategory and tags stay hidden until the previous step is chosen
+    await expect(page.locator('#suggest-subcategory-group')).toBeHidden();
+    await expect(page.locator('#suggest-tags-group')).toBeHidden();
+    // No track step and no tag-family checkbox walls
+    await expect(page.locator('#suggest-track')).toHaveCount(0);
+    await expect(page.locator('input[name="tag"]')).toHaveCount(0);
+  });
+
+  test('3f2: picking category, subcategory and a tag lands in the payload placement', async ({ page }) => {
+    const modal = await openNewToolForm(page);
+    await page.evaluate(() => {
+      const orig = window.SupabaseClient.createSuggestion;
+      window.SupabaseClient.createSuggestion = async (row) => { window.__lastSuggestion = row; return orig(row); };
+    });
+    await typeLink(page, 'https://placement-test.example.com');
+    await modal.locator('#suggest-details-collapsible .suggest-collapsible-trigger').click();
+
+    const category = await page.evaluate(() => {
+      const cat = document.querySelector('#suggest-category');
+      const opt = cat.querySelector('option[data-track]');
+      cat.value = opt.value;
+      cat.dispatchEvent(new Event('change'));
+      return { track: opt.dataset.track, category: opt.value };
+    });
+    await expect(modal.locator('#suggest-subcategory-group')).toBeVisible();
+    await expect(modal.locator('#suggest-tags-group')).toBeHidden();
+
+    const subcategory = await page.evaluate(() => {
+      const sub = document.querySelector('#suggest-subcategory');
+      sub.value = sub.options[1].value;
+      sub.dispatchEvent(new Event('change'));
+      return sub.value;
+    });
+    await expect(modal.locator('#suggest-tags-group')).toBeVisible();
+    const picked = { ...category, subcategory };
+
+    // Focusing the empty tag search lists tags; click the first one
+    await modal.locator('#suggest-tag-search').focus();
+    await expect(modal.locator('#suggest-tag-menu [data-slug]').first()).toBeVisible();
+    const tag = await page.evaluate(() => {
+      const item = document.querySelector('#suggest-tag-menu [data-slug]');
+      item.click();
+      return item.dataset.slug;
+    });
+    await expect(modal.locator(`#suggest-tag-chips [data-slug="${tag}"]`)).toBeVisible();
+
+    await page.evaluate(() => document.querySelector('#suggest-new-tool-form').requestSubmit());
+    await expect(modal.locator('.suggest-success')).toBeVisible({ timeout: 5000 });
+
+    const row = await page.evaluate(() => window.__lastSuggestion);
+    expect(row.payload.placement).toEqual(picked);
+    expect(row.payload.tags).toEqual([tag]);
+  });
+
+  test('3f4: affiliate link is optional, validated, and saved normalized', async ({ page }) => {
+    const modal = await openNewToolForm(page);
+    await page.evaluate(() => {
+      const orig = window.SupabaseClient.createSuggestion;
+      window.SupabaseClient.createSuggestion = async (row) => { window.__lastSuggestion = row; return orig(row); };
+    });
+    await typeLink(page, 'https://affiliate-test.example.com');
+    await modal.locator('#suggest-details-collapsible .suggest-collapsible-trigger').click();
+
+    // A non-link blocks submit with an inline error
+    await modal.locator('#suggest-affiliate').fill('not a link');
+    await page.evaluate(() => document.querySelector('#suggest-new-tool-form').requestSubmit());
+    await expect(modal.locator('#suggest-affiliate-error')).toBeVisible();
+    await expect(modal.locator('.suggest-success')).toHaveCount(0);
+
+    await modal.locator('#suggest-affiliate').fill('affiliate-test.example.com/partners');
+    await page.evaluate(() => document.querySelector('#suggest-new-tool-form').requestSubmit());
+    await expect(modal.locator('.suggest-success')).toBeVisible({ timeout: 5000 });
+    const row = await page.evaluate(() => window.__lastSuggestion);
+    expect(row.payload.affiliate_url).toBe('https://affiliate-test.example.com/partners');
+  });
+
+  test('3f3: "Why should it be added?" is capped at 300 characters with a counter', async ({ page }) => {
+    const modal = await openNewToolForm(page);
+    await modal.locator('#suggest-details-collapsible .suggest-collapsible-trigger').click();
+    const rationale = modal.locator('#suggest-rationale');
+    await expect(rationale).toHaveAttribute('maxlength', '300');
+    await expect(modal.locator('#suggest-rationale-count')).toHaveText('0 / 300');
+    await rationale.fill('x'.repeat(400));
+    await expect(rationale).toHaveValue('x'.repeat(300));
+    await expect(modal.locator('#suggest-rationale-count')).toHaveText('300 / 300');
   });
 
   // -----------------------------------------------------------------------

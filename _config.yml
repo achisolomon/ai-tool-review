@@ -44,4 +44,26 @@ exclude:
   - scripts
   - vendor
   - .bundle
+  # Dev/test/prototype files must not be published: AdSense treats
+  # under-construction and test screens as low-value content.
+  - tests
+  - docs
+  - supabase
+  - prototypes
+  - playwright-report
+  - test-results
+  - hero-variants.html
+  - test-popstate.html
+  - mobile-shot.mjs
+  - build-spa-site.js
+  - server.js
+  - playwright.config.js
+  - package.json
+  - package-lock.json
+  - README.md
+  - CONTRIBUTING.md
+  - LOCAL_DB_FIX_HANDOFF.md
+  - test-plan-tags-feature.md
+  - skills-lock.json
+  - PRODUCT.md
 
