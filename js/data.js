@@ -449,6 +449,33 @@ const landscapeData = {
               "additional_categories": []
             },
             {
+              "name": "Harry Potter House Quiz",
+              "slug": "harry-potter-house-quiz",
+              "url": "https://harry-potter-house-quiz.org/",
+              "desc": "Free fan-made Hogwarts house quiz with AI extras: a personalized acceptance letter, an AI house portrait, and a Patronus scene built from your photo.",
+              "type": "saas",
+              "github_stars": null,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "multimodal",
+                "no-code",
+                "multilingual"
+              ],
+              "all_tags": [
+                "multimodal",
+                "no-code",
+                "multilingual",
+                "free"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "image-generation",
+              "subcategory_name": "Image Generation",
+              "additional_categories": []
+            },
+            {
               "name": "Ideogram",
               "slug": "ideogram",
               "url": "https://ideogram.ai/",
@@ -895,6 +922,30 @@ const landscapeData = {
               ],
               "all_tags": [
                 "multimodal"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "video-generation",
+              "subcategory_name": "Video Generation",
+              "additional_categories": []
+            },
+            {
+              "name": "RapDirector",
+              "slug": "rapdirector",
+              "url": "https://rapdirector.com/",
+              "desc": "AI rap video maker that turns one portrait photo and your own rap track into a 10-second, 720p lip-sync performance clip, with duo and animated modes.",
+              "type": "saas",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "multimodal",
+                "no-code"
+              ],
+              "all_tags": [
+                "multimodal",
+                "no-code"
               ],
               "category_id": "generative-media",
               "category_name": "Generative Media",
@@ -1773,8 +1824,12 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "hebrew"
+              ],
+              "all_tags": [
+                "hebrew"
+              ],
               "category_id": "meeting-notetakers",
               "category_name": "Meeting Notetakers & Voice",
               "subcategory_id": "notetakers",
@@ -1853,8 +1908,12 @@ const landscapeData = {
               "pricing_model": "freemium",
               "pricing_starting": null,
               "user_count": null,
-              "tags": [],
-              "all_tags": [],
+              "tags": [
+                "hebrew"
+              ],
+              "all_tags": [
+                "hebrew"
+              ],
               "category_id": "meeting-notetakers",
               "category_name": "Meeting Notetakers & Voice",
               "subcategory_id": "notetakers",
@@ -10441,6 +10500,32 @@ const landscapeData = {
                 "python",
                 "typescript",
                 "doc-to-markdown"
+              ],
+              "category_id": "data-training",
+              "category_name": "Data & Training",
+              "subcategory_id": "data-ingestion",
+              "subcategory_name": "Data Ingestion & Document Processing",
+              "additional_categories": []
+            },
+            {
+              "name": "MarkItDown AI",
+              "slug": "markitdown-ai",
+              "url": "https://markitdownai.org/",
+              "desc": "Browser-based converter that turns PDF, Word, Excel and PowerPoint files into Markdown locally, with paid Enhanced mode for scanned and complex documents.",
+              "type": "saas",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "doc-to-markdown",
+                "rag",
+                "no-code"
+              ],
+              "all_tags": [
+                "doc-to-markdown",
+                "rag",
+                "no-code"
               ],
               "category_id": "data-training",
               "category_name": "Data & Training",
