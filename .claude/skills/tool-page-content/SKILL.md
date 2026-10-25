@@ -1,6 +1,6 @@
 ---
 name: tool-page-content
-description: Use when creating or editing AI tool review pages in the ai-tool-review Jekyll site. Covers the relevance gate that rejects off-topic or adult submissions with a rejection note, the fast path for adding tools (auto-named session worktree, one check script, single push confirmation) plus frontmatter, taxonomy, content structure, URL validation, and keeping the generated js/data.js in sync (required or CI fails).
+description: Use when creating or editing ai-tool-review tool pages. Relevance gate (reject off-topic/adult), fast add-tool path, frontmatter, taxonomy, URL checks, js/data.js sync (CI fails without it).
 ---
 
 # Tool Page Content Skill
