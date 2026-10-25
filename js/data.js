@@ -4009,6 +4009,34 @@ const landscapeData = {
           "name": "Enterprise Platforms",
           "tools": [
             {
+              "name": "Angelina AI",
+              "slug": "angelina-ai",
+              "url": "https://www.angelina-ai.com/",
+              "desc": "Enterprise platform for governed AI digital employees that work inside your systems, with RBAC, human approvals, audit trails and cloud or on-prem deployment.",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "enterprise",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "agent-management",
+                "workflow-automation"
+              ],
+              "all_tags": [
+                "agents",
+                "agent-management",
+                "workflow-automation",
+                "observability",
+                "api"
+              ],
+              "category_id": "enterprise-platforms",
+              "category_name": "Enterprise AI Platforms",
+              "subcategory_id": "enterprise",
+              "subcategory_name": "Enterprise Platforms",
+              "additional_categories": []
+            },
+            {
               "name": "Cohere North",
               "slug": "cohere-north",
               "url": "https://cohere.com/north",
