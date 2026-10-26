@@ -4635,6 +4635,33 @@ const landscapeData = {
               "additional_categories": []
             },
             {
+              "name": "Orca",
+              "slug": "orca",
+              "url": "https://www.onorca.dev",
+              "desc": "Free, open-source agent IDE by Stably AI that runs Claude Code, Codex and other CLI agents in parallel, each in its own git worktree.",
+              "type": "oss",
+              "github_stars": 106717,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "agent-orchestration",
+                "agent-management"
+              ],
+              "all_tags": [
+                "agents",
+                "agent-orchestration",
+                "agent-management",
+                "self-hosted"
+              ],
+              "category_id": "ai-coding",
+              "category_name": "AI Coding & Developer Tools",
+              "subcategory_id": "coding-agents",
+              "subcategory_name": "Coding Agents (CLI / Terminal / Cloud)",
+              "additional_categories": []
+            },
+            {
               "name": "Paseo",
               "slug": "paseo",
               "url": "https://paseo.sh/",
