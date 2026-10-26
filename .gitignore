@@ -40,3 +40,7 @@ js/config-local.js
 
 # Supabase CLI local state
 supabase/.temp/
+
+# Per-session worktree state (tool-page.sh / session_worktree.py)
+.claude/session-worktrees/
+.claude/scripts/__pycache__/

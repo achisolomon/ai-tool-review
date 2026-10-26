@@ -15,7 +15,7 @@ goes through ONE script, which the project settings pre-approve and exclude
 from the sandbox:
 
 ```bash
-bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" <subcommand> ...   # works from any directory
+bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/ai-tool-review/.claude/scripts/tool-page.sh" <subcommand> ...   # works from any directory
 ```
 
 Hard rules for this path:
@@ -51,15 +51,15 @@ Hard rules for this path:
    no worktree, no page, no research subagents. Reply with the verdict and
    the rejection note, as that section describes.
 1. **Start** (creates worktree `tool-<slug>`, auto-suffixed on collision):
-   `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" start <slug> <session_id>`
+   `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/ai-tool-review/.claude/scripts/tool-page.sh" start <slug> <session_id>`
    Then check for an existing page:
-   `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" exists <slug-or-name>`
+   `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/ai-tool-review/.claude/scripts/tool-page.sh" exists <slug-or-name>`
    If it exists, edit that file instead of creating a new one.
 2. **Research** with WebFetch (official site, pricing, docs, GitHub README)
    and WebSearch (reviews; G2 pages return 403 to WebFetch, so use
    WebSearch "<tool> G2 reviews pros cons" instead). Verify links and stars:
-   `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" urls <url> <url> ...`
-   `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" stars <owner/repo>`
+   `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/ai-tool-review/.claude/scripts/tool-page.sh" urls <url> <url> ...`
+   `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/ai-tool-review/.claude/scripts/tool-page.sh" stars <owner/repo>`
    Watch for official vs. third-party sites (e.g. a site linking a fork).
    To go faster, run the research as 2-3 parallel read-only Explore
    subagents (see rules above) while you run `exists`/`urls`/`stars`.
@@ -67,11 +67,11 @@ Hard rules for this path:
    `start`, following the taxonomy, tags (`data/_tools/_tags.yaml` is the
    source of truth) and content structure below. Never edit `js/data.js`.
 4. **Check** (validate, generate, build, star-figure lint, data-integrity tests):
-   `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" check <session_id>`
+   `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/ai-tool-review/.claude/scripts/tool-page.sh" check <session_id>`
    Star-figure rule: no digit followed by "star(s)" anywhere in the body;
    only the key-stats badge shows the number. Fix and re-run until green.
 5. **Serve** (background, prints the URL):
-   `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" serve <session_id>`
+   `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/ai-tool-review/.claude/scripts/tool-page.sh" serve <session_id>`
    It only prints `SERVING` after the page answered 200. Do not curl
    localhost yourself: from the sandbox it always fails (exit 7) even though
    the server is up.
@@ -79,30 +79,30 @@ Hard rules for this path:
    2-3 line summary (category, tags, anything surprising) and ask "ship it?".
    Also take a phone-width screenshot (about 8s) and send it, because the user
    may be on their phone via Remote Control, where localhost does not open:
-   `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" shot <session_id> <slug>`
+   `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/ai-tool-review/.claude/scripts/tool-page.sh" shot <session_id> <slug>`
    then `SendUserFile` with the printed `SHOT` path (`display: "render"`).
 7. **Ship** (only after the user says yes): commits, merges origin/main,
    always regenerates `js/data.js` and re-checks, pushes to main:
-   `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" ship <session_id> "feat: add <Tool> tool page"`
+   `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/ai-tool-review/.claude/scripts/tool-page.sh" ship <session_id> "feat: add <Tool> tool page"`
 8. **Wait for CI + deploy** with `run_in_background: true`, so the user is
-   not blocked: `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" ci <session_id> <slug> [<slug>...]`
+   not blocked: `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/ai-tool-review/.claude/scripts/tool-page.sh" ci <session_id> <slug> [<slug>...]`
    then report `https://aitoolreview.ai/tools/<slug>/`. Always pass the
    slugs: `ci` then waits until each page AND its live `js/data.js` entry
    are served and prints `ADMIN-READY <slug>`. Only after that tell the user
    the suggestion can be approved in admin (admin finds the page through live
    `js/data.js`; approving earlier shows "No tool page found").
    **If CI is red**, `ci` already prints the failing tests and assertions
-   (or run `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" cilog <session_id>`). Never run raw `gh`/`git` to
+   (or run `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/ai-tool-review/.claude/scripts/tool-page.sh" cilog <session_id>`). Never run raw `gh`/`git` to
    investigate. A failing test is often brittle test data broken by the new
    page (e.g. a hardcoded count of tools on a domain): fix the test or page
    in the worktree, run `check`, then `ship` again (it commits every change
    in the worktree, tests included). Don't ask the user again for this
    follow-up push: it is part of the shipment they approved.
-9. **Clean up:** `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" end <session_id>`
+9. **Clean up:** `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/ai-tool-review/.claude/scripts/tool-page.sh" end <session_id>`
    (stops the server, removes the merged worktree).
 
 If `ship` reports a merge conflict, run
-`bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" maindiff <session_id> <file>`
+`bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/ai-tool-review/.claude/scripts/tool-page.sh" maindiff <session_id> <file>`
 for each file it names, edit the file in the worktree so it keeps main's
 changes plus yours (if main already has an equivalent fix, take main's),
 then run `ship` again.
@@ -175,7 +175,7 @@ question for this run instead of "ship it?".
 
 ## Step 0: Check if Tool Already Exists (REQUIRED)
 
-Before ANY research: `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" exists <name-or-slug>`
+Before ANY research: `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/ai-tool-review/.claude/scripts/tool-page.sh" exists <name-or-slug>`
 (matches file names plus `name:`/`slug:` frontmatter, case-insensitive).
 
 **If tool exists:** Update the existing page instead of creating a duplicate.
@@ -184,13 +184,13 @@ Before ANY research: `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai lands
 ## Pre-Flight URL Checks (MANDATORY)
 
 Verify every URL you will cite or put in frontmatter, in one call:
-`bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" urls <website> <github_url> <source urls...>`
+`bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/ai-tool-review/.claude/scripts/tool-page.sh" urls <website> <github_url> <source urls...>`
 
 - **200**: live, proceed
 - **404 on the GitHub repo**: repo is dead, do NOT add the tool; tell the user
 - **404/5xx on the website**: warn the user, consider `status: deprecated`
 
-For any GitHub repo: `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" stars <org/repo>`
+For any GitHub repo: `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/ai-tool-review/.claude/scripts/tool-page.sh" stars <org/repo>`
 (prints stars, archived, fork, last push, license, homepage).
 - `archived=True`: mark `status: deprecated`
 - `fork=True`: find and cite the upstream repo instead
@@ -489,7 +489,7 @@ so never guess the URL).
 
 ## GitHub Stars Verification
 
-Use `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" stars <owner/repo>` (GitHub API), never
+Use `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/ai-tool-review/.claude/scripts/tool-page.sh" stars <owner/repo>` (GitHub API), never
 web search or cached figures.
 
 ### The star-figure prose rule (why `check` has a lint step)

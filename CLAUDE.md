@@ -7,7 +7,7 @@
 - `js/data.js` is generated only (`npm run generate`). Never hand-edit or
   hand-merge it.
 - Adding or editing a tool page: follow the `tool-page-content` skill's fast
-  path. Every step runs through `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/.claude/scripts/tool-page.sh" <cmd>`
+  path. Every step runs through `bash "/Users/achisolomon/Documents/Git-Achi-gmail/ai landscape/ai-tool-review/.claude/scripts/tool-page.sh" <cmd>`
   (absolute path, works from any directory), which is pre-approved and
   sandbox-excluded, so there are no permission prompts. It always uses an
   auto-named session worktree; never ask the user for a name.
