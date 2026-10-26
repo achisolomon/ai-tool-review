@@ -760,6 +760,32 @@ const landscapeData = {
               "additional_categories": []
             },
             {
+              "name": "Gemini Video",
+              "slug": "gemini-video",
+              "url": "https://gemini.google/overview/video-generation/",
+              "desc": "Google's video generator in the Gemini app, now on Gemini Omni Flash: 10-second clips with built-in audio from a text prompt or up to five images",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "multimodal",
+                "no-code",
+                "api-available"
+              ],
+              "all_tags": [
+                "multimodal",
+                "no-code",
+                "api-available"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "video-generation",
+              "subcategory_name": "Video Generation",
+              "additional_categories": []
+            },
+            {
               "name": "Hailuo (MiniMax)",
               "slug": "hailuo-minimax",
               "url": "https://hailuoai.video/",
