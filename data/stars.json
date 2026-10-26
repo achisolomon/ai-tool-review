@@ -1,673 +1,673 @@
 {
-  "generated_at": "2026-10-25T08:48:06Z",
+  "generated_at": "2026-10-26T09:28:12Z",
   "stars": {
     "ag-ui": {
-      "count": 16807,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 16820,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "agent-to-agent-a2a": {
-      "count": 26288,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 26300,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "agentops": {
-      "count": 5914,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 5915,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "agno": {
-      "count": 42883,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 42896,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "aider": {
-      "count": 49744,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 49756,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "aim": {
       "count": 6291,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "anthropic-agent-sdk": {
-      "count": 4003,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 4008,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "anydoc": {
-      "count": 23091,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 23121,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "anydoc-skill": {
       "count": 2,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "arize-ai": {
-      "count": 11992,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 12006,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "arize-phoenix": {
-      "count": 11992,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 12006,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "arnisweb": {
-      "count": 18380,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 18400,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "autogen": {
-      "count": 61554,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 61569,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "autogpt": {
-      "count": 187737,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 187756,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "axolotl": {
-      "count": 12628,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 12632,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "bifrost": {
-      "count": 9087,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 9107,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "bolt-new": {
-      "count": 16574,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 16578,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "botmux": {
-      "count": 24,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 25,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "browser-use": {
-      "count": 119078,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 119164,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "cabinet": {
       "count": 2887,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "caveman": {
-      "count": 114880,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 115134,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "chatwoot": {
-      "count": 38202,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 38315,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "chroma": {
-      "count": 29573,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 29583,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "claude-code": {
-      "count": 153324,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 153415,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "claude-dashboard": {
       "count": 14,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "clickstack": {
       "count": 177,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "cline": {
-      "count": 70839,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 70860,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "codemogger": {
       "count": 348,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "cognee": {
-      "count": 32729,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 32765,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "composio": {
-      "count": 30742,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 30755,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "context-mode": {
-      "count": 32160,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 32335,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "context7": {
-      "count": 63630,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 63698,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "continue": {
-      "count": 36315,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 36325,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "crawl4ai": {
-      "count": 86211,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 86286,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "crewai": {
-      "count": 60080,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 60115,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "deepeval": {
-      "count": 19088,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 19109,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "dify": {
-      "count": 159471,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 159581,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "docling": {
-      "count": 69543,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 69600,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "dspy": {
-      "count": 38776,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 38793,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "elasticsearch": {
-      "count": 78369,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 78383,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "entire": {
-      "count": 5214,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 5216,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "factory-ai": {
-      "count": 67,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 68,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "falkordb": {
-      "count": 10492,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 10494,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "firecrawl": {
-      "count": 195112,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 195448,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "flowise": {
-      "count": 55525,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 55528,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "flue": {
-      "count": 8527,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 8545,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "flux-black-forest-labs": {
-      "count": 26037,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 26040,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "frontend-design": {
-      "count": 183588,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 183851,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "gbrain": {
-      "count": 31179,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 31235,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "ghidra-mcp": {
-      "count": 5893,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 5915,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "granite-guardian": {
       "count": 187,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "graphify": {
-      "count": 134633,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 135610,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "graphiti": {
-      "count": 32191,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 32228,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "grepai": {
-      "count": 1922,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 1924,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "guardrails-ai": {
       "count": 7559,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "guidance": {
-      "count": 21809,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 21811,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "haystack": {
-      "count": 26834,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 26845,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "headroom": {
-      "count": 77758,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 77857,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "herdr": {
-      "count": 45743,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 45910,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "hermes-agent": {
-      "count": 256890,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 257195,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "hugging-face": {
-      "count": 168120,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 168178,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "impeccable": {
-      "count": 86750,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 88290,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "inngest": {
-      "count": 5988,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 5990,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "inspect-ai": {
-      "count": 3085,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 3096,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "invariant-guardrails": {
       "count": 475,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "jax": {
-      "count": 36495,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 36500,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "keras": {
-      "count": 64387,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 64390,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "kickbacks": {
       "count": 553,
       "fetched_at": "2026-08-02T06:25:37Z"
     },
     "kubeflow": {
-      "count": 15923,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 15925,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "laminar": {
-      "count": 3441,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 3444,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "lancedb": {
-      "count": 11765,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 11775,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "langchain": {
-      "count": 148406,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 148483,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "langextract": {
-      "count": 39036,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 39045,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "langfuse": {
-      "count": 36416,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 36507,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "langgraph": {
-      "count": 43859,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 43921,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "langkit": {
       "count": 1004,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "langsmith": {
-      "count": 1082,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 1081,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "latitude": {
       "count": 4734,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "letta": {
-      "count": 25250,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 25258,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "letta-memgpt": {
-      "count": 25250,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 25258,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "llama-cpp": {
-      "count": 132279,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 132396,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "llamafirewall": {
-      "count": 4447,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 4448,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "llamaindex": {
-      "count": 52654,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 52668,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "llm-guard": {
       "count": 3218,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "looot": {
       "count": 3,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "mastra": {
-      "count": 29061,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 29080,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "meetily": {
-      "count": 32134,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 32171,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "mem0": {
-      "count": 67773,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 67833,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "memgraph": {
-      "count": 4629,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 4628,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "meta-llama": {
-      "count": 7710,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 7709,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "microsoft-graphrag": {
-      "count": 36439,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 36449,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "milvus": {
-      "count": 46471,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 46483,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "mimo-code": {
-      "count": 13719,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 13725,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "n8n": {
-      "count": 208525,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 208620,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "nango": {
-      "count": 12977,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 12995,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "nemo-guardrails": {
-      "count": 7363,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 7367,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "neo4j": {
-      "count": 17356,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 17362,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "nimbalyst": {
-      "count": 1972,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 1976,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "nvidia-openshell": {
-      "count": 19672,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 19961,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "ollama": {
-      "count": 184692,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 184820,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "omnivoice": {
-      "count": 15830,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 15893,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "openai-agents-sdk": {
-      "count": 30269,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 30293,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "openai-evals": {
-      "count": 19647,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 19657,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "openai-guardrails-python": {
-      "count": 264,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 265,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "openant": {
-      "count": 782,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 785,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "openhands": {
-      "count": 91773,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 91878,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "openobserve": {
-      "count": 22484,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 22491,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "openrewrite": {
-      "count": 3817,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 3818,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "openwiki": {
-      "count": 17396,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 17449,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "optscale": {
-      "count": 2225,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 2226,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "outlines": {
-      "count": 15975,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 15981,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "outsourcerer": {
       "count": 187,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "pageindex": {
-      "count": 39653,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 39746,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "paseo": {
-      "count": 21917,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 22070,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "pgvector": {
-      "count": 23472,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 23482,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "pi": {
-      "count": 117665,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 117900,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "piguard": {
       "count": 88,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "pitest": {
-      "count": 1877,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 1879,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "playwright-mcp": {
-      "count": 38603,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 38642,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "ponytail": {
-      "count": 175722,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 176499,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "promptfoo": {
-      "count": 26396,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 26446,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "pxpipe": {
-      "count": 7555,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 7553,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "pydantic-ai": {
-      "count": 20849,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 20878,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "pydantic-logfire": {
       "count": 4522,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "qdrant": {
-      "count": 35236,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 35253,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "ragas": {
-      "count": 16142,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 16151,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "raptor": {
-      "count": 3936,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 3944,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "redis-vector": {
-      "count": 77092,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 77108,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "reposwarm": {
       "count": 276,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "restate": {
-      "count": 4603,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 4609,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "rtk": {
-      "count": 84501,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 84584,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "ruflo": {
-      "count": 79117,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 79368,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "semantic-kernel": {
       "count": 28696,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "serena-mcp": {
-      "count": 30691,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 30725,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "sglang": {
-      "count": 38102,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 38185,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "signoz": {
-      "count": 32437,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 32456,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "skills-sh": {
-      "count": 36450,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 36608,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "skypilot": {
-      "count": 10745,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 10750,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "skyvern": {
-      "count": 23269,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 23277,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "smolagents": {
-      "count": 30033,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 30063,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "spiffe": {
-      "count": 1880,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 1882,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "spire": {
-      "count": 2586,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 2588,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "spring-ai": {
-      "count": 9581,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 9585,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "stagehand": {
-      "count": 25804,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 25820,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "supabase-vector": {
-      "count": 113903,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 113954,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "supermemory": {
-      "count": 31386,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 31400,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "superset": {
-      "count": 15531,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 15562,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "t3-codes": {
-      "count": 29908,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 30278,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "tailscale": {
-      "count": 38035,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 38098,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "temporal": {
-      "count": 23971,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 23989,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "tensorflow": {
-      "count": 201233,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 201263,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "tensorrt": {
-      "count": 13415,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 13418,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "token-optimizer": {
-      "count": 2695,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 2711,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "torchtune": {
-      "count": 5823,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 5824,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "traceloop-openllmetry": {
-      "count": 7506,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 7508,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "trulens": {
-      "count": 3609,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 3612,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "unstructured": {
-      "count": 15618,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 15626,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "vercel-ai-sdk": {
-      "count": 27502,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 27518,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "vespa": {
-      "count": 7145,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 7146,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "vllm": {
-      "count": 95401,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 95566,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "wandb": {
-      "count": 11307,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 11309,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "wandb-weave": {
       "count": 1142,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "weaviate": {
-      "count": 16910,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 16915,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "wuppiefuzz": {
       "count": 229,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "xtool": {
-      "count": 13615,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 13760,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "zed": {
-      "count": 92150,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 92206,
+      "fetched_at": "2026-10-26T09:28:12Z"
     },
     "zep": {
-      "count": 4970,
-      "fetched_at": "2026-10-25T08:48:06Z"
+      "count": 4973,
+      "fetched_at": "2026-10-26T09:28:12Z"
     }
   }
 }
