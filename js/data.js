@@ -431,6 +431,30 @@ const landscapeData = {
               "additional_categories": []
             },
             {
+              "name": "Flux2Pro",
+              "slug": "flux2pro",
+              "url": "https://flux2pro.org/",
+              "desc": "Independent AI image generator branded \"Flux 2\" offering text-to-image and editing with Flux 2, Nano Banana, GPT Image and Seedream models",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "multi-model",
+                "no-code"
+              ],
+              "all_tags": [
+                "multi-model",
+                "no-code"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "image-generation",
+              "subcategory_name": "Image Generation",
+              "additional_categories": []
+            },
+            {
               "name": "Flux3",
               "slug": "flux3",
               "url": "https://www.flux-3-ai.net/",
@@ -531,6 +555,30 @@ const landscapeData = {
                 "no-code"
               ],
               "all_tags": [
+                "no-code"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "image-generation",
+              "subcategory_name": "Image Generation",
+              "additional_categories": []
+            },
+            {
+              "name": "ImageV2",
+              "slug": "imagev2",
+              "url": "https://imagev2.org/",
+              "desc": "Multi-model AI image generator and editor with GPT Images, Nano Banana and Seedream, up to 16 reference images and 4K output",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "paid",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "multi-model",
+                "no-code"
+              ],
+              "all_tags": [
+                "multi-model",
                 "no-code"
               ],
               "category_id": "generative-media",
@@ -882,6 +930,28 @@ const landscapeData = {
               "additional_categories": []
             },
             {
+              "name": "Love Story Movie",
+              "slug": "love-story-movie",
+              "url": "https://lovestorymovie.org/",
+              "desc": "Turns your photos and shared memories into a private 60-110 second AI movie of your relationship, delivered as an HD MP4 for $99",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "paid",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "no-code"
+              ],
+              "all_tags": [
+                "no-code"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "video-generation",
+              "subcategory_name": "Video Generation",
+              "additional_categories": []
+            },
+            {
               "name": "Luma Dream Machine",
               "slug": "luma-dream-machine",
               "url": "https://lumalabs.ai/dream-machine",
@@ -993,6 +1063,32 @@ const landscapeData = {
               "user_count": null,
               "tags": [],
               "all_tags": [],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "video-generation",
+              "subcategory_name": "Video Generation",
+              "additional_categories": []
+            },
+            {
+              "name": "SceneFlare",
+              "slug": "sceneflare",
+              "url": "https://sceneflare.com/",
+              "desc": "AI creation platform for images, short videos and photo edits, with Kling, Veo, Seedance, GPT Image and Nano Banana models on one credit balance",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "paid",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "multi-model",
+                "multimodal",
+                "no-code"
+              ],
+              "all_tags": [
+                "multi-model",
+                "multimodal",
+                "no-code"
+              ],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "video-generation",
@@ -5784,6 +5880,66 @@ const landscapeData = {
               "category_name": "AI Coding & Developer Tools",
               "subcategory_id": "spec-driven",
               "subcategory_name": "Spec-Driven Development Tools",
+              "additional_categories": []
+            }
+          ]
+        },
+        {
+          "id": "software-factory",
+          "name": "Software Factory",
+          "tools": [
+            {
+              "name": "Mifal",
+              "slug": "mifal",
+              "url": "https://romiluz13.github.io/mifal/",
+              "desc": "Open-source engineering workflow for Claude Code, Codex, Droid, Pi and OpenCode that makes agents prove work with briefs, receipts and a validator",
+              "type": "oss",
+              "github_stars": 26,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "agent-orchestration",
+                "coding"
+              ],
+              "all_tags": [
+                "agents",
+                "agent-orchestration",
+                "coding",
+                "skill"
+              ],
+              "category_id": "ai-coding",
+              "category_name": "AI Coding & Developer Tools",
+              "subcategory_id": "software-factory",
+              "subcategory_name": "Software Factory",
+              "additional_categories": []
+            },
+            {
+              "name": "Software Factory",
+              "slug": "software-factory",
+              "url": "https://github.com/achisolomon/software-factory",
+              "desc": "Claude Code and Codex plugin with a team of ten AI agents that take a product from idea to release behind three human approval gates",
+              "type": "oss",
+              "github_stars": 2,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "agent-orchestration",
+                "coding"
+              ],
+              "all_tags": [
+                "agents",
+                "agent-orchestration",
+                "coding",
+                "multi-model"
+              ],
+              "category_id": "ai-coding",
+              "category_name": "AI Coding & Developer Tools",
+              "subcategory_id": "software-factory",
+              "subcategory_name": "Software Factory",
               "additional_categories": []
             }
           ]
@@ -12573,6 +12729,10 @@ const landscapeData = {
             "spec-driven": {
               "name": "Spec-Driven Development Tools",
               "description": "Tools for spec-first AI development"
+            },
+            "software-factory": {
+              "name": "Software Factory",
+              "description": "Multi-agent teams that run the software lifecycle end to end, from spec to release, with approval gates"
             },
             "dev-environment": {
               "name": "Dev Environment",

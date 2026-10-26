@@ -293,6 +293,9 @@ developers:
       spec-driven:
         name: "Spec-Driven Development Tools"
         description: "Tools for spec-first AI development"
+      software-factory:
+        name: "Software Factory"
+        description: "Multi-agent teams that run the software lifecycle end to end, from spec to release, with approval gates"
       dev-environment:
         name: "Dev Environment"
         description: "Development environment tooling"
