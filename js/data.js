@@ -9247,6 +9247,36 @@ const landscapeData = {
               "additional_categories": []
             }
           ]
+        },
+        {
+          "id": "compute-optimization",
+          "name": "Compute Optimization",
+          "tools": [
+            {
+              "name": "Maxwell",
+              "slug": "maxwell",
+              "url": "https://heymaxwell.ai/",
+              "desc": "doubleAI's code execution model: rewrites running CPU and GPU code to fit hardware and data, with each change formally proven equivalent.",
+              "type": "commercial",
+              "github_stars": null,
+              "pricing_model": "enterprise",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "cost-reduction"
+              ],
+              "all_tags": [
+                "agents",
+                "cost-reduction"
+              ],
+              "category_id": "ai-infrastructure",
+              "category_name": "AI Infrastructure (Inference, Compute, Routing)",
+              "subcategory_id": "compute-optimization",
+              "subcategory_name": "Compute Optimization",
+              "additional_categories": []
+            }
+          ]
         }
       ],
       "rank": 23
@@ -9513,6 +9543,33 @@ const landscapeData = {
               ],
               "all_tags": [
                 "observability"
+              ],
+              "category_id": "observability-safety",
+              "category_name": "Observability & Evaluation",
+              "subcategory_id": "llm-observability",
+              "subcategory_name": "LLM Observability & Tracing",
+              "additional_categories": []
+            },
+            {
+              "name": "PostHog",
+              "slug": "posthog",
+              "url": "https://posthog.com/",
+              "desc": "Open-source product platform with LLM analytics (traces, cost, latency, evals), session replay, feature flags and a built-in AI analyst.",
+              "type": "oss",
+              "github_stars": 40453,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "observability",
+                "mcp-server",
+                "api-available"
+              ],
+              "all_tags": [
+                "observability",
+                "mcp-server",
+                "api-available",
+                "self-hosted"
               ],
               "category_id": "observability-safety",
               "category_name": "Observability & Evaluation",
@@ -12547,6 +12604,10 @@ const landscapeData = {
             "networking": {
               "name": "Networking & Secure Connectivity",
               "description": "Secure networking for distributed AI agents, self-hosted model infra, and remote compute"
+            },
+            "compute-optimization": {
+              "name": "Compute Optimization",
+              "description": "AI that makes AI and data workloads run faster on the same hardware"
             }
           }
         },

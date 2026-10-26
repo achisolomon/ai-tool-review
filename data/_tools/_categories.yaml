@@ -380,6 +380,9 @@ developers:
       networking:
         name: "Networking & Secure Connectivity"
         description: "Secure networking for distributed AI agents, self-hosted model infra, and remote compute"
+      compute-optimization:
+        name: "Compute Optimization"
+        description: "AI that makes AI and data workloads run faster on the same hardware"
 
   data-training:
     name: "Data & Training"
