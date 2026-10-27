@@ -9,7 +9,7 @@ subcategory: "llm-observability"
 status: "active"
 description: "Open-source product platform with LLM analytics (traces, cost, latency, evals), session replay, feature flags and a built-in AI analyst."
 github_url: "https://github.com/PostHog/posthog"
-github_stars: 40453
+github_stars: 40464
 pricing_model: "freemium"
 founded_year: 2020
 headquarters: "Fully remote"

@@ -9,7 +9,7 @@ subcategory: "dev-environment"
 status: "active"
 description: "Cross-platform tool that replicates core Xcode functionality using open standards, letting developers build and sign iOS apps from Swift Package Manager on Linux and Windows without macOS."
 github_url: "https://github.com/xtool-org/xtool"
-github_stars: 13760
+github_stars: 13852
 pricing_model: "open-source"
 founded_year: 2024
 tags:

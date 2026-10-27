@@ -11,7 +11,7 @@ description: "Open-source engineering workflow for Claude Code, Codex, Droid, Pi
 pricing_model: "free"
 founded_year: 2026
 github_url: "https://github.com/romiluz13/mifal"
-github_stars: 26
+github_stars: 29
 tags:
   - agents
   - agent-orchestration
