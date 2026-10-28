@@ -16,6 +16,9 @@ users:
       video-generation:
         name: "Video Generation"
         description: "Text-to-video and video editing tools"
+      video-editing:
+        name: "Video Editing"
+        description: "AI video editors and studios that cut, layer, caption, and assemble footage into finished videos"
       voice-speech:
         name: "Voice / Speech"
         description: "TTS, voice cloning, and speech synthesis"

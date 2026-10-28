@@ -1198,6 +1198,39 @@ const landscapeData = {
           ]
         },
         {
+          "id": "video-editing",
+          "name": "Video Editing",
+          "tools": [
+            {
+              "name": "Tonpit",
+              "slug": "tonpit",
+              "url": "https://www.tonpit.com/",
+              "desc": "AI video studio with footage, images, voiceover, music and a timeline editor, which you or your own agent (Claude, ChatGPT via MCP) can drive.",
+              "type": "saas",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "mcp-server",
+                "multimodal"
+              ],
+              "all_tags": [
+                "agents",
+                "mcp-server",
+                "multimodal",
+                "multi-model"
+              ],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "video-editing",
+              "subcategory_name": "Video Editing",
+              "additional_categories": []
+            }
+          ]
+        },
+        {
           "id": "voice-speech",
           "name": "Voice / Speech",
           "tools": [
@@ -1231,6 +1264,28 @@ const landscapeData = {
               "user_count": null,
               "tags": [],
               "all_tags": [],
+              "category_id": "generative-media",
+              "category_name": "Generative Media",
+              "subcategory_id": "voice-speech",
+              "subcategory_name": "Voice / Speech",
+              "additional_categories": []
+            },
+            {
+              "name": "EraseNoise",
+              "slug": "erasenoise",
+              "url": "https://erasenoise.com/",
+              "desc": "Online tool that strips steady background noise like wind, fans, traffic and hum from speech in audio and video files. Free 30-second previews.",
+              "type": "saas",
+              "github_stars": null,
+              "pricing_model": "freemium",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "multimodal"
+              ],
+              "all_tags": [
+                "multimodal"
+              ],
               "category_id": "generative-media",
               "category_name": "Generative Media",
               "subcategory_id": "voice-speech",
@@ -9933,6 +9988,34 @@ const landscapeData = {
               "additional_categories": []
             },
             {
+              "name": "Era by Eon",
+              "slug": "era-by-eon",
+              "url": "https://era.eon.io/",
+              "desc": "Free simulated companies for testing AI agents: emulated Salesforce, Slack, Jira, Zendesk and more with synthetic data, served over MCP and REST.",
+              "type": "saas",
+              "github_stars": null,
+              "pricing_model": "free",
+              "pricing_starting": null,
+              "user_count": null,
+              "tags": [
+                "agents",
+                "mcp-server",
+                "sandboxes"
+              ],
+              "all_tags": [
+                "agents",
+                "mcp-server",
+                "sandboxes",
+                "cli",
+                "free"
+              ],
+              "category_id": "observability-safety",
+              "category_name": "Observability & Evaluation",
+              "subcategory_id": "evaluation",
+              "subcategory_name": "Evaluation",
+              "additional_categories": []
+            },
+            {
               "name": "Inspect AI",
               "slug": "inspect-ai",
               "url": "https://inspect.ai-safety-institute.org.uk/",
@@ -12380,6 +12463,10 @@ const landscapeData = {
             "video-generation": {
               "name": "Video Generation",
               "description": "Text-to-video and video editing tools"
+            },
+            "video-editing": {
+              "name": "Video Editing",
+              "description": "AI video editors and studios that cut, layer, caption, and assemble footage into finished videos"
             },
             "voice-speech": {
               "name": "Voice / Speech",
