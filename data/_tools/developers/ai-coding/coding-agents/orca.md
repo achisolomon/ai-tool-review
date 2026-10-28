@@ -9,7 +9,7 @@ subcategory: "coding-agents"
 status: "active"
 description: "Free, open-source agent IDE by Stably AI that runs Claude Code, Codex and other CLI agents in parallel, each in its own git worktree."
 github_url: "https://github.com/stablyai/orca"
-github_stars: 106717
+github_stars: 108491
 pricing_model: "free"
 founded_year: 2022
 headquarters: "San Francisco, CA"

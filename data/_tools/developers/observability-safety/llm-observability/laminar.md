@@ -9,7 +9,7 @@ subcategory: "llm-observability"
 status: "active"
 description: "Open-source observability for AI agents: automatic tracing, browser session replay and clustering of failure patterns"
 github_url: "https://github.com/lmnr-ai/lmnr"
-github_stars: 3444
+github_stars: 3458
 pricing_model: "freemium"
 founded_year: 2024
 tags:
