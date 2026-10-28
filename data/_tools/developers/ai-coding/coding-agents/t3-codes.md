@@ -9,7 +9,7 @@ subcategory: "coding-agents"
 status: "active"
 description: "Open-source control plane that consolidates Claude Code, Codex, Antigravity, OpenCode, Cursor, and Grok into one unified interface, with no token reselling, one-click PR generation, and cross-platform support."
 github_url: "https://github.com/pingdotgg/t3code"
-github_stars: 30615
+github_stars: 30954
 pricing_model: "open-source"
 founded_year: 2026
 headquarters: "T3 Tools Inc."

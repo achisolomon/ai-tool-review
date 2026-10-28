@@ -9,7 +9,7 @@ subcategory: "workflow-builders"
 status: "active"
 description: "Fair-code workflow automation platform with a visual editor, code steps, AI agents and 500+ integrations; self-host or cloud"
 github_url: "https://github.com/n8n-io/n8n"
-github_stars: 208729
+github_stars: 208849
 pricing_model: "freemium"
 founded_year: 2019
 headquarters: "Berlin, Germany"

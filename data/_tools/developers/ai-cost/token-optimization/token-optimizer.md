@@ -9,7 +9,7 @@ subcategory: "token-optimization"
 status: "active"
 description: "Context optimization plugin that identifies and eliminates wasted tokens across Claude Code, OpenCode, OpenClaw, and Codex environments while preserving work through compactions"
 github_url: "https://github.com/alexgreensh/token-optimizer"
-github_stars: 2739
+github_stars: 2760
 pricing_model: "free"
 last_verified: "2026-06-03"
 confidence_score: 0.95

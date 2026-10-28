@@ -9,7 +9,7 @@ subcategory: "networking"
 status: "active"
 description: "Zero Trust, identity-based mesh VPN built on WireGuard that connects remote teams, multi-cloud environments, CI/CD pipelines, edge devices, and AI workloads without exposing infrastructure to the public internet."
 github_url: "https://github.com/tailscale/tailscale"
-github_stars: 38144
+github_stars: 38211
 pricing_model: "freemium"
 founded_year: 2020
 tags:
