@@ -9,7 +9,7 @@ subcategory: "rag-kg"
 status: "active"
 description: "Low-latency open-source graph database with vector search, built for GraphRAG and multi-tenant agent memory"
 github_url: "https://github.com/FalkorDB/FalkorDB"
-github_stars: 10494
+github_stars: 10498
 pricing_model: "freemium"
 founded_year: 2023
 headquarters: "Tel Aviv, Israel"
