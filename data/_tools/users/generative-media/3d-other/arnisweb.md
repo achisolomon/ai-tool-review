@@ -10,7 +10,7 @@ status: "active"
 description: "Browser tool that generates playable Minecraft worlds of real cities and places from map and elevation data, no install needed"
 pricing_model: "freemium"
 github_url: "https://github.com/louis-e/arnis"
-github_stars: 18458
+github_stars: 18471
 tags:
   - no-code
 last_verified: "2026-10-22"

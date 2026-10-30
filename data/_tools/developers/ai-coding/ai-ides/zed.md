@@ -12,7 +12,7 @@ pricing_model: freemium
 founded_year: 2021
 headquarters: "San Francisco, CA"
 github_url: "https://github.com/zed-industries/zed"
-github_stars: 92371
+github_stars: 92409
 last_verified: "2026-06-03"
 confidence_score: 0.9
 ---

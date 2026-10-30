@@ -9,7 +9,7 @@ subcategory: "dev-environment"
 status: "active"
 description: "Persistent terminal runtime for AI coding agents that keeps sessions alive across disconnects, unifies local and remote machines into one workspace, and shows at-a-glance status for every running agent."
 github_url: "https://github.com/herdrdev/herdr"
-github_stars: 46474
+github_stars: 46762
 pricing_model: "open-source"
 founded_year: 2026
 headquarters: "Herdr, Inc."
