@@ -12,7 +12,7 @@ pricing_model: free
 founded_year: 2024
 headquarters: "—"
 github_url: "https://github.com/bethington/ghidra-mcp"
-github_stars: 6013
+github_stars: 6023
 tags:
   - mcp-server
   - agents

@@ -9,7 +9,7 @@ subcategory: "data-ingestion"
 status: "active"
 description: "Fast Rust library by Firecrawl that converts Word, PowerPoint, Excel, OpenDocument, RTF, EPUB, CSV, and PDF files into clean GitHub-Flavored Markdown with sub-5ms median conversion time."
 github_url: "https://github.com/firecrawl/anydoc"
-github_stars: 23249
+github_stars: 23270
 pricing_model: "open-source"
 founded_year: 2026
 tags:

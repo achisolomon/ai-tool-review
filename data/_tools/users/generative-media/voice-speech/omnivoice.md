@@ -9,7 +9,7 @@ subcategory: "voice-speech"
 status: "active"
 description: "Open-source zero-shot text-to-speech and voice cloning model covering 600+ languages, from the k2-fsa (Kaldi) team, with a paid hosted web app at omnivoice.app"
 github_url: "https://github.com/k2-fsa/OmniVoice"
-github_stars: 16097
+github_stars: 16125
 pricing_model: "open-source"
 founded_year: 2026
 tags:

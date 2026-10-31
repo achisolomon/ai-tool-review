@@ -9,7 +9,7 @@ subcategory: "llm-gateway"
 status: "active"
 description: "Bash-based orchestrator that routes coding tasks across Claude, Codex, Cursor, Devin and local models while tracking spend in one ledger"
 github_url: "https://github.com/alexgreensh/outsourcerer"
-github_stars: 188
+github_stars: 189
 pricing_model: "free"
 founded_year: 2026
 headquarters: "Open Source"

@@ -18,7 +18,7 @@ tags:
   - self-hosted
 last_verified: "2026-10-17"
 confidence_score: 0.85
-github_stars: 77095
+github_stars: 77114
 ---
 
 <div class="key-stats">
