@@ -15,6 +15,8 @@ headquarters: "San Francisco, CA"
 # AI-Managed Metadata
 last_verified: "2026-06-02"
 confidence_score: 0.92
+tags:
+  - gtm
 ---
 
 <div class="key-stats">

@@ -1,5 +1,5 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
-  <!-- No counts on purpose, so the card never goes stale (live counts live in og:description). Render to og-card.png at 1200x630. Colors are the site palette (css/style.css --vscode-*). -->
+  <!-- No counts on purpose, so the card never goes stale (live counts live in og:description). Render to og-card.png at 1200x630. Colors are the site palette (css/style.css vscode- variables). -->
 <rect width="1200" height="630" fill="#1e1e1e"/>
 <g stroke="#569cd6" stroke-opacity="0.28" stroke-width="1.5">
 <line x1="770" y1="90" x2="930" y2="70"/>
@@ -39,7 +39,7 @@
 <text x="60" y="128" font-family="Consolas, Menlo, monospace" font-size="24" fill="#4ec9b0"><tspan fill-opacity="0.6">// </tspan>Created by AI, reviewed by humans.</text>
 <text x="60" y="166" font-family="Consolas, Menlo, monospace" font-size="24" fill="#4ec9b0"><tspan fill-opacity="0.6">// </tspan>Community-curated, honestly ranked</text>
 <text x="60" y="262" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="72" font-weight="700" fill="#e0e0e0"><tspan fill="#b5cea8">Hundreds</tspan> of</text>
-<text x="60" y="342" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="72" font-weight="700" fill="#e0e0e0">AI dev tools.</text>
+<text x="60" y="342" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="72" font-weight="700" fill="#e0e0e0">AI tools.</text>
 <text x="60" y="422" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="72" font-weight="700" fill="#e0e0e0">One clear <tspan fill="#4ec9b0">map</tspan>.</text>
 <rect x="60" y="470" width="350" height="66" rx="33" fill="#4ec9b0"/>
 <text x="235" y="513" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="28" font-weight="700" fill="#1e1e1e">Explore the map →</text>

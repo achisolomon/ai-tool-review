@@ -12,7 +12,8 @@ env:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    # shortcut: pinned because Playwright has no chromium build for ubuntu-latest (26.04) yet; unpin after upgrading Playwright
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
 
     steps:

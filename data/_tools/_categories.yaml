@@ -16,6 +16,9 @@ users:
       video-generation:
         name: "Video Generation"
         description: "Text-to-video and video editing tools"
+      video-editing:
+        name: "Video Editing"
+        description: "AI video editors and studios that cut, layer, caption, and assemble footage into finished videos"
       voice-speech:
         name: "Voice / Speech"
         description: "TTS, voice cloning, and speech synthesis"
@@ -94,6 +97,9 @@ users:
       marketing-content:
         name: "Marketing & Brand Content"
         description: "On-brand content generation for marketing teams"
+      ad-social-creative:
+        name: "Ad & Social Creative"
+        description: "AI-generated ad creative, UGC-style product videos, and social content for sellers and marketers"
       revenue-intelligence:
         name: "Revenue Intelligence"
         description: "Conversation analytics and deal insights for sales teams"
@@ -199,9 +205,24 @@ users:
     rank: 30
     description: "AI for astrology, wellness, and personal lifestyle applications"
     subcategories:
+      wellness:
+        name: "Wellness"
+        description: "Digital wellbeing, focus, and mental fitness programs"
       astrology:
         name: "Astrology"
         description: "Birth charts and astrological readings with AI interpretation"
+      fun-novelty:
+        name: "Fun & Novelty"
+        description: "Recreational AI tools such as name generators and personal novelty apps"
+
+  real-estate:
+    name: "Real Estate & Home"
+    rank: 22
+    description: "AI for real estate, property, and home improvement"
+    subcategories:
+      home-design:
+        name: "Home & Interior Design"
+        description: "Redesign rooms, exteriors, and gardens from a photo with AI"
 
   enterprise-platforms:
     name: "Enterprise AI Platforms"
@@ -275,6 +296,9 @@ developers:
       spec-driven:
         name: "Spec-Driven Development Tools"
         description: "Tools for spec-first AI development"
+      software-factory:
+        name: "Software Factory"
+        description: "Multi-agent teams that run the software lifecycle end to end, from spec to release, with approval gates"
       dev-environment:
         name: "Dev Environment"
         description: "Development environment tooling"
@@ -362,6 +386,9 @@ developers:
       networking:
         name: "Networking & Secure Connectivity"
         description: "Secure networking for distributed AI agents, self-hosted model infra, and remote compute"
+      compute-optimization:
+        name: "Compute Optimization"
+        description: "AI that makes AI and data workloads run faster on the same hardware"
 
   data-training:
     name: "Data & Training"

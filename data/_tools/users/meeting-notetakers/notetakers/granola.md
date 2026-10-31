@@ -11,6 +11,8 @@ description: "AI-powered notepad for meetings that transcribes computer audio di
 pricing_model: "freemium"
 founded_year: 2023
 headquarters: "London, UK"
+tags:
+  - hebrew
 
 # AI-Managed Metadata
 last_verified: "2026-06-07"
